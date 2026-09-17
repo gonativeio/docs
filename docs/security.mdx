@@ -1,0 +1,85 @@
+---
+title: "Security & Privacy"
+description: "Modern Security Aligned With Global Privacy Standards"
+---
+
+## Security Statement
+
+Median.co is dedicated to securing and protecting your data through state-of-the-art technical and organizational security controls, numerous regulatory and compliance resources, and a growing collection of third-party attestations and certifications.
+
+<Frame caption="Median achieved <Anchor target=">
+  <img src="/images/docs/8fda6dd9b7b9ad194679725a2445be39e4d34db2e13138356e41d42b1e14bfaf-21972-312_SOC_NonCPA.jpg" />
+</Frame>
+
+Additionally, we are dedicated to protecting customer data, including continually improving security processes and controls and upholding transparency with regard to data processing. We deliver the highest levels of standards conformance as part of our mission to address the most demanding security and privacy requirements of our customers.
+
+For questions on privacy and security, or to submit a custom security questionnaire, please get in touch with our team. Please note that our team is only able to complete security questionnaires for our Enterprise customers at this time.
+
+<Info>
+  ### Do you need more information or have any specific questions?
+
+  You can use the link to contact our [Privacy and Security Team](https://median.co/contact?topic=security).
+</Info>
+
+## Data Storage and Privacy
+
+Median is designed to keep data ownership and processing under your control. Our infrastructure and platform architecture are intentionally lightweight to avoid introducing additional risk to your data.
+
+* App Studio account data: Information related to your Median App Studio account (such as project settings, build configurations, and billing information) is securely hosted in the United States, specifically in the US-East region.
+* Mobile app data: Mobile applications built with Median do not store any user data on Median infrastructure. Instead, your apps directly interact with your own website, APIs, and backend services.
+* No middleware layer: Median does not introduce middleware or act as a proxy for your traffic. All user interactions, authentication, and data storage remain fully under your control and are processed by your own website or backend systems.
+
+### Compliance with GDPR and Privacy Frameworks
+
+Because Median does not process or persist mobile app user data, your organization retains complete responsibility for data governance. This model helps reduce complexity when addressing privacy regulations such as GDPR, CCPA, and other global frameworks:
+
+* Data Controller: You remain the data controller, since Median does not process end-user data within your mobile apps.
+* Data Residency and Transfers: Any user data collected through your app is stored and processed exclusively by your own infrastructure, in accordance with your chosen data residency and compliance requirements.
+* Transparency and Control: Since Median does not add an additional data processor, you maintain full transparency and control over how end-user data is collected, processed, and retained.
+
+For additional details, see our [Privacy Policy](https://median.co/privacy).
+
+## What are the privacy and security implications of using Median?
+
+### Security best practices
+
+When **developing** apps in our App Studio, we strongly advise against embedding private data, such as non-public tokens or passwords, in your app configuration (e.g., custom JavaScript or analytics configuration). Any data embedded in your app can potentially be extracted from the compiled binary or other app files.
+
+When **testing** apps using our browser-based simulators, you can safely enter login credentials as these simulators are secure and have been SOC 2 certified by an independent third-party auditor. These simulators provide the same security level as your website when accessed through a standard web browser. However, keep in mind that to obtain app store approval, you must provide sample login credentials to the app store reviewer. We recommend using a demo or sandbox account that excludes sensitive information and does not grant elevated access. Contact us for a SOC 2 report for the browser-based simulators.
+
+When **installing and running** apps built using the Median platform on a physical device, it’s important to note that by design all data and network traffic from your app goes directly between the device and your web server. This behavior mirrors how a user would access your website via Mobile Safari or Mobile Chrome. No website data whatsoever passes through any Median servers, and your app does not depend on Median's servers or uptime to function. Therefore, your app relies on the same security, encryption, and access that exists on your website. Ensure your app is considered a client when designing your web-based security architecture.
+
+### Security considerations for mobile apps
+
+Mobile apps bring specific considerations for privacy and security (different from web-based SaaS platforms) such as:
+
+* Network security restrictions (e.g. App Transport Security ATS enforcement to prevent encrypted/cleartext requests, SSL CA validation and certificate/identity pinning to avoid Man-in-the-Middle MiTM attacks)
+* Device functionality restrictions to restrict access to sensitive content (e.g. copy and paste blocking, app switcher/recent apps appearance masking)
+* Compromised device detection (e.g. prevent app usage on a jailbroken/rooted device)
+* Disabling console logging of debug information (e.g. prevent sensitive information from being logged to the device debug logs)
+
+### Security assessments
+
+Median is equipped to meet the most stringent mobile security requirements. At times an independent security assessment will be required to certify compliance with an organization's mobile security policies. Each app, and future app update, created using Median must be audited individually given the hybrid nature of the native app code plus web code, the potential use of native plugins, as well as continual updates to the Median solution. We recommend working directly with our team for guidance on the most relevant information applicable for your app and for your organization's specific requirements.
+
+When engaged to assist with your security assessment our team will work directly with your organization's internal mobile security team and/or an external provider. A third-party vendor that several of our customers have used with success to audit their Median apps is [Appknox](https://www.appknox.com/). (No affiliation or relationship with Median).
+
+***
+
+[App Architecture](/docs/architecture)
+
+[Reporting App Abuse and Content Violations](/docs/report)
+
+Copy Page
+
+* * [Security Statement](#security-statement)
+
+  * [Data Storage and Privacy](#data-storage-and-privacy)
+
+  * * [Compliance with GDPR and Privacy Frameworks](#compliance-with-gdpr-and-privacy-frameworks)
+
+  * [What are the privacy and security implications of using Median?](#what-are-the-privacy-and-security-implications-of-using-median)
+
+  * * [Security best practices](#security-best-practices)
+    * [Security considerations for mobile apps](#security-considerations-for-mobile-apps)
+    * [Security assessments](#security-assessments)

@@ -1,0 +1,122 @@
+---
+title: "Dynamic Titles"
+---
+
+# Overview
+
+Configure the text that shows in the Top Navigation Bar either at build time through your app configuration or at run time through the JavaScript Bridge.
+
+![](/images/docs/assets/-MHABc_2IZgrLlHqPfUS/-MHC8SFE1rWpxISQhUwb/-MHCAGZu9i7szcxvXZAX/Screen-Shot-2020-09-14-at-8.12.54-AM.png)
+
+iOS NavigationBar example
+
+# App Configuration
+
+You may specify text titles or set image display for different URLs in the Dynamic Titles options within the Native Top Navigation Bar section of the App Studio interface.
+
+For a given URL rule, if "Text" is selected the text provided will be displayed. Otherwise, if "Image" is selected the top nav bar image will be displayed.
+
+Rules are prioritized from top to bottom. If no match is found, your app name will be shown.
+
+An example JSON formatting for BooyaFitness.com is provided below:
+
+<CodeGroup>
+  ```bash bash
+  [
+      {
+          "regex": "https://www.booyafitness.com/",
+          "showImage": true
+      },
+      {
+          "regex": "https://www.booyafitness.com/dashboard",
+          "title": "Dashboard"
+      },
+      {
+          "regex": "https://www.booyafitness.com/edit",
+          "title": "Account"
+      },
+      {
+          "regex": "https://www.booyafitness.com/password/new",
+          "title": "Recover Password"
+      },
+      {
+          "regex": "https://www.booyafitness.com/workouts/browse",
+          "title": "Workouts"
+      },
+      {
+          "regex": "https://www.booyafitness.com/partners/browse",
+          "title": "Partners"
+      },
+      {
+          "regex": "https://www.booyafitness.com/pricing",
+          "title": "Pricing"
+      }
+  ]
+  ```
+</CodeGroup>
+
+A default navigation title can be defined in the app configuration that is then overwritten dynamically as required. Or alternatively, the configuration can be left blank and all titles set at runtime by your website.
+
+# JavaScript Bridge
+
+> Create your navigation title structure, and then run the `median.navigationTitles.set()` Javascript Bridge function to set the values. To set the example navigation title run the following:
+
+<CodeGroup>
+  ```bash bash
+  var menuItems = {
+      active: true,
+      titles: [{
+        showImage: true,
+        regex: '/home'
+     },{
+        title: 'my title',
+        regex: '.*'
+     }]
+  }
+  median.navigationTitles.set({
+    'persist':true,
+    'data': menuItems});
+  ```
+</CodeGroup>
+
+> Setting `persist=true` will save the navigation titles for use the next time the app is launched, otherwise, it will only take effect for the current session.
+>
+> To revert the navigation titles to the configuration set at build time, run the following command:
+
+<CodeGroup>
+  ```bash bash
+  if (navigator.userAgent.indexOf('median') > -1) {
+      median.navigationTitles.set({'persist':true});
+  }
+  ```
+</CodeGroup>
+
+> For a one-off setting of the current page's title, URL encode the desired title and run the following command:
+
+<CodeGroup>
+  ```bash bash
+  if (navigator.userAgent.indexOf('median') > -1) {
+      median.navigationTitles.setCurrent({'title':'Hello%20World'})
+  }
+  ```
+
+  ```bash bash
+  <a onclick="gonative.navigationTitles.setCurrent({'title':'Hello%20World'})">Set Current Page's Title</a>
+  ```
+</CodeGroup>
+
+***
+
+### Next Steps
+
+* [Auto New Windows](/docs/auto-new-windows)
+* [Search Form](/docs/search-bar-form)
+* [Refresh Button](/docs/refresh-button)
+* [Custom Buttons](/docs/add-custom-buttons)
+* [Sidebar Navigation](/docs/sidebar-navigation-menu)
+
+Copy Page
+
+* * [Overview](#overview)
+  * [App Configuration](#app-configuration)
+  * [JavaScript Bridge](#javascript-bridge)

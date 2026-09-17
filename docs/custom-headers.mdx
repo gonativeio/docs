@@ -1,0 +1,71 @@
+---
+title: "Custom Headers"
+description: "Configuring custom headers for your app is essential for enhancing communication with your web server. By sending custom parameters, you can include device-specific information in your requests, improving server-side handling of requests."
+---
+
+## Available Device Variables for Custom Headers
+
+Your app can send custom headers to the web server using two device variables, which can be combined with constant strings or defined values:
+
+`%DEVICEID%`: Sends the device’s unique identifier.
+
+`%DEVICENAME64%`: Sends the device’s name as a Base64-encoded UTF-8 string (e.g., "Robert's iPhone").
+
+These device variables allow you to dynamically send device-specific data with each request, ensuring that your server can handle requests based on the actual device information.
+
+## Editing the appConfig.json File for Custom Header Configuration
+
+You can configure the custom headers by editing the appConfig.json file directly in your app's source code. To set up the custom headers, add the following fields under the "general" section in the Import/Export section of the configuration.
+
+### Example Configuration for Android and iOS
+
+<CodeGroup>
+  ```bash bash
+  "general": {   
+      "androidCustomHeaders": {
+          "x-median-example-parameter": "example_value",
+          "x-median-app-version": "android_app_v5",
+          "x-median-device-id": "%DEVICEID%",
+          "x-median-device-name": "%DEVICENAME64%"
+      },
+      "iosCustomHeaders": {
+          "x-median-example-parameter": "example_value",
+          "x-median-app-version": "ios_app_v5",
+          "x-median-device-id": "%DEVICEID%",
+          "x-median-device-name": "%DEVICENAME64%"
+      }
+  }
+  ```
+</CodeGroup>
+
+In this example, the custom headers for both Android and iOS apps include a version identifier, device ID, and device name encoded in Base64.
+
+## Important Notes on Custom Headers
+
+* **Header Inclusion**: Custom headers are only included in the initial document request. Other resource types like CSS, JS, images, or AJAX requests will not carry these custom headers to maintain fast performance.
+* **Performance Consideration**: While custom headers are crucial for some use cases, it's essential to limit the number of headers in requests to ensure fast performance, especially for static resources.
+
+## Testing Custom Headers
+
+To test the custom headers in your app:
+
+1. Go to your app’s Private Management URL.
+2. Enable Debug Mode below the Device Simulator.
+3. Open the Devtools window.
+4. Inspect the network traffic and request headers to verify that the custom headers are being sent correctly.
+
+This allows you to monitor real-time network requests and ensure that your custom headers are configured and transmitted as expected.
+
+***
+
+[Custom User Agent](/docs/custom-user-agent)
+
+[Custom CSS](/docs/custom-css)
+
+Copy Page
+
+* * [Available Device Variables for Custom Headers](#available-device-variables-for-custom-headers)
+  * [Editing the appConfig.json File for Custom Header Configuration](#editing-the-appconfigjson-file-for-custom-header-configuration)
+  * * [Example Configuration for Android and iOS](#example-configuration-for-android-and-ios)
+  * [Important Notes on Custom Headers](#important-notes-on-custom-headers)
+  * [Testing Custom Headers](#testing-custom-headers)

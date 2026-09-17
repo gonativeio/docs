@@ -1,0 +1,58 @@
+---
+title: "iOS Build & Deployment"
+description: "Build, Debug, and Deploy iOS Apps"
+---
+
+Apple manages the provisioning and signing process for iOS apps through App Store Connect and an active Apple Developer account is required.
+
+## Key Aspects of iOS Build & Deployment
+
+### Building an iOS Binary (IPA)
+
+An IPA is required to test and distribute your iOS app. If you have a paid Apple Developer account you can build an IPA directly in the Median App Studio, even if you don't have access to a Mac. You can build an IPA with a Distribution Provisioning Profile for automatic upload to App Store Connect for use with TestFlight or submission to the App Store. Or you can build with a Development Provisioning Profile to install your app on an iPhone using over-the-air deployment, as easily as scanning a QR code - useful for quick testing cycles early in the development process.
+
+📖 Learn more: [Building an iOS Binary (IPA)](/docs/build-ios-binary)
+
+### Building iOS from Source
+
+Building an iOS app from source is optional. It requires a local macOS development environment with the latest release version of Xcode installed and properly configured. Use this path when you need to inspect or modify native iOS source code directly. For normal App Store launch workflows, you can build in Median App Studio and upload to App Store Connect without Xcode.
+
+📖 Learn more: [Build iOS from Source](/docs/build-ios-from-source)
+
+### Troubleshooting Common Xcode Issues
+
+If you choose the optional path of building iOS from source, Xcode often presents challenges such as build errors, provisioning profile issues, and dependency conflicts. Understanding how to resolve these common problems can save time and streamline your development workflow. Most launches don’t require Xcode at all, since you can build your IPA in Median App Studio and upload it directly to App Store Connect.
+
+📖 Learn more: [Common Xcode Issues](/docs/common-xcode-issues)
+
+### Uploading to TestFlight for Beta Testing
+
+TestFlight enables you to easily distribute your app to stakeholders for on-device testing prior to public release to the Apple App Store. With **Upload to App Store Connect** set to **Automatic**, a distribution IPA built in Median App Studio is delivered to App Store Connect and can be added to TestFlight after Apple processes the build.
+
+📖 Learn more: [Upload iOS to TestFlight](/docs/upload-ios-to-testflight)
+
+### Uploading to the Apple App Store
+
+For self-publishing, connect your Apple Developer account through the App Store Connect API, set **Upload to App Store Connect** to **Automatic**, build your iOS IPA in Median App Studio, test it in TestFlight, and submit the processed build for App Review in App Store Connect. Apple Transporter and Xcode source builds remain available as manual alternatives.
+
+📖 Learn more: [Upload iOS to Apple App Store](/docs/upload-ios-to-apple-app-store)
+
+***
+
+### Next Steps
+
+* [Building an iOS Binary (IPA)](/docs/build-ios-binary)
+* [Build iOS from Source](/docs/build-ios-from-source)
+* [Common Xcode Issues](/docs/common-xcode-issues)
+* [Upload iOS to TestFlight](/docs/upload-ios-to-testflight)
+* [Upload iOS to Apple App Store](/docs/upload-ios-to-apple-app-store)
+
+Copy Page
+
+* * [Key Aspects of iOS Build & Deployment](#key-aspects-of-ios-build--deployment)
+
+  * * [Building an iOS Binary (IPA)](#building-an-ios-binary-ipa)
+    * [Building iOS from Source](#building-ios-from-source)
+    * [Troubleshooting Common Xcode Issues](#troubleshooting-common-xcode-issues)
+    * [Uploading to TestFlight for Beta Testing](#uploading-to-testflight-for-beta-testing)
+    * [Uploading to the Apple App Store](#uploading-to-the-apple-app-store)

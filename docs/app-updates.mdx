@@ -1,0 +1,150 @@
+---
+title: "App Updates & Migration Guide"
+description: "Keep apps updated and migrate with confidence"
+---
+
+Keeping your app up to date ensures compatibility with the latest operating systems, device models, and app store requirements. Whether you are updating an existing Median app, syncing website content changes, or migrating a live app from another platform to Median, this guide provides the necessary workflows.
+
+## Standard App Updates
+
+Median maintains the core iOS and Android codebase so you can deliver native mobile apps without needing dedicated mobile developers.
+
+### How Updates Work
+
+All new Median app licenses include 6 months of ongoing app updates. During your development and initial launch phases, you can build your app using the latest available code. After this period, an active Support and Updates plan is required to generate new builds with the latest codebase updates.
+
+### When to Update Your App
+
+Your app will function indefinitely on the devices supported at the time of its launch. However, we recommend updating your app:
+
+* Annually, or to coincide with major iOS and Android OS releases.
+* When new device form factors (e.g., new iPhone screen sizes) are released.
+* To take advantage of ongoing performance optimizations and new Median features.
+* If you see the warning "App update from Median.co / GoNative.io is required", which indicates Google or Apple have mandated new OS compatibility requirements.
+
+### How to Publish an App Update
+
+Step 1 - Configuration: Make required changes to your app in the Median App Studio and preview them using the browser-based simulators
+
+Step 2 - Build: Go to the Build & Deploy tab and generate new iOS and/or Android builds. (Note: You must have an active support and updates plan).
+
+Step 3 - Publish:
+
+Full-Service Publishing: Purchase an App Update Publishing service on the Services tab. The Median Publishing Team will handle the update process, including TestFlight distribution and App Store submission
+
+![Median App Studio - App Publishing](/images/docs/f9a22c38ea945275605fc097a9fd31a4a71b6cda347c608a81cf75eb0ab33070-Screenshot_2025-07-03_at_14.49.33.png)
+
+Self-Publishing: Use the App Store Connect API workflow in the App Studio to upload iOS builds to TestFlight. For Android, follow the Android Build & Deployment guide to submit your APK/AAB.
+
+## Handling Website Content Updates
+
+Because Median natively wraps your web content, changes made to your website reflect immediately in your app just as they do in a standard mobile browser. You do not need to submit an app store update when changing your website's UI, text, or web-based features.
+
+### Troubleshooting Caching Issues
+
+Median native apps obey the standard cache headers sent by your web server. If website changes are not appearing in your app:
+
+* Wait and Refresh: Browser caches may have a short delay. Wait a few minutes and refresh the page.
+
+* Check Server Headers: Inspect the cache headers sent by your web server to ensure they aren't forcing the app to cache resources longer than intended.
+
+* Cache Busting: Use version suffixes on your website's resource files (e.g., `application_v2.js`). This forces the app to retrieve the latest file directly from the server.
+
+* Clear Webview Cache Command: Use the Median JavaScript Bridge command to clear the cache via JavaScript.
+
+* Android Auto-Clear Cache: For Android, you can configure the app to clear the WebView cache every time it is exited. Add the following to your appConfig.json (or configure it in the App Studio):
+
+<CodeGroup>
+  ```bash bash
+  "general": {
+    "androidClearCache": true
+  }
+  ```
+</CodeGroup>
+
+If issues persist, try completely uninstalling and reinstalling the app on your device to wipe all cached data.
+
+## Migrating an Existing App to Median
+
+If you already have a live app on the Apple App Store or Google Play Store — whether built natively, with React Native, Flutter, or another web wrapper — you can migrate it to Median.co. By publishing your Median app as an update to your existing app, you retain your users, download history, reviews, and app store rankings.
+
+Follow these technical requirements to ensure a smooth transition:
+
+### Step 1 - Replicate Core Functionality
+
+Before migrating, verify that your new Median configuration provides the core functionality your users expect:
+
+* Navigation: Use Median’s Top Navigation Bars, Bottom Tab Bars, and Sidebar Menus for a native feel without writing native code. You can also use your existing web navigation.
+
+* Native Features: Enable corresponding Median Native Plugins (e.g., Push Notifications, Biometrics, QR Scanning) in the App Studio to replace your old app's native features.
+
+* User Sessions: Local storage and secure credentials from your old app will not automatically transfer to the Median WebView context. Ensure your web application uses persistent cookies so returning users can log in easily.
+
+### Step 2 - Match App Identifiers Exactly
+
+To submit your Median app as an update rather than a completely new app, the unique package identifiers must perfectly match your live app. You can learn more in App Identifiers.
+
+### Step 3 - Increment Version Codes
+
+App stores require each new upload to have a higher version number sequentially.
+
+### Step 4 - Retain App Signing Keystores
+
+Matching cryptographic signatures is the most critical step, especially for Android.
+
+**Android Signing**: Your new Median APK/AAB must be signed with the exact same Keystore `.jks` or `.keystore`) and alias used for the original app. If you use Google Play App Signing, ensure your upload key matches. Configure this directly in the App Studio or contact Median support for assistance.
+
+**iOS Signing**: Provide your existing Apple Developer account Issuer ID, Key ID, and Private Key `.p8`) in the App Studio for automatic uploads, or manually upload the downloaded IPA via Transporter to your existing App Store Connect record.
+
+### Step 5 - Migrate Push Notification Subscribers
+
+If you use push notification providers like OneSignal or Braze, configure the Median push plugin using your existing App ID. Depending on how your previous app handled External User IDs, returning users may generate a new device record when opening the Median app. Refer to your provider's documentation on merging legacy user profiles or cleaning up inactive devices.
+
+We offer a dedicated [Push SDK Migration Guide](https://docs.median.co/docs/push-notification-migration).
+
+### Step 6 - Test the Upgrade Path
+
+Before launching the upgrade to your users, you should always simulate the update process locally to make sure everything plays nice.
+
+Start by loading the older version of your app onto a physical test device, and then generate your new Median build. Once that is ready, install the new build directly over the legacy app. You can handle this via TestFlight on iOS or by installing the apk on Android.
+
+Finally, open the updated app to verify that it launches smoothly, the UI renders exactly as expected, and all your native features are working.
+
+## Frequently Asked Questions
+
+### Can I force an app update?
+
+**Can I force an app update?⎘ Copy link
+
+Although you cannot force users to update the app, you can use the version number returned by `median.deviceInfo()` to conditionally display a page prompting them to install the latest version.
+
+The following article includes an example implementation: [Implementation Example](https://docs.median.co/docs/device-info#example-code-implementation-version-enforcement)
+
+***
+
+[App Licenses](/docs/licenses)
+
+[App Studio Accounts](/docs/app-studio-accounts)
+
+Copy Page
+
+* * [Standard App Updates](#standard-app-updates)
+
+  * * [How Updates Work](#how-updates-work)
+    * [When to Update Your App](#when-to-update-your-app)
+    * [How to Publish an App Update](#how-to-publish-an-app-update)
+
+  * [Handling Website Content Updates](#handling-website-content-updates)
+
+  * * [Troubleshooting Caching Issues](#troubleshooting-caching-issues)
+
+  * [Migrating an Existing App to Median](#migrating-an-existing-app-to-median)
+
+  * * [Step 1 - Replicate Core Functionality](#step-1---replicate-core-functionality)
+    * [Step 2 - Match App Identifiers Exactly](#step-2---match-app-identifiers-exactly)
+    * [Step 3 - Increment Version Codes](#step-3---increment-version-codes)
+    * [Step 4 - Retain App Signing Keystores](#step-4---retain-app-signing-keystores)
+    * [Step 5 - Migrate Push Notification Subscribers](#step-5---migrate-push-notification-subscribers)
+    * [Step 6 - Test the Upgrade Path](#step-6---test-the-upgrade-path)
+
+  * [Frequently Asked Questions](#frequently-asked-questions)

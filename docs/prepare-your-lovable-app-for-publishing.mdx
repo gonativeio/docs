@@ -1,0 +1,152 @@
+---
+title: "Prepare your Lovable app for publishing"
+description: "Test your installed iOS and Android builds, verify account flows and permissions, and prepare your Apple App Store and Google Play listings."
+---
+
+Lovable publishes your project as a web app. The Apple App Store and Google Play require installed mobile builds, so test the app in its final iOS and Android environments before you submit it. Authentication, permissions, payments, links, and device behavior can work in a browser and still fail inside an installed app.
+
+This guide covers the testing and release work after you have created the app in Median App Studio. If you have not configured the app yet, start with [Getting Started with Lovable](https://docs.median.co/docs/getting-started-with-lovable).
+
+## Before you create store builds
+
+Confirm that you have:
+
+* A published Lovable URL that opens outside your Lovable editor session
+* A working app configuration in Median App Studio
+* An Apple Developer account for iOS distribution
+* A Google Play Console account for Android distribution
+* Public privacy, support, and terms URLs
+* Test credentials for any feature behind login
+* A working account-deletion flow when customers can create an account
+* A billing plan that matches what the app sells
+
+Open the published Lovable URL in a private browser window on both an iPhone and an Android phone. Fix mobile layout problems before you create a build. Store reviewers will use the production app and backend, not the Lovable editor preview.
+
+## Test the complete account flow on physical devices
+
+Create test builds in Median App Studio and install them on physical iOS and Android devices. A simulator is useful for layout checks, but it cannot prove that every permission, authentication handoff, payment, or notification works on hardware.
+
+Test the app as a new customer and as a returning customer:
+
+1. Create an account and complete any verification step.
+2. Sign in with every method the app offers.
+3. Reset the password or use a magic link.
+4. Follow deep links and external links.
+5. Upload and download files when the app supports them.
+6. Complete and restore a purchase when the app sells digital access.
+7. Sign out, sign back in, and confirm that the session behaves correctly.
+8. Delete the account from inside the app when account creation is available.
+
+Repeat the complete flow on both platforms. iOS and Android handle browser handoffs, permissions, keyboards, and back navigation differently.
+
+## Check authentication return URLs
+
+Authentication is a common point of failure in a Lovable mobile app. Add the required app return URLs to Supabase and every identity provider, then test:
+
+* Email and password login
+* Password reset links
+* Email magic links
+* Apple sign-in
+* Google sign-in
+* Logout and session expiration
+
+If authentication opens an external browser, confirm that the customer returns to the correct screen inside the app. A successful login in the Lovable browser preview does not confirm the installed flow.
+
+## Test native features with the final permissions
+
+Enable only the permissions your app uses, and explain each one in the platform configuration. Test the feature immediately after the permission request and again after the customer denies it.
+
+Check every configured capability, including:
+
+* Push notifications on physical devices
+* Camera and photo access
+* Microphone and speech input
+* Location access
+* File uploads and downloads
+* Haptic feedback
+* Biometric authentication
+* Native sharing and deep links
+
+Use the [Lovable push notification guide](https://docs.median.co/docs/add-push-notifications-to-your-lovable-app) and [Lovable haptic feedback guide](https://docs.median.co/docs/add-haptic-feedback-to-your-lovable-app) for feature-specific setup.
+
+## Verify payments before submission
+
+The payment method depends on what your app sells. Stripe may remain appropriate for physical goods and real-world services. Digital content, subscriptions, credits, or app features may require Apple In-App Purchase and Google Play Billing.
+
+For digital purchases, test:
+
+* A new purchase
+* A canceled purchase
+* A failed purchase
+* Restore purchases
+* Access after reinstalling the app
+* Access on a second device after login
+* Subscription expiration and renewal
+
+Make sure the Lovable interface reads the current entitlement and does not ask an existing customer to pay twice.
+
+## Know which build file you need
+
+Android and iOS use different build and distribution formats.
+
+| Platform | File or service         | Use                                         |
+| -------- | ----------------------- | ------------------------------------------- |
+| Android  | APK                     | Direct installation and device testing      |
+| Android  | AAB                     | New public releases through Google Play     |
+| iOS      | App Store Connect build | TestFlight and Apple App Store distribution |
+
+Keep the bundle ID and Android package name stable after release. Changing either identifier creates a different app store record instead of updating the existing app.
+
+## Know when a Lovable update needs a new build
+
+The installed app loads the published Lovable URL, so many web changes appear without another mobile release. Native changes affect the installed binary and require a new build.
+
+| Change                                            | New mobile build? | Store release?        |
+| ------------------------------------------------- | ----------------- | --------------------- |
+| Web copy, layout, or server-driven feature        | Usually no        | Usually no            |
+| Lovable backend logic or Supabase data            | Usually no        | Usually no            |
+| Native plugin or SDK                              | Yes               | Usually yes           |
+| Device permission                                 | Yes               | Usually yes           |
+| App icon or splash screen                         | Yes               | Yes                   |
+| Bundle ID, package name, or signing configuration | Yes               | Depends on the change |
+
+Test important web updates in the installed app even when they do not need a new binary. A change can still affect navigation, authentication, or mobile layout.
+
+## Prepare the Apple App Store and Google Play listings
+
+Prepare these items before you submit:
+
+* App name, subtitle or short description, and full description
+* App icon and screenshots from the current app
+* Category and age or content rating answers
+* Privacy policy and support URL
+* Apple App Privacy answers and Google Play Data safety answers
+* Reviewer credentials and instructions for protected features
+* Clear review notes that point to the app's mobile features
+* Billing details that match the products sold in the app
+
+Use [Median's publishing overview](https://docs.median.co/docs/publishing-overview) for account and submission steps. The [Lovable app publishing guide](https://median.co/blog/how-to-convert-your-lovable-app-to-a-mobile-app-and-publish) explains the broader review requirements and common rejection causes.
+
+## Choose how to manage submission
+
+Your team can manage App Store Connect and Google Play Console, or use [Median Publishing Service](https://docs.median.co/docs/publishing-service) for submission, reviewer responses, and resubmissions.
+
+Approval depends on the complete app and accurate submission details. Test the same build and account that the reviewer will receive, keep the production backend available, and answer review questions with specific instructions.
+
+***
+
+[Add Haptic Feedback To Your Lovable App](/docs/add-haptic-feedback-to-your-lovable-app)
+
+[Replit](/docs/replit)
+
+Copy Page
+
+* * [Before you create store builds](#before-you-create-store-builds)
+  * [Test the complete account flow on physical devices](#test-the-complete-account-flow-on-physical-devices)
+  * [Check authentication return URLs](#check-authentication-return-urls)
+  * [Test native features with the final permissions](#test-native-features-with-the-final-permissions)
+  * [Verify payments before submission](#verify-payments-before-submission)
+  * [Know which build file you need](#know-which-build-file-you-need)
+  * [Know when a Lovable update needs a new build](#know-when-a-lovable-update-needs-a-new-build)
+  * [Prepare the Apple App Store and Google Play listings](#prepare-the-apple-app-store-and-google-play-listings)
+  * [Choose how to manage submission](#choose-how-to-manage-submission)

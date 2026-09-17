@@ -1,0 +1,110 @@
+---
+title: "Building an iOS Binary with App Groups Entitlement"
+description: "Configure App Groups for your iOS Binary"
+---
+
+An App Group lets your main app share a common data container with its extensions for example, a Share Extension, a Today widget, or an App Clip that needs access to the same data as the main app.
+
+If your app includes any of these, you'll need to enable the App Groups entitlement before building.All configuration in this article is performed in the Apple Developer Portal, not in Median directly.
+
+All configuration steps are performed in the Apple Developer Portal.
+
+## Prerequisites
+
+* Your Bundle ID must already be registered (see [Configure Signing for Your App](https://docs.median.co/docs/configure-signing-for-your-app))
+* Admin or App Manager access to your Apple Developer account
+
+## App Group Configuration
+
+### Step 1: Create an App Group
+
+1. Sign in to [Apple Developer → Identifiers](https://developer.apple.com/account/resources/identifiers/list) in Apple Developer (not App Store Connect).
+2. Change the filter at the top from App IDs to App Groups.
+3. Click + to create a new App Group.
+
+<Frame caption="Apple Developer - Identifiers">
+  <img src="/images/docs/9b6cc851f3badd5dfb1b12bbcb45bee9406288caa6a25756b9334ed2384e76a7-Screenshot_2026-07-06_at_10.58.17.png" />
+</Frame>
+
+4. Enter a Description and an Identifier - the identifier must start with group. (e.g. group.com.company.app)
+5. Click Continue, then Register.
+
+<Frame caption="App Group Registration">
+  <img src="/images/docs/f2db31cd63b32af63babbb1db0e272642424928658b37bd8f2d4dc0232010001-Screenshot_2026-07-06_at_11.00.50.png" />
+</Frame>
+
+6. Click Continue, then Register.
+
+### Step 2: Enable App Groups for the Main Application
+
+6. Still under Identifiers, switch the filter back to App IDs and select your app's existing Bundle ID.
+
+<Frame caption="Apple Developer Portal - App IDs">
+  <img src="/images/docs/b15f4bb72c67985ccad8bc27e9f5f6c1a4e0d38f63bbc5dfd475ad0203103f0a-Screenshot_2026-07-06_at_11.01.56.png" />
+</Frame>
+
+7. Locate and select the main application’s bundle identifier (e.g. `com.example.app`).
+8. Scroll to the Capabilities section and enable App Groups.
+
+<Frame caption="App Group Enablement">
+  <img src="/images/docs/71f6b2c69bba8222bd7aff9a978cf993989cc7d9f87f377837edc04485746af0-Screenshot_2026-07-06_at_11.03.16.png" />
+</Frame>
+
+9. Click Configure, select the App Group created in Step 1.
+
+<Frame caption="App Group Addition">
+  <img src="/images/docs/53db3d520841783802fceb3121bf98fc6a4092ed9c1e7011455733e93c73b3f8-Screenshot_2026-07-06_at_11.03.57.png" />
+</Frame>
+
+### Step 3: Regenerate your provisioning profile
+
+10. Repeat the steps in Step 2 for each extension that requires access to the shared container (for example, `com.example.app.ShareExtension`).
+
+11. Edit the profile (or create a new one if editing isn't available) so it regenerates against the updated Bundle ID. The App Groups entitlement is only included in profiles created after the capability was enabled.
+
+    **Important**: Every target that uses shared data must have the same App Group enabled in its App ID configuration.
+
+### Step 4: Rebuild
+
+After enabling the App Group capability:
+
+11. In Median App Studio, go to your app's iOS IPA Build Configuration panel and rebuild the app so Median adds the updated entitlement.
+
+<Frame caption="Provision Profile regeneration">
+  <img src="/images/docs/aedc71a12c62cc4628fd04727b75c63b874223991254acfe08652e4cdb1c9b07-Screenshot_2026-07-06_at_11.07.38.png" />
+</Frame>
+
+11. Distribute the iOS binary
+
+## Verification Checklist
+
+Before distributing the app or reporting an issue, please confirm:
+
+* [ ] The App Group identifier begins with `group.`
+
+* [ ] App Groups is enabled on the main app's Bundle ID
+
+* [ ] App Groups is enabled on every extension's Bundle ID that needs shared access
+
+* [ ] The provisioning profile was regenerated after enabling App Groups (not just re-downloaded)
+
+* [ ] Median's build used the newly regenerated profile, not a cached one
+
+***
+
+[Configure Signing for Your App](/docs/configure-signing-for-your-app)
+
+[Install iOS IPA](/docs/install-ios-ipa)
+
+Copy Page
+
+* * [Prerequisites](#prerequisites)
+
+  * [App Group Configuration](#app-group-configuration)
+
+  * * [Step 1: Create an App Group](#step-1-create-an-app-group)
+    * [Step 2: Enable App Groups for the Main Application](#step-2-enable-app-groups-for-the-main-application)
+    * [Step 3: Regenerate your provisioning profile](#step-3-regenerate-your-provisioning-profile)
+    * [Step 4: Rebuild](#step-4-rebuild)
+
+  * [Verification Checklist](#verification-checklist)

@@ -1,0 +1,108 @@
+---
+title: "Base44"
+description: "Learn how to convert your Base44 app into a full-feature native app with Median.co"
+---
+
+Base44 is an AI-powered app builder that lets you create web applications using natural language prompts. It's designed for no code/low code users, indie founders, and small teams who want to build and iterate on full-stack apps quickly. You can build your app's interface and functionality just by prompting with an AI agent.
+
+## Key features
+
+* **AI-Powered Development:** Build and modify your app using simple, conversational text prompts through Base44's Builder chat interface.
+* **Integrated Backend:** Base44 automatically provides database management, user authentication, file storage, and API endpoints - no separate backend setup required.
+* **npm Package Support:** You can ask Base44's AI to install npm packages, which is how you'll add the Median JavaScript Bridge.
+* **Publishing Workflow:** Changes require publishing to take effect, ensuring your live app remains stable during development.
+
+<Warning>
+  ### Important
+
+  **Authentication Limitations**
+
+  Base44 currently supports other types of authentication, but doesn't allow you to customize the login pages to tap into the Median JavaScript Bridge.
+
+  This is a limitation that may affect your mobile app's user experience. However, you can explore Passkey authentication as it becomes available, since it's more backend-focused and potentially easier to integrate.
+</Warning>
+
+## How Median.co works
+
+Median.co converts your Base44 web app into native mobile apps using a WebView approach. Your web app, built with Base44, runs inside a native "shell" that connects your web app to the device's native features, like push notifications and haptics.
+
+Enter any URL to try it out
+
+Build Now
+
+When you are ready to launch on iOS, you can:
+
+1. Connect your Apple Developer account in Median App Studio
+2. Set **Upload to App Store Connect** to **Automatic**
+3. Test the uploaded build in TestFlight
+4. Submit it for App Review
+
+You do not need to rewrite your Base44 app in Swift, build it in Xcode, or upload with Apple Transporter for the standard publishing workflow.
+
+## What you'll learn
+
+This guide will walk you through converting your Base44 app to native mobile apps and optimizing it for the best mobile experience.
+
+### Median Integration Guide
+
+**Median Integration Guide⎘ Copy link
+
+This guide is structured in 5 parts:
+
+* **Part 1: Getting Started** - Understand the JavaScript Bridge and detect mobile app usage
+* **Part 2: Push Notifications** - Set up OneSignal and implement advanced notification features
+* **Part 3: Haptic Feedback** - Add tactile feedback to improve user experience
+* **Part 4: Other Native Features** - Explore camera, biometric auth, GPS, and more device features
+* **Part 5: Testing & Publishing** - Test on devices and publish to App Stores
+
+### App Optimization Best Practices
+
+**App Optimization Best Practices⎘ Copy link
+
+You'll understand best practices for:
+
+* Mobile-responsive design principles
+* Touch-friendly interface design
+* Mobile performance optimization
+* Form and navigation optimization for mobile
+
+### Example Prompts
+
+**Example Prompts⎘ Copy link
+
+You'll get ready-to-use AI prompts for:
+
+* Adding the Median JavaScript Bridge to your project
+* Adding haptic feedback to a button
+* Adding a native QR/Barcode scanner
+* Making your app mobile-responsive
+
+### Prompt Best Practices (Median-Specific)
+
+**Prompt Best Practices (Median-Specific)⎘ Copy link
+
+You'll learn how to:
+
+* Structure your prompts for Base44's AI
+* How to avoid AI "hallucinations" by providing documentation
+* Test and validate the code your AI agent generates
+* Use Discussion mode to plan features before implementation
+
+## Important notes for Base44 users
+
+* **Publishing required:** Remember that changes must be published to take effect in your live app.
+* **Plan requirements:** Installing npm packages (including the Median JavaScript Bridge) may require a paid Base44 plan.
+* **Console limitations:** Use `alert()` instead of `console.log()` for debugging in mobile apps, as console output may not be visible.
+
+***
+
+[Convert AI-Built Apps to Mobile with Median.co](/docs/ai-app-builder-overview)
+
+[Getting Started with Base44](/docs/getting-started-with-base44)
+
+Copy Page
+
+* * [Key features](#key-features)
+  * [How Median.co works](#how-medianco-works)
+  * [What you'll learn](#what-youll-learn)
+  * [Important notes for Base44 users](#important-notes-for-base44-users)

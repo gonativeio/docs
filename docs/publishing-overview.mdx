@@ -1,0 +1,154 @@
+---
+title: "Overview"
+description: "Learn how to publish your app to the App Store and Google Play, either with Median’s managed publishing service or by self-publishing using the Publishing Guide."
+---
+
+# Publishing Overview
+
+Publishing your Median app to the Apple App Store and Google Play Store is the final step from build to distribution. You can publish yourself using Median’s guides and build outputs, or use Median’s App Publishing Service so our team handles submission and store listings on your behalf.
+
+To publish your app to the Apple App Store, you need an active Apple Developer Program membership and access to App Store Connect: [https://developer.apple.com/programs/enroll/](https://developer.apple.com/programs/enroll/) ($99 annual fee).
+
+To publish your app to Google Play you need a valid Google Play Developer Account: [https://play.google.com/apps/publish/signup](https://play.google.com/apps/publish/signup) ($25 one-time fee).
+
+## Related Documentation
+
+[](https://docs.median.co/docs/publishing-guide)
+
+#### [Publishing Guide](https://docs.median.co/docs/publishing-guide)
+
+[Step-by-step instructions to meet store quality standards and get your app approved. Covers requirements, listings, and submission for both stores.](https://docs.median.co/docs/publishing-guide)
+
+[](https://docs.median.co/docs/publishing-service)
+
+#### [Publishing Service - Process](https://docs.median.co/docs/publishing-service)
+
+[How Median’s Publishing Team submits your app: review flow, app store data, screenshots, signing, and our money-back publishing guarantee.](https://docs.median.co/docs/publishing-service)
+
+[](https://docs.median.co/docs/apple-app-store)
+
+#### [Apple App Store](https://docs.median.co/docs/apple-app-store)
+
+[Requirements, setup, and steps to publish your app to the Apple App Store. Apple Developer Account, App Store Connect, and submission.](https://docs.median.co/docs/apple-app-store)
+
+[](https://docs.median.co/docs/google-play-store)
+
+#### [Google Play Store](https://docs.median.co/docs/google-play-store)
+
+[Requirements and steps to publish your app to Google Play. Play Console, AAB upload, store listing, and release.](https://docs.median.co/docs/google-play-store)
+
+[](https://docs.median.co/docs/faq-publishing)
+
+#### [Publishing FAQ](https://docs.median.co/docs/faq-publishing)
+
+[Common questions about publishing with Median: accounts, rejection reasons, updates, and when to use the Publishing Service.](https://docs.median.co/docs/faq-publishing)
+
+## App Publishing Options
+
+### Median's App Publishing Service
+
+If you need help getting your app live in the Apple App Store and Google Play Store, Median’s Publishing Team can publish your app on your behalf. Our [Publishing Service](/docs/publishing-service) includes a 100% money-back publishing guarantee. We publish using your existing developer accounts so the app stays under your brand.
+
+**What’s included:**
+
+* End-to-end submission to the Apple App Store and Google Play
+* Creation of app store listings and high-quality screenshots, optionally using our Figma template: [https://www.figma.com/community/file/1471925742378558731](https://www.figma.com/community/file/1471925742378558731)
+* Secure preparation of keystores, signing certificates, and provisioning profiles
+* Full configuration of OneSignal for iOS and Android, so you can start sending push notifications immediately
+* On-device pre-release testing for iOS via TestFlight - no Mac or Xcode required
+* You review and approve the app and all app store data before final submission
+* Management of app review feedback with guarantee of approval\\\*
+
+Website changes flow through to your app automatically. If a future store update is needed because of a core software update or native app changes you receive a reduced fee for the publishing service.
+
+Example native app changes that require an update to the app stores, and corresponding approval:
+
+* new app icon
+* new splash screen image or animation
+* addition of native plugins, including adding push notifications
+* app store listing update including new screenshot images
+
+To add App Store Publishing to your app, open the **Services** tab when viewing your app on our App Studio platform.
+
+> **Account type** - You must enroll as an **Organization**, not an Individual, to invite team members including our publishing team to publish your app to the Apple App Store on your behalf. If you have an Individual membership you can update to an Organization membership here: [https://developer.apple.com/help/account/membership/updating-your-account-information/](https://developer.apple.com/help/account/membership/updating-your-account-information/)
+
+### Self-Publishing
+
+You can also publish the app yourself:
+
+* Use our [Publishing Guide](/docs/publishing-guide) as your main reference
+* **Android:** Upload the AAB from the Median App Studio directly to the Google Play Console
+* **iOS:** Upload the IPA from the Median App Studio to App Store Connect via our API integration
+
+You can add the publishing service later if you run into issues. The money-back guarantee only applies when our team handles the initial submission.
+
+## iOS - Apple App Store
+
+For Median self-service publishing, the standard workflow is:
+
+1. Open your app in the Median App Studio and go to **Build & Deploy**.
+
+2. Click **Configure** in the iOS IPA section.
+
+3. In **Apple Developer API Connection**, enter your **Issuer ID** and **Key ID**, and upload your **Private Key (.p8)** file.
+
+4. In **Bundle ID & App Store Connect App**:
+
+   * Register the **Bundle ID** for your app.
+   * Create the **App Store Connect app record** in App Store Connect using that Bundle ID.
+   * Verify the **App Store Connect app record** in Median App Studio.
+
+5. In **Signing & Upload Settings**, select **Distribution Profile** and set **Upload to App Store Connect** to **Automatic**.
+
+6. Build your iOS IPA in the Median App Studio (if Automatic Upload is not selected you can manually click "Upload" after the build is complete).
+
+7. Wait for Apple to process the uploaded build in App Store Connect.
+
+8. In App Store Connect, open **TestFlight**, resolve any required prompts, and add testers.
+
+9. Before App Review, complete the App Store listing in App Store Connect, including metadata such as app name, subtitle, description, keywords, category, support URLs, app privacy details, age rating, review contact information, compliance questions, and screenshots for the required device sizes.
+
+10. After testing and completing the App Store listing, select the processed build and submit it for App Review.
+
+You do not need a Mac, Xcode, or Apple Transporter for this standard workflow. Xcode and Transporter are optional manual alternatives only.
+
+## Android - Google Play Developer Account
+
+For Median self-service publishing, the standard Android workflow is:
+
+1. Open the [Google Play Console](https://play.google.com/console).
+2. Click **Create app** and create the Google Play app record for your app.
+3. Complete the required Play Console setup items, including store listing details, screenshots, app content declarations, content rating, target audience, privacy policy, and app access information.
+4. Open your app in the Median App Studio and go to **Build & Deploy**.
+5. Build your Android App Bundle (AAB) in the APK/AAB section.
+6. Download the generated AAB file from the Median App Studio.
+7. In Google Play Console, open your app and create a release for your chosen testing or production track.
+8. Upload the AAB file to that release, complete any required release notes and review prompts, and submit the release for Google review.
+
+Google Play Console is where you create the app record, manage store listing details, upload the AAB, configure testing and production tracks, and submit the app for review.
+
+## App Requirements
+
+Our [Publishing Guide](/docs/publishing-guide) includes detailed guidance and instructions to help you meet the quality standards required for approval on the Apple App Store and Google Play Store.
+
+## Summary
+
+Choose self-publishing with our Publishing Guide and your App Studio builds, or Median’s Publishing Service for end-to-end submission management and app store listing creation. In both cases you need to register for a corresponding Apple and/or Google developer account. Use the links above for store-specific steps and our [Publishing FAQ](/docs/faq-publishing) for common questions.
+
+***
+
+### Next Steps
+
+* [Publishing Guide](/docs/gonative-publishing-guide)
+* [App Store Publishing Service](/docs/publishing-service)
+
+Copy Page
+
+* * [Publishing Overview](#publishing-overview)
+
+  * * [Related Documentation](#related-documentation)
+    * [App Publishing Options](#app-publishing-options)
+    * [iOS - Apple App Store](#ios---apple-app-store)
+    * [Android - Google Play Developer Account](#android---google-play-developer-account)
+    * [App Requirements](#app-requirements)
+    * [Summary](#summary)

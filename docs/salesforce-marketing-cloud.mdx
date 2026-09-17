@@ -1,0 +1,303 @@
+---
+title: "Salesforce Marketing Cloud"
+description: "Push notifications and engagement tracking with Salesforce Marketing Cloud"
+---
+
+Integrate Salesforce Marketing Cloud MobilePush into your app to manage push notifications, user contact keys, custom attributes, and tags. Median's Salesforce Marketing Cloud Native Plugin wraps the [iOS SDK](https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/ios-sdk.html) and [Android SDK](https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/android-sdk.html) to provide native push notification support with device registration and audience targeting.
+
+The plugin enables you to prompt for push notification permissions, set and retrieve contact keys for user identification, manage custom attributes and tags for audience segmentation, and retrieve device registration information.
+
+## App Configuration
+
+The Salesforce Marketing Cloud plugin requires your MobilePush app credentials. Configure them in the App Studio, on the Native Plugins tab under "Advanced Mode":
+
+<CodeGroup>
+  ```bash bash
+  {
+    "salesforceCloud": {
+      "active": true,
+      "appID": "YOUR_APP_ID",
+      "accessToken": "YOUR_ACCESS_TOKEN",
+      "appEndpoint": "https://YOUR_ENDPOINT.push.salesforce.com",
+      "mid": "YOUR_MID",
+      "requiresUserPrivacyConsent": false,
+      "delayRegistrationUntilContactKeyIsSet": false
+    }
+  }
+  ```
+</CodeGroup>
+
+| Parameter                             | Type      | Description                                                                                             |
+| ------------------------------------- | --------- | ------------------------------------------------------------------------------------------------------- |
+| active                                | `boolean` | Enable or disable the plugin.                                                                           |
+| appID                                 | `string`  | Your Salesforce Marketing Cloud App ID.                                                                 |
+| accessToken                           | `string`  | Your Salesforce Marketing Cloud Access Token.                                                           |
+| appEndpoint                           | `string`  | Your Marketing Cloud push endpoint URL.                                                                 |
+| mid                                   | `string`  | Your Marketing Cloud MID (Member ID).                                                                   |
+| requiresUserPrivacyConsent            | `boolean` | **Optional**. If `true`, the SDK waits for explicit user consent before initializing. Default: `false`. |
+| delayRegistrationUntilContactKeyIsSet | `boolean` | **Optional**. If `true`, delays SDK registration until a contact key is set. Default: `false`.          |
+
+<Info>
+  ### SDK Initialization
+
+  The Salesforce Marketing Cloud SDK is automatically initialized at app launch using the credentials from the server configuration. On iOS, if `requiresUserPrivacyConsent` is `false`, the plugin also automatically prompts for notification permissions on first launch.
+</Info>
+
+## Implementation Guide
+
+### Prompt for Push Notifications
+
+Request push notification permission from the user. On Android 13+ this triggers the system permission dialog. On older Android versions, notifications are enabled by default.
+
+> To prompt for push notifications:
+
+<CodeGroup>
+  ```bash bash
+  const result = await median.salesforceCloud.promptNotification();
+
+  // result object
+  {
+    granted: true | false
+  }
+  ```
+</CodeGroup>
+
+### Check Notification Status
+
+Check whether push notifications are currently enabled for the app.
+
+> To check notification status:
+
+<CodeGroup>
+  ```bash bash
+  const result = await median.salesforceCloud.notificationEnabled();
+
+  // result object
+  {
+    granted: true | false
+  }
+  ```
+</CodeGroup>
+
+### Get Device Info
+
+Retrieve the device registration information from the Salesforce Marketing Cloud SDK.
+
+> To get device registration info:
+
+<CodeGroup>
+  ```bash bash
+  const result = await median.salesforceCloud.getInfo();
+
+  // result object
+  {
+    deviceToken: "...",
+    pushEnabled: true | false,
+    deviceId: "...",
+    notificationUserInfo: {}     // iOS only
+  }
+  ```
+</CodeGroup>
+
+### Set Contact Key
+
+Set the contact key (profile ID) to identify the user in Salesforce Marketing Cloud.
+
+> To set a contact key:
+
+<CodeGroup>
+  ```bash bash
+  const result = await median.salesforceCloud.contactKey.set({
+    contactKey: 'user_12345'
+  });
+
+  // result object
+  {
+    success: true | false,
+    error: "..."             // present on failure
+  }
+  ```
+</CodeGroup>
+
+#### Parameters
+
+| Parameter  | Type     | Description                                         |
+| ---------- | -------- | --------------------------------------------------- |
+| contactKey | `string` | **Required**. The contact key to identify the user. |
+
+### Get Contact Key
+
+Retrieve the currently set contact key.
+
+> To get the current contact key:
+
+<CodeGroup>
+  ```bash bash
+  const result = await median.salesforceCloud.contactKey.get();
+
+  // result object
+  {
+    success: true | false,
+    contactKey: "user_12345",
+    error: "..."             // present on failure (iOS)
+  }
+  ```
+</CodeGroup>
+
+### Set Attributes
+
+Set custom profile attributes on the Salesforce contact for audience segmentation.
+
+> To set attributes:
+
+<CodeGroup>
+  ```bash bash
+  const result = await median.salesforceCloud.attributes.set({
+    attributes: {
+      firstName: 'Jane',
+      lastName: 'Doe',
+      plan: 'premium'
+    }
+  });
+
+  // result object
+  {
+    success: true | false,
+    error: "..."             // present on failure
+  }
+  ```
+</CodeGroup>
+
+#### Parameters
+
+| Parameter  | Type     | Description                                                 |
+| ---------- | -------- | ----------------------------------------------------------- |
+| attributes | `object` | **Required**. Key-value pairs (all values must be strings). |
+
+### Get Attributes
+
+Retrieve all profile attributes currently set on the device.
+
+> To get attributes:
+
+<CodeGroup>
+  ```bash bash
+  const result = await median.salesforceCloud.attributes.get();
+
+  // result object
+  {
+    success: true,
+    attributes: {
+      firstName: "Jane",
+      lastName: "Doe",
+      plan: "premium"
+    }
+  }
+  ```
+</CodeGroup>
+
+### Set Tags
+
+Add tags to the device for audience segmentation.
+
+> To set tags:
+
+<CodeGroup>
+  ```bash bash
+  // Add a single tag (iOS and Android)
+  const result = await median.salesforceCloud.tags.set({
+    tag: 'premium_user'
+  });
+
+  // Add multiple tags (Android only)
+  const result = await median.salesforceCloud.tags.set({
+    tags: ['premium_user', 'newsletter_subscriber', 'beta_tester']
+  });
+
+  // result object
+  {
+    success: true | false,
+    error: "..."             // present on failure
+  }
+  ```
+</CodeGroup>
+
+#### Parameters
+
+| Parameter | Type       | Description                                           |
+| --------- | ---------- | ----------------------------------------------------- |
+| tag       | `string`   | **Optional**. A single tag to add (iOS and Android).  |
+| tags      | `string[]` | **Optional**. An array of tags to add (Android only). |
+
+<Info>
+  ### Platform Differences
+
+  On iOS, only the `tag` parameter is supported (single tag at a time). On Android, both `tag` and `tags` are supported. Passing an empty `tags` array on Android will clear all existing tags.
+</Info>
+
+### Get Tags
+
+Retrieve all tags currently set on the device.
+
+> To get tags:
+
+<CodeGroup>
+  ```bash bash
+  const result = await median.salesforceCloud.tags.get();
+
+  // result object
+  {
+    success: true,
+    tags: ["premium_user", "newsletter_subscriber"]
+  }
+  ```
+</CodeGroup>
+
+### Delete a Tag (iOS Only)
+
+Remove a single tag from the device registration. This method is only available on iOS.
+
+> To delete a tag:
+
+<CodeGroup>
+  ```bash bash
+  const result = await median.salesforceCloud.tags.delete({
+    tag: 'premium_user'
+  });
+
+  // result object
+  {
+    success: true | false,
+    error: "..."             // present on failure
+  }
+  ```
+</CodeGroup>
+
+#### Parameters
+
+| Parameter | Type     | Description                      |
+| --------- | -------- | -------------------------------- |
+| tag       | `string` | **Required**. The tag to remove. |
+
+***
+
+[Optimizely](/docs/optimizely)
+
+[Sendbird](/docs/sendbird)
+
+Copy Page
+
+* * [App Configuration](#app-configuration)
+
+  * [Implementation Guide](#implementation-guide)
+
+  * * [Prompt for Push Notifications](#prompt-for-push-notifications)
+    * [Check Notification Status](#check-notification-status)
+    * [Get Device Info](#get-device-info)
+    * [Set Contact Key](#set-contact-key)
+    * [Get Contact Key](#get-contact-key)
+    * [Set Attributes](#set-attributes)
+    * [Get Attributes](#get-attributes)
+    * [Set Tags](#set-tags)
+    * [Get Tags](#get-tags)
+    * [Delete a Tag (iOS Only)](#delete-a-tag-ios-only)

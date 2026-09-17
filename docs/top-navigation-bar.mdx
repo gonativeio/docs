@@ -1,0 +1,51 @@
+---
+title: "Top Navigation Bar"
+---
+
+<Check>
+  ### Developer Demo
+
+  Display our demo page in your app to test during development [https://median.dev/top-navigation-bar/](https://median.dev/top-navigation-bar/)
+</Check>
+
+The top navigation bar is only visible if you are using [Sidebar Navigation](/docs/sidebar-navigation-menu), [Auto New Windows](/docs/auto-new-windows), [Search](/docs/search-bar-form), [Refresh Button](/docs/refresh-button), or [Custom Buttons](/docs/add-custom-buttons).
+
+## Example
+
+<Frame caption="iOS Top Navigation Bar">
+  <img src="/images/docs/7b4dbf1-top-nav-ios.png" />
+</Frame>
+
+<Frame caption="Android Top Navigation Bar">
+  <img src="/images/docs/3fa42ce-top-nav-android.png" />
+</Frame>
+
+## Frequently Asked Questions
+
+### How do I change the title text in the top navigation bar
+
+You can add the following to each page for which you wish to set a title.
+
+<CodeGroup>
+  ```bash bash
+  <script>
+    function median_library_ready() {
+      median.navigationTitles.setCurrent({ title: "Your Title" });
+    }
+  </script>
+  ```
+</CodeGroup>
+
+For more details refer to [Dynamic Titles](/docs/dynamic-titles).
+
+***
+
+### Next Steps
+
+* [Dynamic Titles](/docs/dynamic-titles)
+
+Copy Page
+
+* * [Example](#example)
+  * [Frequently Asked Questions](#frequently-asked-questions)
+  * * [How do I change the title text in the top navigation bar](#how-do-i-change-the-title-text-in-the-top-navigation-bar)

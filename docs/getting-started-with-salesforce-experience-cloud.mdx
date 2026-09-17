@@ -1,0 +1,86 @@
+---
+title: "Getting Started with Salesforce Experience Cloud"
+description: "Step-by-step guide to connecting a Salesforce Experience Cloud site to Median.co"
+---
+
+This guide walks through the first three steps required to connect a Salesforce Experience Cloud site to the Median native app shell. By the end, your Experience Cloud URL will be loaded inside a Median app with the JavaScript bridge unblocked and accessible to Lightning Web Components.
+
+This is part one of a four-part series:
+
+1. **Getting Started with Salesforce Experience Cloud** (this page)
+2. [Lightning Web Components and the JavaScript Bridge](https://docs.median.co/docs/salesforce-lwc-median)
+3. [Deep Linking for Salesforce Experience Cloud](https://docs.median.co/docs/salesforce-deep-linking)
+4. [Salesforce LWC Component Deployment and Reference](https://docs.median.co/docs/salesforce-lwc-components)
+
+***
+
+## Prerequisites
+
+Before starting, confirm the following:
+
+* You have a Salesforce org with Experience Cloud enabled and at least one published Experience Cloud site.
+* You have System Administrator access or equivalent permissions in the Salesforce org.
+* You have a Median account. If not, [create one here](https://median.co/new).
+* (Optional) You have the Salesforce CLI installed for LWC component deployment. Installation instructions are at [developer.salesforce.com/tools/salesforcecli](https://developer.salesforce.com/tools/salesforcecli).
+
+***
+
+## Step 1: Retrieve Your Experience Cloud Site URL
+
+Your Experience Cloud site URL is the starting URL Median uses to load your app.
+
+1. In Salesforce Setup, navigate to **Digital Experiences > All Sites**.
+2. Click **Builder** next to your site.
+3. Copy the URL from the browser address bar, removing `/s` or any trailing path. The URL should be in the format `https://yourorg.my.site.com/sitename`. For production apps, use your custom domain rather than the Salesforce-generated `.my.site.com` domain. This is required for deep linking to work correctly, and it produces a cleaner experience for end users.
+
+<Frame caption="Salesforce - Digital Experiences">
+  <img src="/images/docs/82c33fa8e29801a77fe8fa16aaf706467b6aef5dca671304ed49f95e9d26f673-Screenshot_2026-07-21_at_06.50.32.png" />
+</Frame>
+
+***
+
+## Step 2: Create Your App in Median App Studio
+
+1. Log in to [Median App Studio](https://median.co/new) and create a new app.
+2. Paste your Experience Cloud site URL as the starting URL.
+3. Complete the basic branding configuration: app name, icon, and splash screen.
+4. Save the configuration. You do not need to publish the app yet.
+
+Enter any URL to try it out
+
+Build Now
+
+***
+
+## Step 3: Configure Content Security Policy in Experience Builder
+
+Salesforce Experience Cloud enforces a Content Security Policy (CSP) to prevent Cross-Site Scripting (XSS) attacks. By default, this policy blocks JavaScript that originates from outside the Salesforce domain, which includes the Median JavaScript bridge (`window.median`).
+
+If the CSP is set to **Strict**, the `window.median` object will be unavailable inside your LWC components, and all native features including push notifications, biometric authentication, and barcode scanning will be non-functional.
+
+**To configure CSP:**
+
+1. In Experience Builder, go to **Settings > Security and Privacy**.
+2. Set **Security Level** to **Relaxed CSP: Permit Access to Inline Scripts and Allowed Hosts**.
+3. Under **Trusted Sites for Scripts**, add the Median bridge distribution URLs. You can either self-host the NPM library or use a content distribution network like UNPKG to access the latest version of the Median JavaScript Bridge.
+
+![](/images/docs/c069aa500ce2feb354f13402cde05aad2d0f1af2d22689fba6f11dfa8d852b54-Screenshot_2026-07-21_at_06.55.58.png)
+
+**Why Relaxed CSP is safe in this context:**
+
+Relaxed CSP does not disable security broadly. It allows inline scripts and approved external origins. Median injects its bridge via the native WebView layer rather than an external script tag, so this setting is primarily required to prevent the browser security model from blocking bridge calls that originate from the native layer rather than from a trusted web host.
+
+For organizations with strict change management processes, this CSP change should be reviewed by your security team and documented as part of your mobile app architecture decision record.
+
+***
+
+[Salesforce Experience Cloud](/docs/salesforce)
+
+[Lightning Web Components and the Median JavaScript Bridge](/docs/salesforce-lwc-median)
+
+Copy Page
+
+* * [Prerequisites](#prerequisites)
+  * [Step 1: Retrieve Your Experience Cloud Site URL](#step-1-retrieve-your-experience-cloud-site-url)
+  * [Step 2: Create Your App in Median App Studio](#step-2-create-your-app-in-median-app-studio)
+  * [Step 3: Configure Content Security Policy in Experience Builder](#step-3-configure-content-security-policy-in-experience-builder)

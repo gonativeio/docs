@@ -1,0 +1,138 @@
+---
+title: "Multiple App Instances"
+description: "Whether you are maintaining apps for different pre-production environments or whitelabeling"
+---
+
+This guide outlines common use cases and best practices for managing multiple app instances in Median, including pre-production environments, whitelabeled apps, and configuration synchronization.
+
+## Common Use Cases for Multiple App Instances
+
+### Pre-Production Environments
+
+Some Median customers maintain distinct pre-production web environments and require corresponding live mobile apps for each environment. In addition to a production environment ("Prod"), common environments include development ("Dev"), staging ("Stg"), and quality assurance ("QA").
+
+Enterprise customers may have access to Median's Developer Toolkit, which includes non-production licenses specifically for apps intended for testing and development purposes, not for public app store distribution or other production releases.
+
+### Whitelabeled Apps for Clients
+
+Some Median customers offer whitelabeled versions of their apps to their own end customers. Whitelabeling can serve as the primary method of software delivery or as a premium offering for select clients. Whitelabeled apps are typically built based on a common primary app with the exception of differences in branding, app identifiers, and parameters for features such as deep linking.
+
+## Best Practices for Managing Multiple App Versions
+
+### App Naming and Icons
+
+For pre-production app instances we recommend choosing a unique app name and creating a labeled icon for each app. This ensures all team members are tracking which app is being used while testing, particularly when on a physical device and for example receiving push notifications.
+
+e.g.
+
+* My App - Dev
+* My App - Stg
+* My App - QA
+
+<Frame caption="Sample app icon with labeled icons for pre-production environments">
+  <img src="/images/docs/3cc8344d27a40fd7a8b4cfe1ea397b219e484ff4cee822123a91ebd0f26a6bc2-lower-level-env-sample-icons.png" />
+</Frame>
+
+### App identifiers
+
+#### For Pre-Production Apps
+
+We recommend selecting descriptive [App Identifiers](/docs/app-identifiers) (iOS Bundle ID and Android Package Name) to easily differentiate your app instances.
+
+e.g.
+
+* `co.median.portal.dev`
+* `co.median.portal.stg`
+* `co.median.portal.qa`
+
+#### For Whitelabeled Apps
+
+If you are providing a fully whitelabeled custom app for your customers you may choose to use identifiers that are whitelabeled as well.
+
+e.g.
+
+* `com.acustomername.portal`
+* `com.bcustomername.portal`
+* `com.ccustomername.portal`
+
+#### Configuration considerations
+
+[Deep Linking](/docs/deep-linking), as well as some third-party services and integrations, rely on app identifiers to verify the authenticity of an app. In the Android ecosystem, due to its open nature, a hash value of the signing key is commonly used to confirm that the app is an official version signed by the app publisher. To ensure the full functionality of all app features and integrations, it is essential to register the app identifiers and signing key details for each app instance as required for your app's setup.
+
+## Syncing Configuration Between App Instances
+
+The App Studio includes functionality to import app configuration settings between any two apps in your organization account. There are two ways to access this functionality:
+
+1. Within the configuration details of the app you wish to update from a second app.
+2. On the app listing page when viewing all apps in your organization account.
+
+### From within destination app
+
+On the **Build & Deploy** tab scroll to **App Configuration** and select **Import from Existing App**.
+
+### From organization app listing
+
+Locate the app you wish to update, open the hamburger menu (☰) next to the app name and select **Import from Existing App**.
+
+<Frame caption="App Studio - Configuration Import">
+  <img src="/images/docs/657d798c87da7848d361e4d7ec26fca85af41630ed8638194881f271543901e8-Screenshot_2025-07-04_at_13.07.58.png" />
+</Frame>
+
+### Steps to Import from Existing App
+
+<Frame caption="Step 1: Select the source app to import configuration from">
+  <img src="/images/docs/a959fd972a64f3e09faf034d8dc3045b6b5711a7d00db01fd2566f60a88dae4e-Screenshot_2025-07-04_at_13.09.57.png" />
+</Frame>
+
+<Frame caption="Step 2: Select specific sections to import from the source app">
+  <img src="/images/docs/8fc4572fa4ecd472b4aecabdc022f40981f3aba213ef892d2fe988870e52d505-Screenshot_2025-07-04_at_13.10.42.png" />
+</Frame>
+
+<Frame caption="Step 3: Confirm details and click &#x22;Import&#x22;">
+  <img src="/images/docs/d0f9c2519e207e1ffd29dd1fd1d406004c6becda1d9fea2f62074d369cdf3a24-Screenshot_2025-07-04_at_13.10.56.png" />
+</Frame>
+
+## Additional Development Tips
+
+### Pre-Production Access Control
+
+If your pre-production environments have access control restrictions, you may need to add the [Median IP blocks](https://median.co/ip-blocks) to an allow list to access your environments from our browser-based simulators. As the IPs used by the Median platform can change over time, ensure that you regularly update the allow list or automate the update process to maintain access.
+
+For more advanced access control options, such as configuring a secure proxy server to handle network requests from our browser-based simulator devices, [get in touch with our team](https://median.co/contact?topic=Enterprise).
+
+### CI/CD Integration for Automated Builds
+
+Enterprise customers can request API access to automatically fetch app sources and binaries to power their CI/CD workflows. This allows for seamless deployment of new builds in pre-production environments and whitelabel use cases, helping to facilitate efficient testing and release management.
+
+📖 Learn more: [CI/CD Integration](https://median.co/docs/cicd-integration)
+
+***
+
+### Next Steps
+
+* [Development Tools](/docs/development-tools)
+* [CI/CD Integration](/docs/cicd-integration)
+* [App Identifiers](/docs/app-identifiers)
+
+Copy Page
+
+* * [Common Use Cases for Multiple App Instances](#common-use-cases-for-multiple-app-instances)
+
+  * * [Pre-Production Environments](#pre-production-environments)
+    * [Whitelabeled Apps for Clients](#whitelabeled-apps-for-clients)
+
+  * [Best Practices for Managing Multiple App Versions](#best-practices-for-managing-multiple-app-versions)
+
+  * * [App Naming and Icons](#app-naming-and-icons)
+    * [App identifiers](#app-identifiers)
+
+  * [Syncing Configuration Between App Instances](#syncing-configuration-between-app-instances)
+
+  * * [From within destination app](#from-within-destination-app)
+    * [From organization app listing](#from-organization-app-listing)
+    * [Steps to Import from Existing App](#steps-to-import-from-existing-app)
+
+  * [Additional Development Tips](#additional-development-tips)
+
+  * * [Pre-Production Access Control](#pre-production-access-control)
+    * [CI/CD Integration for Automated Builds](#cicd-integration-for-automated-builds)

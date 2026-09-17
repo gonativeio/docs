@@ -1,0 +1,114 @@
+---
+title: "Clear Webview Cache"
+description: "Force an update of stale app content"
+---
+
+If updates to your website aren't appearing in your native app built with Median, the issue is typically related to webview caching.
+
+Median apps respect the same cache headers as modern browsers. This means your web server controls how long content is cached within the app. In most cases, updates will reflect after a few minutes or a page refresh. However, if you're still not seeing the latest changes, it’s likely due to aggressive cache headers or stale cached assets.
+
+## Implementation Guide
+
+### Website Configuration
+
+To force the app to load the latest version of your assets (e.g., JavaScript or CSS files), you can use file versioning like:
+
+<CodeGroup>
+  ```bash bash
+  application_782374982.js
+  styles_782374982.css
+  ```
+</CodeGroup>
+
+Updating the filename ensures the browser and app will request a fresh version from the server.
+
+### JavaScript Bridge Method
+
+Median provides a JavaScript command to programmatically clear the webview cache. This is especially useful during development or when troubleshooting cache-related display issues.
+
+> To clear the cache, open the URL:
+
+<CodeGroup>
+  ```bash bash
+  median.webview.clearCache();
+  ```
+</CodeGroup>
+
+### Android-Only
+
+Some configuration options in `appConfig.json` apply specifically to Android apps. These settings allow you to control WebView behavior, including caching.
+
+#### Automatically Clear Cache on Exit
+
+Median includes a configuration option for Android apps to clear the WebView cache every time the app exits. To enable this, add the following in the [appConfig.json](https://median.co/docs/app-configuration-appconfigjson):
+
+<CodeGroup>
+  ```bash bash
+  "general": {
+    "androidClearCache": true
+  }
+  ```
+</CodeGroup>
+
+#### Configure WebView Cache Mode
+
+You can also control how the Android WebView handles caching by setting the cacheMode option. Add the following under the general section in your [appConfig.json](https://median.co/docs/app-configuration-appconfigjson):
+
+<CodeGroup>
+  ```bash bash
+  "general": {
+    "androidCacheMode": "no_cache" // options: no_cache | cache_only | cache_else_network | default
+  }
+  ```
+</CodeGroup>
+
+Available configuration options:
+
+| Configuration        | Description                                               |
+| -------------------- | --------------------------------------------------------- |
+| `no_cache`           | Always load from the network, never use the cache.        |
+| `cache_only`         | Only use cached content, never hit the network.           |
+| `cache_else_network` | Use cache if available, otherwise fetch from the network. |
+| `default`            | Use the system’s default caching behavior.                |
+
+## Frequently Asked Questions
+
+### Why are my website updates not appearing in my Median app?
+
+**Why are my website updates not appearing in my Median app?⎘ Copy link
+
+Your app may still be loading cached website assets, such as older JavaScript, CSS, image, or HTML files. Median apps respect your website’s cache headers, so your server configuration controls how long those assets remain cached in the app.
+
+### Should I call median.webview\.clearCache() every time the app starts?
+
+**Should I call median.webview\.clearCache() every time the app starts?⎘ Copy link
+
+Usually, no. Clearing the cache too often can reduce performance because the app may need to re-download assets that would otherwise load quickly from cache. For production apps, asset versioning and correct cache headers are usually better long-term solutions.
+
+### Does clearing the WebView cache sign users out?
+
+**Does clearing the WebView cache sign users out?⎘ Copy link
+
+Do not assume that it will or will not affect user sessions without testing your app. The article describes clearing the WebView cache, but it does not explicitly state whether cookies, local storage, or authentication sessions are affected. Test login behavior before using this in production.
+
+### Which Android cache mode should I choose?
+
+**Which Android cache mode should I choose?⎘ Copy link
+
+Use `default` for normal production behavior. Use `no_cache` when you need Android to always load from the network during testing or troubleshooting. Use `cache_only` only for specialized offline scenarios, and use `cache_else_network` when cached content should be preferred if available.
+
+***
+
+[Download File](/docs/download-file)
+
+[Accessing callbacks in an iframe](/docs/iframe-callbacks)
+
+Copy Page
+
+* * [Implementation Guide](#implementation-guide)
+
+  * * [Website Configuration](#website-configuration)
+    * [JavaScript Bridge Method](#javascript-bridge-method)
+    * [Android-Only](#android-only)
+
+  * [Frequently Asked Questions](#frequently-asked-questions)

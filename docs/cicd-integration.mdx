@@ -1,0 +1,76 @@
+---
+title: "CI/CD Integration"
+description: "Apps with an Enterprise license can request access to our CI/CD API which provides access to download your latest app builds and integrate them into your CI/CD automation."
+---
+
+To get started or for assistance with Enterprise deployments, please [contact our team](https://median.co/contact?topic=Enterprise).
+
+## Downloading Source Code and Binaries
+
+You can download app sources and binaries using the following curl commands. You will need to replace `{{ APP ID }}` with your app ID and `{{ API KEY}}` with the API key of your organization.
+
+### Examples
+
+**iOS Source**
+
+<CodeGroup>
+  ```bash bash
+  curl --location 'https://median.co/project/{{ APP ID }}/download/iosSource' --header 'x-api-key: {{ API KEY }}' --output /path/ios_source.tar.gz
+  ```
+</CodeGroup>
+
+**Android source**
+
+<CodeGroup>
+  ```bash bash
+  curl --location 'https://median.co/project/{{ APP ID }}/download/androidSource' --header 'x-api-key: {{ API KEY }}' --output android_source.tar.gz
+  ```
+</CodeGroup>
+
+**Android APK**
+
+<CodeGroup>
+  ```bash bash
+  curl --location 'https://median.co/project/{{ APP ID }}/download/apk' --header 'x-api-key: {{ API KEY }}' --output app-release.apk
+  ```
+</CodeGroup>
+
+**Android AAB**
+
+<CodeGroup>
+  ```bash bash
+  curl --location 'https://median.co/project/{{ APP ID }}/download/aab' --header 'x-api-key: {{ API KEY }}' --output app-bundle.aab
+  ```
+</CodeGroup>
+
+## Frequently Asked Questions
+
+### Where do I find my API key?
+
+The API key is not accessible in the Median AppStudio. Please contact us to retrieve the API key for your organization.
+
+### Where do I find my app ID?
+
+You will find your APP ID in the private app management link (eg if you manage your app via `https://median.co/app/{{APPID}}/overview`, your app ID will be `{{APPID}}`).
+
+### Why can I not download the builds of my cloned apps?
+
+To download your app builds and source code an app build has to be created. Builds are not created when cloning an existing app and you will have to manually build the app from the **Build & Deploy** tab within Median App Studio.
+
+***
+
+[Multiple App Instances](/docs/multiple-app-instances)
+
+[Publishing Overview](/docs/publishing-overview)
+
+Copy Page
+
+* * [Downloading Source Code and Binaries](#downloading-source-code-and-binaries)
+
+  * * [Examples](#examples)
+
+  * [Frequently Asked Questions](#frequently-asked-questions)
+
+  * * [Where do I find my API key?](#where-do-i-find-my-api-key)
+    * [Where do I find my app ID?](#where-do-i-find-my-app-id)
+    * [Why can I not download the builds of my cloned apps?](#why-can-i-not-download-the-builds-of-my-cloned-apps)

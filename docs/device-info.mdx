@@ -1,0 +1,272 @@
+---
+title: "Device Info"
+description: "Retrieve device, app, and advertising identifier data with the JavaScript Bridge"
+---
+
+The `deviceInfo` function of the Median JavaScript Bridge returns real-time information about the user's device and your native app. Use it for analytics, feature compatibility checks, technical support, and advertising attribution.
+
+<Check>
+  ### Developer Demo
+
+  Display our demo page in your app to test during development [https://median.dev/device-info](https://median.dev/device-info)
+</Check>
+
+## Why use Device Info?
+
+| Use case                       | Example                                                                |
+| ------------------------------ | ---------------------------------------------------------------------- |
+| First-time user identification | Detect first-time app users to display an onboarding modal             |
+| Version management             | Detect users on an outdated app version to prompt an update            |
+| Technical support              | Use platform and hardware data to troubleshoot device-specific tickets |
+| Attribution and ad measurement | Pass `gaid` / `idfa` to your analytics or attribution pipeline         |
+
+## What data does deviceInfo return?
+
+`deviceInfo` returns a single object containing the following categories of data:
+
+| Category                | Example fields                                                                    |
+| ----------------------- | --------------------------------------------------------------------------------- |
+| Platform                | `platform`, `os`, `osVersion`                                                     |
+| App                     | `appId`, `appVersion`, `appBuild`, `installationId`                               |
+| Hardware                | `hardware`, `model`                                                               |
+| Configuration           | `carrierNames`, `timeZone`, `language`                                            |
+| Advertising identifiers | `gaid` (Android), `idfa` (iOS) - for more information see Advertising Identifiers |
+
+See the full field reference for every key returned in the payload.
+
+<Info>
+  ### Important considerations
+
+  * On Android, the `carrierNames` field requires the `READ_PHONE_STATE` permission.
+  * `gaid` and `idfa` are only returned when a supported advertising SDK is configured — see Advertising Identifiers below.
+  * `median_device_info()` is called by the native app as soon as the page loads. The function must be defined at page load time — it cannot be added asynchronously or deferred.
+</Info>
+
+## Advertising identifiers (GAID and IDFA)
+
+Median can return two platform-specific advertising identifiers as part of the `deviceInfo` payload:
+
+| Key    | Platform | Identifier                 |
+| ------ | -------- | -------------------------- |
+| `gaid` | Android  | Google Advertising ID      |
+| `idfa` | iOS      | Identifier for Advertisers |
+
+### Dependency: an advertising SDK is required
+
+`gaid` and `idfa` are **not returned by default**. Median surfaces these values through a supported advertising or attribution SDK, so one of the following plugins must be configured in your app:
+
+* [Adjust](https://docs.median.co/docs/adjust)
+* [AppsFlyer](https://docs.median.co/docs/appsflyer)
+* [Meta App Events](https://docs.median.co/docs/facebook) (iOS-only)
+
+If none of these plugins is configured, `gaid` and `idfa` are omitted from the `deviceInfo` payload.
+
+### IDFA (iOS)
+
+The IDFA is only available after the user grants App Tracking Transparency (ATT) permission. Configure the ATT prompt using [Apple App Tracking Transparency](https://docs.median.co/docs/apple-att).
+
+Until ATT permission is granted, `idfa` returns the zeroed placeholder value:
+
+```
+00000000-0000-0000-0000-000000000000
+```
+
+<Warning>
+  ### Check for the placeholder before using IDFA
+
+  Always compare `idfa` against `00000000-0000-0000-0000-000000000000` before using it for attribution. This value means tracking is not yet authorized, not that no identifier exists.
+</Warning>
+
+### GAID (Android)
+
+The Google Advertising ID is subject to platform limitations that affect its reliability as a tracking identifier:
+
+* **User-resettable**: Users can reset their GAID at any time in device settings.
+* **Opt-out of personalized ads**: Users can disable ad personalization at the OS level.
+* **Increasing OS restrictions:** Recent Android versions increasingly restrict access to the GAID.
+* **Requires Google Play Services:** Devices without Google Play Services (for example, Huawei devices) have no GAID, and `gaid` is omitted regardless of plugin configuration. Treat `gaid` as a best-effort signal, and handle missing or reset values gracefully in your attribution logic.
+
+***
+
+## Field reference
+
+| Key              | Type            | Platform     | Description                                                                                        |
+| ---------------- | --------------- | ------------ | -------------------------------------------------------------------------------------------------- |
+| `platform`       | string          | Both         | `ios` or `android`                                                                                 |
+| `os`             | string          | Both         | Operating system name, e.g. `iOS`, `Android`                                                       |
+| `osVersion`      | string          | Both         | Operating system version, e.g. `10.3`                                                              |
+| `appId`          | string          | Both         | Application bundle/package id, e.g. `io.median.example`                                            |
+| `appVersion`     | string          | Both         | App version string, e.g. `1.0.0`                                                                   |
+| `appBuild`       | string / number | Both         | Build identifier; numeric `appVersionCode` on Android                                              |
+| `installationId` | string          | Both         | Unique identifier for the app installation                                                         |
+| `distribution`   | string          | Both         | Build distribution channel, e.g. `release`                                                         |
+| `hardware`       | string          | Both         | Hardware architecture, e.g. `armv8`                                                                |
+| `model`          | string          | Both         | Device model, e.g. `iPhone`                                                                        |
+| `carrierNames`   | array           | Both         | Connected mobile carriers (Android requires `READ_PHONE_STATE`)                                    |
+| `timeZone`       | string          | Both         | Device time zone, e.g. `America/New_York`                                                          |
+| `language`       | string          | Both         | Device language code, e.g. `en`                                                                    |
+| `isFirstLaunch`  | boolean         | Both         | `true` on the first launch of the app                                                              |
+| `SHA-1`          | string          | Android only | App signing certificate fingerprint                                                                |
+| `apnsToken`      | string          | iOS only     | Apple Push Notification service token                                                              |
+| `idfa`           | string          | iOS only     | Identifier for Advertisers (requires an [advertising SDK](#advertising-identifiers-gaid-and-idfa)) |
+| `gaid`           | string          | Android only | Google Advertising ID (requires an [advertising SDK](#advertising-identifiers-gaid-and-idfa))      |
+
+***
+
+## Integration guide
+
+### Website configuration (JavaScript Bridge)
+
+* **Call each page load:** If your website defines a function called `median_device_info()`, it will be called after every page load, as shown below, with an object containing information about your native app and the user's device.
+* **Trigger manually:** You may also run `median_device_info()` manually at any time by calling `median.run.deviceInfo()`.
+* **Run via a promise:** Call `median.deviceInfo().then()` or use `await median.deviceInfo()` to return a promise that resolves with the data.
+* **Data processing:** You may `POST` the device data to your server via AJAX, or process it using any other method required in JavaScript.
+* **NPM Library Helper Method:** When using the [Median JS Bridge NPM Library](https://www.npmjs.com/package/median-js-bridge), you may call the helper function `getPlatform()`, which returns `web`, `ios`, or `android` accordingly.
+
+***
+
+## Example deviceInfo payload
+
+<CodeGroup>
+  ```bash bash
+  // You define this function on your page, but do not call it directly.
+  // If present on a page, it will be called by the app when the page loads.
+  function median_device_info(deviceInfo) {
+      console.log(deviceInfo);
+  }
+   
+  // You may also call median_device_info manually, e.g. on a single-page web app
+  median.run.deviceInfo();
+   
+  // Or retrieve deviceInfo via a promise (inside an async function)
+  var deviceInfo = await median.deviceInfo();
+   
+  median.deviceInfo().then(function (deviceInfo) {
+    console.log(deviceInfo);
+  });
+   
+  // deviceInfo will look like:
+  {
+      platform: 'ios',
+      "SHA-1": 'XX:XX:XX:XX:XX:XX:XX:XX:XX:XX:XX:XX', // only on Android
+      appId: 'io.median.example',
+      appVersion: '1.0.0',
+      appBuild: '1.0.0', // will be appVersionCode (number) on Android
+      carrierNames: ['AT&T'], // array of all connected mobile carriers
+      distribution: 'release',
+      hardware: 'armv8',
+      installationId: 'xxxx-xxxx-xxxx-xxxx',
+      apnsToken: '<xxxxxxxx xxxxxxxx xxxxxxxx ... >', // only on iOS
+      language: 'en',
+      model: 'iPhone',
+      os: 'iOS',
+      osVersion: '10.3',
+      timeZone: 'America/New_York',
+      isFirstLaunch: false, // true on the first launch of the app
+      idfa: '00000000-0000-0000-0000-000000000000', // only present if an ad/attribution SDK is configured; only on iOS; zeroed until ATT is granted
+      gaid: 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx' // only present if an ad/attribution SDK is configured; only on Android; omitted on devices without Google Play Services
+  }
+  ```
+</CodeGroup>
+
+***
+
+## Advanced example: Enforce a minimum app version
+
+When deploying new features or critical security updates, you may need to ensure all users are running a specific version of your native app. Using `deviceInfo`, you can retrieve the app version and redirect users to an "Update Required" page if they fall behind your required threshold.
+
+Place the following script in your site's `<head>`. It uses Semantic Versioning (SemVer) logic to compare the user's current app version (`appVersion`) against your required `MIN_APP_VERSION`.
+
+<CodeGroup>
+  ```bash bash
+  <script>
+    /**
+     * Configuration for Version Enforcement
+     */
+    const MIN_APP_VERSION = "2.3.0";
+    const REDIRECT_URL = "/update-required.html";
+   
+    /**
+     * Compares two version strings (e.g., "2.1.0" vs "2.3.0").
+     * Returns true if the current version is lower than the minimum.
+     */
+    function isVersionLower(current, minimum) {
+      const c = current.split(".").map(Number);
+      const m = minimum.split(".").map(Number);
+   
+      for (let i = 0; i < Math.max(c.length, m.length); i++) {
+        const cv = c[i] || 0;
+        const mv = m[i] || 0;
+        if (cv < mv) return true;
+        if (cv > mv) return false;
+      }
+      return false;
+    }
+   
+    /**
+     * Evaluates the deviceInfo object provided by Median.
+     */
+    function handleVersionCheck(deviceInfo) {
+      if (deviceInfo && deviceInfo.appVersion) {
+        if (isVersionLower(deviceInfo.appVersion, MIN_APP_VERSION)) {
+          // Redirect to a landing page with App Store/Play Store links
+          window.location.replace(REDIRECT_URL);
+        }
+      }
+    }
+   
+    /**
+     * Median Device Info Callback
+     * This function is automatically triggered by Median once device data is retrieved.
+     */
+    function median_device_info(deviceInfo) {
+      handleVersionCheck(deviceInfo);
+    }
+  </script>
+  ```
+</CodeGroup>
+
+**Robust version comparison:** Version strings aren't simple numbers (`2.10.0` is newer than `2.9.0`, but a numerical comparison would suggest otherwise). `isVersionLower` splits each string into an array of integers so each segment is compared accurately.
+
+**Using** `location.replace()`**:** To prevent a redirect loop, use `window.location.replace()`. This removes the outdated page from browser history so the user can't navigate back to app content without updating.
+
+**Handling the** `deviceInfo` **promise:** Modern implementations return a Promise when calling `median.deviceInfo()`. Use `.then()` to handle this asynchronously so the version check runs regardless of when the script loads.
+
+**User experience (UX):** Your `update-required.html` page should clearly explain why the update is necessary and include direct deep links to the Apple App Store and Google Play Store to minimize friction.
+
+## Example app
+
+|     |         |
+| --- | ------- |
+|     |         |
+| iOS | Android |
+
+***
+
+[SPA Navigation](/docs/npm-package-spa-navigation)
+
+[Clipboard](/docs/clipboard)
+
+Copy Page
+
+* * [Why use Device Info?](#why-use-device-info)
+
+  * [What data does deviceInfo return?](#what-data-does-deviceinfo-return)
+
+  * [Advertising identifiers (GAID and IDFA)](#advertising-identifiers-gaid-and-idfa)
+
+  * * [Dependency: an advertising SDK is required](#dependency-an-advertising-sdk-is-required)
+    * [IDFA (iOS)](#idfa-ios)
+    * [GAID (Android)](#gaid-android)
+
+  * [Field reference](#field-reference)
+
+  * [Integration guide](#integration-guide)
+
+  * * [Website configuration (JavaScript Bridge)](#website-configuration-javascript-bridge)
+
+  * [Example deviceInfo payload](#example-deviceinfo-payload)
+
+  * [Advanced example: Enforce a minimum app version](#advanced-example-enforce-a-minimum-app-version)
+
+  * [Example app](#example-app)

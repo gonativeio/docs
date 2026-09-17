@@ -1,0 +1,122 @@
+---
+title: "Custom CSS"
+description: "Apply Custom CSS to alter pages you can not adjust server-side"
+---
+
+Custom CSS lets you modify the appearance of your website when it renders inside your Median app's webview. Common uses include hiding elements that don't make sense in a native app context like footer menus, chat widgets, and cookie banners or adapting styling for smaller mobile screens.
+
+CSS rules you configure can be applied globally across both iOS and Android, or distinct for each platform.
+
+## Scope and limitations
+
+Custom CSS only affects content rendered inside the webview. It cannot restyle Median's native UI elements, such as the Top Navigation Bar, Bottom Tab Bar, or Status Bar as those are native elements configured separately in App Studio, not part of your website's markup.
+
+## Custom CSS in Median Apps
+
+### Apply Global CSS Rules
+
+In App Studio, open the Web Overrides > Custom CSS field and paste your rules. For example, the snippet below restyles the navigation and footer on every page:
+
+<CodeGroup>
+  ```bash bash
+  .nav
+  { 
+    margin-top: 5px !important;
+    font-size: 14px !important;
+  }
+
+  #header, #footer
+  { 
+    background-color: #4c4c4c !important;
+    margin-bottom: 0px !important; 
+  }
+  ```
+</CodeGroup>
+
+<Warning>
+  ### Use `!important` to prevent flicker
+
+  We recommend using the `!important` flag as shown in the above examples to prevent flicker. `!important` ensures your app's custom CSS rules always takes priority and override any other CSS rules on your website or external files which may load and be processed subsequently.
+</Warning>
+
+### Apply Conditional CSS Using JavaScript
+
+As an alternative to hardcoded CSS overrides, you can apply CSS dynamically using JavaScript. This is especially useful if your design changes frequently or you need conditional logic. Here’s how to do it:
+
+<CodeGroup>
+  ```bash bash
+  <script>
+    if (navigator.userAgent.indexOf('median') > -1) {
+
+      // Option 1: Vanilla JavaScript
+      document.querySelector('.nav').style.visibility = "hidden";
+      document.querySelector('#header').style.visibility = "hidden";
+      document.querySelector('#footer').style.visibility = "hidden";
+
+      // Option 2: jQuery
+      $('.nav').hide();
+      $('#header').hide();
+      $('#footer').hide();
+
+      // Option 3: WordPress (uses jQuery() instead of $() to avoid
+      // conflicts with other scripts using the $ shorthand)
+      jQuery('.nav').hide();
+      jQuery('#header').hide();
+      jQuery('#footer').hide();
+    }
+  </script>
+  ```
+</CodeGroup>
+
+**Tip**: On WordPress, use a plugin like [Insert Headers and Footers](https://wordpress.org/plugins/insert-headers-and-footers/) to safely add this script to your site header.
+
+### Advanced: Server-Side CSS Based on User Agent
+
+For full control and scalable styling changes without republishing your app, serve alternate CSS files from your backend based on whether the request originates from your mobile app. This approach works well if you already have server-side rendering or a backend that can branch on request headers.
+
+Learn how to detect Median app requests using a [Custom User Agent](/docs/custom-user-agent).
+
+## Maintainability and Risks
+
+Custom CSS becomes part of your app's build, not your live website. CSS entered under Web Overrides is compiled into your app's configuration at publish time and does not update live the way a change to your actual website does.
+
+To change or remove a Custom CSS rule after your app is live, you need to update the configuration in App Studio and republish to the App Store / Google Play, which is subject to each store's review process and rollout time.
+
+This has a few practical consequences worth planning around:
+
+* **Selector drift breaks silently** - If your website's markup changes later (e.g.: a class gets renamed, a widget gets swapped out) your Custom CSS rules can stop matching anything, or worse, start matching the wrong elements.
+* **Rollout isn't instant** - Even after you republish, users only get the updated CSS once they update the app, and Apple/Google's review process adds delay before that's even possible.
+* **It scales poorly for frequently changing UI** - If your website's layout changes often, every one of those changes potentially requires a new app submission just to keep the CSS override correct.
+
+## Troubleshooting
+
+**My CSS isn't applying at all** Confirm the rules were saved under **Web Overrides > Custom CSS** in App Studio. During development, use App Studio's preview/simulator to check changes but remember that once your app is live, any edit to Custom CSS requires a full republish before real users see it (see [Maintainability and Risks](#maintainability-and-risks)). Also check the browser console for CSS syntax errors, which will silently fail to apply.
+
+**My CSS applies, then gets overridden a moment later (flicker)** This is almost always a missing `!important` flag. Since your website's own stylesheets may load or re-render after Median injects your custom CSS, `!important` is what guarantees your rules win.
+
+## Additional Resources
+
+* [W3Schools CSS Reference](https://www.w3schools.com/cssref/default.asp)
+* [W3Schools CSS Selectors Reference](https://www.w3schools.com/cssref/css_selectors.asp)
+
+***
+
+### Next Steps
+
+* [Custom User Agent](/docs/custom-user-agent)
+
+Copy Page
+
+* * [Scope and limitations](#scope-and-limitations)
+
+  * [Custom CSS in Median Apps](#custom-css-in-median-apps)
+
+  * * [Apply Global CSS Rules](#apply-global-css-rules)
+    * [Apply Conditional CSS Using JavaScript](#apply-conditional-css-using-javascript)
+    * [Advanced: Server-Side CSS Based on User Agent](#advanced-server-side-css-based-on-user-agent)
+
+  * [Maintainability and Risks](#maintainability-and-risks)
+
+  * [Troubleshooting](#troubleshooting)
+
+  * [Additional Resources](#additional-resources)

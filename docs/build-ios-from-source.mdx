@@ -1,0 +1,182 @@
+---
+title: "Build iOS from Source"
+description: "Set Up Xcode & Build Your iOS App"
+---
+
+# Build iOS from Source
+
+Set up Xcode and build your iOS app locally from the iOS source code downloaded from the App Studio.
+
+> **Use this guide only if you want a local Xcode-based workflow.** It is an advanced or optional path and not the standard Median self-serve publishing workflow.
+
+For standard Median self-service publishing and use of TestFlight, you do **not** need to build your iOS app from source. Instead simply connect your Median organization and Apple Developer account using our App Store Connect API integration:
+
+1. Open your app in the Median App Studio and go to **Build & Deploy**.
+
+2. Click **Configure** in the iOS IPA section.
+
+3. In **Apple Developer API Connection**, enter your **Issuer ID** and **Key ID**, and upload your **Private Key (.p8)** file.
+
+4. In **Bundle ID & App Store Connect App**:
+
+   * Register the **Bundle ID** for your app.
+   * Create the **App Store Connect app record** in App Store Connect using that Bundle ID.
+   * Verify the **App Store Connect app record** in Median App Studio.
+
+5. In **Signing & Upload Settings**, select **Distribution Profile** and set **Upload to App Store Connect** to **Automatic**.
+
+6. Build your iOS IPA in the Median App Studio (if Automatic Upload is not selected you can manually click "Upload" after the build is complete).
+
+7. Wait for Apple to process the uploaded build in App Store Connect.
+
+8. In App Store Connect, open **TestFlight**, resolve any required prompts, and add testers.
+
+9. After testing submit the build for App Review.
+
+## Install Xcode
+
+Before proceeding, you must first set up your local iOS development environment. This involves installing Xcode on a computer running macOS.
+
+[Download Xcode](https://apps.apple.com/us/app/xcode/id497799835?mt=12)
+
+<Warning>
+  ### Xcode Version
+
+  Use the latest stable (non-beta) version of Xcode to ensure compatibility.
+</Warning>
+
+Once installed, proceed with the steps below to download and build your Median app.
+
+## Download iOS Source Code
+
+Access your app’s private management page to download the iOS source code:
+
+1. Navigate to the **Build & Deploy** tab.
+2. In the iOS **Source Code** section, click **Download** (see Figure 1).
+
+<Frame caption="Figure 1 - Download iOS Source">
+  <img src="/images/docs/7e8a0d3c6be45fc944ea557c601eadfdf8c4974d4f8b784e093a80c6b0888c74-Screenshot_2025-07-04_at_14.18.56.png" />
+</Frame>
+
+## Extract and Open the Source Code
+
+After downloading, extract the `ios_source.tar.gz` file using one of the following methods:
+
+**Method 1: Using Finder**
+
+1. Double-click `ios_source.tar.gz` to extract it.
+2. Open the extracted folder and double-click `<yourapp>.xcworkspace`.
+
+**Method 2: Using Terminal**
+
+1. Open Terminal and execute:`tar -xzvf ios_source.tar.gz`Please note that the `tar` command will extract the file to a subdirectory named “ios”. If there is an existing directory with the same name it will be overwritten.
+2. Navigate to the extracted folder and open the workspace:`open <yourapp>.xcworkspace`
+
+<Warning>
+  ### Important: .xcworkspace not .xcodeproj
+
+  Always open `<yourapp>.xcworkspace`, not `<yourapp>.xcodeproj`, as Median App Studio uses Cocoapods for dependency management.
+</Warning>
+
+<Frame caption="Figure 2 - Open the .xcworkspace file">
+  <img src="/images/docs/4699982a73982cda0f969016776528f32f0b638aa95da60a8bf597954db07e12-Screenshot_2025-03-29_at_08.56.44.png" />
+</Frame>
+
+## Build and Run the App in the Simulator
+
+1. In Xcode, select a simulator or connected device from the dropdown menu.
+2. Click the "Run" play button.
+3. Xcode will compile and launch the app in the chosen simulator or device.
+
+<Frame caption="Figure 3 - Run App in the Simulator">
+  <img src="/images/docs/b2003ec1488c79aac33b66e23fb17b55ecc68bcb6385235c52a7a14224d1355c-Screenshot_2025-03-29_at_08.58.33.png" />
+</Frame>
+
+## Cocoapods Dependency Management
+
+Median automatically installs all required dependencies when you download the source code. **You do not need to run pod install manually**. If you need to install additional pods not supplied by Median please [contact our team](https://median.co/contact) for assistance.
+
+<Info>
+  ### Missing Files
+
+  If you encounter missing file errors, clean your build folder and derived data: [https://stackoverflow.com/questions/38016143/how-can-i-delete-derived-data-in-xcode-8](https://stackoverflow.com/questions/38016143/how-can-i-delete-derived-data-in-xcode-8)
+</Info>
+
+## Adding Capabilities (e.g., Push Notifications)
+
+Certain features, such as push notifications, require manually enabling capabilities in Xcode:
+
+### How to Enable Push Notifications in Xcode
+
+1. Open Xcode and select your app in the left panel.
+2. Navigate to "Signing & Capabilities" in the right panel.
+3. Click the "+ Capability" button.
+
+<Frame caption="Figure 4 - Adding Capabilities">
+  <img src="/images/docs/f20f9a551d88bbcd1d680d22c45a4f40e86bc8b236a75bb22a23c4ed196bc466-Screenshot_2025-03-29_at_09.05.04.png" />
+</Frame>
+
+4. Search for and select "Push Notifications."
+
+<Frame caption="Figure 5 - Search for Push Notifications Capability">
+  <img src="/images/docs/eec83f2d0dfa26ba53ad7cd84ba3708636e2c722a2e5fe6ad743169e95de1486-Screenshot_2025-03-29_at_09.05.34.png" />
+</Frame>
+
+5. The capability will appear under "Signing & Capabilities."
+
+<Frame caption="Figure 6 - Confirm that a Capability has been added">
+  <img src="/images/docs/91a134c4b946fcf4b1ffe4c953e6810b26ff412989c803e388de1e46d370b5e5-Screenshot_2025-03-29_at_09.08.10.png" />
+</Frame>
+
+### Plugin Capability Matrix
+
+Some plugins require specific capabilities or entitlements. These are automatically added when building your app in App Studio but may need to be added manually if you build from downloaded source code.
+
+| Plugin                                                                                   | Required Capabilities / Entitlements |
+| ---------------------------------------------------------------------------------------- | ------------------------------------ |
+| [All Push Notification Plugins](https://docs.median.co/docs/push-notifications-overview) | Push Notifications                   |
+| [AgeSafety](https://docs.median.co/docs/age-safety)                                      | Age Range                            |
+| [Health Bridge](https://docs.median.co/docs/health-bridge)                               | Health Kit                           |
+| [Intent Edge](https://docs.median.co/docs/intent-edge)                                   | Wi-Fi, Push Notifications            |
+| [In-App Purchases](https://docs.median.co/docs/iap)                                      | In-app Purchases                     |
+| [Reader Modal](https://docs.median.co/docs/reader-modal)                                 | External Link Account                |
+| [Revenue Cat](https://docs.median.co/docs/revenue-cat)                                   | In-app Purchases                     |
+| [Share Plugin](https://docs.median.co/docs/share-into-app)                               | App Groups                           |
+
+## Frequently Asked Questions
+
+### How do I fix the ITMS-90078: Missing Push Notification Entitlement error when submitting my app to App Store Connect?
+
+**How do I fix the ITMS-90078: Missing Push Notification Entitlement error when submitting my app to App Store Connect?⎘ Copy link
+
+This warning indicates that your code includes methods for registering a push token, suggesting that the app intends to use push notifications. However, since the required entitlement is missing, push notification functionality will not work.
+
+If your app does not use push notifications, you can safely ignore this warning.
+
+### Can I turn off iPad support?
+
+**Can I turn off iPad support?⎘ Copy link
+
+Yes. Please note that iPhone only apps will run on an iPad in a phone-sized view. It is worth putting in some effort to make your app work on iPads in that mode even if you don't want to support iPads natively.
+
+To disable iPad support you can exclude iPad as a destination in Xcode as shown in the image below.
+
+![](/images/docs/9a271b8fe48ab13bf7ce9a37cfc28ab996f8ffa47e66e433d672f8177bb9d647-Screenshot_2026-06-17_at_10.45.28.png)
+
+***
+
+### Next Steps
+
+* [Upload iOS to TestFlight](/docs/upload-ios-to-testflight)
+
+Copy Page
+
+* * [Build iOS from Source](#build-ios-from-source)
+
+  * * [Install Xcode](#install-xcode)
+    * [Download iOS Source Code](#download-ios-source-code)
+    * [Extract and Open the Source Code](#extract-and-open-the-source-code)
+    * [Build and Run the App in the Simulator](#build-and-run-the-app-in-the-simulator)
+    * [Cocoapods Dependency Management](#cocoapods-dependency-management)
+    * [Adding Capabilities (e.g., Push Notifications)](#adding-capabilities-eg-push-notifications)
+    * [Frequently Asked Questions](#frequently-asked-questions)

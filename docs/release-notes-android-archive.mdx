@@ -1,0 +1,631 @@
+---
+title: "Android Release Notes - Archive"
+description: "Releases older than 12 months"
+---
+
+# 2025 Releases
+
+## Sep 1 - Bugfix 🐛
+
+* Fixed a visual bug where JS dialogs in dark theme would have dark text on dark background
+
+## Aug 25 - Maintenance 🛠️
+
+* Biometric auth plugin now invalidates any credentials when new biometric data(e.g. a new fingerprint) is added.
+
+## Jul 30 - Maintenance 🛠️
+
+* Improved User-Agent handling for popup windows to ensure consistent behavior across all WebView instances.
+
+## Jul 30 - Bugfix 🐛
+
+* Fixed an issue where volume keys could trigger backwards/forward navigation
+
+## Jul 3 - Maintenance 🛠️
+
+* GeckoView now has better support for event handling inside iframes.
+* Upgraded GeckoView to version 140
+
+## Jun 24 - Bugfix 🐛
+
+* Improved regex matching for allowed URLs in AuthPlugin. [Docs](/docs/android-biometric-auth)
+
+## Jun 18 - New Feature 🆕
+
+* Meta events plugin now supports setting autoLogging via JS Bridge [Docs](/docs/facebook)
+
+## May 30 - Maintenance 🛠️
+
+* Document Scanner plugin: Improved image quality of scanned image by using full-resolution image
+
+## May 20 - Bugfix 🐛
+
+* Fixed: Incorrect navigation title are shown sometimes when redirects are involved.
+
+## May 16 - New Feature 🆕
+
+* Added consent handling for FirebaseAnalytics [Docs](/docs/firebase-analytics)
+
+## May 8 - Maintenance 🛠️
+
+* Improved handling of new windows using `window.open` when using the GeckoView plugin
+
+## Apr 30 - Bugfix 🐛
+
+* Fixed: An empty image would sometimes show up in Gallery when uploading a new image
+
+## Apr 29 - Bugfix 🐛
+
+* Added better support for `data://` based pixel tracking
+
+## Apr 28 - New Feature 🆕
+
+* Added SHA-1 fingerprint to the `deviceInfo()` callback [Docs](/docs/device-info)
+
+## Apr 4 - Bugfix 🐛
+
+* Fixed: Onscreen keyboard may sometime overlay the webview causing the textfield to be hidden behind it
+
+## Mar 28 - Bugfix 🐛
+
+* Fixed issue in latest v5 OneSignal plugin where using the JS bridge method to set tags was clearing any existing tags
+
+## Mar 25 - Bugfix 🐛
+
+* Fixed: File input with invalid or empty mimetypes would sometimes cause no file to be uploaded
+
+## Mar 17 - Bugfix 🐛
+
+* Fixed: Default date and time picker modals showed white buttons which merged with the background
+
+## Feb 6 - Bugfix 🐛
+
+* Fixed: Nested items in the side menu may be unindented.
+
+## Feb 3 - New Feature 🆕
+
+* Capture quality can be set when uploading an image using the device camera. [Docs](/docs/camera-capture-quality)
+
+## Jan 27 - New Feature 🆕
+
+* Bloomreach plugin is now released. [Docs](/docs/bloomreach)
+
+## Jan 21 - New Feature 🆕
+
+* Upgraded all UI to Material Design 3.
+
+# 2024 Releases
+
+## Nov 14 - New Feature 🆕
+
+* Appsflyer Plugin: Added uninstall tracking support. [Appsflyer Plugin](/docs/appsflyer)
+
+## Nov 14 - New Feature 🆕
+
+* Adjust Plugin: Added uninstall tracking and attribution info support. [Adjust Plugin](/docs/adjust)
+
+## Nov 14 - Bugfix 🐛
+
+* Fixed: Animated splash screen does not respect the “At least one full loop” option
+
+## Oct 12 - Bugfix 🐛
+
+* Document Scanner plugin now properly asks permission for camera/storage.
+
+## Oct 10 - Maintenance 🛠️
+
+* Meta events plugin and social login plugin now use Facebook SDK v17
+
+## Oct 8 - Maintenance 🛠️
+
+* ShareIntoApp now correctly works when sharing text from Slack and some other apps. [Docs](/docs/share-into-app)
+
+## Sep 25 - Maintenance 🛠️
+
+* SSL errors no longer show a toast message; are silently logged by default now.
+
+## Sep 16 - Maintenance 🛠️
+
+* App now asks to enable location services in phone settings if they are disabled on every location prompt. (Previously only happened when asking for location permission) [Docs](location-services)
+
+## Sep 10 - Maintenance 🛠️
+
+* PDF links are now treated like other downloadable links ignoring .pdf extension as some websites e.g. Dropbox like to put .pdf at the end of non pdf links
+
+## Aug 20 - Maintenance 🛠️
+
+* App no longer crashes when opening password protected PDFs. An error message is shown to the user.
+
+## Aug 15 - Bugfix 🐛
+
+* Fixed crash when launching initialUrl in `app-browser`
+* Fixed `setTabs` method causing an unnecessary bottom tab bar animation
+
+## Aug 8 - Bugfix 🐛
+
+* Fixed infinite loading if a bottom tab bar button is selected using the JavaScript bridge
+
+## Jul 22 - Bugfix 🐛
+
+* Improved URL matching for dynamic titles in top navigation bar. Which did not show in some scenarios
+
+## Jul 17 - Bugfix 🐛
+
+* Fixed navigation bar sometimes showing up when set to `auto` and no valid navigation item configured.
+
+## Jul 15 - Maintenance 🛠️
+
+* AppsFlyer plugin now supports an `appsFlyerConversionData` [listener](/docs/npm-package-usage-with-listeners#appsflyer-plugin) when using our NPM package. [Docs](/docs/appsflyer)
+
+## Jul 12 - Bugfix 🐛
+
+* Fixed `isFirstLaunch` key in `median.deviceInfo()` may be `false` on first launch of the app
+
+## Jun 18 - Maintenance 🛠️
+
+* Upgraded the platform to AGP 8.5 and Gradle v8.7
+
+## Jun 11 - New Feature 🆕
+
+* PWA (Progressive Web Apps) are now much better supported. [Docs](/docs/npm-package-spa-navigation)
+
+## Jun 5 - New Feature 🆕
+
+* Native Media Player Plugin now uses ExoPlayer
+* Media Player now supports playing HLS live streams
+
+## May 22 - Bugfix 🐛
+
+* [User Agent](/docs/custom-user-agent) string is now properly appended for all requests
+
+## May 15 - Maintenance 🛠️
+
+* Google Sign-In now uses the new CredentialsManager API for faster and more secure login on Android
+
+## May 9 - Maintenance 🛠️
+
+* Fixed app may crash if theme fails to apply in time
+
+## May 6 - Maintenance 🛠️
+
+* We have greatly improved internal memory management of the platform making it more stable for resource-heavy websites
+
+## May 3 - Bugfix 🐛
+
+* Fixed pull-to-refresh gesture accidentally activating on scroll up.
+* Fixed crash on `tel://` scheme links
+
+## May 2 - New Feature 🆕
+
+* Added support for custom [context menus](/docs/context-menu)
+
+## Apr 30 - Maintenance 🛠️
+
+* Added support for Android 14 for the [Media Player Plugin](/docs/native-media-player)
+
+## Apr 16 - New Feature 🆕
+
+* Android now supports opening PDF Documents directly within the app.
+
+## Apr 15 - New Feature 🆕
+
+* Median now supports OneSignal’s user-centric data model. Existing apps are now in "Legacy Mode". To migrate your app review our [documentation](/docs/onesignal-legacy-mode) and disable Legacy Mode on the Push Notifications tab
+
+## Apr 8 - New Feature 🆕
+
+* New method for OneSignal `median.onesignal.badge.set` which can be used to set notification badge count
+
+## Mar 21 - Bugfix 🐛
+
+* Fixed `median_iap_purchases` not being called properly on new Android versions
+* Fixed location permission not being prompted again after selecting "Just this time" in the location permission prompt
+
+## Mar 12 - Bugfix 🐛
+
+* Implemented a fix for `transactionTooLarge` exception
+* General stability improvements
+
+## Mar 12 - Maintenance 🛠️
+
+* Updated the GeckoView version used in the GeckoView plugin
+
+## Mar 8 - New Feature 🆕
+
+* New method for In-App Purchases plugin: `median.iap.purchases()` [docs](/docs/google-iap)
+
+## Mar 4 - Bugfix 🐛
+
+* Fixed an issue where if a user does not have a default web browser registered [external links](/docs/internal-vs-external-links) cause an "App Not Found" error.
+
+## Mar 4 - Maintenance 🛠️
+
+* Keyboard state return data updated to match iOS [docs](/docs/keyboard-state-tracking)
+
+## Feb 26 - Bugfix 🐛
+
+* Fixed a crash that may happen when the app is moved to background
+* Fixed a regression that caused JS to not be injected on page load
+
+## Feb 15 - Maintenance 🛠️
+
+* Now supporting Android 6.0 (Marshmallow) and above
+
+## Feb 15 - New Feature 🆕
+
+* `window.open` now accepts a 2nd parameter called mode. See [docs](/docs/internal-vs-external-links) for all the supported values
+
+## Feb 13 - New Feature 🆕
+
+* [AppsFlyer](/docs/appsflyer) plugin now supports reporting conversion data on app launch and foreground
+
+## Feb 7 - New Feature 🆕
+
+* You can now pick one or more contacts using a native UI when using [native contacts](/docs/native-contacts)
+
+## Feb 1 - Bugfix 🐛
+
+* Stability improvements
+
+## Jan 31 - Bugfix 🐛
+
+* NFC scan prompt now properly gets dismissed upon scan for all tag types
+
+## Jan 22 - Maintenance 🛠️
+
+* App now uses Material Design Progress circle
+* Progress circle (Activity indicator) can now be customized
+
+## Jan 17 - New Feature 🆕
+
+* Added new `getPlatform()` helper method to [Median JS Bridge NPM Library](device-info#median-js-bridge-npm-library-helper-method)
+
+## Jan 8 - Maintenance 🛠️
+
+* Android target API has been increased to 34. Android apps and all plugins have been updated to support the latest Android platform requirements.
+
+## Jan 5 - Maintenance 🛠️
+
+* Native Datastore plugin now supports promise-based callbacks
+
+# 2023 Releases
+
+## Dec 21 - New Feature 🆕
+
+* Add a prompt to get user consent to use personal data to serve personalized Ads when using [AdMob](/docs/admob-native-ads)
+
+## Dec 12 - Maintenance 🛠️
+
+* Add `dataRegion` appConfig field for iterable plugin
+* Fix parsing the internal/external rules may cause a crash if value type is not correct.
+
+## Dec 7 - Maintenance 🛠️
+
+* Add an appConfig field `injectMedianJS: boolean` which can be used to disable in-app injection of Javascript bridge in favor of NPM package for React/Angular/Etc apps
+* Fixed: [Share dialog](/docs/prompt-share-dialogue) not adding the text in the shared content
+* InternalExternal rules are overwritten on app updates. Previously if they were set using the Median JS Bridge, a new update will have no impact. This behaviour is now in parity with iOS
+* OneSignal plugin added back `oneSignalSubscribed` in info method response.
+
+## Nov 28 - New Feature 🆕
+
+* Introducing In-App browser. You can now define link handling rules so that links open in a separate Chrome window within the app. This helps improve the end-user experience and increases session time.
+
+## Nov 8 - Bugfix 🐛
+
+* Fixed: Camera intent not showing when QR/Barcode Scanner or similar plugins that require camera access are active.
+
+## Oct 30 - New Feature 🆕
+
+* Added 'state' parameter to Social Login plugin
+
+## Oct 18 - Bugfix 🐛
+
+* Fixed bottom tab bar labels not showing if more than 3 buttons are present in menu.
+
+## Oct 10 - Bugfix 🐛
+
+* Fixed bug where top navigation bar icons disappear in some cases.
+
+## Oct 5 - Bugfix 🐛
+
+* Fixed slow performance on lower end devices
+* Fixed native transitions between pages not working as expected
+
+## Oct 3 - Bugfix 🐛
+
+* Fixed bug where downloading a file with a filename that already exists may crash the app on Samsung Note 10+ devices.
+
+## Sep 29 - Bugfix 🐛
+
+* Pressing back on root url now quits the app. This behavior change was introduced when switching to system API for splash screen
+
+## Sep 28 - Maintenance 🛠️
+
+* Initial splash screen fade time has been improved
+
+## Sep 25 - Bugfix 🐛
+
+* App now resets to `initialUrl` instead of crashing if the app is closed while in background with a large history stack.
+
+## Sep 11 - New Feature 🆕
+
+* Android now uses the new splash screen API.
+
+## Aug 27 - Maintenance 🛠️
+
+* Remove location-services dependencies from main app
+
+## Aug 11 - Maintenance 🛠️
+
+* Added [WebRTC](/docs/web-rtc) flag.
+
+## Aug 11 - New Feature 🆕
+
+* New splash screen configuration. Android now uses system splash screen.
+
+## Aug 5 - Bugfix 🐛
+
+* Fixed blob downloads.
+
+## Aug 5 - Bugfix 🐛
+
+* Minor UI changes and stability issues.
+* Fixed side menu was able to swipe into view when it is set to be disabled.
+
+## Aug 5 - Bugfix 🐛
+
+* Camera uploads now work correctly when using QR/Barcode Scanner plugin.
+
+## Jul 31 - New Feature 🆕
+
+* Added new JavaScript Bridge function to check for Android location permission.
+
+## Jul 19 - New Feature 🆕
+
+* Added `window.open` and `window.close` methods.
+
+## Jul 12 - New Feature 🆕
+
+* Add support for setting `cacheMode` via appConfig.
+
+## Jun 20 - Bugfix 🐛
+
+* Fixed internal downloads not saving properly in some cases.
+* All internal downloads are now opened regardless of ContentDisposition header.
+* Fixed selecting a tab using JavaScript Bridge method may also emulate a click causing a url change.
+* Used new method to silent foreground notifications for OneSignal.
+* Used new bridge param to set maxWindow autoClose.
+* WebRTC permissions are no longer required at startup.
+
+## Jun 20 - New Feature 🆕
+
+* Downloads that are internal are now opened immediately.
+
+## Jun 20 - New Feature 🆕
+
+* Add new method in JavaScript Bridge to silence foreground notifications for OneSignal. [Docs](/docs/foreground-notifications)
+
+## Jun 15 - New Feature 🆕
+
+* Downloads with `attachment=inline` header now open automatically.
+
+## Jun 6 - Maintenance 🛠️
+
+* Added support for new foldable phone models.
+
+## May 31 - New Feature 🆕
+
+* Added JavaScript Bridge function to enable/disable back swipe gestures.
+* Reinstated some previous download behaviors (downloaded files not showing up in file manager apps).
+* Removed haptics with swipe gestures.
+
+## May 22 - Bugfix 🐛
+
+* Fixed horizontal scrolling not working in some cases.
+* Unified download behaviours across all possible scenarios.
+
+## May 12 - Maintenance 🛠️
+
+* Improved swipe back gestures and diagonal movement detection.
+
+## May 12 - Bugfix 🐛
+
+* This fix reinstates previous functionality of `maxWindows` flag irrespective of `autoClose`
+
+## May 12 - Maintenance 🛠️
+
+* Downloading files no longer shows a notification showing the progress.
+
+## Apr 28 - New Feature 🆕
+
+* Reworked downloads (Notification is displayed with download progress and info).
+* Top navigation bar will show Display Mode `auto` when a valid title or actions are defined.
+* Fixed title not being centered in top navigation bar.
+* Fixed icons not always displaying in top navigation bar.
+* Added new `median_app_resumed` callback which is called when app is resumed from background. [Documentation](/docs/app-resumed-callback)
+* Added optional `text` parameter for median.share function. [Documentation](/docs/prompt-share-dialogue)
+
+## Apr 20 - New Feature 🆕
+
+* Auto-closes windows when approaching the maximum number of open windows allowed.
+
+## Mar 28 - Bugfix 🐛
+
+* Fixed app crash in certain situations when tabs are set using the Median JavaScript Bridge.
+
+## Mar 28 - Bugfix 🐛
+
+* Fixed internal/external regex not being immediately updated when using the Median JavaScript Bridge.
+
+## Mar 22 - Bugfix 🐛
+
+* Fixed tab deselection not working using Median JavaScript Bridge.
+
+## Mar 20 - Bugfix 🐛
+
+* Fixed issue with app updates showing warnings about AD\_ID being present when admob plugin is not being used.
+
+## Mar 17 - Maintenance 🛠️
+
+* Major enhancements to Android file picker.
+
+## Mar 16 - Bugfix 🐛
+
+* Disable app-based swipe gestures when system is set to use gesture navigation as they may conflict.
+
+## Mar 2 - Maintenance 🛠️
+
+* Improved handling of `intent:\\` urls.
+
+## Mar 2 - New Feature 🆕
+
+* Allow refresh and search functions in [navigation bar](/docs/top-navigation-bar).
+
+## Feb 22 - Bugfix 🐛
+
+* Fixed crash on `blob://` url downloads.
+* Fixed Android notification prompt not working on Android 13+.
+* Improved console web logs.
+* Fixed interception of download urls and UI no longer freezes.
+
+## Feb 10 - Bugfix 🐛
+
+* Improved handling of `intent:\\` urls.
+
+## Feb 6 - New Feature 🆕
+
+* Added additional optional param to set filename when downloading file.
+* Fixed issue where an empty file may be created when user cancels a file upload from camera.
+
+## Jan 30 - New Feature 🆕
+
+* Added support for `intent:\\` urls on websites.
+
+***
+
+[Android Release Notes](/docs/release-notes-android)
+
+Copy Page
+
+* * [2025 Releases](#2025-releases)
+
+  * * [Sep 1 - Bugfix 🐛](#sep-1---bugfix-)
+    * [Aug 25 - Maintenance 🛠️](#aug-25---maintenance-️)
+    * [Jul 30 - Maintenance 🛠️](#jul-30---maintenance-️)
+    * [Jul 30 - Bugfix 🐛](#jul-30---bugfix-)
+    * [Jul 3 - Maintenance 🛠️](#jul-3---maintenance-️)
+    * [Jun 24 - Bugfix 🐛](#jun-24---bugfix-)
+    * [Jun 18 - New Feature 🆕](#jun-18---new-feature-)
+    * [May 30 - Maintenance 🛠️](#may-30---maintenance-️)
+    * [May 20 - Bugfix 🐛](#may-20---bugfix-)
+    * [May 16 - New Feature 🆕](#may-16---new-feature-)
+    * [May 8 - Maintenance 🛠️](#may-8---maintenance-️)
+    * [Apr 30 - Bugfix 🐛](#apr-30---bugfix-)
+    * [Apr 29 - Bugfix 🐛](#apr-29---bugfix-)
+    * [Apr 28 - New Feature 🆕](#apr-28---new-feature-)
+    * [Apr 4 - Bugfix 🐛](#apr-4---bugfix-)
+    * [Mar 28 - Bugfix 🐛](#mar-28---bugfix-)
+    * [Mar 25 - Bugfix 🐛](#mar-25---bugfix-)
+    * [Mar 17 - Bugfix 🐛](#mar-17---bugfix-)
+    * [Feb 6 - Bugfix 🐛](#feb-6---bugfix-)
+    * [Feb 3 - New Feature 🆕](#feb-3---new-feature-)
+    * [Jan 27 - New Feature 🆕](#jan-27---new-feature-)
+    * [Jan 21 - New Feature 🆕](#jan-21---new-feature-)
+
+  * [2024 Releases](#2024-releases)
+
+  * * [Nov 14 - New Feature 🆕](#nov-14---new-feature-)
+    * [Nov 14 - New Feature 🆕](#nov-14---new-feature--1)
+    * [Nov 14 - Bugfix 🐛](#nov-14---bugfix-)
+    * [Oct 12 - Bugfix 🐛](#oct-12---bugfix-)
+    * [Oct 10 - Maintenance 🛠️](#oct-10---maintenance-️)
+    * [Oct 8 - Maintenance 🛠️](#oct-8---maintenance-️)
+    * [Sep 25 - Maintenance 🛠️](#sep-25---maintenance-️)
+    * [Sep 16 - Maintenance 🛠️](#sep-16---maintenance-️)
+    * [Sep 10 - Maintenance 🛠️](#sep-10---maintenance-️)
+    * [Aug 20 - Maintenance 🛠️](#aug-20---maintenance-️)
+    * [Aug 15 - Bugfix 🐛](#aug-15---bugfix-)
+    * [Aug 8 - Bugfix 🐛](#aug-8---bugfix-)
+    * [Jul 22 - Bugfix 🐛](#jul-22---bugfix-)
+    * [Jul 17 - Bugfix 🐛](#jul-17---bugfix-)
+    * [Jul 15 - Maintenance 🛠️](#jul-15---maintenance-️)
+    * [Jul 12 - Bugfix 🐛](#jul-12---bugfix-)
+    * [Jun 18 - Maintenance 🛠️](#jun-18---maintenance-️)
+    * [Jun 11 - New Feature 🆕](#jun-11---new-feature-)
+    * [Jun 5 - New Feature 🆕](#jun-5---new-feature-)
+    * [May 22 - Bugfix 🐛](#may-22---bugfix-)
+    * [May 15 - Maintenance 🛠️](#may-15---maintenance-️)
+    * [May 9 - Maintenance 🛠️](#may-9---maintenance-️)
+    * [May 6 - Maintenance 🛠️](#may-6---maintenance-️)
+    * [May 3 - Bugfix 🐛](#may-3---bugfix-)
+    * [May 2 - New Feature 🆕](#may-2---new-feature-)
+    * [Apr 30 - Maintenance 🛠️](#apr-30---maintenance-️)
+    * [Apr 16 - New Feature 🆕](#apr-16---new-feature-)
+    * [Apr 15 - New Feature 🆕](#apr-15---new-feature-)
+    * [Apr 8 - New Feature 🆕](#apr-8---new-feature-)
+    * [Mar 21 - Bugfix 🐛](#mar-21---bugfix-)
+    * [Mar 12 - Bugfix 🐛](#mar-12---bugfix-)
+    * [Mar 12 - Maintenance 🛠️](#mar-12---maintenance-️)
+    * [Mar 8 - New Feature 🆕](#mar-8---new-feature-)
+    * [Mar 4 - Bugfix 🐛](#mar-4---bugfix-)
+    * [Mar 4 - Maintenance 🛠️](#mar-4---maintenance-️)
+    * [Feb 26 - Bugfix 🐛](#feb-26---bugfix-)
+    * [Feb 15 - Maintenance 🛠️](#feb-15---maintenance-️)
+    * [Feb 15 - New Feature 🆕](#feb-15---new-feature-)
+    * [Feb 13 - New Feature 🆕](#feb-13---new-feature-)
+    * [Feb 7 - New Feature 🆕](#feb-7---new-feature-)
+    * [Feb 1 - Bugfix 🐛](#feb-1---bugfix-)
+    * [Jan 31 - Bugfix 🐛](#jan-31---bugfix-)
+    * [Jan 22 - Maintenance 🛠️](#jan-22---maintenance-️)
+    * [Jan 17 - New Feature 🆕](#jan-17---new-feature-)
+    * [Jan 8 - Maintenance 🛠️](#jan-8---maintenance-️)
+    * [Jan 5 - Maintenance 🛠️](#jan-5---maintenance-️)
+
+  * [2023 Releases](#2023-releases)
+
+  * * [Dec 21 - New Feature 🆕](#dec-21---new-feature-)
+    * [Dec 12 - Maintenance 🛠️](#dec-12---maintenance-️)
+    * [Dec 7 - Maintenance 🛠️](#dec-7---maintenance-️)
+    * [Nov 28 - New Feature 🆕](#nov-28---new-feature-)
+    * [Nov 8 - Bugfix 🐛](#nov-8---bugfix-)
+    * [Oct 30 - New Feature 🆕](#oct-30---new-feature-)
+    * [Oct 18 - Bugfix 🐛](#oct-18---bugfix-)
+    * [Oct 10 - Bugfix 🐛](#oct-10---bugfix-)
+    * [Oct 5 - Bugfix 🐛](#oct-5---bugfix-)
+    * [Oct 3 - Bugfix 🐛](#oct-3---bugfix-)
+    * [Sep 29 - Bugfix 🐛](#sep-29---bugfix-)
+    * [Sep 28 - Maintenance 🛠️](#sep-28---maintenance-️)
+    * [Sep 25 - Bugfix 🐛](#sep-25---bugfix-)
+    * [Sep 11 - New Feature 🆕](#sep-11---new-feature-)
+    * [Aug 27 - Maintenance 🛠️](#aug-27---maintenance-️)
+    * [Aug 11 - Maintenance 🛠️](#aug-11---maintenance-️)
+    * [Aug 11 - New Feature 🆕](#aug-11---new-feature-)
+    * [Aug 5 - Bugfix 🐛](#aug-5---bugfix-)
+    * [Aug 5 - Bugfix 🐛](#aug-5---bugfix--1)
+    * [Aug 5 - Bugfix 🐛](#aug-5---bugfix--2)
+    * [Jul 31 - New Feature 🆕](#jul-31---new-feature-)
+    * [Jul 19 - New Feature 🆕](#jul-19---new-feature-)
+    * [Jul 12 - New Feature 🆕](#jul-12---new-feature-)
+    * [Jun 20 - Bugfix 🐛](#jun-20---bugfix-)
+    * [Jun 20 - New Feature 🆕](#jun-20---new-feature-)
+    * [Jun 20 - New Feature 🆕](#jun-20---new-feature--1)
+    * [Jun 15 - New Feature 🆕](#jun-15---new-feature-)
+    * [Jun 6 - Maintenance 🛠️](#jun-6---maintenance-️)
+    * [May 31 - New Feature 🆕](#may-31---new-feature-)
+    * [May 22 - Bugfix 🐛](#may-22---bugfix--1)
+    * [May 12 - Maintenance 🛠️](#may-12---maintenance-️)
+    * [May 12 - Bugfix 🐛](#may-12---bugfix-)
+    * [May 12 - Maintenance 🛠️](#may-12---maintenance-️-1)
+    * [Apr 28 - New Feature 🆕](#apr-28---new-feature--1)
+    * [Apr 20 - New Feature 🆕](#apr-20---new-feature-)
+    * [Mar 28 - Bugfix 🐛](#mar-28---bugfix--1)
+    * [Mar 28 - Bugfix 🐛](#mar-28---bugfix--2)
+    * [Mar 22 - Bugfix 🐛](#mar-22---bugfix-)
+    * [Mar 20 - Bugfix 🐛](#mar-20---bugfix-)
+    * [Mar 17 - Maintenance 🛠️](#mar-17---maintenance-️)
+    * [Mar 16 - Bugfix 🐛](#mar-16---bugfix-)
+    * [Mar 2 - Maintenance 🛠️](#mar-2---maintenance-️)
+    * [Mar 2 - New Feature 🆕](#mar-2---new-feature-)
+    * [Feb 22 - Bugfix 🐛](#feb-22---bugfix-)
+    * [Feb 10 - Bugfix 🐛](#feb-10---bugfix-)
+    * [Feb 6 - New Feature 🆕](#feb-6---new-feature-)
+    * [Jan 30 - New Feature 🆕](#jan-30---new-feature-)

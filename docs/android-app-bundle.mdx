@@ -1,0 +1,75 @@
+---
+title: "Android App Bundle (AAB)"
+---
+
+## APKs vs. Android App Bundles
+
+### APK Overview
+
+The Android Package Kit (APK) is the traditional format for Android app distribution. APKs are ideal for testing as they can be downloaded and installed directly on devices. However, they include all assets for every device, which leads to larger app sizes.
+
+### Android App Bundle (AAB) Overview
+
+To optimize app size, Google introduced Dynamic Delivery, which allows Google Play to generate device-specific APKs. To use Dynamic Delivery, developers must upload apps as Android App Bundles (AABs). These bundles are only used by Google Play and cannot be installed directly on devices.
+
+## Developer Signing vs Google Play App Signing
+
+Android devices install apps packaged as APKs. APKs are signed by a release key to protect against unauthorized changes. When an app is updated, the device verifies that the new APK is signed by the same release key as the currently installed APK.
+
+Median signs each app with a randomly generated release key. If you need to create release builds from source code, please contact support to obtain your release key.
+
+For APKs, Google Play supports the traditional app signing by the developer (either you or Median), or app signing by Google. Developer-signed APKs are delivered untouched to user devices. If you opt for app signing by Google for a new app, Google internally generates a release key and resigns any uploaded APKs with their key. It is impossible to retrieve the release key from Google. The key that signs the APK you upload to Google becomes an "upload key", used by Google Play to verify that new updates are coming from the same developer.
+
+App Bundles must be signed using Google Play App Signing.
+
+Developer Signing has the advantage of being able to update an app outside of Google Play, as you are able to create an APK with the same signing key as the user's device. The downside is that you are completely responsible for managing the release key. If the key is lost, your app cannot be updated and you will need to create a new app with a new identifier and Google Play listing.
+
+Google Play App Signing signing passes the key management responsibility to Google. The key used to sign the uploaded APK or AAB is only used to verify uploads to Google Play. If the upload key is lost, it can be reset by contacting Google support. Google Play signing is required to support Dynamic Delivery and Android App Bundles.
+
+To summarize:
+
+### APK vs. AAB
+
+| APK                                                   | AAB                        |
+| ----------------------------------------------------- | -------------------------- |
+| Upload to Google Play and install directly on devices | Upload to Google Play only |
+| No reduction in download size via dynamic delivery    | Supports dynamic delivery  |
+| Supports developer or Google signing                  | Google signing only        |
+
+### Developer vs Google Play Signing
+
+| Developer Signing                 | Google Play App Signing                              |
+| --------------------------------- | ---------------------------------------------------- |
+| Can update outside of Google Play | Updates only through Google Play                     |
+| Developer manages release key     | Google manages release key, developer has upload key |
+| Lost release key requires new app | Lost upload key can be reset                         |
+
+## Transitioning to Google Play Signing
+
+Note that you may have opted into Google signing when initially creating your app on Google Play. If so, you can immediately start using Android App Bundles.
+
+For Google to start signing your apps that have already been published, Google needs your original keystore. It needs to be encrypted in a special format readable only by Google. Please contact Median Support with the manage link for your app to request assistance converting to Google signing. Additionally, best practice dictates your apps (whether APK or AAB) uploaded to Google Play after conversion should be signed with a new key, known as the "upload key". Median support will make this change for you and provide you with a certificate for your upload key, which you will also send to Google.
+
+For further reading on Android App Bundles and Signing, please see:
+
+[https://medium.com/google-developer-experts/exploring-google-play-app-signing-b4d296f4ee9](https://medium.com/google-developer-experts/exploring-google-play-app-signing-b4d296f4ee9)
+
+***
+
+[Connect Android Studio Simulators to Localhost Websites](/docs/android-studio-with-localhost-website)
+
+[Upload Android to Google Play](/docs/upload-android-to-google-play)
+
+Copy Page
+
+* * [APKs vs. Android App Bundles](#apks-vs-android-app-bundles)
+
+  * * [APK Overview](#apk-overview)
+    * [Android App Bundle (AAB) Overview](#android-app-bundle-aab-overview)
+
+  * [Developer Signing vs Google Play App Signing](#developer-signing-vs-google-play-app-signing)
+
+  * * [APK vs. AAB](#apk-vs-aab)
+    * [Developer vs Google Play Signing](#developer-vs-google-play-signing)
+
+  * [Transitioning to Google Play Signing](#transitioning-to-google-play-signing)

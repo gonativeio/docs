@@ -1,0 +1,353 @@
+---
+title: "Add Haptic Feedback To Your Lovable App"
+description: "Learn how to add haptic feedback to your Lovable app"
+---
+
+Haptic feedback, those subtle vibrations you feel when tapping buttons on your phone, makes apps feel more responsive and professional. This guide walks you through how to add haptic feedback to your Lovable app when it's converted to a native mobile app using Median.
+
+**What you'll learn:**
+
+* What haptic feedback is and why it matters
+* How to use AI prompts to add haptics to your app
+* How to test haptics on a real device
+
+**Prerequisites:**
+
+✓ Enable the Haptic Feedback plugin in the Median App Studio
+
+✓ Add app usage detection
+
+✓ A Lovable app with Median's JavaScript Bridge already installed
+
+✓ Basic familiarity with Lovable's chat interface
+
+**Note:** If you haven't installed the Median JavaScript Bridge yet, do that first by following our [Getting Started with Lovable](https://docs.median.co/docs/getting-started-with-lovable) guide. The JavaScript Bridge is what allows your Lovable app to access native phone features like haptic feedback.
+
+***
+
+## What is haptic feedback?
+
+Haptic feedback is the gentle vibration you feel when you interact with your phone. You experience it when:
+
+* Typing on your phone keyboard
+* Pulling down to refresh an app
+* Confirming a successful action
+* Getting an error message
+
+**Why add haptics to your app?**
+
+* **Better user experience:** Physical feedback confirms that an action actually worked.
+* **More professional:** Your app feels like a "real" native app.
+* **Improved accessibility:** Helps users who rely on touch feedback.
+* **Clearer communication:** Different vibration patterns signal success, errors, or warnings.
+
+## How haptics work in Median
+
+When you convert your Lovable app to mobile using Median, the JavaScript Bridge gives your app access to phone features like haptic feedback. Think of it like this:
+
+* Your Lovable app is the website or web app you built.
+* Median.co wraps your app in a native app shell.
+* The JavaScript Bridge lets your app "talk" to the phone's vibration motor.
+
+You just tell Lovable's AI where you want haptics, and it will add the necessary code using the JavaScript Bridge.
+
+***
+
+## Step 1: Choose your haptic type
+
+Median.co offers several types of haptic feedback. Each one feels different and communicates something specific.
+
+**Impact haptics (for interactions)**
+
+Use these when someone taps, swipes, or interacts with something:
+
+| Type           | When to use                   | Feels like             |
+| -------------- | ----------------------------- | ---------------------- |
+| `impactLight`  | Standard button taps          | Quick, gentle tap      |
+| `impactMedium` | Important selections          | Noticeable tap         |
+| `impactHeavy`  | Major actions (like "Delete") | Strong, deliberate tap |
+
+**Notification haptics (for outcomes)**
+
+Use these to communicate results:
+
+| Type                  | When to use                   | Feels like                   |
+| --------------------- | ----------------------------- | ---------------------------- |
+| `notificationSuccess` | Action completed successfully | Positive, two-part vibration |
+| `notificationWarning` | Proceed with caution          | Moderate, attention-getting  |
+| `notificationError`   | Something went wrong          | Sharp, negative feedback     |
+
+**Special haptics**
+
+Additional feedback types for specific interactions:
+
+| Type           | When to use                     |
+| -------------- | ------------------------------- |
+| `tick`         | Scrolling through picker values |
+| `click`        | Single tap confirmation         |
+| `double_click` | Double-tap confirmation         |
+
+**Quick decision guide:**
+
+* Button pressed → use `impactLight`
+* Action completed successfully → use `notificationSuccess`
+* Validation error → use `notificationError`
+* Deleting something → use `impactMedium` or `impactHeavy`
+
+***
+
+## Step 2: Add haptics using AI prompts
+
+The easiest way to add haptics is to ask Lovable's AI assistant. Below are ready-to-use prompts for common scenarios.
+
+### Example: Adding haptics to task creation
+
+Let's walk through a real example of adding haptic feedback when a user creates a new item in your app.
+
+**The prompt:**
+
+```
+When creating a new task, please add haptic feedback using the Median JavaScript Bridge. This should only be done for mobile app users. Reference the detecting app usage page in the Median documentation. Use the notificationSuccess haptic style to give positive feedback when the task is successfully created.
+```
+
+**What Lovable will do:**
+
+Lovable will understand your request and implement:
+
+* **Detection:** Check if the user is in the native mobile app (not the web version)
+* **Haptic integration:** Add haptic feedback using `Median.haptics.trigger({ style: 'notificationSuccess' })`
+* **Proper timing:** Trigger the haptic right when the task is successfully created
+
+Here's what Lovable will add to your app (you don't need to write this — it's just for your reference):
+
+<CodeGroup>
+  ```bash bash
+  // Haptic feedback function
+  const triggerHaptic = (style) => {
+    if (isNativeApp && isReady) {
+      try {
+        // Use the Median JavaScript Bridge for haptic feedback
+        Median.haptics.trigger({ style });
+      } catch (error) {
+        console.log('Haptic feedback error:', error);
+      }
+    }
+  };
+
+  // When creating a new task
+  const createTask = () => {
+    // ... task creation logic ...
+    // Trigger success haptic for mobile app users
+    triggerHaptic('notificationSuccess');
+  };
+  ```
+</CodeGroup>
+
+**What this does:**
+
+* Checks if the user is in the mobile app (`isNativeApp`): so web users don't get errors.
+* Waits for the JavaScript Bridge to be ready (`isReady`): ensures Median is loaded.
+* Triggers the haptic: uses `Median.haptics.trigger()` to vibrate the phone.
+* Handles errors: logs any issues without breaking your app.
+
+***
+
+## Step 3: More prompt examples
+
+Here are additional prompts you can customize for your specific needs.
+
+**Prompt: Add haptics to a button**
+
+```
+Add haptic feedback to the [BUTTON_NAME] button. When the user taps this button, trigger an impactLight haptic using Median's JavaScript Bridge. This should only work for mobile app users. Use Median.isNativeApp() to detect if the user is in the native app.
+```
+
+Customize: replace `[BUTTON_NAME]` with your actual button (e.g., "Submit button", "Save button"). Change `impactLight` to `impactMedium` or `impactHeavy` for more important buttons.
+
+**Prompt: Add haptics to form submission**
+
+```
+Add haptic feedback to the [FORM_NAME] form submission:
+1. If the form submits successfully, trigger a notificationSuccess haptic
+2. If there are validation errors, trigger a notificationError haptic
+
+Use Median's JavaScript Bridge with Median.haptics.trigger({ style }). Only trigger haptics for mobile app users using Median.isNativeApp().
+```
+
+Customize: replace `[FORM_NAME]` with your form (e.g., "contact form", "signup form").
+
+***
+
+## Understanding how it works
+
+When Lovable adds haptics to your app, it follows a specific pattern to ensure everything works correctly.
+
+**The detection pattern**
+
+<CodeGroup>
+  ```bash bash
+  if (isNativeApp && isReady) {
+    // Trigger haptic feedback
+  }
+  ```
+</CodeGroup>
+
+Why this matters: `isNativeApp` checks if running in the Median mobile app (not the web browser), `Median.onReady` ensures the Median JavaScript Bridge has loaded completely, and the safety-first approach prevents errors when users view your app in a regular browser.
+
+**The haptic trigger**
+
+<CodeGroup>
+  ```bash bash
+  Median.haptics.trigger({ style: 'notificationSuccess' });
+  ```
+</CodeGroup>
+
+What happens: calls the Median JavaScript Bridge API, sends the haptic style you specified, phone vibrates with the appropriate pattern, and the user feels confirmation of their action.
+
+**Error handling**
+
+<CodeGroup>
+  ```bash bash
+  try {
+    Median.haptics.trigger({ style });
+  } catch (error) {
+    console.log('Haptic feedback error:', error);
+  }
+  ```
+</CodeGroup>
+
+Why this matters: if something goes wrong, your app continues working, errors are logged for debugging without breaking the user experience, and haptics are treated as an enhancement, not a requirement.
+
+***
+
+## Step 4: Testing your haptics
+
+<Warning>
+  ### Important:
+
+  Haptic feedback only works on a physical device, not in a web browser or simulator.
+</Warning>
+
+**How to test:**
+
+1. **Build your app in Median:** Follow Median's build process to create a test version.
+2. **Install on your phone:** iPhone: use TestFlight for beta testing. Android: use direct install or Google Play internal testing.
+3. **Check device settings:** iPhone: Settings → Sounds & Haptics → System Haptics (must be ON). Android: Settings → Sound → Vibration (must be ON).
+4. **Test each interaction:** Tap buttons that should have haptics, submit forms (both success and error cases), verify the vibration matches your intention.
+
+**Troubleshooting:**
+
+| Problem                         | Solution                                                            |
+| ------------------------------- | ------------------------------------------------------------------- |
+| No vibration at all             | Verify haptics are enabled in phone settings                        |
+| Vibration in the web browser    | This shouldn't happen since the `isNativeApp` check prevents it     |
+| Wrong vibration type            | Check that your prompt specified the correct style                  |
+| Some actions work, others don't | Make sure you added haptics to all intended actions in your prompts |
+| Console shows errors            | Check that the Median JavaScript Bridge is properly installed       |
+
+***
+
+## Quick reference: which haptic to use
+
+| User action                   | Recommended haptic    | Median API                                                 |
+| ----------------------------- | --------------------- | ---------------------------------------------------------- |
+| Standard button tap           | `impactLight`         | `Median.haptics.trigger({ style: 'impactLight' })`         |
+| Important selection           | `impactMedium`        | `Median.haptics.trigger({ style: 'impactMedium' })`        |
+| Delete/destructive action     | `impactHeavy`         | `Median.haptics.trigger({ style: 'impactHeavy' })`         |
+| Action completed successfully | `notificationSuccess` | `Median.haptics.trigger({ style: 'notificationSuccess' })` |
+| Warning or caution            | `notificationWarning` | `Median.haptics.trigger({ style: 'notificationWarning' })` |
+| Error or failure              | `notificationError`   | `Median.haptics.trigger({ style: 'notificationError' })`   |
+| Scrolling through picker      | `tick`                | `Median.haptics.trigger({ style: 'tick' })`                |
+| Single tap confirmation       | `click`               | `Median.haptics.trigger({ style: 'click' })`               |
+
+***
+
+## Best practices
+
+**Do:**
+
+* **Use haptics sparingly:** Too much vibration is annoying and drains battery.
+* **Match the haptic to the action:** Use `impactLight` for simple taps, `notificationSuccess` for completions.
+* **Test on both iPhone and Android:** They feel slightly different.
+* **Be consistent:** Use the same haptic types for similar actions throughout your app.
+* **Provide visual feedback too:** Don't rely only on haptics (users might have them disabled).
+* **Let Lovable handle the detection:** It will properly check for the native app environment.
+
+**Don't:**
+
+* **Use warning haptics casually:** Reserve these for actual warnings or destructive actions.
+* **Forget to mention mobile-only:** Always include "for mobile app users only" in your prompts.
+* **Skip testing on real devices:** Haptics can't be felt in browsers or simulators.
+
+***
+
+## Need help?
+
+### Will haptics work in the Lovable preview?
+
+**Will haptics work in the Lovable preview?⎘ Copy link
+
+No, you need to build and install the app through Median to test haptics on a real device. The web preview won't trigger haptics.
+
+### Do I need to install anything special?
+
+**Do I need to install anything special?⎘ Copy link
+
+Yes, you need the Median JavaScript Bridge installed in your app first. If you haven't done this, follow the [Getting Started with Lovable](https://docs.median.co/docs/getting-started-with-lovable) guide.
+
+### Can I customize the exact vibration pattern?
+
+**Can I customize the exact vibration pattern?⎘ Copy link
+
+Median provides predefined styles that work consistently across iOS and Android. You can't create fully custom patterns, but we can help you execute custom patterns. Contact us for assistance.
+
+### What if I want haptics on the web too?
+
+**What if I want haptics on the web too?⎘ Copy link
+
+Standard web browsers have limited haptic support. The Median approach focuses on native mobile apps where haptics work reliably. If you remove the `isNativeApp` check, some browsers might vibrate, but it's not guaranteed.
+
+### Do I need to know how to code?
+
+**Do I need to know how to code?⎘ Copy link
+
+No! Just copy the prompts from this guide, customize the button/form/action names, and paste them into Lovable's chat. Lovable handles all the code implementation.
+
+### Will this work on all phones?
+
+**Will this work on all phones?⎘ Copy link
+
+Yes, both iPhone and Android support haptic feedback. Older devices may have simpler vibration motors, so some styles might feel similar.
+
+***
+
+## What's next?
+
+Now that you've added haptic feedback, consider these next steps:
+
+* **Add more native features:** Explore biometric authentication, push notifications, or camera access using the Median JavaScript Bridge.
+* **Optimize for mobile:** Review Median's mobile optimization best practices.
+* **Test with real users:** Get feedback on whether the haptics feel right.
+* **Plan the complete release:** Follow the [Lovable to mobile app guide](https://median.co/blog/how-to-convert-your-lovable-web-app-into-a-native-app-a-complete-guide) for iOS, Android, testing, and store delivery.
+* **Prepare for distribution:** Use [Prepare your Lovable app for publishing](https://docs.median.co/docs/prepare-your-lovable-app-for-publishing) before you submit to the Apple App Store and Google Play.
+
+***
+
+[Add Push Notifications To Your Lovable App](/docs/add-push-notifications-to-your-lovable-app)
+
+[Prepare your Lovable app for publishing](/docs/prepare-your-lovable-app-for-publishing)
+
+Copy Page
+
+* * [What is haptic feedback?](#what-is-haptic-feedback)
+  * [How haptics work in Median](#how-haptics-work-in-median)
+  * [Step 1: Choose your haptic type](#step-1-choose-your-haptic-type)
+  * [Step 2: Add haptics using AI prompts](#step-2-add-haptics-using-ai-prompts)
+  * * [Example: Adding haptics to task creation](#example-adding-haptics-to-task-creation)
+  * [Step 3: More prompt examples](#step-3-more-prompt-examples)
+  * [Understanding how it works](#understanding-how-it-works)
+  * [Step 4: Testing your haptics](#step-4-testing-your-haptics)
+  * [Quick reference: which haptic to use](#quick-reference-which-haptic-to-use)
+  * [Best practices](#best-practices)
+  * [Need help?](#need-help)
+  * [What's next?](#whats-next)

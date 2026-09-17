@@ -1,0 +1,122 @@
+---
+title: "QR / Barcode Scanner"
+description: "Easily integrate QR code and barcode scanning into your mobile app using the device camera. Ideal for use cases such as:"
+---
+
+* In-store retail shopping
+* Warehouse and inventory management
+* Data center asset tracking
+
+The Median QR/Barcode Scanner Native Plugin is built on top of customized, open-source libraries and offers full functionality without licensing fees or usage limits.
+
+<Check>
+  ### Developer Demo
+
+  Display our demo page in your app to test during development [https://median.dev/qr-barcode/](https://median.dev/qr-barcode/)
+</Check>
+
+## Underlying Open-Source Technologies
+
+**Android**: Zebra Crossing library at [https://github.com/zxing/zxing](https://github.com/zxing/zxing)
+
+**iOS**: hyperoslo library at [https://github.com/hyperoslo/BarcodeScanner](https://github.com/hyperoslo/BarcodeScanner)
+
+## UI Example
+
+|                                        |                                            |
+| -------------------------------------- | ------------------------------------------ |
+| ![](/images/docs/5649c1d-Apple-QR.png) | ![](/images/docs/7bb3e13-Android-QR_1.png) |
+| iOS                                    | Android                                    |
+
+## Implementation Guide
+
+*Once the QR/Barcode Scanner Native Plugin has been added to your app, you may use the following Median JavaScript Bridge commands to access its functionality.*
+
+### Start a QR/Barcode Scan
+
+Use `median.barcode.scan()` to trigger the native scanner. By default, all supported formats trigger a scan. You can pass a `formats` array to restrict which code types can trigger a scan. If `formats` is omitted or empty, all supported types are scanned.\
+The method supports both callback and Promise-based approaches:
+
+<CodeGroup>
+  ```bash bash
+  // Callback example
+  median.barcode.scan({
+    formats: ['QR_CODE', 'EAN_13'],
+    callback: process_barcode
+  });
+
+  function process_barcode(data) {
+    if (data.success) {
+      alert('Got barcode: ' + data.code);
+    }
+  }
+
+  // Promise example
+  median.barcode.scan({ formats: ['QR_CODE'] }).then(function (data) {
+    if (data.success) {
+      alert('Got barcode: ' + data.code);
+    }
+  });
+
+  // Scan all supported formats (default)
+  median.barcode.scan().then(function (data) {
+    if (data.success) {
+      alert('Got barcode: ' + data.code);
+    }
+  });
+  ```
+</CodeGroup>
+
+The native scanner UI will launch within your app. Upon scan completion, focus will return to the webview where an object in the format below will be returned.
+
+<CodeGroup>
+  ```bash bash
+  {
+    success: true,      // boolean — true if a code was scanned
+    type: "STRING",     // Symbology (e.g. 'qr', 'code128')
+    code: "STRING",     // The actual scanned value
+    error: "STRING"     // Error message if unsuccessful
+  }
+  ```
+</CodeGroup>
+
+[Learn more about using promises and the Median JavaScript Bridge](https://median.co/docs/javascript-bridge#promises).
+
+**Supported formats**
+
+* **QR Codes (2D):** QR\_CODE, DATA\_MATRIX, AZTEC, PDF\_417
+* **Barcodes (1D):** EAN\_13, EAN\_8, UPC\_A, UPC\_E, CODE\_39, CODE\_93, CODE\_128, ITF, CODABAR
+
+### Customizing the Scanner Prompt
+
+You can customize the message shown to users during scanning by setting a prompt in the plugin settings. To do this, go to *Native Plugins > QR / Barcode Scanner*, as shown below.
+
+![QR / Barcode Scanner - Custom Prompt Message](/images/docs/73d82f57ef12af3723c6a0c713248a84b733aa8ff6ee93bd417cf4516633284a-Screenshot_2025-07-04_at_14.29.42.png)
+
+### Set custom prompt message on runtime
+
+You can also dynamically set the prompt message in-app using the `setPrompt()` method:
+
+<CodeGroup>
+  ```bash bash
+  median.barcode.setPrompt('Align the QR code or barcode within the frame to scan automatically');
+  ```
+</CodeGroup>
+
+***
+
+[NFC Tag Scanner](/docs/nfc-tag-scanner)
+
+[Scandit QR / Barcode](/docs/scandit-qr-barcode)
+
+Copy Page
+
+* * [Underlying Open-Source Technologies](#underlying-open-source-technologies)
+
+  * [UI Example](#ui-example)
+
+  * [Implementation Guide](#implementation-guide)
+
+  * * [Start a QR/Barcode Scan](#start-a-qrbarcode-scan)
+    * [Customizing the Scanner Prompt](#customizing-the-scanner-prompt)
+    * [Set custom prompt message on runtime](#set-custom-prompt-message-on-runtime)

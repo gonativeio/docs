@@ -1,0 +1,95 @@
+---
+title: "Status Bar"
+description: "Control your app's device status bar"
+---
+
+Set default styling options and Light/Dark mode for the device status bar while your app is open. When the status bar is in Light mode it will display with black text, in Dark mode white text, in Auto mode it will follow the device Light/Dark mode setting.
+
+You may also customize and dynamically set the status bar visibility and style during runtime from your website using the Median Javascript Bridge
+
+<Check>
+  ### Developer Demo
+
+  Display our demo page in your app to test during development [https://median.dev/status-bar/](https://median.dev/status-bar/)
+</Check>
+
+## Configuration Options
+
+Median supports four parameters for controlling status bar appearance:
+
+| Parameter | Values                                | Description                                                                                                                                                                       |
+| --------- | ------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `style`   | `'light'`, `'dark'` or `'auto'`       | Sets the color of the status bar text and icons. `light` displays black text/icons; `dark` displays white text/icons; `auto` follows the device's system Light/Dark mode setting. |
+| `color`   | Hex value - eg `RRGGBB` or `AARRGGBB` | Sets the status bar background to a solid color. Use `00000000` for a fully transparent status bar.                                                                               |
+| `overlay` | `true` or `false`                     | When `true`, web content extends underneath the status bar. When false (default), web content starts below the status bar.                                                        |
+| `blur`    | `true` or `false` (iOS only)          | When `true`, applies a blur effect behind the status bar color. When `false` (default), the status bar shows a flat, solid color.                                                 |
+
+<Warning>
+  ### Overlay setting on Android
+
+  With the Overlay setting enabled on Android the keyboard will overlay on top of your web content which can cause issues for users completing forms. If you use forms in your app consider two solutions to improve UX.
+
+  1. Disable the Overlay setting via the JavaScript Bridge when showing a page that includes forms.
+  2. Make use of the keyboard listener functions to disable/enable the Overlay setting via the JavaScript Bridge when the keyboard is active/inactive.
+</Warning>
+
+## Setting the Status Bar at Runtime
+
+Use the JavaScript Bridge to update the status bar dynamically, either in response to user actions or automatically on page load.
+
+### Option 1: Auto-Match the Status Bar to Your Page Background
+
+To have Median automatically detect your webpage's background color and apply it to the status bar, call the built-in helper function when the library loads:
+
+<CodeGroup>
+  ```bash bash
+    function median_library_ready(){
+      median_match_statusbar_to_body_background_color();
+    }
+  ```
+</CodeGroup>
+
+### Option 2: Set Custom Status Bar Styles
+
+For full control, call `median.statusbar.set()` with your desired parameters. This is useful for apps that need different status bar treatments for different content types (for example, a red status bar over a video player).
+
+The example code below creates a red status bar with 50% alpha, white icons, and have the web content extend underneath the status bar.
+
+<CodeGroup>
+  ```bash bash
+  // Trigger on demand, e.g. from a button or route change
+  if (navigator.userAgent.indexOf('median') > -1) {
+    median.statusbar.set({
+      style: 'light',
+      color: '80ff0000',   // 50% alpha red
+      overlay: true,
+      blur: true            // optional, iOS only
+    });
+  }
+
+  // Or apply automatically when the app loads
+  function median_library_ready() {
+    median.statusbar.set({
+      style: 'light',
+      color: '80ff0000',
+      overlay: true,
+      blur: true
+    });
+  }
+  ```
+</CodeGroup>
+
+***
+
+[Theme Colors](/docs/theme-colors)
+
+[App Interface Overview](/docs/app-interface-overview)
+
+Copy Page
+
+* * [Configuration Options](#configuration-options)
+
+  * [Setting the Status Bar at Runtime](#setting-the-status-bar-at-runtime)
+
+  * * [Option 1: Auto-Match the Status Bar to Your Page Background](#option-1-auto-match-the-status-bar-to-your-page-background)
+    * [Option 2: Set Custom Status Bar Styles](#option-2-set-custom-status-bar-styles)

@@ -1,0 +1,150 @@
+---
+title: "Overview"
+description: "Building and testing your Median app is the path from configuration to deployment. This section covers how to use Median App Studio, development tools, and platform-specific build and deployment workflows so you can run your app on simulators and devices and publish to the App Store and Google Play."
+---
+
+## Related Documentation
+
+[](https://docs.median.co/docs/app-studio)
+
+#### [Median App Studio](https://docs.median.co/docs/app-studio)
+
+[Use the cloud-based App Studio to configure your app, preview changes in browser simulators, and manage builds without installing Xcode or Android Studio.](https://docs.median.co/docs/app-studio)
+
+[](https://docs.median.co/docs/install-ios-ipa)
+
+#### [Device Installation](https://docs.median.co/docs/install-ios-ipa)
+
+[Install development builds on physical devices, use TestFlight for iOS distribution builds, and download Android APKs for testing.](https://docs.median.co/docs/install-ios-ipa)
+
+[](https://docs.median.co/docs/debug-tools)
+
+#### [Debug Tools](https://docs.median.co/docs/debug-tools)
+
+[Debug and optimize your web experience with browser dev tools, inspect network and console, and use Median's developer resources for testing app behavior.](https://docs.median.co/docs/debug-tools)
+
+[](https://docs.median.co/docs/ios-build-deployment)
+
+#### [iOS Build & Deployment](https://docs.median.co/docs/ios-build-deployment)
+
+[Build iOS binaries (IPA), configure signing, connect to App Store Connect, register test devices, upload to TestFlight, and publish to the App Store.](https://docs.median.co/docs/ios-build-deployment)
+
+[](https://docs.median.co/docs/android-build-deployment)
+
+#### [Android Build & Deployment](https://docs.median.co/docs/android-build-deployment)
+
+[Build Android APKs and AABs, install on devices, connect Android Studio simulators to localhost, and upload to Google Play.](https://docs.median.co/docs/android-build-deployment)
+
+[](https://docs.median.co/docs/app-configuration-management)
+
+#### [App Configuration & Management](https://docs.median.co/docs/app-configuration-management)
+
+[Manage app identifiers, app configuration (appconfig.json), Google Services, backup, multiple app instances, and CI/CD integration.](https://docs.median.co/docs/app-configuration-management)
+
+## What to Test
+
+Median apps are composed of web content, native UI elements, and native functionality (such as haptics or biometrics) or SDK integrations from plugins. Test across these areas before release:
+
+### UI & UX
+
+Validate the app interface and user experience across device types, orientations, and OS versions. Typical test cases include navigation, [link handling](https://docs.median.co/docs/link-handling-overview), [deep linking](https://docs.median.co/docs/deep-linking), accessibility, and offline behavior.
+
+### App Performance
+
+App performance is strongly correlated to your web experience. Optimize site speed and remediate bottlenecks in JavaScript, images, and embedded functionality. You can also gain performance by using [Native Navigation](https://docs.median.co/docs/native-navigation-overview) instead of web-delivered menus, and by leveraging native SDKs from third-party vendors.
+
+**Performance analysis tools:**
+
+* [SpeedSense](https://www.speedsense.com/)
+* [Pingdom](https://tools.pingdom.com/)
+* [PageSpeed Insights](https://pagespeed.web.dev/)
+
+For strategies on improving webview app speed, see the [Median blog on speed and performance](https://median.co/blog/how-to-increase-the-speed-and-performance-of-a-webview-app).
+
+### Native Device Features
+
+Features like [Haptics](https://docs.median.co/docs/haptics), [Biometrics](https://docs.median.co/docs/auth), or [In-App Purchases](https://docs.median.co/docs/iap) require testing on physical devices and cannot be fully simulated in a browser or virtual device.
+
+### Plugin Configuration
+
+Validate plugin configuration using [median.dev](https://median.dev) demos or diagnostic tools. Median offers Solution Architecture and Engineering services to advise on plugin implementation. Diagnostic tools can help access log files for troubleshooting with our team or third-party vendors.
+
+## Testing & Development Tools
+
+### App Studio Simulators
+
+Cloud-based virtual devices in [Median App Studio](https://docs.median.co/docs/app-studio) let you quickly test configuration changes in a browser. You can switch between devices, operating systems, and orientations.
+
+> **Simulator limitations** — Some native device functionality and third-party SDKs integrated through plugins cannot be tested in simulators. We highlight those cases in the documentation with a warning label.
+
+### Browser Development Tools
+
+Use your browser's dev tools to inspect, debug, and optimize your web experience: viewport, user agent, console, and network requests. See [Development Tools](https://docs.median.co/docs/debug-tools) for details and links to [Chrome DevTools](https://developer.chrome.com/docs/devtools), [Safari Web Development Tools](https://developer.apple.com/safari/tools/), and [Microsoft Edge DevTools](https://learn.microsoft.com/en-us/microsoft-edge/devtools-guide-chromium/landing/).
+
+### Developer Demos
+
+[median.dev](https://median.dev) provides demos for JavaScript Bridge functionality and many app features. During development, you can replace the Website URL with a demo page URL on the Overview tab and create a new build. In production, add a link to the demo on your live site—for example, hide it behind a sequence of taps (e.g. searching for specific attributes) so real users don't see it.
+
+<Check>
+  ### Developer Demo
+
+  Display our demo page in your app to test during development [https://median.dev/share-function](https://median.dev/share-function)
+</Check>
+
+If a demo works in your app but your own site does not: debug your page in the app using [Development Tools](https://docs.median.co/docs/debug-tools), inspect the demo source in your desktop browser, and recheck your JavaScript against the documentation.
+
+### Physical Device Testing
+
+Physical devices are the gold standard for testing native functionality and end-to-end flows. Distribute to devices via [Upload iOS to TestFlight](https://docs.median.co/docs/upload-ios-to-testflight) or [Install Android APK](https://docs.median.co/docs/install-android-apk).
+
+When performing QA, you may need to uninstall older test versions:
+
+* **Android:** [Delete, disable & manage unused apps](https://support.google.com/googleplay/topic/13627086)
+* **iOS:** [Remove or delete apps from iPhone](https://support.apple.com/en-ca/guide/iphone/iph248b543ca/ios)
+
+### adb and sysdiagnose
+
+For in-depth logs, system information, and application metrics, use platform diagnostic tools: [Android Debug Bridge (adb)](https://developer.android.com/tools/adb) and [Sysdiagnose](https://it-training.apple.com/tutorials/support/sup075/). See [Development Tools](https://docs.median.co/docs/debug-tools) for more on debugging in the app.
+
+## Mapping Test Cases and Tools
+
+| Tool                      | UI / UX                                          | App Performance                                  | Native Device Features                           | Plugin Configuration                                         |
+| ------------------------- | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------------------ |
+| App Studio Simulators     | **Recommended** switch devices, OS, orientations | **Not recommended** no detailed logs             | **Limited** simulators lack full native support  | **Limited** high-level info only                             |
+| Browser Development Tools | **Limited** user agent and viewport              | **Recommended** analyze web assets               | **Not recommended** native features not testable | **Limited** console only                                     |
+| Appetize Debug Mode       | **Recommended** switch devices, OS, orientations | **Limited** network logs available               | **Limited** simulators lack full native support  | **Recommended** device logs for plugin validation            |
+| Physical Device           | **Limited** device suite maintenance             | **Limited** device suite maintenance             | **Recommended** required for native features     | **Recommended** fastest way to validate plugins              |
+| adb and sysdiagnose       | **Not recommended** not ideal for UI/UX          | **Recommended** metrics and performance analysis | **Recommended** logs and error codes             | **Recommended** best for SDK diagnosis and vendor engagement |
+
+## Summary
+
+Use **Median App Studio** to configure and preview your app, **Development Tools** and median.dev to debug and test behavior, and **iOS Build & Deployment** and **Android Build & Deployment** to produce installable builds and publish to the stores. **App Configuration & Management** covers identifiers, config, and CI/CD so your build pipeline stays consistent.
+
+***
+
+[App Marketing & Growth](/docs/app-marketing-growth)
+
+[Median App Studio](/docs/app-studio)
+
+Copy Page
+
+* * [Related Documentation](#related-documentation)
+
+  * [What to Test](#what-to-test)
+
+  * * [UI & UX](#ui--ux)
+    * [App Performance](#app-performance)
+    * [Native Device Features](#native-device-features)
+    * [Plugin Configuration](#plugin-configuration)
+
+  * [Testing & Development Tools](#testing--development-tools)
+
+  * * [App Studio Simulators](#app-studio-simulators)
+    * [Browser Development Tools](#browser-development-tools)
+    * [Developer Demos](#developer-demos)
+    * [Physical Device Testing](#physical-device-testing)
+    * [adb and sysdiagnose](#adb-and-sysdiagnose)
+
+  * [Mapping Test Cases and Tools](#mapping-test-cases-and-tools)
+
+  * [Summary](#summary)

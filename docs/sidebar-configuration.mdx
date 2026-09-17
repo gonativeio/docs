@@ -1,0 +1,160 @@
+---
+title: "Sidebar Visual Editor"
+description: "After entering an Initial URL, we will automatically crawl your site and attempt to pull out various navigation menu options. Please select from one of the pre-populated options, or click \"Start from scratch\"."
+---
+
+Next, enter labels and absolute URLs for each menu option. You may also re-order links, add groupings, and specify icons as demonstrated in the grouping section below.
+
+## Grouping Menu Items
+
+You may add a sidebar menu group by clicking the circular plus button ⨁ between menu items and selecting **Menu Group**. This adds a category group that can be expanded and collapsed within the sidebar menu.
+
+![](/images/docs/5daf92a-sidebar-menu-grouping.png)
+
+## Trigger JavaScript Commands from Sidebar Menu Options
+
+If you'd prefer your links to trigger various JavaScript commands, you may wish to specify URLs in the Visual Editor with the following syntax (Option 1). Alternatively, you can set the URL with the JavaScript command directly in the JSON (Option 2).
+
+<CodeGroup>
+  ```bash bash
+  javascript:alert('test');
+  ```
+
+  ```bash bash
+  [
+    {
+      "subLinks": [],
+      "url": "javascript:alert('test')", // specify javascript commands like this
+      "label": "Home",
+      "icon": "fas fa-home"
+    }
+  ]
+  ```
+
+  ```bash bash
+  [
+      {
+        "icon": null,
+        "isGrouping": true,
+        "label": "General",
+        "subLinks": [
+          {
+            "isGrouping": false,
+            "icon": "fa-tachometer",
+            "subLinks": [],
+            "url": "javascript:if (typeof jQuery === 'undefined' || jQuery('div#sidebar-view ul.navigation li.dashboard a span').length == 0) window.location = 'https://dashboard.stripe.com/dashboard'; else jQuery('div#sidebar-view ul.navigation li.dashboard a span').click();",
+            "name": "Dashboard",
+            "label": "Dashboard"
+          },
+          {
+            "isGrouping": false,
+            "icon": "fa-users",
+            "subLinks": [],
+            "name": "Customers",
+            "url": "javascript:if (typeof jQuery === 'undefined' || jQuery('div#sidebar-view ul.navigation li.customers a span').length == 0) window.location = 'https://dashboard.stripe.com/customers'; else jQuery('div#sidebar-view ul.navigation li.customers a span').click();",
+            "label": "Customers"
+          },
+          {
+            "isGrouping": false,
+            "icon": "fa-users",
+            "subLinks": [],
+            "name": "Recipients",
+            "url": "javascript:if (typeof jQuery === 'undefined' || jQuery('div#sidebar-view ul.navigation li.recipients a span').length == 0) window.location = 'https://dashboard.stripe.com/recipients'; else jQuery('div#sidebar-view ul.navigation li.recipients a span').click();",
+            "label": "Recipients"
+          }
+        ]
+      },
+      {
+        "label": "Transactions",
+        "isGrouping": true,
+        "subLinks": [
+          {
+            "isGrouping": false,
+            "icon": "fa-credit-card",
+            "subLinks": [],
+            "name": "Payments",
+            "url": "javascript:if (typeof jQuery === 'undefined' || jQuery('div#sidebar-view ul.navigation li.payments a span').length == 0) window.location = 'https://dashboard.stripe.com/payments/overview'; else jQuery('div#sidebar-view ul.navigation li.payments a span').click();",
+            "label": "Payments"
+          },
+          {
+            "isGrouping": false,
+            "icon": "fa-download",
+            "subLinks": [],
+            "url": "javascript:if (typeof jQuery === 'undefined' || jQuery('div#sidebar-view ul.navigation li.transfers a span').length == 0) window.location = 'https://dashboard.stripe.com/transfers/overview'; else jQuery('div#sidebar-view ul.navigation li.transfers a span').click();",
+            "name": "Transfers",
+            "label": "Transfers"
+          },
+          {
+            "label": "Balance",
+            "icon": "fa-money",
+            "url": "javascript:if (typeof jQuery === 'undefined' || jQuery('div#sidebar-view ul.navigation li.balance a span').length == 0) window.location = 'https://dashboard.stripe.com/balance/overview'; else jQuery('div#sidebar-view ul.navigation li.balance a span').click();"
+          }
+        ]
+      },
+      {
+        "icon": null,
+        "isGrouping": true,
+        "label": "Subscriptions",
+        "subLinks": [
+          {
+            "isGrouping": false,
+            "icon": "fa-calendar",
+            "subLinks": [],
+            "url": "javascript:if (typeof jQuery === 'undefined' || jQuery('div#sidebar-view ul.navigation li.plans a span').length == 0) window.location = 'https://dashboard.stripe.com/plans'; else jQuery('div#sidebar-view ul.navigation li.plans a span').click();",
+            "name": "Plans",
+            "label": "Plans"
+          },
+          {
+            "isGrouping": false,
+            "icon": "fa-ticket",
+            "subLinks": [],
+            "url": "javascript:if (typeof jQuery === 'undefined' || jQuery('div#sidebar-view ul.navigation li.coupons a span').length == 0) window.location = 'https://dashboard.stripe.com/coupons'; else jQuery('div#sidebar-view ul.navigation li.coupons a span').click();",
+            "name": "Coupons",
+            "label": "Coupons"
+          }
+        ]
+      },
+      {
+        "icon": null,
+        "isGrouping": true,
+        "label": "Requests",
+        "subLinks": [
+          {
+            "isGrouping": false,
+            "icon": "fa-list",
+            "subLinks": [],
+            "url": "javascript:if (typeof jQuery === 'undefined' || jQuery('div#sidebar-view ul.navigation li.events a span').length == 0) window.location = 'https://dashboard.stripe.com/events'; else jQuery('div#sidebar-view ul.navigation li.events a span').click();",
+            "name": "Events & Webhooks",
+            "label": "Events & Webhooks"
+          },
+          {
+            "isGrouping": false,
+            "icon": "fa-file",
+            "subLinks": [],
+            "url": "javascript:if (typeof jQuery === 'undefined' || jQuery('div#sidebar-view ul.navigation li.logs a span').length == 0) window.location = 'https://dashboard.stripe.com/logs/overview'; else jQuery('div#sidebar-view ul.navigation li.logs a span').click();",
+            "name": "Logs",
+            "label": "Logs"
+          }
+        ]
+      },
+      {
+        "url": "javascript:jQuery('a.logout').click();",
+        "icon": null,
+        "isGrouping": false,
+        "label": "Sign Out",
+        "subLinks": []
+      }
+  ]
+  ```
+</CodeGroup>
+
+***
+
+### Next Steps
+
+* [Dynamic Menu Items](/docs/dynamic-menu-items)
+
+Copy Page
+
+* * [Grouping Menu Items](#grouping-menu-items)
+  * [Trigger JavaScript Commands from Sidebar Menu Options](#trigger-javascript-commands-from-sidebar-menu-options)

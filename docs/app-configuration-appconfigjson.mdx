@@ -1,0 +1,62 @@
+---
+title: "App Configuration"
+description: "The  file defines the core configuration for your mobile app. It acts as a key-value datastore for your app and includes but is not limited to:"
+---
+
+* **App and branding assets:** Icons, logos, and visual elements.
+* **Interface settings:** UI configurations and user interface properties.
+* **Native plugin configurations:** Platform-specific settings and integrations.
+
+You can import configuration settings from another app in your organization to accelerate setup, or manually edit, import, or export the `appConfig.json` file for advanced customization.
+
+<Check>
+  ### Best Practise
+
+  To duplicate an existing app, use the "Clone" feature in the top menu. This is the safest and most efficient way to replicate an app without introducing errors.
+</Check>
+
+## Editing appConfig.json
+
+You can edit the `appConfig.json` file manually using one of the two methods below
+
+* **App Studio:** Provides an intuitive interface to modify settings.
+* **Source Code:** Enables direct access to the JSON file in your preferred IDE.
+
+<Warning>
+  ### Manual edits to the appConfig.json
+
+  Always ensure that the JSON syntax is valid when making manual edits. Invalid JSON can cause errors or crashes. **Use a JSON validator or linter before saving changes**.
+</Warning>
+
+## Importing Configuration from Another App
+
+You can easily import the full configuration - including source assets - from another app within your organization:
+
+* Go to **App Studio > Build & Deploy > App Configuration > Import from existing app**
+* Choose the source app
+* Confirm the import to overwrite current settings
+
+For advanced workflows, use the **Edit / Import / Export options** to manage appConfig.json directly.
+
+## Troubleshooting
+
+### Why is my app crashing at launch?
+
+The most likely cause of this issue is a syntax error in your app's configuration.
+
+This is more likely if you are editing your appConfig.json app configuration file directly through your app's source code, though it could also happen if you've edited your app's configuration in the **Build & Deploy** tab in App Studio. Most importantly, your **app's configuration file must be a valid JSON**.
+
+If your appConfig.json is valid, and your app is still crashing on launch, please contact our support team.
+
+***
+
+[App Identifiers](/docs/app-identifiers)
+
+[Google Services](/docs/google-services)
+
+Copy Page
+
+* * [Editing appConfig.json](#editing-appconfigjson)
+  * [Importing Configuration from Another App](#importing-configuration-from-another-app)
+  * [Troubleshooting](#troubleshooting)
+  * * [Why is my app crashing at launch?](#why-is-my-app-crashing-at-launch)

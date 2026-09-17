@@ -1,0 +1,190 @@
+---
+title: "Offline Download Manager"
+description: "Download and display offline media files within your app"
+---
+
+The Offline Download Manager plugin lets your app download and manage document and media files directly on the device. Users can access downloaded files without a network connection, and you can track download progress and manage files through a built-in interface or programmatically through the JavaScript bridge.
+
+<Check>
+  ### Developer Demo
+
+  Display our demo page in your app to test during development [https://median.dev/offline-download-manager/](https://median.dev/offline-download-manager/)
+</Check>
+
+## Why use Offline Download Manager
+
+Offline access removes dependency on network connectivity for content-heavy apps. Instead of streaming or re-fetching files on every visit, downloaded content is available instantly, even in airplane mode.
+
+* **Document and media apps**: Let users download articles, PDFs, audio, or video for offline reading or playback.
+* **Field service apps**: Ensure technicians can access manuals and forms when working in areas with no connectivity.
+* **Training and education apps**: Allow learners to download course materials before a commute or travel.
+* **Content subscription apps**: Enable subscribers to save content locally for offline consumption.
+
+## Implementation Guide
+
+### JavaScript bridge functions
+
+Use the following JavaScript bridge functions to initialize the download manager, start downloads, and display the file management UI.
+
+#### Initialization
+
+Create a JavaScript function to receive status events, e.g.
+
+<CodeGroup>
+  ```bash bash
+  function downloadCallback(data) {
+    console.log(data);
+  }
+  ```
+</CodeGroup>
+
+Before starting any downloads, you will need to register your callback by running the following command using the Median JavaScript Bridge through HTML or JavaScript:
+
+<CodeGroup>
+  ```bash bash
+  {/* Note: This command returns a promise */}
+  <button onclick="median.downloads.init({'callback': downloadCallback})">
+    Register Download Callback
+  </button>
+  ```
+</CodeGroup>
+
+<CodeGroup>
+  ```bash bash
+  median.downloads.init({ callback: downloadCallback }); // returns promise
+  ```
+</CodeGroup>
+
+#### Starting Downloads
+
+To start a download, run the following command using the Median JavaScript Bridge:
+
+<CodeGroup>
+  ```bash bash
+  <button
+    onclick="median.downloads.downloadFile({'url': 'URL', 'title': 'Title'})"
+  >
+    Start Download
+  </button>
+  ```
+</CodeGroup>
+
+<CodeGroup>
+  ```bash bash
+  median.downloads.downloadFile({ url: "URL", title: "Title" });
+  ```
+</CodeGroup>
+
+Params "url" and "title" are required, all others are optional. Supported parameters are:
+
+* url: The URL of the file to download. Should start with http or https.
+* title: The name to show in the UI.
+* identifier (optional): a string used to identify the download in the downloadCallback function, so that multiple simultaneous downloads can be differentiated.
+* details (optional): additional information to show below the title. A description of the download.
+* date (optional): a date in yyyy-mm-dd format to show below the details. Can be used to show a publish date for a podcast, for example.
+
+#### Following the Download progress
+
+After a download is started, the callback function will be called with a data object with the following fields:
+
+* identifier: the identifier passed to the downloadFile command
+* event: "progress", "done", or "error"
+
+If event is "progress":
+
+* bytesWritten: the number of bytes that have been downloaded
+* expectedBytes: the file sized indicated by the server
+
+If event is "error":
+
+* errorMessage: A string indicating the reason for the error
+
+### Showing UI
+
+To show the download manager user interface, run the following command using the Median JavaScript Bridge:
+
+<CodeGroup>
+  ```bash bash
+  <button onclick="median.downloads.showUI()">Show Download Manager UI</button>
+  ```
+</CodeGroup>
+
+<CodeGroup>
+  ```bash bash
+  median.downloads.showUI();
+  ```
+</CodeGroup>
+
+### Offline Page
+
+Typically your app will cache the pages for display offline. To ensure the download manager UI can still be opened when the app if offline for an extended period configure an offline.html page within your app. See [Offline Page](/docs/offline-page) and review the sample offline page below or on [CodePen](https://codepen.io/gonative/pen/PoJbEEN).
+
+[Offline File Manager - offline.html](https://codepen.io/gonative/embed/PoJbEEN?default-tab=html%2Cresult\&editable=false)
+
+## Troubleshooting
+
+### Offline Download Manager functions are undefined or not working
+
+**Offline Download Manager functions are undefined or not working⎘ Copy link
+
+Ensure the JavaScript Bridge is enabled in Median App Studio. Define a `median_library_ready()` function on your page — Median calls it after the bridge has initialized. If the bridge may already be initialized before your function is defined, use the fallback check:
+
+<CodeGroup>
+  ```bash bash
+  function median_library_ready() {
+    // safe to call median.downloads functions here
+  }
+
+  // fallback if bridge initialized before page loaded
+  if (window.median) {
+    median_library_ready();
+  }
+  ```
+</CodeGroup>
+
+Also verify that `median.downloads.init` is called before `median.downloads.downloadFile`. See the [JavaScript Bridge Overview](https://docs.median.co/docs/javascript-bridge) for details.
+
+### Callback does not receive events after downloadFile is called
+
+**Callback does not receive events after downloadFile is called⎘ Copy link
+
+Confirm that `median.downloads.init` was called with a valid callback before `downloadFile`. The callback must be registered before any download is started. Check the browser console for JavaScript errors in your callback function.
+
+### Download manager UI is not accessible when offline
+
+**Download manager UI is not accessible when offline⎘ Copy link
+
+Configure an `offline.html` page in your app to ensure the download manager remains accessible when there is no network connectivity. Without this configuration, the download manager UI may not load when the device is offline. See [Offline Page configuration](https://docs.median.co/docs/offline-page) for setup instructions — note that all CSS/JS must be inlined and images must be Base64 or SVG.
+
+## Offline Download Manager Demo App
+
+<Info>
+  ### Demo App - Note
+
+  In the sample applications below, you can explore how document and media files are downloaded, along with the callback responses that occur during the download process. Additionally, these apps demonstrate the functionality of the offline file manager. For a complete offline experience, we recommend downloading the Android app and switching to Airplane mode after downloading at least one file.
+</Info>
+
+|     |         |
+| --- | ------- |
+|     |         |
+| iOS | Android |
+
+***
+
+### Next Steps
+
+* [Offline Page](/docs/offline-page)
+
+Copy Page
+
+* * [Why use Offline Download Manager](#why-use-offline-download-manager)
+
+  * [Implementation Guide](#implementation-guide)
+
+  * * [JavaScript bridge functions](#javascript-bridge-functions)
+    * [Showing UI](#showing-ui)
+    * [Offline Page](#offline-page)
+
+  * [Troubleshooting](#troubleshooting)
+
+  * [Offline Download Manager Demo App](#offline-download-manager-demo-app)

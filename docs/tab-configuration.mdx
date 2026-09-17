@@ -1,0 +1,112 @@
+---
+title: "Bottom Tab Bar Visual Editor"
+---
+
+## Trigger JavaScript Commands from Tab Menu Options
+
+If you'd prefer your links to trigger various JavaScript commands, you may wish to specify URLs in the Visual Editor with the following syntax (Option 1). Alternatively, you can set the URL with the JavaScript command directly in the JSON (Option 2).
+
+<CodeGroup>
+  ```bash bash
+  /* Option 1 - Visual Editor */
+  javascript: alert("test");
+  ```
+</CodeGroup>
+
+<CodeGroup>
+  ```bash bash
+  /* Option 2 - JSON */
+  {
+    "tabSelectionConfig": [
+      {
+        "id": "1",
+        "regex": ".*"
+      }
+    ],
+    "tabMenus": [
+      {
+        "items": [
+          {
+            "subLinks": [],
+            "icon": "fa-home",
+            "label": "Home",
+            "url": "javascript:alert('test')" //specify javascript commands like this
+          },
+          {
+            "subLinks": [],
+            "icon": "fa-search",
+            "label": "Search",
+            "url": "javascript:alert('You selected tab 2. These tabs are only shown on the about page')"
+          }
+        ],
+        "id": "1"
+      }
+    ],
+    "active": true
+  }
+  ```
+</CodeGroup>
+
+A more complicated example is to click an element when it exists, otherwise load a new URL.
+
+<CodeGroup>
+  ```bash bash
+  /* Option 1 - Visual Editor */
+  javascript: if (
+    typeof jQuery === "undefined" ||
+    jQuery("#linkElement").length == 0
+  )
+    window.location = "http://example.com/target";
+  else jQuery("#linkElement").click();
+  ```
+</CodeGroup>
+
+<CodeGroup>
+  ```bash bash
+  /* Option 2 - JSON */
+  {
+    "tabSelectionConfig": [
+      {
+        "id": "1",
+        "regex": ".*"
+      }
+    ],
+    "tabMenus": [
+      {
+        "items": [
+          {
+            "subLinks": [],
+            "icon": "fa-home",
+            "label": "Home",
+            "url": "javascript:if (typeof jQuery === 'undefined' || jQuery('#linkElement').length == 0) window.location = 'http://example.com/target'; else jQuery('#linkElement').click();"
+          },
+          {
+            "subLinks": [],
+            "icon": "fa-search",
+            "label": "Search",
+            "url": "javascript:alert('You selected tab 2. These tabs are only shown on the about page')"
+          }
+        ],
+        "id": "1"
+      }
+    ],
+    "active": true
+  }
+  ```
+</CodeGroup>
+
+## Learn more
+
+* [​iOS Tab Bar Visual & Documentation](https://developer.apple.com/ios/human-interface-guidelines/ui-bars/tab-bars/)
+* [Android Tabs Visual & Documentation](http://developer.android.com/design/building-blocks/tabs.html)
+
+***
+
+### Next Steps
+
+* [Dynamic Tab Menu](/docs/dynamic-tab-menu)
+
+Copy Page
+
+* * [Trigger JavaScript Commands from Tab Menu Options](#trigger-javascript-commands-from-tab-menu-options)
+  * [Learn more](#learn-more)

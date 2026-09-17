@@ -1,0 +1,106 @@
+---
+title: "Push SDK Migration Guide"
+description: "Plan your push SDK migration to avoid user and data loss"
+---
+
+Migrating push notification SDKs is a critical infrastructure update for any mobile application. For Median.co users, this process typically involves transitioning between providers like OneSignal, Braze, or custom FCM/APNs implementations.
+
+A successful migration ensures that you don't lose the ability to reach your existing user base while transitioning to a new platform. This article outlines the strategies for a seamless transition, focusing on token management, permissions, and the technical implications of publishing updates.
+
+## Migration Strategies
+
+When transitioning between push providers, define how the application will handle the overlap period between SDKs. Two primary strategies are available.
+
+### The "Side-by-Side" Strategy (Recommended)
+
+Deploy both the legacy and new SDKs within a single app release. After a sufficient transition period, remove the legacy SDK in a subsequent release.
+
+* **Implementation**: The app initializes both SDKs. The new SDK captures a fresh device token, while the old SDK remains active to ensure users who haven't updated yet still receive messages.
+* **Advantages**: Zero downtime in messaging; allows for a gradual transition.
+* **Considerations**: Slightly larger app binary size; requires logic to avoid "double-notifying" users. Additional publishing after the migration is completed.
+
+### The "Hard Switch" Strategy
+
+Remove the old SDK and replace it entirely with the new one in a single release.
+
+* **Implementation**: You stop sending notifications from the old provider the moment the new version is live.
+* **Advantages**: Clean codebase; no temporary SDK duplication.
+* **Considerations**: You lose the ability to message users who do not update their app immediately. This can lead to a significant drop in reachable users (often 20-40%) during the first few weeks.
+
+## Managing Device Tokens and Identities
+
+Push tokens are unique identifiers assigned by APNs (iOS) or FCM (Android). While most modern SDKs abstract raw token management, identity synchronization remains crucial during migration.
+
+### Token Extraction and Mapping
+
+Most modern SDKs (like [OneSignal](https://docs.median.co/docs/onesignal)) do not require you to manually handle raw tokens. However, during migration, you should map your internal User ID to the new SDK's External ID. As an example you can use the Median JavaScript bridge to obtain and sync external IDs to your web application. Examples would be
+
+* OneSignal: `externalId` in the [onesignal.info()](https://docs.median.co/docs/onesignal-info)-function
+* Klaviyo: `median.klaviyo.getProfile();`
+
+Alternatively you can implement a Server-Side Sync. If you have a database of tokens from your old provider, check if your new provider allows "Importing" tokens via API. This can help you message users even before they open the new version of the app.
+
+## Notification Permissions and Opt-In Status
+
+Permissions are tied to the iOS App Bundle ID and Android Application ID , not the SDK. This is good news: if a user has already granted "Allow Notifications" for your app, they do not need to be prompted again just because you changed the underlying SDK.
+
+## Publishing Impacts: Multiple SDKs
+
+Publishing an application with multiple push SDKs (e.g., maintaining OneSignal while introducing Klaviyo) is a common interim state. However, careful configuration is required.
+
+### Prevent Duplicate Permission Prompts
+
+Ensure that automatic permission prompts are disabled in your push provider configuration to avoid double prompts and, instead, request permissions contextually via JavaScript bridge if the user has not opted in to push yet.
+
+**Tip**: You can validate the permission status by using `median.permissions.status(['Notifications']);`. You can learn more about permissions in our [Permission Overview](https://docs.median.co/docs/permissions-overview#permissions-status).
+
+### Prevent Redundant Notifications
+
+If you have both SDKs active, ensure your backend logic is "migration-aware."
+
+1. Check if the user exists in the new provider database.
+2. If yes, send notifications exclusively through the new provider.
+3. If no, fall back to the legacy provider.
+
+This ensures a clean transition without double-delivery.
+
+### Version Enforcement (Optional)
+
+Consider to lock down older app versions and prompt users to update their apps if they have the automatic updates disabled. You can use our code example for [version enforcement](https://docs.median.co/docs/device-info#example-code-implementation-version-enforcement) to redirect users of an old version to a temporary 'Update Required' page.
+
+## Migration Checklist
+
+Use the migration checklist below to ensure a smooth migration between vendors.
+
+* [ ] Audit [App Identifiers](https://median.co/docs/app-identifiers): Ensure the Bundle ID (iOS) and Package Name (Android) match exactly across both providers.
+* [ ] Update Certificates: Ensure your `.p8` (iOS) and `google-services.json` (Android) are correctly uploaded to the new provider.
+* [ ] Validate JavaScript: Update your website's JavaScript to call the Median JavaScript bridge methods for the new SDK.
+* [ ] Test [Deep Links](https://median.co/docs/deep-linking): Deep linking structures often change between SDKs. Verify that deep linking works on your new provider and that there are no differences in the setup.
+* [ ] Monitor Analytics: Compare delivery and open rates between the two platforms during the overlap period.
+
+***
+
+[Push Notifications Overview](/docs/push-notifications-overview)
+
+[OneSignal](/docs/onesignal)
+
+Copy Page
+
+* * [Migration Strategies](#migration-strategies)
+
+  * * [The "Side-by-Side" Strategy (Recommended)](#the-side-by-side-strategy-recommended)
+    * [The "Hard Switch" Strategy](#the-hard-switch-strategy)
+
+  * [Managing Device Tokens and Identities](#managing-device-tokens-and-identities)
+
+  * * [Token Extraction and Mapping](#token-extraction-and-mapping)
+
+  * [Notification Permissions and Opt-In Status](#notification-permissions-and-opt-in-status)
+
+  * [Publishing Impacts: Multiple SDKs](#publishing-impacts-multiple-sdks)
+
+  * * [Prevent Duplicate Permission Prompts](#prevent-duplicate-permission-prompts)
+    * [Prevent Redundant Notifications](#prevent-redundant-notifications)
+    * [Version Enforcement (Optional)](#version-enforcement-optional)
+
+  * [Migration Checklist](#migration-checklist)

@@ -1,0 +1,418 @@
+---
+title: "Google Firebase Analytics"
+description: "Unlock real-time insights, user behavior tracking, and integration with other Firebase services."
+---
+
+Google Firebase Analytics provides powerful insights into user behavior within your app, helping you understand how users engage and interact. It offers essential app metrics such as average revenue per user (ARPU), active users, retention reports, and event counts, along with detailed user properties like device type, app version, and OS version. By combining these data points, Firebase Analytics enables data-driven decision-making to optimize app performance and user experience.
+
+## Why use Google Firebase Analytics?
+
+* **Real-time insights**: User behavior tracking and integration with other Firebase services.
+* **Essential metrics**: ARPU, active users, retention, event counts, device type, app version, OS version.
+* **Consent management**: Configure ad storage, analytics storage, ad user data, and ad personalization at runtime.
+* **JavaScript Bridge**: Enable/disable logging, set user ID and properties, log custom events and screen views, and use eCommerce events.
+
+***
+
+## Prerequisites
+
+* [ ] A Median.co app with JavaScript Bridge enabled
+* [ ] A Google Firebase project ([Firebase Console](https://firebase.google.com/docs/android/setup))
+* [ ] Android Package Name (from Median App Studio > Build & Deploy > App Identifiers) for Android
+* [ ] Apple Bundle ID (from App Studio > Build & Deploy > App Identifiers) for iOS
+* [ ] `google-services.json` (Android) and `GoogleService-Info.plist` (iOS) from Firebase after app registration
+* [ ] Plugin enabled in App Studio (Native Plugins > Google Firebase Analytics)
+
+<Check>
+  ### Developer Demo
+
+  Display our demo page in your app to test during development [https://median.dev/firebase-analytics/](https://median.dev/firebase-analytics/)
+</Check>
+
+***
+
+## When to use this plugin
+
+Firebase Analytics is essential for apps that need to:
+
+| Use Case          | Example                                                                            |
+| ----------------- | ---------------------------------------------------------------------------------- |
+| **User behavior** | Understand how users engage and interact with the app                              |
+| **Metrics**       | ARPU, active users, retention, event counts                                        |
+| **Consent**       | Comply with EU User Consent Policy (deny/allow for ad and analytics storage)       |
+| **Custom events** | Log custom events and screen views via the JavaScript Bridge                       |
+| **eCommerce**     | Log add to cart, remove from cart, wishlist, view item (Firebase eCommerce events) |
+
+## What you'll do
+
+1. **Firebase project**: Create or open a project and register Android and iOS apps ([Google Firebase Project Setup](#google-firebase-project-setup)).
+2. **Upload configs**: Add `GoogleService-Info.plist` and `google-services.json` in App Studio (**Build & Deploy > Google Services**), set consent defaults, enable the plugin, and rebuild ([Plugin setup](#plugin-setup)).
+3. **Runtime APIs**: Use `median.firebaseAnalytics.event.*` for consent, collection, user, events, screens, and eCommerce ([JavaScript bridge functions](#javascript-bridge-functions)).
+4. **Verify**: Use [Testing Checklist](#testing-checklist) and the Firebase / Google Analytics consoles.
+
+***
+
+## Implementation Guide
+
+### Google Firebase Project Setup
+
+If you do not have an active Google Firebase project, you may need to create a new project after signing into your [Google Firebase Account](https://firebase.google.com/docs/android/setup).
+
+Once your project is setup you can start the integration by choosing either the iOS or Android logo in your Project Overview screen.
+
+<Frame caption="Google Firebase - Project Overview">
+  <img src="/images/docs/46ef6fb8d46545a2932510d97dc46948e6842e4dd7116335c9e7b44aaf89956e-image.png" />
+</Frame>
+
+Android SetupiOS Setup
+
+### Register your app in Firebase
+
+Provide the Android Package Name (found in Median App Studio under Build & Deploy > App Identifiers). See [App Identifiers](https://median.readme.io/docs/app-identifiers).
+
+![Register your Android app](/images/docs/a021258f82c253d383e2c581ba9e3e4f8e95b187335a72c05786edaf8fa21f1f-image.png)
+
+Once registered, download `google-services.json` for the App Configuration step. You do not need to add the Firebase SDK manually; the plugin performs that step.
+
+![Download the google-services.json configuration file](/images/docs/d53334aad2a9b9e48dc0a5f626170b2fefe0107fb535c3d7a541c6b9b1fbe21c-image.png)
+
+### Register your app in Firebase
+
+Provide the Apple Bundle ID (found in App Studio under Build & Deploy > App Identifiers). See [App Identifiers](https://median.readme.io/docs/app-identifiers).
+
+![Register your iOS app](/images/docs/671bb9f6ec99ef90911d38732eddd9109b6cf5fade2aee0d619942b52adc7fb2-image.png)
+
+Once registered, download `GoogleService-Info.plist` for the App Configuration step. You do not need to add the Firebase SDK or initialization code; the plugin performs those steps.
+
+![Download the GoogleService-Info.plist configuration file](/images/docs/febb23bbeaa07a30a5006d3eb6c44c8f76acf440b7de2e46ff14d720ddf4e136-image.png)
+
+***
+
+### Enable the Plugin
+
+1. **Google Services Configuration**: Upload GoogleService-Info.plist (iOS) and google-services.json (Android) in Build & Deploy > Google Services in App Studio. You can upload files from Firebase or copy and paste their contents.
+2. **Consent Configuration**: In Plugin Settings, set your default consent value: **Follow EU Consent Policy** (deny for users in regions subject to the EU User Consent Policy), **Deny** (deny consent), or **Allow** (grant consent).
+3. **Plugin Activation**: Enable the plugin in App Studio via Native Plugins > Google Firebase Analytics > Settings.
+
+#### Finalizing the App Build
+
+Once you upload the configuration files, save the changes and rebuild your app.
+
+![Upload your GoogleService-Info.plist and google-services.json configurations](/images/docs/673adab78087bd5a5039f6da1ecab94c9b409bde8d0b665e064586218b4a35ff-analytics.gif)
+
+***
+
+### JavaScript Bridge Functions
+
+#### Consent Management
+
+Configure consent for ad storage, analytics storage, ad user data, and ad personalization at runtime.
+
+<CodeGroup>
+  ```bash bash
+  median.firebaseAnalytics.event.setConsent({
+    adStorage: true | false,
+    analyticsStorage: true | false,
+    adUserData: true | false,
+    adPersonalization: true | false,
+  });
+  ```
+</CodeGroup>
+
+**Parameters:**
+
+| Parameter      | Type     | Required | Description                                                                      |
+| -------------- | -------- | -------- | -------------------------------------------------------------------------------- |
+| Consent object | `object` | Yes      | Boolean keys: `adStorage`, `analyticsStorage`, `adUserData`, `adPersonalization` |
+
+#### Analytics Management
+
+Enable or disable all event logging (including automatic app events). Logging is enabled by default. Effect is persistent; once disabled, re-enable by calling again with `true`.
+
+<CodeGroup>
+  ```bash bash
+  median.firebaseAnalytics.event.collection({ enabled: BOOLEAN });
+  ```
+</CodeGroup>
+
+**Parameters:**
+
+| Parameter | Type      | Required | Description                   |
+| --------- | --------- | -------- | ----------------------------- |
+| `enabled` | `boolean` | Yes      | Wrapped in `{ enabled: ... }` |
+
+#### User Management
+
+Set a custom user ID (e.g. after login when the user is no longer anonymous).
+
+<CodeGroup>
+  ```bash bash
+  median.firebaseAnalytics.event.setUser({ ID: STRING });
+  ```
+</CodeGroup>
+
+**Parameters:**
+
+| Parameter | Type     | Required | Description                    |
+| --------- | -------- | -------- | ------------------------------ |
+| `ID`      | `string` | Yes      | Passed as `'ID'` on the object |
+
+#### Set User Property
+
+Associate additional properties with the user.
+
+<CodeGroup>
+  ```bash bash
+  median.firebaseAnalytics.event.setUserProperty({ key: STRING, value: STRING });
+  ```
+</CodeGroup>
+
+**Parameters:**
+
+| Parameter       | Type     | Required | Description             |
+| --------------- | -------- | -------- | ----------------------- |
+| `key` / `value` | `string` | Yes      | Property name and value |
+
+#### Event Logging
+
+Set default event parameters logged alongside other information for log event.
+
+<CodeGroup>
+  ```bash bash
+  median.firebaseAnalytics.event.defaultEventParameters(data);
+  //data is an object of key-value pairs converted into bundle params
+  ```
+</CodeGroup>
+
+**Parameters:**
+
+| Parameter | Type     | Required | Description     |
+| --------- | -------- | -------- | --------------- |
+| `data`    | `object` | Yes      | Key-value pairs |
+
+#### Log Event
+
+Log a custom event. The `data` object is flexible.
+
+<CodeGroup>
+  ```bash bash
+  median.firebaseAnalytics.event.logEvent({ event: STRING, data: OBJECT });
+  ```
+</CodeGroup>
+
+**Parameters:**
+
+| Parameter | Type     | Required | Description             |
+| --------- | -------- | -------- | ----------------------- |
+| `event`   | `string` | Yes      | Event name              |
+| `data`    | `object` | No       | Arbitrary event payload |
+
+#### Log Screen
+
+Log a customized screen view event (in addition to default logging).
+
+<CodeGroup>
+  ```bash bash
+  median.firebaseAnalytics.event.logScreen({ screen: STRING });
+  ```
+</CodeGroup>
+
+**Parameters:**
+
+| Parameter | Type     | Required | Description |
+| --------- | -------- | -------- | ----------- |
+| `screen`  | `string` | Yes      | Screen name |
+
+### eCommerce Events
+
+Firebase offers a special command set that is tailored for ecommerce integrations. You can learn more about the commands in the [Firebase Measure ecommerce documentation](https://firebase.google.com/docs/analytics/measure-ecommerce).
+
+> Log item views
+
+<CodeGroup>
+  ```bash bash
+  median.firebaseAnalytics.event.viewItem({
+    data: JsonProductItem,
+    currency: STRING,
+    price: FLOAT,
+  });
+  // JsonProductItem is an encoded map of ProductItem*
+  // currency is the 3-letter currency code in upper-case
+  // price is the cost per item in the given Currency
+  ```
+</CodeGroup>
+
+> Log wishlist additions
+
+<CodeGroup>
+  ```bash bash
+  median.firebaseAnalytics.event.addToWishlist({
+    data: JsonProductItem,
+    currency: STRING,
+    price: FLOAT,
+    quantity: INTEGER,
+  });
+  // JsonProductItem is an encoded map of ProductItem*
+  // currency is the 3-letter currency code in upper-case
+  // price is the cost per item in the given Currency
+  // quantity is the count of the product. It multiplies the price for the total amount.
+  ```
+</CodeGroup>
+
+> Log add to cart events
+
+<CodeGroup>
+  ```bash bash
+  median.firebaseAnalytics.event.addToCart({
+    data: JsonProductItem,
+    currency: STRING,
+    price: FLOAT,
+    quantity: INTEGER,
+  });
+  // JsonProductItem is an encoded map of ProductItem*
+  // currency is the 3-letter currency code in upper-case
+  // price is the cost per item in the given Currency
+  // quantity is the count of the product. It multiplies the price for the total amount.
+  ```
+</CodeGroup>
+
+> Log remove from cart events
+
+<CodeGroup>
+  ```bash bash
+  median.firebaseAnalytics.event.removeFromCart({
+    data: JsonProductItem,
+    currency: STRING,
+    price: FLOAT,
+    quantity: INTEGER,
+  });
+  // JsonProductItem is an encoded map of ProductItem*
+  // currency is the 3-letter currency code in upper-case
+  // price is the cost per item in the given Currency
+  // quantity is the count of the product. It multiplies the price for the total amount.
+  ```
+</CodeGroup>
+
+> \*Note: `ProductItem` may include the following fields. All fields are optional though it is recommended to provide at least an `item_id` or `item_name`.
+
+<CodeGroup>
+  ```bash bash
+  String item_id
+  String item_name
+  String item_category
+  String item_variant
+  String item_brand
+  String item_list_name
+  String item_list_id
+  double price
+  ```
+</CodeGroup>
+
+***
+
+## Default Event Logging
+
+By default, Firebase Analytics automatically logs key events such as screen\_view, session\_start, first\_open\_time. For a complete list of automatic events, see [Google Analytics documentation](https://firebase.google.com/docs/reference/kotlin/com/google/firebase/analytics/FirebaseAnalytics.Event).
+
+***
+
+## Testing Checklist
+
+### Basic Functionality
+
+**Basic Functionality⎘ Copy link
+
+* [ ] Plugin is enabled in App Studio (`Native Plugins > Google Firebase Analytics > Settings`)
+* [ ] `google-services.json` (Android) and `GoogleService-Info.plist` (iOS) are uploaded in `Build & Deploy > Google Services`
+* [ ] App rebuilt after configuration changes
+* [ ] Firebase Analytics initializes without JavaScript Bridge errors
+
+### Platform Testing
+
+**Platform Testing⎘ Copy link
+
+* [ ] `median.firebaseAnalytics.event.setConsent(...)` behaves as expected for your test scenario
+* [ ] `median.firebaseAnalytics.event.collection({'enabled': false})` then `true` changes logging behavior
+
+### Configuration Testing
+
+**Configuration Testing⎘ Copy link
+
+* [ ] Default consent option in Plugin Settings matches your policy (`Follow EU Consent Policy`, `Deny`, or `Allow`)
+* [ ] `setUser`, `setUserProperty`, `logEvent`, `logScreen`, and eCommerce calls appear in Firebase Analytics as expected
+
+### User Experience
+
+**User Experience⎘ Copy link
+
+* [ ] Consent and analytics behavior align with your privacy disclosures
+* [ ] Custom events and screen views do not block core web flows
+
+***
+
+## Troubleshooting
+
+### Firebase Analytics functions are undefined or not working
+
+**Firebase Analytics functions are undefined or not working⎘ Copy link
+
+Enable the JavaScript Bridge in your Median dashboard, then call Firebase methods after the `deviceready` event. In App Studio (`Native Plugins > Google Firebase Analytics`), confirm the plugin is enabled and that `GoogleService-Info.plist` (iOS) and `google-services.json` (Android) are uploaded under `Build & Deploy > Google Services`. Save and rebuild after configuration changes.
+
+### Custom events are not appearing in Firebase Analytics
+
+**Custom events are not appearing in Firebase Analytics⎘ Copy link
+
+Verify event collection is enabled with `median.firebaseAnalytics.event.collection({'enabled': true})`. Then trigger a known test event, for example `median.firebaseAnalytics.event.logEvent({'event': 'test_event', 'data': {...}})`, and confirm your app build includes the latest plugin and Google Services configuration files.
+
+### Consent behavior does not match the selected policy
+
+**Consent behavior does not match the selected policy⎘ Copy link
+
+Check the default consent option in Plugin Settings (`Follow EU Consent Policy`, `Deny`, or `Allow`) and confirm you are not overriding it unexpectedly at runtime. If you call `setConsent`, verify each key (`adStorage`, `analyticsStorage`, `adUserData`, `adPersonalization`) is set to the intended boolean value.
+
+### User ID or user properties are missing from analytics data
+
+**User ID or user properties are missing from analytics data⎘ Copy link
+
+Set the user ID only after the user is authenticated using `median.firebaseAnalytics.event.setUser({'ID': 'your_user_id'})`, then apply properties with `setUserProperty`. Trigger a follow-up event after those calls so the updated identity and properties are attached to event data.
+
+### eCommerce events are incomplete or rejected
+
+**eCommerce events are incomplete or rejected⎘ Copy link
+
+Confirm your eCommerce payload includes valid `currency` (3-letter uppercase code), numeric `price`, and `quantity` where required. For `data`, include a valid ProductItem map and provide at least `item_id` or `item_name` to improve event quality and reporting reliability.
+
+<Info>
+  ## Still having trouble?
+
+  For Firebase Analytics behavior outside Median’s bridge, refer to [Google Firebase Analytics documentation.](https://firebase.google.com/docs/analytics)
+</Info>
+
+***
+
+### Next Steps
+
+* [App Identifiers](/docs/app-identifiers)
+
+Copy Page
+
+* * [Why use Google Firebase Analytics?](#why-use-google-firebase-analytics)
+
+  * [Prerequisites](#prerequisites)
+
+  * [When to use this plugin](#when-to-use-this-plugin)
+
+  * [What you'll do](#what-youll-do)
+
+  * [Implementation Guide](#implementation-guide)
+
+  * * [Google Firebase Project Setup](#google-firebase-project-setup)
+    * [Enable the Plugin](#enable-the-plugin)
+    * [JavaScript Bridge Functions](#javascript-bridge-functions)
+    * [eCommerce Events](#ecommerce-events)
+
+  * [Default Event Logging](#default-event-logging)
+
+  * [Testing Checklist](#testing-checklist)
+
+  * [Troubleshooting](#troubleshooting)

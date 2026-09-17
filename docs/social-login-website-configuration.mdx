@@ -1,0 +1,74 @@
+---
+title: "Website Configuration"
+---
+
+## Overview
+
+Integrate Social Login with your website using the Median JavaScript Bridge
+
+This guide is for developers who've already set up social login ([Facebook](https://docs.median.co/docs/facebook-login-configuration#/), [Google](https://docs.median.co/docs/google-sign-in-configuration#/), or [Apple](https://docs.median.co/docs/sign-in-with-apple-configuration#/)) on their website and want to add the Median Social Login Native Plugin for a better app experience.
+
+<Check>
+  ### Developer Demo
+
+  [Display our demo page in your app to test during development](https://median.dev/social-login)
+</Check>
+
+## How it works
+
+You'll use Median JavaScript Bridge methods to trigger native login flows for each social provider. These methods only work when your website is running inside your app, not in a regular browser.
+
+The plugin works with your current authentication infrastructure, using the same API endpoints or JavaScript callback functions you already have for browser-based login. Whether you set up server-side redirects or client-side JavaScript callbacks, the plugin taps into your existing authentication flow without needing to rebuild your backend.
+
+Here's the approach:
+
+* Show your standard login buttons when users visit your site in a browser.
+* Show the same buttons with modified JavaScript functionality that calls the JavaScript Bridge methods when they visit through your app (no styling changes needed)
+
+### Example implementation
+
+Here's how to set this up with JavaScript:
+
+<CodeGroup>
+  ```bash bash
+  <button class="facebook-login browser-only" onclick="facebookLogin()">
+  	Log In With Facebook
+  </button>
+
+  <button class="facebook-login native-only"
+    onclick="median.socialLogin.facebook.login({ 'redirectUri' : 'https://median-social-logins-demo.web.app/auth/facebook/redirect', 'scope' : 'public_profile, email' });">
+  	Log in With Facebook
+  </button>
+
+  <script>
+  const isMedian = navigator.userAgent.indexOf("median") >= 0;
+
+  if (isMedian) {
+      	// Remove browser-only buttons
+      	const elements = document.getElementsByClassName("browser-only");
+      	while (elements.length > 0) {
+          	elements[0].parentNode.removeChild(elements[0]);
+      	}
+  } else {
+      	// Remove native-only buttons
+      	const elements = document.getElementsByClassName("native-only");
+      	while (elements.length > 0) {
+          	elements[0].parentNode.removeChild(elements[0]);
+      	}
+  }
+  </script>
+  ```
+</CodeGroup>
+
+***
+
+### Next Steps
+
+* [Server-side Redirects](/docs/social-login-server-side-redirects)
+* [JavaScript Callbacks](/docs/social-login-javascript-callbacks)
+
+Copy Page
+
+* * [Overview](#overview)
+  * [How it works](#how-it-works)
+  * * [Example implementation](#example-implementation)

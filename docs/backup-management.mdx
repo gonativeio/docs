@@ -1,0 +1,83 @@
+---
+title: "Backup Management"
+description: "Backup management in Median App Studio ensures that your work is safely retained and easily restorable when needed. This guide explains how backups work, how to manage them, and how to restore previous versions of your app."
+---
+
+## Backup Menu Access
+
+To view and manage your app backups:
+
+1. Go to your private **app management link**.
+2. Click **Manage App Backups**.
+
+<Frame caption="Access App Backup Panel">
+  <img src="/images/docs/07f998de8a1ead9d71a75d430908513c56f20cbee48d2ba79c1405564b304132-Screenshot_2025-07-04_at_13.23.01.png" />
+</Frame>
+
+<Frame caption="Manage App Backup Panel">
+  <img src="/images/docs/cbbc2f27ba2569d440b3cf7939447ec2532eb37992165e65b2fedf09bd5621d1-Screenshot_2025-07-04_at_13.24.06.png" />
+</Frame>
+
+## Backup Details
+
+A backup is automatically created every time you click Save in the App Studio.
+
+* **Backup Retention Policy**:
+
+  * Automatic backups are kept for 30 days.
+  * Only one automatic backup per week is retained beyond 30 days.
+  * You can **manually bookmark backups to retain them permanently**.
+
+Each backup includes:
+
+* The **timestamp** of when it was created.
+* The **username** of the user who created it.
+
+## Naming Backups
+
+For better organization, especially around app releases or major updates, it's recommended to name your backups. For example:
+
+```
+Rlease Version 1.0
+v1.0.0-release  
+```
+
+Meaningful names help you quickly identify important restore points.
+
+## Bookmarking Backups
+
+To ensure a backup is permanently retained, click the bookmark icon next to the backup entry. Bookmarked backups are not subject to the automatic cleanup policy and will be kept until you manually delete them.
+
+## Saving Backups
+
+To save your current app state as a backup:
+
+1. Click Save in the App Studio.
+2. This action will automatically generate a backup entry with your username and a timestamp.
+3. Optionally, name the backup or bookmark it for long-term retention.
+
+## Preview and Restore
+
+You can preview the contents of any backup before restoring it. This ensures you're reverting to the correct version.
+
+To restore a backup:
+
+1. Open the Manage App Backups panel.
+2. Select the backup you wish to restore.
+3. Click Preview to review its contents.
+4. Click Restore to revert your app to that version.
+
+***
+
+[Google Developer Verification](/docs/google-developer-verification)
+
+[Multiple App Instances](/docs/multiple-app-instances)
+
+Copy Page
+
+* * [Backup Menu Access](#backup-menu-access)
+  * [Backup Details](#backup-details)
+  * [Naming Backups](#naming-backups)
+  * [Bookmarking Backups](#bookmarking-backups)
+  * [Saving Backups](#saving-backups)
+  * [Preview and Restore](#preview-and-restore)

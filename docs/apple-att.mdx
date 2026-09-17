@@ -1,0 +1,89 @@
+---
+title: "Apple App Tracking Transparency"
+description: "To comply with Apple’s User Privacy and Data Use Policy, all iOS apps running on iOS 14.5 and above must request and obtain explicit user consent before tracking users across apps or websites owned by other companies. This is enforced through Apple’s AppTrackingTransparency (ATT) Framework."
+---
+
+If your app collects data for advertising, analytics, or third-party services, you must present the ATT prompt and respect the user's decision.
+
+Fortunately, Median makes it easy for you to configure your app to utilize Apple's AppTrackingTransparency Framework to remain compliant.
+
+## Implementation Guide
+
+### Enable ATT in Your App Configuration
+
+* Open the Permissions tab in the App Studio.
+
+* **Enable** App Tracking Transparency.
+
+* Choose how the ATT prompt is displayed:
+
+  * **Automatic** - The prompt is shown automatically on the first app launch.
+  * **Manual** - You control when the prompt appears via JavaScript.
+
+You may provide your own description to explain why tracking is used, or use the default text supplied by Median.
+
+<Frame caption="ATT App Configuration">
+  <img src="/images/docs/21bece73783e8b29dd2fca2cdd95eac07ef9502b452337db9040dc7106b8d320-Screenshot_2025-07-04_at_11.49.56.png" />
+</Frame>
+
+### Prompt for User Consent at Runtime (Manual Method)
+
+If you prefer to trigger the ATT prompt at a specific moment in your app (e.g., after onboarding or before accessing personalized content), use the following JavaScript function:
+
+<CodeGroup>
+  ```bash bash
+  function request() {
+    median.ios.attconsent.request()
+      .then(function (result) {
+        // Handle user's response
+        if (result.granted) {
+          // Proceed with tracking logic
+        } else {
+          // Disable tracking
+        }
+      });
+  }
+  ```
+</CodeGroup>
+
+> The `result` object will be `{ granted: true|false }` based on the user's response to the consent prompt. For iOS 14.4 and lower, `result` object will always be `{ granted: true}`
+
+### Check ATT Consent Status
+
+You can check whether the user has already responded to the ATT prompt using the following function:
+
+<CodeGroup>
+  ```bash bash
+  function status() {
+    median.ios.attconsent.status()
+      .then(function (result) {
+        // Use result.granted to determine tracking logic
+      });
+  }
+  ```
+</CodeGroup>
+
+> The `result` object will be `{ granted: true|false }` based on the user's response to the consent prompt. For iOS 14.4 and lower, `result` object will always be `{ granted: true}`
+
+This is useful for conditional logic. For example, adjusting third-party SDK behavior or disabling analytics for non-consenting users.
+
+## Additional Resources
+
+* 📘 [Apple’s AppTrackingTransparency Framework Documentation](https://developer.apple.com/documentation/apptrackingtransparency)
+* 📖 [Median Blog: What Is App Tracking Transparency for iOS?](https://median.co/blog/what-is-app-tracking-transparency-for-ios)
+
+***
+
+[Permission Prompt Localization](/docs/permission-prompt-localization)
+
+[Camera and File Uploads](/docs/camera-and-file-uploads)
+
+Copy Page
+
+* * [Implementation Guide](#implementation-guide)
+
+  * * [Enable ATT in Your App Configuration](#enable-att-in-your-app-configuration)
+    * [Prompt for User Consent at Runtime (Manual Method)](#prompt-for-user-consent-at-runtime-manual-method)
+    * [Check ATT Consent Status](#check-att-consent-status)
+
+  * [Additional Resources](#additional-resources)

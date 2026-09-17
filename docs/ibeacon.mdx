@@ -1,0 +1,135 @@
+---
+title: "iBeacon"
+description: "Add indoor location awareness and mapping capabilities to your app through the use of iBeacons and proximity scanning"
+---
+
+This module enables your app to detect nearby beacons that follow the iBeacon specification, allowing you to retrieve detailed beacon data such as UUID, major, minor identifiers, signal strength, and proximity. Perfect for location-based services, this feature enhances your app’s functionality by enabling precise proximity detection.
+
+## How iBeacons Work
+
+iBeacons continuously broadcast three unique identifiers:
+
+* **UUID** (Universally Unique Identifier): A random identifier customized for each deployment.
+* **Major**: An integer used to group beacons (e.g., store locations).
+* **Minor**: An integer that identifies each individual beacon within a group.
+
+For example, a retailer may use a single UUID for all retail locations and separate major values for each store, while assigning a unique minor identifier for each individual beacon. Additionally, iBeacons broadcast signal strength, which allows apps to estimate the distance from each beacon.
+
+## Privacy Considerations
+
+Because Bluetooth beacons can identify a user's physical location, it is crucial to handle this functionality with privacy in mind. iOS requires the user to grant location permissions to scan for iBeacons. Similarly, Android devices also require permission starting from **Android 10**.
+
+## Implementation Guide
+
+### Define Your UUID
+
+On iOS, you must specify the UUID you want to scan for, as Apple does not allow iOS devices to scan for all UUIDs. On Android, UUID is optional.
+
+### Set Up the Callback Function
+
+Define a callback function that will handle the beacon data once the scan is complete. For example:
+
+<CodeGroup>
+  ```bash bash
+  // define this function, but do not call it yourself!
+  function callback(data) {
+    if (data.success) {
+      alert('I found ' + data.beacons.length + ' beacons');
+    }
+  }
+  ```
+</CodeGroup>
+
+### Initiate the Scan
+
+To start the beacon scan, use the following Median JavaScript Bridge function. The `uuid` is required for iOS and optional for Android:
+
+<CodeGroup>
+  ```bash bash
+  median.beacon.scan({'callback': callback, 'uuid': 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'});
+  ```
+</CodeGroup>
+
+### Handle Scan Results
+
+Within seconds, the **callback** function will return a data object. If the scan is successful, the data will include:
+
+* `success`: set to true. This does not indicate that any beacons were found, only that the scan did not encounter errors.
+
+* `beacons`: an array of beacon objects, each containing the fields:
+
+  * `format`: a string, set to "iBeacon"
+  * `uuid`: a string
+  * `major`: an integer
+  * `minor`: an integer
+  * `rssi`: signal strength in decibels
+  * `proximity` (iOS only): "immediate", "near", "far", or "unknown"
+  * `accuracy` (iOS only): the accuracy of the proximity calculation in meters
+  * `distance` (Android only): the estimated distance of the beacon in meters
+
+Example of successful scan data:
+
+<CodeGroup>
+  ```bash bash
+  {
+    "success": true,
+    "beacons": [
+  {
+    "format": "iBeacon",
+    "uuid": "9C615AD4-8E6A-53BC-BC27-82171491A2WA",
+    "major": 1000,
+    "minor": 123,
+    "rssi": -52,
+    "proximity": "immediate",
+    "accuracy": 0.1413
+  },
+  {
+    "format": "iBeacon",
+    "uuid": "9C615AD4-8E6A-53BC-BC27-82171491A2WB",
+    "major": 1001,
+    "minor": 1321,
+    "rssi": -78,
+    "proximity": "near",
+    "accuracy": 4.5321
+  }
+    ]
+  }
+  ```
+</CodeGroup>
+
+If the scan fails, the data object will include the following:
+
+* `success`: set to false
+* `error`: A string describing the reason for failure (e.g., "Bluetooth LE not supported")
+
+Example of failed scan data:
+
+<CodeGroup>
+  ```bash bash
+  {
+    "success": false,
+    "error": "This device does not support Bluetooth LE"
+  }
+  ```
+</CodeGroup>
+
+Typical reasons for a scan to fail include the device not having the necessary hardware, Bluetooth being disabled, or the user denying location permissions.
+
+***
+
+[Document Scanner](/docs/document-scanner)
+
+[NFC Tag Scanner](/docs/nfc-tag-scanner)
+
+Copy Page
+
+* * [How iBeacons Work](#how-ibeacons-work)
+
+  * [Privacy Considerations](#privacy-considerations)
+
+  * [Implementation Guide](#implementation-guide)
+
+  * * [Define Your UUID](#define-your-uuid)
+    * [Set Up the Callback Function](#set-up-the-callback-function)
+    * [Initiate the Scan](#initiate-the-scan)
+    * [Handle Scan Results](#handle-scan-results)

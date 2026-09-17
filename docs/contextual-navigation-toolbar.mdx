@@ -1,0 +1,295 @@
+---
+title: "iOS Contextual Navigation Toolbar"
+description: "Provide your users with 'back' and 'forward' navigation controls."
+---
+
+<Warning>
+  ### iOS-only feature
+
+  The iOS Contextual Navigation Toolbar is an iOS-specific feature and is **not supported on Android**
+</Warning>
+
+Unlike Android devices, iPhones and iPads do not have a built-in back button, which can make web navigation within an app challenging. The Contextual Navigation Toolbar provides a native toolbar at the bottom of the screen, enabling users to navigate more easily based on their browsing history and the current page URL.
+
+## Key Features
+
+* **Back Button**: Returns to the previous page.
+* **Forward Button (Optional)**: Moves forward in browsing history.
+* **Refresh Button (Optional)**: Reloads the current page.
+* **Customizable Visibility (Optional)**: Configure when and where the toolbar appears.
+
+By default, the toolbar appears whenever a page exists in the webview history. This ensures a seamless user experience similar to website navigation.
+
+## Visual Toolbar Example
+
+|                                       |                                                       |
+| ------------------------------------- | ----------------------------------------------------- |
+| ![](/images/docs/532413a-back-ss.png) | ![](/images/docs/e0e6c71-back-refresh-forward-ss.png) |
+| Back Button                           | Back, Refresh, and Forward buttons                    |
+
+## Configuration
+
+### Default configuration
+
+By default, the toolbar includes a Back button with a text label (\< Back). You can modify this behavior by updating the `navigation` configuration object in `appConfig.json`.
+
+### Configuration Options
+
+* Add Buttons:
+
+  * Add a Forward button
+  * Add a Refresh button
+
+* Change Toolbar Visibility:
+
+  * Show only when there is a page in history (Default): `"visibilityByBackButton": "backButtonActive"`
+  * Always show regardless of history: `"visibilityByBackButton": "always"`
+
+* Set Page-Specific Visibility:
+
+  * Show on all pages: `"visibilityByPages": "allPages"`
+  * Show only on specific pages (using regex rules): `"visibilityByPages": "specificPages"`
+
+* Customize Button Labels and Appearance:
+
+  * Hide text labels for Back and Forward buttons
+  * Use custom text labels
+
+### Dynamic Visibility
+
+The iOS Contextual Navigation Toolbar can be dynamically enabled or disabled using the Median JavaScript Bridge.
+
+Conditions for Toolbar Display:
+
+* `enabled: true`: The toolbar appears if any of the following conditions are met:
+
+  * The webview has back history.
+  * The forward button is enabled and the webview has forward history.
+  * The refresh button is enabled.
+
+* `enabled: false`: The toolbar remains hidden regardless of other conditions.
+
+<CodeGroup>
+  ```bash bash
+  // Show the contextual navigation toolbar, if conditions are met
+  median.ios.contextualNavToolbar.set({"enabled":true});
+  // Hide the contextual navigation toolbar
+  median.ios.contextualNavToolbar.set({"enabled":false});
+  ```
+</CodeGroup>
+
+## Implementation Examples
+
+<CodeGroup>
+  ```bash bash
+  /* Default Toolbar */
+  "toolbarNavigation": {
+    "enabled": true,
+    "visibilityByPages": "allPages",
+    "visibilityByBackButton": "backButtonActive",
+    "regexes": [
+      {
+      "enabled": true,
+      "regex": ".*"
+      }
+    ],
+    "items": [
+      {
+        "system": "back",
+        "titleType": "defaultText",
+        "visibility": "allPages",
+        "urlRegex": [{ "enabled": true, "regex": ".*" }]
+      },
+      {
+        "system": "refresh",
+        "enabled": false,
+        "visibility": "allPages",
+        "urlRegex": [{ "enabled": true, "regex": ".*" }]
+      },
+      {
+        "system": "forward",
+        "enabled": false,
+        "titleType": "defaultText",
+        "visibility": "allPages",
+        "urlRegex": [{ "enabled": true, "regex": ".*" }]
+      }
+    ]
+  }
+  ```
+
+  ```bash bash
+  /* All Options */
+  "toolbarNavigation": {
+    "enabled": true,
+    "visibilityByPages": "allPages" | "specificPages",
+    "visibilityByBackButton": "backButtonActive" | "always",
+    "regexes": [
+      {
+        "enabled": true | false,
+        "regex": ".*"
+      }
+    ],
+    "items": [
+      {
+        "system": "back",
+        "title": "Back",
+        "titleType": "noText" | "defaultText" | "customText",
+        "visibility": "allPages" | "specificPages",
+        "urlRegex": [
+          { 
+            "enabled": true | false, 
+            "regex": ".*" 
+          }
+        ]
+      },
+      {
+        "system": "refresh",
+        "enabled": false,
+        "visibility": "allPages" | "specificPages",
+        "urlRegex": [
+          { 
+            "enabled": true | false, 
+            "regex": ".*" 
+          }
+        ]
+      },
+      {
+        "system": "forward",
+        "enabled": false,
+        "title": "Forward",
+        "titleType": "noText" | "defaultText" | "customText",
+        "visibility": "allPages" | "specificPages",
+        "urlRegex": [
+          { 
+            "enabled": true | false, 
+            "regex": ".*" 
+          }
+        ]
+      }
+    ]
+  }
+  ```
+
+  ```bash bash
+  /* Example: Custom Text Labels */
+  "toolbarNavigation": {
+    "enabled": true,
+    "visibilityByPages": "allPages",
+    "visibilityByBackButton": "backButtonActive",
+    "regexes": [
+      {
+        "enabled": true,
+        "regex": ".*"
+      }
+    ],
+    "items": [
+      {
+        "system": "back",
+        "title": "背部",
+        "titleType": "customText",
+        "visibility": "allPages",
+        "urlRegex": [
+          { 
+            "enabled": true | false, 
+            "regex": ".*" 
+          }
+        ]
+      },
+      {
+        "system": "refresh",
+        "enabled": false,
+        "visibility": "allPages",
+        "urlRegex": [
+          { 
+            "enabled": true | false, 
+            "regex": ".*" 
+          }
+        ]
+      },
+      {
+        "system": "forward",
+        "enabled": false,
+        "title": "向前",
+        "titleType": "customText",
+        "visibility": "allPages",
+        "urlRegex": [
+          { 
+            "enabled": true | false, 
+            "regex": ".*" 
+          }
+        ]
+      }
+    ]
+  }
+  ```
+
+  ```bash bash
+  /* Example: Visible Specific Pages */
+  /* Visibility based on the first matched regex */
+  /* Example: For the URLs matching the first regex (FAQ page),
+  	 the toolbar will be hidden (because "enabled": false), while for the URLs
+     matching the second regex (all Median webpages), the toolbar will be 
+     visible and so on.
+  */
+  "toolbarNavigation": {
+    "enabled": true,
+    "visibilityByPages": "specificPages",
+    "visibilityByBackButton": "always",
+    "regexes": [
+      {
+        "regex": "https://median.co/faq.*",
+        "enabled": false
+      },
+      {
+        "regex": "https://median.co/.*",
+        "enabled": true
+      },
+      {
+        "regex": ".*",
+        "enabled": false
+      }
+    ],
+    "items": [
+      {
+        "system": "back",
+        "titleType": "defaultText",
+        "visibility": "allPages",
+        "urlRegex": [{ "enabled": true, "regex": ".*" }]
+      },
+      {
+        "system": "refresh",
+        "enabled": false,
+        "visibility": "allPages",
+        "urlRegex": [{ "enabled": true, "regex": ".*" }]
+      },
+      {
+        "system": "forward",
+        "enabled": false,
+        "titleType": "defaultText",
+        "visibility": "allPages",
+        "urlRegex": [{ "enabled": true, "regex": ".*" }]
+      }
+    ]
+  }
+  ```
+</CodeGroup>
+
+***
+
+[Custom Icons](/docs/custom-icons)
+
+[Push Notifications Overview](/docs/push-notifications-overview)
+
+Copy Page
+
+* * [Key Features](#key-features)
+
+  * [Visual Toolbar Example](#visual-toolbar-example)
+
+  * [Configuration](#configuration)
+
+  * * [Default configuration](#default-configuration)
+    * [Configuration Options](#configuration-options)
+    * [Dynamic Visibility](#dynamic-visibility)
+
+  * [Implementation Examples](#implementation-examples)

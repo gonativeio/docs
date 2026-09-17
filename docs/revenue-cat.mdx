@@ -1,0 +1,206 @@
+---
+title: "RevenueCat"
+description: "Leverage RevenueCat to power in-app purchases in your app"
+---
+
+The RevenueCat Plugin simplifies the integration of in-app purchases and subscriptions by leveraging RevenueCat’s backend and SDKs for iOS and Android.
+
+This plugin provides a streamlined approach to fetching products, processing purchases, and restoring past transactions, reducing the complexity of implementing Apple’s StoreKit and Google Play Billing.
+
+<Check>
+  ### Developer Demo
+
+  Display our demo page in your app to test during development [https://median.dev/revenue-cat](https://median.dev/revenue-cat)
+</Check>
+
+## Implementation Guide
+
+### RevenueCat Setup
+
+#### Step 1 - Connect your mobile Apps
+
+Start by adding your iOS and Android apps in RevenueCat under Apps & Providers.
+
+<Frame caption="RevenueCat- Apps & Providers">
+  <img src="/images/docs/4b0f5e17cdc162cefc2eaabc1c9bf2c21ead2950226fc08f1481fd89a1cb26ee-Screenshot_2025-12-10_at_15.03.09.png" />
+</Frame>
+
+##### Step 1.1 - iOS: New App Store App
+
+For your App Store App configuration you will need your App Bundle ID as well as your In-app purchase key configuration. You can find both pieces of information below
+
+* App Bundle ID: [iOS Bundle ID](https://docs.median.co/docs/app-identifiers#ios-bundle-id)
+* In-app purchase key configuration: [Generate keys for In-App Purchases](https://developer.apple.com/help/app-store-connect/configure-in-app-purchase-settings/generate-keys-for-in-app-purchases/)
+
+Business and Enterprise customers may request both values by creating a support ticket within the App Studio, as our team will help with the setup and management of App Store Connect and the App Identifiers.
+
+<Frame caption="RevenueCat - New App Store app">
+  <img src="/images/docs/2e2ba192e6c99bd1a0a66497acdbe90c5b657f2ada7cd66fb9f8e83c99e7a09d-Screenshot_2025-12-10_at_15.06.44.png" />
+</Frame>
+
+##### Step 1.2 - Android: New Play Store configuration
+
+For your Play Store configuration you will need your Google Play package name as well as your Service account credentials. You can find both pieces of information below
+
+* Google Play package name: [Android Package Name](https://docs.median.co/docs/app-identifiers#android-package-name)
+* Service Account Credentials: [Google Services](https://docs.median.co/docs/google-services)
+
+Business and Enterprise customers may request both values by creating a support ticket within the App Studio, as our team will help with the setup and management of Google Firebase and the App Identifiers.
+
+<Frame caption="RevenueCat - New Play Store configuration">
+  <img src="/images/docs/d0c86e44ab9934ced6c22ffce97688c08c2e91d53b908361afd79710493be433-Screenshot_2025-12-10_at_15.07.06.png" />
+</Frame>
+
+##### Step 2 - Retrieve Your RevenueCat API Key
+
+You must initialize the SDK using your public API key. RevenueCat provides a test API key by default so you can validate purchases before going live.
+
+<Frame caption="RevenueCat - SDK API keys">
+  <img src="/images/docs/f4d86b4a3b4fcbaa9cdfb7923f24f707b42080b309615eb645273b8b00d65dec-SDK_API_Key.png" />
+</Frame>
+
+##### Step 3 - Setup your Products
+
+Follow the steps in the official [RevenueCat Product Configuration Guide](https://www.revenuecat.com/docs/offerings/products-overview) to review your Test Store Products, or setup/import Real Store products.
+
+### App Configuration
+
+Enable the Revenue Cat Plugin in the Native Plugins tab as shown below. The plugin does not require configuration fields because initialization happens at runtime using the JavaScript Bridge API.
+
+<Frame caption="RevenueCat Plugin Enablement">
+  <img src="/images/docs/ec6746920219187e2ad318dd49614e6e03cc2c9607db722b5dce120be4da3ac0-Screenshot_2025-12-10_at_14.59.56.png" />
+</Frame>
+
+### JavaScript Bridge Functions
+
+#### SDK Initialization
+
+To use the RevenueCat Plugin, initialize it with your public `apiKey` and `appUserID`. References to both can be found in the [RevenueCat documentation](https://www.revenuecat.com/docs/projects/authentication). The `appUserID` will allow you to reference users in the RevenueCat dashboard, via the API, as well as in the webhooks and other integrations.
+
+Provide a callback function or return a promise.
+
+<CodeGroup>
+  ```bash bash
+  median.revenueCat.configure({
+    'apiKey': '<my_api_key>',
+    'appUserID': '<my_app_user_id>'
+  })
+  // Return value:
+  {
+    "success": true | false
+  }
+  ```
+</CodeGroup>
+
+#### Verify SDK Initialization
+
+Verify the SDK is initialized before calling any other methods. Provide a callback function or return a promise.
+
+<CodeGroup>
+  ```bash bash
+  median.revenueCat.isInitialized({'callback': function});
+  // Return value:
+  {
+    'initialized': true | false,
+    'apiKey': STRING // available only if initialized is true
+  }
+  ```
+</CodeGroup>
+
+#### Retrieve Offerings
+
+Fetch available in-app products, subscriptions, and offerings from RevenueCat.
+
+Provide a callback function or return a promise.
+
+<CodeGroup>
+  ```bash bash
+  median.revenueCat.getOfferings()
+  // Return value:
+  {
+    "identifiers": ["$subscription_monthly","$subscription_annual","$subscription_lifetime"]
+  }
+  ```
+</CodeGroup>
+
+#### Make a Purchase
+
+Trigger an in-app purchase using a product identifier.
+
+Provide a callback function or return a promise.
+
+<CodeGroup>
+  ```bash bash
+  median.revenueCat.purchase({'identifier':STRING})
+  // Return value:
+  {
+    "success": true | false
+  }
+  ```
+</CodeGroup>
+
+#### Restore Purchases
+
+Restore a user's previously purchased products and subscriptions.
+
+Provide a callback function or return a promise.
+
+<CodeGroup>
+  ```bash bash
+  median.revenueCat.restorePurchases()
+  // Return value:
+  {
+    "success": true | false
+  }
+  ```
+</CodeGroup>
+
+#### Present a Paywall
+
+Present a paywall that has been configured through the RevenueCat platform. Please follow the [RevenueCat - Creating Paywalls](https://www.revenuecat.com/docs/tools/paywalls/creating-paywalls) guide for style and configuration references.
+
+<CodeGroup>
+  ```bash bash
+  median.revenueCat.presentPaywall();
+  ```
+</CodeGroup>
+
+This function provides a call back and will return an error if the user cancels the paywall.
+
+## Troubleshooting
+
+### Can Median manage my RevenueCat configuration?
+
+Can Median manage my RevenueCat configuration?⎘ Copy link
+
+Median maintains its own RevenueCat account for development and QA purposes only. However, Median does not manage your RevenueCat configuration, product setup, or App Store / Play Store metadata.
+
+If you run into issues, consult RevenueCat’s official troubleshooting documentation:
+
+[Common Issues - RevenueCat Troubleshooting](https://www.revenuecat.com/docs/test-and-launch/debugging/troubleshooting-the-sdks)
+
+### What are the app review implications when using paywalls?
+
+What are the app review implications when using paywalls?⎘ Copy link
+
+Paywalls are often one of the most closely reviewed parts of an app during App Store and Play Store review. Both platforms require apps to clearly communicate what users receive before they are asked to pay, ensuring expectations are transparent and not misleading.
+
+When configuring your payment options and paywalls, carefully follow RevenueCat’s guidance to improve your chances of approval:
+
+[RevenueCat - Getting your paywall approved through app review](https://www.revenuecat.com/docs/tools/paywalls/creating-paywalls/app-review)
+
+***
+
+[Master Lock](/docs/master-lock)
+
+[Social Share](/docs/social-share)
+
+Copy Page
+
+* * [Implementation Guide](#implementation-guide)
+
+  * * [RevenueCat Setup](#revenuecat-setup)
+    * [App Configuration](#app-configuration)
+    * [JavaScript Bridge Functions](#javascript-bridge-functions)
+
+  * [Troubleshooting](#troubleshooting)

@@ -1,0 +1,171 @@
+---
+title: "Permissions Overview"
+description: "Learn how to manage device permissions in your app, including camera, location, and contacts"
+---
+
+Mobile app permissions play a critical role in ensuring secure interaction between users and applications. They serve as a framework that enables apps to access specific features or data on a user's device, such as the camera, microphone, location, or contact list, and allow the user to retain complete control over their privacy and data security.
+
+By granting these permissions, users allow apps to deliver tailored functionalities and enhance their overall experience. Some [Native Plugins](https://docs.median.co/docs/native-plugins-overview) may require certain device permissions to fulfill their use case.
+
+Apple and Google encourage developers to request permission thoughtfully. If a user has declined, you can suggest they enable the permission through the app's settings menu and include a button that launches the app settings screen using the JavaScript Bridge.
+
+<Check>
+  ### Developer Demo
+
+  Display our demo page in your app to test during development [permissions demo page](https://median.dev/permissions/)
+</Check>
+
+## Related Documentation
+
+[](https://docs.median.co/docs/permission-prompt-localization)
+
+#### [Permission Prompt Localization](https://docs.median.co/docs/permission-prompt-localization)
+
+[Localize iOS usage descriptions and customize how permission prompts are presented to users in their language.](https://docs.median.co/docs/permission-prompt-localization)
+
+[](https://docs.median.co/docs/apple-att)
+
+#### [Apple App Tracking Transparency](https://docs.median.co/docs/apple-att)
+
+[Implement ATT for iOS 14.5+ and request user consent for tracking. Required for attribution and some analytics.](https://docs.median.co/docs/apple-att)
+
+[](https://docs.median.co/docs/background-audio)
+
+#### [Background Audio](https://docs.median.co/docs/background-audio)
+
+[Enable audio playback to continue when the app is in the background. Configure background audio capability and usage.](https://docs.median.co/docs/background-audio)
+
+[](https://docs.median.co/docs/camera-and-file-uploads)
+
+#### [Camera and File Uploads](https://docs.median.co/docs/camera-and-file-uploads)
+
+[Configure camera capture and file upload permissions. Control how users select or capture images and files from the device.](https://docs.median.co/docs/camera-and-file-uploads)
+
+[](https://docs.median.co/docs/downloads-directory)
+
+#### [Downloads Directory](https://docs.median.co/docs/downloads-directory)
+
+[Configure where downloaded files are stored and how the app accesses the downloads directory.](https://docs.median.co/docs/downloads-directory)
+
+[](https://docs.median.co/docs/location-services)
+
+#### [Location Services](https://docs.median.co/docs/location-services)
+
+[Request and use location permissions for when-in-use or always-on location access. Configure location-related features.](https://docs.median.co/docs/location-services)
+
+[](https://docs.median.co/docs/web-rtc)
+
+#### [WebRTC Audio & Video](https://docs.median.co/docs/web-rtc)
+
+[Enable microphone and camera access for WebRTC-based features such as voice and video calling.](https://docs.median.co/docs/web-rtc)
+
+## Permission Prompts
+
+When requesting permissions from your users, they will be asked to provide their consent. Those prompts are native app components with very limited customization.
+
+* **iOS**: iOS allows a customizable usage description for permission prompts, enabling developers to explain how the requested data will be used. You can follow [Permission Prompt Localization](https://docs.median.co/docs/permission-prompt-localization) to localize the usage description.
+* **Android**: Android permission prompts are served from the system and are translated to the device language. No additional customization is supported.
+
+## JavaScript Bridge Functions
+
+### Permissions Status
+
+Users can change the permissions granted to your app through their device settings. You can programmatically check the status of permissions using the Median JavaScript Bridge:
+
+<CodeGroup>
+  ```bash bash
+  // get status of all permissions
+  const response = await median.permissions.status();
+
+  // only get status of selected permissions
+  const response = await median.permissions.status(["Contacts", "Camera"]);
+  ```
+</CodeGroup>
+
+The `response` object includes the current state for each requested permission:
+
+<CodeGroup>
+  ```bash bash
+  {
+    "Contacts": "undetermined",
+    "Camera": "granted"
+  }
+  ```
+</CodeGroup>
+
+Each permission can have the following states:
+
+* **denied**: The permission has been denied or revoked; it can be asked for again.
+* **granted**: The permission has been granted.
+* **undetermined**: The permission was never asked (iOS only).
+
+Status can be fetched for the following permission types:
+
+* `PhotoLibrary` (iOS only)
+* `AppTrackingTransparency` (iOS only)
+* `LocationAlways`
+* `LocationWhenInUse`
+* `Microphone`
+* `Contacts`
+* `Camera`
+* `Notifications`
+
+### App Settings
+
+<Check>
+  ### Developer Demo
+
+  Test launching the app settings menu: [median.dev/app-settings](https://median.dev/app-settings)
+</Check>
+
+When users have denied permissions, you can direct them to the app's settings page to enable the required permissions:
+
+<CodeGroup>
+  ```bash bash
+  median.open.appSettings();
+  ```
+</CodeGroup>
+
+To open the Settings page for your app, use the URL above or the JavaScript Bridge call.
+
+You can also review app permissions on device following the official guides:
+
+* **iOS**: [Control access to information in apps on iPhone](https://support.apple.com/en-ca/guide/iphone/iph251e92810/ios)
+* **Android**: [Change app permissions on your Android phone](https://support.google.com/android/answer/9431959?hl=en)
+
+## Frequently Asked Questions
+
+### Can I request Bluetooth Access?
+
+**Can I request Bluetooth Access?⎘ Copy link
+
+As of now Bluetooth is an experimental feature not supported by iOS WebKit or Android WebView.
+
+You can track compatibility here: [MDN - Web Bluetooth API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Bluetooth_API#browser_compatibility)
+
+We support a range of Bluetooth devices such as payment terminals, printers, sensor devices, etc through vendor provided SDKs and custom native plugins that implement the iOS Core Bluetooth and Android Bluetooth functionality.
+
+We implemented custom Bluetooth integrations in our iBeacon and Master Lock plugins.
+
+***
+
+### Next Steps
+
+* [Apple App Tracking Transparency](/docs/apple-att)
+* [Location Services](/docs/location-services)
+* [WebRTC Audio & Video](/docs/web-rtc)
+* [Downloads Directory](/docs/downloads-directory)
+* [Background Audio](/docs/background-audio)
+
+Copy Page
+
+* * [Related Documentation](#related-documentation)
+
+  * [Permission Prompts](#permission-prompts)
+
+  * [JavaScript Bridge Functions](#javascript-bridge-functions)
+
+  * * [Permissions Status](#permissions-status)
+    * [App Settings](#app-settings)
+
+  * [Frequently Asked Questions](#frequently-asked-questions)

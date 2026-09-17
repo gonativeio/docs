@@ -1,0 +1,57 @@
+---
+title: "Dynamic Tab Menu"
+description: "A default tab menu can be defined in the app configuration and can be overwritten dynamically as required. Alternatively, the configuration can be left blank and all tab menus set by the website. The visibility of the tab menu can also be toggled dynamically at runtime."
+---
+
+> Select a tab:
+
+<CodeGroup>
+  ```bash bash
+      median.tabNavigation.selectTab(1);
+  ```
+</CodeGroup>
+
+> Note: The tabs are 0-indexed, i.e. `median.tabNavigation.selectTab(1)` will select the second tab
+>
+> Deselect all tabs:
+
+<CodeGroup>
+  ```bash bash
+      median.tabNavigation.deselect();
+  ```
+</CodeGroup>
+
+> Set/change the tab buttons:
+
+<CodeGroup>
+  ```bash bash
+  var tabItems = [{
+                "icon": "fas fa-cloud", //optional
+                "label": "Tab 1",
+                "url": "javascript:alert('You selected tab 1')"
+            }, {
+                "icon": "fas fa-globe", //optional
+                "label": "Tab 2",
+                "url": "javascript:alert('You selected tab 2')"
+            }, {
+                "icon": "fas fa-users", //optional
+                "label": "Tab 3",
+                "url": "javascript:alert('You selected tab 3')"
+            }];
+  median.tabNavigation.setTabs({'enabled': true, 'items': tabItems});
+  ```
+</CodeGroup>
+
+> Hide the tab menu:
+
+<CodeGroup>
+  ```bash bash
+  median.tabNavigation.setTabs({'enabled': false});
+  ```
+</CodeGroup>
+
+***
+
+### Next Steps
+
+* [Bottom Tab Demo App](/docs/bottom-tab-demo-app)

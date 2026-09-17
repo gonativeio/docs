@@ -1,0 +1,122 @@
+---
+title: "Keyboard State Tracking"
+description: "Tracking the state of the on-screen keyboard is important for building responsive and immersive web-based interfaces, particularly when aiming to replicate a native, app-like experience. Dynamically adjusting web-based UI elements based on keyboard visibility improves usability and performance across devices."
+---
+
+<Check>
+  ### Developer Demo
+
+  Display our demo page in your app to test during development [https://median.dev/keyboard/](https://median.dev/keyboard/)
+</Check>
+
+## Implementation Guide
+
+Use the Median [JavaScript Bridge](https://median.co/docs/javascript-bridge) to obtain or listen the keyboard state.
+
+### Get current keyboard state
+
+Retrieve the current visibility status and size of the on-screen keyboard. This method accepts an optional callback function. If no callback is provided, a Promise is returned.
+
+<CodeGroup>
+  ```bash bash
+  median.keyboard.info({'callback': function});
+  // Returns:
+  {
+    'visible': BOOL,
+    'keyboardWindowSize': {
+      'width': INT,
+      'height': INT
+    },
+    'visibleWindowSize': {
+      'width': INT,
+      'height': INT
+    }
+  }
+  ```
+</CodeGroup>
+
+### Subscribe to Keyboard State Changes
+
+Automatically listen for changes in keyboard visibility and dimensions. Define a handler function to receive updates whenever the keyboard appears, disappears, or resizes.
+
+<CodeGroup>
+  ```bash bash
+  median.keyboard.listen(function);
+  // To stop listening, pass an empty string:
+  // median.keyboard.listen("");
+
+  // Returns on each state change:
+  {
+    'visible': BOOL,
+    'keyboardWindowSize': {
+      'width': INT,
+      'height': INT
+    },
+    'visibleWindowSize': {
+      'width': INT,
+      'height': INT
+    }
+  }
+  ```
+</CodeGroup>
+
+#### Example: Hide Bottom Navigation When Keyboard is Visible
+
+The following code hides the bottom tab bar when the keyboard appears and restores it when the keyboard is dismissed. This can be useful to preserve screen space for large forms.
+
+<CodeGroup>
+  ```bash bash
+  // Defining a listener
+  function addListener() {
+    try {
+      median.keyboard.listen(hideKeyboard);
+      alert("Keyboard listener added");
+    } catch (error) {
+      console.error("Failed to add keyboard listener", error);
+    }
+  }
+
+  // Defining a callback function that will be executed on state changes
+  function hideKeyboard(data) {
+    if (data.visible) {
+      median.tabNavigation.setTabs({ enabled: false });
+    } else {
+      median.tabNavigation.setTabs({ enabled: true });
+    }
+  }
+  ```
+</CodeGroup>
+
+### Toggle Accessory View (iOS Only)
+
+On iOS devices, the software keyboard may display an accessory view containing spell check and formatting tools. Use this method to enable or disable the accessory view as needed.
+
+<CodeGroup>
+  ```bash bash
+  median.keyboard.showAccessoryView(true); // Show accessory view
+  median.keyboard.showAccessoryView(false); // Hide accessory view
+  ```
+</CodeGroup>
+
+## Demo App
+
+|     |         |
+| --- | ------- |
+|     |         |
+| iOS | Android |
+
+***
+
+[App Resumed Callback](/docs/app-resumed-callback)
+
+[Download File](/docs/download-file)
+
+Copy Page
+
+* * [Implementation Guide](#implementation-guide)
+
+  * * [Get current keyboard state](#get-current-keyboard-state)
+    * [Subscribe to Keyboard State Changes](#subscribe-to-keyboard-state-changes)
+    * [Toggle Accessory View (iOS Only)](#toggle-accessory-view-ios-only)
+
+  * [Demo App](#demo-app)

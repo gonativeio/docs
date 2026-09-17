@@ -1,0 +1,62 @@
+---
+title: "Prompt Share Dialogue"
+description: "Use the Median JavaScript Bridge to trigger the native share dialog on Android and iOS. This feature allows you to share a URL and optional message using your device's built-in sharing options."
+---
+
+You can call this method from your app's JavaScript context, including within native tab menus and sidebars.
+
+<Check>
+  ### Developer Demo
+
+  Display our demo page in your app to test during development [https://median.dev/share-function](https://median.dev/share-function).
+</Check>
+
+## Implementation Guide
+
+The `median.share.sharePage()` is available with the following parameters.
+
+> ↔️️Median JavaScript Bridge
+>
+> To invoke the native share dialogue, open the URL:
+
+<CodeGroup>
+  ```bash bash
+  median.share.sharePage();
+  ```
+</CodeGroup>
+
+> You may also use the following to share a URL other than the current URL:
+
+<CodeGroup>
+  ```bash bash
+  median.share.sharePage({url: 'https://median.co/about'});
+  ```
+</CodeGroup>
+
+> You may also add some text which will be also shared along with the URL that you pass or the current URL:
+
+<CodeGroup>
+  ```bash bash
+  median.share.sharePage({url: 'https://median.co/about', text: 'Visit Median here'});
+  ```
+</CodeGroup>
+
+## Native Share Dialog Preview
+
+The appearance of the share dialog and the available sharing options depend on the apps and services installed on the user's device. Simulators may show limited options due to system restrictions..
+
+|                                               |                                                   |
+| --------------------------------------------- | ------------------------------------------------- |
+| ![](/images/docs/73369de-iOS-PromptShare.png) | ![](/images/docs/76fab45-Android-PromptShare.png) |
+| iOS                                           | Android                                           |
+
+***
+
+[Clipboard](/docs/clipboard)
+
+[App Resumed Callback](/docs/app-resumed-callback)
+
+Copy Page
+
+* * [Implementation Guide](#implementation-guide)
+  * [Native Share Dialog Preview](#native-share-dialog-preview)

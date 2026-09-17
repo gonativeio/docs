@@ -1,0 +1,102 @@
+---
+title: "Common Xcode Issues"
+---
+
+## Invalidating grant \<invalid NS/CF object> failed
+
+This error typically appears when there’s a failure in releasing or invalidating system resources, often related to macOS or iOS system calls, particularly within Core Foundation or Cocoa (NSObject) APIs. This is usually harmless and can be ignored unless it causes repeated crashes or abnormal behavior in your app.
+
+Although this error may seem alarming, it often does not impact the functionality of your app. However, if the issue persists or leads to app crashes, you can try the following steps:
+
+### Delete Xcode derived data
+
+You can manually remove derived data to reset your build environment.
+
+Run the following command in Terminal:
+
+e.g. `rm -rf ~/Library/Developer/Xcode/DerivedData`
+
+### Reset simulator (if using a simulator)
+
+* Open Simulator.
+* Select Device > Erase All Content and Settings.
+
+### Uninstall and reinstall Xcode.
+
+If the issue persists after following the above steps uninstall and reinstall Xcode to ensure a fresh installation of the entire environment.
+
+## Error: Command PhaseScriptExecution failed with a nonzero exit code
+
+This error usually results from local dependency issues such as outdated or incompatible CocoaPods.
+
+Follow the steps below to troubleshoot and fix this error:
+
+### Install latest the Xcode and macOS updates
+
+Ensure you are running the latest non-beta versions of Xcode and macOS.
+
+### Downgrade Xcode if necessary
+
+If the latest Xcode is not working and all other steps here are not successful then we recommend downgrading the the most recent minor version release. These Xcode installers are available under **Additional tools** on the Xcode [Resources page](https://developer.apple.com/xcode/resources/).
+
+### Clean Xcode build folder
+
+Select **Product** from top menu -> click **Clean Build Folder**.
+
+### Delete Xcode derived data
+
+You can manually remove derived data to reset your build environment. Run the following command in Terminal:
+
+e.g. `rm -rf ~/Library/Developer/Xcode/DerivedData`
+
+### Update CocoaPods
+
+Outdated CocoaPods may cause compatibility issues. To update CocoaPods, use the following command:
+
+e.g. `sudo gem install cocoapods`
+
+### Re-download and extract your iOS source code
+
+If the issue persists after following the above steps, rebuild your app on the Median platform. After rebuilding:
+
+1. Download and extract the new `ios_source.tar.gz` file.
+2. Open the `.xcworkspace` file and do not open the `.xcodeproj` file.
+
+<Warning>
+  ### Open .xcworkspace not .xcodeproj
+
+  Median uses Cocoapods (or "pods") as a dependency manager. To ensure all dependencies are correctly integrated always open the workspace file `<yourapp>.xcworkspace` and *not* the project file `<yourapp>.xcodeproj`.
+</Warning>
+
+## Missing GoNativeAppConfig.h File
+
+Ensure you are using the latest version of Xcode or at least the latest major version, which is currently Xcode 16.
+
+If you're using an M1 Mac, try running the app on a Rosetta-based simulator. To do this, navigate to Product → Destination → Show All Run Destinations and select an iPhone simulator with "(Rosetta)" in its name. Additionally, you can try running the app on a physical device.
+
+If you extracted the source code from a ZIP file in a Windows environment, be aware that Windows may remove .h files, which can cause issues.
+
+***
+
+[Build iOS from Source](/docs/build-ios-from-source)
+
+[Upload iOS to TestFlight](/docs/upload-ios-to-testflight)
+
+Copy Page
+
+* * [Invalidating grant \<invalid NS/CF object> failed](#invalidating-grant-invalid-nscf-object-failed)
+
+  * * [Delete Xcode derived data](#delete-xcode-derived-data)
+    * [Reset simulator (if using a simulator)](#reset-simulator-if-using-a-simulator)
+    * [Uninstall and reinstall Xcode.](#uninstall-and-reinstall-xcode)
+
+  * [Error: Command PhaseScriptExecution failed with a nonzero exit code](#error-command-phasescriptexecution-failed-with-a-nonzero-exit-code)
+
+  * * [Install latest the Xcode and macOS updates](#install-latest-the-xcode-and-macos-updates)
+    * [Downgrade Xcode if necessary](#downgrade-xcode-if-necessary)
+    * [Clean Xcode build folder](#clean-xcode-build-folder)
+    * [Delete Xcode derived data](#delete-xcode-derived-data-1)
+    * [Update CocoaPods](#update-cocoapods)
+    * [Re-download and extract your iOS source code](#re-download-and-extract-your-ios-source-code)
+
+  * [Missing GoNativeAppConfig.h File](#missing-gonativeappconfigh-file)

@@ -1,0 +1,138 @@
+---
+title: "Clipboard"
+description: "Manage the device clipboard contents"
+---
+
+Access the device clipboard from your web app using the Median JavaScript Bridge. You can write text to the clipboard and read the current clipboard contents.
+
+<Check>
+  ### Developer Demo
+
+  Try it live: Load [https://median.dev/clipboard/](https://median.dev/clipboard/) in your Median app to test clipboard functionality during development.
+</Check>
+
+## Overview
+
+The `median.clipboard` API exposes two methods:
+
+| Method                   | Description                             |
+| ------------------------ | --------------------------------------- |
+| `median.clipboard.set()` | Writes a string to the device clipboard |
+| `median.clipboard.get()` | Reads the current clipboard contents    |
+
+Both iOS and Android are supported. `clipboard.get()` supports two async patterns: Promises and named callback functions.
+
+## Implementation Guide
+
+### Writing to the Clipboard
+
+Use `median.clipboard.set()` to copy a string to the system clipboard. This is the equivalent of a user pressing Ctrl+C / Cmd+C on their desktop browser.
+
+<CodeGroup>
+  ```bash bash
+  median.clipboard.set({ data: "Text to copy" });
+  ```
+</CodeGroup>
+
+**Parameter**
+
+| Key    | Type     | Required | Description                               |
+| ------ | -------- | -------- | ----------------------------------------- |
+| `data` | `string` | Yes      | The text string to write to the clipboard |
+
+**Example use case**: Providing a "Copy to clipboard" button for invite codes, promo codes, links or other content.
+
+<CodeGroup>
+  ```bash bash
+  document.getElementById("copy-btn").addEventListener("click", function () {
+    median.clipboard.set({ data: "PROMO2024" });
+  });
+  ```
+</CodeGroup>
+
+### Reading from the Clipboard
+
+Use `median.clipboard.get()` to retrieve the current clipboard contents. This method is asynchronous and returns a result object with either a data property (on success) or an error property (on failure).
+
+Choose the pattern that best fits your codebase: Promises or Callbacks.
+
+#### Option 1 - Promise (Recommended)
+
+Promises integrate cleanly with async/await and modern JavaScript workflows.
+
+<CodeGroup>
+  ```bash bash
+  median.clipboard.get().then(function (result) {
+    if (result.data) {
+      console.log("Clipboard contents:", result.data);
+    } else {
+      console.error("Clipboard error:", result.error);
+    }
+  });
+
+  // Using async/await
+
+  async function readClipboard() {
+    const result = await median.clipboard.get();
+
+    if (result.data) {
+      console.log("Clipboard contents:", result.data);
+    } else {
+      console.error("Clipboard error:", result.error);
+    }
+  }
+  ```
+</CodeGroup>
+
+#### Option 2 - Named Callback
+
+Named callbacks are useful when integrating with legacy codebases or when you need the function to be callable from native app contexts.
+
+Pass the name of your callback function as a string using the callback key:
+
+<CodeGroup>
+  ```bash bash
+  median.clipboard.get({ callback: "clipboardCallback" });
+
+  function clipboardCallback(result) {
+    if (result.data) {
+      console.log("Clipboard contents:", result.data);
+    } else {
+      console.error("Clipboard error:", result.error);
+    }
+  }
+  ```
+</CodeGroup>
+
+**Response Object**
+
+Both clipboard.get() patterns return the same result object:
+
+| Property | Type     | Description                                                     |
+| -------- | -------- | --------------------------------------------------------------- |
+| `data`   | `string` | The clipboard text content. Present on success.                 |
+| `error`  | `string` | An error message. Present when the clipboard could not be read. |
+
+Always check for result.data before using the value, and handle the result.error case gracefully.
+
+## Platform Behavior
+
+* **iOS**: On iOS 14+, the system may display a notification banner informing the user that your app has accessed the clipboard. This is an OS-level behavior and cannot be suppressed.
+* **Android**: Clipboard read access may be restricted on Android 10+ when your app is not in the foreground. Ensure clipboard reads are triggered by an explicit user action.
+
+***
+
+### Next Steps
+
+* [Prompt Share Dialogue](/docs/prompt-share-dialogue)
+
+Copy Page
+
+* * [Overview](#overview)
+
+  * [Implementation Guide](#implementation-guide)
+
+  * * [Writing to the Clipboard](#writing-to-the-clipboard)
+    * [Reading from the Clipboard](#reading-from-the-clipboard)
+
+  * [Platform Behavior](#platform-behavior)

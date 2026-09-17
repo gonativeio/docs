@@ -1,0 +1,190 @@
+---
+title: "Native Datastore Offline"
+description: "This guide demonstrates how to create a custom offline page that launches the , and stores the scanned result using the . This is useful for scenarios where users scan QR codes while offline and sync the data once the device is back online."
+---
+
+The Barcode Scanner is one of several [Native Plugins](https://median.co/docs/native-plugins-overview) that work without a continuous internet connection. Any plugin that processes data locally on the device and does not rely on third-party services can function offline.
+
+<Info>
+  ### Proof of Concept
+
+  This documentation provides a proof of concept. We advise reviewing the implementation with your security and product teams, as you may need to handle advanced use cases like storing multiple key-value pairs.
+</Info>
+
+Please refer to [Offline Page](https://median.co/docs/offline-page) as a general reference on how to set up a custom offline page.
+
+## Example Implementation
+
+Below is a sample offline.html page with buttons to:
+
+* Launch the QR code scanner
+* Store the scanned value locally using Native Datastore
+* Navigate to an online test page
+
+### Offline.html
+
+<CodeGroup>
+  ```bash bash
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Native Datastore Offline</title>
+      <style>
+          :root {
+              color-scheme: light dark;
+          }
+
+          body {
+              margin: 0 auto;
+              padding: 2rem;
+              font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+              max-width: 700px;
+              line-height: 1.6;
+              color: #111;
+              background: #fff;
+          }
+
+          @media (prefers-color-scheme: dark) {
+              body {
+                  color: #eee;
+                  background: #121212;
+              }
+
+              .output {
+                  background: #1e1e1e;
+                  border-color: #333;
+              }
+
+              input,
+              button {
+                  background-color: #1a1a1a;
+                  color: #eee;
+                  border-color: #444;
+              }
+
+              button:hover {
+                  background-color: #2c2c2c;
+              }
+          }
+
+          h1 {
+              font-size: 1.8rem;
+              margin-bottom: 1rem;
+          }
+
+          p {
+              margin-bottom: 2rem;
+          }
+
+          input {
+              font-size: 1rem;
+              padding: 0.6rem 1rem;
+              border-radius: 6px;
+              border: 1px solid #ccc;
+              margin: 1rem 0;
+              width: 100%;
+              box-sizing: border-box;
+          }
+
+          button {
+              font-size: 1rem;
+              width: 100%;
+              padding: 0.6rem 1.2rem;
+              border-radius: 6px;
+              border: none;
+              background-color: #0070f3;
+              color: white;
+              cursor: pointer;
+              margin-right: 0.5rem;
+              margin: 1rem 0;
+          }
+
+          button:hover {
+              background-color: #005ac1;
+          }
+
+          .output {
+              margin-top: 2rem;
+              padding: 1rem;
+              border: 1px solid #ccc;
+              border-radius: 6px;
+              background-color: #f9f9f9;
+              white-space: pre-wrap;
+          }
+      </style>
+  </head>
+  <body>
+      <h1>Native Datastore Offline Demo</h1>
+      <button onclick="scan()">Open QR Code Scanner</button>
+      <input type="text" id="value" placeholder="Scanned Value" />
+      <button onclick="save()">Save Value Locally</button>
+      <button onclick="window.location.href='https://median.dev/native-datastore/app'">Go Online</button>
+
+      <script>
+          const KEY = 'MedianKey';
+
+          async function scan() {
+              // Launch the native QR code scanner and save the scanned value
+              median.barcode.scan().then(function (data) {
+                  if (data.success) {
+                      document.getElementById("value").value = data.code;
+                  }
+              });
+          }
+
+          function save() {
+              median.storage.app.set({
+                  key: KEY,
+                  value: document.getElementById("value").value,
+                  statuscallback: statcb
+              });
+
+              // Optional callback for status
+              function statcb(result) {
+                  if (result.status) {
+                      console.log(result.status);
+                  }
+              }
+          }
+
+      </script>
+  </body>
+  </html>
+  ```
+</CodeGroup>
+
+### Test QR Code
+
+Use the QR code below to test your offline implementation. It encodes the URL: `https://median.co/`.
+
+<Frame caption="Sample QR Code for the URL">
+  <img src="/images/docs/33933077aa2a3906b9b57fd9af88baebc92a1d4aa171416230086f5c10577ca4-Untitled_design.png" />
+
+  [https://median.co/](https://median.co/)
+</Frame>
+
+### Demo Recording
+
+In the demonstration, the app launches directly into the custom offline page shown above. From there, the user taps a button to open the QR code scanner. Once a QR code is successfully scanned, the resulting value is displayed in the input field and saved locally using the key `MedianKey` via the Native Datastore.
+
+After saving the value, the user clicks the "Go Online" button, which redirects the app to the Native Datastore demo page at [median.dev/native-datastore/](https://median.dev/native-datastore/). On this online page, the previously saved value is retrieved and displayed, verifying that the offline-to-online data sync works as expected.
+
+While the video demonstration was recorded on an Android device, the same workflow is fully compatible with iOS.
+
+![](/images/docs/8f4baf7dadfe047b0397e9702620c0f9f4e6319fa1acd2bcdaf7207a47520c02-native-offline.gif)
+
+***
+
+[Service Workers](/docs/service-workers)
+
+[iOS Split View Support](/docs/ios-split-view)
+
+Copy Page
+
+* * [Example Implementation](#example-implementation)
+
+  * * [Offline.html](#offlinehtml)
+    * [Test QR Code](#test-qr-code)
+    * [Demo Recording](#demo-recording)

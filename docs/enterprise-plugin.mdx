@@ -1,0 +1,72 @@
+---
+title: "Enterprise Security"
+description: "Secure Enterprise Apps with Advanced Compliance Controls"
+---
+
+Organizations using an **Enterprise License** can unlock the full potential of the Enterprise Security Plugin, designed to enforce robust security controls across iOS and Android mobile applications. All features can be independently enabled or disabled via the **Native Plugins** tab in your dashboard.
+
+Need help with deployment? [Contact our team](https://median.co/contact?topic=sales-inquiry)
+
+## Copy/Paste Prevention
+
+Prevent data leakage by **disabling clipboard access**. This feature ensures that users cannot copy or paste text within the app, protecting sensitive in-app information.
+
+## Screen Capture Prevention
+
+Block unauthorized screen captures to protect user data. You can enable this security measure at:
+
+* **App launch** via configuration settings
+* **Runtime** using the [Median JavaScript Bridge](https://median.co/docs/javascript-bridge) command:
+
+<CodeGroup>
+  ```bash bash
+  median.secureScreen.set({secure: true | false});
+  ```
+</CodeGroup>
+
+Set `secure: false` to disable screen protection dynamically.
+
+## ATS / Network Security
+
+Ensure secure network communication by enforcing native platform policies:
+
+* **iOS**: Sets `NSAllowsArbitraryLoads` to `NO`
+* **Android**: Sets `cleartextTrafficPermitted="false"`
+
+This configuration helps prevent insecure HTTP requests and ensures data is transmitted over secure channels (HTTPS).
+
+## Mask App Switcher Preview
+
+To safeguard user privacy when the app is backgrounded, this feature obscures sensitive content in system-level app previews:
+
+* **iOS App Switcher**: Displays the app’s splash screen in place of the live app preview when the app is sent to the background, preventing exposure of sensitive information.
+* **Android Recent Apps**: Applies a black screen mask over the app preview when the app is backgrounded, ensuring sensitive content remains hidden.
+
+## Jailbreak/Root Detection
+
+Enhance threat detection by identifying compromised devices at runtime. If a jailbreak or root is detected:
+
+* The app appends an additional query parameter to the initial URL, such as:
+
+  * `?rootDetected=true`
+  * `?isRooted=true`
+
+Please check for both query parameter values. For example, instead of loading `https://example.com/`, the app will load `https://example.com/?rootDetected=true`.
+
+For iOS we make use of the DTTJailbreakDetection library at [https://github.com/thii/DTTJailbreakDetection](https://github.com/thii/DTTJailbreakDetection) amongst additional proprietary techniques are also applied to enhance reliability.
+
+For Android, we are using rootbeer library at [https://github.com/scottyab/rootbeer](https://github.com/scottyab/rootbeer) amongst additional proprietary techniques are also applied to enhance reliability.
+
+***
+
+[Enterprise](/docs/enterprise)
+
+[Jailbreak/Root Detection](/docs/jailbreak-root-detection)
+
+Copy Page
+
+* * [Copy/Paste Prevention](#copypaste-prevention)
+  * [Screen Capture Prevention](#screen-capture-prevention)
+  * [ATS / Network Security](#ats--network-security)
+  * [Mask App Switcher Preview](#mask-app-switcher-preview)
+  * [Jailbreak/Root Detection](#jailbreakroot-detection)

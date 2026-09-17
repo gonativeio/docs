@@ -1,0 +1,147 @@
+---
+title: "Overview"
+description: "App Interface settings control the functionality of your app, allowing you to optimize the app versus website experience for your users"
+---
+
+App Interface settings in Median.co let you fine-tune how your app behaves and feels, helping you bridge the gap between a responsive mobile website and a truly app-like experience. Control device orientation, brightness, gestures, font scaling, offline behavior, and more to optimize for mobile app-first users.
+
+## Supported Features
+
+[](https://docs.median.co/docs/device-screen-control)
+
+#### [Device Screen Control](https://docs.median.co/docs/device-screen-control)
+
+[Manage screen brightness, orientation, size, and screen timeout behavior. Set defaults and update screen settings at runtime for a polished user experience.](https://docs.median.co/docs/device-screen-control)
+
+[](https://docs.median.co/docs/dark-mode)
+
+#### [Dark Mode](https://docs.median.co/docs/dark-mode)
+
+[Configure Light or Dark mode by default on app launch, and dynamically switch themes at runtime based on user preferences or app state.](https://docs.median.co/docs/dark-mode)
+
+[](https://docs.median.co/docs/swipe-gestures)
+
+#### [Gestures](https://docs.median.co/docs/swipe-gestures)
+
+[Implement mobile-friendly gestures like pull-to-refresh and swipe navigation to deliver a native app feel within your web-based app.](https://docs.median.co/docs/swipe-gestures)
+
+[](https://docs.median.co/docs/font-scaling)
+
+#### [Font Scaling](https://docs.median.co/docs/font-scaling)
+
+[Override device font settings by applying a custom font scale across your app. Use percentage values to increase or decrease text size relative to default styles.](https://docs.median.co/docs/font-scaling)
+
+[](https://docs.median.co/docs/offline-page)
+
+#### [Offline Page](https://docs.median.co/docs/offline-page)
+
+[Show a custom offline page when users lose connectivity, or build a full-feature offline app using service workers or the native datastore.](https://docs.median.co/docs/offline-page)
+
+[](https://docs.median.co/docs/localization)
+
+#### [Localization](https://docs.median.co/docs/localization)
+
+[Translate app content, native UI elements, and system prompts to support multiple languages. Ensure your app is accessible to a global user base.](https://docs.median.co/docs/localization)
+
+***
+
+## Accessibility and WCAG Compliance
+
+Apps built with the Median platform primarily render your existing website inside a native WebView on iOS and Android. As a result, the accessibility and WCAG compliance of a Median app is largely determined by the accessibility of the underlying website.
+
+### How Accessibility Works in Median Apps
+
+Median apps load your website directly inside a native WebView. HTML semantics, ARIA attributes, focus behavior, contrast, and screen-reader support are inherited from your website in the same way they are when accessed via a mobile browser.
+
+Assistive technologies such as VoiceOver (iOS) and TalkBack (Android) interact with the WebView content using standard web accessibility APIs.
+
+If your website conforms to WCAG 2.1 or 2.2 AA, that level of compliance generally carries over to the web content displayed inside the Median app.
+
+### Native UI Components
+
+Median allows you to add native UI elements such as navigation controls or system dialogs depending on your app configuration. We have included basic accessibility labels to provide a foundational level of compliance with accessibility standards. These components also follow Google's Material Design and Apple's Human Interface Guidelines for improved accessibility support.
+
+### Third-Party Content and Plugins
+
+Accessibility compliance may be affected by:
+
+* Custom plugins or features integrated via the Median JavaScript Bridge
+* Embedded widgets or media players
+* Third-party JavaScript libraries
+
+These components are not automatically audited for accessibility and must be tested independently to ensure they meet WCAG requirements. Plugins created by Median can be customized to meet accessibility requirements.
+
+### Important Considerations
+
+WCAG compliance is not guaranteed solely by using the Median platform. You are responsible for:
+
+* Verifying screen reader behavior, focus order, touch target sizes, and zoom behavior on real devices
+* Testing accessibility within the actual app environment
+* Ensuring your website meets WCAG requirements
+
+### Recommended Accessibility Checklist
+
+* [ ] Re-test accessibility after adding plugins, native features, or major UI changes.
+* [ ] Review any native UI elements enabled in your app configuration.
+* [ ] Test the app using VoiceOver on iOS and TalkBack on Android.
+* [ ] Design and test your website to meet WCAG 2.1 or 2.2 AA standards.
+
+## Frequently Asked Questions
+
+### How do I fix display scaling and prevent zooming?
+
+**How do I fix display scaling and prevent zooming?⎘ Copy link
+
+One of the most common UI issues when viewing a website in a mobile app is the scale of the content. When not correctly configured, users may have to zoom in to fill out fields, read content, or tap buttons. To fix this, ensure text and UI elements are set to a suitable size, fix the display scaling at 1:1, and prevent zooming by the user.
+
+Add the following meta tag to each page:
+
+<CodeGroup>
+  ```bash bash
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  ```
+</CodeGroup>
+
+### How do I prevent text selection in my app?
+
+**How do I prevent text selection in my app?⎘ Copy link
+
+Preventing text selection on your web pages when presented within the app results in a more app-like experience, especially for UI elements such as buttons.
+
+Add the CSS below to each page. Change `body` and `a` to the elements you wish to target.
+
+<CodeGroup>
+  ```bash bash
+  <style>
+    body, a {
+      -webkit-touch-callout: none !important;
+      -webkit-user-select: none !important;
+      -khtml-user-select: none !important;
+      -moz-user-select: none !important;
+      -ms-user-select: none !important;
+      user-select: none !important;
+      -webkit-tap-highlight-color: transparent !important;
+    }
+  </style>
+  ```
+</CodeGroup>
+
+***
+
+[Status Bar](/docs/status-bar)
+
+[Device Screen Control](/docs/device-screen-control)
+
+Copy Page
+
+* * [Supported Features](#supported-features)
+
+  * [Accessibility and WCAG Compliance](#accessibility-and-wcag-compliance)
+
+  * * [How Accessibility Works in Median Apps](#how-accessibility-works-in-median-apps)
+    * [Native UI Components](#native-ui-components)
+    * [Third-Party Content and Plugins](#third-party-content-and-plugins)
+    * [Important Considerations](#important-considerations)
+    * [Recommended Accessibility Checklist](#recommended-accessibility-checklist)
+
+  * [Frequently Asked Questions](#frequently-asked-questions)

@@ -1,0 +1,110 @@
+---
+title: "Configure Signing for Your App"
+description: "Prepare Median Apps for iOS Deployment"
+---
+
+With your App Store Connect integration set up, the next step is to enable signing for each app in your Median organization. This ensures the app is built with the correct credentials for App Store Connect upload, TestFlight testing, App Store submission, or direct installation on registered devices.
+
+All iOS signing configuration lives in one place: the iOS IPA Build Configuration panel in Median App Studio. This article walks through each section of that panel, in order.
+
+<Frame caption="App Studio - iOS IPA Build Configuration panel">
+  <img src="/images/docs/c761e590aa91a725f27e03510a184c3fb389ce96faf626adf977e9467b4999e0-Screenshot_2026-07-06_at_11.41.36.png" />
+</Frame>
+
+The panel has a top-level Automatic (API) / Manual toggle. Automatic (API) is the recommended path for most apps and is covered first below; Manual is covered in Option 2.
+
+## Option 1 - Automatic Provisioning
+
+### Section 1: Apple Developer API Connection
+
+If you completed [Connecting Median with App Store Connect](https://docs.median.co/docs/connecting-median-appstore-connect), this section already shows a Connected badge along with your Issuer ID, Key ID, and private key filename. If not, complete that article before continuing.
+
+<Frame caption="Apple Developer API Connection Section">
+  <img src="/images/docs/a3bec75cd84472ef9fffdaf750b06e138a3e8c9b3fb3f26e729d2eaf9ca74ac3-Screenshot_2026-07-06_at_11.42.02.png" />
+</Frame>
+
+### Section 2: Bundle ID & App Store Connect App
+
+This section ensures your app's Bundle ID is registered with Apple and that a matching app record exists in App Store Connect. Both are required before Median can generate a provisioning profile.
+
+The Bundle ID your app requires (generated from your Median app) is shown at the top of this section. You can also learn more about the Bundle ID in our [App Identifiers](https://docs.median.co/docs/app-identifiers) article.
+
+<Frame caption="Bundle ID & App Store Connect Section">
+  <img src="/images/docs/3560d5cb3c2fa9db468c07064adb3fcbdcbbfbd0c45241a2abf87e44be294347-Screenshot_2026-07-06_at_11.45.41.png" />
+</Frame>
+
+#### Register the Bundle ID
+
+##### Automatically
+
+Click **Register Bundle ID Automatically** to have Median register this Bundle ID with your Apple Developer account, including the capabilities your app needs (for example, Push Notifications, Associated Domains, or Sign in with Apple).
+
+##### Manually
+
+If you'd rather register it yourself: sign in to your Apple Developer account, open Identifiers, click the + button, choose App IDs → App, enter the Bundle ID shown above, and enable the capabilities your app requires.
+
+If you manually register your app, Median cannot create the app record on your behalf.
+
+Sign in to App Store Connect, go to the Apps tab, click the + button, and fill in the required details, selecting the Bundle ID from Step 1 when prompted.
+
+### Section 3: Signing & Upload Settings
+
+This section helps you configure the right signing profile for your app.
+
+| Profile              | Use Case                                                                                                                 |
+| -------------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| Distribution Profile | Use this for uploading to App Store Connect, for TestFlight distribution, or for release to the App Store.               |
+| Development Profile  | Use this for testing directly on devices you've registered in Registering Testing Devices, outside of App Store Connect. |
+
+<Frame caption="Signing & Upload Settings Section">
+  <img src="/images/docs/18ea181cac8c859f2b9dd7883c2e7da44c88a0ba4aa448348e2fe6d6df0c192f-Screenshot_2026-07-06_at_11.40.00.png" />
+</Frame>
+
+## Option 2 - Upload your own signing assets (Manual tab)
+
+If you'd rather not connect an App Store Connect API key or are unable to due to organizational or security policy, switch the top-level toggle to Manual and provide your own signing assets directly.
+
+This form will allow you to manually create and upload your own **distribution certificate** and **provisioning profile**.
+
+<Warning>
+  ### **Caution**
+
+  This process is significantly more complex and is recommended only if you're familiar with Apple’s certificate and profile management process.
+</Warning>
+
+To upload your own assets:
+
+1. Create a **distribution certificate** and a **provisioning profile** using [Apple’s Developer Portal](https://developer.apple.com/account/resources/) and download the resulting `.cer` file.
+2. You will need a `.p12` file of your certificate, not just the `.cer` file provided by Apple. This step must be done on a Mac, and involves exporting the certificate from Keychain Access.
+3. Open your app in **App Studio**.
+4. Navigate to **Build & Deploy**, click **Configure** in the iOS IPA section, and upload the `.p12` file (with its password) and the provisioning profile in the Manual tab.
+
+If you encounter issues generating these assets, we encourage you to post your question in our [online discussion forum](https://docs.median.co/discuss) where the Median team and community are always willing to help.
+
+<Frame caption="Manual Provisioning">
+  <img src="/images/docs/61dd87fb904b0d929bd7430e55ee4c68ea0bea5b5a783f2bc8bd1fc24c98afbf-Screenshot_2026-07-06_at_11.49.43.png" />
+</Frame>
+
+## Next Step
+
+Return to the [Building an iOS Binary](https://docs.median.co/docs/build-ios-binary) overview to start your build, or continue on to [Install iOS IPA](https://docs.median.co/docs/install-ios-ipa) once your build finishes.
+
+***
+
+### Next Steps
+
+* [Install iOS IPA](/docs/install-ios-ipa)
+
+Copy Page
+
+* * [Option 1 - Automatic Provisioning](#option-1---automatic-provisioning)
+
+  * * [Section 1: Apple Developer API Connection](#section-1-apple-developer-api-connection)
+    * [Section 2: Bundle ID & App Store Connect App](#section-2-bundle-id--app-store-connect-app)
+    * [Section 3: Signing & Upload Settings](#section-3-signing--upload-settings)
+
+  * [Option 2 - Upload your own signing assets (Manual tab)](#option-2---upload-your-own-signing-assets-manual-tab)
+
+  * * [](#)
+
+  * [Next Step](#next-step)

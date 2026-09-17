@@ -1,0 +1,53 @@
+---
+title: "Reader Modal"
+description: "Apple allows apps offering digital content - such as magazines, newspapers, books, audio, music, and video - to link externally to their websites for account management and payments. To integrate this functionality, you can use the ."
+---
+
+To able to offer this functionality within your app you require special permission from Apple to use the **External Link Account entitlement**. [Apple Documentation](https://developer.apple.com/support/reader-apps/).
+
+<Check>
+  ### Developer Demo
+
+  Display our demo page in your app to test during development [https://median.dev/reader-modal/](https://median.dev/reader-modal/)
+</Check>
+
+## Implementation Guide
+
+### Verify User's Ability to Make Payments
+
+Before displaying and opening the external link to your website, confirm that the user is allowed to make purchases on their device. Use the following Median JavaScript Bridge method:
+
+<CodeGroup>
+  ```bash bash
+  const { canMakePayments } = await median.readerModal.canMakePayments();
+  ```
+</CodeGroup>
+
+### Display the Modal
+
+Once you've verified that the user can make purchases, proceed to show the modal with the following method:
+
+<CodeGroup>
+  ```bash bash
+  median.readerModal.showModal();
+  ```
+</CodeGroup>
+
+The modal will appear as shown below on devices running iOS 16+.
+
+<Frame caption="In-App Modal Sheet">
+  <img src="/images/docs/bc3c9cee03b3cdbf5bf069b0cbc92006f046d2835aaacd13cfb4aba4cfd18a0c-68093e3e0205e115ad351fa4_Screenshot_2025-04-23_at_16.20.57.png" />
+</Frame>
+
+***
+
+[Offline Download Manager](/docs/offline-download-manager)
+
+[Secure Modal](/docs/secure-modal)
+
+Copy Page
+
+* * [Implementation Guide](#implementation-guide)
+
+  * * [Verify User's Ability to Make Payments](#verify-users-ability-to-make-payments)
+    * [Display the Modal](#display-the-modal)

@@ -1,0 +1,116 @@
+---
+title: "Media"
+description: "Provide a media-rich, engaging user experience by offering audio-visual elements in your app."
+---
+
+Convert your mobile app into a rich media experience with native audio and video playback capabilities. Median.co's Media plugins enable professional-grade multimedia features like background audio playback, live video streaming, real-time video chat, and document capture.
+
+***
+
+## Why use media plugins?
+
+* **Background audio playback**: Keep audio playing when users lock their device or switch apps, with native controls on the lock screen and notification center
+* **Professional video streaming**: Stream live and recorded video natively with AirPlay and Chromecast support for big-screen experiences
+* **Real-time video chat**: Add native Twilio video conferencing with crystal-clear quality and low latency
+* **Lock screen controls**: Display track metadata, artwork, and playback controls on the lock screen for podcast, radio, and audiobook apps
+
+## Common use cases
+
+* **Podcasts & radio**: Stream audio content with background playback, lock-screen controls, and metadata display for a native podcast or radio listening experience.
+* **E-learning & audiobooks**: Enable continuous audio playback for educational content, language learning, and audiobook apps
+* **Live video & OTT streaming**: Deliver professional live and on-demand video experiences with native streaming, AirPlay/Chromecast support, and optimized playback performance.
+* **Telemedicine & video consultations**: Power HIPAA-compliant video appointments, remote patient consultations, and real-time healthcare communication with Twilio video integration.
+
+***
+
+## Getting started
+
+1. **Choose your plugin:** Browse the media plugins below and select the type that fits your needs. Native Media Player is ideal for podcasts and audiobooks, Kaltura Media Player for professional video streaming with casting support, and Twilio for real-time video chat and conferencing.
+
+2. **Review documentation:** Read the plugin's documentation to understand supported media formats, streaming requirements, and implementation patterns for audio/video playback.
+
+3. **Enable in app studio:** Navigate to **Native Plugins** in your Median App Studio, click the **+** button next to your chosen plugin, and configure any required settings (like metadata display or streaming quality).
+
+4. **Implement with JavaScript bridge:** Add JavaScript Bridge commands to trigger media functionality. For example:
+
+   * `median.backgroundMedia.playTrack()` to start audio playback with lock-screen controls
+   * `median.backgroundMedia.streamPlaylist()` to play audio playlists with next/previous navigation
+   * `median.documentScanner.scanPage()` to capture and auto-enhance documents
+
+## Supported Plugins
+
+**Not sure where to start?** Check out our supported plugins below:
+
+* **Native Media Player**: Background audio with lock-screen controls for podcasts, radio, and audiobooks
+* **Kaltura Media Player**: Professional video streaming with AirPlay and Chromecast support
+* **Twilio**: Native video chat for telehealth, virtual events, and real-time collaboration
+
+![Kaltura Media Player](/images/docs/79fda32db46aa4e47e3ce00d5c1f1e80bfcad85df0fd51bb9805cce43ebf2f35-plugin_kaltura.svg)
+
+#### Kaltura Media Player
+
+Play live and recorded video natively with support for AirPlay and Chromecast streaming to compatible devices.
+
+[Learn more→](https://docs.median.co/docs/kaltura-media-player)
+
+![Native Media Player](/images/docs/67d187eb68a4ecbb3434cb6ddb7e5f0b7928231b4732f2717a14ffc0964fd1cf-white-plugin_media-player.svg)
+
+#### Native Media Player
+
+Play audio natively on iOS and Android with playback controls and lock-screen information. For audiobook, podcast, and e-learning apps.
+
+[Learn more→](https://docs.median.co/docs/native-media-player)
+
+![Twilio](/images/docs/d482a068d0e8f084a840e61581d55f7739dad8be222573c6754eba39ed1bebd4-plugin_twilio.svg)
+
+#### Twilio
+
+Add native Twilio video chat interface for a more seamless and integrated experience versus a web-based client.
+
+[Learn more→](https://docs.median.co/docs/twilio)
+
+![Web Screenshot](/images/docs/6efb78564093fd39add85891669f7d49658c65a0fa7fd2975b46ecb79f95817e-plugin_web-screenshot.svg)
+
+#### Web Screenshot
+
+Take screenshots of your website or a part of it using the visible screen or a div id.
+
+[Learn more→](https://docs.median.co/docs/web-screenshot)
+
+![Zoom Video](/images/docs/9ac13055c13959904b2bb7683a1fc8fb9430f102ad0d3d68321318349a75bcaf-zoom_icon.png)
+
+#### Zoom Video
+
+Add native Zoom Video to provide seamless and integrated video calling experiences such as in-app video communication.
+
+[Learn more→](https://docs.median.co/docs/zoom)
+
+***
+
+## Testing Audio & Microphone in the Embedded Simulator
+
+Median's embedded App Studio simulator has limited audio support:
+
+* **Audio playback** is not supported in the embedded simulator
+* **Microphone input** is not supported in the embedded simulator, so mic access for WebRTC voice/video calls can't be tested in the embedded simulator at all.
+
+To test audio playback, background audio, or microphone-dependent features (e.g. Native Media Player, WebRTC voice calls), build and install your app on a physical device or emulator instead.
+
+## Can't find your Vendor?
+
+As your needs evolve, Median can enhance your plugin implementation to include new functions or data points from third-party SDKs. We'll work with you to meet your specific requirements. [Contact us for details](https://median.co/contact?topic=sales-inquiry).
+
+***
+
+[Snapchat](/docs/social-share-snapchat)
+
+[Background Audio](/docs/background-audio)
+
+Copy Page
+
+* * [Why use media plugins?](#why-use-media-plugins)
+  * [Common use cases](#common-use-cases)
+  * [Getting started](#getting-started)
+  * [Supported Plugins](#supported-plugins)
+  * [Testing Audio & Microphone in the Embedded Simulator](#testing-audio--microphone-in-the-embedded-simulator)
+  * [Can't find your Vendor?](#cant-find-your-vendor)

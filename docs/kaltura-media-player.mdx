@@ -1,0 +1,61 @@
+---
+title: "Kaltura Media Player"
+description: "Integrate Kaltura's media player into your mobile app to stream live and on-demand video content natively. The player includes built-in support for AirPlay and Google Chromecast, enabling streaming to compatible smart TVs and devices."
+---
+
+Kaltura is a widely adopted, enterprise-grade video platform used by global organizations for high-quality video playback, content management, monetization, and analytics. The Kaltura Player supports adaptive bitrate streaming, customizable player UI, closed captions, and playback analytics, making it ideal for professional video delivery.
+
+## Implementation Guide
+
+> To play a video, run the JavaScript function:
+
+<CodeGroup>
+  ```bash bash
+  median.kaltura.play({
+    entryId: 'your_kaltura_entry_id',
+    onError: 'errorCallbackFunction',     // Optional: function to handle playback errors
+    callback: successCallbackFunction     // Optional: function to run after successful playback
+  });
+  ```
+</CodeGroup>
+
+### Parameters
+
+| Parameter | Type     | Description                                                                     |
+| --------- | -------- | ------------------------------------------------------------------------------- |
+| entryId   | `string` | **Required**. The unique Kaltura video identifier (e.g., from your CMS).        |
+| onError   | `string` | **Optional**. Name of a JavaScript function to be called if playback fails.     |
+| callback  | `string` | **Optional**. Name of a JavaScript function to be called after playback starts. |
+
+### Example Implementation
+
+<CodeGroup>
+  ```bash bash
+  function handlePlaybackError(error) {
+    console.error("Kaltura playback error:", error);
+  }
+
+  function handlePlaybackStart() {
+    console.log("Kaltura video is now playing.");
+  }
+
+  median.kaltura.play({
+    entryId: '1_abcd1234',
+    onError: 'handlePlaybackError',
+    callback: 'handlePlaybackStart'
+  });
+  ```
+</CodeGroup>
+
+***
+
+[JW Player](/docs/jwplayer)
+
+[Native Media Player](/docs/native-media-player)
+
+Copy Page
+
+* * [Implementation Guide](#implementation-guide)
+
+  * * [Parameters](#parameters)
+    * [Example Implementation](#example-implementation)

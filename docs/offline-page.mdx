@@ -1,0 +1,109 @@
+---
+title: "Offline Page"
+description: "When a user's device goes offline, your app will display an offline page after a configurable offline timeout threshold. This helps inform users that the app is unable to connect to the internet."
+---
+
+By default, the offline timeout is set to 10 seconds, but you can customize this value to suit your needs. However, increasing the timeout duration may degrade user experience, as it will delay visual feedback when the app is trying to establish a connection.
+
+<Frame caption="App Studio - Offline Page Configuration">
+  <img src="/images/docs/af097054b495c469d0faaf73d8895e42b44d453e97f6a0b725f0600ec51ae0c2-Screenshot_2025-07-04_at_11.44.50.png" />
+</Frame>
+
+## Offline Page Behavior
+
+* **Enabled (Default)**: After the timeout, an offline page is shown.
+* **Disabled**: The app displays the last cached version of the webpage. If no cached page exists (e.g., for new users), the app will show a default browser error (iOS WKWebView or Android WebView).
+
+## Custom Offline Pages
+
+Instead of using the default offline page, you can configure a custom offline page for both iOS and Android platforms. Since this page is shown without internet access, all assets must be self-contained:
+
+* Inline all CSS and JavaScript
+* Use Base64-encoded or SVG images
+
+## Custom Offline Page as Initial URL
+
+To use a custom offline page as the app's initial launch screen, please set the `initialURL` in the [App Configuration](https://median.co/docs/app-configuration-appconfigjson) to `file:///offline.html`.
+
+## Manual Page Reload
+
+You may also wish to include a button to manually attempt to reload the page, for instance after the user connects to WiFi or VPN. This can be implemented using the following JavaScript Bridge Commands:
+
+<CodeGroup>
+  ```bash bash
+  median.webview.reload();
+  ```
+</CodeGroup>
+
+## Example Offline Pages
+
+### Default Offline Page
+
+[Default Offline Page](https://codepen.io/gonative/embed/LYrpOKz?default-tab=html%2Cresult)
+
+### Custom Offline Page Example
+
+The following example outlines how to include PNG and SVG encoded images in the offline page.
+
+[Custom Offline Page](https://codepen.io/gonative/embed/poWbXPN?default-tab=html%2Cresult)
+
+### Localized Offline Page Example
+
+The following example translates the text and buttons of the Default Offline Page to French, Spanish, or Korean based on the device language. Any other languages will default to the English Offline Page.
+
+[Custom Offline Page](https://codepen.io/gonative/embed/OPNNxbw?default-tab=html%2Cresult)
+
+## Advanced Strategies
+
+### Service Workers
+
+Implementing Service Workers on your website allows for advanced offline functionality. When integrated into your Median app, Service Workers enable offline access to cached content.
+
+📖 Learn more: [Service Workers](https://median.co/docs/service-workers)
+
+### Native Datastore
+
+Based on the [Native Datastore Plugin](https://median.co/docs/native-datastore) you can leverage the App Storage to capture and store data when the app is offline and process and sync the saved data in your backend one the user is back online. It is imperative to use the App Storage for this functionality as the Cloud Storage will be unavailable if the device is offline.
+
+📖 Learn more: [Native Datastore Offline](https://median.co/docs/native-datastore-offline)
+
+### Offline Download Manager
+
+The Offline Download Manager plugin allows you to download document and rich media files to the user's device for online or offline access. Files are viewable through a built-in file manager UI as well as programmatically.
+
+📖 Learn more: [Offline Download Manager](https://median.co/docs/offline-download-manager)
+
+### OfflineSync
+
+We also offer an OfflineSync solution, which is suitable if your app can function entirely without internet access - such as a sales catalog or an in-store kiosk. Please [contact us](https://median.co/contact?topic=sales-inquiry) if you're interested.
+
+***
+
+### Next Steps
+
+* [Service Workers](/docs/service-workers)
+* [Offline Download Manager](/docs/offline-download-manager)
+* [Native Datastore](/docs/native-datastore)
+
+Copy Page
+
+* * [Offline Page Behavior](#offline-page-behavior)
+
+  * [Custom Offline Pages](#custom-offline-pages)
+
+  * [Custom Offline Page as Initial URL](#custom-offline-page-as-initial-url)
+
+  * [Manual Page Reload](#manual-page-reload)
+
+  * [Example Offline Pages](#example-offline-pages)
+
+  * * [Default Offline Page](#default-offline-page)
+    * [Custom Offline Page Example](#custom-offline-page-example)
+    * [Localized Offline Page Example](#localized-offline-page-example)
+
+  * [Advanced Strategies](#advanced-strategies)
+
+  * * [Service Workers](#service-workers)
+    * [Native Datastore](#native-datastore)
+    * [Offline Download Manager](#offline-download-manager)
+    * [OfflineSync](#offlinesync)

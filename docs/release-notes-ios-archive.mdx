@@ -1,0 +1,425 @@
+---
+title: "iOS Release Notes - Archive"
+description: "Releases older than 12 months"
+---
+
+# 2025 Releases
+
+## Mar 11 - Bugfix 🐛
+
+* Fixed black rectangle appearing at top of WebView on devices with notched display (iPhone X and later)
+
+## Aug 25 - Maintenance 🛠️
+
+* Biometric auth plugin now invalidates any credentials when FaceID/TouchID signature is changed
+
+## Jul 3 - Bugfix 🐛
+
+* Fixed: `onesignal.register()` method resolving the promise even before the user made a choice to opt-in for notifications
+
+## Jun 18 - New Feature 🆕
+
+* Meta events plugin now supports setting autoLogging via JS Bridge [Docs](/docs/facebook)
+
+## May 16 - New Feature 🆕
+
+* Added consent handling for FirebaseAnalytics [Docs](/docs/firebase-analytics)
+
+## Apr 29 - Bugfix 🐛
+
+* Added better support for `data://` based pixel tracking
+
+## Apr 10 - Bugfix 🐛
+
+* Fixed: FirebaseAnalyticsPlugin: Some JSBridge method calls were being ignored in the native code.
+
+## Mar 28 - Bugfix 🐛
+
+* Fixed issue with blob downloads not working in new windows
+
+## Mar 10 - New Feature 🆕
+
+* iOS now supports setting separate color for inactive bottom tab item.
+
+## Mar 3 - Bugfix 🐛
+
+* Fixed a crash when user agent string is set to null
+
+## Feb 27 - Bugfix 🐛
+
+* Fixed logic on handling data urls to resolve Calendar plugin issue
+* Fixed an issue with the bottom navbar always selecting the first button
+
+## Jan 8 - New Feature 🆕
+
+* Added callbacks to the download methods. [Download a File](/docs/download-file)
+
+# 2024 Releases
+
+## Dec 16 - New Feature 🆕
+
+* Added a regex pattern which opens all calendar links when the CalenderPlugin is installed
+
+## Dec 16 - Bugfix 🐛
+
+* App now correctly shows page title in top navbar instead of app name
+* PDF files downloaded as blobs now correctly open in PDF viewer
+
+## Dec 16 - New Feature 🆕
+
+* Released a new plugin: ReaderModalPlugin (External Link Accounts for Reader Apps)
+
+## Nov 14 - New Feature 🆕
+
+* Adjust Plugin: Added uninstall tracking, SKAN and attribution info support. [Adjust Plugin](/docs/adjust)
+
+## Nov 14 - New Feature 🆕
+
+* Appsflyer Plugin: Added uninstall tracking and SKAN support. [Appsflyer Plugin](/docs/appsflyer)
+
+## Nov 14 - Bugfix 🐛
+
+* Fixed: Navbar items' icon color is sometimes wrong
+
+## Oct 24 - Bugfix 🐛
+
+* Fixed loading spinner color not being set in the app correctly
+
+## Oct 10 - Maintenance 🛠️
+
+* Meta events plugin and social login plugin now use Facebook SDK v17
+
+## Oct 3 - Maintenance 🛠️
+
+* We have updated our build platform to strip bitcode making the code compatible with Xcode 16
+
+## Sep 24 - Maintenance 🛠️
+
+* ShareIntoApp plugin now supports iOS 18 [Docs](/docs/share-into-app)
+
+## Sep 10 - Maintenance 🛠️
+
+* PDF links are now treated like other downloadable links ignoring .pdf extension as some websites e.g. Dropbox like to put .pdf at the end of non pdf links
+
+## Aug 24 - Maintenance 🛠️
+
+* `purchase` method in In App Purchases plugin now returns transaction information if a POST callback is not configured [Docs](/docs/apple-iap)
+
+## Aug 23 - Bugfix 🐛
+
+* Fixed an issue where a null value for pinch to zoom settings was being set on rebuild for some apps causing a crash on initial launch
+
+## Aug 19 - Maintenance 🛠️
+
+* AuthPlugin `getStatus` method no longer throws error if keychain is empty
+* Renamed error code `none_enrolled` to `noneEnrolled` for AuthPlugin
+* Renamed error code `no_hardware` to `nowHardware` for AuthPlugin
+* Renamed error code `security_update_required` to `ssecurityUpdateRequired` for AuthPlugin
+
+## Jul 22 - Bugfix 🐛
+
+* Improved URL matching for dynamic titles in top navigation bar. Which did not show in some scenarios
+
+## Jul 15 - Maintenance 🛠️
+
+* AppsFlyer plugin now supports an `appsFlyerConversionData` [listener](/docs/npm-package-usage-with-listeners#appsflyer-plugin) when using our NPM package. [Docs](/docs/appsflyer)
+
+## Jul 12 - Bugfix 🐛
+
+* If TopNavBar is set to `Always` and no nav bar is configured in the visual editor the app will now show the defaults (app icon or custom image)
+* Fixed `isFirstLaunch` key in `median.deviceInfo()` may be `false` on first launch of the app
+
+## Jul 1 - Maintenance 🛠️
+
+* PDF viewer now passes correct cookies data in the download request
+
+## Jun 18 - Maintenance 🛠️
+
+* Added `InfoPlist.strings` file to the project
+
+## Jun 12 - Bugfix 🐛
+
+* Fixed a crash when setting Bottom Navigation config using JavaScript bridge
+
+## Jun 11 - New Feature 🆕
+
+* PWA (Progressive Web Apps) are now much better supported. [Docs](/docs/npm-package-spa-navigation)
+
+## Jun 7 - Maintenance 🛠️
+
+* MediaPlayer now correctly shows seek controls in notification center view for playlists.
+* Fixed a memory leak causing media to keep playing in secondary windows even after closing them.
+
+## May 14 - Bugfix 🐛
+
+* Fixed an issue which may cause OneSignal rich content notification to not show or show with a significant delay
+
+## May 9 - Maintenance 🛠️
+
+* Face ID plugin now works properly with Promises
+* Context menu is correctly disabled for JS links with invalid href values
+
+## May 2 - New Feature 🆕
+
+* Added support for custom [context menus](/docs/context-menu)
+
+## Apr 16 - New Feature 🆕
+
+* iOS now supports opening PDF Documents directly within the app.
+
+## Apr 15 - New Feature 🆕
+
+* Median now supports OneSignal’s user-centric data model. Existing apps are now in "Legacy Mode". To migrate your app review our [documentation](/docs/onesignal-legacy-mode) and disable Legacy Mode on the Push Notifications tab
+
+## Apr 8 - New Feature 🆕
+
+* New method for OneSignal `median.onesignal.badge.set` which can be used to set notification badge count
+
+## Apr 1 - New Feature 🆕
+
+* New method for In-App Purchases plugin: `median.iap.purchases()` [docs](/docs/google-iap)
+
+## Mar 21 - Bugfix 🐛
+
+* Fixed a bug with location callback not triggering when user denies permission
+
+## Feb 15 - New Feature 🆕
+
+* `window.open` now accepts a 2nd parameter called mode. See [docs](/docs/internal-vs-external-links) for all the supported values
+
+## Feb 13 - New Feature 🆕
+
+* [AppsFlyer](/docs/appsflyer) plugin now supports reporting conversion data on app launch and foreground
+
+## Feb 7 - New Feature 🆕
+
+* You can now pick one or more contacts using a native UI when using [native contacts](/docs/native-contacts)
+
+## Feb 7 - Bugfix 🐛
+
+* `median.keyboard.info` method now accepts a callback method [Keyboard Tracking](/docs/keyboard-state-tracking)
+
+## Jan 22 - Maintenance 🛠️
+
+* Activity Indicator can now be customized
+
+## Jan 17 - New Feature 🆕
+
+* Added new `getPlatform()` helper method to [Median JS Bridge NPM Library](device-info#median-js-bridge-npm-library-helper-method)
+
+## Jan 5 - Maintenance 🛠️
+
+* Native Datastore plugin now supports promise-based callbacks
+
+# 2023 Releases
+
+## Dec 21 - New Feature 🆕
+
+* Add a prompt to get user consent to use personal data to serve personalized Ads when using [AdMob](/docs/admob-native-ads)
+
+## Dec 12 - Maintenance 🛠️
+
+* Add `dataRegion` appConfig field for iterable plugin
+* Add an appConfig field `injectMedianJS: boolean` which can be used to disable in-app injection of Javascript bridge in favor of NPM package for React/Angular/Etc apps
+* When closing the appbrowser window `median_appbrowser_closed` callback will be called.
+
+## Dec 11 - Bugfix 🐛
+
+* Fixed an issue where iOS alert dialogs would clear webview controller settings including status bar styling
+
+## Nov 28 - New Feature 🆕
+
+* Introducing In-App browser. You can now define link handling rules so that links open in a separate Safari window within the app. This helps improve the end-user experience and increases session time.
+
+## Nov 16 - Maintenance 🛠️
+
+* arm64 simulators are now supported on M-series Macs
+* Activity indicator now always has white color regardless of color theme (dark/light)
+
+## Nov 9 - Bugfix 🐛
+
+* Fixed: Back button is not always labelled 'Back' on nav level 1 and up.
+
+## Oct 30 - New Feature 🆕
+
+* Added 'state' parameter to Social Login plugin
+
+## Sep 29 - Maintenance 🛠️
+
+* Javascript `alert` and `prompt` dialogs now have button order which is consistent with other browser apps.
+
+## Sep 28 - Bugfix 🐛
+
+* Push notification auto-prompt for permission now works with ATT auto-consent-prompt
+
+## Sep 25 - New Feature 🆕
+
+* Added ability to remove keyboard accessory view using `general.iosShowKeyboardAccessoryView` key
+
+## Sep 11 - New Feature 🆕
+
+* Added Dynamic Type support
+
+## Aug 17 - New Feature 🆕
+
+* Added delay to splash screen animation. Splash screen is now visible until the first page load is complete.
+* Improvements to how Content-Disposition header is used to guess the filename when downloading files.
+
+## Aug 5 - New Feature 🆕
+
+* Use filename suggested in `Content-Disposition` header in file downloads
+
+## Aug 3 - New Feature 🆕
+
+* Custom headers for backward and forward navigation
+
+## Jul 31 - New Feature 🆕
+
+* Added new JavaScript Bridge function to monitor keyboard state.
+
+## Jul 21 - New Feature 🆕
+
+* Added new window\.open and window\.close methods.
+* Check MIME type for main window only and not trigger downloads for iframes.
+
+## Jun 20 - New Feature 🆕
+
+* Add new method in JavaScript to silence foreground notifications for OneSignal. [Docs](/docs/foreground-notifications)
+
+## Jun 20 - New Feature 🆕
+
+* Added new JavaScript Bridge param to set `maxWindow.autoClose` [Docs](/docs/maximum-windows)
+
+## May 17 - New Feature 🆕
+
+* Default assets can now be changed on iOS.
+
+## May 12 - Bugfix 🐛
+
+* Fixed media player widget not showing correctly on lock screen.
+* Fixed app crash when calling `setTabs` and `selectTabs` via JS Bridge
+
+## Apr 28 - New Feature 🆕
+
+* Added `keepScreenOn` bridge methods.
+* Added new `median_app_resumed` callback which is called when app is resumed from background. [Documentation](/docs/app-resumed-callback)
+* Allowed optional `text` when sharing a url using the bridge method.
+* Fixed statusBarStyle not following system settings when set to `auto`.
+
+## Apr 20 - New Feature 🆕
+
+* Auto-closes windows when approaching the maximum number of open windows allowed.
+
+## Mar 29 - Bugfix 🐛
+
+* Native file download requests now use the proper `User-Agent` string.
+* Fixed navigation items overwriting back button title in new windows.
+
+## Mar 2 - New Feature 🆕
+
+* Allow refresh and search functions in [navigation bar](/docs/top-navigation-bar).
+
+## Feb 22 - Bugfix 🐛
+
+* Fixed pinch to zoom not working in some apps.
+
+## Feb 15 - Bugfix 🐛
+
+* Fix for native search not working in some cases in new navigation bar.
+
+## Jan 26 - New Feature 🆕
+
+* Added support for webConsoleLogs to show website Javascript logs in Appetize device logs.
+
+***
+
+[iOS Release Notes](/docs/release-notes-ios)
+
+[Android Release Notes](/docs/release-notes-android)
+
+Copy Page
+
+* * [2025 Releases](#2025-releases)
+
+  * * [Mar 11 - Bugfix 🐛](#mar-11---bugfix-)
+    * [Aug 25 - Maintenance 🛠️](#aug-25---maintenance-️)
+    * [Jul 3 - Bugfix 🐛](#jul-3---bugfix-)
+    * [Jun 18 - New Feature 🆕](#jun-18---new-feature-)
+    * [May 16 - New Feature 🆕](#may-16---new-feature-)
+    * [Apr 29 - Bugfix 🐛](#apr-29---bugfix-)
+    * [Apr 10 - Bugfix 🐛](#apr-10---bugfix-)
+    * [Mar 28 - Bugfix 🐛](#mar-28---bugfix-)
+    * [Mar 10 - New Feature 🆕](#mar-10---new-feature-)
+    * [Mar 3 - Bugfix 🐛](#mar-3---bugfix-)
+    * [Feb 27 - Bugfix 🐛](#feb-27---bugfix-)
+    * [Jan 8 - New Feature 🆕](#jan-8---new-feature-)
+
+  * [2024 Releases](#2024-releases)
+
+  * * [Dec 16 - New Feature 🆕](#dec-16---new-feature-)
+    * [Dec 16 - Bugfix 🐛](#dec-16---bugfix-)
+    * [Dec 16 - New Feature 🆕](#dec-16---new-feature--1)
+    * [Nov 14 - New Feature 🆕](#nov-14---new-feature-)
+    * [Nov 14 - New Feature 🆕](#nov-14---new-feature--1)
+    * [Nov 14 - Bugfix 🐛](#nov-14---bugfix-)
+    * [Oct 24 - Bugfix 🐛](#oct-24---bugfix-)
+    * [Oct 10 - Maintenance 🛠️](#oct-10---maintenance-️)
+    * [Oct 3 - Maintenance 🛠️](#oct-3---maintenance-️)
+    * [Sep 24 - Maintenance 🛠️](#sep-24---maintenance-️)
+    * [Sep 10 - Maintenance 🛠️](#sep-10---maintenance-️)
+    * [Aug 24 - Maintenance 🛠️](#aug-24---maintenance-️)
+    * [Aug 23 - Bugfix 🐛](#aug-23---bugfix-)
+    * [Aug 19 - Maintenance 🛠️](#aug-19---maintenance-️)
+    * [Jul 22 - Bugfix 🐛](#jul-22---bugfix-)
+    * [Jul 15 - Maintenance 🛠️](#jul-15---maintenance-️)
+    * [Jul 12 - Bugfix 🐛](#jul-12---bugfix-)
+    * [Jul 1 - Maintenance 🛠️](#jul-1---maintenance-️)
+    * [Jun 18 - Maintenance 🛠️](#jun-18---maintenance-️)
+    * [Jun 12 - Bugfix 🐛](#jun-12---bugfix-)
+    * [Jun 11 - New Feature 🆕](#jun-11---new-feature-)
+    * [Jun 7 - Maintenance 🛠️](#jun-7---maintenance-️)
+    * [May 14 - Bugfix 🐛](#may-14---bugfix-)
+    * [May 9 - Maintenance 🛠️](#may-9---maintenance-️)
+    * [May 2 - New Feature 🆕](#may-2---new-feature-)
+    * [Apr 16 - New Feature 🆕](#apr-16---new-feature-)
+    * [Apr 15 - New Feature 🆕](#apr-15---new-feature-)
+    * [Apr 8 - New Feature 🆕](#apr-8---new-feature-)
+    * [Apr 1 - New Feature 🆕](#apr-1---new-feature-)
+    * [Mar 21 - Bugfix 🐛](#mar-21---bugfix-)
+    * [Feb 15 - New Feature 🆕](#feb-15---new-feature-)
+    * [Feb 13 - New Feature 🆕](#feb-13---new-feature-)
+    * [Feb 7 - New Feature 🆕](#feb-7---new-feature-)
+    * [Feb 7 - Bugfix 🐛](#feb-7---bugfix-)
+    * [Jan 22 - Maintenance 🛠️](#jan-22---maintenance-️)
+    * [Jan 17 - New Feature 🆕](#jan-17---new-feature-)
+    * [Jan 5 - Maintenance 🛠️](#jan-5---maintenance-️)
+
+  * [2023 Releases](#2023-releases)
+
+  * * [Dec 21 - New Feature 🆕](#dec-21---new-feature-)
+    * [Dec 12 - Maintenance 🛠️](#dec-12---maintenance-️)
+    * [Dec 11 - Bugfix 🐛](#dec-11---bugfix-)
+    * [Nov 28 - New Feature 🆕](#nov-28---new-feature-)
+    * [Nov 16 - Maintenance 🛠️](#nov-16---maintenance-️)
+    * [Nov 9 - Bugfix 🐛](#nov-9---bugfix-)
+    * [Oct 30 - New Feature 🆕](#oct-30---new-feature-)
+    * [Sep 29 - Maintenance 🛠️](#sep-29---maintenance-️)
+    * [Sep 28 - Bugfix 🐛](#sep-28---bugfix-)
+    * [Sep 25 - New Feature 🆕](#sep-25---new-feature-)
+    * [Sep 11 - New Feature 🆕](#sep-11---new-feature-)
+    * [Aug 17 - New Feature 🆕](#aug-17---new-feature-)
+    * [Aug 5 - New Feature 🆕](#aug-5---new-feature-)
+    * [Aug 3 - New Feature 🆕](#aug-3---new-feature-)
+    * [Jul 31 - New Feature 🆕](#jul-31---new-feature-)
+    * [Jul 21 - New Feature 🆕](#jul-21---new-feature-)
+    * [Jun 20 - New Feature 🆕](#jun-20---new-feature-)
+    * [Jun 20 - New Feature 🆕](#jun-20---new-feature--1)
+    * [May 17 - New Feature 🆕](#may-17---new-feature-)
+    * [May 12 - Bugfix 🐛](#may-12---bugfix-)
+    * [Apr 28 - New Feature 🆕](#apr-28---new-feature-)
+    * [Apr 20 - New Feature 🆕](#apr-20---new-feature-)
+    * [Mar 29 - Bugfix 🐛](#mar-29---bugfix-)
+    * [Mar 2 - New Feature 🆕](#mar-2---new-feature-)
+    * [Feb 22 - Bugfix 🐛](#feb-22---bugfix-)
+    * [Feb 15 - Bugfix 🐛](#feb-15---bugfix-)
+    * [Jan 26 - New Feature 🆕](#jan-26---new-feature-)

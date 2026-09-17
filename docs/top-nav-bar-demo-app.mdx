@@ -1,0 +1,91 @@
+---
+title: "Top Nav Bar Demo App"
+---
+
+|     |         |
+| --- | ------- |
+|     |         |
+| iOS | Android |
+
+<CodeGroup>
+  ```bash bash
+  /* Dynamic Title Configuration */
+  [
+    {
+      "regex": "https://median.dev/advanced-navigation/index.html",
+      "title": "Home"
+    },
+    {
+      "regex": "https://median.dev/advanced-navigation/contact.html",
+      "title": "Contact Us"
+    },
+    {
+      "regex": "https://median.dev/advanced-navigation/about.html",
+      "title": "About"
+    }
+  ]
+  ```
+
+  ```bash bash
+  /* Set Dynamic Title */
+  median.navigationTitles.set({
+    active: true,
+    titles: [{
+      title: 'Example Title #1',
+      regex: 'https://median.dev/advanced-navigation/index.html'
+    },
+    { title: 'Example Title #2',
+      regex: 'https://median.dev/advanced-navigation/contact.html'
+    },
+    { title: 'Example Title #3',
+      regex: 'https://median.dev/advanced-navigation/about.html'
+    }],
+    persist: true
+  });
+  ```
+
+  ```bash bash
+  /* Set Current Page Title */
+  if (navigator.userAgent.indexOf('median') > -1) {
+    median.navigationTitles.setCurrent({
+      title: 'Hello World'
+    });
+  }
+  ```
+
+  ```bash bash
+  /* Revert Dynamic Titles */
+  if (navigator.userAgent.indexOf('median') > -1) {
+    median.navigationTitles.set({
+      persist: true
+    });
+  }
+  ```
+
+  ```bash bash
+  /* Custom Icon Configuration */
+  "navigation": {
+      "actionConfig": {
+        "actionSelection": [{
+          "id": "cartAction",
+          "regex": ".*"
+        }],
+        "actions": [{
+          "items": [{
+            "url": "javascript:alert('shopping cart clicked');",
+            "icon": "fas fa-shopping-cart",
+            "label": "Shopping Cart"
+          }],
+          "id": "cartAction"
+        }],
+        "active": true
+      }
+  }
+  ```
+</CodeGroup>
+
+***
+
+### Next Steps
+
+* [Sidebar Navigation Menu](/docs/sidebar-navigation-menu)

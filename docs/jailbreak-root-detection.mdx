@@ -1,0 +1,153 @@
+---
+title: "Jailbreak/Root Detection"
+description: "Enhance App Security by Detecting Jailbroken iOS and Rooted Android Devices"
+---
+
+Security is paramount for enterprise and financial applications. To protect your apps integrity, Median.co provides built-in Jailbreak (iOS) and Root (Android) detection. When a compromised device is detected, Median appends specific query parameters to your URL, allowing you to intercept the session and redirect the user to a secure landing page.
+
+## Why use Jailbreak/Root Detection?
+
+The Jailbreak/Root Detection plugin helps identifying compromised devices using a variety of detection methods, such as the presence of suspicious binaries, unauthorized apps, and supported URL protocols.
+
+## Use cases
+
+Jailbreak/Root Detection is essential for apps that need to:
+
+| Use Case                    | Example                                                                                     |
+| --------------------------- | ------------------------------------------------------------------------------------------- |
+| **Enterprise Applications** | Corporate apps that handle sensitive business data and need to ensure device integrity      |
+| **Financial Applications**  | Banking and payment apps that require secure environments to protect financial transactions |
+| **Security-Critical Apps**  | Apps that disable specific functionalities when compromised devices are detected            |
+| **Compliance Requirements** | Applications that must meet regulatory standards requiring device security validation       |
+
+## Before you start
+
+* [ ] A Median.co app with JavaScript Bridge enabled
+* [ ] A secure landing page for compromised device redirects
+
+<Warning>
+  ### Limitations of Device Detection
+
+  While this plugin provides robust detection capabilities, it's important to note that jailbreaking and rooting a device inherently grants elevated access, which could be used to bypass detection methods. Thus, no detection system can guarantee 100% effectiveness.
+
+  This plugin is designed to offer a reasonable level of detection, which can be used to alert users or disable specific app functionalities if a compromised device is detected.
+</Warning>
+
+***
+
+## How it works
+
+When the native app detects that a device has been tampered with, it appends `rootDetected=true` or `isRooted=true` to your Initial URL. By using the Median JavaScript Bridge, you can programmatically handle these users before they access sensitive features.
+
+* `rootDetected=true`
+* `isRooted=true`
+
+For example, instead of loading `https://example.com/`, the app will load `https://example.com/?rootDetected=true`. Be sure to check for both query parameter values list above to identify compromised devices.
+
+### Summary table: Detection parameters
+
+| Parameter      | Platform      | Description                                         |
+| -------------- | ------------- | --------------------------------------------------- |
+| `rootDetected` | iOS / Android | Primary flag for detected system tampering.         |
+| `isRooted`     | Android       | Legacy/Alternative flag for rooted Android devices. |
+
+### Libraries used for detection
+
+**iOS Jailbreak Detection**: For iOS, we utilize the [DTTJailbreakDetection](https://github.com/thii/DTTJailbreakDetection) library, alongside other detection techniques.
+
+**Android Root Detection**: For Android, we rely on the [Rootbeer](https://github.com/scottyab/rootbeer) library, as well as additional methods.
+
+***
+
+## Integration Guide
+
+### Website Configuration (JavaScript Bridge)
+
+**Note**: The code snipped below is just one of the many ways you can use to identify and process the parameters attached to the URL.
+
+Place the following script within the `<head>` of your index page or your global JavaScript file.
+
+<CodeGroup>
+  ```bash bash
+  <script>
+    /**
+     * Evaluates device security status and redirects compromised devices.
+     */
+    function handleCompromisedDevice() {
+      const params = new URLSearchParams(window.location.search);
+
+      // Check for Median-injected security flags
+      const isCompromised = 
+        params.get("rootDetected") === "true" || 
+        params.get("isRooted") === "true";
+
+      if (isCompromised) {
+        // Redirect to a landing page explaining the security policy
+        // .replace() is used to remove the compromised page from session history
+        window.location.replace("/compromised-device.html");
+      }
+    }
+
+    /**
+     * Median Library Ready Callback
+     * Triggered automatically once the Median JS Bridge is fully initialized.
+     */
+    function median_library_ready() {
+      handleCompromisedDevice();
+    }
+
+    /**
+     * Initialization Fallback
+     * Ensures the check runs even if the script loads after the Median Bridge.
+     */
+    if (window.median) {
+      handleCompromisedDevice();
+    }
+  </script>
+  ```
+</CodeGroup>
+
+***
+
+## Technical Best Practises
+
+#### Use `location.replace()` Over `location.href`
+
+Using `window.location.replace()` is a critical security step. It replaces the current document in the browser history, preventing users from clicking a "Back" button or using a swipe gesture to return to the restricted area of your app.
+
+#### Standardize Parameter Handling
+
+Median supports multiple flags depending on the platform version. Checking for both `rootDetected` and `isRooted` ensures maximum compatibility across older and newer app builds.
+
+#### Early Execution
+
+By wrapping this logic in` median_library_ready()`, you ensure the check occurs at the earliest possible moment in the app lifecycle, minimizing the "flash" of content before the redirect occurs.
+
+#### Lightweight redirect
+
+Ensure your /compromised-device.html page is lightweight and does not require further authentication, as a rooted device may fail secondary security checks.
+
+***
+
+[Enterprise Security](/docs/enterprise-plugin)
+
+[Microsoft Intune](/docs/microsoft-intune)
+
+Copy Page
+
+* * [Why use Jailbreak/Root Detection?](#why-use-jailbreakroot-detection)
+
+  * [Use cases](#use-cases)
+
+  * [Before you start](#before-you-start)
+
+  * [How it works](#how-it-works)
+
+  * * [Summary table: Detection parameters](#summary-table-detection-parameters)
+    * [Libraries used for detection](#libraries-used-for-detection)
+
+  * [Integration Guide](#integration-guide)
+
+  * * [Website Configuration (JavaScript Bridge)](#website-configuration-javascript-bridge)
+
+  * [Technical Best Practises](#technical-best-practises)

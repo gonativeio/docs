@@ -1,0 +1,93 @@
+---
+title: "Location Services"
+description: "To access device location services in your Android or iOS app, you must handle permissions correctly using the Median JavaScript Bridge. This guide covers best practices to avoid duplicate permission prompts."
+---
+
+<Check>
+  ### Developer Demo
+
+  Display our demo page in your app to test during development [https://median.dev/location-services/](https://median.dev/location-services/)
+</Check>
+
+## Implementation Guide
+
+### iOS: Avoid Duplicate Geolocation Prompts
+
+On iOS, location permission is requested automatically at runtime. However, your app must delay geolocation API calls until native location services are fully initialized to prevent a double prompt from both the native app and the web view.
+
+#### Solution: Use `median_geolocation_ready()`
+
+Median's native iOS layer calls the `median_geolocation_ready()` JavaScript function once location services are initialized. Use this callback to safely request geolocation in your app.
+
+**Example:**
+
+This function ensures the web-based geolocation API uses the native implementation, preventing the user from being prompted twice.
+
+<CodeGroup>
+  ```bash bash
+  // Automatically called by Median when iOS native location services are ready
+  function median_geolocation_ready() {
+    navigator.geolocation.getCurrentPosition(locationSuccess, locationError, locationOptions);
+  }
+
+  // Fallback: Call immediately on non-iOS platforms
+  if (!navigator.userAgent.includes('MedianIOS')) {
+    median_geolocation_ready();
+  }
+  ```
+</CodeGroup>
+
+## Android: Request Runtime Location Permission
+
+On Android, geolocation permission must be requested at runtime using the Median JavaScript Bridge.
+
+### Prompt for Location Permission
+
+Ensure you have Location Services permission enabled in your app configuration, then prompt for permission at runtime by using the following Median JavaScript Bridge command.
+
+<CodeGroup>
+  ```bash bash
+  median.android.geoLocation.promptLocationServices();
+  ```
+</CodeGroup>
+
+* If the user has already granted permission, this command has no effect.
+* If permission has not been granted, the app will display a native dialog.
+
+### Check Location Permission Status
+
+You can verify whether location services are enabled using:
+
+<CodeGroup>
+  ```bash bash
+  median.android.geoLocation.isLocationServicesEnabled({'callback':function});
+  // Return value:
+  {
+    "enabled": true | false
+  }
+  ```
+</CodeGroup>
+
+## Additional Resources
+
+* [Location Services Demo App](https://median.dev/location-services)
+* [Background Location Native Plugin](https://docs.median.co/docs/background-location)
+
+***
+
+[Downloads Directory](/docs/downloads-directory)
+
+[WebRTC Audio & Video](/docs/web-rtc)
+
+Copy Page
+
+* * [Implementation Guide](#implementation-guide)
+
+  * * [iOS: Avoid Duplicate Geolocation Prompts](#ios-avoid-duplicate-geolocation-prompts)
+
+  * [Android: Request Runtime Location Permission](#android-request-runtime-location-permission)
+
+  * * [Prompt for Location Permission](#prompt-for-location-permission)
+    * [Check Location Permission Status](#check-location-permission-status)
+
+  * [Additional Resources](#additional-resources)

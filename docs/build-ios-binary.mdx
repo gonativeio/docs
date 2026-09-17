@@ -1,0 +1,73 @@
+---
+title: "Building an iOS Binary (IPA)"
+description: "Create Signed iOS Binaries with Median.co"
+---
+
+Before you can distribute or test an iOS app, you must compile it into an IPA file, also known as an iOS App Store Package. The IPA contains your app’s code and assets. It must be signed and provisioned correctly before it can run on devices, be uploaded to TestFlight, or be submitted to the App Store.
+
+At Median, we use **your Apple credentials**, including App Store Connect API keys, certificates, and provisioning profiles, to support both App Store distribution and device testing. Once these credentials are configured, you can build a distribution IPA for upload to App Store Connect for TestFlight and App Review. You can also build a development IPA that installs directly on an iPhone using over-the-air deployment, even without access to a Mac.
+
+For most App Store launches, use a distribution provisioning profile and set Upload to App Store Connect to Automatic. Building from source in Xcode is optional and is typically only needed for custom native development workflows.
+
+## Prerequisites
+
+Before you begin, make sure you have the following:
+
+* An active, paid Apple Developer Program membership (a free Apple ID cannot generate the certificates or provisioning profiles an IPA build requires).
+
+* Access to the Apple account that owns, or has Admin/App Manager access to, your app's App Store Connect record.
+
+* At least one iOS device running iOS 15 or later if you plan to test the build directly on a device.
+
+## The 4-step iOS build flow
+
+| Step | What you'll do                                                                   | Article                                                                                                    |
+| ---- | -------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| 1    | Connect Median to your Apple Developer account with an App Store Connect API key | [Connecting Median with App Store Connect](https://docs.median.co/docs/connecting-median-appstore-connect) |
+| 2    | Register the iPhones/iPads you want to test on                                   | [Registering Testing Devices](https://docs.median.co/docs/registering-testing-devices)                     |
+| 3    | Configure your Bundle ID, App Store Connect app record, and signing method       | [Configure Signing for Your App](https://docs.median.co/docs/configure-signing-for-your-app)               |
+| 4    | Run the build and install the IPA on a device                                    | [Install iOS IPA](https://docs.median.co/docs/install-ios-ipa)                                             |
+
+Building an app that uses App Groups (share extensions, widgets, or app clips that need shared storage)? There's an additional article for that: [Building an iOS Binary with App Groups Entitlement](https://docs.median.co/docs/building-an-ios-binary-for-apps-using-app-groups-entitlements).
+
+## What to expect once you start a build
+
+After signing and Bundle ID setup are complete, starting a build from the iOS IPA Build Configuration panel typically takes several minutes. You'll see the build's status update live in App Studio — you don't need to keep the tab open, and you'll be notified when it finishes or if it fails with an error you need to address.
+
+## Next step
+
+Start with [Connecting Median with App Store Connect](https://docs.median.co/docs/connecting-median-appstore-connect) →
+
+## Frequently Asked Questions
+
+### Do I need a paid Apple Developer account to build an IPA with Median?
+
+**Do I need a paid Apple Developer account to build an IPA with Median?⎘ Copy link
+
+Yes. A free Apple ID can't generate the signing certificates or provisioning profiles a build requires. You need an active Apple Developer Program membership ($99/year as of this writing).
+
+### Can I test my app on an iPhone without owning a Mac?
+
+**Can I test my app on an iPhone without owning a Mac?⎘ Copy link
+
+Yes. Median's entire iOS build and install flow (including signing) runs in the cloud, so no local Mac or Xcode installation is required for the standard flow.
+
+### What's the difference between a Development build and a Distribution build?
+
+**What's the difference between a Development build and a Distribution build?⎘ Copy link
+
+A Development build/profile is limited to devices you've explicitly registered as testers and is meant for direct installs outside App Store Connect. A Distribution build/profile is required for TestFlight and App Store releases. You choose between these in the Signing & Upload Settings section covered in [Configure Signing for Your App](https://docs.median.co/docs/configure-signing-for-your-app).
+
+***
+
+### Next Steps
+
+* [Connecting Median with App Store Connect](/docs/connecting-median-appstore-connect)
+
+Copy Page
+
+* * [Prerequisites](#prerequisites)
+  * [The 4-step iOS build flow](#the-4-step-ios-build-flow)
+  * [What to expect once you start a build](#what-to-expect-once-you-start-a-build)
+  * [Next step](#next-step)
+  * [Frequently Asked Questions](#frequently-asked-questions)

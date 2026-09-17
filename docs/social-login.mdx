@@ -1,0 +1,133 @@
+---
+title: "Overview"
+description: "Enable Facebook Login, Google Sign-in and Sign in with Apple"
+---
+
+## Overview
+
+Enable secure, native login experiences for your app users with **Facebook Login**, **Google Sign-In**, and **Sign In with Apple**. Median's Social Login plugin uses native SDKs for a secure experience that allows users who are already authenticated on their devices to log in automatically.
+
+***
+
+## Before you start
+
+Make sure you have:
+
+* Developer accounts for each provider (Facebook, Google, Apple)
+* Your app's Bundle ID (iOS) and Package Name (Android)
+* Access to your website's codebase
+* Basic understanding of OAuth authentication
+
+***
+
+## Complete setup process
+
+Setting up Social Login involves the following four steps:
+
+### Step 1: Configure identity providers
+
+Configure each provider in their respective developer portals:
+
+[](https://docs.median.co/docs/facebook-login-configuration)
+
+[Configure Facebook Login](https://docs.median.co/docs/facebook-login-configuration)
+
+[Set up your Facebook App and add iOS/Android platforms. *Requires: Bundle ID, Package Name, Key Hash*](https://docs.median.co/docs/facebook-login-configuration)
+
+[](https://docs.median.co/docs/google-sign-in-configuration)
+
+[Configure Google Sign-In](https://docs.median.co/docs/google-sign-in-configuration)
+
+[Create OAuth clients for all platforms in Google Cloud. *Requires: Bundle ID, Package Name, SHA-1 Certificate*](https://docs.median.co/docs/google-sign-in-configuration)
+
+[](https://docs.median.co/docs/sign-in-with-apple-configuration/)
+
+[Configure Sign In with Apple](https://docs.median.co/docs/sign-in-with-apple-configuration/)
+
+[Register Service ID and set up web authentication. *Requires: Bundle ID, website domains, redirect URLs*](https://docs.median.co/docs/sign-in-with-apple-configuration/)
+
+***
+
+### 2. Add credentials to the Median App Studio
+
+Enter the credentials from Step 1 into your Social Login configuration in Median App Studio.
+
+**You'll need these credentials based on the Providers you want to enable:**
+
+| Provider | Parameters                         |
+| -------- | ---------------------------------- |
+| Facebook | App ID, Display Name, Client Token |
+| Google   | iOS Client ID, Android Client ID   |
+| Apple    | iOS Bundle ID                      |
+
+<Frame caption="Social Login Plugin Configuration">
+  <img src="/images/docs/16a8d24058aa316ab249cc212efeb7a2a776c7acfaba90bad8cc2d5e346bfe8c-Screenshot_2025-12-10_at_14.38.41.png" />
+</Frame>
+
+***
+
+### 3. Update your website for native social login
+
+Integrate the Median JavaScript Bridge so your website can trigger native login flows.
+
+The Social Login plugin includes a set of images you may use as buttons to trigger the JavaScript Bridge functions that launch each of the native SDKs. (SVG and high resolution @2x, @3x PNG formats available). [Website Integration Guide →](/docs/social-login-website-configuration)
+
+![](/images/docs/f8fb0ba-gonative-sign-in-logo-pack.png)
+
+***
+
+### Step 4: Rebuild your app & test
+
+After configuration, rebuild your app and perform login tests for each identity provider.
+
+Preview Social Login functionality in your app during development:🔗 [Load our demo page](https://median.dev/social-login/)
+
+This demo page includes test buttons for all three providers so you can verify your configuration works before integrating with your website.
+
+***
+
+## Implementation guides
+
+Update your website and server configuration to integrate with the Social Login Native Plugin:
+
+[](https://docs.median.co/docs/social-login-website-configuration)
+
+[Website Configuration](https://docs.median.co/docs/social-login-website-configuration)
+
+[Implement JavaScript Bridge functions in your website to trigger native authentication flows from your mobile app.](https://docs.median.co/docs/social-login-website-configuration)
+
+[](https://docs.median.co/docs/social-login-server-side-redirects)
+
+[Server-Side Redirects](https://docs.median.co/docs/social-login-server-side-redirects)
+
+[Configure server-side redirect handling to properly manage authentication callbacks and token exchanges.](https://docs.median.co/docs/social-login-server-side-redirects)
+
+[](https://docs.median.co/docs/social-login-javascript-callbacks)
+
+[JavaScript Callbacks](https://docs.median.co/docs/social-login-javascript-callbacks)
+
+[Handle authentication responses and user data returned from native SDKs through JavaScript callback functions.](https://docs.median.co/docs/social-login-javascript-callbacks)
+
+***
+
+### Next Steps
+
+* [Facebook Login Configuration](/docs/facebook-login-configuration)
+* [Google Sign-in Configuration](/docs/google-sign-in-configuration)
+* [Sign in with Apple Configuration](/docs/sign-in-with-apple-configuration)
+* [Website Configuration](/docs/social-login-website-configuration)
+
+Copy Page
+
+* * [Overview](#overview)
+
+  * [Before you start](#before-you-start)
+
+  * [Complete setup process](#complete-setup-process)
+
+  * * [Step 1: Configure identity providers](#step-1-configure-identity-providers)
+    * [2. Add credentials to the Median App Studio](#2-add-credentials-to-the-median-app-studio)
+    * [3. Update your website for native social login](#3-update-your-website-for-native-social-login)
+    * [Step 4: Rebuild your app & test](#step-4-rebuild-your-app--test)
+
+  * [Implementation guides](#implementation-guides)

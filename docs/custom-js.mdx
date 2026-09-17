@@ -1,0 +1,41 @@
+---
+title: "Custom JavaScript"
+description: "Custom JavaScript allows you to inject scripts into your website when it’s loaded inside your Median-powered mobile app. This gives you powerful control to enhance app-specific behaviors, interact with the Median JavaScript Bridge, or tailor your site’s functionality without modifying your live website code."
+---
+
+JavaScript added via the configuration panel is automatically injected into both iOS and Android versions of your app. You can also apply platform-specific scripts when needed.
+
+## Injecting JavaScript Without `<script>` Tags
+
+JavaScript should be written exactly as it would appear in a standalone .js file. Do not include HTML tags like `<script>`. The code will automatically be executed when your site loads in the app.
+
+## Example: Send [Device Info](/docs/device-info) on your login page
+
+Use the Median JavaScript Bridge to access device information and send it to your server, such as during user login or registration flows:
+
+<CodeGroup>
+  ```bash bash
+  /* This script checks if the current page path starts with /login and then calls median.deviceInfo() to retrieve device details. It sends that data to your server via a POST request. */
+
+  if(location.pathname.startsWith('/login'){
+    median.deviceInfo().then(function (deviceInfo) {
+      fetch('https://yourwebsite.com/api/registration', {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(deviceInfo),
+      });
+    });
+  }
+  ```
+</CodeGroup>
+
+***
+
+[Custom CSS](/docs/custom-css)
+
+[Cookie Persistence](/docs/cookie-persistence)
+
+Copy Page
+
+* * [Injecting JavaScript Without \<script> Tags](#injecting-javascript-without-script-tags)
+  * [Example: Send Device Info on your login page](#example-send-device-info-on-your-login-page)

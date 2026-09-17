@@ -1,0 +1,55 @@
+---
+title: "SPA Navigation"
+description: "Handle soft page loads with navigation listeners"
+---
+
+In Single-Page Applications (SPAs) built with frameworks like React, Angular, or Vue.js, navigation works differently from traditional websites. Rather than loading an entire new page when a user clicks a link, SPAs dynamically display the requested content using cached data or asynchronous network requests. This soft page load is more efficient than the traditional hard page load, delivering a fast and responsive user experience. This approach is one of the key reasons why SPAs are widely used to power native apps, including those built with the Median platform.
+
+Median's NPM package provides functionality to implement the same "soft" page load responsive experience for native app navigation events, including:
+
+* Native navigation button clicks (e.g., tapping a [bottom tab bar](/docs/bottom-tab-bar) button).
+* Deep link app resume (e.g., opening a [deep link](/docs/deep-linking) from an email/SMS that launches your app from the background).
+* Push notification app resume (e.g., tapping a notification banner with an embedded [URL that opens in the app](/docs/open-url-from-notification) from the background).
+
+## JavaScript Navigation Listener
+
+To maintain a responsive user experience in your native app, you can use the `jsNavigation` listener from the Median JavaScript Bridge. This listener ensures that navigation triggered by the native app is handled efficiently using soft loads, avoiding unnecessary hard page loads.
+
+### Example: Implementing the jsNavigation Listener
+
+<CodeGroup>
+  ```bash bash
+  Median.jsNavigation.url.addListener((url) -> {
+    // Use your SPA's routing logic to navigate to the URL
+    // Soft load the requested content, triggering a hard page load only if necessary
+  });
+  ```
+</CodeGroup>
+
+By adding this listener, your SPA will handle navigation events using your existing routing library. This prevents a full-page reload, optimizing performance and providing users with a smooth experience.
+
+### Example SPA Navigation Flow
+
+1. **Open Deep Link**: The app is closed, and the user clicks a deep link in an email (e.g., `https://median.app/abc/123`).
+2. **Cold Start App Launch**: The app launches from a cold start, loads the deep link URL directly, and the SPA is loaded as part of this initial hard page load.
+3. **Internal Navigation**: The user clicks various links and navigates through the SPA, which asynchronously loads and displays new content without any hard page loads.
+4. **Background App and Open Deep Link**: The user backgrounds the app, switches back to their email client, and clicks the deep link from step #1 again.
+5. **Warm Start and App Resume**: The app launches from a warm start, and the `jsNavigation` listener is called with the deep link URL as the parameter.
+6. **Seamless Soft Navigation**: The SPA seamlessly navigates to the content without requiring a full page load.
+
+Without the listener in step #6 the app would perform a costly full page load, causing delays. In some scenarios the app might not perform a hard load at all if it incorrectly determines that the requested URL is already displayed based on the initial load in step #2.
+
+By implementing the `jsNavigation` listener, you ensure a responsive and efficient navigation experience within your native apps and maximize the performance benefits possible through a SPA.
+
+***
+
+[Using Listeners](/docs/npm-package-usage-with-listeners)
+
+[Device Info](/docs/device-info)
+
+Copy Page
+
+* * [JavaScript Navigation Listener](#javascript-navigation-listener)
+
+  * * [Example: Implementing the jsNavigation Listener](#example-implementing-the-jsnavigation-listener)
+    * [Example SPA Navigation Flow](#example-spa-navigation-flow)

@@ -1,0 +1,71 @@
+---
+title: "Native Gestures and Interactions"
+description: "Enable Swipe, Zoom, and Refresh Gestures"
+---
+
+Enhance your app's user experience by enabling native interaction gestures. Median.co allows you to integrate swipe-based navigation, pinch-to-zoom capabilities, and pull-to-refresh functionality, ensuring your app feels fluid and behaves like a native mobile application.
+
+<Check>
+  ### Developer Demo
+
+  Display our demo page in your app to test during development [https://median.dev/swipe-gestures/](https://median.dev/swipe-gestures/)
+</Check>
+
+## Implementation Guide
+
+### Swipe Navigation
+
+Enable swipe gestures to allow users to navigate backward and forward through their browsing history using simple horizontal swipes.
+
+<Info>
+  ### Android Behavior
+
+  On Android devices, visual arrow indicators appear on the screen to provide feedback when a previous or next page is available in the history stack.
+</Info>
+
+#### Managing Swipe Gestures via JavaScript Bridge
+
+You can toggle swipe gestures at runtime to dynamically enable or disable navigation based on your app’s current state or specific view requirements.
+
+**Enable Swipe Gestures**
+
+<CodeGroup>
+  ```bash bash
+  median.android.swipeGestures.enable();
+  ```
+</CodeGroup>
+
+**Disable Swipe Gestures**
+
+<CodeGroup>
+  ```bash bash
+  median.android.swipeGestures.disable();
+  ```
+</CodeGroup>
+
+### Pinch-To-Zoom
+
+The pinch-to-zoom feature allows users to use two fingers to interactively zoom in and out of content within your app.
+
+* **Default State**: This feature is disabled by default.
+* **Use Case**: Enable this if your content (such as product images, maps, or data-dense pages) requires fine-grained zooming control.
+
+### Pull-to-Refresh
+
+Pull-to-refresh provides a standard mobile gesture for reloading the current page by swiping down from the top of the screen.
+
+**Cross-Platform Support**: This functionality can be configured independently for both iOS and Android platforms to suit the specific UI/UX requirements of your project.
+
+***
+
+[Dark Mode](/docs/dark-mode)
+
+[Font Scaling](/docs/font-scaling)
+
+Copy Page
+
+* * [Implementation Guide](#implementation-guide)
+
+  * * [Swipe Navigation](#swipe-navigation)
+    * [Pinch-To-Zoom](#pinch-to-zoom)
+    * [Pull-to-Refresh](#pull-to-refresh)

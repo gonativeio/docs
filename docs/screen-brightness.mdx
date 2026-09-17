@@ -1,0 +1,64 @@
+---
+title: "Screen Brightness"
+description: "Dynamically control the device's screen brightness from your web app"
+---
+
+The Screen Brightness JavaScript Bridge method lets you set the device's screen brightness at runtime, overriding the user's system setting while they're inside your app. It's part of Median's [Device Screen Control](https://docs.median.co/docs/device-screen-control) feature set, alongside [Keep Screen On](https://docs.median.co/docs/keep-screen-on) and [Full Screen](https://docs.median.co/docs/full-screen).
+
+## Why Use Screen Brightness
+
+* **Low-light and night reading modes**: Automatically dim the screen for reading, news, or ebook apps so brightness matches your app's own dark mode or a scheduled "night" experience.
+* **Camera-driven flows**: Boost brightness before opening a barcode, QR, or document scanning flow so the camera has enough light to focus and capture accurately.
+* **Photo and video accuracy**: Raise brightness when displaying photos, videos, or color-critical content so users see true colors and detail instead of a dimmed system setting.
+* **Kiosk and presentation displays**: Lock brightness at maximum for outward-facing kiosk, signage, or in-store display use cases where the screen must stay clearly visible.
+* **Battery-conscious experiences**: Lower brightness during long-running sessions like maps, tracking, or background-heavy screens to help conserve battery.
+* **User-controlled accessibility**: Expose an in-app brightness slider so users can fine-tune brightness to their needs without leaving your app to use system controls.
+
+<Check>
+  ### **Developer Demo**
+
+  Display our demo page in your app to test during development [https://median.dev/device-screen-controls/](https://median.dev/device-screen-controls/)
+</Check>
+
+### JavaScript Bridge Implementation
+
+#### Set Screen Brightness
+
+Sets the device screen to a specific brightness level
+
+<CodeGroup>
+  ```bash bash
+  median.screen.setBrightness({'brightness':'0.8'})';
+  ```
+</CodeGroup>
+
+#### Restore Brightness on Navigation
+
+To apply a brightness change that automatically reverts once the user navigates to a new page:
+
+<CodeGroup>
+  ```bash bash
+  median.screen.setBrightness({'brightness':'0.8', 'restoreOnNavigation': true});
+  ```
+</CodeGroup>
+
+#### Reset to Default Brightness
+
+To clear any brightness override and return control to the device's system setting:
+
+<CodeGroup>
+  ```bash bash
+  median.screen.setBrightness({'brightness':'default'})';
+  ```
+</CodeGroup>
+
+***
+
+[Device Screen Control](/docs/device-screen-control)
+
+[Keep Screen On](/docs/keep-screen-on)
+
+Copy Page
+
+* * [Why Use Screen Brightness](#why-use-screen-brightness)
+  * * [JavaScript Bridge Implementation](#javascript-bridge-implementation)

@@ -1,0 +1,391 @@
+---
+title: "Master Lock"
+description: "Unlock Master Lock padlocks and lock boxes using the Master Lock Mobile SDKs"
+---
+
+The Master Lock Plugin allows you to unlock and manage Master Lock Bluetooth® padlocks, lockboxes, and deadbolts by integrating with the [Master Lock Mobile SDKs](https://sdkdocs.masterlockvault.com/).
+
+This guide provides step-by-step instructions to configure the plugin and use its features through the [Median JavaScript Bridge](https://median.co/docs/javascript-bridge). Features include scanning, unlocking, relocking (D1000), firmware updates, lock resets, and deadbolt configuration.
+
+<Check>
+  ### Developer Demo
+
+  Test your setup during development by embedding the [Master Lock demo page](https://median.dev/masterlock) in your app.
+</Check>
+
+## Implementation Guide
+
+### Lock Provisioning (Activation, Setup and Access)
+
+The lock setup and activation is handled using the [Master Lock Connected Products Web API](https://cp.masterlockvault.com/swagger/ui/index). For the latest details, always refer to the official API specification.
+
+In general, you will need the following steps in order to provision a lock, retrieve it's information and provision a new access profile for your users.
+
+#### Step 1 - API Authentication
+
+Use the `/authenticate` endpoint to retrieve an API token by using your license and password.
+
+#### Step 2 - Activate a Lock (Optional)
+
+Use the `/v2/device/activate` endpoint to active a new lock. Skip this step if your locks are already provisioned.
+
+#### Step 3 - Retrieve Lock Information
+
+Use the `/v2/device` to obtain the Firmware Version of your lock(s). The Firmware Version is a required parameter to unlock the lock using the SDK.
+
+#### Step 4 - Create an Access Profile
+
+Use the `/v2/device/accessprofile/create` to create a new temporary access profile for your users. Please ensure the access profile has the `Unlock` permission otherwise the user won't be able to unlock the Bluetooth locks.
+
+There are multiple API endpoints to create access profiles. The endpoint above creates a single profile for a single lock, but you can also create an access profile for multiple locks, or multiple access profiles for a single lock.
+
+**Note: Access Profile Permissions**
+
+| Unlock Access Permission | Mechanism | Applicable Lock Types                        |
+| ------------------------ | --------- | -------------------------------------------- |
+| Unlock                   | Primary   | 4400, 4401, 6400, and D1000                  |
+| UnlockDoor               | Primary   | 5440, 5441, and 6440                         |
+| UnlockShackle            | Secondary | only useful for the 5440 portable lock boxes |
+
+Please always validate with the latest permissions outlined in the [Master Lock Access Profile and Permissions](https://sdkdocs.masterlockvault.com/docs/CoreConcepts/AccessProfiles#permissions) documentation.
+
+### JavaScript Bridge Functions
+
+#### Plugin Permissions
+
+The Master Lock Plugin requires Bluetooth and Location permissions to scan for and interact with nearby locks. These permissions are requested automatically at runtime.
+
+If you prefer to check and request permissions before initializing the plugin, see our [Permissions Overview](https://median.co/docs/permissions-overview) for implementation details.
+
+#### Initialize Master Lock SDK
+
+The SDK must be initialized before scanning or unlocking. This design supports multiple Master Lock licenses within the same app.
+
+<CodeGroup>
+  ```bash bash
+  median.masterlock.initialize({ license });
+  ```
+</CodeGroup>
+
+#### Scan for Locks
+
+Discover nearby Master Lock devices. You are able to define a scanning timeout in milliseconds (otherwise a default value of 15s will be used) and can are able to define functions for each of the following events:
+
+* `onScanStart`: App started scanning for nearby locks.
+* `onScanStop`: App stopped scanning for nearby locks.
+* `onDeviceDiscover`: App discovered locks.
+
+<CodeGroup>
+  ```bash bash
+  median.masterlock.scan({
+    onScanStart: "onScanStart",
+    onScanStop: "onScanStop",
+    onDeviceDiscover: "onDeviceDiscover",
+    timeout: timeout,
+  });
+  ```
+</CodeGroup>
+
+#### Unlock a Lock
+
+Unlocking requires the Device ID, Access Profile, Firmware Version, and a timeout value (in milliseconds).
+
+<CodeGroup>
+  ```bash bash
+  median.masterlock.unlock({
+    deviceId,
+    accessProfile,
+    firmwareVersion,
+    mechanism: "primary" | "secondary"
+    timeout: timeout
+  });
+  ```
+</CodeGroup>
+
+Parameters:
+
+* `deviceId`: The lock's unique identifier - available during setup or Master Lock API.
+* `accessProfile`: Profile generated via the Master Lock API.
+* `firmwareVersion`: Lock firmware version.
+* `mechanism`: Defines the primary or secondary lock mechanism.
+* `timeout`: Time in ms before auto-relock.
+
+#### Update Firmware
+
+Initiate an OTA firmware update on a Master Lock device. The update process runs automatically once initiated.
+
+<CodeGroup>
+  ```bash bash
+  median.masterlock.updateFirmware({
+    deviceId,
+    accessProfile,
+    currentFirmwareVersion,
+    targetFirmwareVersion,
+  });
+  ```
+</CodeGroup>
+
+Parameters:
+
+* `deviceId`: The lock's unique identifier.
+* `accessProfile`: Profile generated via the Master Lock API.
+* `currentFirmwareVersion`: Current firmware version on the lock.
+* `targetFirmwareVersion`: Target firmware version to update to (from Master Lock API).
+
+<Warning>
+  ### Important
+
+  * Ensure the device is awake and network connectivity is strong before starting.
+  * Updates can take up to 5 minutes.
+  * The lock will unlock automatically during update to ensure accessibility in case of failure.
+  * After completion, you must fetch a new access profile from the Master Lock API.
+</Warning>
+
+#### Firmware Update Listener
+
+Subscribe to firmware update state changes and progress. Use this to display real-time progress to users.
+
+<CodeGroup>
+  ```bash bash
+  // Add listener
+  const listenerId = median.masterlock.firmwareUpdate.addListener((status) => {
+    console.log(status.deviceId, status.state, status.percentage);
+  });
+
+  // Remove listener when done
+  median.masterlock.firmwareUpdate.removeListener(listenerId);
+  ```
+</CodeGroup>
+
+The callback receives a status object with:
+
+* `deviceId`: The lock being updated.
+* `state`: Current state - `downloading`, `downloadComplete`, `applying`, `validating`, `done`, or `error`.
+* `percentage`: Progress percentage (0-100), only populated when state is `applying`.
+* `error`: Error details when state is `error`.
+
+#### Lock Reset
+
+Perform a lock reset to invalidate all access profiles, temporary codes, and secondary codes. Use this when re-keying a lock or revoking all access. Please note that the Lock Reset is only available for the **D1000 Deadbolt**.
+
+<CodeGroup>
+  ```bash bash
+  median.masterlock.lockReset({
+    deviceId,
+    accessProfile,
+    firmwareVersion,
+  });
+  ```
+</CodeGroup>
+
+Parameters:
+
+* `deviceId`: The lock's unique identifier.
+* `accessProfile`: Profile generated via the Master Lock API.
+* `firmwareVersion`: Lock firmware version.
+
+Returns a promise that resolves with:
+
+* `success`: Boolean indicating if reset completed.
+* `deviceId`: The lock that was reset.
+* `accessProfilesInvalidated`: Confirms access profiles are now invalid.
+* `temporaryCodesInvalidated`: Confirms temporary codes are now invalid.
+* `secondaryCodesErased`: Confirms secondary codes have been erased.
+
+<Warning>
+  ### Important
+
+  * Must be performed while online (API acknowledgement required).
+  * Takes 3-15 seconds to complete.
+  * Currently only D1000 Deadbolt model supports this operation.
+  * Cannot be performed if lock or phone battery is below 10%.
+  * After reset, all users must refresh their access profiles via the Master Lock API.
+</Warning>
+
+**Lock Reset Error Codes**
+
+| Error Code              | Description                       | Recovery Action                        |
+| ----------------------- | --------------------------------- | -------------------------------------- |
+| `ACKNOWLEDGEMENT_ERROR` | API acknowledgement failed        | Retry operation                        |
+| `BLUETOOTH_DISABLED`    | Bluetooth is disabled             | Prompt user to enable Bluetooth        |
+| `DOWNLOAD_ERROR`        | Failed to download reset commands | Check network, retry                   |
+| `LOCK_BATTERY_LOW`      | Lock battery \< 10%               | Replace lock batteries                 |
+| `OFFLINE`               | No network connection             | Connect to network                     |
+| `PHONE_BATTERY_LOW`     | Phone battery \< 10%              | Charge phone                           |
+| `SESSION_NOT_INITIATED` | Lock session not established      | Ensure lock is awake and in range      |
+| `SDK_NOT_INITIALIZED`   | SDK not initialized               | Call initialize() first                |
+| `COMMAND_NOT_ALLOWED`   | Feature blocked by license        | Contact Master Lock for license update |
+
+#### Get Deadbolt Handedness
+
+Read the current bolt direction configuration from a D1000 Deadbolt. This is useful for displaying the current configuration in your app UI.
+
+<CodeGroup>
+  ```bash bash
+  median.masterlock.getDeadboltHandedness({
+    deviceId,
+    accessProfile,
+    firmwareVersion,
+  });
+  ```
+</CodeGroup>
+
+Parameters:
+
+* `deviceId`: The lock's unique identifier.
+* `accessProfile`: Profile generated via the Master Lock API.
+* `firmwareVersion`: Lock firmware version.
+
+Returns a promise that resolves with:
+
+* `success`: Boolean indicating if read completed.
+* `deviceId`: The lock that was queried.
+* `handedness`: Current configuration - `left` or `right`.
+
+#### Set Deadbolt Handedness
+
+Configure the bolt direction on a D1000 Deadbolt. This must be set correctly for proper unlock/relock motor operation.
+
+<CodeGroup>
+  ```bash bash
+  median.masterlock.setDeadboltHandedness({
+    deviceId,
+    accessProfile,
+    firmwareVersion,
+    handedness: "left" | "right",
+  });
+  ```
+</CodeGroup>
+
+Parameters:
+
+* `deviceId`: The lock's unique identifier.
+* `accessProfile`: Profile generated via the Master Lock API.
+* `firmwareVersion`: Lock firmware version.
+* `handedness`: The desired bolt direction - `left` or `right`.
+
+Returns a promise that resolves with:
+
+* `success`: Boolean indicating if configuration was saved.
+* `handedness`: The configured handedness.
+
+<Info>
+  ### Determining Handedness
+
+  Stand inside the door looking at the thumbturn side of the deadbolt:
+
+  * If the bolt is on the **left** and extends **left** → use `left`
+  * If the bolt is on the **right** and extends **right** → use `right`
+</Info>
+
+#### Relock (D1000 Deadbolt Only)
+
+Manually relock a D1000 Deadbolt by extending the bolt to the locked position. This is required because the D1000 does not support automatic relocking like padlocks and lockboxes.
+
+<CodeGroup>
+  ```bash bash
+  median.masterlock.relock({
+    deviceId,
+    accessProfile,
+    firmwareVersion,
+  });
+  ```
+</CodeGroup>
+
+Parameters:
+
+* `deviceId`: The lock's unique identifier.
+* `accessProfile`: Profile generated via the Master Lock API.
+* `firmwareVersion`: Lock firmware version.
+
+Returns a promise that resolves with:
+
+* `success`: Boolean indicating if relock completed.
+* `deviceId`: The lock that was relocked.
+
+<Warning>
+  ### Important
+
+  * Only applicable to D1000 Deadbolt model.
+  * Lock must be awake and in Bluetooth range.
+  * Ensure deadbolt handedness is configured correctly before using this method.
+</Warning>
+
+## Testing Your Integration
+
+### Hardware Testing
+
+<Info>
+  ### Test Environment
+
+  Hardware-dependent features **cannot be tested using simulators**. You'll need a physical Master Lock padlock or lockbox.
+
+  For iOS, test on a physical device using TestFlight after an App Studio distribution build, or install a development IPA on registered tester devices. A local Xcode build is only needed if you are building from downloaded source. For Android, download and install the APK from App Studio.
+</Info>
+
+Please follow the following steps for an end-to-end test
+
+1. Activate and set up a lock using the Master Lock API.
+2. Collect the **Device ID** and **Firmware Version** using the Master Lock API.
+3. Create a new access profile via the API.
+4. Switch to your mobile app and initialize the SDK by providing your license key.
+5. Use the collected parameters to unlock the test lock.
+6. The lock automatically re-locks after the configured timeout.
+
+## Frequently Asked Questions
+
+### Can I manually relock my padlock or lockbox?
+
+No. Padlocks and lockboxes cannot be manually re-locked via the integration. They automatically lock after a preset timeout.
+
+### How do I relock my D1000 Deadbolt?
+
+The D1000 Deadbolt does not support automatic relocking. Use the `median.masterlock.relock()` method to manually extend the bolt to the locked position. Ensure you have configured the correct handedness before calling this method.
+
+### Why am I receiving a "Not Permitted" error when unlocking?
+
+This error indicates the access profile does not include the required permissions for the lock type. Confirm that the correct permissions (e.g. `Unlock`, `UnlockDoor`, or `UnlockShackle`) are assigned to the access profile.
+
+Full Error Code:
+
+<CodeGroup>
+  ```bash bash
+  {
+    "success": false,
+    "error": "Error in response - Not Permitted)
+  }
+  ```
+</CodeGroup>
+
+### What happens if a firmware update is interrupted?
+
+If an update is interrupted or fails, the lock will remain in bootloader mode until the update is completed. You should retry the firmware update to restore normal lock operation.
+
+### Why do I need to set deadbolt handedness?
+
+The D1000 Deadbolt needs to know which direction the bolt extends so the motor operates correctly during unlock and relock commands. Incorrect handedness configuration will cause the motor to turn the wrong direction.
+
+***
+
+[Card.io](/docs/card-io)
+
+[RevenueCat](/docs/revenue-cat)
+
+Copy Page
+
+* * [Implementation Guide](#implementation-guide)
+
+  * * [Lock Provisioning (Activation, Setup and Access)](#lock-provisioning-activation-setup-and-access)
+    * [JavaScript Bridge Functions](#javascript-bridge-functions)
+
+  * [Testing Your Integration](#testing-your-integration)
+
+  * * [Hardware Testing](#-hardware-testing)
+
+  * [Frequently Asked Questions](#frequently-asked-questions)
+
+  * * [Can I manually relock my padlock or lockbox?](#can-i-manually-relock-my-padlock-or-lockbox)
+    * [How do I relock my D1000 Deadbolt?](#how-do-i-relock-my-d1000-deadbolt)
+    * [Why am I receiving a "Not Permitted" error when unlocking?](#why-am-i-receiving-a-not-permitted-error-when-unlocking)
+    * [What happens if a firmware update is interrupted?](#what-happens-if-a-firmware-update-is-interrupted)
+    * [Why do I need to set deadbolt handedness?](#why-do-i-need-to-set-deadbolt-handedness)

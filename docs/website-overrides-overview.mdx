@@ -1,0 +1,78 @@
+---
+title: "Overview"
+description: "Learn how to customize how your website appears and behaves in your app using custom user agents, headers, CSS, JavaScript, and cookie persistence"
+---
+
+Web Overrides let you control how your website is presented inside your app and how the app sends requests to your web server. With these options and the [Median JavaScript Bridge](https://docs.median.co/docs/javascript-bridge), you can build a polished, immersive app experience on top of your existing web platform.
+
+## Related Documentation
+
+[](https://docs.median.co/docs/custom-user-agent)
+
+#### [Custom User Agent](https://docs.median.co/docs/custom-user-agent)
+
+[Use a custom user agent to identify app traffic and differentiate it from web users. Useful when third-party services require a native app user agent.](https://docs.median.co/docs/custom-user-agent)
+
+[](https://docs.median.co/docs/custom-headers)
+
+#### [Custom Headers](https://docs.median.co/docs/custom-headers)
+
+[Add custom HTTP headers to requests from your app to your web server. Pass device-specific or session-related data for smarter server-side logic.](https://docs.median.co/docs/custom-headers)
+
+[](https://docs.median.co/docs/custom-css)
+
+#### [Custom CSS](https://docs.median.co/docs/custom-css)
+
+[Apply custom CSS to change how your site looks in the app. Useful for hiding desktop-only elements like banners, footers, or navigation bars.](https://docs.median.co/docs/custom-css)
+
+[](https://docs.median.co/docs/custom-js)
+
+#### [Custom JavaScript](https://docs.median.co/docs/custom-js)
+
+[Inject custom JavaScript to run when your site loads in the app. Modify behavior, capture events, or improve the in-app experience.](https://docs.median.co/docs/custom-js)
+
+[](https://docs.median.co/docs/cookie-persistence)
+
+#### [Cookie Persistence](https://docs.median.co/docs/cookie-persistence)
+
+[Override cookie expiration from your web platform so session or preference data is kept across app sessions.](https://docs.median.co/docs/cookie-persistence)
+
+## Customize Web Requests
+
+Use a **custom user agent** to identify app traffic and work with services that expect a native app user agent. Add **custom HTTP headers** to send device or session information to your server and support smarter server-side behavior.
+
+## Overriding Web Content
+
+<Warning>
+  ### **Maintainability of mobile app overrides**
+
+  CSS or JavaScript injected via Web Overrides is applied globally to your whole web app inside the mobile app. That can make maintenance harder, since you need to republish the app to change override logic.For long-term maintainability, prefer implementing changes on the server and detecting in-app usage. See [Detecting App Usage](https://docs.median.co/docs/detecting-app-usage) for details.
+</Warning>
+
+**Custom CSS** lets you adjust layout and visibility in the app (for example, hiding desktop-only UI). **Custom JavaScript** lets you run extra logic on load, change behavior, or hook into events.
+
+## Cookie Persistence
+
+Override cookie expiration settings from your web platform so session or preference data persists across app sessions.
+
+## Summary
+
+Web Overrides and the Median JavaScript Bridge are the main tools for shaping how your website is shown in the app and how requests are sent. If you use a JavaScript framework such as React or Vue.js, install the [median-js-bridge NPM package](https://docs.median.co/docs/npm-package) to simplify web-to-app integration.
+
+***
+
+### Next Steps
+
+* [Custom User Agent](/docs/custom-user-agent)
+* [Custom Headers](/docs/custom-headers)
+* [Custom CSS](/docs/custom-css)
+* [Custom JavaScript](/docs/custom-js)
+* [Cookie Persistence](/docs/cookie-persistence)
+
+Copy Page
+
+* * [Related Documentation](#related-documentation)
+  * [Customize Web Requests](#customize-web-requests)
+  * [Overriding Web Content](#overriding-web-content)
+  * [Cookie Persistence](#cookie-persistence)
+  * [Summary](#summary)

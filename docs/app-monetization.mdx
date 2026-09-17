@@ -1,0 +1,147 @@
+---
+title: "App Monetization"
+description: "Launch subscriptions and in-app purchases in your Median app"
+---
+
+Mobile apps have access to one of the most effective monetization channels available: native in-app purchases and subscriptions, processed directly through Apple and Google's payment systems. This guide explains how monetization works in Median apps, what your options are, and how to choose the right approach for your app.
+
+## How in-app purchases work in Median apps
+
+When a user purchases digital content, subscriptions, premium features, or other in-app digital products, the payment must be processed natively by Apple (via StoreKit) or Google (via Play Billing) rather than through your web app's existing payment system.
+
+This requirement applies specifically to digital goods sold within a mobile app. In these cases, Stripe, PayPal, and other web-based payment providers cannot be used to process the transaction. Apple and Google require eligible digital purchases to be sold through their respective in-app purchase (IAP) systems and charge a commission on those sales.
+
+If your app already sells products or services outside the scope of app store billing requirements, those payment flows may continue to use your existing payment infrastructure.
+
+Median provides two ways to implement native in-app purchases and subscriptions.
+
+## Two paths to monetization
+
+[RevenueCat](https://docs.median.co/docs/revenue-cat)
+
+[The RevenueCat Plugin simplifies the integration of in-app purchases and subscriptions by leveraging RevenueCat’s backend and SDKs for iOS and Android. It provides a streamlined approach to fetching products, processing purchases, and restoring past transactions, reducing the complexity of implementing Apple’s StoreKit and Google Play Billing.](https://docs.median.co/docs/revenue-cat)
+
+[Native In-App Purchases](https://docs.median.co/docs/iap)
+
+[Median's Native In-App Purchases (IAP) Plugin provides full support for integrating Apple's StoreKit and Google Play Billing libraries. This allows you to securely offer digital content, subscriptions, and one-time purchases directly within your mobile app.](https://docs.median.co/docs/iap)
+
+### Option 1 - RevenueCat (recommended)
+
+Median's RevenueCat plugin sits on top of the native IAP layer and handles the complexity for you. RevenueCat is a subscription management platform that unifies iOS and Android purchases behind a single API, manages receipt validation, tracks subscription status across devices, and provides built-in revenue analytics. It also includes a no-code paywall builder.
+
+For most apps — especially those built on AI platforms — RevenueCat is the recommended starting point. It removes the need to manage platform-specific billing logic and significantly reduces the time from decision to first paid user.
+
+### Option 2 - In-App Purchases (direct)
+
+Median's In-App Purchases plugin gives you direct access to Apple StoreKit and Google Play Billing. You configure your products (subscriptions, one-time purchases, consumables) in App Store Connect and Google Play Console, then call them from your app using Median's JavaScript Bridge.
+
+This is the lower-level path. It gives you full control but requires you to manage products, receipts, and subscription status separately on iOS and Android.
+
+## Understanding the layers
+
+```
+block-beta
+  columns 1
+ 
+  P["🎨 RevenueCat Paywalls\nNo-code paywall UI · A/B testing · App review compliant"]
+  space
+  O["📦 RevenueCat Products & Offerings\nUnified subscription management · Cross-platform status · Revenue analytics"]
+  space
+  I["💳 Native In-App Purchases\nApple StoreKit · Google Play Billing · Raw platform payment APIs"]
+ 
+  I --> O
+  O --> P
+ 
+  style P fill:#EEF2FF,stroke:#6366F1,color:#1E1B4B
+  style O fill:#F0FDF4,stroke:#22C55E,color:#14532D
+  style I fill:#FFF7ED,stroke:#F97316,color:#7C2D12
+```
+
+**Native In-App Purchases** are the foundation. Every purchase ultimately flows through Apple or Google's payment system. This is a platform required, not a Median one.
+
+**RevenueCat Products & Offerings** wrap the native layer. You define your products once in RevenueCat (monthly subscription, annual plan, lifetime access) and RevenueCat handles syncing them across both stores, validating receipts, tracking who has an active subscription, and surfacing revenue data in one dashboard.
+
+**RevenueCat Paywalls** sit on top of that. Instead of building a purchase screen in your app's UI, you design it in RevenueCat's no-code editor and present it with a single JavaScript call. Paywalls can be updated without a new app build and can be A/B tested.
+
+You can use any layer independently but starting with RevenueCat paywalls gives you the fastest path to a working, scalable monetization setup.
+
+## Getting started with RevenueCat
+
+Here is a condensed path to your first in-app purchase. The full RevenueCat guide covers each step in detail.
+
+### Step 1 - Connect your apps in RevenueCat
+
+Sign in to RevenueCat and add both your iOS and Android apps under Apps & Providers. You'll need your iOS Bundle ID and Android Package Name. You can find your Bundle ID and Package Name in the App Studio. Please see our [App Identifiers](https://docs.median.co/docs/app-identifiers) article for this.
+
+### Step 2 - Retrieve your API key
+
+RevenueCat provides a public SDK API key for your project. You'll use this to initialise the plugin at runtime. A test key is available by default so you can validate the purchase flow before going live.
+
+### Step 3 - Configure your products
+
+Set up your subscription products (monthly, annual, lifetime) in App Store Connect and Google Play Console, then import them into RevenueCat using their Product Configuration Guide.
+
+### Step 4 - Enable the plugin in Median App Studio
+
+In your app configuration, go to Native Plugins → RevenueCat and enable the plugin. No configuration is needed here. The SDK initialisation happens at runtime via the JavaScript Bridge as shown in Step 5.
+
+<Frame caption="RevenueCat Plugin Enablement">
+  <img src="/images/docs/ec6746920219187e2ad318dd49614e6e03cc2c9607db722b5dce120be4da3ac0-Screenshot_2025-12-10_at_14.59.56.png" />
+</Frame>
+
+### Step 5 - Initialize and call the Bridge
+
+Once your user is authenticated, initialize the SDK with your API key and the (optional) user ID, then use the JavaScript Bridge functions to fetch offerings, trigger purchases, and present your paywall.
+
+<CodeGroup>
+  ```bash bash
+  // Initialise once after user login
+  await median.revenueCat.configure({
+    apiKey: '<your_api_key>',
+    appUserID: '<authenticated_user_id>'
+  });
+
+  // Show a paywall configured in RevenueCat
+  median.revenueCat.presentPaywall();
+  ```
+</CodeGroup>
+
+📘 [Full RevenueCat JavaScript Bridge reference](https://docs.median.co/docs/revenue-cat)
+
+## Choosing your approach
+
+|                                   | Direct In-App Purchases                    | RevenueCat                                       |
+| --------------------------------- | ------------------------------------------ | ------------------------------------------------ |
+| Setup complexity                  | Higher - manage iOS and Android separately | Lower - single unified SDK                       |
+| Product & Subscription management | Manual - you track status yourself         | Automatic - RevenueCat tracks across devices     |
+| Receipt validation                | Manual                                     | Built-in                                         |
+| Paywall UI                        | You build it in your web app               | No-code editor in RevenueCat dashboard           |
+| Revenue analytics                 | Separate dashboards per platform           | Unified MRR, churn, LTV in one place             |
+| Best for                          | Apps with existing billing infrastructure  | New apps and AI-built apps starting from scratch |
+
+***
+
+[Salesforce LWC Component Deployment and Reference](/docs/salesforce-lwc-components)
+
+[App Marketing & Growth](/docs/app-marketing-growth)
+
+Copy Page
+
+* * [How in-app purchases work in Median apps](#how-in-app-purchases-work-in-median-apps)
+
+  * [Two paths to monetization](#two-paths-to-monetization)
+
+  * * [Option 1 - RevenueCat (recommended)](#option-1---revenuecat-recommended)
+    * [Option 2 - In-App Purchases (direct)](#option-2---in-app-purchases-direct)
+
+  * [Understanding the layers](#understanding-the-layers)
+
+  * [Getting started with RevenueCat](#getting-started-with-revenuecat)
+
+  * * [Step 1 - Connect your apps in RevenueCat](#step-1---connect-your-apps-in-revenuecat)
+    * [Step 2 - Retrieve your API key](#step-2---retrieve-your-api-key)
+    * [Step 3 - Configure your products](#step-3---configure-your-products)
+    * [Step 4 - Enable the plugin in Median App Studio](#step-4---enable-the-plugin-in-median-app-studio)
+    * [Step 5 - Initialize and call the Bridge](#step-5---initialize-and-call-the-bridge)
+
+  * [Choosing your approach](#choosing-your-approach)

@@ -1,0 +1,87 @@
+---
+title: "Instagram"
+description: "Share text and media to Instagram as an Instagram Reel or directly to the user's Feed"
+---
+
+## Overview
+
+You can share text and media directly to Instagram as an Instagram Reel or directly to the user's Feed.
+
+## Implementation Guide
+
+### Checking for availability
+
+Before sharing content, check whether Instagram is installed on the user’s device. Use the following JavaScript Bridge method:
+
+> Run the following Median JavaScript Bridge command to share the screen content
+
+<CodeGroup>
+  ```bash bash
+  const { isInstalled } = await median.socialShare.instagram.isInstalled();
+  ```
+</CodeGroup>
+
+### Sharing media
+
+This plugin only supports media sharing as a `Blob` object. You can save a remote image as a `Blob` using the following code snippet.
+
+<CodeGroup>
+  ```bash bash
+    fetch("url-to-image")
+    .then(function(response) {
+      return response.blob();
+    })
+    .then(function(blob) {
+      // here the image is a blob
+    });
+  ```
+</CodeGroup>
+
+Other plugins from Median (such as the [Web Screenshot Plugin](https://median.co/docs/web-screenshot)) also export images as Blobs which can then be used with this plugin.
+
+### Sharing to feed
+
+Use the following JavaScript command to share an image directly to the Instagram Feed:
+
+> Run the following Median JavaScript Bridge command to share the screen content
+
+<CodeGroup>
+  ```bash bash
+  median.socialShare.instagram.shareToFeed(blob);
+  ```
+</CodeGroup>
+
+<Warning>
+  ### Info
+
+  for iOS, Instagram no longer supports direct sharing to feed and will rather present the OS share dialog
+</Warning>
+
+### Sharing to story or reels
+
+Enhance your content by sharing images directly to Instagram Stories or Reels. This method supports optional sticker attachments and captions.
+
+> Run the following Median JavaScript Bridge command to share the screen content
+
+<CodeGroup>
+  ```bash bash
+  median.socialShare.snapchat.share(blob, { attachment: stickerBlob, captionText: 'Caption for Snapchat' });
+  ```
+</CodeGroup>
+
+***
+
+### Next Steps
+
+* [Web Screenshot](/docs/web-screenshot)
+
+Copy Page
+
+* * [Overview](#overview)
+
+  * [Implementation Guide](#implementation-guide)
+
+  * * [Checking for availability](#checking-for-availability)
+    * [Sharing media](#sharing-media)
+    * [Sharing to feed](#sharing-to-feed)
+    * [Sharing to story or reels](#sharing-to-story-or-reels)

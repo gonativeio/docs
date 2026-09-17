@@ -1,0 +1,111 @@
+---
+title: "Selecting Tabs"
+description: "Select Bottom Tab Bar Items Programmatically"
+---
+
+Use tab selection to control which bottom tab bar item appears active in your Median app. Tabs are automatically selected when users tap them, but you can also update the active tab programmatically with the Median JavaScript Bridge or by matching page URLs with tab selection rules.
+
+This is useful when:
+
+* A user navigates to a tab page from a link, push notification, or redirect.
+* Your website uses custom navigation instead of only the native bottom tab bar.
+* You need to highlight the correct tab for dynamic routes, account pages, nested pages, or single-page app views.
+
+## How tab selection works
+
+Median bottom tab bar items are selected automatically when a user taps a tab. The selected tab displays using the active tab color configured for your app.
+
+For advanced navigation flows, you can control the selected tab in two ways:
+
+| Method            | Best for                                                                  |
+| ----------------- | ------------------------------------------------------------------------- |
+| JavaScript Bridge | Selecting or deselecting tabs from your website code                      |
+| URL rules         | Automatically selecting a tab when the current page URL matches a pattern |
+
+## Implementation Guide
+
+### Select tab via JavaScript Bridge
+
+Use the Median JavaScript Bridge to select a bottom tab bar item from your website code.
+
+> Select a tab:
+
+<CodeGroup>
+  ```bash bash
+      median.tabNavigation.selectTab(1);
+  ```
+</CodeGroup>
+
+> Note: The tabs are 0-indexed, i.e. `median.tabNavigation.selectTab(1)` will select the second tab
+>
+> Deselect all tabs:
+
+<CodeGroup>
+  ```bash bash
+      median.tabNavigation.deselect();
+  ```
+</CodeGroup>
+
+### Select tabs using URL rules
+
+A given page that corresponds to a tab bar button may be opened through other means, for example a link on another page. In this case you will want to show that tab bar button as active when the page is displayed even though there was not a click event. To achieve this functionality you may specify a URL rule as a "regex" field for each tab link defined in your JSON. This will ensure that tab button will be active whenever a page matching the rule is displayed.
+
+In the below example we show the "My Account" tab button as active whenever a page under `/account` is displayed within the app.
+
+<CodeGroup>
+  ```bash bash
+  /* Regex Tab Selection Example */
+  {
+    "tabSelectionConfig": [
+      {
+        "id": "1",
+        "regex": ".*"
+      }
+    ],
+    "tabMenus": [
+      {
+        "id": "1",
+        "items": [
+          {
+            "subLinks": [],
+            "label": "My Account",
+            "icon": "fas fa-user",
+            "url": "https://domain.com/account",
+            "regex": "https://domain\\.domain/account.*"
+          }
+        ]
+      }
+    ],
+    "active": true
+  }
+  ```
+</CodeGroup>
+
+## Best practices
+
+Use JavaScript Bridge tab selection when your website controls the navigation state directly.
+
+Use URL rules when the active tab should be determined automatically from the current page URL.
+
+Use specific regex patterns for each tab to avoid conflicting active states.
+
+Test tab selection on both iOS and Android after updating your tab configuration.
+
+For single-page apps, update tab selection when the route changes if the app does not perform a full page load.
+
+***
+
+[Bottom Tab Bar](/docs/bottom-tab-bar)
+
+[Bottom Tab Bar Visual Editor](/docs/tab-configuration)
+
+Copy Page
+
+* * [How tab selection works](#how-tab-selection-works)
+
+  * [Implementation Guide](#implementation-guide)
+
+  * * [Select tab via JavaScript Bridge](#select-tab-via-javascript-bridge)
+    * [Select tabs using URL rules](#select-tabs-using-url-rules)
+
+  * [Best practices](#best-practices)

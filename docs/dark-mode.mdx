@@ -1,0 +1,54 @@
+---
+title: "Dark Mode"
+description: "Select whether the native UI elements within your app such as the top nav menu, sidebar nav menu, bottom tab menu are always set to Dark Mode or if they follow the active device mode for Light & Dark (Auto mode)."
+---
+
+You may add support for dark and light modes within your web content by making use of the `prefers-color-scheme` CSS media query. Your app sets this parameter to `light` and `dark` based on the current device mode, and will change it dynamically when the device mode changes.
+
+You may add a control toggle within your web content to force Light or Dark mode in addition to following the device setting (Auto mode). Median will set a property on your webpage called `data-color-scheme-option` with the current app setting of `light`, `dark`, or `auto`. You can use the value of this property to set the state of said toggle.
+
+<Check>
+  ### Developer Demo
+
+  Display our demo page in your app to test during development [https://median.dev/dark-mode/](https://median.dev/dark-mode/)
+</Check>
+
+<CodeGroup>
+  ```bash bash
+  // Force Light Mode
+  // Always use Light styling irrespective of device mode
+  if (navigator.userAgent.indexOf("median") > -1) {
+    median.screen.setColorScheme("light");
+  }
+
+  // Force Dark Mode
+  // Always use Dark styling irrespective of device mode
+  if (navigator.userAgent.indexOf("median") > -1) {
+    median.screen.setColorScheme("dark");
+  }
+
+  // Auto Mode
+  // Set to Auto mode to follow the device mode (Light or Dark)
+  if (navigator.userAgent.indexOf("median") > -1) {
+    median.screen.setColorScheme("auto");
+  }
+
+  // Revert to Default
+  // Revert to the default configuration set in the app (Light/Dark/Auto)
+  if (navigator.userAgent.indexOf("median") > -1) {
+    median.screen.resetColorScheme();
+  }
+  ```
+</CodeGroup>
+
+We recommend using CSS variables to define the desired colors in Light mode versus Dark mode.
+
+For a live example that you can adapt for your own website check out Median's [Dark Mode Switcher CodePen Example](https://codepen.io/gonative/pen/dyzLKQQ) or refer to this [comprehensive guide](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/color_value/light-dark/) from CSS-Tricks that provides helpful details and examples for implementing dark mode using CSS.
+
+[Dark Mode Switcher](https://codepen.io/gonative/embed/dyzLKQQ?default-tab=css%2Cresult\&editable=false)
+
+***
+
+### Next Steps
+
+* [Pull-to-Refresh](/docs/pull-to-refresh)

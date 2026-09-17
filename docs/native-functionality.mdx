@@ -1,0 +1,233 @@
+---
+title: "Native Functionality"
+description: "Engage these core native mobile device functionalities to make your app as feature-rich, UI-friendly, and customer-first as possible."
+---
+
+Convert your web app into a fully-featured native experience by accessing device hardware, system capabilities, and platform-specific features that web browsers simply can't reach. Native functionality plugins unlock the true potential of mobile devices, from haptic feedback and secure data storage to in-app purchases and health data integration. These capabilities differentiate native apps from web experiences, enabling richer interactions, better performance, and new revenue opportunities.
+
+***
+
+## Why use native functionality plugins?
+
+* **Device hardware access**: Tap into cameras, GPS, accelerometers, haptic engines, and biometric sensors
+* **Enhanced user experience**: Create intuitive, tactile interactions with haptics and gesture recognition
+* **Revenue generation**: Accept payments through Apple and Google's IAP platforms with subscriptions and one-time purchases
+* **Offline capabilities**: Download files and content for access without an internet connection
+
+## Common use cases
+
+* **Media & entertainment**: Native media playback with lock-screen controls, offline downloads for podcasts/audiobooks, background audio
+* **Fitness & wellness**: Health data integration (Apple HealthKit, Google Health Connect), workout tracking, persistent user progress
+* **Productivity apps**: Calendar integration for scheduling, native contacts access for CRM, secure document storage, haptic feedback for confirmations
+* **Gaming**: In-app purchases for power-ups and cosmetics, haptic feedback for immersive gameplay, persistent game state storage
+
+***
+
+## Getting started
+
+**Add native functionality to your app in four simple steps:**
+
+1. **Choose your plugin:** Browse the native functionality plugins below and select the capabilities your app needs. Each plugin card includes a description and link to detailed documentation.
+
+2. **Review documentation:** Read the plugin's documentation to understand setup requirements, available JavaScript Bridge commands, and implementation examples.
+
+3. **Enable in App Studio:** Navigate to **Native Plugins** in your Median App Studio, click the **+** button next to your chosen plugin, and configure any required settings.
+
+4. **Implement with JavaScript Bridge:** Add JavaScript Bridge commands to your web code to trigger native functionality. For example:
+
+   * `median.iap.purchase()` to process in-app purchases
+   * `median.haptics.trigger()` to activate haptic feedback
+   * `median.storage.app.set()` to save user preferences
+
+## Featured plugins
+
+**Not sure where to start? Check out our featured plugins below:**
+
+* **App Review**: Prompt users to rate your app and boost App Store visibility
+* **Haptics**: Add tactile feedback with vibration effects for better UX
+* **Health Bridge**: Access Apple HealthKit and Google Health Connect wellness data
+
+![App Review](/images/docs/f00caffa31f655adfe6691ab50098417fbda12b14797720f13107694a1bb74cf-plugin_review.svg)
+
+#### App Review
+
+Prompt users to leave ratings and reviews for your app listings. Positive ratings improve discoverability and build your app's profile.
+
+[Learn more→](https://docs.median.co/docs/app-review)
+
+![Haptics](/images/docs/35720a408b3b383ce7d50ab5d376a8c266b6b02b939ee1066893f53e2a8f8b46-plugin_haptics.svg)
+
+#### Haptics
+
+Trigger haptic vibration effects based on events within your app. Supports 6 different effects designed to be comparable across platforms.
+
+[Learn more→](https://docs.median.co/docs/haptics)
+
+![Health Bridge](/images/docs/30cb5aebf202c60e7d101430db1ca173e46cf882ae697f2388819f47a1efbad9-6849a027c3183fb997c959f0_health-heart-heart-rate-svgrepo-com.svg)
+
+#### Health Bridge
+
+Access and sync user health data from Apple HealthKit and Google Health Connect. Unified interface to retrieve wellness metrics.
+
+[Learn more→](https://docs.median.co/docs/health-bridge)
+
+***
+
+## All plugins
+
+![AgeSafety](/images/docs/40eb7f8eaed2a3b6c865bf1f3ecac1eca99cf32b085663d990438c63db4c3acf-plugin_agesafety.svg)
+
+#### AgeSafety
+
+Use platform age signals to verify user age and supervision status.
+
+[Learn more→](https://docs.median.co/docs/age-safety)
+
+![App Review](/images/docs/f00caffa31f655adfe6691ab50098417fbda12b14797720f13107694a1bb74cf-plugin_review.svg)
+
+#### App Review
+
+Prompt users to leave ratings and reviews for your app listings. Positive ratings improve discoverability and build your app's profile.
+
+[Learn more→](https://docs.median.co/docs/app-review)
+
+![Background Location](/images/docs/366f7818dcc436d1077f9ce5c19874f8814101b6ab0c1682d3ff260dca7fcf47-plugin_location.svg)
+
+#### Background Location
+
+Run code in the background while subscribed to device location updates. Perform data backup or send location data to remote servers.
+
+[Learn more→](https://docs.median.co/docs/background-location)
+
+![Calendar](/images/docs/d68e5d628ea535bec04ccf13b22546bda0d0053d2212f54bf80dc8e9be287610-plugin_calendar.svg)
+
+#### Calendar
+
+Add events to users' calendars from ICS files and embedded links via native interface form. iOS-only, ideal for scheduling apps.
+
+[Learn more→](https://docs.median.co/docs/calendar)
+
+![Face ID / Touch ID](/images/docs/c24ade2c98791842f8666aa2212a08e448214685a380817c43315d153eaabbf2-plugin_faceid-touchid-1.svg)
+
+#### Face ID / Touch ID
+
+Enable biometric authentication using Face ID, Touch ID, and Android Biometrics.
+
+[Learn more→](https://docs.median.co/docs/auth)
+
+![Haptics](/images/docs/35720a408b3b383ce7d50ab5d376a8c266b6b02b939ee1066893f53e2a8f8b46-plugin_haptics.svg)
+
+#### Haptics
+
+Trigger haptic vibration effects based on events within your app. Supports 6 different effects designed to be comparable across platforms.
+
+[Learn more→](https://docs.median.co/docs/haptics)
+
+![Health Bridge](/images/docs/30cb5aebf202c60e7d101430db1ca173e46cf882ae697f2388819f47a1efbad9-6849a027c3183fb997c959f0_health-heart-heart-rate-svgrepo-com.svg)
+
+#### Health Bridge
+
+Access and sync user health data from Apple HealthKit and Google Health Connect. Unified interface to retrieve wellness metrics.
+
+[Learn more→](https://docs.median.co/docs/health-bridge)
+
+![In-App Purchases](/images/docs/1df8ebe664e7bc5b816c81c9468fabf9055ed71593f0f6dd358518bb888c42fc-plugin_in-app-purchases.svg)
+
+#### In-App Purchases
+
+Seamlessly accept payment from users. Leverage Apple and Google's IAP platform for one-time purchases, subscriptions, or promo codes.
+
+[Learn more→](https://docs.median.co/docs/iap)
+
+![iBeacon](/images/docs/f4eb318d55742088298e44b308278068b09815afa391545079cedb56835d5916-plugin_ibeacon.svg)
+
+#### iBeacon
+
+Add indoor location awareness and mapping capabilities to your iOS app through iBeacons and proximity scanning.
+
+[Learn more→](https://docs.median.co/docs/ibeacon)
+
+![Native Contacts](/images/docs/22328456b2a063d7687e9a85499d612af0de87df1e3ebb3ef2f7859202e15fca-plugin_contacts.svg)
+
+#### Native Contacts
+
+Allow users to sync contacts to your app or simplify form completion. Powerful for CRM, field service, and e-commerce applications.
+
+[Learn more→](https://docs.median.co/docs/native-contacts)
+
+![Native Datastore](/images/docs/2226ea1d116057acb7e531cc8e9c0d7ebd71752248192ebea86248e31a7032a8-plugin_local-settings.svg)
+
+#### Native Datastore
+
+Save app settings and data directly to device with iOS Keychain and Android SharedPreferences. Data persists through upgrades and reinstalls.
+
+[Learn more→](https://docs.median.co/docs/native-datastore)
+
+![Native Media Player](/images/docs/d04b58364aac8c94b34b2bb3bb43718130066ab6b1c0db295e7c30676f40966a-plugin_media-player.svg)
+
+#### Native Media Player
+
+Play audio natively on iOS and Android with playback controls and lock-screen information. For audiobook, podcast, and e-learning apps.
+
+[Learn more→](https://docs.median.co/docs/native-media-player)
+
+![NFC Tag Scanner](/images/docs/ca69ed4989ea84b5a8e37d34549b4e3200c36985b1837b1d24f73b039b054692-plugin_nfc-tag-scanner.svg)
+
+#### NFC Tag Scanner
+
+Scan data from Near Field Communication (NFC) tags for in-store shopping, warehouse tracking, and digital+physical experiences.
+
+[Learn more→](https://docs.median.co/docs/nfc-tag-scanner)
+
+![Offline Downloads](/images/docs/b63e9537d441a94c796e038ab367b6e70d034588423b92cff852cf13123a37a1-plugin_downloads.svg)
+
+#### Offline Downloads
+
+Download document and media files for online or offline access. Files accessible through built-in file manager UI and JavaScript Bridge.
+
+[Learn more→](https://docs.median.co/docs/offline-download-manager)
+
+![Reader Modal (External Link Account)](/images/docs/ac81f29c392ce7473b7f24066e39e18d72808980a27cdd5bcf442e5fa4616c2c-plugin_secure-modal-apple-pay.svg)
+
+#### Reader Modal (External Link Account)
+
+For apps offering digital content, link to your website external of the app for account management and payments per Apple guidelines.
+
+[Learn more→](https://docs.median.co/docs/reader-modal)
+
+![Secure Modal (Apple Pay)](/images/docs/ac81f29c392ce7473b7f24066e39e18d72808980a27cdd5bcf442e5fa4616c2c-plugin_secure-modal-apple-pay.svg)
+
+#### Secure Modal (Apple Pay)
+
+Enable secure iOS WKWebView window with external scripting blocked. Allows Apple Pay JS API and similar libraries to function.
+
+[Learn more→](https://docs.median.co/docs/secure-modal)
+
+![Share into App](/images/docs/25727ef571406bbb626465cae6ddd50d3b579b6bc8f84a937f208ad859f2dde3-plugin_share.svg)
+
+#### Share into App
+
+Allow users to share data such as URL links from other apps. Your app appears in the 'Share' menu on their device.
+
+[Learn more→](https://docs.median.co/docs/share-into-app)
+
+***
+
+## Can't find your Vendor?
+
+As your needs evolve, Median can enhance your plugin implementation to include new functions or data points from third-party SDKs. We'll work with you to meet your specific requirements. [Contact us for details](https://median.co/contact?topic=sales-inquiry).
+
+***
+
+[Zoom](/docs/zoom)
+
+[AgeSafety](/docs/age-safety)
+
+Copy Page
+
+* * [Why use native functionality plugins?](#why-use-native-functionality-plugins)
+  * [Common use cases](#common-use-cases)
+  * [Getting started](#getting-started)
+  * [Featured plugins](#featured-plugins)
+  * [All plugins](#all-plugins)
+  * [Can't find your Vendor?](#cant-find-your-vendor)

@@ -1,0 +1,158 @@
+---
+title: "In-App Messages"
+description: "Learn how to configure in-app messages"
+---
+
+In-app messages (IAM) are rich, customizable UI panels that appear inside your app without requiring push notification permission. They're ideal for onboarding flows, feature announcements, promotions, and the iOS soft prompt pattern covered in [Managing permissions & consent](https://docs.median.co/docs/user-consent-management).
+
+![](/images/docs/965b655add19568c5099e3d8addb95693b6acda7fb9f33919995dbded15c2b9c-SimulatorScreenRecording-iPhone17ProMax-2026-05-15at16.20.26-ezgif.com-video-to-gif-converter.gif)
+
+Unlike push notifications, in-app messages only display while the user is actively using your app. You control when they appear with a trigger system and **design them with OneSignal's HTML Composer**.
+
+<Info>
+  ### Official Documentation
+
+  For comprehensive use cases and configuration details, refer to the [OneSignal In-App Messages Documentation](https://documentation.onesignal.com/docs/in-app-messages).
+</Info>
+
+***
+
+## JavaScript Bridge API reference
+
+Median.co exposes OneSignal's IAM SDK methods through the JavaScript Bridge. Use these to control when messages appear and handle user interactions.
+
+### Trigger management
+
+Triggers are conditions you set in your app that cause an in-app message to display. When you add a trigger that matches the conditions set up in OneSignal's dashboard, the message appears.
+
+<CodeGroup>
+  ```bash bash
+  // Add a single trigger
+  median.onesignal.iam.addTrigger({ key: "value" });
+
+  // Add multiple triggers at once
+  median.onesignal.iam.addTriggers({ key1: "value1", key2: "value2" });
+
+  // Remove a trigger by key
+  median.onesignal.iam.removeTriggerForKey("key");
+
+  // Retrieve the current value of a trigger
+  median.onesignal.iam.getTriggerValueForKey("key");
+  ```
+</CodeGroup>
+
+### Pause and resume
+
+Temporarily suppress in-app messages — useful during checkout flows, video playback, or any experience where an interruption would hurt:
+
+<CodeGroup>
+  ```bash bash
+  // Stop showing in-app messages
+  median.onesignal.iam.pauseInAppMessages();
+
+  // Resume showing in-app messages
+  median.onesignal.iam.resumeInAppMessages();
+  ```
+</CodeGroup>
+
+### Click handler
+
+Define a JavaScript function to run when a user clicks an action button inside an in-app message:
+
+<CodeGroup>
+  ```bash bash
+  median.onesignal.iam.setInAppMessageClickHandler("yourHandlerFunctionName");
+  ```
+</CodeGroup>
+
+Your handler will be called with click event data — use it to handle the iOS soft prompt pattern (see [Managing permissions & consent](https://docs.median.co/docs/user-consent-management)), navigate to a page, or execute any in-app logic.
+
+***
+
+## Building your first in-app message
+
+The following diagram shows how your app, the OneSignal SDK, and the dashboard work together to display and handle in-app messages.
+
+```
+sequenceDiagram
+    participant Web as Your Web App
+    participant Bridge as Median JS Bridge
+    participant SDK as OneSignal SDK
+    participant Dash as OneSignal Dashboard
+
+    Dash->>SDK: Message config with trigger rules
+    Web->>Bridge: addTrigger({ key: "value" })
+    Bridge->>SDK: Set trigger
+    SDK->>SDK: Trigger matches dashboard rule?
+    SDK->>Web: Display in-app message
+    Web->>Web: User clicks action button
+    Web->>Bridge: Click handler fires
+    Bridge->>SDK: Report interaction
+```
+
+In-app messages are designed and configured entirely in the OneSignal dashboard using the **HTML Composer**. You control the layout, copy, buttons, and behavior — the JavaScript Bridge methods above let you control the trigger conditions and interactions from your app.
+
+### Fire triggers from your app
+
+When the conditions for your message are met, fire the corresponding trigger from your app:
+
+<CodeGroup>
+  ```bash bash
+  median.onesignal.iam.addTrigger({ key: "value" });
+  ```
+</CodeGroup>
+
+When the trigger matches what's configured in the OneSignal dashboard, the message displays automatically.
+
+### Templates in the OneSignal dashboard
+
+OneSignal provides **quickstart designs** you can choose when creating an in-app message (**Messages → In-App → New In-App**), plus **copy-paste HTML templates** for the HTML Composer — surveys, promos, onboarding-style layouts, and more. Use their guides to pick a starting point, customize copy and styling, and follow HTML Composer rules (Liquid, click tracking, safe areas):
+
+* [In-app message templates & quickstarts](https://documentation.onesignal.com/docs/in-app-html-templates)
+* [Design in-app messages with HTML](https://documentation.onesignal.com/docs/design-your-in-app-message-with-html)
+
+Median documents the **JavaScript Bridge** (triggers and click handlers above); message HTML comes from OneSignal's composer and template library.
+
+***
+
+## Testing in-app messages
+
+Android testing requires a **physical device** — in-app messages cannot be tested on Android virtual simulators. iOS testing works on both physical devices and the iOS simulator.
+
+**On device or simulator:**
+
+1. Launch the app.
+2. Either wait 3+ seconds (if your message is configured with a time-based trigger), or fire the trigger manually using the JavaScript Bridge.
+3. The message should appear.
+
+### Live Demo
+
+**Note**: The OneSignal SDK delivers in-app messages and requires the user to grant push notification permission before it can display them. Make sure the test device accepted the push prompt.
+
+|                 |
+| --------------- |
+|                 |
+| iOS Example App |
+
+***
+
+[Handling Notifications Taps](/docs/handling-notifications-taps)
+
+[Legacy Mode](/docs/onesignal-legacy-mode)
+
+Copy Page
+
+* * [JavaScript Bridge API reference](#javascript-bridge-api-reference)
+
+  * * [Trigger management](#trigger-management)
+    * [Pause and resume](#pause-and-resume)
+    * [Click handler](#click-handler)
+
+  * [Building your first in-app message](#building-your-first-in-app-message)
+
+  * * [Fire triggers from your app](#fire-triggers-from-your-app)
+    * [Templates in the OneSignal dashboard](#templates-in-the-onesignal-dashboard)
+
+  * [Testing in-app messages](#testing-in-app-messages)
+
+  * * [Live Demo](#live-demo)

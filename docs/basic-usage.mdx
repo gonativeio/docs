@@ -1,0 +1,89 @@
+---
+title: "Basic Usage"
+description: "Median NPM Package Examples"
+---
+
+## NPM Library Usage
+
+<Check>
+  ### `Median` not `median` when using NPM package
+
+  When importing the Median JavaScript Bridge via the NPM package, always use the capitalized `Median` object to access methods. The lowercase `median` is reserved for the injected JavaScript bridge in native environments.
+
+  To avoid semantic errors and enable intelligent code completion, ensure your IDE is configured to support type hinting for the `Median` object.
+</Check>
+
+### Example: Importing and Using Median in React
+
+<CodeGroup>
+  ```bash bash
+  import Median from "median-js-bridge";
+  import React, { useEffect } from "react";
+
+  const App: React.FC = () => {
+      useEffect(() => {
+          Median.onReady(() => {
+              window.alert("Median app ready!");
+          });
+      }, []);
+  }
+  ```
+</CodeGroup>
+
+## Example Commands
+
+The following methods are available when using the `median-js-bridge` NPM package:
+
+### Check if Running in a Native App
+
+<CodeGroup>
+  ```bash bash
+  Median.isNativeApp(); 
+  // Returns: true or false
+  ```
+</CodeGroup>
+
+### Retrieve the Current Platform
+
+<CodeGroup>
+  ```bash bash
+  Median.getPlatform();
+  // Returns a promise that resolves to: 'web' | 'android' | 'ios'
+  ```
+</CodeGroup>
+
+### OneSignal example demonstrating login and `oneSignalId` retrieval
+
+Use the following example to integrate OneSignal with Median, enabling user login and retrieving the `oneSignalId`.
+
+<CodeGroup>
+  ```bash bash
+  useEffect(() => {
+   Median.onReady(async () => {
+     const result = await Median.onesignal.login('test-user');
+     if (result?.success) {
+       const info = await Median.onesignal.info();
+       console.log(info?.oneSignalId);
+        // Store or use the oneSignalId as needed
+     }})
+  }, []);
+  ```
+</CodeGroup>
+
+***
+
+### Next Steps
+
+* [Usage with Listeners](/docs/npm-package-usage-with-listeners)
+
+Copy Page
+
+* * [NPM Library Usage](#npm-library-usage)
+
+  * * [Example: Importing and Using Median in React](#example-importing-and-using-median-in-react)
+
+  * [Example Commands](#example-commands)
+
+  * * [Check if Running in a Native App](#check-if-running-in-a-native-app)
+    * [Retrieve the Current Platform](#retrieve-the-current-platform)
+    * [OneSignal example demonstrating login and oneSignalId retrieval](#onesignal-example-demonstrating-login-and-onesignalid-retrieval)

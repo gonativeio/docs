@@ -1,0 +1,170 @@
+---
+title: "Branch.io"
+description: "Equip your app with Deferred Deep by leveraging the Branch.io native SDKs"
+---
+
+The **Branch.io Plugin** enables **deferred deep linking** within your app, allowing users to navigate directly to specific content even after installing the app. By leveraging the power of the **Branch SDK for iOS and Android** ([Branch SDK Overview](https://help.branch.io/developers-hub/docs/native-sdks-overview)), this plugin enhances user experience through context-aware routing and deep linking.
+
+This guide provides step-by-step instructions for configuring the plugin and utilizing its features through the [Median JavaScript Bridge](https://median.co/docs/javascript-bridge).
+
+<Check>
+  ### Developer Demo
+
+  Display our demo page in your app to test during development [https://median.dev/branch](https://median.dev/branch)
+</Check>
+
+## Implementation Guide
+
+### Plugin Configuration
+
+To set up the Branch.io Plugin, update the required parameters in the **Native Plugins** tab under **Branch.io.**:
+
+<Frame caption="Branch.io Plugin Configuration">
+  <img src="/images/docs/46de228279749e1126620631cbf86a61ed09497a1d51f693c064406a6e3f4892-Screenshot_2025-07-04_at_12.30.04.png" />
+</Frame>
+
+#### Sample JSON
+
+You can copy the following JSON file in the Advanced Configuration and replace the `String` and `Boolean` placeholders by following the instructions below.
+
+<CodeGroup>
+  ```bash bash
+  {
+    liveKey: String, // required
+    testKey: String, // optional
+    linkDomain: String, // optional
+    alternateLinkDomain: String, // optional,
+    testLinkDomain: String, // optional
+    testAlternateLinkDomain: String, // optional
+    uriScheme: String, // optional
+    enableTestMode: Boolean // optional, default is false
+  }
+  ```
+</CodeGroup>
+
+#### Retrieving Configuration Values
+
+Access Branch.io values from the Branch Dashboard ([https://dashboard.branch.io](https://dashboard.branch.io)) and apply them in Median App Studio.
+
+##### Live Mode Configuration
+
+1. **Branch Key** (Required)
+
+* **Path**: *Account Settings → Profile → Branch Key*
+* **Usage**: Set as `liveKey`.
+
+2. **App Link Domains** (Required for deep linking)
+
+* **Path**: *Configuration → General → Link Domain*
+
+* **Usage**:
+
+  * `linkDomain` (Primary domain for deep linking)
+  * `alternateLinkDomain` (Required for Journeys/Web SDK and Deepviews)
+
+3. **URI Scheme** (Optional for app redirection)
+
+* **Path**: *Configuration → General → Android Redirects*
+* **Usage**: Set as `uriScheme`.
+
+##### Test Mode Configuration
+
+For testing purposes, **enable Test Mode on the Branch.io Dashboard** and set `enableTestMode` to `true` in the configuration.
+
+1. **Test Branch Key**
+
+* **Path**: *Account Settings → Profile → Branch Key*
+* **Usage**: Set as `testKey`.
+
+2. **Test App Link Domains**
+
+* **Path**: *Configuration → General → Link Domain*
+
+* **Usage**:
+
+  * `testLinkDomain` (Test version of the link domain)
+  * `testAlternateLinkDomain` (Test version of the alternate domain)
+
+### Branch.io Configuration
+
+Enable Android-specific deep linking features in your Branch Dashboard:
+
+1. Navigate to Android Redirects settings.
+2. Enable "I have an Android App" and "Enable App Links".
+3. Ensure SHA256 Cert Fingerprints are correctly configured.
+
+<Warning>
+  ### SHA256 Cert Fingerprints
+
+  It’s important to specify the SHA256 Cert Fingerprints for App links to work properly on Android. Please see [https://help.branch.io/using-branch/docs/configure-default-link-behaviors](https://help.branch.io/using-branch/docs/configure-default-link-behaviors) for additional information.
+</Warning>
+
+### JavaScript Bridge Functions
+
+#### Initialized Callback
+
+The app calls this callback function when Branch SDK is has finished initializing and returns data from the link that referred the current session.
+
+<CodeGroup>
+  ```bash bash
+  median_branch_initialized(data){}
+  // Return value:
+  {
+    'success': Boolean,
+    'error': String,
+    'data': {}
+  }
+  ```
+</CodeGroup>
+
+#### Get First Parameters
+
+Returns the data from the link that first referred the user. This is only set once, the first time the user is referred by a link.
+
+Provide a callback function or otherwise a promise is returned.
+
+<CodeGroup>
+  ```bash bash
+  median.branch.getFirstParams({'callback': function})
+  // Return value
+  // see https://help.branch.io/using-branch/docs/creating-a-deep-link#data-structure
+  ```
+</CodeGroup>
+
+#### Get Latest Parameters
+
+Returns the data from the link that referred the current session.
+
+<CodeGroup>
+  ```bash bash
+  median.branch.getLatestParams({'callback': function})
+  // Return value
+  // see https://help.branch.io/using-branch/docs/creating-a-deep-link#data-structure
+  ```
+</CodeGroup>
+
+### Testing Your Integration
+
+#### Quick Link Test
+
+1. Create a Quick Link in the Branch Dashboard.
+2. Copy the generated link.
+3. Paste the link into a messaging or notes app on your test device.
+4. Click the link to ensure it correctly redirects to your app.
+
+If configured correctly, the user should be redirected into your app, with deep link data accessible through the JavaScript Bridge methods.
+
+***
+
+[AppsFlyer](/docs/appsflyer)
+
+[Google Firebase Analytics](/docs/firebase-analytics)
+
+Copy Page
+
+* * [Implementation Guide](#implementation-guide)
+
+  * * [Plugin Configuration](#plugin-configuration)
+    * [Branch.io Configuration](#branchio-configuration)
+    * [JavaScript Bridge Functions](#javascript-bridge-functions)
+    * [Testing Your Integration](#testing-your-integration)

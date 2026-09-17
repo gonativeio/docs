@@ -1,0 +1,105 @@
+---
+title: "NFC Tag Scanner"
+description: "This module enables the reading of NFC tags on iOS and Android. We provide Median JavaScript Bridge commands to initiate tag reading while the app is open. On supported devices we also support background tag reading for apps with universal links. On iOS the default NFC user interface is used. On Android we provide a custom native user interface to provide feedback to the end user."
+---
+
+![](/images/docs/0d00017-nfc-ios.png)
+
+##### iOS Default UI
+
+![](/images/docs/9ab0dee-nfc-android.png)
+
+##### Android Custom UI
+
+<Warning>
+  ### iOS Near-field Communications Capability
+
+  Enable the NFC Tag Scanner plugin in App Studio before rebuilding your app. If you build from downloaded iOS source or manually manage Apple signing assets, confirm the Near Field Communication Tag Reading capability is enabled in Xcode and in your Apple Developer account.
+</Warning>
+
+## Implementation Guide
+
+### Check for NFC availability
+
+<CodeGroup>
+  ```bash bash
+  // Promise method
+  median.nfc.status().then(function (data) {
+  // process the data here. In this example, we are just logging it 
+    if (data.available) {
+       // show user NFC-related functionality, e.g. a button to start scanning
+    }
+  });
+
+  // Callback method function nfcStatusCallback() is defined on page
+  median.nfc.status({'callback': nfcStatusCallback});
+  ```
+</CodeGroup>
+
+### Initiate tag reading
+
+<CodeGroup>
+  ```bash bash
+  // Promise method
+  median.nfc.readTag({
+    'message': STRING, // Android only, shown in the prompt when scanning for tags
+    'openUrl': BOOLEAN // if set to TRUE and an http or https url is returned the URL will automatically be opened
+  }).then(function (data) {
+    // data.success: BOOLEAN, true if scanning was successful
+    // data.cancel: BOOLEAN, true if user canceled the NFC scan prompt
+    // data.error: STRING, included if error may be “SystemIsBusy”, “SessionTimeout”, “SessionTerminatedUnexpectedly”, or “Error”
+    // data.type: NFC tag type
+    // data.prefix: the NDEF tag prefix, e.g. 'https://'
+    // data.content: the rest of the tag payload after the prefix
+    // data.uri: the concatenation of the prefix and the content
+  });
+
+  // Callback method function readTagCallback() is defined on page
+  median.nfc.readTag({
+    'callback': readTagCallback, 
+    'message': STRING 
+  });
+  ```
+</CodeGroup>
+
+#### Scan Tag Basic Example
+
+<CodeGroup>
+  ```bash bash
+  median.nfc.readTag({
+    'message': 'Hold your device near the storage bin'
+  }).then(function (data) {
+      if (data && data.error) {
+          console.log('There was an error scanning for NFC tags');
+          return;
+      }
+      if (data && data.uri) {
+          // do something with data.uri
+      }
+  });
+  ```
+</CodeGroup>
+
+#### Scan Tag and Open URL Directly
+
+<CodeGroup>
+  ```bash bash
+  median.nfc.readTag({
+    'openUrl': true,
+    'message': 'Hold your device near the exhibit sign'
+  });
+  ```
+</CodeGroup>
+
+***
+
+[iBeacon](/docs/ibeacon)
+
+[QR / Barcode Scanner](/docs/qr-barcode-scanner)
+
+Copy Page
+
+* * [Implementation Guide](#implementation-guide)
+
+  * * [Check for NFC availability](#check-for-nfc-availability)
+    * [Initiate tag reading](#initiate-tag-reading)

@@ -1,0 +1,134 @@
+---
+title: "Legacy Mode"
+---
+
+<Info>
+  ### Important note
+
+  **This guide applies only to apps using the legacy OneSignal integration (iOS v3 SDK or Android v4 SDK).** If your app was set up recently through Median.co, it's already on the current SDK (v5+) with a user-centric data model — this page doesn't apply to you. For new integrations, start with [Get started with OneSignal](https://docs.median.co/docs/onesignal).
+</Info>
+
+## What Legacy Mode is
+
+By default, Median.co apps integrate with the latest OneSignal iOS and Android SDKs (v5+) and the user-centric data model. With Legacy Mode enabled, your app falls back to OneSignal's previous iOS v3 and Android v4 SDKs, which use a **device-centric** data model where each device has a unique Player ID.
+
+<Check>
+  ### Developer Demo
+
+  Display our demo page in your app to test during development [https://median.dev/onesignal-legacy](https://median.dev/onesignal-legacy)
+</Check>
+
+***
+
+## Sending personalized notifications in Legacy Mode
+
+There are many use cases for sending push notifications to specific users, either individually or as part of a group:
+
+* Alerting users of new messages or deliveries
+* Re-engaging users based on past activity
+* Sending promotional offers aligned with user preferences
+
+There are two ways to send personalized notifications under the legacy model.
+
+Option 1: User–device in your backendOption 2: External User IDs
+
+You can associate your app users and their devices via the OneSignal Player ID (`oneSignalUserId`) and then send push notifications to specific devices.
+
+Obtain the `oneSignalUserId` from the `oneSignalInfo` object — typically after a successful sign-in — and record it in your database alongside the user's account identifier. This gives you full control: you can send to specific devices, remove devices when users haven't logged in for some time, and support multiple accounts on the same device.
+
+There are two ways to obtain and store the Player ID.
+
+#### Option 1a: Retrieve via JavaScript on your website
+
+Add JavaScript to a login success page to retrieve the `oneSignalInfo` object. The OneSignal Player ID is available as `oneSignalUserId`.
+
+**iOS note:** On iOS, `oneSignalUserId` will not be set if the user has declined the push notification permission prompt.
+
+<CodeGroup>
+  ```bash bash
+  /* Login Page Sample Code */
+  var gn_oneSignalUserId;
+
+  function median_onesignal_info(oneSignalInfo){
+    gn_OneSignalUserId = oneSignalInfo.oneSignalUserId;
+  }
+
+  function yourLoginFunction(){
+    if(gn_OneSignalUserId){
+      $.ajax({
+        url: updateUserRecord,
+        type: "POST",
+        data: {
+          yourAppUserId: userId,
+          oneSignalUserId: gn_OneSignalUserId
+        },
+        contentType: "application/json"
+      });
+    }
+  }
+  ```
+</CodeGroup>
+
+For more JavaScript examples, see [OneSignal Info](https://docs.median.co/docs/onesignal-info).
+
+#### Option 1b: POST directly from the native app
+
+Define an API endpoint URL. The app sends a POST request to that endpoint including the user's push token and OneSignal Player ID, along with any session cookies and complete HTTP headers — which your backend can use to identify the user and match an account.
+
+The POST is sent:
+
+1. When the app registers with OneSignal and push tokens are initially created.
+2. When a page matching the configured URL is loaded in the app (such as a login success page).
+
+**Testing tip:** Use `.*` or **All Pages** for your URL pattern while testing until you've confirmed your endpoint is receiving the POST. If you still don't receive it, verify the endpoint with cURL or Postman.
+
+Instead of managing Player IDs in your own database, you can use OneSignal's External User ID to associate your own identifiers — such as an email address or account number — with the device record in OneSignal. OneSignal manages the user-device relationship for you, though the functionality is more limited.
+
+<CodeGroup>
+  ```bash bash
+  // Set an External ID
+  median.onesignal.externalUserId.set({
+    externalId: STRING // e.g. [email protected]
+  });
+
+  // Remove an External ID
+  median.onesignal.externalUserId.remove();
+  ```
+</CodeGroup>
+
+***
+
+## Comparing the two options
+
+| Criteria                    | Option 1 (backend managed)            | Option 2 (External User ID)              |
+| --------------------------- | ------------------------------------- | ---------------------------------------- |
+| **Setup complexity**        | Higher — requires backend storage     | Lower — OneSignal manages the mapping    |
+| **Control**                 | Full — you manage every device record | Limited — depends on OneSignal's mapping |
+| **Multi-account support**   | Yes                                   | Limited                                  |
+| **Inactive device removal** | Yes                                   | No                                       |
+
+***
+
+## Migrating away from Legacy Mode
+
+To migrate to OneSignal's user-centric model, review [OneSignal's User Model Migration Guide](https://documentation.onesignal.com/docs/user-model-migration-guide) before disabling Legacy Mode.
+
+The primary areas to update are:
+
+1. **User and device association:** How your app associates users with devices. See [Identifying & targeting users](https://docs.median.co/docs/identifying-targeting-users).
+2. **Programmatic notifications:** Transactional notification delivery. See [Programmatic notifications](https://docs.median.co/docs/programmatic-notifications).
+
+Once you've updated both areas, disable Legacy Mode and rebuild your app.
+
+***
+
+[In-App Messages](/docs/in-app-messages)
+
+[Braze](/docs/braze)
+
+Copy Page
+
+* * [What Legacy Mode is](#what-legacy-mode-is)
+  * [Sending personalized notifications in Legacy Mode](#sending-personalized-notifications-in-legacy-mode)
+  * [Comparing the two options](#comparing-the-two-options)
+  * [Migrating away from Legacy Mode](#migrating-away-from-legacy-mode)

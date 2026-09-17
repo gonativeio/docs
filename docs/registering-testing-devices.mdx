@@ -1,0 +1,112 @@
+---
+title: "Register Testing Devices"
+description: "Provision your iOS devices for testing via UDID"
+---
+
+All iPhone/iPads you want to install and test your iOS app on prior to publishing need to be registered to your Apple Developer account. The UDID (Unique Device Identifier) for each device is added to the provisioning profile for your app which permits the app to be installed on those specified devices outside of the App Store.
+
+To register a test device enter the **UDID** and a **device name**. Once registered, the device will be included in the provisioning profile used during the build allowing the IPA to be installed and launched on that device.
+
+<Warning>
+  ### Rebuild after adding devices
+
+  Registering a new device does not retroactively update builds you've already produced. After adding one or more devices here, you must regenerate your provisioning profile and create a new build before that device can install the app.
+</Warning>
+
+## Add iOS Testers and register their iOS devices
+
+Go to your **Median** organization page > **iOS Testers**, then click the **Add iOS Tester** button to add all testers including your own devices. If a user has multiple devices, e.g. iPhone and iPad, you will need to add each separately.
+
+![iOS Testers](/images/docs/67d0561d217722a4611f14aeb8c057689697d341ccfcda4c49165267d0313c5f-Screenshot_2025-07-21_at_11.33.22.png)
+
+### Option 1: Invite a tester by email (recommended)
+
+This is the easiest path when someone else owns the test device as they never need to find their own UDID.
+
+1. In Median App Studio, go to iOS Testers and click Add iOS Tester.
+2. Choose **Send Invitation** as the device enrollment method (default), enter the user’s name and email, then click **Send Invite**.
+
+![Send iOS Tester invitation email to automatically collect UDID](/images/docs/e4f9c987a14f550b6ee918acd7c092a549b92608be358dd9070bc23943cd7749-Screenshot_2025-07-21_at_11.37.24.png)
+
+2. The user should open the invitation email on their iOS device and click **Register Device**. This will open the Median webpage where they can enroll their device.
+
+![iOS Tester Invitation Email](/images/docs/47c474c52691acb645106078e59a0ada19d56a3526397b278bd819bee99686a0-Screenshot_2025-07-21_at_11.38.40.png)
+
+3. Click **Get UDID Automatically**, then download the UDID device profile.
+
+![iOS Tester Enrollment Screen](/images/docs/1457284528628c5c4ba4212c8357a35622efddd0a34dc1e1f59b95dff561ae12-Simulator_Screenshot_-_iPhone_16_Pro_-_2025-07-22_at_11.03.01.png)
+
+4. Once downloaded, open the **Settings** app and tap **Profile Downloaded**.
+
+![Settings app with Profile Downloaded visible](/images/docs/39e8abd1d461f49c0c74fa42161b31790c5cd01cda522e495b5bdc36a22917f8-Simulator_Screenshot_-_iPhone_16_Pro_-_2025-07-22_at_11.04.13.png)
+
+5. Install the profile. Once complete, you will be redirected back to the **Median** website with the UDID and device name pre-filled. Click **Register Device** to complete the process.
+
+![Install Profile to retrieve UDID](/images/docs/59114199870bb6e7ed33e0792dd04ede20eedc6c56ca01286885be50518262a6-Simulator_Screenshot_-_iPhone_16_Pro_-_2025-07-22_at_11.04.51.png)
+
+![iOS Tester Enrollment Screen with UDID populated](/images/docs/0616f19749ba87ee54c3405eb3e890af57c53db5ddcb2d4d7ba48167111d37ce-Simulator_Screenshot_-_iPhone_16_Pro_-_2025-07-22_at_11.05.10.png)
+
+### Option 2: Enter a UDID manually
+
+Use this option if you already know a device's UDID, or if you're registering your own device.
+
+1. Request the UDID for all devices you wish to add. Median's standalone [Get UDID](https://median.co/udid) page can be used to avoid needing to connect the iOS device to a computer via USB.
+
+2. In Median App Studio, go to iOS Testers and click **Add iOS Tester**.
+
+3. Enter the device's UDID and an optional label (for example, "QA - John's iPhone 17").
+
+4. Click **Register Device**.
+
+<Frame caption="Manual Provisioning">
+  <img src="/images/docs/56c65344bec6b74ce36e82a38d03655b17e52d7eaa6367108860903df9f1a75c-Screenshot_2025-07-21_at_11.40.30.png" />
+</Frame>
+
+The device now appears in your registered device list, ready to be included the next time you regenerate a provisioning profile.
+
+## Next Step
+
+[Configure Signing for Your App](https://docs.median.co/docs/configure-signing-for-your-app) →
+
+## Frequently Asked Questions
+
+### Do I need to physically plug my iPhone into a computer to get its UDID?
+
+**Do I need to physically plug my iPhone into a computer to get its UDID?⎘ Copy link
+
+No. Use the email invite flow (Option 1), or open Median's Get UDID page directly on the device (Option 2). A USB connection to a computer isn't required either way.
+
+### What happens if I add a new tester after I've already built my app?
+
+**What happens if I add a new tester after I've already built my app?⎘ Copy link
+
+The existing build won't recognize the new device. You need to regenerate the provisioning profile and create a new build; only devices included in the profile at build time can install that build.
+
+### Can one person register both an iPhone and an iPad?
+
+**Can one person register both an iPhone and an iPad?⎘ Copy link
+
+Yes, but each device must be registered separately as there's no bulk or multi-device entry per person. Send a separate invite, or add each UDID individually.
+
+### Is there a limit to how many test devices I can register?
+
+**Is there a limit to how many test devices I can register?⎘ Copy link
+
+Apple's Developer Program limits registered devices to 100 per device class (iPhone, iPad, etc.) per membership year. If you're approaching that limit, plan your test group accordingly, since removed devices can't always be swapped back in until Apple's annual reset.
+
+***
+
+### Next Steps
+
+* [Configure Signing for Your App](/docs/configure-signing-for-your-app)
+
+Copy Page
+
+* * [Add iOS Testers and register their iOS devices](#add-ios-testers-and-register-their-ios-devices)
+
+  * * [Option 1: Invite a tester by email (recommended)](#option-1-invite-a-tester-by-email-recommended)
+    * [Option 2: Enter a UDID manually](#option-2-enter-a-udid-manually)
+
+  * [Next Step](#next-step)
+
+  * [Frequently Asked Questions](#frequently-asked-questions)

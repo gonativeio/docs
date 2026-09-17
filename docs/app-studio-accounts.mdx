@@ -1,0 +1,186 @@
+---
+title: "App Studio Accounts"
+description: "Manage your organization, team members, and apps in one place"
+---
+
+The Median App Studio is a comprehensive platform for creating and managing mobile apps. It simplifies app development and centralizes app management, enabling collaboration across teams and organizations.
+
+This guide covers everything you need to get started and keep your organization running smoothly:
+
+* **[Getting Started](#getting-started)** - create your account and bring existing apps under it
+* **[User & Access Management](#user--access-management)** - invite teammates and control what they can do
+* **[Security](#security)** - SSO and two-factor authentication (2FA)
+* **[App Management](#app-management)** - tags, groups, and pinning to manage large app portfolios
+
+<Frame caption="Median App Studio - Organization Overview">
+  <img src="/images/docs/db2f4fe9a2b572c551eac4e5ebec581eda2f488183d2364b07f925452723a8c0-Screenshot_2026-09-08_at_11.42.28.png" />
+</Frame>
+
+## Getting Started
+
+### Create an Account
+
+Getting started with Median App Studio is quick and easy. Follow these simple steps:
+
+1. Visit [https://median.co/login](https://median.co/login) or click "Sign In" in the navigation bar.
+2. Click "Sign up here" and complete the registration form.
+
+* By signing up, you agree to Median's [Online Terms](https://median.co/terms) and [Privacy Policy](https://median.co/privacy).
+
+3. Confirm your account using the verification email you receive.
+4. An organization account is created automatically as part of the account creation. You can rename it to match your company or team name at any time.
+
+### Add an Existing App to Your Account
+
+Add any apps you've created outside of your account using the "Add to Account" process.
+
+1. Open the App Management page for your app via your Private Management Link.
+2. Click "Add to Account" in the top announcement bar.
+3. Select the appropriate Organization/Team (if you're part of multiple organizations).
+4. Repeat the process to add additional apps.
+
+## User & Access Management
+
+Median App Studio uses two layers of permissions: an **organization role** that applies account-wide, and an **app access level** that applies per app. Understanding both helps you fine-tine the access permissions for your teammates and satisfy least-privilege access requirements.
+
+### Invite Team Members
+
+Collaboration is made simple within Median App Studio. Invite your colleagues or team members to your organization account:
+
+1. Open the "Members" tab in the sidebar.
+2. Click "Invite Member" at the bottom of the member list and and enter their name, email address, and configure their access level.
+3. Click "Send Invite". The recipient receives an invitation link by email.
+
+### Organization Roles
+
+Every team member holds one of two organization-wide roles:
+
+| Role             | Permissions                                                                                |
+| ---------------- | ------------------------------------------------------------------------------------------ |
+| **Owner**        | Full administrative access, including managing roles and permissions for all team members. |
+| **Collaborator** | Access to specific apps within the organization, with adjustable permission levels.        |
+
+### App Access Levels
+
+Members in your organization account can have varying access levels for each app in your organization.
+
+| Access Level  | Permissions                                                                                                                       |
+| ------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| **Admin**     | Complete control over app management: add members, adjust access levels, and view, edit, save, rebuild, and download app sources. |
+| **Developer** | View, edit, save, rebuild, and download app sources, but cannot manage team members.                                              |
+| **Viewer**    | Read-only access; cannot make any modifications to the app.                                                                       |
+
+## Security
+
+Median App Studio provides multiple layers of account and organization-level security, from enterprise identity federation to two-factor authentication.
+
+### Identity Management & SSO
+
+Median App Studio supports SSO via OIDC, which means user authentication and lifecycle (updates, disablement) are managed directly through your chosen Identity Provider (e.g.: Microsoft Entra, Azure AD, AWS Cognito, Okta).
+
+When a user is updated, or disabled in your Identity Provider (IdP), those changes flow into Median automatically at login time. Median does maintain its own separate user directory for SSO-enabled tenants, but SSO-enabled organizations force users to log in via IdP.
+
+At this time, Median does not expose SCIM or a separate web service API for user lifecycle management, since this is handled by your IdP. The entire integration is driven by your tenant configuration
+
+Please [contact our team](https://median.co/contact?topic=enterprise) to enable SSO for your organization.
+
+![Median App Studio - SSO Configuration](/images/docs/095a1d28b50518ba32b9d44dd12041212bf402d0104460e84ecd27ae13dd2fa3-Screenshot_2025-09-10_at_14.57.04.png)
+
+### Two-Factor Authentication (2FA)
+
+Median App Studio supports two-factor authentication (2FA) to add an extra layer of protection beyond a password.
+
+* **Per-user 2FA:** Any team member can enable 2FA on their own account to protect their individual login.
+* **Organization-wide enforcement:** Organization **Owners** can require all members to have 2FA enabled before they can access the organization, ensuring consistent security across the whole team rather than relying on individual opt-in.
+
+Note that 2FA and [SSO](#identity-management--sso) are independent security controls and organizations using SSO manage authentication (including MFA) through their Identity Provider.
+
+#### Per-user 2FA
+
+Any team member can enable 2FA on their own account:
+
+1. Click "My Account" in the sidebar.
+2. In your account settings, enable "Two-Factor Authentication".
+
+<Frame caption="App Studio - My Account">
+  <img src="/images/docs/c1639acbe83ed23f64697093f6f053b7c4a1648d37b04fe4ecf130edd089a6d8-Screenshot_2026-09-08_at_12.03.03.png" />
+</Frame>
+
+#### Organization-wide enforcement
+
+Organizations on a Business or Enterprise license can require all members to use 2FA, rather than leaving it to individual opt-in:
+
+1. Select the "Settings" tab in the sidebar.
+2. Enable "Require two-factor authentication for all members".
+
+<Frame caption="App Studio - Organization-wide 2FA enforcement">
+  <img src="/images/docs/96724f8df492d7858315289a518afd9d6dfa0001c4e3baa7b91ce939c3b7e93f-Screenshot_2026-09-08_at_11.59.11.png" />
+</Frame>
+
+## App Management
+
+If you manage multiple apps within your account, the Median App Studio offers helpful tools to keep everything organized. Key features include:
+
+* **App Tags:** Tag apps across different groups to make filtering easier. Each app can have multiple tags, allowing for flexible organization and quick access to related apps.
+* **App Groups:** Organizing apps into a group can help you group different app environments (eg Development, Staging, QA and Production). This helps you to track changes more easily and compare details like the latest updates or App Identifiers
+* **App Pinning:** Pin frequently used apps to the sidebar for quick access, eliminating the need to search for the ones you're currently working on.
+
+### App Tags
+
+Tagging apps across different groups makes filtering and finding them easier. Since each app can have multiple tags, you can organize them flexibly and access related apps quickly.
+
+The example below shows how tags can be used to filter apps, no matter which group they belong to.
+
+![Median App Studio - Tag Filter](/images/docs/a17dc18b773d249b685fa8ea27c5109f8200e5dc70fd230962a609a9dd2717f7-Screenshot_2025-07-03_at_17.15.54.png)
+
+To manage the tags associated with an app, click the hamburger menu (☰) next to the app name and select "Edit Overview".
+
+![Median App Studio - Tag Management](/images/docs/2f2493c53006149d551263836fb2470d20a140f20595ccd4b8dce9e5b7f34fe2-Screenshot_2025-07-03_at_17.17.06.png)
+
+### App Groups
+
+App Groups help you organize related apps into a single group. You can group apps by environment (like development and production), by theme, customer, system, or any structure that suits your needs.
+
+You can create and rename App Groups at any time to match your preferences.
+
+![Median App Studio - App Group Example](/images/docs/721274c4d21dc353f48108ff2bfaaf4206970ceb315d806ecf01118c7ca4a215-Screenshot_2025-07-03_at_17.09.06.png)
+
+To add an app to a group, click the hamburger menu (☰) next to the app name and select "Add to Group". To remove it from a group, click the same menu and choose "Remove from Group".
+
+![Median App Studio - Add App to Group](/images/docs/fa6933f46f032acc2637276c2eb20b7315fdea5adb9dc1fe4356d8c3b53b5073-Screenshot_2025-07-03_at_17.07.53.png)
+
+### App Pinning
+
+To pin an app to the sidebar, click the hamburger menu (☰) next to the app name and select "Pin to Sidebar". To unpin it, follow the same steps and choose "Unpin from Sidebar".
+
+![Median App Studio - Pin Apps](/images/docs/00afd0461afa9a9729af648ca88af064e6c7e43354f96ba29a4b938629b985b1-Screenshot_2025-07-03_at_15.50.48.png)
+
+***
+
+[App Updates & Migration Guide](/docs/app-updates)
+
+[Support](/docs/support)
+
+Copy Page
+
+* * [Getting Started](#getting-started)
+
+  * * [Create an Account](#create-an-account)
+    * [Add an Existing App to Your Account](#add-an-existing-app-to-your-account)
+
+  * [User & Access Management](#user--access-management)
+
+  * * [Invite Team Members](#invite-team-members)
+    * [Organization Roles](#organization-roles)
+    * [App Access Levels](#app-access-levels)
+
+  * [Security](#security)
+
+  * * [Identity Management & SSO](#identity-management--sso)
+    * [Two-Factor Authentication (2FA)](#two-factor-authentication-2fa)
+
+  * [App Management](#app-management)
+
+  * * [App Tags](#app-tags)
+    * [App Groups](#app-groups)
+    * [App Pinning](#app-pinning)

@@ -1,0 +1,38 @@
+---
+title: "Dynamic Menu Items"
+---
+
+> To set the example sidebar navigation menu options run the command below. The `enabled` parameter is required to activate the sidebar if it is hidden. The `persist` parameter is used to keep the changes after your app is closed and reloaded.
+
+<CodeGroup>
+  ```bash bash
+  var items = [{
+            label: "Google",
+            url: "https://google.com",
+            icon: "fas fa-cog" // optional Font Awesome icon
+          }, {
+            label: "Sample Grouping",
+            isGrouping: true, 
+            subLinks: [{
+              label: "Apple",
+              url: "https://apple.com",
+              icon: "fas fa-home" // optional
+            }, {
+              label: "Google",
+              url: "https://google.com",
+              icon: "fas fa-home" //optional
+            }]
+          }, {
+            label: "Sample Javascript",
+            url: "javascript:alert('test')"
+        }];
+
+  median.sidebar.setItems({"items":items,"enabled":true, "persist":true});     
+  ```
+</CodeGroup>
+
+***
+
+### Next Steps
+
+* [Sidebar Demo App](/docs/sidebar-demo-app)

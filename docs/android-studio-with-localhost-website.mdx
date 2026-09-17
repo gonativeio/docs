@@ -1,0 +1,110 @@
+---
+title: "Connect Android Studio Simulators to Localhost Websites"
+description: "When developing web view apps, testing changes in a local environment using a device emulator is crucial. This guide walks you through configuring your Android emulator to access a locally hosted website. This guide is not intended for testing on physical devices. You may need to adjust your app’s Website URL to match your local network’s server address."
+---
+
+<Warning>
+  ### Simulators vs Virtual Devices
+
+  This guide is not intended for testing on physical devices. You may need to adjust your app’s Website URL to match your local network’s server address if you are using a physical device.
+</Warning>
+
+## Prerequisites
+
+Before proceeding, ensure you have the following:
+
+* **Android Studio:** This guide assumes you're using Android Studio to run your emulator. If you're using a different IDE, the steps may differ.
+* **Local Web Server:** Your website should be hosted locally and accessible from your desktop browser.
+
+## Step-by-Step
+
+### Step 1 - Host your website locally
+
+Begin by running your local web server. Depending on your development stack (Node.js, Docker, or an IDE’s built-in server), verify that your site is accessible via your desktop browser.
+
+You can verify that the service is running by opening your browser and navigating to the appropriate URL (e.g., `http://127.0.0.1:5500`). The specific URL and port will vary based on your configuration.
+
+<Frame caption="Web application hosted on local machine">
+  <img src="/images/docs/0b0e6afddaaf4d37230161da5b47bdce8ac0aa12b0b3ce2a890888bd9a898ddb-image.png" />
+</Frame>
+
+### Step 2 - Website URL Configuration
+
+<Warning>
+  ### 127.0.0.1 and localhost
+
+  **Note**: `127.0.0.1` and `localhost` do not reference your host machine from the emulator. Instead, use `10.0.2.2` for Android Studio emulators.
+</Warning>
+
+To allow the emulator to access your local development server, update your app’s URL using one of the following methods:
+
+1. **App Studio:** Set the Website URL in the App Studio and rebuild your app.
+2. **Config File:** Set the Website URL in the `appConfig.json` (located in `app/assets/appConfig.json`) using your IDE.
+
+The IP address `10.0.2.2` acts as the standard gateway for Android Studio emulators. If you are using another IDE, refer to its documentation for the appropriate gateway.
+
+### Step 3 - Launch the simulator
+
+Once your app is configured, start the Android emulator and test the web view functionality. Any changes to your local site should be reflected immediately within the emulator.
+
+<Frame caption="Device Simulator connected to a localhost web app">
+  <img src="/images/docs/42a773fc21b6247ff1cb9f1751409fdca906ee9251cfd22969401ae7b58b1ed6-image.png" />
+</Frame>
+
+## Frequently Asked Questions
+
+### How can I check if my server is accessible from the emulator?
+
+On the virtual device, open Chrome browser, and navigate to `http://10.0.2.2>:<port>`. If your web app shows up you can access it via the app. If not, please use the steps below to pinpoint the root cause of the issue.
+
+### How do I check the emulator gateway?
+
+You can verify the emulator gateway with three steps:
+
+1. Open **Settings > WiFi** on the emulator.
+2. Confirm it is connected to **AndroidWiFi** (your host machine’s network).
+3. Check that the **Gateway Address** is set to `10.0.2.2`.
+
+Should you require a proxy, you will need to configure it as per Google Developer documentation for [using the emulator with a proxy](https://developer.android.com/studio/run/emulator-networking.html#proxy).
+
+### How to set the Android app permissions to cleartext (http)?
+
+You may need to allow cleartext (http) traffic in your app to display the web app hosted on your local development service if no SSL certificate is present. You can control the permission by setting the `allowInsecure` flag to `true` or `false` in the appConfig.json file.
+
+<CodeGroup>
+  ```bash bash
+  "security": {
+      "network": {
+          "allowInsecure": true | false
+      }
+  }
+  ```
+</CodeGroup>
+
+The file can be reviewed and edited either directly in the IDE (app > assets > appConfig.json) or in your Build & Deploy tab as shown below
+
+<Frame caption="App Studio - Modifying the appConfig.json">
+  <img src="/images/docs/5c8d11c330c62649e351e13851289fa80a771c4e7b033bf0099a7a352dde58c9-Screenshot_2025-07-04_at_14.06.27.png" />
+</Frame>
+
+***
+
+### Next Steps
+
+* [Build Android from source](/docs/build-android-from-source)
+
+Copy Page
+
+* * [Prerequisites](#prerequisites)
+
+  * [Step-by-Step](#step-by-step)
+
+  * * [Step 1 - Host your website locally](#step-1---host-your-website-locally)
+    * [Step 2 - Website URL Configuration](#step-2---website-url-configuration)
+    * [Step 3 - Launch the simulator](#step-3---launch-the-simulator)
+
+  * [Frequently Asked Questions](#frequently-asked-questions)
+
+  * * [How can I check if my server is accessible from the emulator?](#how-can-i-check-if-my-server-is-accessible-from-the-emulator)
+    * [How do I check the emulator gateway?](#how-do-i-check-the-emulator-gateway)
+    * [How to set the Android app permissions to cleartext (http)?](#how-to-set-the-android-app-permissions-to-cleartext-http)

@@ -1,0 +1,74 @@
+---
+title: "Localization"
+description: "Localized experiences that match your users’ language."
+---
+
+## Language Support Overview
+
+By default your user's default device language will be set within your app for all web content which will then display in the corresponding language in the same manner it is displayed in a regular browser, i.e. if there is an `Accept-Language` header present. The native UI components in the native app layer have been localized to various languages as contributed by customers. The languages you wish to support in your app must be enabled in the App Studio prior to building your app.
+
+## Web Content Localization
+
+By default your user's default device language will be set within your app. Your web content will then display in the corresponding language in the same manner it will be displayed in a regular browser, i.e. if there is an `Accept-Language` header present. This will function for any standard language code without limitation.
+
+## Native UI Component Localization
+
+Median localizes the native strings rendered by the native app, i.e. the components of your app outside the webview. These are the buttons used in native dialogs (**OK**, **Cancel**, **Done**, **View**, **Menu**) and action-sheet options shown when a user long-presses a link (**Open link in external browser**, **Copy link address**, **Share link**).
+
+To enable these translations, select the languages you want to include under **Interface** → **Localization** in the App Studio. The following languages are currently available:
+
+| Language                | Code      |
+| ----------------------- | --------- |
+| Arabic                  | `ar`      |
+| Catalan                 | `ca`      |
+| Chinese (Traditional)   | `zh-Hant` |
+| Czech                   | `cs`      |
+| Danish                  | `da`      |
+| Dutch                   | `nl`      |
+| English                 | `en`      |
+| Finnish                 | `fi`      |
+| French                  | `fr`      |
+| Gaelic                  | `gd`      |
+| German                  | `de`      |
+| Hebrew                  | `he`      |
+| Hungarian               | `hu`      |
+| Italian                 | `it`      |
+| Japanese                | `ja`      |
+| Korean                  | `ko`      |
+| Norwegian               | `nn-NO`   |
+| Portuguese (Brazil)     | `pt-BR`   |
+| Portuguese (Portugal)   | `pt-PT`   |
+| Russian                 | `ru`      |
+| Spanish                 | `es`      |
+| Spanish (Latin America) | `es-419`  |
+| Turkish                 | `tr`      |
+| Ukrainian               | `uk`      |
+
+### Translation reference
+
+| String                 | `en`                          | `ar`                      | `ca`                              | `zh-Hant`  | `cs`                                | `da`                       | `nl`                         | `fi`                              | `fr`                                      | `gd`                                     | `de`                            | `he`                    | `hu`                        | `it`                          | `ja`      | `ko`           | `nn-NO`                         | `pt-BR`                         | `pt-PT`                            | `ru`                               | `es`                                 | `es-419`                             | `tr`                         | `uk`                |
+| ---------------------- | ----------------------------- | ------------------------- | --------------------------------- | ---------- | ----------------------------------- | -------------------------- | ---------------------------- | --------------------------------- | ----------------------------------------- | ---------------------------------------- | ------------------------------- | ----------------------- | --------------------------- | ----------------------------- | --------- | -------------- | ------------------------------- | ------------------------------- | ---------------------------------- | ---------------------------------- | ------------------------------------ | ------------------------------------ | ---------------------------- | ------------------- |
+| `button-ok`            | OK                            | حسناً                     | OK                                | 好的         | OK                                  | OK                         | OK                           | OK                                | OK                                        | Ceart ma-thà                             | OK                              | אישור                   | OK                          | OK                            | OK        | 확인             | OK                              | OK                              | OK                                 | ОК                                 | Aceptar                              | Aceptar                              | Tamam                        | Гаразд              |
+| `button-cancel`        | Cancel                        | إلغاء                     | Cancel·la                         | 取消         | Zrušit                              | Annuller                   | Annuleren                    | Peruuta                           | Annuler                                   | Sguir dheth                              | Abbrechen                       | ביטול                   | Mégsem                      | Annulla                       | キャンセル     | 취소             | Avbryt                          | Cancelar                        | Cancelar                           | Отменить                           | Cancelar                             | Cancelar                             | İptal                        | Скасувати           |
+| `button-done`          | Done                          | تم                        | Fet                               | 完成         | Hotovo                              | Færdig                     | Gereed                       | Valmis                            | Terminé                                   | Deiseil                                  | Fertig                          | סיום                    | Kész                        | Fine                          | 完了        | 완료             | Ferdig                          | Concluído                       | Concluído                          | Готово                             | Listo                                | Listo                                | Bitti                        | Готово              |
+| `button-view`          | View                          | عرض                       | Veure                             | 查看         | Zobrazit                            | Vis                        | Bekijken                     | Näytä                             | Afficher                                  | Seall                                    | Anzeigen                        | הצג                     | Megtekintés                 | Visualizza                    | 表示        | 보기             | Vis                             | Ver                             | Ver                                | Просмотреть                        | Ver                                  | Ver                                  | Görüntüle                    | Переглянути         |
+| `button-menu`          | Menu                          | القائمة                   | Menú                              | 選單         | Menu                                | Menu                       | Menu                         | Valikko                           | Menu                                      | Clàr-taice                               | Menü                            | תפריט                   | Menü                        | Menu                          | メニュー      | 메뉴             | Meny                            | Menu                            | Menu                               | Меню                               | Menú                                 | Menú                                 | Menü                         | Меню                |
+| `button-open-external` | Open link in external browser | فتح الرابط في متصفح خارجي | Obre l'enllaç al navegador extern | 用外部瀏覽器開啟連結 | Otevřít odkaz ve vnějším prohlížeči | Åbn link i ekstern browser | Open link in externe browser | Avaa linkki ulkoisessa selaimessa | Ouvrir le lien dans le navigateur externe | Fosgail an ceangal ann am brabhsair eile | Link in externem Browser öffnen | פתח קישור בדפדפן חיצוני | Megnyitás külső böngészőben | Apri link nel browser esterno | 外部ブラウザで開く | 외부 브라우저로 링크 열기 | Opne lenkje i ekstern nettlesar | Abrir link no navegador externo | Abrir ligação no navegador externo | Открыть ссылку во внешнем браузере | Abrir enlace en el navegador externo | Abrir enlace en el navegador externo | Dış tarayıcıda bağlantıyı aç | Відкрити в браузері |
+| `button-copy-link`     | Copy link address             | نسخ الرابط                | Copia l'adreça de l'enllaç        | 複製連結位址     | Kopírovat adresu odkazu             | Kopiér linkadresse         | Kopieer linkadres            | Kopioi linkin osoite              | Copier l’adresse du lien                  | Dèan lethbhreac de sheòladh a' cheangail | Linkadresse kopieren            | העתק כתובת קישור        | Hivatkozás másolása         | Copia indirizzo link          | リンクをコピー   | 링크 주소 복사       | Kopier lenkjeadresse            | Copiar endereço do link         | Copiar endereço da ligação         | Скопировать адрес ссылки           | Copiar enlace                        | Copiar dirección del enlace          | Bağlantı adresini kopyala    | Копіювати посилання |
+| `button-share-link`    | Share link                    | مشاركة الرابط             | Comparteix l'enllaç               | 分享連結       | Sdílet odkaz                        | Del link                   | Deel link                    | Jaa linkki                        | Partager le lien                          | Co-roinn an ceangal                      | Link teilen                     | שתף קישור               | Hivatkozás megosztása       | Condividi link                | 共有        | 링크 공유          | Del lenkje                      | Compartilhar link               | Partilhar ligação                  | Поделиться ссылкой                 | Compartir enlace                     | Compartir enlace                     | Bağlantıyı paylaş            | Поділитися          |
+
+If your desired language is not listed, or if you spot a missing or incorrect translation above, post in our [discussion forum](https://docs.median.co/discuss) and provide the corresponding strings. Our team will add or update the translations and note the update in our [Release Notes](/docs/release-notes).
+
+***
+
+### Next Steps
+
+* [Permission Prompt Localization](/docs/permission-prompt-localization)
+* [Localized Tab Menu](/docs/localized-tab-menu)
+
+Copy Page
+
+* * [Language Support Overview](#language-support-overview)
+  * [Web Content Localization](#web-content-localization)
+  * [Native UI Component Localization](#native-ui-component-localization)
+  * * [Translation reference](#translation-reference)

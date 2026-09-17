@@ -1,0 +1,55 @@
+---
+title: "Custom User Agent"
+description: "Median automatically appends a string to the device user agent so you can easily identify traffic originating from your mobile app versus a standard mobile or desktop browser. You can customize this string or fully override the user agent to suit your needs."
+---
+
+## Default User Agent Strings in Median
+
+By default, Median appends a platform-specific identifier to the end of the native device user agent:
+
+* **iOS**: MedianIOS/1.0 median
+* **Android**: MedianAndroid/1.0 median
+
+This modification enables your server to detect and respond differently to requests coming from your Median-powered app.
+
+By default, the following strings are appended to the end of the device user agent:
+
+In the iOS app, the device default user agent is appended with `MedianIOS/1.0 median`In the Android app, the default device user agent is appended with `MedianAndroid/1.0 median`
+
+<Info>
+  ### Legacy GoNative User Agent Strings
+
+  GoNative.io was rebranded to Median.co in September 2023. Apps that were originally built on the legacy GoNative.io platform may still use the legacy user agent strings:
+
+  iOS app: `GoNativeIOS/1.0 gonative` Android app: `GoNativeAndroid/1.0 gonative`
+
+  These legacy strings exist only for backward compatibility with pre-rebrand builds. Any app built or rebuilt on Median.co uses the current MedianIOS/MedianAndroid strings above. To confirm the exact user agent used in your app, open the Web Overrides tab in your Median dashboard or use our [deviceInfo debugging function](https://docs.median.co/docs/device-info).
+</Info>
+
+## Using a Custom User Agent
+
+You can fully customize the user agent by selecting the Custom option in your app configuration and entering your preferred string. This gives you complete control over how your app identifies itself to your backend.
+
+## Detecting Median in JavaScript
+
+You can also detect whether a request originates from your app directly in your website’s JavaScript using `navigator.userAgent`. For example:
+
+<CodeGroup>
+  ```bash bash
+  if (navigator.userAgent.indexOf('median') > -1) {
+    // App-specific logic here
+  }
+  ```
+</CodeGroup>
+
+***
+
+### Next Steps
+
+* [Custom Headers](/docs/custom-headers)
+
+Copy Page
+
+* * [Default User Agent Strings in Median](#default-user-agent-strings-in-median)
+  * [Using a Custom User Agent](#using-a-custom-user-agent)
+  * [Detecting Median in JavaScript](#detecting-median-in-javascript)

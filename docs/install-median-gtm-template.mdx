@@ -1,0 +1,174 @@
+---
+title: "Install Median's GTM Tag Template"
+description: "Use Median's GTM Tag template to trigger JavaScript Bridge commands using GTM tags."
+---
+
+Use Median's GTM Tag template to execute JavaScript Bridge commands directly from GTM tags instead of updating your website. Learn how to install your GTM container in your app and import Median's Tag template into your GTM workspace.
+
+***
+
+## Prerequisites
+
+1. A Median app using the [JavaScript Bridge NPM package](https://docs.median.co/docs/npm-package#app-configuration)
+   1. [Create one here](https://median.co/app) if needed
+
+2. A GTM container ID. To create one:
+
+   1. Create a [Google Tag Manager Account and Web Container](https://support.google.com/tagmanager/answer/14842164?hl=en\&ref_topic=15191151\&sjid=7201322012849225464-NC)
+      1. Make sure you select **Web** for the container platform
+   2. Copy your container ID
+
+### Key Concepts
+
+* **GTM Container ID**: Identifies your Google Tag Manager instance (Web Container). You can find it in the top-right area of your GTM container workspace.
+
+* **GTM Tag**: A snippet of code that is executed on your website by GTM to avoid hardcoding it on the site.
+
+* **GTM Tag Template**: A tag that can be imported into your GTM workspace to create preconfigured tags. Median's tag template injects the Median JavaScript Bridge into your app so that other tags can execute bridge commands.
+
+* **GTM Trigger**: Rules that determine when a GTM tag is executed, such as a page view or button click.
+
+## Implementation Guide
+
+### Install your GTM container
+
+1. On line 1 of the snippet below, replace `ENTER-GTM-ID-HERE` with your GTM container ID and copy the snippet to your clipboard
+
+<CodeGroup>
+  ```bash bash
+  var gtmId = 'ENTER-GTM-ID-HERE';
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+
+  var checkReady = setInterval(function () {
+    if (document.body) {
+      clearInterval(checkReady);
+      var f = document.getElementsByTagName('script')[0];
+      var j = document.createElement('script');
+      j.async = true;
+      j.src = 'https://www.googletagmanager.com/gtm.js?id=' + gtmId;
+      f.parentNode.insertBefore(j, f);
+    }
+  }, 50);
+  ```
+</CodeGroup>
+
+2. In the App Studio:
+
+   1. Head over to the Web Overrides page
+   2. In the Custom JavaScript section (iOS and Android), paste the snippet from your clipboard. Make sure your GTM container ID is on line 1.
+   3. Click Save
+   4. Head over to the Build & Deploy page and rebuild your app
+
+<Frame caption="App Studio- Paste custom JavaScript Snippet">
+  <img src="/images/docs/a85816119d1d2f672c80f1fcc3c4c8f2d3aad3c066dde9e942506845df8ce304-image.png" />
+</Frame>
+
+### Import Median's Tag template in GTM
+
+1. Download the template's `.tpl` file from [this GitHub repository](https://github.com/gonativeio/gtm-median-template/blob/main/template.tpl)
+
+2. In your Google Tag Manager Console: a. Head over to Templates b. Click **New** in the Tag Templates section
+
+<Frame caption="GTM Workspace- Import Template">
+  <img src="/images/docs/369d480bdd7511e147a1693d272b81fb580a9481c4ccb9cdfee3b187665e2585-image.png" />
+</Frame>
+
+c. Click the three-dot menu icon in the top right corner of the screen d. Click **Import** and upload the `.tpl` file e. (Optional) Add a bridge version and `userAgentValue` in the template's fields. See the [configuration fields](https://docs.median.co/docs/google-tag-manager#configuration-fields-optional) on the [Google Tag Manager](https://docs.median.co/docs/google-tag-manager) page for more information.
+
+<Frame caption="GTM Workspace- Import Template">
+  <img src="/images/docs/8a80d591da7aaa5337ae2374606cc6d59010556bb2a1e39cf61e225b8e4da8f8-image.png" />
+</Frame>
+
+3. Create a new tag from the template and set the trigger to fire on All Pages. This tag injects the Median JavaScript Bridge into your app so that other tags can use it.
+
+4. Before publishing your container, you can use [GTM's Preview mode](https://support.google.com/tagmanager/answer/6107056?hl=en-US) to verify your configuration. Click **Preview** in your GTM workspace to launch the Tag Assistant, connect it to your web URL, and interact with your website to trigger the desired events. You can then check the Tag Assistant window to confirm that your tags are firing successfully.
+
+5. Publish your GTM container
+
+### Build your own tags
+
+You can create additional tags and triggers to call Bridge commands. For example, a tag can check `median.auth.status` to determine if a user's device supports Face ID or Touch ID. If it's supported, you can trigger biometric login prompts directly from GTM, without writing code into your website.
+
+### Reference documentation from Google
+
+* [About GTM](https://developers.google.com/tag-platform/tag-manager)
+* [GTM Tags](https://support.google.com/tagmanager/answer/3281060?hl=en)
+* [GTM Triggers](https://support.google.com/tagmanager/answer/7679316?hl=en-US)
+* [GTM Variables](https://support.google.com/tagmanager/answer/7683056?hl=en-US)
+* [Preview and Debug](https://support.google.com/tagmanager/answer/6107056?hl=en-US)
+
+## Setup Checklist
+
+Use this checklist to ensure GTM is working correctly:
+
+### Basic setup
+
+* [ ] The app is using the [JavaScript Bridge NPM package](https://docs.median.co/docs/npm-package#app-configuration)
+* [ ] The custom JavaScript snippet is pasted in the App Studio > Web Overrides with the correct GTM container ID
+* [ ] A new app build has been generated in the App Studio
+* [ ] Median's `.tpl` Tag template is successfully imported into the GTM workspace
+* [ ] A tag has been created from the template and set to fire on "All Pages"
+
+### Triggers
+
+* [ ] GTM triggers are configured correctly to fire on specific app events (e.g., page views, button clicks)
+* [ ] Tags fire exactly when expected according to the defined trigger conditions
+
+### JavaScript Bridge commands
+
+* [ ] Custom tags correctly execute Median JavaScript Bridge commands
+* [ ] Executed commands trigger the intended native device features
+
+### Publishing and live testing
+
+* [ ] The tags are firing in GTM's preview tool
+* [ ] The GTM container is successfully published to the live environment
+
+## Troubleshooting
+
+### GTM Tags are not firing
+
+**GTM Tags are not firing⎘ Copy link
+
+Verify that you replaced `ENTER-GTM-ID-HERE` with your actual GTM Container ID in the Custom JavaScript snippet under **Web Overrides**. Use [GTM's Preview mode](https://support.google.com/tagmanager/answer/6107056?hl=en-US) to ensure your triggers are configured correctly and firing on the expected events.
+
+### JavaScript Bridge commands are not executing
+
+**JavaScript Bridge commands are not executing⎘ Copy link
+
+Ensure you have imported the Median Tag template (`.tpl`) into your GTM workspace and created the initialization tag set to fire on **All Pages**. Also, confirm you generated a new app build in App Studio after saving your Web Overrides.
+
+### App is not reflecting GTM changes
+
+**App is not reflecting GTM changes⎘ Copy link
+
+Changes made within Google Tag Manager do not require a new app build, but they must be published to go live. Make sure you have clicked **Submit** and **Publish** in your GTM workspace after creating or modifying tags.
+
+***
+
+[Control your Median app with Google Tag Manager](/docs/google-tag-manager)
+
+[Native Plugins Overview](/docs/native-plugins-overview)
+
+Copy Page
+
+* * [Prerequisites](#prerequisites)
+
+  * * [Key Concepts](#key-concepts)
+
+  * [Implementation Guide](#implementation-guide)
+
+  * * [Install your GTM container](#install-your-gtm-container)
+    * [Import Median's Tag template in GTM](#import-medians-tag-template-in-gtm)
+    * [Build your own tags](#build-your-own-tags)
+    * [Reference documentation from Google](#reference-documentation-from-google)
+
+  * [Setup Checklist](#setup-checklist)
+
+  * * [Basic setup](#basic-setup)
+    * [Triggers](#triggers)
+    * [JavaScript Bridge commands](#javascript-bridge-commands)
+    * [Publishing and live testing](#publishing-and-live-testing)
+
+  * [Troubleshooting](#troubleshooting)

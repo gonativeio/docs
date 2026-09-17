@@ -1,72 +1,1016 @@
 {
   "$schema": "https://mintlify.com/docs.json",
-  "theme": "mint",
-  "name": "Mintlify Starter Kit",
+  "theme": "aspen",
+  "name": "Welcome to Median.co",
   "colors": {
-    "primary": "#16A34A",
-    "light": "#07C983",
-    "dark": "#15803D"
+    "primary": "#4299ed",
+    "light": "#4299ed",
+    "dark": "#4299ed"
   },
-  "favicon": "/favicon.svg",
+  "favicon": "/97d785d-small-favicon_black-256.png",
   "navigation": {
-    "pages": [
+    "tabs": [
       {
-        "group": "Getting Started",
-        "pages": [
-          "index",
-          "quickstart"
+        "tab": "Documentation",
+        "groups": [
+          {
+            "group": "Welcome",
+            "pages": [
+              "docs/overview",
+              "docs/architecture",
+              {
+                "group": "Security & Privacy",
+                "pages": [
+                  "docs/security",
+                  "docs/report"
+                ]
+              },
+              "docs/licenses",
+              "docs/app-updates",
+              "docs/app-studio-accounts",
+              "docs/support"
+            ]
+          },
+          {
+            "group": "Getting Started",
+            "pages": [
+              "docs/quickstart",
+              "docs/app-publishing"
+            ]
+          },
+          {
+            "group": "Branding",
+            "pages": [
+              "docs/branding-overview",
+              "docs/app-icon",
+              "docs/splash-screen",
+              "docs/theme-colors",
+              "docs/status-bar"
+            ]
+          },
+          {
+            "group": "Interface",
+            "pages": [
+              "docs/app-interface-overview",
+              {
+                "group": "Device Screen Control",
+                "pages": [
+                  "docs/device-screen-control",
+                  "docs/screen-brightness",
+                  "docs/keep-screen-on",
+                  "docs/full-screen",
+                  "docs/screen-orientation"
+                ]
+              },
+              "docs/dark-mode",
+              "docs/swipe-gestures",
+              "docs/font-scaling",
+              "docs/webview-zoom",
+              "docs/maximum-windows",
+              {
+                "group": "Offline Page",
+                "pages": [
+                  "docs/offline-page",
+                  "docs/service-workers",
+                  "docs/native-datastore-offline"
+                ]
+              },
+              "docs/ios-split-view",
+              "docs/localization",
+              "docs/ios-liquid-glass"
+            ]
+          },
+          {
+            "group": "Link Handling",
+            "pages": [
+              "docs/link-handling-overview",
+              "docs/internal-vs-external-links",
+              {
+                "group": "Deep Linking",
+                "pages": [
+                  "docs/deep-linking",
+                  "docs/deep-linking-validator"
+                ]
+              }
+            ]
+          },
+          {
+            "group": "Permissions",
+            "pages": [
+              "docs/permissions-overview",
+              {
+                "group": "Permissions Overview",
+                "pages": [
+                  "docs/permissions-overview",
+                  "docs/permission-prompt-localization"
+                ]
+              },
+              "docs/apple-att",
+              "docs/camera-and-file-uploads",
+              "docs/downloads-directory",
+              "docs/location-services",
+              "docs/web-rtc"
+            ]
+          },
+          {
+            "group": "Web Overrides",
+            "pages": [
+              "docs/website-overrides-overview",
+              "docs/custom-user-agent",
+              "docs/custom-headers",
+              "docs/custom-css",
+              "docs/custom-js",
+              "docs/cookie-persistence"
+            ]
+          },
+          {
+            "group": "Native Navigation",
+            "pages": [
+              "docs/native-navigation-overview",
+              {
+                "group": "Top Navigation Bar",
+                "pages": [
+                  "docs/top-navigation-bar",
+                  "docs/dynamic-titles",
+                  "docs/auto-new-windows",
+                  "docs/search-bar-form",
+                  "docs/refresh-button",
+                  "docs/share-button",
+                  "docs/add-custom-buttons",
+                  "docs/top-nav-bar-demo-app"
+                ]
+              },
+              {
+                "group": "Sidebar Navigation",
+                "pages": [
+                  "docs/sidebar-navigation-menu",
+                  "docs/sidebar-configuration",
+                  "docs/dynamic-menu-items",
+                  "docs/sidebar-demo-app"
+                ]
+              },
+              {
+                "group": "Bottom Tab Bar",
+                "pages": [
+                  "docs/bottom-tab-bar",
+                  "docs/selecting-tabs",
+                  "docs/tab-configuration",
+                  "docs/dynamic-tab-menu",
+                  "docs/localized-tab-menu",
+                  "docs/bottom-tab-demo-app"
+                ]
+              },
+              "docs/custom-icons",
+              "docs/contextual-navigation-toolbar"
+            ]
+          },
+          {
+            "group": "Push Notifications",
+            "pages": [
+              "docs/push-notifications-overview",
+              {
+                "group": "Push Notifications Overview",
+                "pages": [
+                  "docs/push-notifications-overview",
+                  "docs/push-notification-migration"
+                ]
+              },
+              {
+                "group": "OneSignal",
+                "pages": [
+                  "docs/onesignal",
+                  "docs/user-consent-management",
+                  "docs/identifying-targeting-users",
+                  {
+                    "group": "Sending Push Notifications",
+                    "pages": [
+                      "docs/onesignal-notifications",
+                      "docs/programmatic-notifications",
+                      "docs/foreground-notifications"
+                    ]
+                  },
+                  "docs/notification-customization",
+                  "docs/handling-notifications-taps",
+                  "docs/in-app-messages",
+                  "docs/onesignal-legacy-mode"
+                ]
+              },
+              "docs/braze",
+              "docs/bloomreach",
+              "docs/cordial",
+              "docs/firebase-cloud-messaging",
+              "docs/intercom",
+              "docs/iterable",
+              "docs/klaviyo",
+              "docs/customerio",
+              "docs/ms-dynamics",
+              "docs/moengage",
+              "docs/optimizely",
+              "docs/salesforce-marketing-cloud",
+              "docs/sendbird"
+            ]
+          },
+          {
+            "group": "Median JavaScript Bridge",
+            "pages": [
+              "docs/javascript-bridge",
+              "docs/detecting-app-usage",
+              {
+                "group": "NPM Package",
+                "pages": [
+                  "docs/npm-package",
+                  "docs/basic-usage",
+                  "docs/npm-package-usage-with-listeners",
+                  "docs/npm-package-spa-navigation"
+                ]
+              },
+              "docs/device-info",
+              "docs/clipboard",
+              "docs/prompt-share-dialogue",
+              "docs/app-resumed-callback",
+              "docs/keyboard-state-tracking",
+              "docs/download-file",
+              "docs/clear-webview-cache",
+              "docs/iframe-callbacks",
+              {
+                "group": "Control your Median app with Google Tag Manager",
+                "pages": [
+                  "docs/google-tag-manager",
+                  "docs/install-median-gtm-template"
+                ]
+              }
+            ]
+          },
+          {
+            "group": "Native Plugins",
+            "pages": [
+              "docs/native-plugins-overview",
+              {
+                "group": "Analytics",
+                "pages": [
+                  "docs/analytics",
+                  "docs/adjust",
+                  "docs/appsflyer",
+                  "docs/branch-io",
+                  "docs/firebase-analytics",
+                  "docs/crashlytics",
+                  "docs/facebook"
+                ]
+              },
+              {
+                "group": "Authentication",
+                "pages": [
+                  "docs/authentication",
+                  "docs/auth0",
+                  "docs/clerk",
+                  {
+                    "group": "Face ID & Touch ID Android Biometric",
+                    "pages": [
+                      "docs/auth",
+                      "docs/apple-face-id-touch-id",
+                      "docs/android-biometric-auth"
+                    ]
+                  },
+                  "docs/passkey-authentication",
+                  {
+                    "group": "Social Login",
+                    "pages": [
+                      "docs/social-login",
+                      "docs/facebook-login-configuration",
+                      "docs/google-sign-in-configuration",
+                      "docs/sign-in-with-apple-configuration",
+                      "docs/social-login-website-configuration",
+                      "docs/social-login-server-side-redirects",
+                      "docs/social-login-javascript-callbacks"
+                    ]
+                  }
+                ]
+              },
+              {
+                "group": "Enterprise",
+                "pages": [
+                  "docs/enterprise",
+                  "docs/enterprise-plugin",
+                  "docs/jailbreak-root-detection",
+                  "docs/microsoft-intune"
+                ]
+              },
+              {
+                "group": "Integrations",
+                "pages": [
+                  "docs/integrations",
+                  "docs/admob-native-ads",
+                  "docs/bubble-plugin",
+                  "docs/card-io",
+                  "docs/master-lock",
+                  "docs/revenue-cat",
+                  {
+                    "group": "Social Share",
+                    "pages": [
+                      "docs/social-share",
+                      "docs/social-share-instagram",
+                      "docs/social-share-snapchat"
+                    ]
+                  }
+                ]
+              },
+              {
+                "group": "Media",
+                "pages": [
+                  "docs/media",
+                  "docs/background-audio",
+                  "docs/jwplayer",
+                  "docs/kaltura-media-player",
+                  "docs/native-media-player",
+                  "docs/twilio",
+                  "docs/web-screenshot",
+                  "docs/zoom"
+                ]
+              },
+              {
+                "group": "Native Functionality",
+                "pages": [
+                  "docs/native-functionality",
+                  "docs/age-safety",
+                  "docs/app-review",
+                  "docs/background-location",
+                  "docs/calendar",
+                  "docs/haptics",
+                  "docs/health-bridge",
+                  {
+                    "group": "In-App Purchases",
+                    "pages": [
+                      "docs/iap",
+                      "docs/apple-iap",
+                      "docs/google-iap",
+                      "docs/google-iap-legacy"
+                    ]
+                  },
+                  "docs/native-contacts",
+                  "docs/native-datastore",
+                  "docs/offline-download-manager",
+                  "docs/reader-modal",
+                  "docs/secure-modal",
+                  "docs/share-into-app"
+                ]
+              },
+              {
+                "group": "Scanning",
+                "pages": [
+                  "docs/scanning",
+                  "docs/document-scanner",
+                  "docs/ibeacon",
+                  "docs/nfc-tag-scanner",
+                  "docs/qr-barcode-scanner",
+                  "docs/scandit-qr-barcode"
+                ]
+              }
+            ]
+          },
+          {
+            "group": "Website Builders",
+            "pages": [
+              "docs/ai-app-builder-overview",
+              {
+                "group": "Base44",
+                "pages": [
+                  "docs/base44",
+                  "docs/getting-started-with-base44",
+                  "docs/add-push-notifications-to-a-base44-app",
+                  "docs/adding-haptic-feedback-to-your-base44-app"
+                ]
+              },
+              {
+                "group": "Lovable",
+                "pages": [
+                  "docs/lovable",
+                  "docs/getting-started-with-lovable",
+                  "docs/add-push-notifications-to-your-lovable-app",
+                  "docs/add-haptic-feedback-to-your-lovable-app",
+                  "docs/prepare-your-lovable-app-for-publishing"
+                ]
+              },
+              {
+                "group": "Replit",
+                "pages": [
+                  "docs/replit",
+                  "docs/getting-started-with-replit",
+                  "docs/add-push-notifications-to-a-replit-app",
+                  "docs/add-haptic-feedback-to-your-replit-app"
+                ]
+              },
+              {
+                "group": "Salesforce Experience Cloud",
+                "pages": [
+                  "docs/salesforce",
+                  "docs/getting-started-with-salesforce-experience-cloud",
+                  "docs/salesforce-lwc-median",
+                  "docs/salesforce-deep-linking",
+                  "docs/salesforce-lwc-components"
+                ]
+              },
+              "docs/app-monetization",
+              "docs/app-marketing-growth"
+            ]
+          },
+          {
+            "group": "Build & Test",
+            "pages": [
+              "docs/development-test-deep-dive",
+              "docs/app-studio",
+              {
+                "group": "Debug Tools",
+                "pages": [
+                  "docs/debug-tools",
+                  "docs/ios-debugging",
+                  "docs/android-debugging"
+                ]
+              },
+              {
+                "group": "iOS Build & Deployment",
+                "pages": [
+                  "docs/ios-build-deployment",
+                  {
+                    "group": "Building an iOS Binary (IPA)",
+                    "pages": [
+                      "docs/build-ios-binary",
+                      "docs/connecting-median-appstore-connect",
+                      "docs/registering-testing-devices",
+                      "docs/configure-signing-for-your-app",
+                      "docs/building-an-ios-binary-for-apps-using-app-groups-entitlements",
+                      "docs/install-ios-ipa"
+                    ]
+                  },
+                  "docs/build-ios-from-source",
+                  "docs/common-xcode-issues",
+                  "docs/upload-ios-to-testflight",
+                  "docs/upload-ios-to-apple-app-store"
+                ]
+              },
+              {
+                "group": "Android Build & Deployment",
+                "pages": [
+                  "docs/android-build-deployment",
+                  "docs/install-android-apk",
+                  "docs/build-android-from-source",
+                  "docs/android-studio-with-localhost-website",
+                  "docs/android-app-bundle",
+                  "docs/upload-android-to-google-play"
+                ]
+              },
+              {
+                "group": "App Configuration & Management",
+                "pages": [
+                  "docs/app-configuration-management",
+                  "docs/app-identifiers",
+                  "docs/app-configuration-appconfigjson",
+                  "docs/google-services",
+                  "docs/google-developer-verification",
+                  "docs/backup-management",
+                  "docs/multiple-app-instances",
+                  "docs/cicd-integration"
+                ]
+              }
+            ]
+          },
+          {
+            "group": "Publishing",
+            "pages": [
+              "docs/publishing-overview",
+              "docs/publishing-guide",
+              "docs/publishing-service",
+              "docs/apple-app-store",
+              "docs/google-play-store",
+              "docs/faq-publishing"
+            ]
+          },
+          {
+            "group": "Release Notes",
+            "pages": [
+              "docs/release-notes",
+              {
+                "group": "App Studio Release Notes",
+                "pages": [
+                  "docs/release-notes-app-studio",
+                  "docs/release-notes-app-studio-archive"
+                ]
+              },
+              {
+                "group": "iOS Release Notes",
+                "pages": [
+                  "docs/release-notes-ios",
+                  "docs/release-notes-ios-archive"
+                ]
+              },
+              {
+                "group": "Android Release Notes",
+                "pages": [
+                  "docs/release-notes-android",
+                  "docs/release-notes-android-archive"
+                ]
+              }
+            ]
+          },
+          {
+            "group": "Welcome",
+            "pages": [
+              "docs/overview",
+              "docs/architecture",
+              {
+                "group": "Security & Privacy",
+                "pages": [
+                  "docs/security",
+                  "docs/report"
+                ]
+              },
+              "docs/licenses",
+              "docs/app-updates",
+              "docs/app-studio-accounts",
+              "docs/support"
+            ]
+          },
+          {
+            "group": "Getting Started",
+            "pages": [
+              "docs/quickstart",
+              "docs/app-publishing"
+            ]
+          },
+          {
+            "group": "Branding",
+            "pages": [
+              "docs/branding-overview",
+              "docs/app-icon",
+              "docs/splash-screen",
+              "docs/theme-colors",
+              "docs/status-bar"
+            ]
+          },
+          {
+            "group": "Interface",
+            "pages": [
+              "docs/app-interface-overview",
+              {
+                "group": "Device Screen Control",
+                "pages": [
+                  "docs/device-screen-control",
+                  "docs/screen-brightness",
+                  "docs/keep-screen-on",
+                  "docs/full-screen",
+                  "docs/screen-orientation"
+                ]
+              },
+              "docs/dark-mode",
+              "docs/swipe-gestures",
+              "docs/font-scaling",
+              "docs/webview-zoom",
+              "docs/maximum-windows",
+              {
+                "group": "Offline Page",
+                "pages": [
+                  "docs/offline-page",
+                  "docs/service-workers",
+                  "docs/native-datastore-offline"
+                ]
+              },
+              "docs/ios-split-view",
+              "docs/localization",
+              "docs/ios-liquid-glass"
+            ]
+          },
+          {
+            "group": "Link Handling",
+            "pages": [
+              "docs/link-handling-overview",
+              "docs/internal-vs-external-links",
+              {
+                "group": "Deep Linking",
+                "pages": [
+                  "docs/deep-linking",
+                  "docs/deep-linking-validator"
+                ]
+              }
+            ]
+          },
+          {
+            "group": "Permissions",
+            "pages": [
+              "docs/permissions-overview",
+              {
+                "group": "Permissions Overview",
+                "pages": [
+                  "docs/permissions-overview",
+                  "docs/permission-prompt-localization"
+                ]
+              },
+              "docs/apple-att",
+              "docs/camera-and-file-uploads",
+              "docs/downloads-directory",
+              "docs/location-services",
+              "docs/web-rtc"
+            ]
+          },
+          {
+            "group": "Web Overrides",
+            "pages": [
+              "docs/website-overrides-overview",
+              "docs/custom-user-agent",
+              "docs/custom-headers",
+              "docs/custom-css",
+              "docs/custom-js",
+              "docs/cookie-persistence"
+            ]
+          },
+          {
+            "group": "Native Navigation",
+            "pages": [
+              "docs/native-navigation-overview",
+              {
+                "group": "Top Navigation Bar",
+                "pages": [
+                  "docs/top-navigation-bar",
+                  "docs/dynamic-titles",
+                  "docs/auto-new-windows",
+                  "docs/search-bar-form",
+                  "docs/refresh-button",
+                  "docs/share-button",
+                  "docs/add-custom-buttons",
+                  "docs/top-nav-bar-demo-app"
+                ]
+              },
+              {
+                "group": "Sidebar Navigation",
+                "pages": [
+                  "docs/sidebar-navigation-menu",
+                  "docs/sidebar-configuration",
+                  "docs/dynamic-menu-items",
+                  "docs/sidebar-demo-app"
+                ]
+              },
+              {
+                "group": "Bottom Tab Bar",
+                "pages": [
+                  "docs/bottom-tab-bar",
+                  "docs/selecting-tabs",
+                  "docs/tab-configuration",
+                  "docs/dynamic-tab-menu",
+                  "docs/localized-tab-menu",
+                  "docs/bottom-tab-demo-app"
+                ]
+              },
+              "docs/custom-icons",
+              "docs/contextual-navigation-toolbar"
+            ]
+          },
+          {
+            "group": "Push Notifications",
+            "pages": [
+              "docs/push-notifications-overview",
+              {
+                "group": "Push Notifications Overview",
+                "pages": [
+                  "docs/push-notifications-overview",
+                  "docs/push-notification-migration"
+                ]
+              },
+              {
+                "group": "OneSignal",
+                "pages": [
+                  "docs/onesignal",
+                  "docs/user-consent-management",
+                  "docs/identifying-targeting-users",
+                  {
+                    "group": "Sending Push Notifications",
+                    "pages": [
+                      "docs/onesignal-notifications",
+                      "docs/programmatic-notifications",
+                      "docs/foreground-notifications"
+                    ]
+                  },
+                  "docs/notification-customization",
+                  "docs/handling-notifications-taps",
+                  "docs/in-app-messages",
+                  "docs/onesignal-legacy-mode"
+                ]
+              },
+              "docs/braze",
+              "docs/bloomreach",
+              "docs/cordial",
+              "docs/firebase-cloud-messaging",
+              "docs/intercom",
+              "docs/iterable",
+              "docs/klaviyo",
+              "docs/customerio",
+              "docs/ms-dynamics",
+              "docs/moengage",
+              "docs/optimizely",
+              "docs/salesforce-marketing-cloud",
+              "docs/sendbird"
+            ]
+          },
+          {
+            "group": "Median JavaScript Bridge",
+            "pages": [
+              "docs/javascript-bridge",
+              "docs/detecting-app-usage",
+              {
+                "group": "NPM Package",
+                "pages": [
+                  "docs/npm-package",
+                  "docs/basic-usage",
+                  "docs/npm-package-usage-with-listeners",
+                  "docs/npm-package-spa-navigation"
+                ]
+              },
+              "docs/device-info",
+              "docs/clipboard",
+              "docs/prompt-share-dialogue",
+              "docs/app-resumed-callback",
+              "docs/keyboard-state-tracking",
+              "docs/download-file",
+              "docs/clear-webview-cache",
+              "docs/iframe-callbacks",
+              {
+                "group": "Control your Median app with Google Tag Manager",
+                "pages": [
+                  "docs/google-tag-manager",
+                  "docs/install-median-gtm-template"
+                ]
+              }
+            ]
+          },
+          {
+            "group": "Native Plugins",
+            "pages": [
+              "docs/native-plugins-overview",
+              {
+                "group": "Analytics",
+                "pages": [
+                  "docs/analytics",
+                  "docs/adjust",
+                  "docs/appsflyer",
+                  "docs/branch-io",
+                  "docs/firebase-analytics",
+                  "docs/crashlytics",
+                  "docs/facebook"
+                ]
+              },
+              {
+                "group": "Authentication",
+                "pages": [
+                  "docs/authentication",
+                  "docs/auth0",
+                  "docs/clerk",
+                  {
+                    "group": "Face ID & Touch ID Android Biometric",
+                    "pages": [
+                      "docs/auth",
+                      "docs/apple-face-id-touch-id",
+                      "docs/android-biometric-auth"
+                    ]
+                  },
+                  "docs/passkey-authentication",
+                  {
+                    "group": "Social Login",
+                    "pages": [
+                      "docs/social-login",
+                      "docs/facebook-login-configuration",
+                      "docs/google-sign-in-configuration",
+                      "docs/sign-in-with-apple-configuration",
+                      "docs/social-login-website-configuration",
+                      "docs/social-login-server-side-redirects",
+                      "docs/social-login-javascript-callbacks"
+                    ]
+                  }
+                ]
+              },
+              {
+                "group": "Enterprise",
+                "pages": [
+                  "docs/enterprise",
+                  "docs/enterprise-plugin",
+                  "docs/jailbreak-root-detection",
+                  "docs/microsoft-intune"
+                ]
+              },
+              {
+                "group": "Integrations",
+                "pages": [
+                  "docs/integrations",
+                  "docs/admob-native-ads",
+                  "docs/bubble-plugin",
+                  "docs/card-io",
+                  "docs/master-lock",
+                  "docs/revenue-cat",
+                  {
+                    "group": "Social Share",
+                    "pages": [
+                      "docs/social-share",
+                      "docs/social-share-instagram",
+                      "docs/social-share-snapchat"
+                    ]
+                  }
+                ]
+              },
+              {
+                "group": "Media",
+                "pages": [
+                  "docs/media",
+                  "docs/background-audio",
+                  "docs/jwplayer",
+                  "docs/kaltura-media-player",
+                  "docs/native-media-player",
+                  "docs/twilio",
+                  "docs/web-screenshot",
+                  "docs/zoom"
+                ]
+              },
+              {
+                "group": "Native Functionality",
+                "pages": [
+                  "docs/native-functionality",
+                  "docs/age-safety",
+                  "docs/app-review",
+                  "docs/background-location",
+                  "docs/calendar",
+                  "docs/haptics",
+                  "docs/health-bridge",
+                  {
+                    "group": "In-App Purchases",
+                    "pages": [
+                      "docs/iap",
+                      "docs/apple-iap",
+                      "docs/google-iap",
+                      "docs/google-iap-legacy"
+                    ]
+                  },
+                  "docs/native-contacts",
+                  "docs/native-datastore",
+                  "docs/offline-download-manager",
+                  "docs/reader-modal",
+                  "docs/secure-modal",
+                  "docs/share-into-app"
+                ]
+              },
+              {
+                "group": "Scanning",
+                "pages": [
+                  "docs/scanning",
+                  "docs/document-scanner",
+                  "docs/ibeacon",
+                  "docs/nfc-tag-scanner",
+                  "docs/qr-barcode-scanner",
+                  "docs/scandit-qr-barcode"
+                ]
+              }
+            ]
+          },
+          {
+            "group": "Website Builders",
+            "pages": [
+              "docs/ai-app-builder-overview",
+              {
+                "group": "Base44",
+                "pages": [
+                  "docs/base44",
+                  "docs/getting-started-with-base44",
+                  "docs/add-push-notifications-to-a-base44-app",
+                  "docs/adding-haptic-feedback-to-your-base44-app"
+                ]
+              },
+              {
+                "group": "Lovable",
+                "pages": [
+                  "docs/lovable",
+                  "docs/getting-started-with-lovable",
+                  "docs/add-push-notifications-to-your-lovable-app",
+                  "docs/add-haptic-feedback-to-your-lovable-app",
+                  "docs/prepare-your-lovable-app-for-publishing"
+                ]
+              },
+              {
+                "group": "Replit",
+                "pages": [
+                  "docs/replit",
+                  "docs/getting-started-with-replit",
+                  "docs/add-push-notifications-to-a-replit-app",
+                  "docs/add-haptic-feedback-to-your-replit-app"
+                ]
+              },
+              {
+                "group": "Salesforce Experience Cloud",
+                "pages": [
+                  "docs/salesforce",
+                  "docs/getting-started-with-salesforce-experience-cloud",
+                  "docs/salesforce-lwc-median",
+                  "docs/salesforce-deep-linking",
+                  "docs/salesforce-lwc-components"
+                ]
+              },
+              "docs/app-monetization",
+              "docs/app-marketing-growth"
+            ]
+          },
+          {
+            "group": "Build & Test",
+            "pages": [
+              "docs/development-test-deep-dive",
+              "docs/app-studio",
+              {
+                "group": "Debug Tools",
+                "pages": [
+                  "docs/debug-tools",
+                  "docs/ios-debugging",
+                  "docs/android-debugging"
+                ]
+              },
+              {
+                "group": "iOS Build & Deployment",
+                "pages": [
+                  "docs/ios-build-deployment",
+                  {
+                    "group": "Building an iOS Binary (IPA)",
+                    "pages": [
+                      "docs/build-ios-binary",
+                      "docs/connecting-median-appstore-connect",
+                      "docs/registering-testing-devices",
+                      "docs/configure-signing-for-your-app",
+                      "docs/building-an-ios-binary-for-apps-using-app-groups-entitlements",
+                      "docs/install-ios-ipa"
+                    ]
+                  },
+                  "docs/build-ios-from-source",
+                  "docs/common-xcode-issues",
+                  "docs/upload-ios-to-testflight",
+                  "docs/upload-ios-to-apple-app-store"
+                ]
+              },
+              {
+                "group": "Android Build & Deployment",
+                "pages": [
+                  "docs/android-build-deployment",
+                  "docs/install-android-apk",
+                  "docs/build-android-from-source",
+                  "docs/android-studio-with-localhost-website",
+                  "docs/android-app-bundle",
+                  "docs/upload-android-to-google-play"
+                ]
+              },
+              {
+                "group": "App Configuration & Management",
+                "pages": [
+                  "docs/app-configuration-management",
+                  "docs/app-identifiers",
+                  "docs/app-configuration-appconfigjson",
+                  "docs/google-services",
+                  "docs/google-developer-verification",
+                  "docs/backup-management",
+                  "docs/multiple-app-instances",
+                  "docs/cicd-integration"
+                ]
+              }
+            ]
+          },
+          {
+            "group": "Publishing",
+            "pages": [
+              "docs/publishing-overview",
+              "docs/publishing-guide",
+              "docs/publishing-service",
+              "docs/apple-app-store",
+              "docs/google-play-store",
+              "docs/faq-publishing"
+            ]
+          },
+          {
+            "group": "Release Notes",
+            "pages": [
+              "docs/release-notes",
+              {
+                "group": "App Studio Release Notes",
+                "pages": [
+                  "docs/release-notes-app-studio",
+                  "docs/release-notes-app-studio-archive"
+                ]
+              },
+              {
+                "group": "iOS Release Notes",
+                "pages": [
+                  "docs/release-notes-ios",
+                  "docs/release-notes-ios-archive"
+                ]
+              },
+              {
+                "group": "Android Release Notes",
+                "pages": [
+                  "docs/release-notes-android",
+                  "docs/release-notes-android-archive"
+                ]
+              }
+            ]
+          }
         ]
       }
-    ],
-    "global": {
-      "anchors": [
-        {
-          "anchor": "Documentation",
-          "href": "https://mintlify.com/docs",
-          "icon": "book-open-cover"
-        },
-        {
-          "anchor": "Blog",
-          "href": "https://mintlify.com/blog",
-          "icon": "newspaper"
-        }
-      ]
-    }
-  },
-  "logo": {
-    "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg"
-  },
-  "navbar": {
-    "links": [
-      {
-        "label": "Support",
-        "href": "mailto:hi@mintlify.com"
-      }
-    ],
-    "primary": {
-      "type": "button",
-      "label": "Dashboard",
-      "href": "https://app.mintlify.com"
-    }
-  },
-  "contextual": {
-    "options": [
-      "copy",
-      "view",
-      "chatgpt",
-      "claude",
-      "perplexity",
-      "mcp",
-      "cursor",
-      "vscode"
     ]
-  },
-  "footer": {
-    "socials": {
-      "x": "https://x.com/mintlify",
-      "github": "https://github.com/mintlify",
-      "linkedin": "https://linkedin.com/company/mintlify"
-    }
   }
 }

@@ -1,0 +1,110 @@
+---
+title: "Overview"
+description: "Add the JavaScript Bridge to your Single-Page Application"
+---
+
+## Median JavaScript Bridge NPM Package
+
+Simplify the integration of your Single-Page Applications (SPAs) with the Median JavaScript Bridge NPM Package. Designed to work across popular JavaScript frameworks such as React, Angular, Vue.js, and more, this framework-agnostic library simplifies the use of Median JavaScript Bridge methods in your web apps.
+
+Follow the steps below to install the package and start using within your web app.
+
+**Explore our GitHub repository**: [https://github.com/gonativeio/median-javascript-bridge#readme](https://github.com/gonativeio/median-javascript-bridge#readme)
+
+**Explore the Package on NPM**: [https://www.npmjs.com/package/median-js-bridge](https://www.npmjs.com/package/median-js-bridge)
+
+## Implementation Guide
+
+### App Configuration
+
+When utilizing the Median JavaScript Bridge NPM package in your web application, remember to enable the corresponding option in the App Studio (*Website Overrides > JavaScript Frameworks and NPM*).
+
+This step prevents conflicts with the native app's embedded JavaScript Bridge Library and activates required listener support. Omitting the package while enabling the option may result in unresponsive JavaScript Bridge functions and callbacks.
+
+<Frame caption="Median App Studio - JavaScript Frameworks and NPM">
+  <img src="/images/docs/d7f408135a65f8292ed08fbf4c0268068f467c695400204ff97cc4d04a0a1879-Screenshot_2026-02-20_at_12.35.29.png" />
+</Frame>
+
+### Web App Installation Instructions
+
+#### Using a Package Manager
+
+Install the package via **npm** or **yarn** for seamless integration into your project.
+
+**With npm**:
+
+```
+npm install median-js-bridge --save
+```
+
+**With yarn**
+
+```
+yarn add median-js-bridge
+```
+
+#### Using a Script Tag
+
+If you prefer to add the library directly to your web page, include the following script tag in your HTML:
+
+<CodeGroup>
+  ```bash bash
+  <script
+    type="text/javascript"
+    src="https://unpkg.com/median-js-bridge@latest/dist/median.min.js"
+  ></script>
+  ```
+</CodeGroup>
+
+<Warning>
+  ### Avoid @latest in production
+
+  When loading the library via a `<script>` tag, using **@latest** means you will receive every new release as soon as it is available. This can lead to unintended regressions in production as potential breaking changes are applied instantly.
+
+  **Recommendation**: Pin to a specific version (e.g. @1.12.3) and upgrade deliberately.
+</Warning>
+
+## Next Steps
+
+After a successful installation of the package you can explore dedicated use cases and examples to implement callbacks, set up event listeners and implement an optimized Navigation for your SPA.
+
+### Example Commands
+
+Learn how to use the Median platform's features, including integration steps and key functionalities and review implementation examples for basic features in the app lifecycle.
+
+📖 Learn more: [Basic Usage](https://median.co/docs/basic-usage)
+
+### Using Listeners
+
+Learn how to use the Median NPM package with event listeners. Learn to register and manage listeners for various app events such as deep links and push notifications to enable efficient event handling in your app.
+
+📖 Learn more: [Using Listeners](https://median.co/docs/npm-package-usage-with-listeners)
+
+### SPA Navigation
+
+Learn how to manage navigation within a Single Page Application (SPA) using Median's NPM package.
+
+📖 Learn more: [SPA Navigation](https://median.co/docs/npm-package-spa-navigation)
+
+***
+
+### Next Steps
+
+* [Basic Usage](/docs/basic-usage)
+* [Usage with Listeners](/docs/npm-package-usage-with-listeners)
+* [SPA Navigation](/docs/npm-package-spa-navigation)
+
+Copy Page
+
+* * [Median JavaScript Bridge NPM Package](#median-javascript-bridge-npm-package)
+
+  * [Implementation Guide](#implementation-guide)
+
+  * * [App Configuration](#app-configuration)
+    * [Web App Installation Instructions](#web-app-installation-instructions)
+
+  * [Next Steps](#next-steps)
+
+  * * [Example Commands](#example-commands)
+    * [Using Listeners](#using-listeners)
+    * [SPA Navigation](#spa-navigation)

@@ -1,0 +1,144 @@
+---
+title: "Upload iOS to TestFlight"
+description: "Upload your Median iOS app to App Store Connect for TestFlight testing"
+---
+
+## Overview
+
+The recommended way to upload your iOS app to TestFlight with Median is directly from the **Median App Studio**.
+
+With the App Store Connect API configured and **Automatic Uploads to App Store Connect** enabled, Median will build a signed distribution IPA in the cloud and upload it directly to App Store Connect. Before uploading, your **App Store Connect app record must already exist** with the same Bundle ID configured in the Median App Studio. After Apple finishes processing the build, you can add it to TestFlight for internal or external testing.
+
+You do not need a Mac, Xcode, or Apple Transporter for this standard workflow.
+
+## Recommended Workflow
+
+1. Open your app in the Median App Studio and go to **Build & Deploy**.
+
+2. Click **Configure** in the iOS IPA section.
+
+3. In **Apple Developer API Connection**, enter your **Issuer ID** and **Key ID**, and upload your **Private Key (.p8)** file.
+
+4. In **Bundle ID & App Store Connect App**:
+
+   * Register the **Bundle ID** for your app.
+   * Create the **App Store Connect app record** in App Store Connect using that Bundle ID.
+   * Verify the **App Store Connect app record** in Median App Studio.
+
+5. In **Signing & Upload Settings**, select **Distribution Profile** and set **Upload to App Store Connect** to **Automatic**.
+
+6. Build your iOS IPA in the Median App Studio (if Automatic Upload is not selected you can manually click "Upload" after the build is complete).
+
+7. Wait for Apple to process the uploaded build in App Store Connect.
+
+8. In App Store Connect, open **TestFlight**, resolve any required prompts, and add testers.
+
+## Manual Xcode Upload (Optional)
+
+Use this workflow only if you intentionally choose to build your iOS app locally from downloaded source in Xcode.
+
+Most Median self-publishing workflows do **not** require Xcode. For most developers, building in Median App Studio and uploading automatically to App Store Connect is the recommended approach.
+
+### 1. Register app to App Store Connect
+
+To upload your app for TestFlight, you will first need to register your app in your App Store Connect account by following the steps in the [official documentation](https://developer.apple.com/help/app-store-connect/create-an-app-record/add-a-new-app). This includes registering your app name and [bundle ID](./app-identifiers).
+
+### 2. Open app in Xcode
+
+See [Build iOS from source](https://median.co/docs/build-ios-from-source) to download and open iOS source code in Xcode.
+
+In Xcode, select YOUR\_APP from the left panel as seen in Figure 1:
+
+![Figure 1: Select your app](/images/docs/05b22ad-Xcode_SelectApp.png)
+
+This will open another panel in the middle with various options. Select your target app in the "**TARGETS**" section and select "**Signing & Capabilities**". Now, choose your organization in the "**TEAM**" section and include your Bundle ID that you used to register your app in the previous section as shown in Figure 2:
+
+![Figure 2: Add signing configuration](/images/docs/ead80d3-Xcode_SelectOrganization.png)
+
+### 3. Archive your app
+
+Now, select **Product > Archive** from the top to archive your app.
+
+If there are no build errors, Xcode will open a new window with your newly archived app as seen in Figure 3.
+
+![Figure 3: Archived app](/images/docs/e86d630-Xcode_ArchivedApp.png)
+
+### 4. Validate your App
+
+As seen in Figure 3, Xcode provides an option named "**Validate App**" to conduct an initial, automated limited assessment of the app and offer feedback. If you're looking to verify your app's readiness for TestFlight or the App Store submission without immediately submitting it, select your archive and then click on "**Validate App**".
+
+![Figure 4: Validate App](/images/docs/0587103-Xcode_ValidateApp.png)
+
+![Figure 5: Validated App](/images/docs/81b7852-Xcode_ValidatedApp.png)
+
+### 5. Distribute your app
+
+When your app is successfully validated, you can proceed to distributing the app to TestFlight by selecting "**Distribute App**". Select "**TestFlight Internal Only**" to allow testing for internal testers of your organization as seen in Figure 6:
+
+![Figure 6: Distribute App](/images/docs/8fdc71f-Xcode_DistributeApp.png)
+
+![Figure 7: Distributed App to TestFlight](/images/docs/bdd2b1f-Xcode_DistributedAppOnTestFlight.png)
+
+### 6. App Store Connect
+
+Visit [App Store Connect's Apps page](https://appstoreconnect.apple.com/apps) and open your registered app from the list. Select "**TestFlight**" from the top bar to see your newly uploaded TestFlight distribution as seen in Figure 8 below.
+
+![Figure 8: App Store Connect - TestFlight](/images/docs/2edf532-AppStoreConnect_TestFlight.png)
+
+If you are seeing "**Missing Compliance**" such as above, click "**Manage**", choose "**None of the algorithms mentioned above**" from the options and hit "**Save**" as seen in Figure 9 below:
+
+![Figure 9: Resolve Missing Compliance](/images/docs/aad6617-AppStoreConnect_ManageCompliance.png)
+
+Now, you will see that your app is ready to be Tested as seen in Figure 10:
+
+![Figure 10: Ready to Test](/images/docs/332a967-AppStoreConnect_ReadyToTest.png)
+
+### 7. Add Internal Testers
+
+Now, if you don't already have an internal testers group, click the "**+**" icon besides the "**Internal Testing**" label (see Figure 10) to create a new Internal Testers group as seen below in Figure 11:
+
+![Figure 11: Create new Internal Testers group](/images/docs/a287926-AppStoreConnect_InternalTesters.png)
+
+Once the group is created, it will appear directly below the "**Internal Testers**" label as seen previously. Click the newly created group and you will see the following page with an option named "**Testers (0)**" to add the testers:
+
+![Figure 12: New Internal Tester Group](/images/docs/e37ace2-AppStoreConnect_AddInternalTesters.png)
+
+Click the "**+**" icon besides the "**Testers (0)**" label and add testers from the list of users in your organization. Once added, you will see the list of invited testers as seen in Figure 13 below:
+
+![Figure 13: Added Testers](/images/docs/f67178b-AppStoreConnect_TestersAdded.png)
+
+Each tester will receive an email invite that they can use to test the newly uploaded app on the **TestFlight** iOS app.
+
+![Figure 14: TestFlight Invite](/images/docs/9acf8b9-TestFlightInvite.png)
+
+## Frequently Asked Questions
+
+### Do TestFlight builds expire?
+
+Yes. All builds uploaded to TestFlight are active for 90 days before they expire. For test access after the 90 days you can upload a new build.
+
+***
+
+[Common Xcode Issues](/docs/common-xcode-issues)
+
+[Upload iOS to Apple App Store](/docs/upload-ios-to-apple-app-store)
+
+Copy Page
+
+* * [Overview](#overview)
+
+  * [Recommended Workflow](#recommended-workflow)
+
+  * [Manual Xcode Upload (Optional)](#manual-xcode-upload-optional)
+
+  * * [1. Register app to App Store Connect](#1-register-app-to-app-store-connect)
+    * [2. Open app in Xcode](#2-open-app-in-xcode)
+    * [3. Archive your app](#3-archive-your-app)
+    * [4. Validate your App](#4-validate-your-app)
+    * [5. Distribute your app](#5-distribute-your-app)
+    * [6. App Store Connect](#6-app-store-connect)
+    * [7. Add Internal Testers](#7-add-internal-testers)
+
+  * [Frequently Asked Questions](#frequently-asked-questions)
+
+  * * [Do TestFlight builds expire?](#do-testflight-builds-expire)

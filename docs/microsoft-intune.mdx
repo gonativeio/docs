@@ -1,0 +1,89 @@
+---
+title: "Microsoft Intune"
+description: "Add Microsoft Intune capabilities to your app to support Mobile Device Management (MDM) and Mobile Application Management (MAM) using the Microsoft Endpoint Manager"
+---
+
+Median’s Microsoft Intune plugin integrates the **Intune Mobile SDK** into your iOS and Android apps. This integration allows your app to utilize Intune’s device management capabilities. For detailed information on the Intune App SDK, visit the official [Microsoft Intune App SDK documentation](https://learn.microsoft.com/en-us/mem/intune/developer/app-sdk).
+
+## Prerequisites
+
+To integrate and configure the Intune Mobile SDK into your app, ensure you have the following:
+
+* Microsoft Intune account
+* Client ID
+* Tenant ID
+* Client secret
+
+The implementation steps below showcase where to find each of the required configuration parameters.
+
+## Implementation Guide
+
+### Create a client ID and a tenant ID
+
+To create your Client ID and Tenant ID for your app, follow these steps:
+
+1. Log in to [https://portal.azure.com](https://portal.azure.com).
+2. Under **Azure Services**, click **Azure Active Directory**.
+3. In the left-hand menu, select **App registrations**.
+4. On the main page, click **New registration**.
+5. In the **Register an Application** screen, enter your app’s name. Ensure that the Accounts in this organizational directory only option is selected.
+6. Click **Register** to create your application.
+7. After registration, you will see the **Application (Client) ID** and **Tenant ID.** Copy these values for later use.
+
+### Create a client secret
+
+To generate a Client Secret for your app, follow these steps:
+
+1. In the left menu, click **Certificates & secrets**.
+
+2. Under the **Client secrets** section, click **New client secret**.
+
+3. In the Add a client secret popup, do the following:
+
+   1. Enter a description for your client secret, such as **Client Secret for\[your app name]**.
+   2. Under **Expires**, select Never to ensure the secret remains valid indefinitely. You may need to configure a different value based on your security policies.
+   3. Click **Add**.
+
+4. The newly created client secret will appear under **Client secrets**. Copy its value for future use.
+
+### Add permissions to your app in Microsoft Azure
+
+To grant your app the necessary permissions, follow these steps:
+
+1. In the left navigation menu, click **API permissions**.
+
+2. Under **Configured permissions**, click **Add a permission**.
+
+3. In the **Request API permissions** popup, do the following:
+
+   1. Click **Microsoft Graph**.
+
+   2. Select **Application permissions**.
+
+   3. In the **Select permissions** section, search and select the following permissions:
+
+      1. Device.Read.All
+      2. Group.Read.All
+      3. DeviceManagementManagedDevices.ReadWrite.All
+
+   4. Click Add permissions to save the selected permissions. The permissions are saved for the app you registered above in step 1.
+
+4. Under **Configured permissions**, click **Grant admin consent** for \[your app name].
+
+5. Click **Yes** to confirm your request. The **Status** column will now show **Granted** for your app.
+
+***
+
+[Jailbreak/Root Detection](/docs/jailbreak-root-detection)
+
+[Integrations](/docs/integrations)
+
+Copy Page
+
+* * [Prerequisites](#prerequisites)
+
+  * [Implementation Guide](#implementation-guide)
+
+  * * [Create a client ID and a tenant ID](#create-a-client-id-and-a-tenant-id)
+    * [Create a client secret](#create-a-client-secret)
+    * [Add permissions to your app in Microsoft Azure](#add-permissions-to-your-app-in-microsoft-azure)

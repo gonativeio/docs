@@ -1,0 +1,68 @@
+---
+title: "Zoom"
+description: "Add native Zoom Video to provide your users seamless and integrated video experiences such as in-app video calling"
+---
+
+## Overview
+
+The Zoom Plugin allows you to add [embedded video experiences](https://developers.zoom.us/docs/video-sdk/) leveraging Zoom's core technology such as in-app video calling. Provide advanced video features and ensure a cohesive and integrated experience for your users.
+
+<Check>
+  ### Developer Demo
+
+  Display our demo page in your app to test during development [https://median.dev/zoom/](https://median.dev/zoom/)
+</Check>
+
+## Implementation
+
+### Step 1: Generate JWT Token
+
+A JWT token will be required to join Zoom video calls. Generate a JWT using your SDK Key and SDK Secret as described in this [Zoom Documentation](https://developers.zoom.us/docs/video-sdk/auth/#how-to-generate-a-video-sdk-jwt)
+
+### Step 2: Run JavaScript Bridge command
+
+Run the following JS Bridge method with the JWT token, meeting number, and an optional username and password as seen below:
+
+<CodeGroup>
+  ```bash bash
+  // If passed to the `join` method as a callback this will be called upon conclusion of the call
+  function zoom_callback(data) {
+      if (data.error) {
+          console.log('Zoom Error: ' + data.error);
+      } else if (data.status) {
+          console.log('Zoom Status: ' + data.status);
+      }
+  }
+
+  // This command returns a promise if 'callback' is not passed
+  median.zoom.join({
+     token: string // JWT
+     sessionName: string // optional
+     userIdentity: string // optional
+     password: string // optional
+     callback: string | function //optional
+  });
+  ```
+</CodeGroup>
+
+> Details of the query parameters:
+>
+> * `token`: JWT Token retrieved using the guide above
+> * `sessionName`: Name of the video call room
+> * `userIdentity`: The name that will be shown on the video call room for the user joining the room.
+> * `password`: Password for the session being joined
+
+***
+
+[Web Screenshot](/docs/web-screenshot)
+
+[Native Functionality](/docs/native-functionality)
+
+Copy Page
+
+* * [Overview](#overview)
+
+  * [Implementation](#implementation)
+
+  * * [Step 1: Generate JWT Token](#step-1-generate-jwt-token)
+    * [Step 2: Run JavaScript Bridge command](#step-2-run-javascript-bridge-command)

@@ -1,0 +1,87 @@
+---
+title: "Full Screen"
+description: "Hide system UI so your app can use the device's full screen space"
+---
+
+Full Screen lets your app take over areas of the display that are normally reserved for system UI (Android Navigation Bar and Status Bar), or the sidebars shown around modern iOS devices in landscape. This allows you to use the entire screen for your content.
+
+<Check>
+  ### Developer Demo
+
+  Display our demo page in your app to test during development [https://median.dev/full-screen/](<https://median.dev/full-screen/&#xA;>)
+</Check>
+
+## Why Use Full Screen
+
+* **Games and interactive experiences**: Maximize usable screen space for games or interactive content where every pixel of the viewport matters.
+* **Photo and gallery viewing**: Let photos, image galleries, or visual portfolios fill the screen edge-to-edge without system chrome competing for attention.
+* **Kiosk and signage in landscape**: Combine with landscape orientation to remove system bars entirely for kiosk, digital signage, or presentation-style deployments.
+* **Landscape-optimized layouts**: On iOS, reclaim the space taken by device sidebars in landscape so custom layouts aren't unexpectedly narrowed.
+
+### Platform Behavior
+
+Full Screen behaves differently by platform:
+
+* **iOS**: On iOS, the sidebars that show when modern iOS devices are in landscape mode can be hidden to provide the full horizontal screen space to your app.
+* **Android**: On Android, the Android Navigation Bar and Status Bar can be hidden to provide a full screen experience for the user.
+
+To set this mode as default, enable it within your app configuration on the **Interface** tab. To set it at runtime, use the Median JavaScript Bridge command.
+
+## Implementation Guide
+
+### App Setup
+
+Full Screen can be enabled as the app's default behavior directly in the App Studio, without any code.
+
+1. **Navigate to Interface**: In the App Studio, go to the **Interface** tab.
+2. **Enable Full Screen**: Toggle Full Screen to enabled status to apply it by default across your app.
+
+### JavaScript Bridge Implementation (Android)
+
+On Android, Full Screen mode can also be toggled dynamically at runtime.
+
+#### Enable Full Screen
+
+Hides the Android Navigation Bar and Status Bar.
+
+<CodeGroup>
+  ```bash bash
+  median.android.screen.fullScreen();
+  ```
+</CodeGroup>
+
+#### Disable Full Screen
+
+Restores the Android Navigation Bar and Status Bar to normal.
+
+<CodeGroup>
+  ```bash bash
+  median.android.screen.normal();
+  ```
+</CodeGroup>
+
+<Warning>
+  ### Full Screen and Keyboard UX
+
+  With Full Screen enabled on Android, the keyboard will overlay on top of your web content, which can cause issues for users completing forms. If your app uses forms, consider one of these approaches:
+
+  1. Disable Full Screen mode via the JavaScript Bridge when showing a page that includes forms.
+  2. Use the [Keyboard State Tracking](https://docs.median.co/docs/keyboard-state-tracking) listener functions to disable/enable Full Screen mode via the JavaScript Bridge as the keyboard becomes active or inactive.
+</Warning>
+
+***
+
+[Keep Screen On](/docs/keep-screen-on)
+
+[Screen Orientation](/docs/screen-orientation)
+
+Copy Page
+
+* * [Why Use Full Screen](#why-use-full-screen)
+
+  * * [Platform Behavior](#platform-behavior)
+
+  * [Implementation Guide](#implementation-guide)
+
+  * * [App Setup](#app-setup)
+    * [JavaScript Bridge Implementation (Android)](#javascript-bridge-implementation-android)

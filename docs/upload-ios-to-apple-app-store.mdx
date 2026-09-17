@@ -1,0 +1,49 @@
+---
+title: "Upload iOS to Apple App Store"
+---
+
+# Upload iOS to Apple App Store
+
+The recommended self-service workflow is to upload iOS builds directly from Median App Studio to App Store Connect. With the App Store Connect API integration and **Upload to App Store Connect** set to **Automatic**, Median can build a signed distribution IPA in the cloud and upload it for TestFlight and App Store submission. You do not need a Mac, Xcode, or Apple Transporter for this workflow.
+
+## Recommended Workflow
+
+1. Enroll in the [Apple Developer Program](https://developer.apple.com/programs/enroll/).
+2. Create an app record in [App Store Connect](https://appstoreconnect.apple.com) using your iOS Bundle ID.
+3. In Median App Studio, open **Build & Deploy** and configure the iOS IPA build.
+4. Connect your Apple Developer account with an App Store Connect API key.
+5. Select a distribution provisioning profile and set **Upload to App Store Connect** to **Automatic**.
+6. Build your iOS IPA.
+
+After the build completes, Median uploads it to App Store Connect. Apple may take some time to process the build before it appears. Once it is available, you can add the build to TestFlight, invite internal testers, and select the same build for App Review when your listing is ready.
+
+## What You Still Do in App Store Connect
+
+The automatic upload setting handles the build upload, signing workflow, and delivery to App Store Connect. You still manage the app listing and review steps in App Store Connect:
+
+* complete the app name, description, screenshots, category, age rating, privacy details, and support URLs
+* add internal or external TestFlight testers
+* answer export compliance and review questions
+* select the processed build and submit it for App Review
+
+## Manual Alternatives
+
+If you leave **Upload to App Store Connect** set to **Manual**, you can build a signed IPA in Median App Studio and press the **Upload** button after the build completes, or upload it yourself with Apple's [Transporter app](https://help.apple.com/itc/transporteruserguide/#/itc0d5b535bf). You can also download iOS source code from App Studio and build locally with Xcode by following [Build iOS from Source](/docs/build-ios-from-source).
+
+For the broader publishing checklist, see [Apple App Store](/docs/apple-app-store). For beta testing after upload, see [Upload iOS to TestFlight](/docs/upload-ios-to-testflight).
+
+***
+
+### Next Steps
+
+* [Median App Studio](/docs/app-studio)
+* [iOS Build & Deployment](/docs/ios-build-deployment)
+* [Android Build & Deployment](/docs/android-build-deployment)
+
+Copy Page
+
+* * [Upload iOS to Apple App Store](#upload-ios-to-apple-app-store)
+
+  * * [Recommended Workflow](#recommended-workflow)
+    * [What You Still Do in App Store Connect](#what-you-still-do-in-app-store-connect)
+    * [Manual Alternatives](#manual-alternatives)

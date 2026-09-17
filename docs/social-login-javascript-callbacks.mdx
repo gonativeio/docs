@@ -1,0 +1,522 @@
+---
+title: "JavaScript Callbacks"
+---
+
+## Overview
+
+This guide shows you how to implement social login using JavaScript callbacks with the Median JavaScript Bridge. This approach keeps everything in the browser and works well for single-page apps and client-side authentication flows.
+
+## How it works
+
+JavaScript callbacks let you access authentication tokens directly in your webpage's JavaScript code, without URL redirects or server-side token validation.
+
+Here's the flow:
+
+* A user clicks your login button, triggering the Median JavaScript Bridge
+* The native social login UI appears (Facebook, Google, or Apple)
+* After the user authenticates (or cancels), your JavaScript callback function runs
+* The callback receives an object with the authentication token and user details
+* You can immediately process this data client-side or send it to your backend
+
+## Before you start
+
+You'll need:
+
+* The ability to process authentication tokens through JavaScript
+* Your social login providers already configured ([Facebook](https://docs.median.co/docs/facebook-login-configuration#/), [Google](https://docs.median.co/docs/google-sign-in-configuration#/), or [Apple](https://docs.median.co/docs/sign-in-with-apple-configuration#/))
+
+## Understanding the parameters
+
+Each social login method accepts these parameters:
+
+**callback** (required) — The JavaScript function that runs after login completes. It receives an object with the authentication token and user details.
+
+**scope** (optional) — Defines what user data your app can access. Each provider has different scope options:
+
+* [Facebook scope documentation](https://developers.facebook.com/docs/permissions/reference)
+* [Google scope documentation](https://developers.google.com/identity/protocols/oauth2/scopes)
+* [Apple scope documentation](https://developer.apple.com/documentation/sign_in_with_apple/clientconfigi/3230955-scope)
+
+**forceLimitedLogin** (Facebook only) — Set to true to use Limited Login mode even when App Tracking Transparency is enabled.
+
+**nonce** (Facebook only) — A string value used to verify the authenticity of the login when using Limited Login mode.
+
+<CodeGroup>
+  ```bash bash
+  median.socialLogin.facebook.login({ 'callback' : <function>, 'scope' : '<text>', forceLimitedLogin: true | false, nonce: '<text>' });
+  median.socialLogin.google.login({ 'callback' : <function> });
+  median.socialLogin.apple.login({ 'callback' : <function>, 'scope' : '<text>' });
+  ```
+</CodeGroup>
+
+***
+
+## Provider-specific implementation
+
+The following sections provide complete implementation details for each social login provider. Each section includes response objects, platform-specific requirements (where applicable), and a working code example. You can implement one or more providers based on your needs.
+
+Facebook LoginGoogle Sign InApple Sign In
+
+### Response objects
+
+Here's what your callback function receives for Facebook.
+
+#### Success response
+
+<CodeGroup>
+  ```bash bash
+  {
+      "accessToken": "token string",
+      "userId": "1234567890",
+      "type": "facebook",
+      "userDetails": {
+        "userID": "<string>",
+        "name": "<string>",
+        "email": "<string>",
+        "imageURL": "<string>",
+        "friendIDs": "<string>",
+        "birthday": "<string>",
+        "ageRangeMin": "<number>",
+        "ageRangeMax": "<number>",
+        "hometown": "<string>",
+        "location": "<string>",
+        "gender": "<string>"
+      },
+      "authToken": "<limited-login-token>",
+      "nonce": "<text>",
+      "limitedLogin": true | false
+  }
+  ```
+</CodeGroup>
+
+**Note:** Keys in userDetails may be unavailable or null based on the scope you requested.
+
+#### **Error response**
+
+<CodeGroup>
+  ```bash bash
+  {
+      "error": "error description",
+      "type": "facebook"
+  }
+  ```
+</CodeGroup>
+
+### Platform-specific requirements
+
+#### Facebook on iOS
+
+When users decline App Tracking Transparency (ATT), or tracking isn't enabled, Facebook uses "Limited Login" mode. You can also force this mode by setting forceLimitedLogin: true.
+
+What changes in Limited Login mode:
+
+* The accessToken won't be returned
+* You'll get an authToken (a JWT) instead — this can't be used for Graph API calls
+* A nonce value is available to verify login authenticity
+* The limitedLogin key will be set to true
+
+[Read Facebook's documentation on validating Limited Login tokens](https://developers.facebook.com/docs/facebook-login/limited-login/token/validating)
+
+### Implementation
+
+Use the Median JavaScript Bridge method to trigger native login from your website. When a user clicks the button, the native login flow starts. After they authenticate, your callback function runs with the response object.
+
+Here's an example:
+
+<CodeGroup>
+  ```bash bash
+  <button class="facebook-login browser-only" onclick="facebookLogin()">
+      Log In With Facebook
+  </button>
+
+  <button class="facebook-login native-only" 
+    onclick="median.socialLogin.facebook.login({ 'callback' : facebookLoginCallback, 'scope' : 'public_profile, email' });">
+      Log in With Facebook
+  </button>
+
+  <script>
+      const isMedian = navigator.userAgent.indexOf("median") >= 0;
+
+      if (isMedian) {
+          // Remove browser-only buttons
+          const elements = document.getElementsByClassName("browser-only")
+          while(elements.length > 0) {
+              elements[0].parentNode.removeChild(elements[0]);
+          }
+      } else {
+          // Remove native-only buttons
+          const elements = document.getElementsByClassName("native-only")
+          while(elements.length > 0) {
+              elements[0].parentNode.removeChild(elements[0]);
+          }
+      }
+
+      function facebookLoginCallback(response) {
+          console.log("Facebook Login Callback");
+
+          let accessToken;
+          if (response.status === "connected") {
+              // browser-only
+              accessToken = response.authResponse.accessToken;
+          } else if (response.type === "facebook") {
+              // native-only
+              accessToken = response.accessToken;
+          }
+
+          if (accessToken) {
+              FB.api("/me", "get", { fields: "id, email, first_name, last_name", access_token: accessToken }, function(response) {
+                  const { id, email, first_name, last_name } = response;
+
+                  const payload = {
+                      email,
+                      first_name,
+                      last_name,
+                      provider_type: "facebook",
+                      provider_token: accessToken,
+                      provider_uid: id,
+                  }
+
+                  // Call your backend's register endpoint
+                  fetch("users/register", {
+                      method: "POST",
+                      headers: {
+                          "Content-Type": "application/json",
+                      },
+                      body: JSON.stringify(payload),
+                  }).then(
+                      (data) => data.json()
+                  ).then((data) => {
+                      console.log("User is registered.");
+                  }).catch((error) => {
+                      console.error(error);
+                  });
+              })
+          } else {
+              console.log("User cancelled login or did not fully authorize.");
+          }
+      }
+
+      function facebookLogin() {
+          FB.login(function(response) {
+              facebookLoginCallback(response);
+          }, {
+              scope: "email, public_profile",
+          });
+      }
+
+      window.fbAsyncInit = function() {
+          FB.init({
+              appId            : "INSERT_FACEBOOK_APP_ID",
+              autoLogAppEvents : true,
+              xfbml            : true,
+              version          : "v12.0"
+          });
+      };
+  </script>
+
+  <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
+  ```
+</CodeGroup>
+
+In this example, clicking the button activates the Median JavaScript Bridge and launches Facebook's native login. After the user authenticates, `facebookLoginCallback()` runs with an object containing the user's token. If they cancel, you'll get an error message instead.
+
+Once you have the token, you can use it to fetch the user's Facebook profile. Then pass this data to your backend for processing.
+
+### Response objects
+
+Here's what your callback function receives for Google.
+
+#### Success response
+
+<CodeGroup>
+  ```bash bash
+  {
+      "idToken": "token string",
+      "type": "google"
+  }
+  ```
+</CodeGroup>
+
+#### Error response
+
+<CodeGroup>
+  ```bash bash
+  {
+      "error": "error description",
+      "type": "google"
+  }
+  ```
+</CodeGroup>
+
+### Implementation
+
+Use the Median JavaScript Bridge method to trigger native login from your website. When a user clicks the button, the native login flow starts. After they authenticate, your callback function runs with the response object.
+
+Here's an example:
+
+<CodeGroup>
+  ```bash bash
+  <div class="browser-only">
+      <div id="g_id_onload"
+          data-client_id="1038895183581-fdapcj78i25hdmvnes300nuf17top0uf.apps.googleusercontent.com"
+          data-callback="googleLoginCallback">
+      </div>
+
+      <div class="g_id_signin"
+          data-type="standard"
+          data-size="large"
+          data-theme="outline"
+          data-text="sign_in_with"
+          data-shape="rectangular"
+          data-logo_alignment="left">
+      </div>
+  </div>
+
+  <button class="google-login native-only" onclick="median.socialLogin.google.login({ 'callback' : googleLoginCallback });">
+      Log in With Google
+  </button>
+
+  <script>
+      const isMedian = navigator.userAgent.indexOf("median") >= 0;
+
+      if (isMedian) {
+          const elements = document.getElementsByClassName("browser-only")
+          while(elements.length > 0) {
+              elements[0].parentNode.removeChild(elements[0]);
+          }
+      } else {
+          const elements = document.getElementsByClassName("native-only")
+          while(elements.length > 0) {
+              elements[0].parentNode.removeChild(elements[0]);
+          }
+      }
+
+      function googleLoginCallback(response) {
+          console.log("Google Login Callback");
+
+          let idToken;
+          if (response.credential) {
+              // browser-only
+              idToken = response.credential;
+          } else {
+              // native-only
+              idToken = response.idToken;
+          }
+
+          if (idToken) {
+              const { payloadObj } = KJUR.jws.JWS.parse(idToken);
+              if (payloadObj) {
+                  const { given_name, family_name, email, sub } = payloadObj;
+
+                  const payload = {
+                      email,
+                      first_name: given_name,
+                      last_name: family_name,
+                      provider_type: "google",
+                      provider_token: idToken,
+                      provider_uid: sub,
+                  }
+
+                  fetch("users/register", {
+                      method: "POST",
+                      headers: {
+                          "Content-Type": "application/json",
+                      },
+                      body: JSON.stringify(payload),
+                  }).then(
+                      (data) => data.json()
+                  ).then((data) => {
+                      handleResponse(data);
+                  }).catch((error) => {
+                      console.error(error);
+                  });
+              }
+          } else {
+              console.log("User cancelled login or did not fully authorize.");
+          }
+      }
+  </script>
+
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jsrsasign/8.0.20/jsrsasign-all-min.js"></script>
+  ```
+</CodeGroup>
+
+After the user logs in, `googleLoginCallback()` runs with an object containing the user's ID token. If they cancel, you'll get an error message.
+
+Once you have the token, decode it using any JWT library. In this example, we're using jsrsasign to extract the email from the token. Then pass the decoded data to your backend for processing.
+
+### Response objects
+
+Here's what your callback function receives for Apple.
+
+#### Success response
+
+<CodeGroup>
+  ```bash bash
+  {
+      "idToken": "token string",
+      "code": "code string",
+      "firstName": "first name",
+      "lastName": "last name",
+      "type": "apple"
+  }
+  ```
+</CodeGroup>
+
+**Note:** firstName and lastName only appear on the first authentication.
+
+#### **Error response**
+
+<CodeGroup>
+  ```bash bash
+  {
+      "error": "error description",
+      "type": "apple"
+  }
+  ```
+</CodeGroup>
+
+### Platform-specific requirements
+
+#### Apple Sign In
+
+Apple only sends complete user profile data (`firstName` and `lastName`) on the *first* login. After that, you only get a JWT token and a user identifier.
+
+Here's what to do:
+
+* Save the full user profile to your database during the first authentication
+* On subsequent logins, retrieve the stored profile using the user identifier from the JWT
+* Parse the JWT for additional fields like email and email\_verified
+
+[Read Apple's documentation on retrieving user information](https://developer.apple.com/documentation/sign_in_with_apple/sign_in_with_apple_rest_api/authenticating_users_with_sign_in_with_apple#:~:text=Retrieve%20the%20user%E2%80%99s%20information%20from%20Apple%20ID%20servers)
+
+### **Implementation**
+
+Use the Median JavaScript Bridge method to trigger native login from your website. When a user clicks the button, the native login flow starts. After they authenticate, your callback function runs with the response object.
+
+Here's an example:
+
+<CodeGroup>
+  ```bash bash
+  <head>
+      <!-- other head tags -->
+
+      <meta name="appleid-signin-client-id" content="INSERT CLIENT ID">
+      <meta name="appleid-signin-scope" content="name email">
+      <meta name="appleid-signin-redirect-uri" content="https://median-social-logins-demo.web.app/auth/apple/redirect">
+      <meta name="appleid-signin-use-popup" content="true">
+  </head>
+
+  <body>
+  <div class="browser-only">
+      <div id="appleid-signin" data-color="black" data-border="true" data-type="sign in"></div>
+  </div>
+
+  <button class="apple-login native-only" onclick="median.socialLogin.apple.login({ 'callback' : appleLoginCallback, 'scope': 'full_name, email' });">
+      Log in With Apple
+  </button>
+
+  <script>
+      function appleLoginCallback(response) {
+          console.log("Apple Login Callback");
+
+          let firstName;
+          let lastName;
+          let idToken;
+          if (response.detail) {
+              // browser-only
+              if (response.detail.authorization) {
+                  idToken = response.detail.authorization.id_token;
+              }
+
+              // Apple only returns the user object the first time
+              // the user authorizes the app
+              // Persist this information in your app;
+              // subsequent authorization requests won't contain
+              // the user object
+              if (response.detail.user && response.detail.user.name) {
+                  firstName = response.detail.user.name.firstName;
+                  lastName = response.detail.user.name.lastName;
+              }
+          } else {
+              // native-only
+              idToken = response.idToken;
+              firstName = response.firstName;
+              lastName = response.lastName;
+          }
+
+          if (idToken) {
+              const { payloadObj } = KJUR.jws.JWS.parse(idToken);
+              if (payloadObj) {
+                  const { email, sub } = payloadObj;
+
+                  const payload = {
+                      email: email,
+                      first_name: firstName,
+                      last_name: lastName,
+                      provider_type: "apple",
+                      provider_token: idToken,
+                      provider_uid: sub,
+                  }
+
+                  fetch("users/register", {
+                      method: "POST",
+                      headers: {
+                          "Content-Type": "application/json",
+                      },
+                      body: JSON.stringify(payload),
+                  }).then(
+                      (data) => data.json()
+                  ).then((data) => {
+                      handleResponse(data);
+                  }).catch((error) => {
+                      console.error(error);
+                  });
+              }
+          } else {
+              console.log("User cancelled login or did not fully authorize.");
+          }
+      }
+
+      document.addEventListener("AppleIDSignInOnSuccess", appleLoginCallback);
+      document.addEventListener("AppleIDSignInOnFailure", appleLoginCallback);
+  </script>
+  </body>
+  ```
+</CodeGroup>
+
+After the user logs in, `appleLoginCallback()` runs with an object containing the user's ID token. If they cancel, you'll get an error message.
+
+Once you have the token, decode it using any JWT library. In this example, we're using jsrsasign to extract the email. Then pass the decoded data to your backend for processing.
+
+Remember, the user's name can only be retrieved the first time they authorize your app.
+
+## Frequently Asked Questions
+
+### Why does my Google Sign-In fail with a nonce/ID token mismatch (Supabase)?
+
+**Why does my Google Sign-In fail with a nonce/ID token mismatch (Supabase)?⎘ Copy link
+
+**Symptom** Native Google Sign-In completes successfully (the account picker opens and Google returns a valid ID token) but the sign-in fails on the backend with a nonce or ID token verification error.
+
+**Cause** On iOS, native Google Sign-In attaches a nonce to the returned ID token. Median's JS Bridge callback for `Median.socialLogin.google.login()` currently returns only `type`, `idToken`, `state`, and `error`. The raw nonce is not exposed. If your backend auth provider (e.g. Supabase's `signInWithIdToken`) is configured to verify that nonce, the request will fail because it has no matching nonce to check against.
+
+**Fix** In your Supabase project, go to **Authentication → Providers → Google** and disable nonce verification (skip nonce checks) for ID token sign-in. This lets Supabase accept the ID token from Median's native flow without requiring a nonce match.
+
+> **Note for Lovable users:** If your project is on Lovable's managed Supabase instance, this setting isn't exposed in the Lovable UI. You'll need to transfer the project to your own Supabase account to access Authentication settings directly. See \[Using Median with Lovable] for details.
+
+***
+
+[Server-side Redirects](/docs/social-login-server-side-redirects)
+
+[Enterprise](/docs/enterprise)
+
+Copy Page
+
+* * [Overview](#overview)
+  * [How it works](#how-it-works)
+  * [Before you start](#before-you-start)
+  * [Understanding the parameters](#understanding-the-parameters)
+  * [Provider-specific implementation](#provider-specific-implementation)
+  * [Frequently Asked Questions](#frequently-asked-questions)

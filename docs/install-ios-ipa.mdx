@@ -1,0 +1,73 @@
+---
+title: "Install iOS IPA"
+description: "Install iOS IPAs for Device Testing"
+---
+
+This direct-install workflow is useful for development profile builds and quick early testing. For App Store release testing, use a distribution profile with **Upload to App Store Connect** set to **Automatic**, then test the processed build through TestFlight.
+
+<Info>
+  ### **Device must be registered**
+
+  This guide assumes your device is enrolled as an iOS tester, as covered in Registering Testing Devices, and that signing is complete per Configure Signing for Your App. Installation will fail on a device that hasn't been registered.
+</Info>
+
+## Step-by-Step
+
+### Step 1: Enable Developer Mode
+
+On the test device, go to Settings → Privacy & Security → Developer Mode and turn it on. The device will restart and prompt you to confirm.
+
+<Frame caption="iOS Privacy & Security Settings">
+  <img src="/images/docs/docs/ios-binary/image6.png" />
+</Frame>
+
+iOS blocks installation of apps signed outside the App Store unless Developer Mode is explicitly enabled. This is an Apple-level requirement, not a Median-specific setting.
+
+### Step 2: Get the install link or QR code
+
+If you are a member of the development team, open the app in App Studio, go to **Build & Deploy**, then click **Install on iPhone/iPad** for the iOS IPA build. **If the app is built with a deployment profile the 'Install on iPhone/iPad' will be disabled.**
+
+If you are not a member of the development team you will need to be provided with the public sharing link for the app where you can click **Install IPA on device**. In either case you will open a modal with a QR code.
+
+<Frame caption="Installation QR Code">
+  <img src="/images/docs/6cfd2a12e3a62ae040f3e61202072735992c34183ce5e3cf92ba2ee32954e585-Screenshot_2026-07-06_at_10.31.52.png" />
+</Frame>
+
+### Step 3: Scan the QR code
+
+Scan the QR code using your iOS device to open the installation page in your browser (must be mobile Safari).
+
+### Step 4: Install the app
+
+Once the installation page is displayed, click the **Install iOS App** button and confirm. The app will be installed on your device.
+
+## Frequently Asked Questions
+
+### Why do I need to enable Developer Mode before installing?
+
+**Why do I need to enable Developer Mode before installing?⎘ Copy link
+
+iOS blocks installation of apps signed outside the App Store unless Developer Mode is explicitly enabled in Privacy & Security settings — this applies to any ad-hoc install, not just Median's.
+
+### The QR code won't scan or the install page won't load — what's wrong?
+
+**The QR code won't scan or the install page won't load — what's wrong?⎘ Copy link
+
+iOS blocks installation of apps signed outside the App Store unless Developer Mode is explicitly enabled in Privacy & Security settings — this applies to any ad-hoc install, not just Median's.
+
+***
+
+[Building an iOS Binary with App Groups Entitlement](/docs/building-an-ios-binary-for-apps-using-app-groups-entitlements)
+
+[Build iOS from Source](/docs/build-ios-from-source)
+
+Copy Page
+
+* * [Step-by-Step](#step-by-step)
+
+  * * [Step 1: Enable Developer Mode](#step-1-enable-developer-mode)
+    * [Step 2: Get the install link or QR code](#step-2-get-the-install-link-or-qr-code)
+    * [Step 3: Scan the QR code](#step-3-scan-the-qr-code)
+    * [Step 4: Install the app](#step-4-install-the-app)
+
+  * [Frequently Asked Questions](#frequently-asked-questions)

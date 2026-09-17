@@ -1,0 +1,89 @@
+---
+title: "Secure Modal"
+description: "Some third-party JavaScript libraries, like the , require a secure  window with external scripting blocked. Median’s Secure Modal Plugin is designed to enable these libraries to function within your app, ensuring a seamless and secure user experience."
+---
+
+![](/images/docs/c89b776-IMG_BE499B5E91D0-1.jpeg)
+
+<Check>
+  ### Developer Demo
+
+  Display our demo page in your app to test during development [https://median.dev/modal/](https://median.dev/modal/)
+</Check>
+
+<Check>
+  ### Apple Pay on iOS 16+
+
+  Note that on iOS 16+ Apple permits the use of Apple Pay directly in an app webview. To optionally show Apple Pay directly in your app for supported devices use the [device info function](/docs/device-info) to check the iOS version.
+</Check>
+
+## Implementation Guide
+
+### Launching the Modal Window
+
+To open the modal window and navigate to a specific URL, use the following JavaScript code. You can optionally define an `autoClosePath`, which automatically closes the modal when the specified URL is loaded (e.g., after a successful payment).
+
+> To launch the modal window, use the function `median.modal.launch()`
+
+<CodeGroup>
+  ```bash bash
+  // Callback method
+  median.modal.launch({
+     'url': 'https://applepaydemo.apple.com', 
+     'autoClosePath':'/payment-complete', // optional
+     'callback': modal_closed
+  });
+
+  function modal_closed(data) { 
+      if (data.closeMethod == 'closeButton') {
+          alert('modal closed via button at: ' + data.url); 
+      }
+      else if(data.closeMethod == 'autoClosePath'){
+          alert('modal closed automatically'); 
+      }
+  }
+
+  // Promise method
+  median.modal.launch({
+     'url': 'https://applepaydemo.apple.com', 
+     'autoClosePath':'/payment-complete' // optional
+  }).then(function (data) { 
+      if (data.closeMethod == 'closeButton') {
+          alert('modal closed via button at: ' + data.url); 
+      }
+      else if(data.closeMethod == 'autoClosePath'){
+          alert('modal closed automatically'); 
+      }
+  });
+  ```
+</CodeGroup>
+
+### Modal Window Object Response
+
+The object returned after the modal is closed will contain details such as the method used to close the modal (either via button or auto-close). Here’s an example of the returned object:
+
+<CodeGroup>
+  ```bash bash
+  {
+    closeMethod: "closeButton" | "autoClosePath",
+    url: STRING, // URL with complete path shown when closed
+    params: { // Params on the URL when closed e.g. ?status=success results in status: success
+      key: value,
+      key2: value
+    }
+  }
+  ```
+</CodeGroup>
+
+***
+
+[Reader Modal](/docs/reader-modal)
+
+[Share into app](/docs/share-into-app)
+
+Copy Page
+
+* * [Implementation Guide](#implementation-guide)
+
+  * * [Launching the Modal Window](#launching-the-modal-window)
+    * [Modal Window Object Response](#modal-window-object-response)

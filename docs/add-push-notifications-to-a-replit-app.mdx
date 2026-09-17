@@ -1,0 +1,250 @@
+---
+title: "Add Push Notifications To Your Replit App"
+description: "Learn how to add push notifications to your Replit app using simple AI prompts"
+---
+
+Push notifications let you send timely messages directly to your users' phones, even when they're not actively using your app. They're perfect for reminders, updates, and bringing users back to your app. This guide shows you how to add them to your Replit app using simple AI prompts.
+
+**What you'll learn:**
+
+* How to set up push notifications with OneSignal
+* How to register users for push notifications
+* How to send notifications from your Replit app
+* How to automate notification delivery
+
+## Before you start
+
+You need:
+
+✓ A Replit app with Median's JavaScript Bridge already installed
+
+✓ OneSignal enabled in the Median App Studio ✓ OneSignal account set up with iOS/Android
+
+✓ OneSignal connected to your app
+
+✓ Your OneSignal App ID (from OneSignal Settings → Keys & IDs)
+
+✓ Your OneSignal REST API Key (from OneSignal Settings → Keys & IDs)
+
+**Note:** If you haven't installed the Median JavaScript Bridge yet, do that first by following our [Getting Started with Replit](https://docs.median.co/docs/getting-started-with-replit) guide. The JavaScript Bridge enables your Replit app to access native phone features.
+
+Need help with OneSignal setup? Follow our [OneSignal guide first](https://docs.median.co/docs/onesignal).
+
+## Understanding the push notification flow
+
+Before we start, here's how push notifications work with Median.co and OneSignal:
+
+1. User opens your app → our platform asks for notification permission.
+2. User grants permission → OneSignal registers the device.
+3. You identify the user → your app tells OneSignal who this user is (via email or user ID).
+4. You send a notification → your backend calls the OneSignal API.
+5. OneSignal delivers → user receives push notification on their phone.
+
+***
+
+## Step 1: Register users with OneSignal
+
+When users sign in to your app, automatically register them with OneSignal so you can send them notifications. Copy this prompt into Replit Agent:
+
+```
+Add Median JavaScript Bridge methods to register users with OneSignal for push notifications. After a successful login, call median.onesignal.login() with the user's email address as the external ID. When the user logs out, call median.onesignal.logout() to unregister them. Only do this when running in the Median app (check if typeof median !== 'undefined').
+```
+
+**What Replit Agent will do:**
+
+### Register Users Confirmation
+
+**Register Users Confirmation⎘ Copy link
+
+The Replit Agent will confirm the following:
+
+1. Installed `median-js-bridge` package - This enables communication with native iOS/Android features
+
+2. Created` useMedian` hook (`client/src/hooks/useMedian.ts`) -
+
+   1. A custom React hook that provides:
+
+      * `loginOneSignal(externalId)` - Registers users for push notifications with their email
+      * `logoutOneSignal()` - Unregisters users when they log out
+      * Built-in safety checks to only run in the Median app (checks `typeof median !== 'undefined'`)
+      * Additional methods for the status bar, vibration, and native sharing
+
+**What this does:** Users get registered with OneSignal using their email as an identifier. Now you can send them targeted notifications.
+
+***
+
+## Step 2: Store OneSignal info in your database
+
+If you're using a database (like PostgreSQL, MongoDB, or SQLite), add a field to track the OneSignal registration. Copy this prompt into Replit Agent:
+
+```
+Add a field called onesignal_external_user_id to the users table in my database. This should store the user's email address as a string. Create an index on this field for faster lookups when sending notifications.
+```
+
+For SQL databases, Replit Agent will create a migration similar to:
+
+<CodeGroup>
+  ```bash bash
+  ALTER TABLE users ADD COLUMN onesignal_external_user_id VARCHAR(255);
+  CREATE INDEX idx_onesignal_external_user_id ON users(onesignal_external_user_id);
+  ```
+</CodeGroup>
+
+**What Replit Agent will do:**
+
+### Database Confirmation
+
+**Database Confirmation⎘ Copy link
+
+The Replit Agent will confirm the following:
+
+1. Added `onesignal_external_user_id` field to the users table to store the user's email address
+2. Created an index on this field (`IDX_onesignal_external_user_id`) for fast lookups when sending push notifications
+3. Applied the database migration - the schema changes are now live in your PostgreSQL database
+
+***
+
+## Step 3: Add OneSignal credentials to your Replit app
+
+Store your OneSignal credentials as environment variables using Replit Secrets:
+
+1. Open your Replit project.
+
+2. Click on the **Tools** panel.
+
+3. Select **Secrets**.
+
+4. Add two secrets:
+
+   * Key: `ONESIGNAL_API_KEY`, Value: \[paste your REST API key]
+   * Key: `ONESIGNAL_APP_ID`, Value: \[paste your App ID]
+
+> **Note:** Never hardcode API keys in your source code. Always use environment variables or Replit Secrets.
+
+***
+
+## Step 4: Create a backend endpoint to send notifications
+
+Create a backend API endpoint that sends push notifications to specific users. Copy this prompt into Replit Agent:
+
+```
+Create an API endpoint POST /api/send-push-notification that sends push notifications via OneSignal. The endpoint should:
+- Accept a POST request with JSON body containing: userEmail, title, message
+- Use ONESIGNAL_API_KEY and ONESIGNAL_APP_ID from environment variables
+- Send the notification to OneSignal API targeting the user by their email
+- Return a JSON success or error response
+- Include proper error handling
+
+Use the OneSignal REST API endpoint: POST https://onesignal.com/api/v1/notifications
+Target the user with: include_external_user_ids: [userEmail]
+```
+
+**What Replit Agent will create:**
+
+### OneSignal API
+
+**OneSignal API⎘ Copy link
+
+**One Signal Integration**
+
+* Added `loginOneSignal(externalId)` and `logoutOneSignal()` methods to the Median hook with built-in safety checks to only run in the native app
+* Created a new `POST /api/send-push-notification` endpoint that sends push notifications via OneSignal's API, accepting userEmail, title, and message
+
+**Database Schema:**
+
+* Added `onesignal_external_user_id` field to the users table to store email addresses
+* Created an indexed lookup on this field for fast notification targeting
+
+**API Endpoint Features:**
+
+* Validates required fields (userEmail, title, message)
+* Uses your configured `ONESIGNAL_API_KEY` and `ONESIGNAL_APP_ID` secrets
+* Sends notifications targeting users by their email address
+* Includes comprehensive error handling with detailed responses
+* Returns the OneSignal notification ID on success
+
+***
+
+## Step 5: Test your notifications
+
+Test that notifications work by creating a test button in your app. Copy this prompt into Replit Agent:
+
+```
+Add a test button to my app's settings page that sends a test push notification to the current user. When clicked, it should:
+1. Call the /api/send-push-notification endpoint
+2. Pass the current user's email, title: "Test Notification", and message: "Push notifications are working!"
+3. Show a success toast/alert if it works
+4. Show an error message if it fails
+
+Include proper loading states while the request is being sent.
+```
+
+**Testing steps:**
+
+1. Publish your Replit app (click the "Publish" button).
+2. Build your app in the Median App Studio with the latest code.
+3. Install the app on your phone (iOS or Android).
+4. Log in to your app.
+5. Grant notification permission when prompted.
+6. Navigate to settings and tap the test button.
+7. Check your phone for the notification.
+
+**Troubleshooting:**
+
+* If notifications don't appear, check the OneSignal dashboard to see if the user is registered.
+* Check your browser console for any errors.
+* Verify that notification permissions are granted on your phone.
+* Make sure your OneSignal credentials are correct in Replit Secrets.
+
+***
+
+## Step 6: Send notifications based on app events
+
+Now that you can send notifications, let's automate them based on events in your app.
+
+**Example: Send notification when a task is assigned**
+
+```
+When a new task is assigned to a user in my app, automatically send them a push notification. The notification should:
+- Title: "New Task Assigned"
+- Message: Include the task title and who assigned it
+- Only send if the user has notifications enabled
+- Call the /api/send-push-notification endpoint
+- Handle errors gracefully
+
+Add this logic to the task creation/assignment function.
+```
+
+**Example: Send daily reminder notifications**
+
+```
+Create a scheduled job that runs daily at 9 AM to send reminder notifications to users. The job should:
+1. Query all users who have pending tasks
+2. For each user, send a notification with the count of pending tasks
+3. Use the /api/send-push-notification endpoint
+4. Log successes and errors
+
+Use node-cron or a similar scheduler for this functionality.
+```
+
+***
+
+### Next Steps
+
+Check out these additional resources
+
+* [OneSignal Push Notifications](/docs/onesignal-notifications)
+* [OneSignal Rest API Docs](https://documentation.onesignal.com/reference/rest-api-overview)
+* [JavaScript Bridge](/docs/median-javascript-bridge)
+* [Native Plugins Overview](/docs/native-plugins-overview)
+
+Copy Page
+
+* * [Before you start](#before-you-start)
+  * [Understanding the push notification flow](#understanding-the-push-notification-flow)
+  * [Step 1: Register users with OneSignal](#step-1-register-users-with-onesignal)
+  * [Step 2: Store OneSignal info in your database](#step-2-store-onesignal-info-in-your-database)
+  * [Step 3: Add OneSignal credentials to your Replit app](#step-3-add-onesignal-credentials-to-your-replit-app)
+  * [Step 4: Create a backend endpoint to send notifications](#step-4-create-a-backend-endpoint-to-send-notifications)
+  * [Step 5: Test your notifications](#step-5-test-your-notifications)
+  * [Step 6: Send notifications based on app events](#step-6-send-notifications-based-on-app-events)

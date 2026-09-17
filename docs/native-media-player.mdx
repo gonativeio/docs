@@ -1,0 +1,366 @@
+---
+title: "Native Media Player"
+description: "Native Audio and Video Player with Lock Screen & Notification Controls"
+---
+
+The Native Media Player plugin enables background audio playback in your Median-powered app by adding a native media player UI to the lock screen and notification area on iOS and Android. This allows users to continue listening while the app is backgrounded or the device is locked.
+
+Example use cases include:
+
+* Podcast players
+* Radio streaming apps
+* Audiobooks
+* E-learning platforms
+* News and media apps
+* Corporate training tools
+
+The player supports play, pause, previous, and next controls and can display metadata such as the track title, artist, album and artwork.
+
+<Check>
+  ### Developer Demo
+
+  Display our demo page in your app to test during development [https://median.dev/native-media-player/](https://median.dev/native-media-player/)
+</Check>
+
+## Native Media Player UI
+
+|                                                                                      |                                                                                              |
+| ------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------- |
+| ![](/images/docs/docs/native-media-player/ios/MediaPlayer_Playlist_FullSize_IOS.png) | ![](/images/docs/docs/native-media-player/android/MediaPlayer_Playlist_FullSize_Android.png) |
+| iOS                                                                                  | Android                                                                                      |
+
+## Implementation Guide
+
+### Play a Single Track
+
+> Create an object with the URL of the track:
+
+<CodeGroup>
+  ```bash bash
+  var track = {
+        "url": "https://Your_Audio_URL"
+  }
+  ```
+</CodeGroup>
+
+> **OR**
+>
+> Create an object with the URL of the track and custom metadata (if your audio does not include already):
+
+<CodeGroup>
+  ```bash bash
+  // track with metadata
+  var track = {
+       "url": "https://Your_Audio_Url",
+       "title": "Example Title",
+       "album": "Example Album",
+       "artist": "Example Artist"
+  }
+  ```
+</CodeGroup>
+
+> **THEN**
+>
+> Call `playTrack` function with the `track` object
+
+<CodeGroup>
+  ```bash bash
+  // Optional: show a spinner
+
+  // Start the player
+  const { success } = await median.backgroundMedia.playTrack(track);
+
+  // Optional: hide the spinner
+
+  if(success) {
+    // Track started playing successfully.
+  }
+  ```
+</CodeGroup>
+
+HTML (with `track` defined as global variable):
+
+<CodeGroup>
+  ```bash bash
+  <button type="button" onclick="median.backgroundMedia.playTrack(track)">Play Track</button>
+  ```
+</CodeGroup>
+
+The player UI will display Play/Pause and Close controls for a single track.
+
+|                                                                        |                                                                                |
+| ---------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
+| ![](/images/docs/docs/native-media-player/ios/MediaPlayer_Mp3_IOS.png) | ![](/images/docs/docs/native-media-player/android/MediaPlayer_Mp3_Android.png) |
+| iOS - Single Track                                                     | Android - Single Track                                                         |
+
+### Media Controls
+
+#### Pause Playback
+
+<CodeGroup>
+  ```bash bash
+  <button onclick="median.backgroundMedia.pause()">Pause</button>
+  ```
+</CodeGroup>
+
+#### Stop Playback
+
+<CodeGroup>
+  ```bash bash
+  <button onclick="median.backgroundMedia.stop()">Stop</button>
+  ```
+</CodeGroup>
+
+**Note**: On Android, this stops playback and removes the notification. On iOS, it only pauses.
+
+### Get Player Status
+
+Retrieve player status including current track time, 'isPaused' status, album, artist, title, artwork and track URL.
+
+#### Option 1: Using Callback
+
+<CodeGroup>
+  ```bash bash
+  <button onclick="median.backgroundMedia.getPlayerStatus({ callback: playerStatusCallback })">Get Player Status</button>
+
+  <script>
+  // Declare a callback function to get player status
+  function playerStatusCallback(status) {
+    console.log(status);
+  }
+  </script>
+  ```
+</CodeGroup>
+
+#### Method 2 (Using Promise):
+
+<CodeGroup>
+  ```bash bash
+  <button onclick="getInfo()">Get Player Status</button>
+
+  <script>
+  // Declare an async function to wait for player status
+  async function getInfo() {
+    const status = await median.backgroundMedia.getPlayerStatus();
+    console.log(JSON.stringify(status));
+  }
+  </script>
+  ```
+</CodeGroup>
+
+#### Status Example
+
+<CodeGroup>
+  ```bash bash
+  {
+    "currentTime": <time in ms>,
+    "isPaused": <boolean>,
+    "album": <string>,
+    "artist": <string>,
+    "title": <string>,
+    "artwork": <string - URL>,
+    "url": <string - URL>
+  }
+  ```
+</CodeGroup>
+
+### Seeking in a Track
+
+#### Seek to Specific Time
+
+To seek to a particular position of the currently playing media, pass any float value (in seconds) as an argument for the method given below.
+
+<CodeGroup>
+  ```bash bash
+  <button onclick="median.backgroundMedia.playTrack(50)">Seek to 50s</button>
+  ```
+</CodeGroup>
+
+#### Start Playback from Specific Position
+
+To start a track from a particular position, pass a parameter named "time" inside the track object with a float value (in seconds). For example, the track given below will directly start from 50 seconds.
+
+> Create an object with the URL of the track and desired initial seek position:
+
+<CodeGroup>
+  ```bash bash
+  var track = {
+        "url": "https://Your_Audio_URL",
+        "time": 50 // Start at 50 seconds
+  }
+  ```
+</CodeGroup>
+
+<CodeGroup>
+  ```bash bash
+  <button onclick="median.backgroundMedia.playTrack(track)">Start Track from 50s</button>
+  ```
+</CodeGroup>
+
+### Streaming a Playlist
+
+#### JavaScript Playlist Object
+
+> Create an object with any number of audio tracks to send to the device as one playlist along with the starting track number in **currentTrackNumber**. For example, to start the playlist with the 3rd song in the playlist, set the **currentTrackNumber: 2**.
+
+<CodeGroup>
+  ```bash bash
+  var playlist = {
+       "currentTrackNumber": 0,
+       "tracks": [
+                 {
+                     "url": "https://Your_Audio_URL_1",
+                     "title": "Example 1 Title",
+                     "album": "Example 1 Album",
+                     "artist": "Example 1 Artist"
+                 },
+                 {
+                     "url": "https://Your_Audio_URL_2",
+                 },
+                 {
+                     "url": "https://Your_Audio_URL_3",
+                     "title": "Example 2 Title",
+                     "album": "Example 2 Album",
+                     "artist": "Example 2 Artist"
+                 }
+         ]
+  }
+  ```
+</CodeGroup>
+
+#### Start Playlist
+
+<CodeGroup>
+  ```bash bash
+  <button type="button" onclick="median.backgroundMedia.streamPlaylist(playlist)">Start Playlist</button>
+  ```
+</CodeGroup>
+
+#### Move through playlist
+
+When the currently playing track finishes playing, the player will automatically switch to the next track in the playlist. The user can also step through the playlist using the Next and Previous buttons.
+
+|                                                                             |                                                                                     |
+| --------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| ![](/images/docs/docs/native-media-player/ios/MediaPlayer_Playlist_IOS.png) | ![](/images/docs/docs/native-media-player/android/MediaPlayer_Playlist_Android.png) |
+| iOS - Playlist                                                              | Android - Playlist                                                                  |
+
+### Metadata Display
+
+The player will display the embedded metadata of the playing track, including the audio icon image. If your audio file does not include any metadata, you can include the metadata in the **track** object, as shown in the examples above. **Note:** If metadata is embedded in the track but also provided manually, the manual metadata will be selected.
+
+If no metadata is available, the metadata will be set as: **Title**: Playing Media **Album**: APP\_NAME **Artist**: APP\_NAME
+
+|                                                                                    |                                                                                            |
+| ---------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
+| ![](/images/docs/docs/native-media-player/ios/MediaPlayer_DefaultMetadata_IOS.png) | ![](/images/docs/docs/native-media-player/android/MediaPlayer_DefaultMetadata_Android.png) |
+| iOS - Default Metadata                                                             | Android - Default Metadata                                                                 |
+
+Audio icons can only be retrieved directly from the Audio URL. So, if none is available, the MediaPlayer will set the app icon as the audio icon. Examples of the Audio icon can be found below.
+
+|                                                                                |                                                                                        |
+| ------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------- |
+| ![](/images/docs/docs/native-media-player/ios/MediaPlayer_DefaultIcon_IOS.png) | ![](/images/docs/docs/native-media-player/android/MediaPlayer_DefaultIcon_Android.png) |
+| iOS - Default Audio Icon                                                       | Android - Default Audio Icon                                                           |
+
+### Background Mode
+
+<Info>
+  ### Use this mode to sync the native media player with your in-app web player (e.g., when resuming or pausing).
+</Info>
+
+<Check>
+  ### Developer Demo
+
+  Display our demo page in your app to test during development [https://median.dev/native-media-player-switch/](https://median.dev/native-media-player-switch/)
+</Check>
+
+Define these functions in your web app:
+
+* `getPlayerStatus()` - Gets the current status of the web player to pass to the native media player. (Called when the app is paused/backgrounded).
+* `updatePlayerStatus(mediaPlayerStatus)` - Passes the native media player status to the web player when the app is resumed. (Called when the app is resumed/foregrounded).
+
+#### Example Implementation
+
+<CodeGroup>
+  ```bash bash
+  // Called when the app is paused
+  function getPlayerStatus() {
+    return {
+      currentTime: webPlayer.currentTime,
+      isPaused: webPlayer.paused,
+      album: 'Kennedy',
+      artist: 'JFK',
+      title: 'JFK Speech',
+      artwork: 'https://path_to_thumbnail.jpeg',
+      url: webPlayer.currentSrc
+    };
+  }
+
+  // Called when app is resumed
+  function updatePlayerStatus(mediaPlayerStatus) {
+    if (mediaPlayerStatus.currentTime) {
+      webPlayer.currentTime = mediaPlayerStatus.currentTime / 1000;
+    }
+
+    if (mediaPlayerStatus.isPaused && !webPlayer.paused) {
+      webPlayer.pause();
+    } else if (!mediaPlayerStatus.isPaused && webPlayer.paused) {
+      webPlayer.play();
+    }
+  }
+  ```
+</CodeGroup>
+
+## Demo Apps
+
+### Native Media Player
+
+|     |         |
+| --- | ------- |
+|     |         |
+| iOS | Android |
+
+### Native Media Player Background
+
+<Warning>
+  ### Demo Instructions
+
+  1. Start playing an audio or video file.
+  2. Press the Home button - playback will continue in the background.
+  3. To confirm background playback, swipe down the notification overlay on iOS or Android.
+
+  The demo also includes metadata (e.g., branding) to show possible customization options as highlighted above. When you return to the app, playback resumes smoothly.
+
+  *Note: The demo temporarily pauses playback to show debug info about the media state*.
+</Warning>
+
+|     |         |
+| --- | ------- |
+|     |         |
+| iOS | Android |
+
+***
+
+[Kaltura Media Player](/docs/kaltura-media-player)
+
+[Twilio Video](/docs/twilio)
+
+Copy Page
+
+* * [Native Media Player UI](#native-media-player-ui)
+
+  * [Implementation Guide](#implementation-guide)
+
+  * * [Play a Single Track](#play-a-single-track)
+    * [Media Controls](#media-controls)
+    * [Get Player Status](#get-player-status)
+    * [Seeking in a Track](#seeking-in-a-track)
+    * [Streaming a Playlist](#streaming-a-playlist)
+    * [Metadata Display](#metadata-display)
+    * [Background Mode](#background-mode)
+
+  * [Demo Apps](#demo-apps)
+
+  * * [Native Media Player](#native-media-player)
+    * [Native Media Player Background](#native-media-player-background)

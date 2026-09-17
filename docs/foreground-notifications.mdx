@@ -1,0 +1,32 @@
+---
+title: "Foreground Notifications"
+description: "By default, push notifications are suppressed when your app is open and in focus. This is useful for sensitive and urgent notifications such as chat messages and delivery notifications."
+---
+
+## Enable or disable foreground notifications
+
+Use the Median JavaScript Bridge to control foreground notification display at any point during the app session:
+
+<CodeGroup>
+  ```bash bash
+  // Show notifications even when the app is open
+  median.onesignal.enableForegroundNotifications(true);
+
+  // Suppress notifications when the app is open (default)
+  median.onesignal.enableForegroundNotifications(false);
+  ```
+</CodeGroup>
+
+You can call this from any page in your app; the setting takes effect immediately and stays active for the current session. There's no need to rebuild the app to change behavior.
+
+You can also set a default for this behavior at build time in [App Studio](https://median.co/login) under **Native Plugins > OneSignal**. The runtime method above overrides whatever default you've configured.
+
+***
+
+[Programmatic Notifications](/docs/programmatic-notifications)
+
+[Customize Push Notifications](/docs/notification-customization)
+
+Copy Page
+
+* * [Enable or disable foreground notifications](#enable-or-disable-foreground-notifications)

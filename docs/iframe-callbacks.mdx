@@ -1,0 +1,91 @@
+---
+title: "Accessing callbacks in an iframe"
+description: "This documentation provides instructions and sample code for accessing median callback data within an iframe. For clarity, all styling classes and attributes have been omitted."
+---
+
+<Warning>
+  ### Disclaimer
+
+  This documentation provides a proof of concept for accessing median callback data within an iframe. We advise reviewing the implementation with your security team, as your parent page, along with the callback function that sends data to the iframe, may be publicly accessible. It is strongly recommended to follow best practices to prevent any potential data leaks.
+</Warning>
+
+## Parent Page Setup
+
+In order to support callbacks you will need to define a `deviceInfoCallback` function which is invoked by the iframe and sends the data to the iframe.
+
+<CodeGroup>
+  ```bash bash
+  <body>
+      <div>
+          // Define the inline frame to host an iframe
+          // IFRAME_URL is a placeholder for the URL of your iframe
+          <iframe src="IFRAME_URL" id="iframe"></iframe>
+      </div>
+      <script>
+          // Define the deviceInfoCallback function that sends data to the iframe
+          function deviceInfoCallback(deviceInfo) {
+              const iframe = document.getElementById('iframe');
+              const message = { action: 'populateTextarea', deviceInfo: deviceInfo };
+
+              // Use postMessage to send data to the iframe
+              iframe.contentWindow.postMessage(message, '*');
+          }
+      </script>
+  </body>
+  ```
+</CodeGroup>
+
+## Iframe Setup
+
+The iframe must implement a command using a custom URL protocol and be configured to listen for messages from the parent window.
+
+<CodeGroup>
+  ```bash bash
+  <body>
+      <div>
+          <h1>Iframe Page</h1>
+          <button id="runDeviceInfo">Run Device Info</button>
+          <textarea id="deviceInfoOutput" placeholder="Device info will appear here..."></textarea>
+      </div>
+
+      <script>
+          const button = document.getElementById('runDeviceInfo');
+
+          // Event listener for button click
+          button.addEventListener('click', () => {
+              // Trigger the custom URL protocol
+              window.location.href = 'median://run/median_device_info?callback=deviceInfoCallback';
+          });
+
+          // Listen for messages from the parent window
+          window.addEventListener('message', (event) => {
+              if (event.data.action === 'populateTextarea') {
+                  // Populate the textarea with device info received from the parent window
+                  document.getElementById('deviceInfoOutput').value = JSON.stringify(event.data.deviceInfo);
+              }
+          });
+      </script>
+  </body>
+  ```
+</CodeGroup>
+
+## Demo App
+
+The following demo applications for iOS and Android demonstrate the behavior based on the provided code snippets above.
+
+|     |         |
+| --- | ------- |
+|     |         |
+| iOS | Android |
+
+***
+
+[Clear Webview Cache](/docs/clear-webview-cache)
+
+[Control your Median app with Google Tag Manager](/docs/google-tag-manager)
+
+Copy Page
+
+* * [Parent Page Setup](#parent-page-setup)
+  * [Iframe Setup](#iframe-setup)
+  * [Demo App](#demo-app)

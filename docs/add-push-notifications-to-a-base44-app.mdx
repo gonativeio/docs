@@ -1,0 +1,157 @@
+---
+title: "Add Push Notifications to a Base44 App"
+description: "Learn how to add push notifications to your Base44 app using simple AI prompts"
+---
+
+Push notifications let you send timely messages directly to your users' phones, even when they're not actively using your app. They're perfect for reminders, updates, and bringing users back to your app. This guide shows you how to add them to your Base44 app using simple AI prompts.
+
+**What you'll learn:**
+
+* How to register users with OneSignal for push notifications
+* How to create backend functions that send notifications
+* How to trigger notifications based on app events
+* How to test and troubleshoot your notification system
+
+## Prerequisites
+
+You need:
+
+✓ A Base44 app with Median's JavaScript Bridge already installed
+
+✓ OneSignal account set up with iOS/Android
+
+✓ OneSignal connected to your Median.co app
+
+✓ Your OneSignal App ID (from OneSignal Settings → Keys & IDs)
+
+✓ Your OneSignal REST API Key (from OneSignal Settings → Keys & IDs)
+
+**Note:** If you haven't installed the Median JavaScript Bridge yet, do that first by following our [Getting Started with Base44](https://docs.median.co/docs/getting-started-with-base44) guide. The JavaScript Bridge enables your Base44 app to access native phone features.
+
+**What you should have:**
+
+✓ Your OneSignal App ID (you added this to Median already)
+
+✓ Your OneSignal REST API Key (found in OneSignal Settings → Keys & IDs)
+
+✓ A Base44 app with integrated backend (automatic with Base44)
+
+Need help with OneSignal setup? Follow our [OneSignal guide first](https://docs.median.co/docs/onesignal).
+
+***
+
+## Step 1: Register users with OneSignal on login
+
+When users sign in to your app, automatically register them with OneSignal so you can send them targeted notifications. Copy this prompt into Base44's Builder chat:
+
+```
+Add Median JavaScript Bridge methods to register users with OneSignal for push notifications. After a successful login, call median.onesignal.login() with the user's email address as the external ID. When the user logs out, call median.onesignal.logout() to unregister them. Only do this when running in the Median app (check if navigator.userAgent.indexOf('median') > -1). Remember to publish changes after implementation.
+```
+
+**What this does:** Users get registered with OneSignal using their email as an identifier. Now you can send them targeted notifications.
+
+**Important for Base44:** Remember to publish your app after the AI implements this code, as changes don't take effect until published.
+
+***
+
+## Step 2: Add OneSignal external user ID column
+
+Add a field to your user profiles to track OneSignal registration. Copy this prompt into Base44's Builder chat:
+
+```
+Add a column called onesignal_external_user_id to the user profiles in the database. Make it a TEXT field that stores the user's email address. Create an index on this column for faster lookups. Use Base44's integrated database management to implement this.
+```
+
+**Base44 advantage:** Since Base44 handles database management automatically, you don't need to worry about separate backend setup like with other platforms.
+
+***
+
+## Step 3: Store your OneSignal credentials
+
+Before you can send notifications, store your OneSignal credentials in your app's backend. Copy this prompt into Base44's Builder chat:
+
+```
+Create secure storage for OneSignal credentials in the backend:
+
+1. Add environment variables or secure configuration for:
+   - ONESIGNAL_API_KEY: [paste your REST API key]
+   - ONESIGNAL_APP_ID: [paste your App ID]
+2. Ensure these credentials are not exposed in client-side code
+3. Use Base44's integrated backend security features
+
+Remember to publish changes after implementation.
+```
+
+***
+
+## Step 4: Create backend function to send notifications
+
+Create a backend function that sends push notifications to specific users. Copy this prompt into Base44's Builder chat:
+
+```
+Create a backend function called "sendPushNotification" that sends push notifications via OneSignal. The function should:
+- Accept parameters: userEmail, title, message
+- Use ONESIGNAL_API_KEY and ONESIGNAL_APP_ID from secure configuration
+- Send the notification to OneSignal REST API targeting the user by their email
+- Return success or error response
+- Use proper error handling
+
+Use the OneSignal REST API endpoint: POST https://onesignal.com/api/v1/notifications
+Target the user with: include_external_user_ids: [userEmail]
+
+Implement this using Base44's integrated backend system.
+```
+
+After Base44 implements the function, remember to publish your app to make the backend function available.
+
+***
+
+## Step 5: Test with a button
+
+Test that notifications work by calling your backend function. Copy this prompt into Base44's Builder chat:
+
+```
+Add a test button to the app's settings or dashboard that sends a test push notification to the current user. When clicked, it should:
+- Call the sendPushNotification backend function
+- Pass the current user's email, title: "Test Notification", message: "Push notifications are working!"
+- Show a success or error message using alert() (not console.log)
+- Only work for logged-in users
+
+Remember to publish changes after implementation.
+```
+
+> **Base44 debugging tip:** Use `alert()` instead of `console.log()` for user feedback, as console output may not be visible in mobile apps.
+
+***
+
+## Step 6 (Optional): Trigger notifications based on events
+
+If you want to send notifications based on events in your database, copy this prompt into Base44's Builder chat:
+
+```
+Create automated push notifications that trigger when specific events happen in my app. For example, when [describe your specific use case, like "a new task is assigned" or "a deadline approaches"], automatically send a push notification to the relevant user.
+
+Implementation should:
+1. Monitor the database for the specified events
+2. Call the sendPushNotification function automatically
+3. Mark events as notified to prevent duplicates
+4. Use Base44's integrated backend for the automation
+
+Customize this for my specific use case: [explain what should trigger notifications in your app]
+```
+
+***
+
+[Getting Started with Base44](/docs/getting-started-with-base44)
+
+[Adding Haptic Feedback to Your Base44 App](/docs/adding-haptic-feedback-to-your-base44-app)
+
+Copy Page
+
+* * [Prerequisites](#prerequisites)
+  * [Step 1: Register users with OneSignal on login](#step-1-register-users-with-onesignal-on-login)
+  * [Step 2: Add OneSignal external user ID column](#step-2-add-onesignal-external-user-id-column)
+  * [Step 3: Store your OneSignal credentials](#step-3-store-your-onesignal-credentials)
+  * [Step 4: Create backend function to send notifications](#step-4-create-backend-function-to-send-notifications)
+  * [Step 5: Test with a button](#step-5-test-with-a-button)
+  * [Step 6 (Optional): Trigger notifications based on events](#step-6-optional-trigger-notifications-based-on-events)

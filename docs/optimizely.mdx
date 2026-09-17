@@ -1,0 +1,399 @@
+---
+title: "Optimizely"
+description: "Engage your users by enabling Optimizely push notifications."
+---
+
+The Optimizely plugin lets you initialize the SDK and manage push-related actions through the Median JavaScript Bridge. The plugin focuses on identifying users and controlling push registration and permission state from your web layer, giving you full control over the Optimizely SDK initialization without relying solely on App Studio auto-configuration.
+
+## Why use Optimizely
+
+* **Bridge-first control**: Request permissions, read permission state, and sync user identity from JavaScript without writing native code.
+* **Push workflow coverage**: Request notification permission, check permission status, and register for push from a single API.
+* **User identity support**: Set user email or user ID for audience targeting before registering push tokens.
+
+***
+
+## Prerequisites
+
+* A Median.co app with JavaScript Bridge enabled
+* Optimizely API key
+* Deep linking setup if you want notification links to open directly in-app
+
+***
+
+Optimizely is essential for apps that need to:
+
+| Use case                                 | Example                                                                              |
+| ---------------------------------------- | ------------------------------------------------------------------------------------ |
+| **SDK initialization control**           | Initialize Optimizely at runtime when App Studio auto-initialization is not used.    |
+| **User identity mapping**                | Set `email` or `userId` before push registration for accurate audience targeting.    |
+| **Push token lifecycle updates**         | Re-register push after identifying a user to generate a token tied to that identity. |
+| **Permission management**                | Prompt users for notification permission and check grant status before registering.  |
+| **Deep link routing from notifications** | Open notification links directly inside the app after Deep Linking is configured.    |
+
+## What you'll do
+
+Use this section as a fast navigation map into the full setup and implementation details:
+
+1. **Enable the plugin config**: Go to [Plugin setup](#plugin-setup) and complete [Enable the plugin](#enable-the-plugin).
+2. **Confirm runtime behavior**: Review [Configuration options](#configuration-options) for the `active` toggle behavior.
+3. **Implement bridge calls**: Add core methods from [JavaScript bridge functions](#javascript-bridge-functions).
+4. **Validate integration flow**: Run the scenarios in [Code examples](#code-examples).
+5. **Verify edge cases**: Complete [Testing checklist](#testing-checklist) and use [Troubleshooting](#troubleshooting).
+
+***
+
+## Plugin setup
+
+### Enable the plugin
+
+To enable this plugin, [book a call with the Median team](https://median.co/pricing) to discuss your requirements and get started.
+
+### Configuration options
+
+| Setting  | Description                                            | Default | Recommended                                          |
+| -------- | ------------------------------------------------------ | ------- | ---------------------------------------------------- |
+| `active` | Enables or disables the Optimizely plugin integration. | `false` | `true` in environments where Optimizely is required. |
+
+**Note**: Notification links can open directly in the app when Deep Linking is configured.
+
+***
+
+## JavaScript bridge functions
+
+### Initialize
+
+Initialize Optimizely with an API key when not auto-configured in App Studio. For this function, provide a callback function or otherwise a promise is returned.
+
+<CodeGroup>
+  ```bash bash
+  // Using promises (recommended)
+  const result = await median.optimizely.initialize({
+    apiKey: "YOUR_OPTIMIZELY_API_KEY",
+  });
+  console.log("initialize result:", result);
+
+  // Using callback
+  median.optimizely.initialize(
+    { apiKey: "YOUR_OPTIMIZELY_API_KEY" },
+    function (result) {
+      console.log("initialize callback:", result);
+    },
+    function (err) {
+      console.error("Optimizely error (callback)", err);
+    },
+  );
+  ```
+</CodeGroup>
+
+**Parameters:**
+
+| Parameter  | Type       | Required | Description                                         |
+| ---------- | ---------- | -------- | --------------------------------------------------- |
+| `apiKey`   | `string`   | Yes      | Optimizely API key used to initialize the SDK.      |
+| `callback` | `function` | No       | Optional callback; otherwise a promise is returned. |
+
+**Return value:**
+
+<CodeGroup>
+  ```bash bash
+  interface OptimizelyInitializeResponse {
+    success: boolean;
+  }
+  ```
+</CodeGroup>
+
+***
+
+### Check if Initialized
+
+Check whether the Optimizely SDK is already initialized. For this function, provide a callback function, or a promise is returned.
+
+<CodeGroup>
+  ```bash bash
+  median.optimizely.isInitialized({'callback': function});
+  ```
+</CodeGroup>
+
+**Parameters:**
+
+| Parameter  | Type       | Required | Description                                         |
+| ---------- | ---------- | -------- | --------------------------------------------------- |
+| `callback` | `function` | No       | Optional callback; otherwise a promise is returned. |
+
+**Return value:**
+
+<CodeGroup>
+  ```bash bash
+  interface OptimizelyIsInitializedResponse {
+    initialized: boolean;
+    apiKey?: string;
+  }
+  ```
+</CodeGroup>
+
+***
+
+### Set Email
+
+Identify the user by email address in Optimizely. Call `registerPush` after this to generate a new push token associated with the identified user. For this function, provide a callback function or otherwise a promise is returned.
+
+<CodeGroup>
+  ```bash bash
+  median.optimizely.setEmail({'email': '[email protected]', 'callback': function});
+  ```
+</CodeGroup>
+
+**Parameters:**
+
+| Parameter  | Type       | Required | Description                                         |
+| ---------- | ---------- | -------- | --------------------------------------------------- |
+| `email`    | `string`   | Yes      | User email address for identity mapping.            |
+| `callback` | `function` | No       | Optional callback; otherwise a promise is returned. |
+
+**Return value:**
+
+<CodeGroup>
+  ```bash bash
+  interface OptimizelySetIdentityResponse {
+    success: boolean;
+  }
+  ```
+</CodeGroup>
+
+***
+
+### Set User Id
+
+Identify the user by a custom ID in Optimizely. Call `registerPush` after this to generate a new push token associated with the identified user. For this function, provide a callback function or a promise is returned.
+
+<CodeGroup>
+  ```bash bash
+  median.optimizely.setUserId({'userId': 'user-123', 'callback': function});
+  ```
+</CodeGroup>
+
+**Parameters:**
+
+| Parameter  | Type       | Required | Description                                         |
+| ---------- | ---------- | -------- | --------------------------------------------------- |
+| `userId`   | `string`   | Yes      | Custom user identifier for audience targeting.      |
+| `callback` | `function` | No       | Optional callback; otherwise a promise is returned. |
+
+**Return value:**
+
+<CodeGroup>
+  ```bash bash
+  interface OptimizelySetIdentityResponse {
+    success: boolean;
+  }
+  ```
+</CodeGroup>
+
+***
+
+### Register For Push Notifications
+
+Register the current user for push and generate a new push token. Call this after setting the user identity to ensure the token is associated with the identified user. For this function, provide a callback function, or a promise is returned.
+
+<CodeGroup>
+  ```bash bash
+  median.optimizely.registerPush({'callback': function});
+  ```
+</CodeGroup>
+
+**Parameters:**
+
+| Parameter  | Type       | Required | Description                                         |
+| ---------- | ---------- | -------- | --------------------------------------------------- |
+| `callback` | `function` | No       | Optional callback; otherwise a promise is returned. |
+
+**Return value:**
+
+<CodeGroup>
+  ```bash bash
+  interface OptimizelyRegisterPushResponse {
+    success: boolean;
+  }
+  ```
+</CodeGroup>
+
+***
+
+### Prompt for Push Notification Permission
+
+Prompt the user to grant notification permission. For this function, provide a callback function, or otherwise a promise is returned.
+
+<CodeGroup>
+  ```bash bash
+  median.optimizely.requestPermission({'callback': function});
+  ```
+</CodeGroup>
+
+**Parameters:**
+
+| Parameter  | Type       | Required | Description                                         |
+| ---------- | ---------- | -------- | --------------------------------------------------- |
+| `callback` | `function` | No       | Optional callback; otherwise a promise is returned. |
+
+**Return value:**
+
+<CodeGroup>
+  ```bash bash
+  interface OptimizelyPermissionResponse {
+    granted: boolean;
+  }
+  ```
+</CodeGroup>
+
+***
+
+### Check Push Notification Permission Status
+
+Check the current notification permission state without prompting the user. For this function, provide a callback function, or a promise is returned.
+
+<CodeGroup>
+  ```bash bash
+  median.optimizely.permissionStatus({'callback': function});
+  ```
+</CodeGroup>
+
+**Parameters:**
+
+| Parameter  | Type       | Required | Description                                         |
+| ---------- | ---------- | -------- | --------------------------------------------------- |
+| `callback` | `function` | No       | Optional callback; otherwise a promise is returned. |
+
+**Return value:**
+
+<CodeGroup>
+  ```bash bash
+  interface OptimizelyPermissionResponse {
+    granted: boolean;
+  }
+  ```
+</CodeGroup>
+
+***
+
+## Testing checklist
+
+Use this checklist to ensure Optimizely is working correctly in your app:
+
+### Basic Functionality
+
+**Basic Functionality⎘ Copy link
+
+* [ ] `initialize` returns `{ success: true }`.
+* [ ] `isInitialized` reflects the expected state after initialization.
+* [ ] `setEmail` and `setUserId` each return `{ success: true }`.
+* [ ] `registerPush` succeeds after user identity is set.
+* [ ] Plugin loads without JavaScript errors.
+
+### Platform Testing
+
+**Platform Testing⎘ Copy link
+
+* [ ] Permission request flow works on iOS.
+* [ ] Android 13+ shows the system permission dialog.
+* [ ] Android 12 and below grants permission without a dialog prompt.
+* [ ] Plugin gracefully handles platform differences.
+
+### Error Scenarios
+
+**Error Scenarios⎘ Copy link
+
+* [ ] Invalid or missing API key is handled in the UI flow.
+* [ ] An initialization guard prevents duplicate `initialize` calls.
+* [ ] Permission-denied path is handled gracefully.
+* [ ] Network errors during push registration are caught and logged.
+
+### Edge Cases
+
+**Edge Cases⎘ Copy link
+
+* [ ] Push registration is re-run after identity updates.
+* [ ] Deep link notification opens the correct route in-app when configured.
+* [ ] Both promise and callback invocation styles work in your integration.
+
+### User Experience
+
+**User Experience⎘ Copy link
+
+* [ ] Users receive a clear prompt when notification permission is requested.
+* [ ] App provides a fallback experience when push permission is denied.
+* [ ] No duplicate permission prompts appear after the user has already responded.
+* [ ] Plugin does not interfere with app navigation or page transitions.
+
+***
+
+## Troubleshooting
+
+### Optimizely functions are undefined or not working
+
+**Optimizely functions are undefined or not working⎘ Copy link
+
+Confirm the JavaScript Bridge is enabled in Median App Studio and that the plugin is active. Also verify you are calling bridge functions after the page and bridge have fully loaded.
+
+### \`isInitialized\` remains false after calling \`initialize\`?
+
+**\`isInitialized\` remains false after calling \`initialize\`?⎘ Copy link
+
+Ensure you passed a valid `apiKey` to `initialize` and that the call returned `{ success: true }`. If initialization failed silently, check for network issues or an incorrect API key, then retry.
+
+### Push notifications are not arriving after login?
+
+**Push notifications are not arriving after login?⎘ Copy link
+
+After setting user identity with `setEmail` or `setUserId`, you must call `registerPush` to generate a new token associated with that user. Skipping this step means the push token is not linked to the newly identified user.
+
+### Notification links do not open inside the app?
+
+**Notification links do not open inside the app?⎘ Copy link
+
+Deep Linking must be configured in your app for notification links to open directly in-app. Without Deep Linking, tapping a notification will open the device's default browser instead.
+
+### Permission dialog does not appear on Android?
+
+**Permission dialog does not appear on Android?⎘ Copy link
+
+On Android 12 and below, push permission is granted automatically without a dialog. On Android 13+, the system permission dialog is required. Verify you are calling `requestPermission` and testing on a device or emulator running Android 13 or higher to see the dialog.
+
+<Info>
+  ### Still having trouble?
+
+  For issues related to Optimizely's own configuration, permissions, or platform-specific behavior outside Median.co, refer to [Optimizely's integration documentation](https://docs.developers.optimizely.com/).
+</Info>
+
+***
+
+[MoEngage](/docs/moengage)
+
+[Salesforce Marketing Cloud](/docs/salesforce-marketing-cloud)
+
+Copy Page
+
+* * [Why use Optimizely](#why-use-optimizely)
+
+  * [Prerequisites](#prerequisites)
+
+  * [What you'll do](#what-youll-do)
+
+  * [Plugin setup](#plugin-setup)
+
+  * * [Enable the plugin](#enable-the-plugin)
+    * [Configuration options](#configuration-options)
+
+  * [JavaScript bridge functions](#javascript-bridge-functions)
+
+  * * [Initialize](#initialize)
+    * [Check if Initialized](#check-if-initialized)
+    * [Set Email](#set-email)
+    * [Set User Id](#set-user-id)
+    * [Register For Push Notifications](#register-for-push-notifications)
+    * [Prompt for Push Notification Permission](#prompt-for-push-notification-permission)
+    * [Check Push Notification Permission Status](#check-push-notification-permission-status)
+
+  * [Testing checklist](#testing-checklist)
+
+  * [Troubleshooting](#troubleshooting)

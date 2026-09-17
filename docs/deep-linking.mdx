@@ -1,0 +1,179 @@
+---
+title: "Overview"
+description: "Enable Universal Links or App Links (and optionally URL schemes) in Median App Studio."
+---
+
+**Universal Links** (iOS) and **App Links** (Android), often grouped as **deep links**, let `http://` and `https://` URLs open in your Median app instead of the mobile browser when users tap them in email, SMS, or other apps. When configured, they provide a smoother, more native experience.
+
+Enable Universal Links, App Links, and optional URL schemes in Median App Studio. When a user opens a matching link on a device, the configured link type determines whether the URL opens in your app instead of the mobile browser.
+
+<Check>
+  ### Developer Demo
+
+  Display our demo page in your app to test during development [https://median.dev/deep-linking/](https://median.dev/deep-linking/)
+
+  After setup, validate your implementation using the [Deep Linking Validator.](https://docs.median.co/docs/deep-linking-validator)
+</Check>
+
+***
+
+## How deep linking works
+
+Configure **Universal Links** (iOS) or **App Links** (Android) in Median App Studio. Once configured, links that match the domains you specify open in the app instead of the browser.
+
+### Best practice
+
+Add both your **root domain** and the **`www`** host (for example, `median.co` and `www.median.co`) so coverage matches how links are shared.
+
+***
+
+## Platform configuration
+
+### Android
+
+### App Links configuration
+
+**App Links configuration⎘ Copy link
+
+Tapping a deep link on Android may show a **disambiguation** dialog so the user can pick your app or a browser.
+
+You can enable **App Link verification** so matching links open **directly** in your app. Host a Digital Asset Links file on your site, typically at:
+
+`/.well-known/assetlinks.json`
+
+That file proves you control the domain. See [Verify Android App Links](https://developer.android.com/training/app-links/verify-site-associations).
+
+Host `assetlinks.json` correctly **before** you publish; otherwise verification can fail. To verify the file, use Google’s [Statement List Generator and Tester](https://developers.google.com/digital-asset-links/tools/generator): enter your app package name and the **SHA-256** fingerprint referenced in `assetlinks.json`, then run **Test Statement**. Repeat for **each hostname** you add in App Studio.
+
+#### Example: `assetlinks.json`
+
+<CodeGroup>
+  ```bash bash
+  /* Example - Android assetlinks.json */
+  [
+    {
+      "relation": ["delegate_permission/common.handle_all_urls"],
+      "target": {
+        "namespace": "android_app",
+        "package_name": "co.median.android.padzoa",
+        "sha256_cert_fingerprints": [
+          "ED:30:0F:A9:AB:9D:00:34:9D:48:B0:91:69:83:D7:C9:FE:0A:95:FE:F2:E0:38:25:C9:97:37:D8:F3:16:0B:E0"
+        ]
+      }
+    }
+  ]
+  ```
+</CodeGroup>
+
+### iOS
+
+### Universal Links configuration
+
+**Universal Links configuration⎘ Copy link
+
+On iOS, the user may see a confirmation step to open a Universal Link in your app. You must host an **Apple App Site Association** (AASA) file at:
+
+`/apple-app-site-association` or `/.well-known/apple-app-site-association`
+
+See Apple’s documentation on [Universal Links](https://developer.apple.com/library/archive/documentation/General/Conceptual/AppSearch/UniversalLinks.html) and supporting associated domains in Xcode.
+
+Requirements:
+
+* Create an **explicit app ID** in your Apple Developer account for your app’s bundle ID.
+* In the provisioning profile for that app ID, enable **Associated Domains** under App Services.
+* Include your app ID (with **TEAMID** from your Apple Developer account) in the AASA file on your domain.
+
+#### Example: `apple-app-site-association`
+
+<CodeGroup>
+  ```bash bash
+  /* Example - /apple-app-site-association */
+  {
+    "applinks": {
+      "apps": [],
+      "details": [
+        {
+          "appID": "TEAMID.co.median.example",
+          "paths": ["*"]
+        }
+      ]
+    }
+  }
+  ```
+</CodeGroup>
+
+<Warning>
+  ### **iOS tips**
+
+  * Deep links on iOS require a path in the URL. For example, `http://example.com` will not work, but `http://example.com/PATH` will.
+  * If you use multiple subdomains (`example.com`, `www.example.com`, `support.example.com`, and so on), each needs its own Associated Domains entry and its own `apple-app-site-association` file.
+  * Serve the AASA file with `Content-Type: application/json`, over `https://` with a valid certificate, returning HTTP 200 with no redirects. After deployment, you can test the file with [Branch’s AASA validator](https://branch.io/resources/aasa-validator/). Additional references: [Universal Links](https://developer.apple.com/library/prerelease/ios/documentation/General/Conceptual/AppSearch/UniversalLinks.html) and [Associated Domains](https://developer.apple.com/documentation/xcode/supporting-associated-domains).
+</Warning>
+
+***
+
+## URL scheme protocol
+
+Custom URL schemes are an **advanced** option: app-specific link formats (for example `youruniquestring://example.com/path`) that open content in your mobile app instead of a browser. They are commonly used for **mobile authentication redirects** and advanced in-app navigation.
+
+<Warning>
+  ### Note
+
+  Custom URL schemes only work on mobile devices and are not supported in desktop browsers. Implementation is recommended for advanced developers.
+</Warning>
+
+### How URL schemes work on Android and iOS
+
+Define a **unique** scheme string that does not collide with other apps. Standard web URLs use `http://` or `https://`; a custom scheme might look like:
+
+`youruniquestring://`
+
+Once configured, your app can recognize URLs such as:
+
+`youruniquestring.https://example.com/path`
+
+If the app is installed and the user taps a matching link, the system launches your app and opens the path (for example, `https://example.com/path`) inside it.
+
+<Warning>
+  ### Important
+
+  Use only lowercase letters in your custom scheme. Uppercase letters and numbers may lead to inconsistent behavior across platforms.
+</Warning>
+
+### Example use case
+
+If your scheme identifier is `youruniquestring`, links such as the following can trigger deep linking:
+
+* `youruniquestring.http://example.com/login`
+* `youruniquestring.https://example.com/dashboard`
+
+On supported mobile devices, these open the corresponding experience inside your app.
+
+### Platform-specific implementation guides
+
+* [Define a Custom URL Scheme for Your iOS App (Apple Developer)](https://developer.apple.com/documentation/xcode/allowing_apps_and_websites_to_link_to_your_content/defining_a_custom_url_scheme_for_your_app)
+* [Create Deep Links in Your Android App (Android Developers)](https://developer.android.com/training/app-links/deep-linking)
+
+***
+
+### Next Steps
+
+* [Testing Deep Links](/docs/deep-linking-testing)
+* [URL Scheme Protocol](/docs/url-scheme-protocol)
+
+Copy Page
+
+* * [How deep linking works](#how-deep-linking-works)
+
+  * * [Best practice](#best-practice)
+
+  * [Platform configuration](#platform-configuration)
+
+  * * [Android](#android)
+    * [iOS](#ios)
+
+  * [URL scheme protocol](#url-scheme-protocol)
+
+  * * [How URL schemes work on Android and iOS](#how-url-schemes-work-on-android-and-ios)
+    * [Example use case](#example-use-case)
+    * [Platform-specific implementation guides](#platform-specific-implementation-guides)

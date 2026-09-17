@@ -1,0 +1,96 @@
+---
+title: "Sending Push Notifications"
+description: "Learn about the different options for sending push notifications."
+---
+
+Once OneSignal is connected to your app, you have two ways to send notifications: **the OneSignal dashboard for manual delivery**, and **the REST API for automated or programmatic delivery**. This guide covers how the two options relate and configurations such as deep-linking, custom sounds, and where to find your keys.
+
+For server-side and event-triggered notifications, see [Programmatic notifications](https://docs.median.co/docs/programmatic-notifications).
+
+***
+
+## Dashboard vs. REST API
+
+| Use the dashboard when...                   | Use the REST API when...                                      |
+| ------------------------------------------- | ------------------------------------------------------------- |
+| Sending a one-time campaign or announcement | Notifications are triggered by user actions or events         |
+| Testing that push delivery is working       | You're sending transactional messages (order updates, alerts) |
+| Delivering notifications to a segment       | Delivering notifications at scale, automatically              |
+| You don't have a backend set up yet         | Your backend already handles messaging logic                  |
+
+Most teams use both the dashboard for broadcasts and campaigns, and the API for transactional and behavioral messages.
+
+## Finding your App ID and API key
+
+You'll need these for both App Studio setup and any server-side API calls.
+
+| Key          | Where it's used in Median                                     |
+| ------------ | ------------------------------------------------------------- |
+| App ID       | App Studio plugin configuration, REST API requests            |
+| REST API Key | Server-side requests to the OneSignal API — keep this private |
+
+In the OneSignal dashboard, go to **Settings > Keys & IDs** for your app. For more details on where these appear in the OneSignal UI, see [OneSignal: Keys & IDs](https://documentation.onesignal.com/docs/keys-and-ids).
+
+### Sending from the dashboard
+
+You can create and send push messages from the [OneSignal dashboard](https://dashboard.onesignal.com/login?redirect_uri=/apps). For step-by-step instructions on creating a message, setting the audience, and configuring delivery or scheduling, see [OneSignal: Send push notifications – Dashboard](https://documentation.onesignal.com/docs/sending-notifications).
+
+The rest of this page focuses on what works **specifically in Median.co apps** when sending from the dashboard or API.
+
+***
+
+## Deep-linking to a specific page
+
+By default, tapping a notification opens your app's home screen. To send users to a specific page, use the `targetUrl` field in the **Additional Data** section, not the **Launch URL** field.
+
+**This is an important distinction.** The two URL fields behave very differently in Median.co apps:
+
+| Field                            | Behavior                                                                                                     |
+| -------------------------------- | ------------------------------------------------------------------------------------------------------------ |
+| `targetUrl` (in Additional Data) | Opens the URL inside your app with full Median JavaScript Bridge support                                     |
+| Launch URL field                 | Opens the URL in a pop-up browser window inside the app. This does **not** support full in-app functionality |
+
+To add `targetUrl`:
+
+1. In the notification composer of the OneSignal Dashboard, scroll to **Additional Data**.
+2. Add a key of `targetUrl` and set the value to the URL you want to open.
+
+![](/images/docs/79f0abcbe0cc8aad92d70ab116297f878d3b517c2be9b40b44ea3f1d2d7fe599-Screenshot_2026-05-08_at_9.46.39AM.png)
+
+The app will navigate to that URL when the user taps the notification, just as if they had navigated there directly inside the app.
+
+<Info>
+  ### Building more complex tap behavior?
+
+  You can pass additional data fields alongside `targetUrl` to trigger custom JavaScript logic when the notification is opened. See [Handling notification taps](https://docs.median.co/docs/handling-notifications-taps) for the full pattern.
+</Info>
+
+Learn more about opening URLs via push notifications in the [OneSignal Documentation](https://documentation.onesignal.com/docs/en/deep-linking)\{/\_\<i class="fa fa-external-link" style="paddingLeft: 5px">\</i>\_/}.
+
+***
+
+## Adding custom sounds and notification channels
+
+You can attach a custom sound to any notification you send from the dashboard. Custom sounds must be **uploaded through [App Studio](https://median.co/login)** first, they're automatically named `custom_sound_1`, `custom_sound_2`, and so on in the order they're uploaded. You then select or reference those names in the OneSignal dashboard or API.
+
+For full details on uploading sounds and the platform-specific file format requirements, see [Notification customization](https://docs.median.co/docs/notification-customization).
+
+<Info>
+  ### Android note
+
+  On Android, custom sounds are tied to notification channels (categories). You'll need to configure a notification channel with the desired sound before it can be selected in the dashboard. OneSignal's [notification categories guide](https://documentation.onesignal.com/docs/android-notification-categories) walks through this setup.
+</Info>
+
+***
+
+[Identifying & Targeting Users](/docs/identifying-targeting-users)
+
+[Programmatic Notifications](/docs/programmatic-notifications)
+
+Copy Page
+
+* * [Dashboard vs. REST API](#dashboard-vs-rest-api)
+  * [Finding your App ID and API key](#finding-your-app-id-and-api-key)
+  * * [Sending from the dashboard](#sending-from-the-dashboard)
+  * [Deep-linking to a specific page](#deep-linking-to-a-specific-page)
+  * [Adding custom sounds and notification channels](#adding-custom-sounds-and-notification-channels)

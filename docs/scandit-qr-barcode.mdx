@@ -1,0 +1,109 @@
+---
+title: "Scandit QR / Barcode"
+description: "Equip your app with QR and Barcode scanning by leveraging the Scandit native SDKs."
+---
+
+The Scandit QR Code and Barcode Scanner plugin enables barcode scanning directly within your application using the device camera. This plugin extends the functionality of our basic version of [Barcode Scanner](https://median.co/docs/qr-barcode-scanner) with additional capabilities provided by the Scandit iOS and Android SDKs.
+
+In order to use this plugin an **active Scandit license is required**.
+
+## Implementation Guide
+
+### Plugin Configuration
+
+Before implementing this feature, ensure that the premium module is integrated into your application. Additionally, you will need to add your license key to the plugin configuration as it is required to use the native iOS and Android SDKs of Scandit.
+
+You can find you license key in Scandit under *Projects & license keys > Project > License keys* as shown in the picture below.
+
+<Frame caption="Scandit License Key">
+  <img src="/images/docs/117937d4fd7bca14b64e208cd3be53f6912bd7be2135b39214f4f62a6d02e29e-Screenshot_2025-05-01_at_14.05.09.png" />
+</Frame>
+
+Insert the license key into the plugin configuration using Advanced Mode:
+
+<Frame caption="Scandit QR / Barcode configuration">
+  <img src="/images/docs/74d82a1d8b5acf5bde594d414b76b5266c6f4fbf7bf0074949e913cf4bd67a42-Screenshot_2025-07-04_at_11.07.17.png" />
+</Frame>
+
+### JavaScript Bridge Methods
+
+#### Define a Scan Callback
+
+To initiate a barcode scan, define a JavaScript function to handle the scanned data. For example:
+
+<CodeGroup>
+  ```bash bash
+  function scandit_result(data) { 
+      console.log('Scanned barcode ' + data.code + ' of type ' + data.type); 
+  }
+  ```
+</CodeGroup>
+
+#### Start a Scan
+
+Use the following command to start a barcode scan via the Median JavaScript Bridge:
+
+> To initiate a scan, open the URL:
+
+<CodeGroup>
+  ```bash bash
+  // returns promise
+  median.scanditBarcode.scan({'callback': scandit_result});
+  ```
+</CodeGroup>
+
+**Tip: Some JavaScript Bridge commands return promises. These are indicated in comments for easy identification.[Learn More](https://median.co/docs/javascript-bridge#promises).**
+
+#### Supported Barcode Symbologies
+
+By default, the scanner supports the following barcode symbologies:
+
+* ean13
+* upc12
+* ean8
+* upce
+* code39
+* code128
+* itf
+* qr
+* datamatrix
+* pdf417
+
+#### Restricting to Specific Symbologies
+
+To restrict the scanner to specific barcode types, provide a comma-separated list of desired symbologies in the `symbologies` parameter.
+
+For example, to scan only QR codes and PDF417 barcodes:
+
+<CodeGroup>
+  ```bash bash
+  // returns promise
+  median.scanditBarcode.scan({'callback': scandit_result, 'symbologies': 'qr, pdf417'});
+  ```
+</CodeGroup>
+
+#### Using a Parser for Specialized Data
+
+Certain symbologies, such as Code 128, require a parser to correctly interpret the scanned data. Add the `parser` parameter when calling median.scanditBarcode.scan.
+
+For example, to scan QR codes and Code 128 barcodes with the `dlid` parser:
+
+<CodeGroup>
+  ```bash bash
+  // returns promise
+  median.scanditBarcode.scan({'callback': scandit_result, 'symbologies': 'qr, code128', 'parser': 'dlid'}); 
+  ```
+</CodeGroup>
+
+***
+
+[QR / Barcode Scanner](/docs/qr-barcode-scanner)
+
+[Convert AI-Built Apps to Mobile with Median.co](/docs/ai-app-builder-overview)
+
+Copy Page
+
+* * [Implementation Guide](#implementation-guide)
+
+  * * [Plugin Configuration](#plugin-configuration)
+    * [JavaScript Bridge Methods](#javascript-bridge-methods)

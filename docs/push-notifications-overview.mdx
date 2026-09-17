@@ -1,0 +1,277 @@
+---
+title: "Push Notifications Overview"
+description: "Boost user engagement through targeted push notifications"
+---
+
+Push notifications are a powerful tool to drive user engagement and increase customer satisfaction with your app and/or service. You can learn more about push notifications in our [blog](https://median.co/blog/how-to-write-push-notification-copy-that-engages-and-converts-a-guide). Median.co's Push Notification plugins connect to leading marketing automation platforms like OneSignal, Braze, and Klaviyo, enabling you to send personalized messages triggered by user behavior, lifecycle stages, and real-time events.
+
+Generally, you want to think about the following three categories of push notifications:
+
+* **Marketing Push Notifications:** Broadcast push notifications that target your whole user base or large segments of users. Examples include a push notification for all Android or iOS users.
+* **Personalized Push Notifications:** Push notifications that are typically driven by a user action and target a specific user based on their notification preferences.
+* **Transactional Push Notifications:** Push notifications that are typically event-driven and target a small subset (often a single) of users. Examples include push notifications for shipping updates
+
+## Why use push notifications plugins?
+
+* **Massive engagement boost:** Push notifications increase app engagement by up to 88%, with users who receive push notifications showing 3x higher retention rates than those who don't
+* **Superior conversion rates:** Personalized push notifications can achieve conversion rates up to 35.8%(over 4x higher than generic broadcasts) with a 20% average open rate compared to just 2% for email
+* **Behavioral targeting and automation:** Trigger messages based on user actions, preferences, and lifecycle stages with automated campaigns that respond instantly to cart abandonment, inactivity, purchases, and custom events
+* **Advanced segmentation:** Target specific user groups by demographics, behavior, purchase history, location, and engagement level to deliver relevant messages that drive 3x higher engagement
+* **Multi-channel orchestration:** Integrate push notifications with email, SMS, and in-app messaging for cohesive cross-channel campaigns managed from a single platform
+* **Real-time analytics and optimization:** Track open rates, click-through rates, conversions, and revenue attribution with comprehensive dashboards that enable A/B testing and campaign optimization
+
+## Common use cases
+
+* **E-commerce and retail:** Send abandoned cart reminders, flash sale alerts, price drop notifications, back-in-stock alerts, and personalized product recommendations to drive purchases and increase average order value.
+* **Content and media apps:** Re-engage users with new content notifications, personalized article recommendations, breaking news alerts, and content consumption reminders to boost daily active users and session time.
+* **Financial services and fintech:** Send transactional updates like payment confirmations, fraud alerts, balance notifications, bill reminders, and investment opportunities while maintaining security and compliance.
+* **Travel and hospitality:** Deliver booking confirmations, check-in reminders, flight status updates, location-based offers, and post-trip review requests to enhance the travel experience.
+
+## Getting started
+
+1. **Choose your plugin:** Browse the push notification plugins below and select the platform that fits your marketing needs. OneSignal offers a free tier with unlimited notifications ideal for startups, while Braze, MoEngage, and Klaviyo provide advanced segmentation and lifecycle marketing for enterprise scale.
+
+2. **Review documentation:** Read the plugin's documentation to understand setup requirements, user consent flows, segmentation capabilities, and campaign automation features for your chosen platform.
+
+3. **Enable in app studio:** Navigate to **Native Plugins** in your Median App Studio, click the **+** button next to your chosen plugin, and enter your platform credentials (App ID, API keys, SDK tokens).
+
+4. **Implement with JavaScript bridge:** Add JavaScript Bridge commands to manage user subscriptions and retrieve device information. For example:
+
+   * `median.onesignal.login()` to associate users with external identifiers
+   * `median.onesignal.info()` to retrieve OneSignal user and device data
+   * Configure notification permissions and consent flows through your platform's dashboard
+
+## Key Terms
+
+The following terms will help you implement Push Notifications effectively:
+
+**APNs (Apple Push Notification service)**: Apple's service for delivering push notifications to iOS devices. Requires a .p8 token key (recommended) or .p12 certificate generated from your Apple Developer account and uploaded to OneSignal under **Settings > Push & In-App > Apple iOS (APNs)**.
+
+**FCM (Firebase Cloud Messaging)**: Google's service for delivering push notifications to Android devices. Requires a Firebase project and a Service Account JSON credentials file uploaded to OneSignal under **Settings > Push & In-App > Google Android (FCM)**.
+
+**App ID and REST API Key**: The App ID identifies your app to the Push Provider's SDK; the REST API Key authorizes server-side notification delivery on your behalf.
+
+**Legacy Mode**: A compatibility mode for apps built before Median adopted OneSignal SDK v5+. Uses a device-centric data model. See [Legacy Mode](https://docs.median.co/docs/onesignal-legacy-mode) for details.
+
+## Featured Plugins
+
+**Not sure where to start?** Check out our featured plugins below:
+
+* **OneSignal**: Free unlimited push notifications with advanced targeting, automation, and analytics—ideal for businesses of all sizes
+* **Braze**: Enterprise customer engagement platform with cross-channel orchestration, AI-powered personalization, and sophisticated lifecycle marketing
+* **Klaviyo**: Unified web and mobile analytics with automated email, SMS, and push campaigns that send personalized messages at optimal moments to boost engagement and lifetime value
+
+![OneSignal](/images/docs/4319035edb293eb4391b58b2d5af3ae8e99503ed10877e09a37ecf6f46bf70fc-plugin_onesignal.svg)
+
+#### OneSignal
+
+Advanced push notification service with rich messaging for businesses of all sizes.
+
+[Learn more→](https://docs.median.co/docs/onesignal)
+
+![Firebase Cloud Messaging](/images/docs/c04695ef01fa4e4b192b08800a92dd9daa03497c3cb7d92944ee8b4824274951-plugin_google-firebase-cloud-messaging.png)
+
+#### Firebase Cloud Messaging
+
+Engage your users with native Firebase Cloud Messaging (FCM) push notifications.
+
+[Learn more→](https://docs.median.co/docs/firebase-cloud-messaging)
+
+![Klaviyo](/images/docs/4d416f5b49e2e4d94c9f41f6194a96b1837455dfac8b23c8521557881b08dfd7-plugin_klaviyo.svg)
+
+#### Klaviyo
+
+Mobile push notifications to boost engagement and provide audience insights.
+
+[Learn more→](https://docs.median.co/docs/klaviyo)
+
+## All plugins
+
+![Bloomreach](/images/docs/138dcf24188c2a46a92142158bc7e6ddf977601e9d30469e3e25b4c93faa427d-bloomreach-logo-freelogovectors.net_.svg)
+
+#### Bloomreach
+
+Bloomreach integrates real-time data and AI for personalized commerce experiences.
+
+[Learn more→](https://docs.median.co/docs/bloomreach)
+
+![Braze](/images/docs/28cd46b519407fe5565b623a04a6bb56a998771f2d962b70b07b863d984ea9c1-plugin_braze.svg)
+
+#### Braze
+
+Mobile push notifications and in-app event tracking for data-driven engagement.
+
+[Learn more→](https://docs.median.co/docs/braze)
+
+![Cordial](/images/docs/25c90089b3e77ddb63044f27403f93301a6745c7e86671fdc04c9a6f55a6af96-plugin_cordial.svg)
+
+#### Cordial
+
+Cross-channel messaging platform with personalized push notification campaigns.
+
+[Learn more→](https://docs.median.co/docs/cordial)
+
+![Customer.io](/images/docs/plugin-customerio-1781599643875.svg)
+
+#### Customer.io
+
+Native push notifications, behavioral event tracking, and user identity management.
+
+[Learn more→](https://docs.median.co/docs/customerio)
+
+![Firebase Cloud Messaging](/images/docs/c04695ef01fa4e4b192b08800a92dd9daa03497c3cb7d92944ee8b4824274951-plugin_google-firebase-cloud-messaging.png)
+
+#### Firebase Cloud Messaging
+
+Engage your users with native Firebase Cloud Messaging (FCM) push notifications.
+
+[Learn more→](https://docs.median.co/docs/firebase-cloud-messaging)
+
+![Intercom](/images/docs/f19947cbaa13b0fde81e5cf162f80ce5e1aa35c90bf57ac0230fd3265c7269fa-plugin_intercom.svg)
+
+#### Intercom
+
+Rich native push notifications and deep linking powered by the Intercom platform.
+
+[Learn more→](https://docs.median.co/docs/intercom)
+
+![Iterable](/images/docs/cb6d9c1c529a55e03e0cdfcbee3a9cf1d7c6b7ba108b2be91de2caccfa7b00d6-iterable_logo.png)
+
+#### Iterable
+
+Iterable leverages AI to deliver personalized, behavior-based customer experiences at scale across the entire lifecycle.
+
+[Learn more→](https://docs.median.co/docs/iterable)
+
+![Klaviyo](/images/docs/4d416f5b49e2e4d94c9f41f6194a96b1837455dfac8b23c8521557881b08dfd7-plugin_klaviyo.svg)
+
+#### Klaviyo
+
+Mobile push notifications to boost engagement and provide audience insights.
+
+[Learn more→](https://docs.median.co/docs/klaviyo)
+
+![MoEngage](/images/docs/d6dae3fbacfae05253ba0112436fb26c35fc7bdbd7c9b93019d2f3f13d19cc50-plugin_moengage.svg)
+
+#### MoEngage
+
+Customer engagement platform with intelligent push notifications and analytics.
+
+[Learn more→](https://docs.median.co/docs/moengage)
+
+![MS Dynamics 365](/images/docs/1825a938a6149943a4e4deea121ee1af8489a7235857db90347e41e062c357f7-plugin_msdynamics.png)
+
+#### MS Dynamics 365
+
+Send push notifications through MS Dynamics 365 to customers who have installed your mobile app.
+
+[Learn more→](https://docs.median.co/docs/ms-dynamics)
+
+![OneSignal](/images/docs/4319035edb293eb4391b58b2d5af3ae8e99503ed10877e09a37ecf6f46bf70fc-plugin_onesignal.svg)
+
+#### OneSignal
+
+Advanced push notification service with rich messaging for businesses of all sizes.
+
+[Learn more→](https://docs.median.co/docs/onesignal)
+
+![Optimizely](/images/docs/34a3047cb9acc55af95f9ac17ad5040036ee6de43c3d2ec5c4801f3673666987-plugin_optimizely-episerver.svg)
+
+#### Optimizely
+
+Deploy push notifications as part of your Optimizely/Episerver digital marketing campaigns.
+
+[Learn more→](https://docs.median.co/docs/optimizely)
+
+![Salesforce Marketing Cloud](/images/docs/357c9b0b7ab771ccbcbb55178b27d9112692c6bb6c8d334789bb91d3522dd1d5-plugin_salesforce.svg)
+
+#### Salesforce Marketing Cloud
+
+Median.co's SFMC native plugin integrates Salesforce’s MobilePush capabilities to deliver personalized, cross-channel notifications.
+
+[Learn more→](https://docs.median.co/docs/salesforce-marketing-cloud)
+
+![Sendbird](/images/docs/c87ba6523f35063c155b7ec5ef059a99b6dc1b81c7be90f6122b2e5b6c5aac00-plugin_sendbird.svg)
+
+#### Sendbird
+
+Push notifications and in-app messaging for real-time user communication.
+
+[Learn more→](https://docs.median.co/docs/sendbird)
+
+![Xtremepush](/images/docs/80ab61284d26504cbbec913cc89190535fc773e141d465cd27751a424544823d-plugin_xtremepush.svg)
+
+#### Xtremepush
+
+Personalized real-time notifications at every stage of the customer journey.
+
+[Learn more→](https://docs.xtremepush.com/docs/overview)
+
+***
+
+> **OneSignal**
+>
+> OneSignal is our default push notification provider, offering a free tier with unlimited push notifications for native apps built using Median.
+>
+> [Learn more about Median and OneSignal](https://onesignal.com/blog/onesignals-new-integration-with-median-co/)Braze, and Klaviyo, enabling you to send personalized messages trig
+
+## Push Permissions
+
+### General
+
+To receive push notification you will need to collect the consent of your users to receive push permissions. Each of the plugins will have a method to request the permissions or check whether the permissions were granted by a user.
+
+Additionally, you can learn more about user-granted permissions in our [Permission Overview](https://median.co/docs/permissions-overview) article.
+
+### iOS
+
+Receiving push notifications on iOS will require enabling 'Push Notifications' capability when building your app.
+
+* **App Studio builds:** When using the App Store Connect API workflow, Median can register the Bundle ID with the required capabilities and generate provisioning profiles for the enabled push notification plugin.
+* **Manual signing or source builds:** If you manually manage Apple identifiers/provisioning profiles or build from downloaded source, confirm the Push Notifications capability is enabled in your Apple Developer account and Xcode project. See [Build iOS from source](https://median.co/docs/build-ios-from-source#adding-capabilities).
+
+### Android
+
+There are not additional steps required other than obtaining the users consent to receive push permissions.
+
+## Frequently Asked Questions
+
+### Why choose native push over web push?
+
+**Why choose native push over web push?⎘ Copy link
+
+Native apps connect directly to Apple's APNs and Google's FCM (the same infrastructure every major App Store and Play Store app relies on) for more consistent delivery and full access to targeting, automation, and rich notification features. With Median, you get this native push experience without building separate iOS and Android codebases from scratch.
+
+### Do push notifications work as well on a PWA as they do in a native app?
+
+**Do push notifications work as well on a PWA as they do in a native app?⎘ Copy link
+
+Not quite. PWA push on iOS only works if a user manually adds your site to their Home Screen, and only on iOS 16.4 or above. Anyone who skips that step, or is on an older device, gets no push at all. Native apps have no such barrier: once installed, push works immediately across all supported iOS and Android versions, with full support for rich notifications (images, action buttons, grouping) that PWAs can't match.
+
+***
+
+### Next Steps
+
+* [Permissions Overview](/docs/permissions-overview)
+
+Copy Page
+
+* * [Why use push notifications plugins?](#why-use-push-notifications-plugins)
+
+  * [Common use cases](#common-use-cases)
+
+  * [Getting started](#getting-started)
+
+  * [Key Terms](#key-terms)
+
+  * [Featured Plugins](#featured-plugins)
+
+  * [All plugins](#all-plugins)
+
+  * [Push Permissions](#push-permissions)
+
+  * * [General](#general)
+    * [iOS](#ios)
+    * [Android](#android)
+
+  * [Frequently Asked Questions](#frequently-asked-questions)

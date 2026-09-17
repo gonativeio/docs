@@ -1,0 +1,194 @@
+---
+title: "Overview"
+description: "Try it instantly"
+---
+
+#### Turn your website into an app in seconds
+
+Enter any URL to try it outBuild now
+
+## Turn your website into an app
+
+Follow these steps to create a fully functional native iOS and Android app from your existing website.
+
+## Before You Start
+
+You'll need a Median App Studio account to build your app.
+
+**Don't have an account yet?**
+
+1. Visit [median.co](https://median.co)
+2. Click **"Get Started"** or **"Build for Free"**
+3. Sign up with your email or Google account
+4. Verify your email address
+
+Once you're logged in, you're ready to create your first app.
+
+***
+
+## Step 1: Create your app
+
+To create your app, provide the following details:
+
+**Website URL** - This will be the initial URL loaded when the app starts. Ensure your website is mobile-optimized for the best user experience. The URL can be updated at any time.
+
+**App Name** - A default name will be suggested based on your website's title, but you can update it at any time.
+
+**Contact Email** - A valid email is required to manage your app and team access.
+
+Once you've confirmed the details above, click **"Start Building My App!"** to generate your app preview. You'll receive an email with your private management link so you can return to your app anytime.
+
+<Frame caption="<Anchor target=">
+  <img src="/images/docs/6356b2b374a3cc67b70b2321bef83ee41874c99cea16f6e3c3d0c0c62f2f9885-Screenshot_2025-07-03_at_17.23.34.png" />
+</Frame>
+
+***
+
+## Step 2: Preview your app
+
+Once your app is created, test it using our online simulators.
+
+**Verify your app:**
+
+1. Select **iPhone** or **Android** simulator.
+2. Confirm your website loads correctly.
+3. Test the navigation and core functionality.
+
+The simulators let you experience your app exactly as users will see it on their devices.
+
+***
+
+## Step 3: Make it feel native
+
+Your app works, but let's add your brand on the home screen and at launch, then add a native gesture so it feels like a real mobile app.
+
+**Upload your app icon**
+
+Your app icon is your app’s identity on the device home screen and in places such as settings ([App Icon](https://docs.median.co/docs/app-icon)).
+
+1. Navigate to **Interface** → **Branding.**
+2. Under **App Icon**, upload a square **PNG** or **JPG.**
+3. Use **1024×1024** pixels so the icon stays sharp on all devices.
+
+On **iOS** and **Android**, transparent areas are filled with a white background, and the system applies subtle corner rounding. For platform guidance, see [Apple’s app icon guidelines](https://developer.apple.com/design/human-interface-guidelines/app-icons) and [Google’s Android icon guidance](https://material.io/design/platform-guidance/android-icons.html#usage).
+
+**Configure the splash screen**
+
+The splash screen appears when users open your app from the home screen or return to it from the background. It stays visible while your web content loads and until the page fires `DOMContentLoaded`, so the handoff to your site feels smooth ([Splash Screen](https://docs.median.co/docs/splash-screen)).
+
+1. In **Interface** → **Branding**, open the **Splash Screen** settings.
+2. Choose a style: **App Icon** (your icon centered) or **Custom Image** (upload a dedicated splash image).
+3. Set background colors for **Light Mode** and **Dark Mode** as needed.
+4. Use **Match iOS & Android** to share one configuration, or adjust iOS and Android separately.
+5. Preview the splash for iOS and Android in light and dark modes in App Studio.
+
+**Platform notes:** On **iOS**, App Studio can auto-generate the launch storyboard from your app icon, or you can use a custom image. On **Android 12 and later**, the system shows a **circular cropped** image in the center—use a simple, low-detail graphic (similar to your app icon) rather than dense text. To test slow loads during development, you can point your app at Median’s demo page: [median.dev/splash-screen-transition](https://median.dev/splash-screen-transition).
+
+**Enable Pull-to-Refresh**
+
+1. Navigate to **Interface** → **Gestures.**
+2. Toggle on **Pull-to-Refresh.**
+3. Return to the simulator and pull down from the top of the screen.
+
+Your app now shows your branding at launch and refreshes content with a native gesture that mobile browsers don’t provide. That’s part of what separates a website from a native app.
+
+***
+
+## Step 4: Build your app
+
+You now have a fully functional native app.
+
+1. Navigate to **Build & Deploy**.
+2. Click **"Build All"**.
+
+<Frame caption="Median App Studio - App Build">
+  <img src="/images/docs/ddabb649dae5240e54d5e1efda55b13d080279405a5f3b9180a68731b84a3625-Screenshot_2025-07-03_at_17.28.13.png" />
+</Frame>
+
+Median.co will generate native iOS and Android builds of your app. You'll receive an email when the builds are ready to download.
+
+For an iOS App Store launch, connect your Apple Developer account through the App Store Connect API in App Studio and set **Upload to App Store Connect** to **Automatic**. Median can upload your distribution build directly to App Store Connect for TestFlight testing and App Review submission without requiring a Mac, Xcode, or Apple Transporter.
+
+***
+
+## 🏁 Your app is ready
+
+Congratulations! You've built your first native mobile app.
+
+Next, explore our recommended resources to add more native features and optimize your app for mobile users.
+
+***
+
+## Next Steps
+
+### Customize your app
+
+Want to add your brand identity? Configure app icons, splash screens, theme colors, and more in the [Branding](https://docs.median.co/docs/branding-overview) section.
+
+### Add Native Features
+
+**Push notifications**
+
+Re-engage users even when they're not using your app. Our [Push Notification Overview](https://docs.median.co/docs/push-notifications-overview) covers setup with OneSignal, which offers Median customers unlimited free push notifications.
+
+**JavaScript bridge**
+
+Access native device functionality from your website using the [Median JavaScript Bridge](https://median.readme.io/docs/javascript-bridge). Add biometric authentication, camera access, device sensors, and more - all with JavaScript.
+
+**Native navigation**
+
+Replace your web navigation with [Native Navigation Menus](https://docs.median.co/docs/native-navigation-overview) that follow Apple and Google design guidelines. Support for tab bars, side drawers, and custom icons.
+
+**Native plugins**
+
+Browse our [Native Plugin Library](https://median.co/plugins) to add third-party services and device features. Access analytics, authentication, payment processing, and more.
+
+### Optimize for mobile
+
+**Detect app usage**
+
+Serve different content to app users vs. web users. Our [Detecting App Usage](https://docs.median.co/docs/detecting-app-usage) guide shows you how to identify when your website is running inside your native app.
+
+**Mobile optimization**
+
+Learn best practices for mobile-responsive design, touch interactions, and performance optimization in our documentation.
+
+### Build & Test
+
+Ready to test on a real device? Review our [Build & Test Overview](https://docs.median.co/docs/development-test-deep-dive) for advanced testing options and configuration.
+
+### Publish your app
+
+When you're ready to launch, our [Publishing Guide](https://docs.median.co/docs/publishing-guide) walks you through Apple App Store and Google Play Store requirements. For iOS self-publishing, set **Upload to App Store Connect** to **Automatic**, test the processed build with TestFlight, then submit the build for App Review. Or use our [Publishing Service](https://docs.median.co/docs/publishing-service) and let our team handle it for you with a 100% approval guarantee.
+
+***
+
+### Next Steps
+
+* [JavaScript Bridge Overview](/docs/javascript-bridge)
+* [Native Plugins Overview](/docs/native-plugins-overview)
+* [Publishing Overview](/docs/publishing-overview)
+
+Copy Page
+
+* * [Turn your website into an app](#turn-your-website-into-an-app)
+
+  * [Before You Start](#before-you-start)
+
+  * [Step 1: Create your app](#step-1-create-your-app)
+
+  * [Step 2: Preview your app](#step-2-preview-your-app)
+
+  * [Step 3: Make it feel native](#step-3-make-it-feel-native)
+
+  * [Step 4: Build your app](#step-4-build-your-app)
+
+  * [🏁 Your app is ready](#-your-app-is-ready)
+
+  * [Next Steps](#next-steps)
+
+  * * [Customize your app](#customize-your-app)
+    * [Add Native Features](#add-native-features)
+    * [Optimize for mobile](#optimize-for-mobile)
+    * [Build & Test](#build--test)
+    * [Publish your app](#publish-your-app)

@@ -1,0 +1,124 @@
+---
+title: "Publishing Guide"
+description: "Get your app ready to publish and ensure you receive app store approval"
+---
+
+<Warning>
+  ### Developer Accounts Required
+
+  An Apple Developer Account is required to publish your app to the Apple App Store.Learn more at [https://developer.apple.com/programs/enroll/](https://developer.apple.com/programs/enroll/).
+
+  A Google Play Developer Account is required to publish your app to Google Play.Learn more at [https://play.google.com/apps/publish/signup](https://play.google.com/apps/publish/signup).
+</Warning>
+
+Apps submitted to the Apple App Store must comply with Apple's [App Store Review Guidelines](https://developer.apple.com/app-store/review/guidelines/) ensuring a safe and high-quality experience for users. Apps that include web content are welcome in the App Store but per [Guideline 4.2](https://developer.apple.com/app-store/review/guidelines/#4.2) they must provide an elevated "app-like" UI.
+
+The following steps outline a guidance to elevate the user experience for apps that are powered by web content.
+
+## Best Practises
+
+### 1. Use native navigation
+
+It's easy to add [native navigation](https://docs.median.co/docs/native-navigation-overview) such as a native sidebar menu or bottom tab bar using the Median App Studio. When adding native navigation, avoid using web navigation menus. You may either serve a different version of your website to the app that does not include web navigation elements or use CSS/Javascript within the app to hide them. Refer to our documentation for [Detecting App Usage](/docs/detecting-app-usage) or add [Custom CSS](/docs/custom-css).
+
+### 2. Build an app main page
+
+Your app’s initial page should be designed to look and feel like an app. Include relevant information and button links to allow the user to easily navigate to where they wish to go. Avoid large images and dense text, particularly “above the fold”. You can choose to either modify your existing main page to be "app-like" or build a main page specifically as a launch point for your app.
+
+### 3. Avoid footers
+
+Apps typically do not contain footer text and menus that must be scrolled to view. If your app requires secondary navigation, consider using a combination of [sidebar navigation](https://docs.median.co/docs/sidebar-navigation-menu) and a [bottom tab bar](https://docs.median.co/docs/bottom-tab-bar). Otherwise, either hide all footers within the app or don't use them at all. You may use [Custom CSS](/docs/custom-css) to easily hide footer menus when your web content is showing within your app.
+
+### 4. Use mobile optimized logos
+
+If you are showing your logo on every page, make sure it doesn't consume the entire screen. As mobile device screens are (relatively) small, every pixel counts. Hide your web navigation and use your brand logo in the [native top navigation bar](https://docs.median.co/docs/top-navigation-bar) or add a mobile optimized logo to the [native sidebar menu](https://docs.median.co/docs/sidebar-navigation-menu).
+
+### 5. Optimize forms for mobile input
+
+Filling forms on mobile devices can be challenging and frustrating for users. If you have login, data collection or other forms, make sure that they are scaled large enough to be easily completed on a mobile device. For longer forms consider splitting across multiple pages so the user does not need to scroll.
+
+### 6. Use native social login
+
+Login providers such as Google Sign-in and Facebook Login offer web integrations that typically do not function in the web view within your app due to security requirements. Fortunately, Median offers a [Social Login](/docs/social-login) native plugin that securely implements the iOS and Android SDKs from these vendors. Utilizing the native plugin also offers a seamless login flow with a single tap login if the user is already logged in on their device.
+
+Further to this, per [Guideline 4.8](https://developer.apple.com/app-store/review/guidelines/#4.8) if you support any third-party login provider then you must also support Sign in with Apple. If you choose to not to use our Social Login native plugin, you can hide all third-party login buttons when your website is displaying within your app and only provide a username/password login.
+
+### 7. Provide account deletion functionality
+
+Per [Guideline 5.1.1(v)](https://developer.apple.com/app-store/review/guidelines/#5.1.1v) if your app does not include significant account-based features users should be able to access your app without a login. If your app supports account creation you must also provide a means for users to delete their account directly from your app.
+
+### 8. Adhere to guidelines specific to your app
+
+Apple maintains guidelines applicable to specific types of apps. Here are some examples that we encounter frequently:
+
+* Safety: User-Generated Content, e.g. social networking apps [Guideline 1.2](https://developer.apple.com/app-store/review/guidelines/#1.2)
+* Business: Collecting Payments for In-App Purchases [Guideline 3.1.1](https://developer.apple.com/app-store/review/guidelines/#3.1.1)Also see our FAQ [How can I accept payments within my app?](/docs/faq-publishing#how-can-i-accept-payments-within-my-app)
+* Legal: You must be the IP owner or licensed to use your App Name and all content [Guideline 5.2](https://developer.apple.com/app-store/review/guidelines/#5.2)
+* Legal: You must hold all required permits and licenses for Gaming, Gambling, and Lotteries [Guideline 5.3](https://developer.apple.com/app-store/review/guidelines/#5.3)
+
+*Note: While we will work with all app developers to obtain App Store approval our App Store Publishing Guarantee requires that you be fully compliant with all Legal requirements.*
+
+### 9. Test your app
+
+Test your app fully before publishing. Median offers a wide range of simulator devices to test your app. You may also test using physical iOS and Android devices. Put yourself in the customer's shoes and navigate through the app. Make sure text is readable, buttons clickable and all functionality performs as expected.
+
+## iOS Self-Publishing
+
+For iOS self-publishing, the standard Median workflow is:
+
+1. Open your app in the Median App Studio and go to **Build & Deploy**.
+
+2. Click **Configure** in the iOS IPA section.
+
+3. In **Apple Developer API Connection**, enter your **Issuer ID** and **Key ID**, and upload your **Private Key (.p8)** file.
+
+4. In **Bundle ID & App Store Connect App**:
+
+   * Register the **Bundle ID** for your app.
+   * Create the **App Store Connect app record** in App Store Connect using that Bundle ID.
+   * Verify the **App Store Connect app record** in Median App Studio.
+
+5. In **Signing & Upload Settings**, select **Distribution Profile** and set **Upload to App Store Connect** to **Automatic**.
+
+6. Build your iOS IPA in the Median App Studio (if Automatic Upload is not selected you can manually click "Upload" after the build is complete).
+
+7. Wait for Apple to process the uploaded build in App Store Connect.
+
+8. In App Store Connect, open **TestFlight**, resolve any required prompts, and add testers.
+
+9. Before App Review, complete the App Store listing in App Store Connect, including metadata such as app name, subtitle, description, keywords, category, support URLs, app privacy details, age rating, review contact information, compliance questions, and screenshots for the required device sizes.
+
+10. After testing and completing the App Store listing, select the processed build and submit it for App Review.
+
+You do not need a Mac, Xcode, or Apple Transporter for this standard workflow. Those are optional manual alternatives only.
+
+If you are using Median’s App Store Publishing service, we will deploy your iOS app to TestFlight to enable easy testing on a physical device by any member of your team.
+
+## Need more help?
+
+When using Median's [Business service](https://median.co/pricing), we will assist you to build a user-friendly and feature-rich mobile app. We will also provide guidance on what you may need to add to ensure your app is accepted by the app stores.
+
+***
+
+### Next Steps
+
+* [Apple App Store](/docs/apple-app-store)
+* [Google Play Store](/docs/google-play-store)
+
+Copy Page
+
+* * [Best Practises](#best-practises)
+
+  * * [1. Use native navigation](#1-use-native-navigation)
+    * [2. Build an app main page](#2-build-an-app-main-page)
+    * [3. Avoid footers](#3-avoid-footers)
+    * [4. Use mobile optimized logos](#4-use-mobile-optimized-logos)
+    * [5. Optimize forms for mobile input](#5-optimize-forms-for-mobile-input)
+    * [6. Use native social login](#6-use-native-social-login)
+    * [7. Provide account deletion functionality](#7-provide-account-deletion-functionality)
+    * [8. Adhere to guidelines specific to your app](#8-adhere-to-guidelines-specific-to-your-app)
+    * [9. Test your app](#9-test-your-app)
+
+  * [iOS Self-Publishing](#ios-self-publishing)
+
+  * [Need more help?](#need-more-help)

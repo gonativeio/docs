@@ -1,0 +1,107 @@
+---
+title: "App Marketing & Growth"
+description: "Build, Launch, and Scale AI Apps"
+---
+
+Publishing your app is only the beginning. Sustainable growth requires a deliberate strategy across launch, discoverability, user acquisition, and retention.
+
+## Step-by-Step App Launch, Marketing and Measurement
+
+### Step 1 - Pre-Launch
+
+Publishing your app is only the beginning. Sustainable growth requires a deliberate strategy across launch, discoverability, user acquisition, and retention.
+
+#### App Store Optimization (ASO)
+
+ASO is the SEO equivalent for app stores. Optimizing these elements has a direct impact on discoverability and conversion:
+
+* **App name**: Include your primary keyword naturally (e.g., "TaskFlow: AI Task Manager").
+* **Subtitle / short description**: 30 characters to reinforce your value proposition with a secondary keyword.
+* **Keywords (iOS)**: 100 characters; use comma-separated terms, no spaces, no repeated words from the title.
+* **Description**: Lead with your strongest benefit statement. Use short paragraphs and bullet points. The first 3 lines appear before the "more" fold so prioritize the content here.
+* **Screenshots**: Create 5–8 screenshots that tell a story. Use captions highlighting benefits, not features. Screenshots are the single biggest factor in conversion on app store product pages.
+* **Preview video (optional but high-impact)**: A 15–30 second video showing the core value of your app can increase conversion rates significantly.
+
+For AI apps, prioritize **“what it does” over “how it works.”**
+
+#### Landing Page (Minimum Viable Marketing Site)
+
+Create a simple web landing page before launch to:
+
+* Capture email addresses for launch-day announcement
+* Provide a privacy policy URL (required by both stores)
+* Enable social sharing and press coverage
+
+#### Beta Testing
+
+Use TestFlight (iOS) and Google Play Internal Testing / Open Testing (Android) to test with real users before launch. Collect feedback on crashes, UX friction, and paywall conversion. Fix critical issues before going public.
+
+### Step 2 - Launch Strategy
+
+**Soft launch first**: Consider releasing in one or two smaller markets (e.g., Canada, Australia) before a global rollout. This lets you identify conversion and retention issues at low cost.
+
+**Coordinate your channels**: On launch day, activate email, social media, and community announcements simultaneously. Coordinate posts in relevant communities (Reddit, Product Hunt, Discord servers for your niche, Indie Hackers).
+
+**Product Hunt launch**: A well-prepared Product Hunt launch can drive thousands of installs in a day. Prepare your listing in advance, activate your network to upvote on launch morning, and engage actively in the comments throughout the day.
+
+**Press and influencer outreach**: Identify 10–20 journalists, newsletter writers, or YouTube creators who cover your niche. Personalize outreach with a short pitch explaining what makes your app different. Offer early access.
+
+### Step 3 - Growth
+
+Measuring the right metrics tells you whether your app is growing healthily and where to focus improvement efforts:
+
+#### Key Metrics for AI Apps
+
+Track metrics that reflect real usage and value:
+
+| Metric                           | What It Measures                                 | Healthy Benchmark                         |
+| -------------------------------- | ------------------------------------------------ | ----------------------------------------- |
+| Day 1 / Day 7 / Day 30 Retention | % of users still active after 1, 7, 30 days      | D1: 25–40%, D7: 10–20%, D30: 5–10%        |
+| Conversion Rate (Free → Paid)    | % of users who purchase a subscription           | 2–5% for freemium apps                    |
+| Average Revenue Per User (ARPU)  | Total revenue ÷ total active users               | Varies by category; track trend over time |
+| Monthly Recurring Revenue (MRR)  | Predictable monthly subscription revenue         | Track month-over-month growth rate        |
+| Churn Rate                       | % of subscribers who cancel each month           | \< 5% monthly is healthy                  |
+| Install-to-Registration Rate     | % of installs that complete sign-up              | > 60% is a strong target                  |
+| App Store Rating                 | Visible on your product page; impacts conversion | Maintain ≥ 4.5 stars                      |
+
+Use [Google Firebase Analytics](https://docs.median.co/docs/firebase-analytics), [AppsFlyer](https://median.co/docs/appsflyer), or [Adjust](https://docs.median.co/docs/adjust) to track in-app events. RevenueCat's dashboard handles subscription revenue metrics automatically.
+
+### Step 4 - Driving User Adoption
+
+Getting installs is step one; getting users to experience the core value of your app and experience the "aha moment" is what drives retention and word-of-mouth.
+
+**Optimize onboarding**: Users who experience your app's core value within the first session retain at dramatically higher rates. Map out the shortest path from install to the moment that makes your app worth keeping, and remove every friction point along the way.
+
+**Use push notifications strategically**: With Median's OneSignal integration, you can send targeted push notifications to re-engage users who haven't returned. Keep notifications relevant and valuable — aggressive notification strategies increase uninstalls. Effective notification types include: progress updates, new content available, reminders the user opted into, and limited-time offers.
+
+**In-app messages**: Use OneSignal in-app messages or Intercom to guide new users through key features at the right moment, without requiring them to read a tutorial.
+
+**Referral programs**: Mobile referral programs can be highly effective in consumer apps. A simple "Give a friend 1 week free, get 1 week free" mechanic can compound growth.
+
+#### Generating App Store Reviews
+
+App reviews are one of the highest-leverage activities you can focus on. A higher rating increases your app store conversion rate (more installs from the same traffic) and improves algorithmic ranking.
+
+Use the Native App Review prompt: [Median's App Review plugin](https://docs.median.co/docs/app-review) lets you trigger the native iOS and Android review dialog from JavaScript
+
+<CodeGroup>
+  ```bash bash
+  // Trigger the native app review prompt at the right moment
+  median.appReview.requestReview();
+  ```
+</CodeGroup>
+
+***
+
+[App Monetization](/docs/app-monetization)
+
+[Build & Test Overview](/docs/development-test-deep-dive)
+
+Copy Page
+
+* * [Step-by-Step App Launch, Marketing and Measurement](#step-by-step-app-launch-marketing-and-measurement)
+
+  * * [Step 1 - Pre-Launch](#step-1---pre-launch)
+    * [Step 2 - Launch Strategy](#step-2---launch-strategy)
+    * [Step 3 - Growth](#step-3---growth)
+    * [Step 4 - Driving User Adoption](#step-4---driving-user-adoption)

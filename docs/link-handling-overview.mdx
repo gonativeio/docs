@@ -1,0 +1,56 @@
+---
+title: "Overview"
+description: "Learn about controlling how links open in your Median.co app"
+---
+
+Effective link handling keeps navigation predictable. Users stay in your WebView when it makes sense, use the in-app browser or an external app when needed, and open your app from email, SMS, and the web once domains and association files are set up.
+
+## Mental model: two-link problems
+
+| Problem                | What it controls                                                                                          | Typical tools                                                                                                                                                                                  |
+| ---------------------- | --------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Inside the WebView** | Same-origin navigation, outbound links, in-app browser, and the long-press menu on links                  | Link handling **rules**, `median.window.open`, `median.contextMenu`                                                                                                                            |
+| **Inbound app links**  | Links in SMS, email, and other apps opening **your** Median app instead of Safari/Chrome for your domains | Universal Links (iOS), App Links (Android), `apple-app-site-association`, `assetlinks.json`, optional **[custom URL schemes](https://docs.median.co/docs/deep-linking-1#url-scheme-protocol)** |
+
+Your website still controls ordinary `<a href>` markup and client-side routing. Median settings govern how the **native shell** routes those navigations and how the OS associates web URLs with your app.
+
+***
+
+## Key configuration features
+
+* **Link behavior:** Define how links are handled: internal WebView, in-app browser, or external browser.
+* **Deep linking and universal links:** Map `http`/`https` URLs on domains you control to open directly in your app.
+* **Custom URL schemes:** Optional mobile-only link formats, such as `yourscheme://`, commonly used for authentication redirects and advanced app-opening flows.
+* **Context menu:** Choose actions available when users long-press a link (for example, copy or open externally).
+
+***
+
+## Choose what to configure
+
+Use these guides to configure the behavior you need:
+
+[](https://docs.median.co/docs/deep-linking)
+
+#### [Deep linking](https://docs.median.co/docs/deep-linking)
+
+[Set up Universal Links and App Links, validate association files, test behavior, and use custom URL schemes for advanced flows.](https://docs.median.co/docs/deep-linking)
+
+[](https://docs.median.co/docs/internal-vs-external-links)
+
+#### [Link behavior](https://docs.median.co/docs/internal-vs-external-links)
+
+[Control whether links open in the WebView, in-app browser, or externally; configure rule order and regex; apply runtime rules; and customize long-press context menu actions.](https://docs.median.co/docs/internal-vs-external-links)
+
+***
+
+### Next Steps
+
+* [Link Behavior](/docs/internal-vs-external-links)
+* [Universal Links (Deep Linking)](/docs/deep-linking)
+* [URL Scheme Protocol](/docs/url-scheme-protocol)
+
+Copy Page
+
+* * [Mental model: two-link problems](#mental-model-two-link-problems)
+  * [Key configuration features](#key-configuration-features)
+  * [Choose what to configure](#choose-what-to-configure)

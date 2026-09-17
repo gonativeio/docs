@@ -1,0 +1,59 @@
+---
+title: "WebRTC Audio & Video"
+description: "Support real-time audio and video features with WebRTC"
+---
+
+WebRTC (Web Real-Time Communication) is a widely used framework that enables real-time audio, video, and data communication in web applications. Your app may include voice calls, video conferencing, or peer-to-peer data sharing via WebRTC.
+
+## How WebRTC Permissions Work in WebView Apps
+
+Similar to how permissions work in desktop and mobile browsers, your Median app will automatically request microphone and camera access when your embedded WebRTC application initiates media capture.
+
+### Supported WebRTC Permissions
+
+* **Microphone Access** - Required for voice calls or audio streams
+* **Camera Access** - Required for video calls or media recording
+
+When a WebRTC session is triggered in your app, users will be prompted by the system to grant access. This prompt behavior is native and consistent with platform expectations on both Android and iOS.
+
+<Check>
+  ### No Extra Configuration Needed
+
+  Median automatically handles WebRTC permission prompts using its secure WebView implementation. You don't need to write native code to enable camera or microphone access.
+</Check>
+
+## Developer Tips for WebRTC in Median Apps
+
+* Ensure your web app is served over **HTTPS**, as WebRTC permissions are restricted on insecure origins.
+* Use `navigator.mediaDevices.getUserMedia()` to trigger permission requests. Median's WebView will detect these calls and invoke the native permission dialog.
+* Always include graceful fallbacks and error handling in case users deny access to camera or microphone.
+
+## Test WebRTC Functionality
+
+You can test WebRTC features in your Median app using official tools and demos:
+
+* [WebRTC Official Documentation](https://webrtc.org/)
+* [WebRTC Sample Applications](https://webrtc.github.io/samples/)
+
+### Testing Audio & Microphone in the Embedded Simulator
+
+Median's embedded App Studio simulator has limited audio support:
+
+* **Audio playback** is not supported in the embedded simulator
+* **Microphone input** is not supported in the embedded simulator, so mic access for WebRTC voice/video calls can't be tested in the embedded simulator at all.
+
+Camera and video permissions can still be tested in the embedded simulator. For full audio and microphone testing of your WebRTC features, install a build on a physical device.
+
+***
+
+[Location Services](/docs/location-services)
+
+[Web Overrides Overview](/docs/website-overrides-overview)
+
+Copy Page
+
+* * [How WebRTC Permissions Work in WebView Apps](#how-webrtc-permissions-work-in-webview-apps)
+  * * [Supported WebRTC Permissions](#supported-webrtc-permissions)
+  * [Developer Tips for WebRTC in Median Apps](#developer-tips-for-webrtc-in-median-apps)
+  * [Test WebRTC Functionality](#test-webrtc-functionality)
+  * * [Testing Audio & Microphone in the Embedded Simulator](#testing-audio--microphone-in-the-embedded-simulator)

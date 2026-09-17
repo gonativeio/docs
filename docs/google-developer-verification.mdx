@@ -1,0 +1,54 @@
+---
+title: "Google Developer Verification"
+description: "Upload ADI Registration Properties value for Android App Integrity"
+---
+
+This documentation is a guide on uploading the `adi-registration.properties `value required for App Device Integrity (ADI) verification and including it in future app builds.
+
+## Understanding App Device Integrity (ADI)
+
+App Device Integrity is a security framework powered by the Google Play Integrity API. Its primary purpose is to ensure that your app is running in a secure, untampered environment.
+
+* **What it does**: It verifies whether the app interaction originates from a legitimate app binary (anti-tampering) running on an authentic Android device. This prevents malicious actors from using modified versions of your app or running it on compromised/emulated devices.
+* **The .properties file**: The `adi-registration.properties` file acts as a configuration handshake between your app and the Google Play Integrity services. It contains a value that allow the API to recognize your specific application during the attestation process.
+
+## Uploading the ADI property value
+
+**In Google Play Console**
+
+Follow the steps in [this Google Support Article](https://support.google.com/googleplay/android-developer/answer/16761053?hl=en) to register your Android package name.
+
+* The ADI property value is available on **step 3**, on the **Sign and upload an APK** page.
+
+<Frame caption="Google Play Console-">
+  <img src="/images/docs/8ddaa4e8c43a5c939458de892d8bbb9071720c646bf21a5ea425192f6be9a4a6-image.png" />
+
+  **Sign and upload an APK**
+</Frame>
+
+**In the Median App Studio**
+
+1. Navigate to the **Build and Download** section > **Google Developer Verification**
+2. Paste the **ADI property value**
+
+![](/images/docs/4038950eb24550f6a372792e57b135912ba8c4065abefd7cb48f99df9d5fc618-image.png)
+
+## Additional Resources
+
+For more in-depth technical details, refer to the official Google Developer documentation:
+
+* [Google Play Integrity API Overview](https://developer.android.com/google/play/integrity)
+* [Setup and Integration Guide](https://developer.android.com/google/play/integrity/setup)
+* [Understanding Integrity Verdicts](https://developer.android.com/google/play/integrity/verdicts)
+
+***
+
+[Google Services](/docs/google-services)
+
+[Backup Management](/docs/backup-management)
+
+Copy Page
+
+* * [Understanding App Device Integrity (ADI)](#understanding-app-device-integrity-adi)
+  * [Uploading the ADI property value](#uploading-the-adi-property-value)
+  * [Additional Resources](#additional-resources)

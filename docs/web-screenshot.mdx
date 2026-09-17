@@ -1,0 +1,90 @@
+---
+title: "Web Screenshot"
+description: "Capture and share visible web content or website elements with our native Web Screenshot plugin"
+---
+
+# Overview
+
+Web Screenshot enables you to capture either a specific section or an entire webpage and share it as an image. You can optionally include text and a URL for better context.
+
+<Check>
+  ### Developer Demo
+
+  Display our demo page in your app to test during development [https://median.dev/web-screenshot/](https://median.dev/web-screenshot/)
+</Check>
+
+# Implementation Guide
+
+## Sharing the visible web content
+
+The following command allows you to capture and share the visible portion of a webpage, excluding native UI elements such as [native navigation bars](https://median.co/docs/native-navigation-overview).
+
+> Run the following Median JavaScript Bridge command to share the screen content
+
+<CodeGroup>
+  ```bash bash
+  median.webScreenshot.shareScreen({
+    url: "https://www.median.dev",
+    text: "Median Developer Demo",
+  });
+  ```
+</CodeGroup>
+
+## Sharing a web element
+
+The following command allows you to capture and share a specific web element, such as a `<div>` container.
+
+> Run the following Median JavaScript Bridge command to share a div with id `content`
+
+<CodeGroup>
+  ```bash bash
+  const element = document.getElementById("content");
+  median.webScreenshot.shareElement(element, {
+    url: "https://median.dev/",
+    text: "Median Developer Demo",
+  });
+  ```
+</CodeGroup>
+
+## Exporting the screenshot
+
+You can export the screenshot as a `Blob` object to upload to your server or use it with another plugin e.g. [Social Share](/docs/social-share)
+
+> Run the following Median JavaScript Bridge command to share the screen content
+
+<CodeGroup>
+  ```bash bash
+  // Capture the visible screen area
+  const screenShotblob = median.webScreenshot.captureScreen();
+  // Capture a web element
+  const screenShotblob = median.webScreenshot.captureElement(element);
+  ```
+</CodeGroup>
+
+# Demo App
+
+Try out the plugin on iOS and Android with our interactive demo apps.
+
+|     |         |
+| --- | ------- |
+|     |         |
+| iOS | Android |
+
+***
+
+### Next Steps
+
+* [JavaScript Bridge Overview](/docs/javascript-bridge)
+* [Social Share](/docs/social-share)
+
+Copy Page
+
+* * [Overview](#overview)
+
+  * [Implementation Guide](#implementation-guide)
+
+  * * [Sharing the visible web content](#sharing-the-visible-web-content)
+    * [Sharing a web element](#sharing-a-web-element)
+    * [Exporting the screenshot](#exporting-the-screenshot)
+
+  * [Demo App](#demo-app)

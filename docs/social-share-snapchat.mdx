@@ -1,0 +1,57 @@
+---
+title: "Snapchat"
+description: "Enable sharing of media directly to the Snapchat mobile app"
+---
+
+## Overview
+
+This plugin allows you to share text and media directly to the Snapchat mobile app.
+
+## Implementation Guide
+
+### Checking for availability
+
+Before attempting to share content, check whether **Snapchat is installed on the user’s device** to prevent errors and improves the user experience.
+
+Use the following JavaScript command:
+
+> Run the following Median JavaScript Bridge command to share the screen content
+
+<CodeGroup>
+  ```bash bash
+  const { isInstalled } = await median.socialShare.snapchat.isInstalled();
+  ```
+</CodeGroup>
+
+### Sharing media
+
+Snapchat media sharing only supports media in a `Blob` object. You can save a remote image as a `Blob` using the following code snippet.
+
+<CodeGroup>
+  ```bash bash
+    fetch("url-to-image")
+    .then(function(response) {
+      return response.blob();
+    })
+    .then(function(blob) {
+      // here the image is a blob
+    });
+  ```
+</CodeGroup>
+
+Other plugins from Median (such as the [Web Screenshot Plugin](https://median.co/docs/web-screenshot)) also export images as Blobs which can then be used with this plugin.
+
+***
+
+### Next Steps
+
+* [Web Screenshot](/docs/web-screenshot)
+
+Copy Page
+
+* * [Overview](#overview)
+
+  * [Implementation Guide](#implementation-guide)
+
+  * * [Checking for availability](#checking-for-availability)
+    * [Sharing media](#sharing-media)

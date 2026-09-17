@@ -1,0 +1,101 @@
+---
+title: "Camera and File Uploads"
+description: "Full camera control for your mobile app"
+---
+
+## Overview
+
+Adding camera access and file upload capabilities to your mobile app enhances user experience, boosts engagement, and expands functionality. Common use cases include profile photo customization, document submission, in-app image capture, and media sharing which are critical features for social, e-commerce, and business applications.
+
+This guide covers everything you need to implement camera and file upload support in Median apps on both iOS and Android, including platform-specific configuration for Android camera capture quality and gallery storage.
+
+<Check>
+  ### Developer Demo
+
+  Test camera and file upload functionality during development using the live demo pages.File and Camera Uploads: [https://median.dev/camera/](https://median.dev/camera/)Android Camera Settings: [https://median.dev/camera-settings](https://median.dev/camera-settings)
+</Check>
+
+## Implementation Guide
+
+File and image uploads are natively supported in both iOS and Android WebViews, which power Median's native mobile apps. No additional plugins or configuration are required to enable basic upload functionality.
+
+To enable file or image selection in your web app, use the standard HTML `<input type="file">` element. The native WebView and system handles the presentation of the system file picker or camera options to the user automatically.
+
+For the full list of supported attributes and implementation best practices, refer to the [MDN documentation on Input File](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file).
+
+### Android Camera Capture Configuration
+
+<Warning>
+  ### Android only
+
+  The camera capture configuration options below are Android-specific and are not supported on iOS.
+</Warning>
+
+On Android, Median exposes additional controls for camera behavior via the Median JavaScript Bridge. These settings let you tune capture quality and control how captured media is stored on the device.
+
+#### Capture Quality
+
+Android supports two capture quality presets:
+
+| Setting | Description                                |
+| ------- | ------------------------------------------ |
+| "high"  | Maximum resolution and file size (default) |
+| "low"   | Reduced resolution to minimize file size   |
+
+Use the "low" setting when upload speed or server storage costs are a concern. Use "high" (the default) when image fidelity is important.
+
+For technical details on how these quality levels map to Android's media capture API, see the [Android Developer Documentation on EXTRA\_VIDEO\_QUALITY](https://developer.android.com/reference/android/provider/MediaStore#EXTRA_VIDEO_QUALITY).
+
+**Set capture quality via the Median JavaScript Bridge**
+
+<CodeGroup>
+  ```bash bash
+  // Set camera capture quality to low
+  median.camera.setCaptureQuality("low")
+
+  // Set camera capture quality to high (default)
+  median.camera.setCaptureQuality("high")
+  ```
+</CodeGroup>
+
+#### Gallery Storage
+
+By default, photos and videos captured in the app are saved to the device's media gallery. You can disable this behavior if your app processes images server-side and local storage is unnecessary.
+
+This preference persists across sessions once set.
+
+**Control gallery storage via the Median JavaScript Bridge**
+
+<CodeGroup>
+  ```bash bash
+  // Prevent captured media from being saved to the gallery
+  median.camera.saveToGallery(false)
+
+  // Re-enable gallery saving (default behavior)
+  median.camera.saveToGallery(true)
+  ```
+</CodeGroup>
+
+## Demo App
+
+<Warning>
+  Due to security policies, the camera functionality in our iOS virtual device simulators is disabled. The Android sample app includes an example camera capture.
+</Warning>
+
+|     |         |
+| --- | ------- |
+|     |         |
+| iOS | Android |
+
+***
+
+[Apple App Tracking Transparency](/docs/apple-att)
+
+[Downloads Directory](/docs/downloads-directory)
+
+Copy Page
+
+* * [Overview](#overview)
+  * [Implementation Guide](#implementation-guide)
+  * * [Android Camera Capture Configuration](#android-camera-capture-configuration)
+  * [Demo App](#demo-app)

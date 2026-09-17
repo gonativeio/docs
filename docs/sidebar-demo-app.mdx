@@ -1,0 +1,59 @@
+---
+title: "Sidebar Demo App"
+---
+
+|     |         |
+| --- | ------- |
+|     |         |
+| iOS | Android |
+
+<CodeGroup>
+  ```bash bash
+  /* Sidebar Navigation Menu Configuration */
+  [
+    {
+      "subLinks": [],
+      "label": "Sample Contact",
+      "url": "https://median.dev/sidebar-tab-demo/contact.html"
+    },
+    {
+      "subLinks": [],
+      "label": "Sample About",
+      "url": "https://median.dev/sidebar-tab-demo/about.html"
+    }
+  ]
+  ```
+
+  ```bash bash
+  /* Set Sidebar Menu Items */
+  var items = [{
+    label: "Google",
+    url: "https://google.com",
+    icon: "fab fa-google"
+  }, {
+    label: "Sample Grouping",
+    isGrouping: true, 
+    subLinks: [{
+      label: "Apple",
+      url: "https://apple.com",
+      icon: "fab fa-apple" // optional
+    }, {
+      label: "Google",
+      url: "https://google.com",
+      icon: "fab fa-google" //optional
+    }]
+  }, {
+    label: "Sample Javascript",
+    url: "javascript:alert('test')"
+  }];
+  median.sidebar.setItems({
+    'items': items
+  });
+  ```
+</CodeGroup>
+
+***
+
+### Next Steps
+
+* [Bottom Tab Bar](/docs/bottom-tab-bar)
