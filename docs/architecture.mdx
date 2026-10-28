@@ -10,7 +10,7 @@ The native shell is where Median shines wrapping your web content with native UI
 The diagram below shows the three layers of every Median app and how they relate to each other.
 
 <Frame caption="Median.co App Architecture">
-  <img src="/images/docs/5a1b084da3d64920a46434654cc2eae35e14f0b2c75b0dd6536f4658551f3c4c-3.png" />
+  ![](/images/docs/5a1b084da3d64920a46434654cc2eae35e14f0b2c75b0dd6536f4658551f3c4c-3.png)
 </Frame>
 
 ## The three layers of your Mobile App
@@ -57,7 +57,7 @@ The native app wraps the WebView with platform-standard UI elements. These are b
 * Bottom tab bar - native tab navigation; dynamic, localizable
 
 <Frame caption="Native UI Example">
-  <img src="/images/docs/d7269edac4c0aed4753751ea32eeabb8b7d5220c50998f338847f6091313b8c7-nativeui.png" />
+  ![](/images/docs/d7269edac4c0aed4753751ea32eeabb8b7d5220c50998f338847f6091313b8c7-nativeui.png)
 </Frame>
 
 Native navigation elements load instantly and respond instantly regardless of your web app's performance, because they're rendered by the OS. They also automatically adapt to platform conventions (e.g. iOS swipe-back gestures, Android back button behavior).
@@ -66,19 +66,13 @@ Native navigation elements load instantly and respond instantly regardless of yo
 
 Beyond the base WebView, Median exposes three categories of native functionality that turn a simple WebView app into a production mobile experience.
 
-[](https://docs.median.co/docs/native-navigation-overview)
-
 [Native navigation](https://docs.median.co/docs/native-navigation-overview)
 
 [Top navigation bars, sidebar menus, and bottom tab bars — all built from native components. Dynamic menu items, custom icons, localization, and deep-link support included.](https://docs.median.co/docs/native-navigation-overview)
 
-[](https://docs.median.co/docs/push-notifications-overview)
-
 [Push notifications](https://docs.median.co/docs/push-notifications-overview)
 
 [Deep integrations with OneSignal, Braze, Klaviyo, Iterable, Salesforce Marketing Cloud, and more. Foreground notifications, in-app messages, and programmatic triggers.](https://docs.median.co/docs/push-notifications-overview)
-
-[](https://docs.median.co/docs/native-plugins-overview)
 
 [Native plugins](https://docs.median.co/docs/native-plugins-overview)
 
@@ -188,7 +182,7 @@ The WebView caches assets like a browser. You can use Cache-Control response hea
 Set "allowInsecure": false in the security.network object of your appConfig.json. This restricts all network traffic to HTTPS only. If the security object is missing in your appConfig.json, you can create it as shown in the example below:
 
 <CodeGroup>
-  ```bash bash
+  ```json json
   "security": {
       "network": {
           "allowInsecure": false
@@ -196,35 +190,3 @@ Set "allowInsecure": false in the security.network object of your appConfig.json
   }
   ```
 </CodeGroup>
-
-***
-
-[Welcome to Median.co](/docs/overview)
-
-[Security & Privacy](/docs/security)
-
-Copy Page
-
-* * [The three layers of your Mobile App](#the-three-layers-of-your-mobile-app)
-
-  * * [Your web application](#your-web-application)
-    * [The native app (Median's layer)](#the-native-app-medians-layer)
-    * [iOS & Android platform](#ios--android-platform)
-
-  * [Inside the Webview](#inside-the-webview)
-
-  * * [JavaScript and CSS compatibility](#javascript-and-css-compatibility)
-
-  * [Native UI](#native-ui)
-
-  * [Native Enhancements](#native-enhancements)
-
-  * [Platform support & WebView compatibility](#platform-support--webview-compatibility)
-
-  * * [Checking specific API support](#checking-specific-api-support)
-
-  * [Performance considerations](#performance-considerations)
-
-  * [Solutions Architecture Services](#solutions-architecture-services)
-
-  * [Frequently Asked Questions](#frequently-asked-questions)
