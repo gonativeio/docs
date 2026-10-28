@@ -1,0 +1,12 @@
+.DS_Store
+Thumbs.db
+.nanocoder
+.sf
+
+# Node dependencies (added for cspell / MDX-check tooling)
+node_modules/
+npm-debug.log*
+
+# Environment variables — never commit secrets
+.env
+.env.local
