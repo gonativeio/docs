@@ -7,38 +7,22 @@ Push notifications let you send timely messages directly to your users' phones, 
 
 **What you'll learn:**
 
-* How to register users with OneSignal for push notifications
-* How to create backend functions that send notifications
-* How to trigger notifications based on app events
-* How to test and troubleshoot your notification system
+- How to register users with OneSignal for push notifications
+- How to create backend functions that send notifications
+- How to trigger notifications based on app events
+- How to test and troubleshoot your notification system
 
 ## Prerequisites
 
 You need:
 
-✓ A Base44 app with Median's JavaScript Bridge already installed
-
-✓ OneSignal account set up with iOS/Android
-
-✓ OneSignal connected to your Median.co app
-
-✓ Your OneSignal App ID (from OneSignal Settings → Keys & IDs)
-
-✓ Your OneSignal REST API Key (from OneSignal Settings → Keys & IDs)
+- [ ] A Base44 app with Median's JavaScript Bridge already installed
+- [ ] OneSignal account set up with iOS/Android
+- [ ] OneSignal connected to your Median.co app
+- [ ] Your OneSignal App ID (from OneSignal Settings → Keys & IDs)
+- [ ] Your OneSignal REST API Key (from OneSignal Settings → Keys & IDs)
 
 **Note:** If you haven't installed the Median JavaScript Bridge yet, do that first by following our [Getting Started with Base44](https://docs.median.co/docs/getting-started-with-base44) guide. The JavaScript Bridge enables your Base44 app to access native phone features.
-
-**What you should have:**
-
-✓ Your OneSignal App ID (you added this to Median already)
-
-✓ Your OneSignal REST API Key (found in OneSignal Settings → Keys & IDs)
-
-✓ A Base44 app with integrated backend (automatic with Base44)
-
-Need help with OneSignal setup? Follow our [OneSignal guide first](https://docs.median.co/docs/onesignal).
-
-***
 
 ## Step 1: Register users with OneSignal on login
 
@@ -52,8 +36,6 @@ Add Median JavaScript Bridge methods to register users with OneSignal for push n
 
 **Important for Base44:** Remember to publish your app after the AI implements this code, as changes don't take effect until published.
 
-***
-
 ## Step 2: Add OneSignal external user ID column
 
 Add a field to your user profiles to track OneSignal registration. Copy this prompt into Base44's Builder chat:
@@ -63,8 +45,6 @@ Add a column called onesignal_external_user_id to the user profiles in the datab
 ```
 
 **Base44 advantage:** Since Base44 handles database management automatically, you don't need to worry about separate backend setup like with other platforms.
-
-***
 
 ## Step 3: Store your OneSignal credentials
 
@@ -81,8 +61,6 @@ Create secure storage for OneSignal credentials in the backend:
 
 Remember to publish changes after implementation.
 ```
-
-***
 
 ## Step 4: Create backend function to send notifications
 
@@ -104,8 +82,6 @@ Implement this using Base44's integrated backend system.
 
 After Base44 implements the function, remember to publish your app to make the backend function available.
 
-***
-
 ## Step 5: Test with a button
 
 Test that notifications work by calling your backend function. Copy this prompt into Base44's Builder chat:
@@ -122,8 +98,6 @@ Remember to publish changes after implementation.
 
 > **Base44 debugging tip:** Use `alert()` instead of `console.log()` for user feedback, as console output may not be visible in mobile apps.
 
-***
-
 ## Step 6 (Optional): Trigger notifications based on events
 
 If you want to send notifications based on events in your database, copy this prompt into Base44's Builder chat:
@@ -139,19 +113,3 @@ Implementation should:
 
 Customize this for my specific use case: [explain what should trigger notifications in your app]
 ```
-
-***
-
-[Getting Started with Base44](/docs/getting-started-with-base44)
-
-[Adding Haptic Feedback to Your Base44 App](/docs/adding-haptic-feedback-to-your-base44-app)
-
-Copy Page
-
-* * [Prerequisites](#prerequisites)
-  * [Step 1: Register users with OneSignal on login](#step-1-register-users-with-onesignal-on-login)
-  * [Step 2: Add OneSignal external user ID column](#step-2-add-onesignal-external-user-id-column)
-  * [Step 3: Store your OneSignal credentials](#step-3-store-your-onesignal-credentials)
-  * [Step 4: Create backend function to send notifications](#step-4-create-backend-function-to-send-notifications)
-  * [Step 5: Test with a button](#step-5-test-with-a-button)
-  * [Step 6 (Optional): Trigger notifications based on events](#step-6-optional-trigger-notifications-based-on-events)
