@@ -9,17 +9,15 @@ Push notifications let you send timely messages directly to your users' phones, 
 
 You need:
 
-- [] A Lovable app with Median's JavaScript Bridge already installed
-- [] OneSignal account set up with iOS/Android
-- [] OneSignal connected to your Median.co app
-- [] Your OneSignal App ID (from OneSignal Settings → Keys & IDs)
-- [] Your OneSignal REST API Key (from OneSignal Settings → Keys & IDs)
+- [ ] A Lovable app with Median's JavaScript Bridge already installed
+- [ ] OneSignal account set up with iOS/Android
+- [ ] OneSignal connected to your Median.co app
+- [ ] Your OneSignal App ID (from OneSignal Settings → Keys & IDs)
+- [ ] Your OneSignal REST API Key (from OneSignal Settings → Keys & IDs)
 
 **Note:** If you haven't installed the Median JavaScript Bridge yet, do that first by following our [Getting Started with Lovable](https://docs.median.co/docs/getting-started-with-lovable) guide. The JavaScript Bridge enables your Lovable app to access native phone features.
 
 Need help with OneSignal setup? Follow our [OneSignal guide first](https://docs.median.co/docs/onesignal).
-
----
 
 ## Step 1: Register users with OneSignal
 
@@ -31,8 +29,6 @@ Add Median JavaScript Bridge methods to register users with OneSignal for push n
 
 **What this does:** Users get registered with OneSignal using their email as an identifier. Now you can send them targeted notifications.
 
----
-
 ## Step 2: Store OneSignal info in database
 
 Add a field to your profiles table to track OneSignal registration. Copy this prompt into Lovable:
@@ -40,8 +36,6 @@ Add a field to your profiles table to track OneSignal registration. Copy this pr
 ```
 Add a column called onesignal_external_user_id to the profiles table. Make it a TEXT field that stores the user's email address. Create an index on this column for faster lookups.
 ```
-
----
 
 ## Step 3: Add OneSignal credentials to Supabase
 
@@ -52,8 +46,6 @@ Before you can send notifications, store your OneSignal credentials:
 2. Add two secrets:
    - Name: `ONESIGNAL_API_KEY`, Value: \[paste your REST API key]
    - Name: `ONESIGNAL_APP_ID`, Value: \[paste your App ID]
-
----
 
 ## Step 4: Create a function to send notifications
 
@@ -76,8 +68,6 @@ After Lovable creates the function, deploy it:
 supabase functions deploy send-push-notification
 ```
 
----
-
 ## Step 5: Test your notifications
 
 Test that notifications work by calling your edge function. Copy this prompt into Lovable:
@@ -90,8 +80,6 @@ Add a test button to my app's settings page that sends a test push notification 
 
 Show a success or error message after sending.
 ```
-
----
 
 ## Optional: Automate notifications
 
@@ -111,8 +99,6 @@ Then schedule it to run automatically:
 ```
 Create a Supabase cron job that runs check-notifications every [hour/day/week]. Add the SQL to create the cron job in pg_cron format.
 ```
-
----
 
 ## Common issues
 
@@ -137,8 +123,6 @@ Push notifications only work on physical iOS/Android devices. But you can:
 - Check the OneSignal dashboard to see if users are registered
 - View Edge Function logs in Supabase to see if notifications are being sent
 - Use `console.log`s to confirm the OneSignal registration code is running
-
----
 
 ## Next steps
 
