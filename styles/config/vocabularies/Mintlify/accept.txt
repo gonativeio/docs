@@ -1,0 +1,156 @@
+# Vale accepted vocabulary for the Median docs
+# Location: styles/config/vocabularies/Mintlify/accept.txt
+#
+# - One term per line. Lines starting with # are comments.
+# - Entries are case-sensitive regular expressions.
+# - (?i) at the start of an entry accepts any casing.
+# - Text in `backticks` and code blocks is not spellchecked, so code
+#   identifiers and package names don't need to be listed here.
+
+# Brand / product / company names (official casing only)
+AdMob
+Appknox
+AppsFlyer
+Booya
+Bryj
+Chromecast
+CocoaPods
+Exponea
+Fontello
+GoNative
+HealthKit
+hyperoslo
+hyperoslo's
+Intune
+jsrsasign
+Kaltura
+Klaviyo
+Mintlify
+Movin
+OneSignal
+Optimizely
+Ortto
+Replit
+RootBeer
+salesforcecli
+Scandit
+Sendbird
+SharedPreferences
+simplewebauthn
+Siri
+StoreKit
+Streamable
+Supabase
+TestFlight
+UserDefaults
+Visualforce
+WebAuthn
+Webflow
+Xtremepush
+
+# Abbreviations / acronyms
+AARRBBGG
+AASA
+AOSP
+ARPU
+CCPA
+CODABAR
+FERPA
+GAID
+IDFA
+ITMS
+rdmd
+ROAS
+RRBBGG
+SCIM
+SKAN
+TEAMID
+TOTP
+UDID
+WCAG
+
+# Technical / domain terms
+appbrowser
+appreview
+appstore
+artboard
+assetlinks
+autorenew
+backgrounded
+(?i)barcodes
+biometrically
+bitcode
+checkmarks
+cicd
+cofounder
+datamatrix
+deeplink
+Deepviews
+ecommerce
+exfiltrated
+fasttracks
+(?i)fintech
+flexbox
+(?i)geofencing
+(?i)geolocation
+glassmorphism
+gonativeappconfig
+inapp
+jailbreaking
+(?i)jailbroken
+jank
+localpreferences
+millimoles
+mimetypes
+mmol
+navigations
+passwordless
+phasescriptexecution
+preproductions
+quickstarts
+rebranded
+relock
+relocking
+sandboxed
+serviceworker
+sideloaded
+signups
+(?i)symbologies
+(?i)sysdiagnose
+telehealth
+(?i)telemedicine
+thumbturn
+timesheet
+unitless
+untampered
+upce
+upvote
+vibecode
+vibecoding
+webcredentials
+whitelabel
+(?i)whitelabeled
+(?i)whitelabeling
+
+# Placeholder / obfuscated codes
+avdd
+dnxqyl
+soclogin
+xmeaavx
+ynbmjx
+
+# British spellings
+# Commented out so Vale flags them while the docs are standardized on
+# US English. To accept them temporarily, remove the "# " from each line.
+# behaviour
+# behaviours
+# colours
+# initialisation
+# initialise
+# millimetres
+# (?i)optimisation
+# (?i)optimising
+# personalised
+# (?i)practise
+# (?i)practises
+# recognised
