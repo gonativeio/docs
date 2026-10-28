@@ -1,0 +1,74 @@
+name: Documentation issue
+description: Report something wrong, unclear, or missing in the Median docs
+title: "[Docs]: "
+labels: ["documentation", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping improve the Median docs!
+
+        This form is for problems with the **documentation itself**. For help with your app or account, please contact support instead (see the links on the previous page).
+
+        ⚠️ **This repository is public.** Don't include API keys, license keys, private app URLs, or other sensitive information.
+
+  - type: input
+    id: path
+    attributes:
+      label: Page
+      description: The URL or path of the docs page with the issue.
+      placeholder: https://docs.median.co/docs/overview
+    validations:
+      required: true
+
+  - type: dropdown
+    id: issue-type
+    attributes:
+      label: Type of issue
+      options:
+        - Incorrect or outdated information
+        - Code sample doesn't work
+        - Missing information
+        - Unclear or confusing explanation
+        - Broken link or image
+        - Typo or formatting
+        - Other
+    validations:
+      required: true
+
+  - type: dropdown
+    id: platform
+    attributes:
+      label: Platform
+      description: Which platform does the issue relate to?
+      options:
+        - iOS
+        - Android
+        - Both
+        - Not platform-specific
+    validations:
+      required: false
+
+  - type: textarea
+    id: description
+    attributes:
+      label: What's the problem?
+      description: Describe what's wrong or missing. If a step or code sample didn't work, tell us what you expected and what happened instead.
+    validations:
+      required: true
+
+  - type: textarea
+    id: suggestion
+    attributes:
+      label: Suggested fix
+      description: Optional. If you know what the page should say, let us know.
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: confirmation
+    attributes:
+      label: Before submitting
+      options:
+        - label: I haven't included any API keys, license keys, or other private information.
+          required: true
