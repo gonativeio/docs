@@ -107,16 +107,16 @@ Enable ATT and prompt the user with the following commands:
   median.admob.request.tracking({ callback: trackingCallback });
 
 function trackingCallback(result) {
-if (result.status === 'authorized') {
-alert('Thank you for enabling personalized ads');
-}
+  if (result.status === 'authorized') {
+    alert('Thank you for enabling personalized ads');
+  }
 }
 
 // Using a promise
 median.admob.request.tracking().then(function(result) {
-if (result.status === 'authorized') {
-alert('Thank you for enabling personalized ads');
-}
+  if (result.status === 'authorized') {
+    alert('Thank you for enabling personalized ads');
+  }
 });
 
 ```
