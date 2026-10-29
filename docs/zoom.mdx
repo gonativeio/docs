@@ -8,9 +8,10 @@ description: "Add native Zoom Video to provide your users seamless and integrate
 The Zoom Plugin allows you to add [embedded video experiences](https://developers.zoom.us/docs/video-sdk/) leveraging Zoom's core technology such as in-app video calling. Provide advanced video features and ensure a cohesive and integrated experience for your users.
 
 <Check>
-  ### Developer Demo
+**Developer Demo**
 
-  Display our demo page in your app to test during development [https://median.dev/zoom/](https://median.dev/zoom/)
+Display our demo page in your app to test during development [https://median.dev/zoom/](https://median.dev/zoom/)
+
 </Check>
 
 ## Implementation
@@ -34,15 +35,16 @@ Run the following JS Bridge method with the JWT token, meeting number, and an op
       }
   }
 
-  // This command returns a promise if 'callback' is not passed
-  median.zoom.join({
-     token: string // JWT
-     sessionName: string // optional
-     userIdentity: string // optional
-     password: string // optional
-     callback: string | function //optional
-  });
-  ```
+// This command returns a promise if 'callback' is not passed
+median.zoom.join({
+token: string // JWT
+sessionName: string // optional
+userIdentity: string // optional
+password: string // optional
+callback: string | function //optional
+});
+
+```
 </CodeGroup>
 
 > Details of the query parameters:
@@ -62,7 +64,8 @@ Copy Page
 
 * * [Overview](#overview)
 
-  * [Implementation](#implementation)
+* [Implementation](#implementation)
 
-  * * [Step 1: Generate JWT Token](#step-1-generate-jwt-token)
-    * [Step 2: Run JavaScript Bridge command](#step-2-run-javascript-bridge-command)
+* * [Step 1: Generate JWT Token](#step-1-generate-jwt-token)
+  * [Step 2: Run JavaScript Bridge command](#step-2-run-javascript-bridge-command)
+```

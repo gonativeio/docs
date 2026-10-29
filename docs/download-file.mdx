@@ -9,15 +9,15 @@ description: "Your app can handle file downloads and inline viewing by following
 
 Files with this header will be displayed directly in the app's webview, similar to how HTML content is rendered.
 
-* Ideal for PDFs and other media intended to be viewed in-app.
-* You may need to use [Native Navigation](/docs/native-navigation-overview) to provide navigation options for users to return to other parts of your app.
+- Ideal for PDFs and other media intended to be viewed in-app.
+- You may need to use [Native Navigation](/docs/native-navigation-overview) to provide navigation options for users to return to other parts of your app.
 
 ### `Content-Disposition: attachment`
 
 Files with this header will be automatically downloaded to the user's device:
 
-* iOS: Triggers the native “Share” dialog, allowing the user to open the file in the Files app or compatible apps.
-* Android: Prompts the user with an “Open with” dialog after download.
+- iOS: Triggers the native “Share” dialog, allowing the user to open the file in the Files app or compatible apps.
+- Android: Prompts the user with an “Open with” dialog after download.
 
 ## Implementation Guide
 
@@ -26,9 +26,10 @@ If you are not able to set the `Content-Disposition` header you may use the Java
 URLs need to be publicly available. Localhost URLs are **not supported**
 
 <Check>
-  ### Developer Demo
+**Developer Demo**
 
-  You can see the PDF viewer in action on our demo page [https://median.dev/pdf-download](https://median.dev/pdf-download)
+You can see the PDF viewer in action on our demo page [https://median.dev/pdf-download](https://median.dev/pdf-download)
+
 </Check>
 
 ### Download File at Specified URL
@@ -46,12 +47,12 @@ Use the following command to download a file via the Median JavaScript Bridge:
 
 **iOS Behavior**
 
-* The file is downloaded and passed to the native “Open with” system dialog.
+- The file is downloaded and passed to the native “Open with” system dialog.
 
 **Android Behavior**
 
-* Downloads Folder Enabled (Permissions tab): Downloads silently. If open: true is set, the "Open with" dialog is displayed.
-* Private to App Enabled (Permissions tab): Always shows the "Open with" dialog after download.
+- Downloads Folder Enabled (Permissions tab): Downloads silently. If open: true is set, the "Open with" dialog is displayed.
+- Private to App Enabled (Permissions tab): Always shows the "Open with" dialog after download.
 
 On iOS, the file is downloaded and passed to the "open with" system dialog.
 
@@ -68,9 +69,10 @@ To download and save an image to the user’s photo gallery (iOS Photos or Andro
 </CodeGroup>
 
 <Check>
-  ### Developer Demo
+**Developer Demo**
 
-  Display our demo page in your app to test during development [https://median.dev/download-functions/](https://median.dev/download-functions/)
+Display our demo page in your app to test during development [https://median.dev/download-functions/](https://median.dev/download-functions/)
+
 </Check>
 
 ### Viewing PDF files in the app
@@ -80,10 +82,8 @@ You can view PDF files directly within your app using one of the following metho
 **Option 1: Open via URL**
 
 <CodeGroup>
-  ```bash bash
-  // Navigate to the PDF file's url
-  window.location.href = 'https://yoursite.com/file.pdf'
-  ```
+  ```bash bash // Navigate to the PDF file's url window.location.href =
+  'https://yoursite.com/file.pdf' ```
 </CodeGroup>
 
 **Option 2: Use JavaScript Bridge**
@@ -106,26 +106,26 @@ For iOS, we utilize the built-in PDFKit framework provided by Apple. For Android
 
 If the device supports printing services, users can print PDF files directly from the viewer:
 
-* iOS: Tap the Print icon in the bottom-right corner of the PDF viewer.
-* Android: Tap the Print icon in the top-right corner.
+- iOS: Tap the Print icon in the bottom-right corner of the PDF viewer.
+- Android: Tap the Print icon in the top-right corner.
 
-***
+---
 
 ### Next Steps
 
-* [App Settings](/docs/app-settings)
-* [Downloads Directory](/docs/downloads-directory)
+- [App Settings](/docs/app-settings)
+- [Downloads Directory](/docs/downloads-directory)
 
 Copy Page
 
-* * [Supported Content-Disposition Headers](#supported-content-disposition-headers)
+- - [Supported Content-Disposition Headers](#supported-content-disposition-headers)
 
-  * * [Content-Disposition: inline](#content-disposition-inline)
-    * [Content-Disposition: attachment](#content-disposition-attachment)
+  - - [Content-Disposition: inline](#content-disposition-inline)
+    - [Content-Disposition: attachment](#content-disposition-attachment)
 
-  * [Implementation Guide](#implementation-guide)
+  - [Implementation Guide](#implementation-guide)
 
-  * * [Download File at Specified URL](#download-file-at-specified-url)
-    * [Save Image to Photos](#save-image-to-photos)
-    * [Viewing PDF files in the app](#viewing-pdf-files-in-the-app)
-    * [Printing PDF files](#printing-pdf-files)
+  - - [Download File at Specified URL](#download-file-at-specified-url)
+    - [Save Image to Photos](#save-image-to-photos)
+    - [Viewing PDF files in the app](#viewing-pdf-files-in-the-app)
+    - [Printing PDF files](#printing-pdf-files)

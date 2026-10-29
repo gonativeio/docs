@@ -8,9 +8,10 @@ Set default styling options and Light/Dark mode for the device status bar while 
 You may also customize and dynamically set the status bar visibility and style during runtime from your website using the Median Javascript Bridge
 
 <Check>
-  ### Developer Demo
+**Developer Demo**
 
-  Display our demo page in your app to test during development [https://median.dev/status-bar/](https://median.dev/status-bar/)
+Display our demo page in your app to test during development [https://median.dev/status-bar/](https://median.dev/status-bar/)
+
 </Check>
 
 ## Configuration Options
@@ -27,11 +28,11 @@ Median supports four parameters for controlling status bar appearance:
 <Warning>
   ### Overlay setting on Android
 
-  With the Overlay setting enabled on Android the keyboard will overlay on top of your web content which can cause issues for users completing forms. If you use forms in your app consider two solutions to improve UX.
+With the Overlay setting enabled on Android the keyboard will overlay on top of your web content which can cause issues for users completing forms. If you use forms in your app consider two solutions to improve UX.
 
-  1. Disable the Overlay setting via the JavaScript Bridge when showing a page that includes forms.
-  2. Make use of the keyboard listener functions to disable/enable the Overlay setting via the JavaScript Bridge when the keyboard is active/inactive.
-</Warning>
+1. Disable the Overlay setting via the JavaScript Bridge when showing a page that includes forms.
+2. Make use of the keyboard listener functions to disable/enable the Overlay setting via the JavaScript Bridge when the keyboard is active/inactive.
+   </Warning>
 
 ## Setting the Status Bar at Runtime
 
@@ -67,16 +68,17 @@ The example code below creates a red status bar with 50% alpha, white icons, and
     });
   }
 
-  // Or apply automatically when the app loads
-  function median_library_ready() {
-    median.statusbar.set({
-      style: 'light',
-      color: '80ff0000',
-      overlay: true,
-      blur: true
-    });
-  }
-  ```
+// Or apply automatically when the app loads
+function median_library_ready() {
+median.statusbar.set({
+style: 'light',
+color: '80ff0000',
+overlay: true,
+blur: true
+});
+}
+
+```
 </CodeGroup>
 
 ***
@@ -89,7 +91,8 @@ Copy Page
 
 * * [Configuration Options](#configuration-options)
 
-  * [Setting the Status Bar at Runtime](#setting-the-status-bar-at-runtime)
+* [Setting the Status Bar at Runtime](#setting-the-status-bar-at-runtime)
 
-  * * [Option 1: Auto-Match the Status Bar to Your Page Background](#option-1-auto-match-the-status-bar-to-your-page-background)
-    * [Option 2: Set Custom Status Bar Styles](#option-2-set-custom-status-bar-styles)
+* * [Option 1: Auto-Match the Status Bar to Your Page Background](#option-1-auto-match-the-status-bar-to-your-page-background)
+  * [Option 2: Set Custom Status Bar Styles](#option-2-set-custom-status-bar-styles)
+```

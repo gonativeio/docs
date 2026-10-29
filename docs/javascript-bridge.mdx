@@ -10,9 +10,10 @@ There are two ways to use the JavaScript Bridge: the [JavaScript Bridge Library]
 <Check>
   ### Legacy GoNative Namespace
 
-  For existing apps that were last updated on the GoNative.io platform you must use `gonative` rather than `median`. For example `gonative.statusbar.set()` or `gonative://statusbar/set`.
+For existing apps that were last updated on the GoNative.io platform you must use `gonative` rather than `median`. For example `gonative.statusbar.set()` or `gonative://statusbar/set`.
 
-  For apps that have been updated on Median.co you may use either `gonative` or `median`.
+For apps that have been updated on Median.co you may use either `gonative` or `median`.
+
 </Check>
 
 ## Related Documentation
@@ -82,9 +83,10 @@ There are two ways to use the JavaScript Bridge: the [JavaScript Bridge Library]
 The JavaScript Bridge Library is injected into your webpage DOM at runtime and is available on any page displayed in the app. You can call `median.module.function()` once the library is ready.
 
 <Check>
-  ### Developer Demo
+**Developer Demo**
 
-  Display our demo page in your app to test during development [https://median.dev/library-ready/](https://median.dev/library-ready/)
+Display our demo page in your app to test during development [https://median.dev/library-ready/](https://median.dev/library-ready/)
+
 </Check>
 
 When using frameworks like React, Vue, or Angular, the `median` object may not be in scope. Options:
@@ -96,7 +98,8 @@ When using frameworks like React, Vue, or Angular, the `median` object may not b
 <Check>
   ### `Median` not `median` when using NPM package
 
-  When using the NPM Package make note to use capitalized `Median` to call functions rather than lowercase `median` which is reserved for the the injected JavaScript library. Your IDE should be configured to help with code hinting to help with completion and avoid semantic errors.
+When using the NPM Package make note to use capitalized `Median` to call functions rather than lowercase `median` which is reserved for the the injected JavaScript library. Your IDE should be configured to help with code hinting to help with completion and avoid semantic errors.
+
 </Check>
 
 ### Calling Commands on Page Load
@@ -142,9 +145,9 @@ When URLs are specified, only matching pages can execute JavaScript Bridge comma
 
 Important Considerations
 
-* **App Store updates:** Changes to Allowed URLs require a new app version. Users must install the updated version from the Apple App Store or Google Play Store for the changes to take effect.
+- **App Store updates:** Changes to Allowed URLs require a new app version. Users must install the updated version from the Apple App Store or Google Play Store for the changes to take effect.
 
-* **Testing:** Because non-matching pages cannot access the Bridge, an incorrect configuration can cause Bridge commands to stop working during development. We recommend leaving Allowed URLs empty during development and enabling restrictions when preparing your production app.
+- **Testing:** Because non-matching pages cannot access the Bridge, an incorrect configuration can cause Bridge commands to stop working during development. We recommend leaving Allowed URLs empty during development and enabling restrictions when preparing your production app.
 
 <Frame caption="Median App Studio - Restricting Bridge Access">
   <img src="/images/docs/e7c0006951ce8101160ae4397f6c39bde388022453ca616eeb12406a3d7c0ccb-Screenshot_2026-09-16_at_08.06.28.png" />
@@ -154,28 +157,28 @@ Important Considerations
 
 ### Why do I see 'median is not defined' in the console?
 
-**Why do I see 'median is not defined' in the console?⎘ Copy link
+\*\*Why do I see 'median is not defined' in the console?⎘ Copy link
 
 The library is injected at runtime by the app and is not available in a desktop browser. Use the [NPM Package](https://docs.median.co/docs/npm-package) if you need to develop or test outside the app, and disable library injection in App Studio → Website Overrides when using the package.
 
-***
+---
 
 ### Next Steps
 
-* [NPM Package](/docs/npm-package)
-* [Device Info](/docs/device-info)
+- [NPM Package](/docs/npm-package)
+- [Device Info](/docs/device-info)
 
 Copy Page
 
-* * [Related Documentation](#related-documentation)
+- - [Related Documentation](#related-documentation)
 
-  * [JavaScript Bridge Library](#javascript-bridge-library)
+  - [JavaScript Bridge Library](#javascript-bridge-library)
 
-  * * [Calling Commands on Page Load](#calling-commands-on-page-load)
-    * [Promises](#promises)
+  - - [Calling Commands on Page Load](#calling-commands-on-page-load)
+    - [Promises](#promises)
 
-  * [Median Protocol](#median-protocol)
+  - [Median Protocol](#median-protocol)
 
-  * [Restricting Bridge Access by URL](#restricting-bridge-access-by-url)
+  - [Restricting Bridge Access by URL](#restricting-bridge-access-by-url)
 
-  * [Frequently Asked Questions](#frequently-asked-questions)
+  - [Frequently Asked Questions](#frequently-asked-questions)

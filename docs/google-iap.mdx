@@ -17,9 +17,10 @@ Median’s Google Play In-App Purchase flow includes these steps:
 6. Provide users with subscription management
 
 <Check>
-  ### Developer Demo
+**Developer Demo**
 
-  Display our demo page in your app to test during development [https://median.dev/iap/](https://median.dev/iap/)
+Display our demo page in your app to test during development [https://median.dev/iap/](https://median.dev/iap/)
+
 </Check>
 
 ## Configure IAP in Google Play Console
@@ -64,10 +65,8 @@ The app will verify the list of products with Google Play and retrieve each prod
 > Or you may return the products data at runtime via a promise (in async function)
 
 <CodeGroup>
-  ```bash bash
-  var productsData = await median.iap.info();
-  console.log(productsData);
-  ```
+  ```bash bash var productsData = await median.iap.info();
+  console.log(productsData); ```
 </CodeGroup>
 
 > In both cases `productsData` will be of the form:
@@ -147,49 +146,45 @@ The app will verify the list of products with Google Play and retrieve each prod
 
 Each product will have the following fields:
 
-* `productID`: the identifier set in Google Play that matches those in the `productsUrl`.
+- `productID`: the identifier set in Google Play that matches those in the `productsUrl`.
 
-* `type`: "inapp" or "subs"
+- `type`: "inapp" or "subs"
 
-* `title`: from Google Play Console
+- `title`: from Google Play Console
 
-* `name`: from Google Play Console
+- `name`: from Google Play Console
 
-* `description`: from Google Play Console
+- `description`: from Google Play Console
 
-* `purchaseOfferDetails` (if the type is "inapp"):
+- `purchaseOfferDetails` (if the type is "inapp"):
+  - `formattedPrice`: the price you should display to your user. It will be localized to their currency.
+  - `priceAmountMicros`: the price in micro-units, e.g. 1 USD = 1000000 micros.
+  - `priceCurrencyCode`: the 3-letter currency code
 
-  * `formattedPrice`: the price you should display to your user. It will be localized to their currency.
-  * `priceAmountMicros`: the price in micro-units, e.g. 1 USD = 1000000 micros.
-  * `priceCurrencyCode`: the 3-letter currency code
+- `subscriptionOfferDetails`(If the type is "subs"):
+  - `offerId`: offer id associated with the subscription product.
 
-* `subscriptionOfferDetails`(If the type is "subs"):
+  - `basePlanId`: base plan id associated with the subscription product.
 
-  * `offerId`: offer id associated with the subscription product.
+  - `offerTags`: offer tags associated with this Subscription Offer.
 
-  * `basePlanId`: base plan id associated with the subscription product.
+  - `offerToken`: offer token required to pass in launchBillingFlow to purchase the subscription product with these pricing phases.
 
-  * `offerTags`: offer tags associated with this Subscription Offer.
+  - `pricingPhases`: pricing phases for purchasing an item through a offer. Pricing phases contains time ordered list of PricingPhase
+    - `formattedPrice`: the price you should display to your user. It will be localized to their currency.
 
-  * `offerToken`: offer token required to pass in launchBillingFlow to purchase the subscription product with these pricing phases.
+    - `priceAmountMicros`: the price in micro-units, e.g. 1 USD = 1000000 micros.
 
-  * `pricingPhases`: pricing phases for purchasing an item through a offer. Pricing phases contains time ordered list of PricingPhase
+    - `priceCurrencyCode`: the 3-letter currency code
 
-    * `formattedPrice`: the price you should display to your user. It will be localized to their currency.
+    - `billingPeriod`: billing period for which the given price applies, specified in ISO 8601 format.
 
-    * `priceAmountMicros`: the price in micro-units, e.g. 1 USD = 1000000 micros.
+    - `billingCycleCount`: number of cycles for which the billing period is applied.
 
-    * `priceCurrencyCode`: the 3-letter currency code
-
-    * `billingPeriod`: billing period for which the given price applies, specified in ISO 8601 format.
-
-    * `billingCycleCount`: number of cycles for which the billing period is applied.
-
-    * `recurrenceMode`: recurrence mode of the pricing phase. Can be one of 3 integer values.
-
-      * 1: Infinitely recurring
-      * 2: Finitely recurring
-      * 3: Non recurring
+    - `recurrenceMode`: recurrence mode of the pricing phase. Can be one of 3 integer values.
+      - 1: Infinitely recurring
+      - 2: Finitely recurring
+      - 3: Non recurring
 
 In the above example a subscription named "Monthly Plan" is being offered with two subscription options. The first subscription option includes a free trial wherein the user/customer will go through the two pricing phases - a 30 day free trial followed by a monthly charge of $9. The second subscription offer omits the free trial phase and is a direct purchase.
 
@@ -209,16 +204,17 @@ Create a page on your website that shows the available items for purchase. It sh
   });
   console.log(purchasesData);
 
-  //Or via a promise
-  median.iap.purchase({
-    'productID': 'product_id', // Required
-    'offerToken', 'offer_token' // Only required for "subs" type subscription purchases
-  }).then(function(purchasesData){
-    console.log(purchasesData);
-  }).catch(function(error){
-  	console.log(error);
-  });
-  ```
+//Or via a promise
+median.iap.purchase({
+'productID': 'product_id', // Required
+'offerToken', 'offer_token' // Only required for "subs" type subscription purchases
+}).then(function(purchasesData){
+console.log(purchasesData);
+}).catch(function(error){
+console.log(error);
+});
+
+````
 </CodeGroup>
 
 > Your app will start the in-app purchase flow and return `purchasesData` in the format listed further below. If the purchase fails an error will be thrown with the error provided by Google.
@@ -240,13 +236,14 @@ Create a page on your website that shows the available items for purchase. It sh
 >   * `WITH_TIME_PRORATION` - The new plan takes effect immediately, and the remaining time will be prorated and credited to the user.
 
 <CodeGroup>
-  ```bash bash
-  median.iap.purchase({
-    productID: "annual_membership",
-    previousPurchaseToken: "aaaabbbbccccddddeeeeffff",
-    prorationMode: "IMMEDIATE_AND_CHARGE_PRORATED_PRICE",
-  });
-  ```
+```bash bash
+median.iap.purchase({
+  productID: "annual_membership",
+  previousPurchaseToken: "aaaabbbbccccddddeeeeffff",
+  prorationMode: "IMMEDIATE_AND_CHARGE_PRORATED_PRICE",
+});
+````
+
 </CodeGroup>
 
 ## Purchase verification and fulfillment, and purchase restoration
@@ -270,10 +267,8 @@ On app launch, and after any purchases are made, the app will call a JavaScript 
 > Or you may return the purchases at runtime via a promise (in async function)
 
 <CodeGroup>
-  ```bash bash
-  var purchasesData = await median.iap.purchases();
-  console.log(purchasesData);
-  ```
+  ```bash bash var purchasesData = await median.iap.purchases();
+  console.log(purchasesData); ```
 </CodeGroup>
 
 > In both cases `purchasesData` will be of the form:
@@ -302,16 +297,16 @@ On app launch, and after any purchases are made, the app will call a JavaScript 
 
 Each purchase item in the `allPurchases` array may have these fields:
 
-* `orderId`: identifies the purchase transaction
-* `packageName`: should match the `packageName` of your app
-* `productID`: the identifier for what was purchased
-* `purchaseTime`: milliseconds since the unix epoch (Jan 1 1970)
-* `purchaseTimeString`: formatted as a string
-* `purchaseState`: 0 – purchased, 1 – canceled, 2 – pending
-* `purchaseString`: “purchased”, “canceled”, “pending”, or “unknown”
-* `acknowledged`: indicates the app has confirmed the purchase with Google Play
-* `autoRenewing`: indicates the purchase will auto-renew. Note that this will be set to false if the user cancels their subscription.
-* `purchaseToken`: a string that can be used to verify the purchase with Google
+- `orderId`: identifies the purchase transaction
+- `packageName`: should match the `packageName` of your app
+- `productID`: the identifier for what was purchased
+- `purchaseTime`: milliseconds since the unix epoch (Jan 1 1970)
+- `purchaseTimeString`: formatted as a string
+- `purchaseState`: 0 – purchased, 1 – canceled, 2 – pending
+- `purchaseString`: “purchased”, “canceled”, “pending”, or “unknown”
+- `acknowledged`: indicates the app has confirmed the purchase with Google Play
+- `autoRenewing`: indicates the purchase will auto-renew. Note that this will be set to false if the user cancels their subscription.
+- `purchaseToken`: a string that can be used to verify the purchase with Google
 
 The `allPurchases` array will list all current subscriptions. Any expired subscriptions will not longer appear.
 
@@ -321,11 +316,7 @@ You may wish to provide links for your users to manage their subscriptions.
 
 > To open the Google Play page that lists all subscriptions for all of the user’s apps (not just your app), open the URL:
 
-<CodeGroup>
-  ```bash bash
-  median.iap.manageAllSubscriptions();
-  ```
-</CodeGroup>
+<CodeGroup>```bash bash median.iap.manageAllSubscriptions(); ```</CodeGroup>
 
 > To allow the user to manage just your app’s subscription with the specified product ID, open the URL:
 
@@ -348,7 +339,8 @@ Your test devices (including simulator devices) must have Google Play Store inst
 <Warning>
   ### Device considerations for testing Google Play IAP
 
-  Your test device must have Google Play installed and be signed in. Our Appetize browser-based simulators do not support Google Play and a physical Android device or local simulator must be used to test IAP.
+Your test device must have Google Play installed and be signed in. Our Appetize browser-based simulators do not support Google Play and a physical Android device or local simulator must be used to test IAP.
+
 </Warning>
 
 On your app’s management page, create an internal test track. Add the test user email to a user list. Once added, each test user go to the Opt-in URL (looks like `https://play.google.com/apps/internaltest/1234321234...`) and accept the Opt-In. Create a release build (or use the Median-built apk) and upload it to the internal test track. The test users should then be able to find the app in the Google Play Store on their devices and install it.
@@ -373,7 +365,7 @@ Once your website code has been updated to support Version 6, you must generate 
 
 [Testing in-app purchases on Android](https://medium.com/bleeding-edge/testing-in-app-purchases-on-android-a6de74f78878)
 
-***
+---
 
 [Apple In-App Purchases](/docs/apple-iap)
 
@@ -381,15 +373,15 @@ Once your website code has been updated to support Version 6, you must generate 
 
 Copy Page
 
-* * [Configure IAP in Google Play Console](#configure-iap-in-google-play-console)
-  * [Host a JSON file with available products](#host-a-json-file-with-available-products)
-  * [App Configuration](#app-configuration)
-  * [IAP Products and Status](#iap-products-and-status)
-  * [Display web UI for purchases](#display-web-ui-for-purchases)
-  * [Initiate purchase](#initiate-purchase)
-  * [Purchase verification and fulfillment, and purchase restoration](#purchase-verification-and-fulfillment-and-purchase-restoration)
-  * [Subscription Management](#subscription-management)
-  * [Ongoing subscription management](#ongoing-subscription-management)
-  * [Testing process](#testing-process)
-  * [Upgrading the Google Play Billing Library](#upgrading-the-google-play-billing-library)
-  * [Google Play Billing References](#google-play-billing-references)
+- - [Configure IAP in Google Play Console](#configure-iap-in-google-play-console)
+  - [Host a JSON file with available products](#host-a-json-file-with-available-products)
+  - [App Configuration](#app-configuration)
+  - [IAP Products and Status](#iap-products-and-status)
+  - [Display web UI for purchases](#display-web-ui-for-purchases)
+  - [Initiate purchase](#initiate-purchase)
+  - [Purchase verification and fulfillment, and purchase restoration](#purchase-verification-and-fulfillment-and-purchase-restoration)
+  - [Subscription Management](#subscription-management)
+  - [Ongoing subscription management](#ongoing-subscription-management)
+  - [Testing process](#testing-process)
+  - [Upgrading the Google Play Billing Library](#upgrading-the-google-play-billing-library)
+  - [Google Play Billing References](#google-play-billing-references)

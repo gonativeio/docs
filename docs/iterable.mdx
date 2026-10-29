@@ -8,26 +8,27 @@ The Iterable plugin connects your app to Iterable’s iOS and Android SDKs ([Ove
 Configure the plugin in the Median dashboard (including API key and optional data region), then use the [JavaScript Bridge](https://median.co/docs/javascript-bridge) to initialize the SDK when needed, register for push, request permission, and identify users by email or user ID.
 
 <Check>
-  ### Developer Demo
+**Developer Demo**
 
-  Display our demo page in your app to test during development [https://median.dev/iterable/](https://median.dev/iterable/)
+Display our demo page in your app to test during development [https://median.dev/iterable/](https://median.dev/iterable/)
+
 </Check>
 
 ## Why use Iterable
 
-* **Push delivery**: Send Iterable campaigns to devices through the native push channel.
-* **Segmentation and targeting**: Align push with Iterable audiences and campaign logic.
-* **Flexible initialization**: Supply `apiKey` in App Studio for automatic setup, or call `initialize` at runtime when you need dynamic configuration.
-* **User identification**: Tie devices to Iterable profiles with `setEmail` or `setUserId`, then refresh the push token with `registerPush` as documented by Iterable.
+- **Push delivery**: Send Iterable campaigns to devices through the native push channel.
+- **Segmentation and targeting**: Align push with Iterable audiences and campaign logic.
+- **Flexible initialization**: Supply `apiKey` in App Studio for automatic setup, or call `initialize` at runtime when you need dynamic configuration.
+- **User identification**: Tie devices to Iterable profiles with `setEmail` or `setUserId`, then refresh the push token with `registerPush` as documented by Iterable.
 
 ## Prerequisites
 
-* [ ] A Median.co app with JavaScript Bridge enabled
-* [ ] Access to **Push Notifications** → Iterable in the Median App Dashboard
-* [ ] An Iterable API key and (if applicable) a data region such as `EU`
-* [ ] Deep linking enabled in the app if notification URLs should open in-app
+- [ ] A Median.co app with JavaScript Bridge enabled
+- [ ] Access to **Push Notifications** → Iterable in the Median App Dashboard
+- [ ] An Iterable API key and (if applicable) a data region such as `EU`
+- [ ] Deep linking enabled in the app if notification URLs should open in-app
 
-***
+---
 
 ## Integration Guide
 
@@ -207,73 +208,74 @@ Use this checklist to ensure Iterable is working correctly in your app:
 
 #### Basic Functionality
 
-* [ ] Plugin configuration includes `active`, valid `apiKey`, and correct `dataRegion` when applicable
-* [ ] `median.iterable.isInitialized()` reflects the expected state after dashboard config or `initialize()`
-* [ ] `median.iterable.requestPermission()` (or `autoRegister`) yields the expected permission outcome
-* [ ] `median.iterable.registerPush()` completes with `success: true` after permission is granted
+- [ ] Plugin configuration includes `active`, valid `apiKey`, and correct `dataRegion` when applicable
+- [ ] `median.iterable.isInitialized()` reflects the expected state after dashboard config or `initialize()`
+- [ ] `median.iterable.requestPermission()` (or `autoRegister`) yields the expected permission outcome
+- [ ] `median.iterable.registerPush()` completes with `success: true` after permission is granted
 
 #### Platform Testing
 
-* [ ] Push registration and receipt behave on Android test devices
-* [ ] Push registration and receipt behave on iOS test devices
-* [ ] Iterable test sends reach the device after `setEmail` / `setUserId` and `registerPush`
+- [ ] Push registration and receipt behave on Android test devices
+- [ ] Push registration and receipt behave on iOS test devices
+- [ ] Iterable test sends reach the device after `setEmail` / `setUserId` and `registerPush`
 
 #### Error Scenarios
 
-* [ ] Failed `initialize` or `registerPush` paths do not leave the app in a broken state (retry or messaging as needed)
-* [ ] Behavior is sane when permission is denied (no silent assumptions that push is enabled)
+- [ ] Failed `initialize` or `registerPush` paths do not leave the app in a broken state (retry or messaging as needed)
+- [ ] Behavior is sane when permission is denied (no silent assumptions that push is enabled)
 
 #### Edge Cases
 
-* [ ] Runtime `initialize` with `apiKey` / `dataRegion` matches your Iterable project
-* [ ] User switching (`setEmail` / `setUserId` changes) is followed by `registerPush` so tokens stay aligned
+- [ ] Runtime `initialize` with `apiKey` / `dataRegion` matches your Iterable project
+- [ ] User switching (`setEmail` / `setUserId` changes) is followed by `registerPush` so tokens stay aligned
 
 #### User Experience
 
-* [ ] Permission prompts appear at a sensible time relative to your onboarding
-* [ ] Deep-linked notification opens land on the correct in-app destination
+- [ ] Permission prompts appear at a sensible time relative to your onboarding
+- [ ] Deep-linked notification opens land on the correct in-app destination
 
-***
+---
 
 ## Troubleshooting
 
 ### Why are Iterable bridge functions undefined or not working?
 
-**Why are Iterable bridge functions undefined or not working?⎘ Copy link
+\*\*Why are Iterable bridge functions undefined or not working?⎘ Copy link
 
 Confirm the JavaScript Bridge is enabled in Median App Studio, call bridge APIs after the `deviceready` event, and verify Iterable is enabled under **Push Notifications** with `active` set appropriately.
 
 ### Why is isInitialized false, or why does initialize keep failing?
 
-**Why is isInitialized false, or why does initialize keep failing?⎘ Copy link
+\*\*Why is isInitialized false, or why does initialize keep failing?⎘ Copy link
 
 Check that the **API key** and optional **data region** match your Iterable project. If you rely on runtime initialization, ensure `median.iterable.initialize()` runs before other Iterable calls and that network access is available.
 
 ### Why aren't test notifications reaching the device?
 
-**Why aren't test notifications reaching the device?⎘ Copy link
+\*\*Why aren't test notifications reaching the device?⎘ Copy link
 
 Ensure you have called `setEmail` or `setUserId` for the test profile, then `registerPush`, and that the user has granted notification permission. Confirm the device is registered in Iterable for that identifier.
 
 ### Why do notification links open in the browser instead of the app?
 
-**Why do notification links open in the browser instead of the app?⎘ Copy link
+\*\*Why do notification links open in the browser instead of the app?⎘ Copy link
 
 Enable and configure **Deep linking** for your Median app so URLs from Iterable notifications route in-app. Verify URL patterns match your app’s deep link configuration.
 
 ### Why isn't my EU data region working correctly?
 
-**Why isn't my EU data region working correctly?⎘ Copy link
+\*\*Why isn't my EU data region working correctly?⎘ Copy link
 
 If your Iterable workspace uses the EU stack, set `dataRegion` (for example `EU`) consistently in App Studio config or in `initialize()` so the SDK talks to the correct endpoints.
 
 <Info>
   ### Still having issues?
 
-  For issues related to Iterable's own configuration, permissions, or platform-specific behavior outside of Median.co, refer to the [Iterable integration documentation](https://support.iterable.com/hc/en-us/articles/360035079872-Push-Notification-Overview).
+For issues related to Iterable's own configuration, permissions, or platform-specific behavior outside of Median.co, refer to the [Iterable integration documentation](https://support.iterable.com/hc/en-us/articles/360035079872-Push-Notification-Overview).
+
 </Info>
 
-***
+---
 
 [Intercom](/docs/intercom)
 
@@ -281,15 +283,15 @@ If your Iterable workspace uses the EU stack, set `dataRegion` (for example `EU`
 
 Copy Page
 
-* * [Why use Iterable](#why-use-iterable)
+- - [Why use Iterable](#why-use-iterable)
 
-  * [Prerequisites](#prerequisites)
+  - [Prerequisites](#prerequisites)
 
-  * [Integration Guide](#integration-guide)
+  - [Integration Guide](#integration-guide)
 
-  * * [Plugin setup](#plugin-setup)
-    * [JavaScript bridge functions](#javascript-bridge-functions)
-    * [Set email](#set-email)
-    * [Testing checklist](#testing-checklist)
+  - - [Plugin setup](#plugin-setup)
+    - [JavaScript bridge functions](#javascript-bridge-functions)
+    - [Set email](#set-email)
+    - [Testing checklist](#testing-checklist)
 
-  * [Troubleshooting](#troubleshooting)
+  - [Troubleshooting](#troubleshooting)

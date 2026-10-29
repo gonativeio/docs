@@ -10,9 +10,10 @@ By granting these permissions, users allow apps to deliver tailored functionalit
 Apple and Google encourage developers to request permission thoughtfully. If a user has declined, you can suggest they enable the permission through the app's settings menu and include a button that launches the app settings screen using the JavaScript Bridge.
 
 <Check>
-  ### Developer Demo
+**Developer Demo**
 
-  Display our demo page in your app to test during development [permissions demo page](https://median.dev/permissions/)
+Display our demo page in your app to test during development [permissions demo page](https://median.dev/permissions/)
+
 </Check>
 
 ## Related Documentation
@@ -63,8 +64,8 @@ Apple and Google encourage developers to request permission thoughtfully. If a u
 
 When requesting permissions from your users, they will be asked to provide their consent. Those prompts are native app components with very limited customization.
 
-* **iOS**: iOS allows a customizable usage description for permission prompts, enabling developers to explain how the requested data will be used. You can follow [Permission Prompt Localization](https://docs.median.co/docs/permission-prompt-localization) to localize the usage description.
-* **Android**: Android permission prompts are served from the system and are translated to the device language. No additional customization is supported.
+- **iOS**: iOS allows a customizable usage description for permission prompts, enabling developers to explain how the requested data will be used. You can follow [Permission Prompt Localization](https://docs.median.co/docs/permission-prompt-localization) to localize the usage description.
+- **Android**: Android permission prompts are served from the system and are translated to the device language. No additional customization is supported.
 
 ## JavaScript Bridge Functions
 
@@ -77,67 +78,66 @@ Users can change the permissions granted to your app through their device settin
   // get status of all permissions
   const response = await median.permissions.status();
 
-  // only get status of selected permissions
-  const response = await median.permissions.status(["Contacts", "Camera"]);
-  ```
+// only get status of selected permissions
+const response = await median.permissions.status(["Contacts", "Camera"]);
+
+````
 </CodeGroup>
 
 The `response` object includes the current state for each requested permission:
 
 <CodeGroup>
-  ```bash bash
-  {
-    "Contacts": "undetermined",
-    "Camera": "granted"
-  }
-  ```
+```bash bash
+{
+  "Contacts": "undetermined",
+  "Camera": "granted"
+}
+````
+
 </CodeGroup>
 
 Each permission can have the following states:
 
-* **denied**: The permission has been denied or revoked; it can be asked for again.
-* **granted**: The permission has been granted.
-* **undetermined**: The permission was never asked (iOS only).
+- **denied**: The permission has been denied or revoked; it can be asked for again.
+- **granted**: The permission has been granted.
+- **undetermined**: The permission was never asked (iOS only).
 
 Status can be fetched for the following permission types:
 
-* `PhotoLibrary` (iOS only)
-* `AppTrackingTransparency` (iOS only)
-* `LocationAlways`
-* `LocationWhenInUse`
-* `Microphone`
-* `Contacts`
-* `Camera`
-* `Notifications`
+- `PhotoLibrary` (iOS only)
+- `AppTrackingTransparency` (iOS only)
+- `LocationAlways`
+- `LocationWhenInUse`
+- `Microphone`
+- `Contacts`
+- `Camera`
+- `Notifications`
 
 ### App Settings
 
 <Check>
-  ### Developer Demo
+**Developer Demo**
 
-  Test launching the app settings menu: [median.dev/app-settings](https://median.dev/app-settings)
+Test launching the app settings menu: [median.dev/app-settings](https://median.dev/app-settings)
+
 </Check>
 
 When users have denied permissions, you can direct them to the app's settings page to enable the required permissions:
 
-<CodeGroup>
-  ```bash bash
-  median.open.appSettings();
-  ```
-</CodeGroup>
+<CodeGroup>```bash bash median.open.appSettings(); ```</CodeGroup>
 
 To open the Settings page for your app, use the URL above or the JavaScript Bridge call.
 
 You can also review app permissions on device following the official guides:
 
-* **iOS**: [Control access to information in apps on iPhone](https://support.apple.com/en-ca/guide/iphone/iph251e92810/ios)
-* **Android**: [Change app permissions on your Android phone](https://support.google.com/android/answer/9431959?hl=en)
+- **iOS**: [Control access to information in apps on iPhone](https://support.apple.com/en-ca/guide/iphone/iph251e92810/ios)
+- **Android**: [Change app permissions on your Android phone](https://support.google.com/android/answer/9431959?hl=en)
 
 ## Frequently Asked Questions
 
 ### Can I request Bluetooth Access?
 
-**Can I request Bluetooth Access?⎘ Copy link
+\*\*Can I request Bluetooth Access?⎘ Copy link
 
 As of now Bluetooth is an experimental feature not supported by iOS WebKit or Android WebView.
 
@@ -147,25 +147,25 @@ We support a range of Bluetooth devices such as payment terminals, printers, sen
 
 We implemented custom Bluetooth integrations in our iBeacon and Master Lock plugins.
 
-***
+---
 
 ### Next Steps
 
-* [Apple App Tracking Transparency](/docs/apple-att)
-* [Location Services](/docs/location-services)
-* [WebRTC Audio & Video](/docs/web-rtc)
-* [Downloads Directory](/docs/downloads-directory)
-* [Background Audio](/docs/background-audio)
+- [Apple App Tracking Transparency](/docs/apple-att)
+- [Location Services](/docs/location-services)
+- [WebRTC Audio & Video](/docs/web-rtc)
+- [Downloads Directory](/docs/downloads-directory)
+- [Background Audio](/docs/background-audio)
 
 Copy Page
 
-* * [Related Documentation](#related-documentation)
+- - [Related Documentation](#related-documentation)
 
-  * [Permission Prompts](#permission-prompts)
+  - [Permission Prompts](#permission-prompts)
 
-  * [JavaScript Bridge Functions](#javascript-bridge-functions)
+  - [JavaScript Bridge Functions](#javascript-bridge-functions)
 
-  * * [Permissions Status](#permissions-status)
-    * [App Settings](#app-settings)
+  - - [Permissions Status](#permissions-status)
+    - [App Settings](#app-settings)
 
-  * [Frequently Asked Questions](#frequently-asked-questions)
+  - [Frequently Asked Questions](#frequently-asked-questions)

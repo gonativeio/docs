@@ -9,9 +9,10 @@ Integrate Social Login with your website using the Median JavaScript Bridge
 This guide is for developers who've already set up social login ([Facebook](https://docs.median.co/docs/facebook-login-configuration#/), [Google](https://docs.median.co/docs/google-sign-in-configuration#/), or [Apple](https://docs.median.co/docs/sign-in-with-apple-configuration#/)) on their website and want to add the Median Social Login Native Plugin for a better app experience.
 
 <Check>
-  ### Developer Demo
+**Developer Demo**
 
-  [Display our demo page in your app to test during development](https://median.dev/social-login)
+[Display our demo page in your app to test during development](https://median.dev/social-login)
+
 </Check>
 
 ## How it works
@@ -22,8 +23,8 @@ The plugin works with your current authentication infrastructure, using the same
 
 Here's the approach:
 
-* Show your standard login buttons when users visit your site in a browser.
-* Show the same buttons with modified JavaScript functionality that calls the JavaScript Bridge methods when they visit through your app (no styling changes needed)
+- Show your standard login buttons when users visit your site in a browser.
+- Show the same buttons with modified JavaScript functionality that calls the JavaScript Bridge methods when they visit through your app (no styling changes needed)
 
 ### Example implementation
 
@@ -35,10 +36,12 @@ Here's how to set this up with JavaScript:
   	Log In With Facebook
   </button>
 
-  <button class="facebook-login native-only"
-    onclick="median.socialLogin.facebook.login({ 'redirectUri' : 'https://median-social-logins-demo.web.app/auth/facebook/redirect', 'scope' : 'public_profile, email' });">
-  	Log in With Facebook
-  </button>
+<button
+  class="facebook-login native-only"
+  onclick="median.socialLogin.facebook.login({ 'redirectUri' : 'https://median-social-logins-demo.web.app/auth/facebook/redirect', 'scope' : 'public_profile, email' });"
+>
+  Log in With Facebook
+</button>
 
   <script>
   const isMedian = navigator.userAgent.indexOf("median") >= 0;
@@ -57,7 +60,8 @@ Here's how to set this up with JavaScript:
       	}
   }
   </script>
-  ```
+
+```
 </CodeGroup>
 
 ***
@@ -70,5 +74,6 @@ Here's how to set this up with JavaScript:
 Copy Page
 
 * * [Overview](#overview)
-  * [How it works](#how-it-works)
-  * * [Example implementation](#example-implementation)
+* [How it works](#how-it-works)
+* * [Example implementation](#example-implementation)
+```

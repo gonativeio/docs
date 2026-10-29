@@ -17,9 +17,10 @@ The plugin allows you to store a secret string, defined by the website developer
 4. **Use Secret to Log In** Once the secret is recovered, you can either use it to directly login the user or populate the login form on you web app.
 
 <Check>
-  ### Developer Demo
+**Developer Demo**
 
-  Display our demo page in your app with the Face ID / Touch ID Native Plugin active to test during development [https://median.dev/auth/](https://median.dev/auth/)
+Display our demo page in your app with the Face ID / Touch ID Native Plugin active to test during development [https://median.dev/auth/](https://median.dev/auth/)
+
 </Check>
 
 ## Implementation Guide
@@ -37,31 +38,34 @@ After a user successfully logs in to your website with their username and passwo
   var username = 'andy'
   var password = 'password';
 
-  median.auth.status({'callbackFunction': median_status_afterlogin});
+median.auth.status({'callbackFunction': median_status_afterlogin});
 
-  function median_status_afterlogin(data) {
-      if (data && data.hasTouchId) {
-      	var secret = JSON.stringify({
-              username: username,
-              password: password
-          });
-          
+function median_status_afterlogin(data) {
+if (data && data.hasTouchId) {
+var secret = JSON.stringify({
+username: username,
+password: password
+});
+
           median.auth.save({'secret': secret});
       }
-  }
 
-  // Promise method
-  median.auth.status().then(function (result) {
-      if (result && result.hasTouchId) {
-      	var secret = JSON.stringify({
-              username: username,
-              password: password
-          });
-          
+}
+
+// Promise method
+median.auth.status().then(function (result) {
+if (result && result.hasTouchId) {
+var secret = JSON.stringify({
+username: username,
+password: password
+});
+
           median.auth.save({'secret': secret});
       }
-  }
-  ```
+
+}
+
+````
 </CodeGroup>
 
 [Learn more about using promises and the Median JavaScript Bridge](https://median.co/docs/javascript-bridge#promises).
@@ -73,37 +77,38 @@ In this example, we have saved the username and password as the secret. You may 
 > On the login page, you will need to know whether or not to prompt for TouchID credentials. Start by getting the status:
 
 <CodeGroup>
-  ```bash bash
-  median.auth.status({'callbackFunction': median_status_beforelogin});
+```bash bash
+median.auth.status({'callbackFunction': median_status_beforelogin});
 
-  function median_status_beforelogin(data) {
-     if (data && data.hasTouchId && data.hasSecret) {
-         // Prompt the user to use the fingerprint to log in
-         median.auth.get({'callbackFunction': median_secret_callback});
-     }
-  }
+function median_status_beforelogin(data) {
+   if (data && data.hasTouchId && data.hasSecret) {
+       // Prompt the user to use the fingerprint to log in
+       median.auth.get({'callbackFunction': median_secret_callback});
+   }
+}
 
-  function median_secret_callback(data) {
-      if (data && data.success && data.secret) {
-          var credentials = JSON.parse(data.secret);
-          var username = credentials.username;
-          var password = credentials.password;
-          
-          // Use username and password to do login here,
-          // e.g. an http post or ajax request
-      } else {
-         // Fall back to manual login
-      }
-  }
+function median_secret_callback(data) {
+    if (data && data.success && data.secret) {
+        var credentials = JSON.parse(data.secret);
+        var username = credentials.username;
+        var password = credentials.password;
 
-  // Promise method
-  median.auth.status().then(function (result) {
-     if (result && result.hasTouchId && result.hasSecret) {
-         // Prompt the user to use the fingerprint to log in
-         median.auth.get({'callbackFunction': median_secret_callback});
-     }
-  }
-  ```
+        // Use username and password to do login here,
+        // e.g. an http post or ajax request
+    } else {
+       // Fall back to manual login
+    }
+}
+
+// Promise method
+median.auth.status().then(function (result) {
+   if (result && result.hasTouchId && result.hasSecret) {
+       // Prompt the user to use the fingerprint to log in
+       median.auth.get({'callbackFunction': median_secret_callback});
+   }
+}
+````
+
 </CodeGroup>
 
 > Once the `median_secret_callback` function is called with the previously saved secret, it should perform a request to log in the user. If the credentials are incorrect, you should delete the secret and allow manual login by running the function:
@@ -129,9 +134,9 @@ In this example, we have saved the username and password as the secret. You may 
 
 > Callback is required. The app will execute CALLBACK with an object parameter containing the fields:
 >
-> * `hasTouchId`: `true` or `false`. Indicates if the device is running iOS 9+ and there are fingerprints enrolled, or FaceID is enabled.
-> * `biometryType`: ‘touchId’, ‘faceId’, or ‘none’. This field is populated on iOS only to differentiate between TouchID and FaceID.
-> * `hasSecret`: `true` or `false`
+> - `hasTouchId`: `true` or `false`. Indicates if the device is running iOS 9+ and there are fingerprints enrolled, or FaceID is enabled.
+> - `biometryType`: ‘touchId’, ‘faceId’, or ‘none’. This field is populated on iOS only to differentiate between TouchID and FaceID.
+> - `hasSecret`: `true` or `false`
 
 ### Saving a Secret
 
@@ -159,9 +164,9 @@ Typically you will want to first check that Face ID / Touch ID is available via 
 
 > Callback is required. Prompt is optional, and provides a message that can be displayed when iOS requests the user touch the fingerprint sensor. The app will execute CALLBACK with an object parameter containing the fields:
 >
-> * `success`: `true` or `false`
-> * `error`: provided success is `false` (see error codes below)
-> * `secret`: the previously stored secret Another optional query parameter is `callbackOnCancel`. If set to 1 and the user cancels the authentication, the callback will be run with `success=false`, `error=userCanceled`. If `callbackOnCancel` is not set (or set to 0), the callback will not be run.
+> - `success`: `true` or `false`
+> - `error`: provided success is `false` (see error codes below)
+> - `secret`: the previously stored secret Another optional query parameter is `callbackOnCancel`. If set to 1 and the user cancels the authentication, the callback will be run with `success=false`, `error=userCanceled`. If `callbackOnCancel` is not set (or set to 0), the callback will not be run.
 
 ### Delete a Secret
 
@@ -175,19 +180,19 @@ Typically you will want to first check that Face ID / Touch ID is available via 
 
 > Callback is optional. The app will execute CALLBACK with an object parameter containing the fields:
 >
-> * `success`: true or false
-> * `error`: provided if success is false
+> - `success`: true or false
+> - `error`: provided if success is false
 
 ### Possible error values
 
 In general, you will only need to handle authenticationFailed in the "get secret" request.
 
-* `duplicateItem`: Secret already exists
-* `itemNotFound`: No secret saved
-* `authenticationFailed`: Biometric check failed
-* `genericError`: Unexpected failure
-* `userCanceled`: User canceled the auth prompt
-* `unimplemented`: Plugin not supported
+- `duplicateItem`: Secret already exists
+- `itemNotFound`: No secret saved
+- `authenticationFailed`: Biometric check failed
+- `genericError`: Unexpected failure
+- `userCanceled`: User canceled the auth prompt
+- `unimplemented`: Plugin not supported
 
 ## Testing Face ID / Touch ID Integration
 
@@ -216,7 +221,7 @@ Regular expressions are supported to allow wildcards in the URL.
   <img src="/images/docs/6ac6443f60d854e11d699edae7fa95c860c78b958e13862a4ce17e14151161c2-Screenshot_2025-07-15_at_11.32.35.png" />
 </Frame>
 
-***
+---
 
 [Face ID & Touch ID Android Biometric](/docs/auth)
 
@@ -224,21 +229,21 @@ Regular expressions are supported to allow wildcards in the URL.
 
 Copy Page
 
-* * [How it works](#how-it-works)
+- - [How it works](#how-it-works)
 
-  * [Implementation Guide](#implementation-guide)
+  - [Implementation Guide](#implementation-guide)
 
-  * * [Save secret on successful login](#save-secret-on-successful-login)
-    * [Check for secret on login page](#check-for-secret-on-login-page)
+  - - [Save secret on successful login](#save-secret-on-successful-login)
+    - [Check for secret on login page](#check-for-secret-on-login-page)
 
-  * [Median JavaScript Bridge Reference](#median-javascript-bridge-reference)
+  - [Median JavaScript Bridge Reference](#median-javascript-bridge-reference)
 
-  * * [Retrieving FaceID / Touch ID availability](#retrieving-faceid--touch-id-availability)
-    * [Saving a Secret](#saving-a-secret)
-    * [Retrieving a Secret](#retrieving-a-secret)
-    * [Delete a Secret](#delete-a-secret)
-    * [Possible error values](#possible-error-values)
+  - - [Retrieving FaceID / Touch ID availability](#retrieving-faceid--touch-id-availability)
+    - [Saving a Secret](#saving-a-secret)
+    - [Retrieving a Secret](#retrieving-a-secret)
+    - [Delete a Secret](#delete-a-secret)
+    - [Possible error values](#possible-error-values)
 
-  * [Testing Face ID / Touch ID Integration](#testing-face-id--touch-id-integration)
+  - [Testing Face ID / Touch ID Integration](#testing-face-id--touch-id-integration)
 
-  * [Whitelist Domains for Plugin Access](#whitelist-domains-for-plugin-access)
+  - [Whitelist Domains for Plugin Access](#whitelist-domains-for-plugin-access)

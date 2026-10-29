@@ -9,10 +9,10 @@ Health Bridge provides a unified interface to access and sync health data from u
 
 Health Bridge takes care of handling platform-specific details like permissions, data sources, and user consent, so you can focus on delivering value to your users. The plugin abstracts away the complexity of working with different health platforms while maintaining full access to rich health data.
 
-* **Unified Interface**: Single API that works seamlessly across iOS (Apple HealthKit) and Android (Google Health Connect)
-* **Platform Handling**: Automatically manages platform-specific permissions, data sources, and user consent flows
-* **Wellness Features**: Access comprehensive health metrics including steps, heart rate, calories, sleep, and more
-* **Data Accessibility**: Retrieve historical health data with flexible date ranges and grouping options
+- **Unified Interface**: Single API that works seamlessly across iOS (Apple HealthKit) and Android (Google Health Connect)
+- **Platform Handling**: Automatically manages platform-specific permissions, data sources, and user consent flows
+- **Wellness Features**: Access comprehensive health metrics including steps, heart rate, calories, sleep, and more
+- **Data Accessibility**: Retrieve historical health data with flexible date ranges and grouping options
 
 ### Use Cases
 
@@ -26,17 +26,18 @@ Health Bridge is essential for apps that need to:
 | **Sleep & Recovery**        | Sleep or recovery tracking with historical trends |
 
 <Check>
-  ### Developer Demo
+**Developer Demo**
 
-  Display our demo page in your app to test during development [https://median.dev/health-bridge/](https://median.dev/health-bridge/)
+Display our demo page in your app to test during development [https://median.dev/health-bridge/](https://median.dev/health-bridge/)
+
 </Check>
 
 ## Before You Start
 
 **Prerequisites**
 
-* [ ] A Median.co app with JavaScript Bridge enabled
-* [ ] The plugin activated in your app
+- [ ] A Median.co app with JavaScript Bridge enabled
+- [ ] The plugin activated in your app
 
 ## Key Concepts
 
@@ -44,18 +45,18 @@ The following concepts will help you implement Health Bridge:
 
 **Quick Reference**: Health Bridge supports 6 main categories of health data to help you build comprehensive wellness features:
 
-* **Activity** - Track physical movement and exercise metrics (steps, distance, calories, exercise time)
-* **Body Measurements** - Monitor physical characteristics and body composition (height, weight, BMI, body fat, temperature)
-* **Cycle Tracking** - Access menstrual cycle data for reproductive health monitoring
-* **Nutrition** - Track dietary intake and hydration (calorie intake, water intake, nutrition data)
-* **Sleep** - Monitor sleep patterns and duration for recovery and wellness insights
-* **Vitals** - Access critical health indicators (heart rate, blood pressure, oxygen saturation, glucose)
+- **Activity** - Track physical movement and exercise metrics (steps, distance, calories, exercise time)
+- **Body Measurements** - Monitor physical characteristics and body composition (height, weight, BMI, body fat, temperature)
+- **Cycle Tracking** - Access menstrual cycle data for reproductive health monitoring
+- **Nutrition** - Track dietary intake and hydration (calorie intake, water intake, nutrition data)
+- **Sleep** - Monitor sleep patterns and duration for recovery and wellness insights
+- **Vitals** - Access critical health indicators (heart rate, blood pressure, oxygen saturation, glucose)
 
 **Supported Data Types**: Health Bridge supports a comprehensive set of health metrics organized by category, all returned in **metric units only**. Click the icons below to view the complete metric details:
 
 ### Activity
 
-**Activity⎘ Copy link
+\*\*Activity⎘ Copy link
 
 | Data Type             | Description            | Unit                    |
 | --------------------- | ---------------------- | ----------------------- |
@@ -69,7 +70,7 @@ The following concepts will help you implement Health Bridge:
 
 ### Body measurements
 
-**Body measurements⎘ Copy link
+\*\*Body measurements⎘ Copy link
 
 | Data Type         | Description      | Unit               |
 | ----------------- | ---------------- | ------------------ |
@@ -81,7 +82,7 @@ The following concepts will help you implement Health Bridge:
 
 ### Cycle tracking
 
-**Cycle tracking⎘ Copy link
+\*\*Cycle tracking⎘ Copy link
 
 | Data Type      | Description  | Unit |
 | -------------- | ------------ | ---- |
@@ -89,7 +90,7 @@ The following concepts will help you implement Health Bridge:
 
 ### Nutrition
 
-**Nutrition⎘ Copy link
+\*\*Nutrition⎘ Copy link
 
 | Data Type       | Description            | Unit                |
 | --------------- | ---------------------- | ------------------- |
@@ -99,7 +100,7 @@ The following concepts will help you implement Health Bridge:
 
 ### Sleep
 
-**Sleep⎘ Copy link
+\*\*Sleep⎘ Copy link
 
 | Data Type | Description    | Unit          |
 | --------- | -------------- | ------------- |
@@ -107,7 +108,7 @@ The following concepts will help you implement Health Bridge:
 
 ### Vitals
 
-**Vitals⎘ Copy link
+\*\*Vitals⎘ Copy link
 
 | Data Type              | Description            | Unit                                            |
 | ---------------------- | ---------------------- | ----------------------------------------------- |
@@ -123,17 +124,17 @@ The following concepts will help you implement Health Bridge:
 
 **Platform Permissions Model**: Permissions work differently on each platform:
 
-* **Android**: Returns a list of granted and declined data types when requesting permissions
-* **iOS**: Does not return any information about permission status. The OS will prompt the user when data is first requested, and you won't get confirmation about which permissions were granted
+- **Android**: Returns a list of granted and declined data types when requesting permissions
+- **iOS**: Does not return any information about permission status. The OS will prompt the user when data is first requested, and you won't get confirmation about which permissions were granted
 
 **Important Considerations**
 
-* All health data values are returned in metric units only
-* Our team can add support for additional data types if required
-* Some data types (like sleep) may only be available for recent timeframes
-* Date range limitations vary by platform and data type
+- All health data values are returned in metric units only
+- Our team can add support for additional data types if required
+- Some data types (like sleep) may only be available for recent timeframes
+- Date range limitations vary by platform and data type
 
-***
+---
 
 ## Integration Guide
 
@@ -156,13 +157,8 @@ Follow these steps to start using the Health Bridge plugin in your app:
 Although not required, we recommend calling `requestPermissions()` upfront as it improves user transparency and experience. This prompts users to grant access to the specific health data types your app will use.
 
 <CodeGroup>
-  ```bash bash
-  await median.healthBridge.requestPermissions([
-    "steps",
-    "sleep",
-    "calorieIntake",
-  ]);
-  ```
+  ```bash bash await median.healthBridge.requestPermissions([ "steps", "sleep",
+  "calorieIntake", ]); ```
 </CodeGroup>
 
 This method accepts an array of data types and returns an object indicating which permissions were granted or declined.
@@ -170,9 +166,9 @@ This method accepts an array of data types and returns an object indicating whic
 <Warning>
   ### Platform Caveats
 
-  * **Android**: Returns a list of granted and declined data types.
-  * **iOS**: Does not return any information about permission status. The OS will prompt the user when data is first requested, and you won't get confirmation about which permissions were granted.
-</Warning>
+- **Android**: Returns a list of granted and declined data types.
+- **iOS**: Does not return any information about permission status. The OS will prompt the user when data is first requested, and you won't get confirmation about which permissions were granted.
+  </Warning>
 
 You can optionally skip requestPermissions() and directly call getData() (next step) and the OS will handle permissions automatically.
 
@@ -180,9 +176,9 @@ You can optionally skip requestPermissions() and directly call getData() (next s
 
 After permissions are granted (or requested implicitly), use the `getData()` method to retrieve health data. You can define the following parameters:
 
-* The specific `dataTypes` to fetch (from the supported list)
-* A `startDate` and `endDate` in ISO 8601 format
-* An optional `bucket` to group data (e.g., by day or hour)
+- The specific `dataTypes` to fetch (from the supported list)
+- A `startDate` and `endDate` in ISO 8601 format
+- An optional `bucket` to group data (e.g., by day or hour)
 
 **Parameters:**
 
@@ -211,13 +207,14 @@ After permissions are granted (or requested implicitly), use the `getData()` met
     bucket: "day",
   });
 
-  console.log(result.data.steps);
-  // [
-  //   { timestamp: '2025-05-01T00:00:00Z', value: 8123 },
-  //   { timestamp: '2025-05-02T00:00:00Z', value: 7890 },
-  //   ...
-  // ]
-  ```
+console.log(result.data.steps);
+// [
+// { timestamp: '2025-05-01T00:00:00Z', value: 8123 },
+// { timestamp: '2025-05-02T00:00:00Z', value: 7890 },
+// ...
+// ]
+
+````
 </CodeGroup>
 
 Want to show a daily step chart for the past week? Just fetch steps with bucket: 'day' and map the values to your chart component.
@@ -227,32 +224,33 @@ Want to show a daily step chart for the past week? Just fetch steps with bucket:
 **Example response**
 
 <CodeGroup>
-  ```bash bash
-  {
-    "data": {
-      "height": [
-        {
-          "start": "2025-12-03T15:30:00.000Z",
-          "end": "2025-12-03T15:30:00.000Z",
-          "value": 1.87
-        }
-      ],
-      "weight": [],
-      "steps": [
-        {
-          "start": "2025-12-03T15:30:00.000Z",
-          "end": "2025-12-03T15:30:00.000Z",
-          "value": 5000
-        },
-        {
-          "end": "2025-12-02T15:30:00.000Z",
-          "start": "2025-12-02T15:30:00.000Z",
-          "value": 4500
-        }
-      ]
-    }
+```bash bash
+{
+  "data": {
+    "height": [
+      {
+        "start": "2025-12-03T15:30:00.000Z",
+        "end": "2025-12-03T15:30:00.000Z",
+        "value": 1.87
+      }
+    ],
+    "weight": [],
+    "steps": [
+      {
+        "start": "2025-12-03T15:30:00.000Z",
+        "end": "2025-12-03T15:30:00.000Z",
+        "value": 5000
+      },
+      {
+        "end": "2025-12-02T15:30:00.000Z",
+        "start": "2025-12-02T15:30:00.000Z",
+        "value": 4500
+      }
+    ]
   }
-  ```
+}
+````
+
 </CodeGroup>
 
 ## Integration testing
@@ -260,7 +258,8 @@ Want to show a daily step chart for the past week? Just fetch steps with bucket:
 <Warning>
   **Testing requirements**
 
-  Due to callouts to Apple services, the Health Bridge integration cannot be tested in the App Studio virtual simulator. Instead, any integration tests must be run on a physical device or on Xcode or Android Studio simulators.
+Due to callouts to Apple services, the Health Bridge integration cannot be tested in the App Studio virtual simulator. Instead, any integration tests must be run on a physical device or on Xcode or Android Studio simulators.
+
 </Warning>
 
 ### Testing on iOS
@@ -297,7 +296,7 @@ After adding test data to your account, follow the steps below to access the dat
 | ![](/images/docs/c1842880c7736a706ed6030739241666633f889565a6c4442acdcff611c17024-Screenshot_2025-12-03_at_12.09.21.png) | ![](/images/docs/4a264ae575a92db90fe02ec73c722c5e0de6e9606593f4da1369d37e9a03f4f4-Screenshot_2025-12-03_at_12.09.31.png) | ![](/images/docs/cb88d3018a175bbc9bcb847d1c1464481caa25ca17c2e892dc4dd4c858ed0236-Screenshot_2025-12-03_at_12.09.45.png) |
 | Select the data points, bucket and date range for the request                                                            | Confirm the access                                                                                                       | Access the returned data in the JSON object                                                                              |
 
-***
+---
 
 [Haptics](/docs/haptics)
 
@@ -305,19 +304,19 @@ After adding test data to your account, follow the steps below to access the dat
 
 Copy Page
 
-* * [Why use Health Bridge?](#why-use-health-bridge)
+- - [Why use Health Bridge?](#why-use-health-bridge)
 
-  * * [Use Cases](#use-cases)
+  - - [Use Cases](#use-cases)
 
-  * [Before You Start](#before-you-start)
+  - [Before You Start](#before-you-start)
 
-  * [Key Concepts](#key-concepts)
+  - [Key Concepts](#key-concepts)
 
-  * [Integration Guide](#integration-guide)
+  - [Integration Guide](#integration-guide)
 
-  * * [App configuration](#app-configuration)
-    * [JavaScript Bridge functions](#javascript-bridge-functions)
+  - - [App configuration](#app-configuration)
+    - [JavaScript Bridge functions](#javascript-bridge-functions)
 
-  * [Integration testing](#integration-testing)
+  - [Integration testing](#integration-testing)
 
-  * * [Testing on iOS](#testing-on-ios)
+  - - [Testing on iOS](#testing-on-ios)

@@ -8,35 +8,35 @@ The Bloomreach plugin enables native mobile push notifications and customer iden
 This guide covers Bloomreach Engagement project setup, Median App Studio configuration, Android push delivery via Firebase, deep linking, and the Median JavaScript Bridge APIs for permissions and customer identity.
 
 <Check>
-  ### Developer Demo
+**Developer Demo**
 
-  Display our demo page in your app to test during development [https://median.dev/bloomreach/](https://median.dev/bloomreach/)
+Display our demo page in your app to test during development [https://median.dev/bloomreach/](https://median.dev/bloomreach/)
+
 </Check>
 
-***
+---
 
 ## Why use Bloomreach?
 
-* **Push permission control**: Request and check notification permission from JavaScript.
-* **Customer identity support**: Identify and persist customer state across sessions.
-* **Customer logout support**: Clear customer session state when needed.
-* **Deep linking readiness**: Configure domains to route links into the app.
+- **Push permission control**: Request and check notification permission from JavaScript.
+- **Customer identity support**: Identify and persist customer state across sessions.
+- **Customer logout support**: Clear customer session state when needed.
+- **Deep linking readiness**: Configure domains to route links into the app.
 
 ## Prerequisites
 
-* Access to Bloomreach plugin settings in Median App Studio (Native Plugins tab).
+- Access to Bloomreach plugin settings in Median App Studio (Native Plugins tab).
 
-* Bloomreach credentials from your [Bloomreach Engagement](https://documentation.bloomreach.com/engagement/docs/mobile-sdks-api-access-management) dashboard:
+- Bloomreach credentials from your [Bloomreach Engagement](https://documentation.bloomreach.com/engagement/docs/mobile-sdks-api-access-management) dashboard:
+  - `apiKey`
+  - `projectToken`
+  - `baseURL`
 
-  * `apiKey`
-  * `projectToken`
-  * `baseURL`
+- For Android push, plan Firebase Cloud Messaging (FCM) with `google-services.json` and Bloomreach; see [Android push notifications](#android-push-notifications).
 
-* For Android push, plan Firebase Cloud Messaging (FCM) with `google-services.json` and Bloomreach; see [Android push notifications](#android-push-notifications).
+- For deep linking, plan domains for `hosts` and host platform verification files; see [Deep linking setup](#deep-linking-setup).
 
-* For deep linking, plan domains for `hosts` and host platform verification files; see [Deep linking setup](#deep-linking-setup).
-
-***
+---
 
 ## Implementation guide
 
@@ -106,9 +106,8 @@ Deep links open URLs inside your app instead of the device browser when domains 
 1. **Plugin configuration** — Add every domain you want to open in-app to the `hosts` array. Do not include `https://` or `http://`; the plugin applies URL schemes as needed.
 
 2. **Hosted verification files** — On each domain (and subdomain you use), serve the standard association files over HTTPS:
-
-   * **Android** — `/.well-known/assetlinks.json` (format and examples: [Deep linking](https://docs.median.co/docs/deep-linking)). Example host file: [https://median.dev/.well-known/assetlinks.json](https://median.dev/.well-known/assetlinks.json).
-   * **iOS** — `/.well-known/apple-app-site-association` (or `/apple-app-site-association`). Example: [https://median.dev/.well-known/apple-app-site-association](https://median.dev/.well-known/apple-app-site-association).
+   - **Android** — `/.well-known/assetlinks.json` (format and examples: [Deep linking](https://docs.median.co/docs/deep-linking)). Example host file: [https://median.dev/.well-known/assetlinks.json](https://median.dev/.well-known/assetlinks.json).
+   - **iOS** — `/.well-known/apple-app-site-association` (or `/apple-app-site-association`). Example: [https://median.dev/.well-known/apple-app-site-association](https://median.dev/.well-known/apple-app-site-association).
 
 Use Median.co's [Deep Linking Validator](https://docs.median.co/docs/deep-linking-validator) to check your domain configuration, and read [Deep linking](https://docs.median.co/docs/deep-linking) for background on Universal Links, App Links, and file requirements.
 
@@ -171,8 +170,9 @@ Identifies a customer by a hard identifier and value, so Bloomreach Engagement c
     value: "[email protected]",
   };
 
-  const result = await median.bloomreach.identifyCustomer(params);
-  ```
+const result = await median.bloomreach.identifyCustomer(params);
+
+````
 </CodeGroup>
 
 **Parameters:**
@@ -186,17 +186,18 @@ Identifies a customer by a hard identifier and value, so Bloomreach Engagement c
 Optionally, include user properties:
 
 <CodeGroup>
-  ```bash bash
-  const params = {
-    identifier: "registered",
-    value: "[email protected]",
-    properties: {
-      first_name: "John",
-      last_name: "Doe",
-      age: 25,
-    },
-  };
-  ```
+```bash bash
+const params = {
+  identifier: "registered",
+  value: "[email protected]",
+  properties: {
+    first_name: "John",
+    last_name: "Doe",
+    age: 25,
+  },
+};
+````
+
 </CodeGroup>
 
 #### Logout customer
@@ -219,7 +220,7 @@ Clears the current customer session, detaching subsequent tracking and push deli
 | ---------- | -------- | ---------- | ------------------------------- |
 | `callback` | No       | `function` | Callback for logout completion. |
 
-***
+---
 
 ### Usage examples
 
@@ -253,8 +254,10 @@ Clears the current customer session, detaching subsequent tracking and push deli
     });
 
     await median.bloomreach.logoutCustomer();
-  }
-  ```
+
+}
+
+```
 </CodeGroup>
 
 ***
@@ -303,9 +306,9 @@ Verify `google-services.json` is embedded in the app and Bloomreach push configu
 `registered` is a common default hard ID, but your project's actual hard ID may differ. Check your project's customer identification configuration in the Bloomreach Engagement web app to confirm which identifier to use.
 
 <Info>
-  ## Still having trouble?
+## Still having trouble?
 
-  For issues related to Bloomreach's own configuration, permissions, or platform-specific behavior outside Median.co's, refer to [Bloomreach's integration documentation.](https://documentation.bloomreach.com/engagement/docs/documentation-overview)
+For issues related to Bloomreach's own configuration, permissions, or platform-specific behavior outside Median.co's, refer to [Bloomreach's integration documentation.](https://documentation.bloomreach.com/engagement/docs/documentation-overview)
 </Info>
 
 ***
@@ -318,16 +321,17 @@ Copy Page
 
 * * [Why use Bloomreach?](#why-use-bloomreach)
 
-  * [Prerequisites](#prerequisites)
+* [Prerequisites](#prerequisites)
 
-  * [Implementation guide](#implementation-guide)
+* [Implementation guide](#implementation-guide)
 
-  * * [Bloomreach Engagement setup](#bloomreach-engagement-setup)
-    * [App configuration](#app-configuration)
-    * [Deep linking setup](#deep-linking-setup)
-    * [JavaScript Bridge functions](#javascript-bridge-functions)
-    * [Usage examples](#usage-examples)
+* * [Bloomreach Engagement setup](#bloomreach-engagement-setup)
+  * [App configuration](#app-configuration)
+  * [Deep linking setup](#deep-linking-setup)
+  * [JavaScript Bridge functions](#javascript-bridge-functions)
+  * [Usage examples](#usage-examples)
 
-  * [Testing checklist](#testing-checklist)
+* [Testing checklist](#testing-checklist)
 
-  * [Troubleshooting](#troubleshooting)
+* [Troubleshooting](#troubleshooting)
+```

@@ -7,19 +7,20 @@ The Native Media Player plugin enables background audio playback in your Median-
 
 Example use cases include:
 
-* Podcast players
-* Radio streaming apps
-* Audiobooks
-* E-learning platforms
-* News and media apps
-* Corporate training tools
+- Podcast players
+- Radio streaming apps
+- Audiobooks
+- E-learning platforms
+- News and media apps
+- Corporate training tools
 
 The player supports play, pause, previous, and next controls and can display metadata such as the track title, artist, album and artwork.
 
 <Check>
-  ### Developer Demo
+**Developer Demo**
 
-  Display our demo page in your app to test during development [https://median.dev/native-media-player/](https://median.dev/native-media-player/)
+Display our demo page in your app to test during development [https://median.dev/native-media-player/](https://median.dev/native-media-player/)
+
 </Check>
 
 ## Native Media Player UI
@@ -67,23 +68,25 @@ The player supports play, pause, previous, and next controls and can display met
   ```bash bash
   // Optional: show a spinner
 
-  // Start the player
-  const { success } = await median.backgroundMedia.playTrack(track);
+// Start the player
+const { success } = await median.backgroundMedia.playTrack(track);
 
-  // Optional: hide the spinner
+// Optional: hide the spinner
 
-  if(success) {
-    // Track started playing successfully.
-  }
-  ```
+if(success) {
+// Track started playing successfully.
+}
+
+````
 </CodeGroup>
 
 HTML (with `track` defined as global variable):
 
 <CodeGroup>
-  ```bash bash
-  <button type="button" onclick="median.backgroundMedia.playTrack(track)">Play Track</button>
-  ```
+```bash bash
+<button type="button" onclick="median.backgroundMedia.playTrack(track)">Play Track</button>
+````
+
 </CodeGroup>
 
 The player UI will display Play/Pause and Close controls for a single track.
@@ -129,23 +132,25 @@ Retrieve player status including current track time, 'isPaused' status, album, a
     console.log(status);
   }
   </script>
-  ```
+
+````
 </CodeGroup>
 
 #### Method 2 (Using Promise):
 
 <CodeGroup>
-  ```bash bash
-  <button onclick="getInfo()">Get Player Status</button>
+```bash bash
+<button onclick="getInfo()">Get Player Status</button>
 
-  <script>
-  // Declare an async function to wait for player status
-  async function getInfo() {
-    const status = await median.backgroundMedia.getPlayerStatus();
-    console.log(JSON.stringify(status));
-  }
-  </script>
-  ```
+<script>
+// Declare an async function to wait for player status
+async function getInfo() {
+  const status = await median.backgroundMedia.getPlayerStatus();
+  console.log(JSON.stringify(status));
+}
+</script>
+````
+
 </CodeGroup>
 
 #### Status Example
@@ -193,7 +198,9 @@ To start a track from a particular position, pass a parameter named "time" insid
 
 <CodeGroup>
   ```bash bash
-  <button onclick="median.backgroundMedia.playTrack(track)">Start Track from 50s</button>
+  <button onclick="median.backgroundMedia.playTrack(track)">
+    Start Track from 50s
+  </button>
   ```
 </CodeGroup>
 
@@ -232,7 +239,12 @@ To start a track from a particular position, pass a parameter named "time" insid
 
 <CodeGroup>
   ```bash bash
-  <button type="button" onclick="median.backgroundMedia.streamPlaylist(playlist)">Start Playlist</button>
+  <button
+    type="button"
+    onclick="median.backgroundMedia.streamPlaylist(playlist)"
+  >
+    Start Playlist
+  </button>
   ```
 </CodeGroup>
 
@@ -249,7 +261,7 @@ When the currently playing track finishes playing, the player will automatically
 
 The player will display the embedded metadata of the playing track, including the audio icon image. If your audio file does not include any metadata, you can include the metadata in the **track** object, as shown in the examples above. **Note:** If metadata is embedded in the track but also provided manually, the manual metadata will be selected.
 
-If no metadata is available, the metadata will be set as: **Title**: Playing Media **Album**: APP\_NAME **Artist**: APP\_NAME
+If no metadata is available, the metadata will be set as: **Title**: Playing Media **Album**: APP_NAME **Artist**: APP_NAME
 
 |                                                                                    |                                                                                            |
 | ---------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
@@ -266,19 +278,21 @@ Audio icons can only be retrieved directly from the Audio URL. So, if none is av
 ### Background Mode
 
 <Info>
-  ### Use this mode to sync the native media player with your in-app web player (e.g., when resuming or pausing).
+  ### Use this mode to sync the native media player with your in-app web player
+  (e.g., when resuming or pausing).
 </Info>
 
 <Check>
-  ### Developer Demo
+**Developer Demo**
 
-  Display our demo page in your app to test during development [https://median.dev/native-media-player-switch/](https://median.dev/native-media-player-switch/)
+Display our demo page in your app to test during development [https://median.dev/native-media-player-switch/](https://median.dev/native-media-player-switch/)
+
 </Check>
 
 Define these functions in your web app:
 
-* `getPlayerStatus()` - Gets the current status of the web player to pass to the native media player. (Called when the app is paused/backgrounded).
-* `updatePlayerStatus(mediaPlayerStatus)` - Passes the native media player status to the web player when the app is resumed. (Called when the app is resumed/foregrounded).
+- `getPlayerStatus()` - Gets the current status of the web player to pass to the native media player. (Called when the app is paused/backgrounded).
+- `updatePlayerStatus(mediaPlayerStatus)` - Passes the native media player status to the web player when the app is resumed. (Called when the app is resumed/foregrounded).
 
 #### Example Implementation
 
@@ -297,19 +311,21 @@ Define these functions in your web app:
     };
   }
 
-  // Called when app is resumed
-  function updatePlayerStatus(mediaPlayerStatus) {
-    if (mediaPlayerStatus.currentTime) {
-      webPlayer.currentTime = mediaPlayerStatus.currentTime / 1000;
-    }
+// Called when app is resumed
+function updatePlayerStatus(mediaPlayerStatus) {
+if (mediaPlayerStatus.currentTime) {
+webPlayer.currentTime = mediaPlayerStatus.currentTime / 1000;
+}
 
     if (mediaPlayerStatus.isPaused && !webPlayer.paused) {
       webPlayer.pause();
     } else if (!mediaPlayerStatus.isPaused && webPlayer.paused) {
       webPlayer.play();
     }
-  }
-  ```
+
+}
+
+```
 </CodeGroup>
 
 ## Demo Apps
@@ -324,15 +340,15 @@ Define these functions in your web app:
 ### Native Media Player Background
 
 <Warning>
-  ### Demo Instructions
+### Demo Instructions
 
-  1. Start playing an audio or video file.
-  2. Press the Home button - playback will continue in the background.
-  3. To confirm background playback, swipe down the notification overlay on iOS or Android.
+1. Start playing an audio or video file.
+2. Press the Home button - playback will continue in the background.
+3. To confirm background playback, swipe down the notification overlay on iOS or Android.
 
-  The demo also includes metadata (e.g., branding) to show possible customization options as highlighted above. When you return to the app, playback resumes smoothly.
+The demo also includes metadata (e.g., branding) to show possible customization options as highlighted above. When you return to the app, playback resumes smoothly.
 
-  *Note: The demo temporarily pauses playback to show debug info about the media state*.
+*Note: The demo temporarily pauses playback to show debug info about the media state*.
 </Warning>
 
 |     |         |
@@ -350,17 +366,18 @@ Copy Page
 
 * * [Native Media Player UI](#native-media-player-ui)
 
-  * [Implementation Guide](#implementation-guide)
+* [Implementation Guide](#implementation-guide)
 
-  * * [Play a Single Track](#play-a-single-track)
-    * [Media Controls](#media-controls)
-    * [Get Player Status](#get-player-status)
-    * [Seeking in a Track](#seeking-in-a-track)
-    * [Streaming a Playlist](#streaming-a-playlist)
-    * [Metadata Display](#metadata-display)
-    * [Background Mode](#background-mode)
+* * [Play a Single Track](#play-a-single-track)
+  * [Media Controls](#media-controls)
+  * [Get Player Status](#get-player-status)
+  * [Seeking in a Track](#seeking-in-a-track)
+  * [Streaming a Playlist](#streaming-a-playlist)
+  * [Metadata Display](#metadata-display)
+  * [Background Mode](#background-mode)
 
-  * [Demo Apps](#demo-apps)
+* [Demo Apps](#demo-apps)
 
-  * * [Native Media Player](#native-media-player)
-    * [Native Media Player Background](#native-media-player-background)
+* * [Native Media Player](#native-media-player)
+  * [Native Media Player Background](#native-media-player-background)
+```

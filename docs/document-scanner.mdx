@@ -7,18 +7,19 @@ Easily scan documents using the device camera with automatic image enhancement a
 
 ## Key Features
 
-* Detects document edges and outlines in real time
-* Automatically corrects angle, perspective, and aspect ratio
-* Enhances text clarity and sharpness
-* Crops and exports the document as a clean final scan
-* Supports JPEG output in base64 format
+- Detects document edges and outlines in real time
+- Automatically corrects angle, perspective, and aspect ratio
+- Enhances text clarity and sharpness
+- Crops and exports the document as a clean final scan
+- Supports JPEG output in base64 format
 
 The scanned image is made available as a base64 jpeg file through the Median JavaScript Bridge where it can be attached to a form or uploaded to your server asynchronously.
 
 <Check>
-  ### Developer Demo
+**Developer Demo**
 
-  Display our demo page in your app to test during development [https://median.dev/document-scanner/](https://median.dev/document-scanner/)
+Display our demo page in your app to test during development [https://median.dev/document-scanner/](https://median.dev/document-scanner/)
+
 </Check>
 
 ## iOS Scan and Crop Preview
@@ -88,18 +89,22 @@ Here's a sample code snippet that displays the scanned image output.
   </head>
   <body>
 
-  <h1>Document Scanner test</h1>
+<h1>Document Scanner test</h1>
 
-  <p><a onclick="median.documentScanner.scanPage({'callback':cb});">Scan page</a></p>
+<p>
+  <a onclick="median.documentScanner.scanPage({'callback':cb});">Scan page</a>
+</p>
 
-  <p><img id="page" src=""/></p>
+<p>
+  <img id="page" src="" />
+</p>
 
   </body> 
   </html>
   ```
 </CodeGroup>
 
-***
+---
 
 [Scanning](/docs/scanning)
 
@@ -107,13 +112,13 @@ Here's a sample code snippet that displays the scanned image output.
 
 Copy Page
 
-* * [Key Features](#key-features)
+- - [Key Features](#key-features)
 
-  * [iOS Scan and Crop Preview](#ios-scan-and-crop-preview)
+  - [iOS Scan and Crop Preview](#ios-scan-and-crop-preview)
 
-  * [Android Scan and Crop Preview](#android-scan-and-crop-preview)
+  - [Android Scan and Crop Preview](#android-scan-and-crop-preview)
 
-  * [Implementation Guide](#implementation-guide)
+  - [Implementation Guide](#implementation-guide)
 
-  * * [Initiate a Document Scan](#initiate-a-document-scan)
-    * [Handle the Scanned Image](#handle-the-scanned-image)
+  - - [Initiate a Document Scan](#initiate-a-document-scan)
+    - [Handle the Scanned Image](#handle-the-scanned-image)

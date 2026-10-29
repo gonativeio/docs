@@ -4,9 +4,10 @@ description: "Tracking the state of the on-screen keyboard is important for buil
 ---
 
 <Check>
-  ### Developer Demo
+**Developer Demo**
 
-  Display our demo page in your app to test during development [https://median.dev/keyboard/](https://median.dev/keyboard/)
+Display our demo page in your app to test during development [https://median.dev/keyboard/](https://median.dev/keyboard/)
+
 </Check>
 
 ## Implementation Guide
@@ -45,19 +46,20 @@ Automatically listen for changes in keyboard visibility and dimensions. Define a
   // To stop listening, pass an empty string:
   // median.keyboard.listen("");
 
-  // Returns on each state change:
-  {
-    'visible': BOOL,
-    'keyboardWindowSize': {
-      'width': INT,
-      'height': INT
-    },
-    'visibleWindowSize': {
-      'width': INT,
-      'height': INT
-    }
-  }
-  ```
+// Returns on each state change:
+{
+'visible': BOOL,
+'keyboardWindowSize': {
+'width': INT,
+'height': INT
+},
+'visibleWindowSize': {
+'width': INT,
+'height': INT
+}
+}
+
+````
 </CodeGroup>
 
 #### Example: Hide Bottom Navigation When Keyboard is Visible
@@ -65,26 +67,27 @@ Automatically listen for changes in keyboard visibility and dimensions. Define a
 The following code hides the bottom tab bar when the keyboard appears and restores it when the keyboard is dismissed. This can be useful to preserve screen space for large forms.
 
 <CodeGroup>
-  ```bash bash
-  // Defining a listener
-  function addListener() {
-    try {
-      median.keyboard.listen(hideKeyboard);
-      alert("Keyboard listener added");
-    } catch (error) {
-      console.error("Failed to add keyboard listener", error);
-    }
+```bash bash
+// Defining a listener
+function addListener() {
+  try {
+    median.keyboard.listen(hideKeyboard);
+    alert("Keyboard listener added");
+  } catch (error) {
+    console.error("Failed to add keyboard listener", error);
   }
+}
 
-  // Defining a callback function that will be executed on state changes
-  function hideKeyboard(data) {
-    if (data.visible) {
-      median.tabNavigation.setTabs({ enabled: false });
-    } else {
-      median.tabNavigation.setTabs({ enabled: true });
-    }
+// Defining a callback function that will be executed on state changes
+function hideKeyboard(data) {
+  if (data.visible) {
+    median.tabNavigation.setTabs({ enabled: false });
+  } else {
+    median.tabNavigation.setTabs({ enabled: true });
   }
-  ```
+}
+````
+
 </CodeGroup>
 
 ### Toggle Accessory View (iOS Only)
@@ -92,10 +95,8 @@ The following code hides the bottom tab bar when the keyboard appears and restor
 On iOS devices, the software keyboard may display an accessory view containing spell check and formatting tools. Use this method to enable or disable the accessory view as needed.
 
 <CodeGroup>
-  ```bash bash
-  median.keyboard.showAccessoryView(true); // Show accessory view
-  median.keyboard.showAccessoryView(false); // Hide accessory view
-  ```
+  ```bash bash median.keyboard.showAccessoryView(true); // Show accessory view
+  median.keyboard.showAccessoryView(false); // Hide accessory view ```
 </CodeGroup>
 
 ## Demo App
@@ -105,7 +106,7 @@ On iOS devices, the software keyboard may display an accessory view containing s
 |     |         |
 | iOS | Android |
 
-***
+---
 
 [App Resumed Callback](/docs/app-resumed-callback)
 
@@ -113,10 +114,10 @@ On iOS devices, the software keyboard may display an accessory view containing s
 
 Copy Page
 
-* * [Implementation Guide](#implementation-guide)
+- - [Implementation Guide](#implementation-guide)
 
-  * * [Get current keyboard state](#get-current-keyboard-state)
-    * [Subscribe to Keyboard State Changes](#subscribe-to-keyboard-state-changes)
-    * [Toggle Accessory View (iOS Only)](#toggle-accessory-view-ios-only)
+  - - [Get current keyboard state](#get-current-keyboard-state)
+    - [Subscribe to Keyboard State Changes](#subscribe-to-keyboard-state-changes)
+    - [Toggle Accessory View (iOS Only)](#toggle-accessory-view-ios-only)
 
-  * [Demo App](#demo-app)
+  - [Demo App](#demo-app)

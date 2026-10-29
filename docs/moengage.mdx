@@ -7,27 +7,28 @@ Median integrates MoEngage's native SDKs on iOS and Android, including APNS Auth
 
 ## Why use MoEngage
 
-* **Push permission management**: Prompt for and check notification permissions from JavaScript on Android and iOS.
-* **Cross-platform user identity**: Set stable unique IDs and aliases, and reset user data consistently across installs and platforms.
-* **Behavioral event tracking**: Log named events with or without key-value payloads for MoEngage segmentation and campaigns.
-* **In-app notification center**: Launch the MoEngage inbox and subscription center from any JavaScript context in your app.
+- **Push permission management**: Prompt for and check notification permissions from JavaScript on Android and iOS.
+- **Cross-platform user identity**: Set stable unique IDs and aliases, and reset user data consistently across installs and platforms.
+- **Behavioral event tracking**: Log named events with or without key-value payloads for MoEngage segmentation and campaigns.
+- **In-app notification center**: Launch the MoEngage inbox and subscription center from any JavaScript context in your app.
 
 <Check>
-  ### Developer Demo
+**Developer Demo**
 
-  Display our demo page in your app to test during development [https://median.dev/moengage/](https://median.dev/moengage/)
+Display our demo page in your app to test during development [https://median.dev/moengage/](https://median.dev/moengage/)
+
 </Check>
 
-***
+---
 
 ## Prerequisites
 
-* A Median.co app with JavaScript Bridge enabled
-* MoEngage FCM authentication configured in your MoEngage dashboard (Android)
-* MoEngage APNS authentication key configured in your MoEngage dashboard (iOS)
-* Median deep linking configured for your app (required for notification links to open in-app destinations)
+- A Median.co app with JavaScript Bridge enabled
+- MoEngage FCM authentication configured in your MoEngage dashboard (Android)
+- MoEngage APNS authentication key configured in your MoEngage dashboard (iOS)
+- Median deep linking configured for your app (required for notification links to open in-app destinations)
 
-***
+---
 
 ## When to use this plugin
 
@@ -49,22 +50,22 @@ MoEngage is essential for apps that need to:
 4. **Implement user identity and events**: Add `setUniqueId`, `setAlias`, `resetUser`, `trackEvent`, and `launchInbox` calls.
 5. **Validate**: Run through the [Testing checklist](#testing-checklist) and check [Troubleshooting](#troubleshooting) for known issues.
 
-***
+---
 
 ## Key terms
 
-* **FCM Authentication**: Firebase Cloud Messaging, the push authentication mechanism for Android delivery. Configured in your MoEngage dashboard.
-* **APNS Auth Key**: Apple Push Notification service authentication key for iOS delivery. Configured in your MoEngage dashboard.
-* **Deep Linking**: A Median.co feature that routes notification URLs directly into in-app destinations rather than opening a browser.
+- **FCM Authentication**: Firebase Cloud Messaging, the push authentication mechanism for Android delivery. Configured in your MoEngage dashboard.
+- **APNS Auth Key**: Apple Push Notification service authentication key for iOS delivery. Configured in your MoEngage dashboard.
+- **Deep Linking**: A Median.co feature that routes notification URLs directly into in-app destinations rather than opening a browser.
 
 <Info>
   **Important considerations**
 
-  * Android push permission dialogs appear on Android 13 and above; on Android 12 and below, permission is always granted without user interaction.
-  * Deep linking must be configured separately in Median App Studio for in-app notification routing to work.
-</Info>
+- Android push permission dialogs appear on Android 13 and above; on Android 12 and below, permission is always granted without user interaction.
+- Deep linking must be configured separately in Median App Studio for in-app notification routing to work.
+  </Info>
 
-***
+---
 
 ## Plugin setup
 
@@ -72,7 +73,7 @@ MoEngage is essential for apps that need to:
 
 Median uses MoEngage native iOS and Android SDK integrations. Refer to MoEngage's documentation for [FCM Authentication](https://developers.moengage.com/) and [APNS Authentication Key](https://developers.moengage.com/) setup steps in the MoEngage dashboard.
 
-***
+---
 
 ## JavaScript bridge functions
 
@@ -87,11 +88,12 @@ Provide a callback function, or a promise is returned.
   // Using a callback
   median.moengage.promptNotification({ callback: function () {} });
 
-  // Using a promise
-  median.moengage.promptNotification().then(function (result) {
-    console.log('Notification permission result:', result);
-  });
-  ```
+// Using a promise
+median.moengage.promptNotification().then(function (result) {
+console.log('Notification permission result:', result);
+});
+
+````
 </CodeGroup>
 
 **Parameters:**
@@ -107,17 +109,18 @@ Checks current push notification permission status.
 Provide a callback function, or a promise is returned.
 
 <CodeGroup>
-  ```bash bash
-  // Using a callback
-  median.moengage.notificationEnabled({ callback: function (result) {
-    console.log('Notifications enabled:', result);
-  }});
+```bash bash
+// Using a callback
+median.moengage.notificationEnabled({ callback: function (result) {
+  console.log('Notifications enabled:', result);
+}});
 
-  // Using a promise
-  median.moengage.notificationEnabled().then(function (result) {
-    console.log('Notifications enabled:', result);
-  });
-  ```
+// Using a promise
+median.moengage.notificationEnabled().then(function (result) {
+  console.log('Notifications enabled:', result);
+});
+````
+
 </CodeGroup>
 
 **Parameters:**
@@ -130,11 +133,7 @@ Provide a callback function, or a promise is returned.
 
 Sets a persistent user identifier across installs and platforms. Call after login to associate subsequent events and push tokens with the user.
 
-<CodeGroup>
-  ```bash bash
-  median.moengage.setUniqueId('uniqueid');
-  ```
-</CodeGroup>
+<CodeGroup>```bash bash median.moengage.setUniqueId('uniqueid'); ```</CodeGroup>
 
 **Parameters:**
 
@@ -146,11 +145,7 @@ Sets a persistent user identifier across installs and platforms. Call after logi
 
 Updates the existing user unique ID with a new alias. Use when a user's identifier changes, for example after account merging.
 
-<CodeGroup>
-  ```bash bash
-  median.moengage.setAlias('alias');
-  ```
-</CodeGroup>
+<CodeGroup>```bash bash median.moengage.setAlias('alias'); ```</CodeGroup>
 
 **Parameters:**
 
@@ -162,11 +157,7 @@ Updates the existing user unique ID with a new alias. Use when a user's identifi
 
 Resets unique ID and all data for the current user. Call on logout to disassociate the device from a user account.
 
-<CodeGroup>
-  ```bash bash
-  median.moengage.resetUser();
-  ```
-</CodeGroup>
+<CodeGroup>```bash bash median.moengage.resetUser(); ```</CodeGroup>
 
 ### Log Event With or Without Data
 
@@ -177,9 +168,10 @@ Logs a named event with an optional key-value payload. Use for behavioral analyt
   // Event with payload
   median.moengage.trackEvent(eventName, { key_1: 'value_1', key_2: 'value_2' });
 
-  // Event without payload
-  median.moengage.trackEvent('eventName');
-  ```
+// Event without payload
+median.moengage.trackEvent('eventName');
+
+````
 </CodeGroup>
 
 **Parameters:**
@@ -194,12 +186,13 @@ Logs a named event with an optional key-value payload. Use for behavioral analyt
 Launches the MoEngage notification and subscription center.
 
 <CodeGroup>
-  ```bash bash
-  median.moengage.launchInbox();
-  ```
+```bash bash
+median.moengage.launchInbox();
+````
+
 </CodeGroup>
 
-***
+---
 
 ## Testing checklist
 
@@ -207,108 +200,109 @@ Use this checklist to ensure MoEngage is working correctly in your app:
 
 ### Basic Functionality
 
-**Basic Functionality⎘ Copy link
+\*\*Basic Functionality⎘ Copy link
 
-* [ ] `median.moengage.promptNotification` shows the permission prompt on Android 13+ and grants silently on Android 12 and below.
-* [ ] `median.moengage.notificationEnabled` returns expected status after permission is granted or denied.
-* [ ] `median.moengage.setUniqueId`, `setAlias`, and `resetUser` execute without JavaScript errors.
-* [ ] `median.moengage.trackEvent` logs events with and without payloads.
-* [ ] `median.moengage.launchInbox` opens the notification/subscription center.
+- [ ] `median.moengage.promptNotification` shows the permission prompt on Android 13+ and grants silently on Android 12 and below.
+- [ ] `median.moengage.notificationEnabled` returns expected status after permission is granted or denied.
+- [ ] `median.moengage.setUniqueId`, `setAlias`, and `resetUser` execute without JavaScript errors.
+- [ ] `median.moengage.trackEvent` logs events with and without payloads.
+- [ ] `median.moengage.launchInbox` opens the notification/subscription center.
 
 ### Platform Testing
 
-**Platform Testing⎘ Copy link
+\*\*Platform Testing⎘ Copy link
 
-* [ ] Push notifications are delivered on Android with FCM authentication configured.
-* [ ] Push notifications are delivered on iOS with APNS authentication configured.
+- [ ] Push notifications are delivered on Android with FCM authentication configured.
+- [ ] Push notifications are delivered on iOS with APNS authentication configured.
 
 ### Deep Linking
 
-**Deep Linking⎘ Copy link
+\*\*Deep Linking⎘ Copy link
 
-* [ ] Notification links open directly inside the app with Median deep linking configured.
-* [ ] Notification links fall back gracefully when deep linking is not configured.
+- [ ] Notification links open directly inside the app with Median deep linking configured.
+- [ ] Notification links fall back gracefully when deep linking is not configured.
 
 ### User Experience
 
-**User Experience⎘ Copy link
+\*\*User Experience⎘ Copy link
 
-* [ ] Users receive the push permission dialog at an appropriate point in the onboarding flow.
-* [ ] Inbox opens correctly from UI entry points in the app.
+- [ ] Users receive the push permission dialog at an appropriate point in the onboarding flow.
+- [ ] Inbox opens correctly from UI entry points in the app.
 
-***
+---
 
 ## Troubleshooting
 
 ### Notification links do not open inside the app
 
-**Notification links do not open inside the app⎘ Copy link
+\*\*Notification links do not open inside the app⎘ Copy link
 
 Set up Median deep linking in App Studio so notification URLs resolve to in-app destinations. Without deep linking configured, tapping notification links may open an external browser instead.
 
 ### MoEngage bridge methods are undefined at runtime
 
-**MoEngage bridge methods are undefined at runtime⎘ Copy link
+\*\*MoEngage bridge methods are undefined at runtime⎘ Copy link
 
 Confirm the MoEngage native plugin is enabled in Median App Studio and that the JavaScript Bridge is active for your app. Call bridge methods after the page is fully loaded.
 
 ### Push notifications not delivered on Android
 
-**Push notifications not delivered on Android⎘ Copy link
+\*\*Push notifications not delivered on Android⎘ Copy link
 
 Verify FCM Authentication is configured correctly in your MoEngage dashboard. Confirm the Google Services configuration in Median App Studio matches your Firebase project.
 
 ### Push notifications not delivered on iOS
 
-**Push notifications not delivered on iOS⎘ Copy link
+\*\*Push notifications not delivered on iOS⎘ Copy link
 
 Verify APNS Authentication Key is correctly configured in your MoEngage dashboard. Confirm push entitlements and provisioning profiles are set for your iOS build.
 
 ### promptNotification has no effect on Android 12 and below
 
-**promptNotification has no effect on Android 12 and below⎘ Copy link
+\*\*promptNotification has no effect on Android 12 and below⎘ Copy link
 
 This is expected behavior. On Android 12 and below, push permission is always granted without user intervention. The prompt dialog is shown on Android 13 and above only.
 
 <Info>
   ## Still having trouble?
 
-  For issues related to MoEngage's own configuration, permissions, or platform-specific behavior outside Median's bridge, refer to [MoEngage's integration documentation.](https://developers.moengage.com/hc/en-us)
+For issues related to MoEngage's own configuration, permissions, or platform-specific behavior outside Median's bridge, refer to [MoEngage's integration documentation.](https://developers.moengage.com/hc/en-us)
+
 </Info>
 
-***
+---
 
 ### Next Steps
 
-* [Push Notifications Overview](/docs/push-notifications-overview)
+- [Push Notifications Overview](/docs/push-notifications-overview)
 
 Copy Page
 
-* * [Why use MoEngage](#why-use-moengage)
+- - [Why use MoEngage](#why-use-moengage)
 
-  * [Prerequisites](#prerequisites)
+  - [Prerequisites](#prerequisites)
 
-  * [When to use this plugin](#when-to-use-this-plugin)
+  - [When to use this plugin](#when-to-use-this-plugin)
 
-  * [What you'll do](#what-youll-do)
+  - [What you'll do](#what-youll-do)
 
-  * [Key terms](#key-terms)
+  - [Key terms](#key-terms)
 
-  * [Plugin setup](#plugin-setup)
+  - [Plugin setup](#plugin-setup)
 
-  * * [Enable the plugin](#enable-the-plugin)
+  - - [Enable the plugin](#enable-the-plugin)
 
-  * [JavaScript bridge functions](#javascript-bridge-functions)
+  - [JavaScript bridge functions](#javascript-bridge-functions)
 
-  * * [Prompt for Push Notification Permission](#prompt-for-push-notification-permission)
-    * [Check Push Notification Permission Status](#check-push-notification-permission-status)
-    * [Set UniqueID](#set-uniqueid)
-    * [Set Alias](#set-alias)
-    * [Reset User](#reset-user)
-    * [Log Event With or Without Data](#log-event-with-or-without-data)
+  - - [Prompt for Push Notification Permission](#prompt-for-push-notification-permission)
+    - [Check Push Notification Permission Status](#check-push-notification-permission-status)
+    - [Set UniqueID](#set-uniqueid)
+    - [Set Alias](#set-alias)
+    - [Reset User](#reset-user)
+    - [Log Event With or Without Data](#log-event-with-or-without-data)
 
-  * [Notification Center](#notification-center)
+  - [Notification Center](#notification-center)
 
-  * [Testing checklist](#testing-checklist)
+  - [Testing checklist](#testing-checklist)
 
-  * [Troubleshooting](#troubleshooting)
+  - [Troubleshooting](#troubleshooting)
