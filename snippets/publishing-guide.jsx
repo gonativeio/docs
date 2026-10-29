@@ -24,14 +24,29 @@ export const PublishingGuide = () => {
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      style={{ color: ACCENT, fontWeight: 600, textDecoration: "underline" }}
+      style={{
+        color: ACCENT,
+        fontWeight: 600,
+        textDecoration: "underline",
+      }}
     >
       {children}
-      <i
-        className="fa fa-external-link"
+      <svg
         aria-hidden="true"
-        style={{ paddingLeft: "5px" }}
-      />
+        viewBox="0 0 24 24"
+        width="0.8em"
+        height="0.8em"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        style={{ display: "inline-block", marginLeft: "3px", verticalAlign: "-0.05em" }}
+      >
+        <path d="M14 4h6v6" />
+        <path d="M20 4 10 14" />
+        <path d="M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5" />
+      </svg>
     </a>
   );
 
@@ -41,6 +56,7 @@ export const PublishingGuide = () => {
         fontFamily:
           "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace",
         fontSize: "0.92em",
+        color: "#111827",
         background: "#f3f4f6",
         border: "1px solid #e5e7eb",
         borderRadius: "4px",
@@ -52,7 +68,7 @@ export const PublishingGuide = () => {
   );
 
   const ZoomImage = ({ src, alt, caption }) => (
-    <div style={{ marginTop: caption ? "12px" : "12px", marginBottom: "8px" }}>
+    <div style={{ marginTop: "12px", marginBottom: "8px" }}>
       <button
         type="button"
         onClick={() => setLightbox({ src, alt, caption })}
@@ -161,7 +177,7 @@ export const PublishingGuide = () => {
         0: {
           image:
             "https://files.readme.io/f42f815a4109ed71fa54f3d451b9c5f6451a01dcc39625da3be95ea3947a22f2-image.png",
-          caption: "App Studi - Connect App Store Connect Integration",
+          caption: "App Studio - Connect App Store Connect Integration",
         },
       },
     },
@@ -176,7 +192,7 @@ export const PublishingGuide = () => {
         </span>,
         "Click Configure on the iOS IPA row.",
         "The Apple Developer API Connection row should show a Connected status. Review Steps 2 and 3 if it doesn't.",
-        "Under Bundle ID & App Store Connect App, click Register Bundle ID Automatically. Note your bundle id, you need it in the next step.",
+        "Under Bundle ID & App Store Connect App, click Register Bundle ID Automatically. Note your Bundle ID; you'll need it in the next step.",
       ],
       imagesAfterBullet: {
         3: {
@@ -197,7 +213,7 @@ export const PublishingGuide = () => {
           </ExtLink>
           , click + next to Apps and choose New App.
         </span>,
-        "Fill the form: Choose iOS, enter the app name and primary language, and use the same Bundle ID in the App Studio.",
+        "Fill the form: Choose iOS, enter the app name and primary language, and use the same Bundle ID as in App Studio.",
         <span key="a7">
           Confirm the new app appears in{" "}
           <ExtLink href="https://appstoreconnect.apple.com/">App Store Connect</ExtLink>.
@@ -231,8 +247,8 @@ export const PublishingGuide = () => {
         </span>,
         <span key="s7">
           Open your app in{" "}
-          <ExtLink href="https://appstoreconnect.apple.com/">App Store Connect</ExtLink>
-          , check the TestFlight tab for the build.
+          <ExtLink href="https://appstoreconnect.apple.com/">App Store Connect</ExtLink>{" "}
+          and check the TestFlight tab for the build.
         </span>,
       ],
       imagesAfterBullet: {
@@ -305,11 +321,11 @@ export const PublishingGuide = () => {
             }}
           >
             <li style={{ marginBottom: "8px" }}>
-              <strong>TestFlight (recommended):</strong> In{" "}
+              <strong style={{ color: "#111827" }}>TestFlight (recommended):</strong> In{" "}
               <ExtLink href="https://appstoreconnect.apple.com/">
                 App Store Connect
               </ExtLink>
-              , go to your app and go to the TestFlight tab, create an Internal Testing
+              , open your app's TestFlight tab, create an Internal Testing
               group and add testers. Each tester receives an email invite and installs
               the build with the TestFlight app on a physical iPhone. Full walkthrough:{" "}
               <ExtLink href="https://docs.median.co/docs/upload-ios-to-testflight">
@@ -318,7 +334,7 @@ export const PublishingGuide = () => {
               .
             </li>
             <li style={{ marginBottom: "4px" }}>
-              <strong>Local Xcode build (optional):</strong> If you have a Mac and want
+              <strong style={{ color: "#111827" }}>Local Xcode build (optional):</strong> If you have a Mac and want
               to run or archive the app locally, follow{" "}
               <ExtLink href="https://docs.median.co/docs/build-ios-from-source">
                 Build iOS from Source
@@ -327,7 +343,7 @@ export const PublishingGuide = () => {
             </li>
           </ul>
         </span>,
-        "Test your native navigation, native features like face id/touch id and haptic feedback, and core user flows such as user onboarding.",
+        "Test your native navigation, native features like Face ID/Touch ID and haptic feedback, and core user flows such as user onboarding.",
       ],
       tip: "TestFlight builds expire after 90 days. Upload a new build to keep testing.",
     },
@@ -459,7 +475,7 @@ export const PublishingGuide = () => {
           caption: "App Studio - Copy package name and download AAB file",
         },
       },
-      tip: "This value appears in the Play Store URL and cannot be changed after you publish.",
+      tip: "Your package name appears in the Play Store URL and cannot be changed after you publish.",
     },
     {
       nav: "Create an app in Play Console",
@@ -586,9 +602,9 @@ export const PublishingGuide = () => {
             "Add testers: Use emails, Google Groups, or a link that testers can join. For new developer accounts, at least 12-20 testers may be required for 14 days before production release.",
             <span key="ct4">
               Create a release: Upload your <FileCode>.aab</FileCode> file with the
-              bundle name from App Studio and add release notes for testers.
+              package name from App Studio and add release notes for testers.
             </span>,
-            "Review & start rollout: Click “Review release → Start rollout to closed testers”.",
+            "Review & start rollout: Click “Review release” → “Start rollout to closed testers”.",
           ],
         },
       ],
@@ -606,10 +622,10 @@ export const PublishingGuide = () => {
       nav: "Promote to Production (Public Launch)",
       title: "Promote to Production (Public Launch)",
       bullets: [
-        "Once testing is done (or skipped if acceptable), head over to the Test & Release section.",
+        "Once testing is done (or skipped if acceptable), head over to the Test and release section.",
         "Click Production.",
         "Head over to the Releases tab.",
-        "Click Create new Release.",
+        "Click Create new release.",
         <span key="pr5">
           Upload the <FileCode>.aab</FileCode> file downloaded in Step 2.
         </span>,
@@ -740,6 +756,7 @@ export const PublishingGuide = () => {
     <>
     <div
       id="publishing-wizard"
+      className="not-prose"
       style={{
         border: "1px solid #e5e7eb",
         borderRadius: "16px",
@@ -806,7 +823,6 @@ export const PublishingGuide = () => {
             style={platformBtn(platform === "apple")}
             onClick={() => resetTo("apple")}
           >
-            <i className="fa-brands fa-apple" style={{ fontSize: "16px" }} />
             Apple
           </button>
           {SHOW_GOOGLE ? (
@@ -815,7 +831,6 @@ export const PublishingGuide = () => {
               style={platformBtn(platform === "google")}
               onClick={() => resetTo("google")}
             >
-              <i className="fa-brands fa-google-play" style={{ fontSize: "16px" }} />
               Google
             </button>
           ) : null}
@@ -845,6 +860,7 @@ export const PublishingGuide = () => {
             style={{
               margin: "0 0 12px",
               fontSize: "14px",
+              fontWeight: 600,
               color: "#111827",
             }}
           >
@@ -962,7 +978,16 @@ export const PublishingGuide = () => {
             {platform === "apple" ? "Apple App Store" : "Google Play Store"}
           </p>
 
-          <h3 style={{ margin: "0 0 12px", fontSize: "28px", color: "#111827", lineHeight: 1.2 }}>
+          <h3
+            style={{
+              margin: "0 0 12px",
+              fontSize: "28px",
+              fontWeight: 600,
+              letterSpacing: "-0.025em",
+              color: "#111827",
+              lineHeight: 1.2,
+            }}
+          >
             {current.title}
           </h3>
 
@@ -1020,7 +1045,7 @@ export const PublishingGuide = () => {
                         ? { image: current.image, caption: current.imageCaption }
                         : null);
                     return (
-                      <li key={"b-" + sectionIndex + "-" + index} style={{ marginBottom: "8px" }}>
+                      <li key={"b-" + sectionIndex + "-" + index} style={{ marginBottom: "8px", paddingLeft: "6px" }}>
                         {withFullStop(bullet)}
                         {inlineImage ? (
                           <ZoomImage
@@ -1072,6 +1097,7 @@ export const PublishingGuide = () => {
         role="dialog"
         aria-modal="true"
         aria-label={lightbox.alt || "Enlarged screenshot"}
+        className="not-prose"
         onClick={() => setLightbox(null)}
         style={{
           position: "fixed",
