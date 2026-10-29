@@ -9,6 +9,7 @@
 
 # Brand / product / company names (official casing only)
 AdMob
+Adjust
 Appknox
 AppsFlyer
 Booya
@@ -25,6 +26,7 @@ Intune
 jsrsasign
 Kaltura
 Klaviyo
+Lovable
 Mintlify
 Movin
 OneSignal
@@ -81,6 +83,8 @@ backgrounded
 (?i)barcodes
 biometrically
 bitcode
+(?)bugfix
+(?i)boolean
 checkmarks
 cicd
 cofounder
@@ -96,6 +100,8 @@ flexbox
 (?i)geolocation
 glassmorphism
 gonativeappconfig
+(?i)haptics
+hardcode
 hardcoded
 inapp
 jailbreaking
@@ -114,6 +120,7 @@ rebranded
 relock
 relocking
 sandboxed
+SDK
 serviceworker
 sideloaded
 signups
