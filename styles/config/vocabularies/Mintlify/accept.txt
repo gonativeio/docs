@@ -48,6 +48,7 @@ UserDefaults
 Visualforce
 WebAuthn
 Webflow
+Xcode
 Xtremepush
 
 # Abbreviations / acronyms
@@ -101,6 +102,7 @@ glassmorphism
 gonativeappconfig
 (?i)haptics
 hardcode
+hardcoded
 inapp
 jailbreaking
 (?i)jailbroken
@@ -135,6 +137,7 @@ upvote
 vibecode
 vibecoding
 webcredentials
+(?i)webview
 whitelabel
 (?i)whitelabeled
 (?i)whitelabeling
@@ -145,19 +148,3 @@ dnxqyl
 soclogin
 xmeaavx
 ynbmjx
-
-# British spellings
-# Commented out so Vale flags them while the docs are standardized on
-# US English. To accept them temporarily, remove the "# " from each line.
-# behaviour
-# behaviours
-# colours
-# initialisation
-# initialise
-# millimetres
-# (?i)optimisation
-# (?i)optimising
-# personalised
-# (?i)practise
-# (?i)practises
-# recognised
