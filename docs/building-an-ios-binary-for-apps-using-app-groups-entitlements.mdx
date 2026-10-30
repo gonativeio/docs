@@ -11,8 +11,8 @@ All configuration steps are performed in the Apple Developer Portal.
 
 ## Prerequisites
 
-* Your Bundle ID must already be registered (see [Configure Signing for Your App](https://docs.median.co/docs/configure-signing-for-your-app))
-* Admin or App Manager access to your Apple Developer account
+- Your Bundle ID must already be registered (see [Configure Signing for Your App](https://docs.median.co/docs/configure-signing-for-your-app))
+- Admin or App Manager access to your Apple Developer account
 
 ## App Group Configuration
 
@@ -80,31 +80,12 @@ After enabling the App Group capability:
 
 Before distributing the app or reporting an issue, please confirm:
 
-* [ ] The App Group identifier begins with `group.`
+- [ ] The App Group identifier begins with `group.`
 
-* [ ] App Groups is enabled on the main app's Bundle ID
+- [ ] App Groups is enabled on the main app's Bundle ID
 
-* [ ] App Groups is enabled on every extension's Bundle ID that needs shared access
+- [ ] App Groups is enabled on every extension's Bundle ID that needs shared access
 
-* [ ] The provisioning profile was regenerated after enabling App Groups (not just re-downloaded)
+- [ ] The provisioning profile was regenerated after enabling App Groups (not just re-downloaded)
 
-* [ ] Median's build used the newly regenerated profile, not a cached one
-
-***
-
-[Configure Signing for Your App](/docs/configure-signing-for-your-app)
-
-[Install iOS IPA](/docs/install-ios-ipa)
-
-Copy Page
-
-* * [Prerequisites](#prerequisites)
-
-  * [App Group Configuration](#app-group-configuration)
-
-  * * [Step 1: Create an App Group](#step-1-create-an-app-group)
-    * [Step 2: Enable App Groups for the Main Application](#step-2-enable-app-groups-for-the-main-application)
-    * [Step 3: Regenerate your provisioning profile](#step-3-regenerate-your-provisioning-profile)
-    * [Step 4: Rebuild](#step-4-rebuild)
-
-  * [Verification Checklist](#verification-checklist)
+- [ ] Median's build used the newly regenerated profile, not a cached one

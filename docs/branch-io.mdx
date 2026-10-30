@@ -3,6 +3,8 @@ title: "Branch.io"
 description: "Equip your app with Deferred Deep by leveraging the Branch.io native SDKs"
 ---
 
+import { MedianLogo } from "/snippets/median-logo.jsx";
+
 The **Branch.io Plugin** enables **deferred deep linking** within your app, allowing users to navigate directly to specific content even after installing the app. By leveraging the power of the **Branch SDK for iOS and Android** ([Branch SDK Overview](https://help.branch.io/developers-hub/docs/native-sdks-overview)), this plugin enhances user experience through context-aware routing and deep linking.
 
 This guide provides step-by-step instructions for configuring the plugin and utilizing its features through the [Median JavaScript Bridge](https://median.co/docs/javascript-bridge).
@@ -29,7 +31,7 @@ To set up the Branch.io Plugin, update the required parameters in the **Native P
 You can copy the following JSON file in the Advanced Configuration and replace the `String` and `Boolean` placeholders by following the instructions below.
 
 <CodeGroup>
-  ```bash bash
+  ```JSON JSON
   {
     liveKey: String, // required
     testKey: String, // optional
@@ -93,7 +95,7 @@ Enable Android-specific deep linking features in your Branch Dashboard:
 3. Ensure SHA256 Cert Fingerprints are correctly configured.
 
 <Warning>
-  ### SHA256 Cert Fingerprints
+  **SHA256 Cert Fingerprints**
 
 It’s important to specify the SHA256 Cert Fingerprints for App links to work properly on Android. Please see [https://help.branch.io/using-branch/docs/configure-default-link-behaviors](https://help.branch.io/using-branch/docs/configure-default-link-behaviors) for additional information.
 
@@ -105,8 +107,9 @@ It’s important to specify the SHA256 Cert Fingerprints for App links to work p
 
 The app calls this callback function when Branch SDK is has finished initializing and returns data from the link that referred the current session.
 
+<MedianLogo />
 <CodeGroup>
-  ```bash bash
+  ```JavaScript JavaScript
   median_branch_initialized(data){}
   // Return value:
   {
@@ -123,8 +126,9 @@ Returns the data from the link that first referred the user. This is only set on
 
 Provide a callback function or otherwise a promise is returned.
 
+<MedianLogo />
 <CodeGroup>
-  ```bash bash
+  ```JavaScript JavaScript
   median.branch.getFirstParams({'callback': function})
   // Return value
   // see https://help.branch.io/using-branch/docs/creating-a-deep-link#data-structure
@@ -135,8 +139,9 @@ Provide a callback function or otherwise a promise is returned.
 
 Returns the data from the link that referred the current session.
 
+<MedianLogo />
 <CodeGroup>
-  ```bash bash
+  ```JavaScript JavaScript
   median.branch.getLatestParams({'callback': function})
   // Return value
   // see https://help.branch.io/using-branch/docs/creating-a-deep-link#data-structure
@@ -153,18 +158,3 @@ Returns the data from the link that referred the current session.
 4. Click the link to ensure it correctly redirects to your app.
 
 If configured correctly, the user should be redirected into your app, with deep link data accessible through the JavaScript Bridge methods.
-
----
-
-[AppsFlyer](/docs/appsflyer)
-
-[Google Firebase Analytics](/docs/firebase-analytics)
-
-Copy Page
-
-- - [Implementation Guide](#implementation-guide)
-
-  - - [Plugin Configuration](#plugin-configuration)
-    - [Branch.io Configuration](#branchio-configuration)
-    - [JavaScript Bridge Functions](#javascript-bridge-functions)
-    - [Testing Your Integration](#testing-your-integration)

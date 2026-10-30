@@ -2,6 +2,7 @@
 title: "Background Audio"
 description: "Continuous Microphone Recording with Background & Lock Screen Support"
 ---
+import { MedianLogo } from "/snippets/median-logo.jsx";
 
 Background Audio enables native, continuous microphone recording in your Median-powered app, even when the app is in the background or the device is locked. The plugin offers seamless recording with persistent notifications on Android and system-level recording indicators on iOS, plus real-time state updates and optional on-device speech-to-text transcription.
 
@@ -13,8 +14,6 @@ The plugin supports start, stop, pause, and resume controls with real-time event
 - **Native platform UX**: Surface a persistent Android foreground service notification and iOS system recording indicators without custom native code.
 - **Lifecycle controls**: Start, stop, pause, and resume without releasing the background session when pausing.
 - **Realtime updates**: Listen for recording state changes and handle completion or errors in your UI.
-
----
 
 ## Prerequisites
 
@@ -29,30 +28,6 @@ Display our demo page in your app to test during development [https://median.dev
 
 </Check>
 
----
-
-## When to use this plugin
-
-Background Audio is essential for apps that need to:
-
-| Use case                             | Example                                                                            |
-| ------------------------------------ | ---------------------------------------------------------------------------------- |
-| **Capture audio while multitasking** | Record voice notes or field audio while the user switches apps.                    |
-| **Record with the device locked**    | Continue a session after the screen locks, within platform rules and user consent. |
-| **Optional on-device transcription** | Enable speech-to-text during recording and read the transcript when stopping.      |
-
-## What you'll do
-
-Use this section as a fast navigation map into the full setup and implementation details:
-
-1. **Confirm permissions**: Check and request microphone access before starting a session using the methods documented in [JavaScript bridge functions](#check-permissions).
-2. **Configure recording options**: See [Plugin setup](#plugin-setup) for `startRecording` options and recommended settings.
-3. **Implement bridge calls**: Add `checkPermission`, `requestPermission`, `startRecording`, `pause`, `resume`, `stopRecording`, `getStatus`, and listeners from [JavaScript bridge functions](#javascript-bridge-functions).
-4. **Understand platform UX**: Review the [Platform UX during recording](#start-recording) note under `startRecording` to see what users will see on Android and iOS.
-5. **Validate flows and errors**: Use [Error handling](#error-handling), [Testing Checklist](#testing-checklist), and [Troubleshooting](#troubleshooting) to verify your implementation.
-
----
-
 **Key terms**
 
 The following terms will help you implement Background Audio effectively:
@@ -66,32 +41,31 @@ The following terms will help you implement Background Audio effectively:
 **Listener events**: Real-time callbacks for lifecycle changes (`idle`, `recording`, `paused`, `stopped`, `error`).
 
 <Info>
-  ### Important considerations
+  **Important considerations**
 
 - iOS shows a system-level recording indicator (orange dot with waveform animation while actively recording); it hides when recording stops.
 - Android shows status text such as "audio recording in progress" or "paused" and exposes **Launch App** and **Stop Recording** actions on the notification.
 - WAV works only on iOS; Android automatically uses M4A if you request WAV.
 - OS interruptions (for example, calls or Siri) can pause the session (`SESSION_INTERRUPTED`); handle `error` listener state and the error reference table.
-  </Info>
+</Info>
 
----
+## Implementation Guide
 
-## Plugin setup
+### Plugin setup
 
 Enable the Background Audio plugin in your Median App Studio configuration, then rebuild your app. Once you enable it, you can call `median.backgroundAudio.*` functions from the JavaScript Bridge at runtime.
 
----
-
-## JavaScript bridge functions
+### JavaScript bridge functions
 
 Document each method available on `median.backgroundAudio`. Most functions return a promise; `getStatus` additionally supports a callback form.
 
-### Check permissions
+#### Check permissions
 
 Returns whether the user has already granted microphone permission. This method returns a promise.
 
+<MedianLogo />
 <CodeGroup>
-  ```bash bash
+  ```JavaScript JavaScript
   const permission = await median.backgroundAudio.checkPermission();
 
 if (!permission.granted) {
@@ -103,51 +77,49 @@ if (!permission.granted) {
 
 **Return value:**
 
+<MedianLogo />
 <CodeGroup>
-```bash bash
+```JavaScript JavaScript
 interface PermissionStatus {
   granted: boolean;
 }
-````
-
+```
 </CodeGroup>
 
----
-
-### Request permissions
+#### Request permissions
 
 Prompts the user for microphone permission. If the user grants it, you can start recording. This method returns a promise.
 
+<MedianLogo />
 <CodeGroup>
-  ```bash bash
+  ```JavaScript JavaScript
   const permission = await median.backgroundAudio.requestPermission();
 
 if (permission.granted) {
 const result = await median.backgroundAudio.startRecording();
 }
 
-````
+```
 </CodeGroup>
 
 **Return value:**
 
+<MedianLogo />
 <CodeGroup>
-```bash bash
+```JavaScript JavaScript
 interface PermissionStatus {
   granted: boolean;
 }
-````
-
+```
 </CodeGroup>
 
----
-
-### Start recording
+#### Start recording
 
 Starts a background-aware recording session. Optional configuration controls format, duration, and transcription. This method returns a promise.
 
+<MedianLogo />
 <CodeGroup>
-  ```bash bash
+  ```JavaScript JavaScript
   // Minimal configuration
   const result = await median.backgroundAudio.startRecording();
 
@@ -159,7 +131,7 @@ enableTranscription: true,
 sttLanguage: "en-US",
 });
 
-````
+```
 </CodeGroup>
 
 **Parameters:**
@@ -173,22 +145,20 @@ sttLanguage: "en-US",
 
 **Return value:**
 
+<MedianLogo />
 <CodeGroup>
-```bash bash
+```JavaScript JavaScript
 interface StartRecordingResult {
   success: boolean;
 }
-````
-
+```
 </CodeGroup>
 
-**Platform UX during recording:**
+#### Platform UX during recording
 
 When `startRecording` succeeds, each platform surfaces native UI automatically. You do not need additional manifest or Info.plist changes beyond enabling the plugin and declaring standard microphone usage descriptions.
 
-### Android — foreground service notification
-
-\*\*Android — foreground service notification⎘ Copy link
+##### Android - foreground service notification
 
 Android displays a persistent notification with:
 
@@ -196,9 +166,7 @@ Android displays a persistent notification with:
 - Status text: "audio recording in progress" or "paused"
 - Two action buttons: \_ **Launch App** — deep-links back into the app \_ **Stop Recording** — terminates the session and launches the app
 
-### iOS — recording indicator and audio session
-
-\*\*iOS — recording indicator and audio session⎘ Copy link
+##### iOS - recording indicator and audio session
 
 iOS activates `AVAudioSession` with background mode and displays a system-level recording indicator while the session is active:
 
@@ -206,30 +174,32 @@ iOS activates `AVAudioSession` with background mode and displays a system-level 
 - Red dot with waveform animation during active recording
 - iOS hides it automatically when recording stops
 
----
-
-### Pause recording
+#### Pause recording
 
 Pauses an active recording without releasing the background session. This method returns a promise.
 
+<MedianLogo />
 <CodeGroup>
-  ```bash bash const status = await median.backgroundAudio.pause();
-  console.log("Recording paused"); ```
+  ```JavaScript JavaScript 
+  const status = await median.backgroundAudio.pause();
+  console.log("Recording paused"); 
+  ```
 </CodeGroup>
 
 **Return value:**
 
 Returns a status object reflecting the updated recording state.
 
----
-
-### Resume recording
+#### Resume recording
 
 Resumes a paused session. This method returns a promise.
 
+<MedianLogo />
 <CodeGroup>
-  ```bash bash const status = await median.backgroundAudio.resume();
-  console.log("Recording resumed"); ```
+  ```JavaScript JavaScript 
+  const status = await median.backgroundAudio.resume();
+  console.log("Recording resumed"); 
+  ```
 </CodeGroup>
 
 **Parameters:**
@@ -240,14 +210,13 @@ This function takes no parameters.
 
 Returns a status object reflecting the updated recording state.
 
----
-
-### Stop recording
+#### Stop recording
 
 Stops the session and retrieves the file URI, duration, and optional transcript. This method returns a promise.
 
+<MedianLogo />
 <CodeGroup>
-  ```bash bash
+  ```JavaScript JavaScript
   const result = await median.backgroundAudio.stopRecording();
 
 console.log("File URI:", result.fileUri);
@@ -256,8 +225,7 @@ console.log("Duration:", result.durationSeconds, "seconds");
 if (result.transcript) {
 console.log("Transcript:", result.transcript);
 }
-
-````
+```
 </CodeGroup>
 
 **Parameters:**
@@ -266,30 +234,32 @@ This function takes no parameters.
 
 **Return value:**
 
+<MedianLogo />
 <CodeGroup>
-```bash bash
+```JavaScript JavaScript
 interface StopRecordingResult {
   fileUri: string;
   durationSeconds: number;
   transcript?: string;
 }
-````
-
+```
 </CodeGroup>
 
----
-
-### Get status
+#### Get status
 
 Returns the current recording state and elapsed time. Pass a callback function to use the callback form. Otherwise, this method returns a promise.
 
+<MedianLogo />
 <CodeGroup>
-  ```bash bash // Using promises (recommended) const status = await
-  median.backgroundAudio.getStatus(); console.log(JSON.stringify(status)); ```
+  ```JavaScript JavaScript 
+  // Using promises (recommended) const status = await
+  median.backgroundAudio.getStatus(); console.log(JSON.stringify(status)); 
+  ```
 </CodeGroup>
 
+<MedianLogo />
 <CodeGroup>
-  ```bash bash
+  ```JavaScript JavaScript
   // Using callback
   median.backgroundAudio.getStatus({
     callback: function (status) {
@@ -308,8 +278,9 @@ Returns the current recording state and elapsed time. Pass a callback function t
 
 **Return value:**
 
+<MedianLogo />
 <CodeGroup>
-  ```bash bash
+  ```JavaScript JavaScript
   interface RecordingStatus {
     state: "idle" | "recording" | "paused" | "stopped" | "error";
     elapsedSeconds: number;
@@ -320,7 +291,7 @@ Returns the current recording state and elapsed time. Pass a callback function t
 Example JSON:
 
 <CodeGroup>
-  ```bash bash
+  ```JSON JSON
   {
     "state": "recording",
     "elapsedSeconds": 127
@@ -328,14 +299,13 @@ Example JSON:
   ```
 </CodeGroup>
 
----
-
-### Add a listener
+#### Add a listener
 
 Registers a listener for real-time recording lifecycle updates. Returns a listener identifier that you pass to `removeListener`.
 
+<MedianLogo />
 <CodeGroup>
-  ```bash bash
+  ```JavaScript JavaScript
   const listenerId = median.backgroundAudio.addListener((event) => {
     console.log("State changed:", event.state);
 
@@ -370,17 +340,15 @@ Event states you may receive:
 | `stopped`   | Recording stopped; file available      |
 | `error`     | An error occurred (check `errorCode`)  |
 
-***
-
-### Remove a listener
+#### Remove a listener
 
 Removes a previously added listener so it stops receiving further events.
 
+<MedianLogo />
 <CodeGroup>
-```bash bash
+```JavaScript JavaScript
 median.backgroundAudio.removeListener(listenerId);
-````
-
+```
 </CodeGroup>
 
 **Parameters:**
@@ -393,9 +361,7 @@ median.backgroundAudio.removeListener(listenerId);
 
 No return value.
 
----
-
-## Error handling
+### Error handling
 
 | Error code            | Description                                                           | Common causes                       | Resolution                                       |
 | --------------------- | --------------------------------------------------------------------- | ----------------------------------- | ------------------------------------------------ |
@@ -406,10 +372,11 @@ No return value.
 | `SESSION_INTERRUPTED` | The OS interrupted the session (phone call, Siri)                     | Incoming call or assistant          | Auto-pause; inform the user and resume when safe |
 | `FILE_ERROR`          | File write failure                                                    | Disk full or sandbox error          | Check storage availability                       |
 
-### Best practices for error handling
+#### Best practices for error handling
 
+<MedianLogo />
 <CodeGroup>
-  ```bash bash
+  ```JavaScript JavaScript
   try {
     const result = await median.backgroundAudio.startRecording({
       format: "m4a",
@@ -422,25 +389,25 @@ No return value.
 
 } catch (error) {
 switch (error.code) {
-case "PERMISSION_DENIED":
-// Prompt the user to enable the microphone in Settings
-break;
-case "ALREADY_RECORDING":
-// Surface current session state instead of starting again
-break;
-case "STT_UNAVAILABLE":
-// Fall back to file URI only
-break;
-default:
-console.error("Unexpected background audio error:", error);
-}
+  case "PERMISSION_DENIED":
+    // Prompt the user to enable the microphone in Settings
+    break;
+  case "ALREADY_RECORDING":
+    // Surface current session state instead of starting again
+    break;
+  case "STT_UNAVAILABLE":
+    // Fall back to file URI only
+    break;
+  default:
+    console.error("Unexpected background audio error:", error);
+  }
 }
 
-````
+```
 </CodeGroup>
 
 <Info>
-### Important
+**Important**
 
 Use the listener `error` state and the `errorCode` it provides together with this reference table when presenting in-app guidance. Combine it with `getStatus` checks before issuing `pause`, `resume`, or `stop` commands to avoid `NOT_RECORDING` and `ALREADY_RECORDING` race conditions.
 </Info>
@@ -455,29 +422,26 @@ See the example implementation below for the basic recording flow
 
 ### Step 1: Check Permissions
 
-**Step 1: Check Permissions⎘ Copy link
-
 Before starting a recording session, check if the user has granted microphone permissions:
 
+<MedianLogo />
 <CodeGroup>
-```bash bash
+```JavaScript JavaScript
 const permission = await median.backgroundAudio.checkPermission();
 
 if (!permission.granted) {
   // Prompt user to grant permission
 }
-````
-
+```
 </CodeGroup>
 
 ### Step 2: Request Permission (If Needed)
 
-\*\*Step 2: Request Permission (If Needed)⎘ Copy link
-
 If permissions haven't been granted, prompt the user:
 
+<MedianLogo />
 <CodeGroup>
-  ```bash bash
+  ```JavaScript JavaScript
   const permission = await median.backgroundAudio.requestPermission();
 
 if (permission.granted) {
@@ -490,23 +454,22 @@ const result = await median.backgroundAudio.startRecording();
 
 ### Step 3: Start Recording
 
-**Step 3: Start Recording⎘ Copy link
-
 Start a background-aware recording session with optional configuration:
 
-> **Minimal Configuration:**
+**Minimal Configuration:**
 
+<MedianLogo />
 <CodeGroup>
-```bash bash
+```JavaScript JavaScript
 const result = await median.backgroundAudio.startRecording();
 ````
 
 </CodeGroup>
 
-> **Full Configuration:**
+**Full Configuration:**
 
 <CodeGroup>
-  ```bash bash
+  ```JavaScript JavaScript
   const result = await median.backgroundAudio.startRecording({
     format: "m4a", // Audio format (m4a or wav)
     maxDuration: 3600, // Maximum duration in seconds (default: 3600)
@@ -519,7 +482,7 @@ const result = await median.backgroundAudio.startRecording();
 HTML Example:
 
 <CodeGroup>
-  ```bash bash
+  ```JavaScript JavaScript
   <button type="button" onclick="startRecording()">Start Recording</button>
 
   <script>
@@ -539,26 +502,12 @@ HTML Example:
 ```
 </CodeGroup>
 
-***
-
-### Full Recipe
-
-Follow the full recipe for the full implementation
-
-***
-
-### Diagrams
-
-#### 1. Overview Flowchart
+### Sequence Diagram
 
 High-level view: permission gate → start recording → success or failure.
 
-### Diagram — Overview Flowchart
-
-**Diagram — Overview Flowchart⎘ Copy link
-
-```
-
+```mermaid actions={false}
+%%{init: {'flowchart': {'defaultRenderer': 'elk'}}}%%
 flowchart TD
 Trigger["User taps Start Recording"]
 CheckPerm["checkPermission()"]
@@ -581,19 +530,13 @@ Failed["Log error — session not started"]
     StartRec --> Success
     Success -->|"true"| Recording
     Success -->|"false"| Failed
-
 ```
-
-***
 
 ## Testing Checklist
 
 Use this checklist to ensure Background Audio is working correctly in your app:
 
 ### Basic Functionality
-
-**Basic Functionality⎘ Copy link
-
 * [ ] `checkPermission` and `requestPermission` behave as expected before `startRecording`
 * [ ] Minimal `startRecording()` and full configuration calls succeed when permitted
 * [ ] `pause` and `resume` update behavior without releasing the session
@@ -601,26 +544,17 @@ Use this checklist to ensure Background Audio is working correctly in your app:
 * [ ] Plugin loads without JavaScript errors
 
 ### Platform Testing
-
-**Platform Testing⎘ Copy link
-
 * [ ] Android shows the foreground notification with correct status text and **Launch App** / **Stop Recording** actions
 * [ ] iOS shows the recording indicator during active recording and hides it when stopped
 * [ ] WAV records on iOS as documented; Android falls back to M4A when you request WAV
 * [ ] Recording continues when you background the app and lock the device
 
 ### Status and Events
-
-**Status and Events⎘ Copy link
-
 * [ ] `getStatus` returns `state` and `elapsedSeconds` via promise and via `callback` form
 * [ ] `addListener` receives transitions across `idle`, `recording`, `paused`, `stopped`, and `error`
 * [ ] `removeListener` stops further callbacks for that id
 
 ### Error Scenarios
-
-**Error Scenarios⎘ Copy link
-
 * [ ] Your app surfaces the errors in the reference table as documented (`PERMISSION_DENIED`, `ALREADY_RECORDING`, `NOT_RECORDING`, `STT_UNAVAILABLE`, `SESSION_INTERRUPTED`, `FILE_ERROR`)
 * [ ] Incoming calls or Siri trigger `SESSION_INTERRUPTED`, and your listener handles it
 * [ ] Denying microphone permission returns `PERMISSION_DENIED` and surfaces a clear user-facing path to Settings
@@ -631,85 +565,26 @@ Use this checklist to ensure Background Audio is working correctly in your app:
 
 ### Handle microphone access after \`PERMISSION\_DENIED\`
 
-**Handle microphone access after \`PERMISSION\_DENIED\`⎘ Copy link
-
 Guide the user to the system Settings app to enable the microphone. Confirm you call `checkPermission` and, if needed, `requestPermission` before `startRecording`.
 
 ### Handle an active session (\`ALREADY\_RECORDING\`)
-
-**Handle an active session (\`ALREADY\_RECORDING\`)⎘ Copy link
 
 Avoid duplicate starts. Use `getStatus` or your listener state to decide whether to start, resume, or stop instead of calling `startRecording` again.
 
 ### Handle missing transcription (\`STT\_UNAVAILABLE\`)
 
-**Handle missing transcription (\`STT\_UNAVAILABLE\`)⎘ Copy link
-
 Speech-to-text may be unavailable for the requested locale. Fall back to the recorded file using `fileUri` from `stopRecording`, and consider setting `sttLanguage` explicitly to a supported locale.
 
 ### Handle OS interruptions (\`SESSION\_INTERRUPTED\`)
-
-**Handle OS interruptions (\`SESSION\_INTERRUPTED\`)⎘ Copy link
 
 Interruptions such as phone calls or Siri can pause recording. Inform the user in your UI and let them resume when appropriate via `resume`.
 
 ### Android notification actions behave unexpectedly
 
-**Android notification actions behave unexpectedly⎘ Copy link
-
 The notification includes **Launch App** (deep-links into the app) and **Stop Recording** (ends the session and launches the app). Test both actions against your app's navigation stack.
 
 <Info>
-  ## Still having trouble?
+  **Still having trouble?**
 
   For issues related to platform-level microphone, background audio, or speech-to-text behavior outside Median.co, refer to the platform documentation for [Apple AVAudioSession](https://developer.apple.com/documentation/avfaudio/avaudiosession) and [Android foreground services](https://developer.android.com/develop/background-work/services/fgs).
 </Info>
-
-```
-
-```
-
-***
-
-[Media](/docs/media)
-
-[JW Player](/docs/jwplayer)
-
-Copy Page
-
-* * [Why use Background Audio](#why-use-background-audio)
-
-  * [Prerequisites](#prerequisites)
-
-  * [When to use this plugin](#when-to-use-this-plugin)
-
-  * [What you'll do](#what-youll-do)
-
-  * [Plugin setup](#plugin-setup)
-
-  * [JavaScript bridge functions](#javascript-bridge-functions)
-
-  * * [Check permissions](#check-permissions)
-    * [Request permissions](#request-permissions)
-    * [Start recording](#start-recording)
-    * [Pause recording](#pause-recording)
-    * [Resume recording](#resume-recording)
-    * [Stop recording](#stop-recording)
-    * [Get status](#get-status)
-    * [Add a listener](#add-a-listener)
-    * [Remove a listener](#remove-a-listener)
-
-  * [Error handling](#error-handling)
-
-  * * [Best practices for error handling](#best-practices-for-error-handling)
-
-  * [Example implementation](#example-implementation)
-
-  * * [Basic Recording Flow](#basic-recording-flow)
-    * [Full Recipe](#full-recipe)
-    * [Diagrams](#diagrams)
-
-  * [Testing Checklist](#testing-checklist)
-
-  * [Troubleshooting](#troubleshooting)
-```

@@ -3,6 +3,8 @@ title: "Braze"
 description: "Engage your users by enabling Braze push notifications and event tracking"
 ---
 
+import { MedianLogo } from "/snippets/median-logo.jsx";
+
 The Braze Plugin integrates mobile push notifications and in-app event tracking to boost user engagement and strengthen data analytics. It also supports audience segmentation and targeted messaging by leveraging the [Braze iOS SDK](https://www.braze.com/docs/developer_guide/sdk_integration/?sdktab=swift) and [Braze Android SDK](https://www.braze.com/docs/developer_guide/sdk_integration?sdktab=android).
 
 <Check>
@@ -19,8 +21,6 @@ Display our demo page in your app to test during development [https://median.dev
 - **User targeting**: Support segmentation and targeted messaging.
 - **Deep linking support**: Open notification links directly in your app when deep linking is configured.
 
----
-
 ## Prerequisites
 
 - Access to the Braze plugin settings in the Median App Dashboard (Native Plugins tab).
@@ -35,8 +35,6 @@ Display our demo page in your app to test during development [https://median.dev
 - If using automatic prompts, set `autoRegister` in plugin config.
 
 - If testing with the Median demo page, use `https://median.dev/braze/`.
-
----
 
 ## Implementation Guide
 
@@ -66,8 +64,9 @@ Set up [Deep Linking](https://median.co/docs/deep-linking) within your app, and 
 
 Logs in an existing user or registers a new user in Braze context.
 
+<MedianLogo />
 <CodeGroup>
-  ```bash bash
+  ```JavaScript JavaScript
   median.braze.changeUser({ userId: "user_123" });
   ```
 </CodeGroup>
@@ -82,8 +81,9 @@ Logs in an existing user or registers a new user in Braze context.
 
 Prompts users to enable push notifications.
 
+<MedianLogo />
 <CodeGroup>
-  ```bash bash
+  ```JavaScript JavaScript
   median.braze.promptNotification({'callback': function})
   // Return value:
   {
@@ -102,8 +102,9 @@ Prompts users to enable push notifications.
 
 Checks if push notification permission has been granted.
 
+<MedianLogo />
 <CodeGroup>
-  ```bash bash
+  ```JavaScript JavaScript
   median.braze.notificationEnabled({'callback': function})
   // Return value:
   {
@@ -124,8 +125,9 @@ Sends a custom event to Braze.
 
 **Note:** Custom Events must be added in the [Braze Dashboard](https://www.braze.com/docs/user_guide/data/activation/events/custom_events/).
 
+<MedianLogo />
 <CodeGroup>
-  ```bash bash
+  ```JavaScript JavaScript
   median.braze.logCustomEvent("YOUR-EVENT-NAME", {
     "key1": value1,
     "key2": value2,
@@ -153,47 +155,16 @@ Use this checklist to validate Braze integration:
 - [ ] Test notifications are sent to a test user from Braze (Test tab).
 - [ ] Notification opens app when configured as **Open App**.
 
----
-
 ## Troubleshooting
 
 ### Test users are not appearing in Braze test send flow
-
-\*\*Test users are not appearing in Braze test send flow⎘ Copy link
 
 Ensure your app calls `median.braze.changeUser({ userId: "..." })` so the user is identified before sending test notifications.
 
 ### Push deep links open incorrectly
 
-\*\*Push deep links open incorrectly⎘ Copy link
-
 Confirm deep linking is set up in your app. Notification links rely on the app’s deep linking configuration.
 
 ### Permission prompt behavior differs on Android versions
 
-\*\*Permission prompt behavior differs on Android versions⎘ Copy link
-
 On Android 13 and above, explicit permission is required. On Android 12 and below, permissions are granted automatically.
-
----
-
-[Legacy Mode](/docs/onesignal-legacy-mode)
-
-[Bloomreach](/docs/bloomreach)
-
-Copy Page
-
-- - [Why use this plugin](#why-use-this-plugin)
-
-  - [Prerequisites](#prerequisites)
-
-  - [Implementation Guide](#implementation-guide)
-
-  - - [Braze Setup](#braze-setup)
-    - [App Configuration](#app-configuration)
-    - [Deep linking](#deep-linking)
-    - [JavaScript Bridge Functions](#javascript-bridge-functions)
-
-  - [Testing Checklist](#testing-checklist)
-
-  - [Troubleshooting](#troubleshooting)

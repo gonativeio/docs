@@ -2,20 +2,24 @@
 title: "Bubble Plugin"
 description: "Easily access native app functionality from your Bubble app using the Median JavaScript Bridge"
 ---
+import { AppetizeEmbed } from "/snippets/appetize-embed.jsx";
 
-[Median JavaScript Bridge Plugin on Bubble](https://bubble.io/plugin/gonative-javascript-bridge-1662164388589x419660551052853250)
-
-[Demo Median app](https://median.co/share/znmzee)
-
-[Demo Bubble app](https://gonative-test-site.bubbleapps.io/version-test)
-
-# Setup
+## Setup
 
 To get started, install the Median Bubble Plugin in the Bubble app editor via Plugins -> Add Plugins -> Median Plugin.
 
 Drag the "**Median Plugin**" element from the "**Elements**" section and drop it on the page that requires access to Median JavaScript Bridge. The purpose of this element is to initialize the Median JavaScript Bridge Library so that commands can be executed on page load as shown in the following section.
 
-# Execute command on page load
+[Median JavaScript Bridge Plugin on Bubble](https://bubble.io/plugin/gonative-javascript-bridge-1662164388589x419660551052853250)
+
+<Check>
+**Developer Demo**
+
+Display our demo page in your app to test during development [Demo Bubble app](https://gonative-test-site.bubbleapps.io/version-test)
+
+</Check>
+
+## Execute command on page load
 
 To execute a Median JavaScript Bridge command on page load, click the "**Median Plugin**" element that you just dropped on the page and insert your desired JavaScript into the text input captioned "**Median Library Ready Custom Script**" as shown below:
 
@@ -23,7 +27,7 @@ To execute a Median JavaScript Bridge command on page load, click the "**Median 
   <img src="/images/docs/359eb70-on-page-load.png" />
 </Frame>
 
-# Execute command as a workflow/action
+## Execute command as a workflow/action
 
 Suppose we need to set brightness of the device to 80% when user clicks a button. To accomplish this, drag a button from the "**Elements**" section on your page and change its name to "Set Brightness" or as desired:
 
@@ -81,7 +85,7 @@ After clicking the option, you will see a list of all elements that you have in 
 
 Once this action is configured, your app will read the brightness value from the slider input when setting the brightness level.
 
-# Execute custom JavaScript
+## Execute custom JavaScript
 
 To access advanced Median JavaScript Bridge functions in a custom script, you can use any plugin that enables JavaScript execution. For instance, you can run any Median JavaScript commands via the “[Toolbox plugin](https://bubble.io/plugin/toolbox-1488796042609x768734193128308700)” which allows you to run JavaScript as a workflow.
 
@@ -93,10 +97,10 @@ Once the plugin is installed, select an element and click **"Start/Edit workflow
 
 This plugin can also be used to run AJAX HTTP requests to send data returned from your app via the JavaScript Bridge to your servers or request data from your servers to pass it to your app via the JavaScript Bridge.
 
-# Process returned data
+## Process returned data
 
 <Info>
-  ### Returned data variable
+  **Returned data variable**
 
   All the data that Median returns from the app can be accessed in your custom callback script by the variable named "data".
 
@@ -104,7 +108,7 @@ This plugin can also be used to run AJAX HTTP requests to send data returned fro
 </Info>
 
 <CodeGroup>
-  ```bash bash
+  ```JavaScript JavaScript
   document.getElementById("contacts_output").value = JSON.stringify(data);
   ```
 </CodeGroup>
@@ -121,7 +125,7 @@ Once complete, go to your Workflow section, then open the "Median Native Contact
   <img src="/images/docs/688548e-id-attribute.png" />
 </Frame>
 
-# Supported commands
+## Supported commands
 
 The following JavaScript Bridge commands are supported within the Bubble plugin via drag-and-drop actions:
 
@@ -145,17 +149,9 @@ The following JavaScript Bridge commands are supported within the Bubble plugin 
 * [Social Login Server-side Redirect functions](/docs/social-login-server-side-redirects)
 * [Social Login JavaScript Callback functions](/docs/social-login-javascript-callbacks)
 
-***
+## Demo App
 
-[AdMob Native Ads](/docs/admob-native-ads)
-
-[Card.io](/docs/card-io)
-
-Copy Page
-
-* * [Setup](#setup)
-  * [Execute command on page load](#execute-command-on-page-load)
-  * [Execute command as a workflow/action](#execute-command-as-a-workflowaction)
-  * [Execute custom JavaScript](#execute-custom-javascript)
-  * [Process returned data](#process-returned-data)
-  * [Supported commands](#supported-commands)
+<AppetizeEmbed
+  iosEmbedCode="lkjphwn4d5kwrcyrdodfvhcqie"
+  androidEmbedCode="aglco3uqsnsawn32pfrfgny65q"
+/>
