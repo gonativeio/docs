@@ -5,104 +5,103 @@ description: "Offer your users safety and security with authentication features 
 
 Modern users expect instant, secure access without creating yet another password. Median.co's authentication plugins offer seamless login through social accounts (Facebook, Google, Apple), biometric verification (Face ID, Touch ID), or enterprise Auth0 integration. Social login reduces signup abandonment by 20-40%, while biometric authentication combines maximum security with minimal friction.
 
-***
+<Info>
+**Some identity providers block embedded webviews**
+
+Google, for example, rejects OAuth sign-in from embedded webviews. Use the [Social Login](https://docs.median.co/docs/social-login) plugin, which uses the provider's native SDK, instead of the web-based OAuth flow.
+
+</Info>
 
 ## Why use authentication plugins?
 
-* **Frictionless login**: Eliminate password fatigue with social login and biometric authentication
-* **Higher conversion rates**: Reduce signup abandonment by 20-40% with one-tap authentication
-* **Enhanced security**: Native SDKs provide hardware-level encryption and secure authentication
-* **Better user data**: Collect verified user information from trusted identity providers
+- **Frictionless login**: Eliminate password fatigue with social login and biometric authentication
+- **Higher conversion rates**: Reduce signup abandonment by 20-40% with one-tap authentication
+- **Enhanced security**: Native SDKs provide hardware-level encryption and secure authentication
+- **Better user data**: Collect verified user information from trusted identity providers
 
 ## Common use cases
 
-* **E-commerce & retail**: Fast checkout with social login, secure payments with biometric verification
-* **Fintech & banking**: Multi-factor authentication, biometric security for transactions, regulatory compliance
-* **Healthcare**: HIPAA-compliant authentication, secure patient portals, biometric data access
-* **Enterprise apps**: Single Sign-On (SSO) for employee access, Auth0 for scalable user management
-
-***
-
-## Getting started
-
-**Add authentication to your app in four simple steps:**
-
-1. **Choose Your plugin:** Browse the authentication plugins below and select the approach that fits your app. Social Login is best for consumer apps, Biometric Authentication for passwordless security, and Auth0 for enterprise flexibility.
-
-2. **Review documentation:** Read the plugin's documentation to understand provider setup (Facebook, Google, Apple), credential requirements, and implementation workflows.
-
-3. **Configure in App Studio:** Navigate to **Native Plugins** in your Median App Studio, enable your chosen plugin, and enter required credentials (e.g., Facebook App ID, Google Client IDs, Auth0 domain).
-
-4. **Implement with JavaScript Bridge:** Add JavaScript Bridge commands to trigger authentication flows. For example:
-
-   * `median.socialLogin.login()` to initiate social login
-   * `median.auth.authenticate()` to prompt biometric authentication
-   * `median.auth0.login()` to launch Auth0 Universal Login
+- **E-commerce & retail**: Fast checkout with social login, secure payments with biometric verification
+- **Fintech & banking**: Multi-factor authentication, biometric security for transactions, regulatory compliance
+- **Healthcare**: HIPAA-compliant authentication, secure patient portals, biometric data access
+- **Enterprise apps**: Single Sign-On (SSO) for employee access, Auth0 for scalable user management
 
 ## Supported plugins
 
-**Not sure where to start?**
-
-* **Consumer Apps**: Social Login (Facebook, Google, Apple)
-* **Secure Access**: Face ID/Touch ID Android Biometric
-* **Enterprise Apps**: Auth0 (SSO, flexible authentication)
-
-![Auth0](/images/docs/7d45e09f6f375b4ee0d85816a36e8e440621d6b52263f4b5617351d6ef6bb5be-plugin_auth0.svg)
-
-#### Auth0
-
-Integrate secure and scalable authentication and authorization into your app.
-
-[Learn more→](https://docs.median.co/docs/auth0)
-
-![Clerk](/images/docs/3b6d4ee07b7ec43cdd690f5bd8e5196000e73993d0d2cdcd95d442033790f08e-plugin-clerk-1782256427537.svg)
-
-#### Clerk
-
-Native authentication with Clerk hosted login
-
-[Learn more→](https://docs.median.co/docs/clerk)
-
-![Face ID / Touch ID](/images/docs/c24ade2c98791842f8666aa2212a08e448214685a380817c43315d153eaabbf2-plugin_faceid-touchid-1.svg)
-
-#### Face ID / Touch ID
-
-Enable biometric authentication using Face ID, Touch ID, and Android Biometrics.
-
-[Learn more→](https://docs.median.co/docs/auth)
-
-![Passkey Authentication](/images/docs/674eb9d7feaccde67fdb0a22a8e8832e9328e39df2b79f37249e9e47b1276b56-passkey_icon_2.png)
-
-#### Passkey Authentication
-
-Enable passwordless, phishing-resistant login using native Face ID, Touch ID, or Android Fingerprint biometrics.
-
-[Learn more→](https://docs.median.co/docs/passkey-authentication)
-
-![Social Login](/images/docs/f67219e51c2747bd44eacd5afa17acd8a781c0daa4d160ad517a2ae53af254b3-plugin_social-login.svg)
-
-#### Social Login
-
-Enable native login with Facebook, Google, and Sign in with Apple.
-
-[Learn more→](https://docs.median.co/docs/social-login)
-
-***
+<Columns cols={2}>
+  <Card
+    title="Auth0"
+    icon="/images/docs/7d45e09f6f375b4ee0d85816a36e8e440621d6b52263f4b5617351d6ef6bb5be-plugin_auth0.svg"
+    href="https://docs.median.co/docs/auth0"
+  >
+    Integrate secure and scalable authentication and authorization into your
+    app.
+  </Card>
+  <Card
+    title="Clerk"
+    icon="/images/docs/3b6d4ee07b7ec43cdd690f5bd8e5196000e73993d0d2cdcd95d442033790f08e-plugin-clerk-1782256427537.svg"
+    href="https://docs.median.co/docs/clerk"
+  >
+    Native authentication with Clerk hosted login .
+  </Card>
+  <Card
+    title="Face ID / Touch ID"
+    icon="/images/docs/c24ade2c98791842f8666aa2212a08e448214685a380817c43315d153eaabbf2-plugin_faceid-touchid-1.svg"
+    href="https://docs.median.co/docs/auth"
+  >
+    Enable biometric authentication using Face ID, Touch ID, and Android
+    Biometrics.
+  </Card>
+  <Card
+    title="Passkey Authentication"
+    icon="/images/docs/674eb9d7feaccde67fdb0a22a8e8832e9328e39df2b79f37249e9e47b1276b56-passkey_icon_2.png"
+    href="https://docs.median.co/docs/passkey-authentication"
+  >
+    Enable passwordless, phishing-resistant login using native Face ID, Touch
+    ID, or Android Fingerprint biometrics.
+  </Card>
+  <Card
+    title="Social Login"
+    icon="/images/docs/f67219e51c2747bd44eacd5afa17acd8a781c0daa4d160ad517a2ae53af254b3-plugin_social-login.svg"
+    href="https://docs.median.co/docs/auth"
+  >
+    Enable native login with Facebook, Google, and Sign in with Apple.
+  </Card>
+</Columns>
 
 ## Can't find your vendor?
 
 As your needs evolve, Median can enhance your plugin implementation to include new functions or data points from third-party SDKs. We'll work with you to meet your specific requirements. [Contact us for details](https://median.co/contact?topic=sales-inquiry).
 
-***
+## How authentication works in a hybrid webview app
 
-[Meta App Events](/docs/facebook)
+Three aspects explain most authentication behavior in a hybrid app:
 
-[Auth0](/docs/auth0)
+1. **The session lives in the webview.** Your site's cookies and local storage are stored in the app's webview, and persist between launches like they do in a browser. See [Cookie Persistence](https://docs.median.co/docs/cookie-persistence).
+2. **The webview does not share storage with the device browser.** A user who is signed in on Safari or Chrome is not signed in to your app, and the reverse is also true. The same applies to pages opened in an in-app browser tab.
+3. **Where a link opens decides where the session lands.** If a sign-in step finishes in the device browser instead of your app, the browser gets the session and the app does not. Control this with [Link Behavior](https://docs.median.co/docs/internal-vs-external-links) and [Deep Linking](https://docs.median.co/docs/deep-linking).
 
-Copy Page
+### Two-factor and multi-factor authentication (2FA/MFA)
 
-* * [Why use authentication plugins?](#why-use-authentication-plugins)
-  * [Common use cases](#common-use-cases)
-  * [Getting started](#getting-started)
-  * [Supported plugins](#supported-plugins)
-  * [Can't find your vendor?](#cant-find-your-vendor)
+MFA is enforced by your server or identity provider, so it works in your app the same way it works on your website. No plugin is required. The points below help the experience feel native.
+
+**How common factors behave**
+
+| Factor                             | Behavior in the app                                                         | Recommendation                                                                                                  |
+| ---------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| SMS or email one-time code         | The user reads the code in a notification or another app, then types it in. | Add `autocomplete="one-time-code"` and `inputmode="numeric"` to the input so the keyboard can suggest the code. |
+| Authenticator app (TOTP)           | The user leaves your app to copy a code, then returns.                      | Keep the challenge page intact when the app resumes. Do not reload or restart the flow.                         |
+| Push approval                      | The user approves in another app, then returns.                             | Poll for approval so the page advances on its own when the user comes back.                                     |
+| Passkey or security key (WebAuthn) | Handled by the operating system prompt.                                     | Use the [Passkey Authentication](https://docs.median.co/docs/passkey-authentication) plugin.                    |
+| Biometrics                         | Face ID, Touch ID, or Android Biometric prompt.                             | Use the [biometric plugin](https://docs.median.co/docs/auth) to unlock saved credentials.                       |
+
+### Magic links
+
+A magic link is a single-use sign-in URL sent by email or SMS. On the web, the user clicks it and is signed in. In a hybrid app there is an extra consideration: the link is tapped in a mail or messaging app, and by default (without deep linking) it opens in the device browser. The browser gets the session, and the user returns to your app still signed out.
+
+#### Set up magic links
+
+1. **Enable deep linking.** Configure Universal Links and App Links for the domain used in your magic link URLs. See [Deep Linking](https://docs.median.co/docs/deep-linking) and test with the [Deep Linking Validator](https://docs.median.co/docs/deep-linking-validator).
+2. **Use the same domain in the email.** The link in the email must point directly to your deep link domain.
+3. **Turn off click tracking for sign-in emails.** Many email services rewrite links to pass through a tracking domain. A rewritten link is no longer recognized as belonging to your app and opens in the browser.
+4. **Complete sign-in on the linked page.** The page your link opens should validate the token and set the session cookie in the same webview, then redirect to the signed-in destination.
