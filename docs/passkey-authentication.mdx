@@ -10,24 +10,25 @@ Median's Passkey Authentication plugin connects your website (running inside you
 It's built on the FIDO/WebAuthn standard, offering a phishing-resistant, passwordless alternative that's simpler for users and more secure for your business.
 
 <Check>
-  ### Developer Demo
+**Developer Demo**
 
-  You can explore a sample implementation on the [Passkey demo page](https://median.dev/passkey).
+You can explore a sample implementation on the [Passkey demo page](https://median.dev/passkey).
 
-  **Note**: The WebAuthn / Passkey functionality operates entirely within your web implementation. It does not require the Median JavaScript Bridge.
+**Note**: The WebAuthn / Passkey functionality operates entirely within your web implementation. It does not require the Median JavaScript Bridge.
+
 </Check>
 
 ## Key Features
 
-* **Boost security and stop phishing:** Passkeys are cryptographically secure and tied directly to your website. This technology makes it virtually impossible for users to be phished, as there's no password to steal.
-* **Improve user conversion:** Remove the friction of forgotten passwords. Users can log in instantly with their face or fingerprint, leading to a smoother, faster experience that reduces drop-off.
-* **Leverage native device power:** The plugin connects your web content directly to the device's secure hardware (like the Secure Enclave or Android Keystore).
+- **Boost security and stop phishing:** Passkeys are cryptographically secure and tied directly to your website. This technology makes it virtually impossible for users to be phished, as there's no password to steal.
+- **Improve user conversion:** Remove the friction of forgotten passwords. Users can log in instantly with their face or fingerprint, leading to a smoother, faster experience that reduces drop-off.
+- **Leverage native device power:** The plugin connects your web content directly to the device's secure hardware (like the Secure Enclave or Android Keystore).
 
 ### How It Works
 
-At a high level, passkey authentication replaces traditional passwords. The user's device creates and stores a unique cryptographic key. This key is split into two parts: a **private key** that *never* leaves the user's device and a **public key** that is sent to your server.
+At a high level, passkey authentication replaces traditional passwords. The user's device creates and stores a unique cryptographic key. This key is split into two parts: a **private key** that _never_ leaves the user's device and a **public key** that is sent to your server.
 
-1. A user taps the "Log In" button on your website *inside the app*.
+1. A user taps the "Log In" button on your website _inside the app_.
 2. The website requests a challenge from your server.
 3. On Android, the plugin intercepts this call and triggers the native biometric prompt (e.g., "Sign in with Touch ID"). On iOS the native plugin is not required, but the Apple App Site Association (AASA) file needs to be configured and hosted.
 4. Once the user verifies, the device signs the challenge and passes it back to your website.
@@ -37,9 +38,9 @@ Median bridges the gap between your web-based login flow and the native biometri
 
 ### Use Cases
 
-* **Secure e-commerce checkouts:** Allow customers to authenticate quickly to complete a purchase or access their order history.
-* **HIPAA/Financial app logins:** Provide a compliant and highly secure login method for users accessing sensitive health or financial data.
-* **Internal employee portals:** Let employees log into internal tools using the same biometrics they use to unlock their work phones.
+- **Secure e-commerce checkouts:** Allow customers to authenticate quickly to complete a purchase or access their order history.
+- **HIPAA/Financial app logins:** Provide a compliant and highly secure login method for users accessing sensitive health or financial data.
+- **Internal employee portals:** Let employees log into internal tools using the same biometrics they use to unlock their work phones.
 
 ## Implementation
 
@@ -47,10 +48,10 @@ Follow these steps to integrate native passkey (WebAuthn) authentication into yo
 
 ## Before You Start
 
-* **Median App Studio access:** You need access to your app build configuration on the Median platform to add the plugin.
-* **A WebAuthn-compliant server:** You must have a backend (Relying Party) capable of generating and verifying FIDO2/WebAuthn registration challenges and login assertions.
-* **Associated Domains / Asset Links:** You must have Apple Associated Domains (for iOS) and Android Digital Asset Links (for Android) configured for your website. This is a non-negotiable security requirement from Apple and Google for passkeys to function.
-* You have implemented `/passkey/register` and `/passkey/login` endpoints to handle challenge generation and verification.
+- **Median App Studio access:** You need access to your app build configuration on the Median platform to add the plugin.
+- **A WebAuthn-compliant server:** You must have a backend (Relying Party) capable of generating and verifying FIDO2/WebAuthn registration challenges and login assertions.
+- **Associated Domains / Asset Links:** You must have Apple Associated Domains (for iOS) and Android Digital Asset Links (for Android) configured for your website. This is a non-negotiable security requirement from Apple and Google for passkeys to function.
+- You have implemented `/passkey/register` and `/passkey/login` endpoints to handle challenge generation and verification.
 
 ### Android Setup
 
@@ -107,8 +108,8 @@ When creating WebAuthn registration options for passkey enrollment, you must inc
 
 This field determines whether the passkey is stored on the device:
 
-* **true** - The passkey is saved on the device (discoverable credential). Users can authenticate without entering their username.
-* **false** - The passkey is not saved on the device. Only your server stores the credential reference, and users must provide their username to authenticate.
+- **true** - The passkey is saved on the device (discoverable credential). Users can authenticate without entering their username.
+- **false** - The passkey is not saved on the device. Only your server stores the credential reference, and users must provide their username to authenticate.
 
 #### 4. Configure Median App Studio Plugin
 
@@ -120,7 +121,7 @@ After completing the website configuration steps above, configure the WebAuthn p
 
 **Parameter details:**
 
-* **allowedUrls** - A list of URL patterns (regex) that are allowed to create passkey requests. This helps prevent unauthorized passkey creation from untrusted domains.
+- **allowedUrls** - A list of URL patterns (regex) that are allowed to create passkey requests. This helps prevent unauthorized passkey creation from untrusted domains.
 
 <Frame caption="App Studio - Passkey Plugin Configuration">
   <img src="/images/docs/4ef7604b4a80b14f79da7dfab5241f3baa4ee6465d65f8a8060613070c2d1017-Screenshot_2026-02-05_at_10.47.42.png" />
@@ -185,7 +186,7 @@ If your site uses multiple subdomains (such as example.com, [www.example.com](ht
 
 You must host the /apple-app-site-association file with a Content-Type: application/json HTTP header, using https\:// with a valid SSL certificate, and with a 200 HTTP Status Code with no redirects.
 
-***
+---
 
 [Android Biometric](/docs/android-biometric-auth)
 
@@ -193,16 +194,16 @@ You must host the /apple-app-site-association file with a Content-Type: applicat
 
 Copy Page
 
-* * [Overview](#overview)
+- - [Overview](#overview)
 
-  * [Key Features](#key-features)
+  - [Key Features](#key-features)
 
-  * * [How It Works](#how-it-works)
-    * [Use Cases](#use-cases)
+  - - [How It Works](#how-it-works)
+    - [Use Cases](#use-cases)
 
-  * [Implementation](#implementation)
+  - [Implementation](#implementation)
 
-  * [Before You Start](#before-you-start)
+  - [Before You Start](#before-you-start)
 
-  * * [Android Setup](#android-setup)
-    * [iOS Setup](#ios-setup)
+  - - [Android Setup](#android-setup)
+    - [iOS Setup](#ios-setup)

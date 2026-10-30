@@ -8,9 +8,10 @@ The Card.io module improves customer conversion by simplifying the payment proce
 Formerly a commercial pay-for-use SDK, Card.io is now open source supported by PayPal. Therefore there are no additional licenses or ongoing fees to use this module.
 
 <Check>
-  ### Developer Demo
+**Developer Demo**
 
-  Display our demo page in your app to test during development [https://median.dev/cardio/](https://median.dev/cardio/)
+Display our demo page in your app to test during development [https://median.dev/cardio/](https://median.dev/cardio/)
+
 </Check>
 
 ## Implementation Guide
@@ -53,7 +54,7 @@ Customize the card scanning experience by passing optional parameters:
 | `requireCardholderName` | `false`    | Request cardholder’s name                          |
 | `useCardIOLogo`         | `false`    | Display Card.io logo (instead of PayPal logo)      |
 | `hideCardIOLogo`        | `true`     | Hide all logos from the scan UI                    |
-| `instructions`          | *(string)* | Display custom instructions on the scan screen     |
+| `instructions`          | _(string)_ | Display custom instructions on the scan screen     |
 
 #### Example: Scan with Postal Code Requirements
 
@@ -73,13 +74,13 @@ To collect the cardholder’s postal code and specify that it must be numeric:
 
 After a successful scan, your callback function receives a JavaScript object with the extracted card data. Fields may include:
 
-* cardNumber: *(string)*
-* cardholderName: *(string)*
-* expiryMonth: *(number)*
-* expiryYear: *(number)*
-* cardType: *(string)* – One of `"visa"`, `"mastercard"`, `"amex"`, `"discover"`, or `"jcb"`
+- cardNumber: _(string)_
+- cardholderName: _(string)_
+- expiryMonth: _(number)_
+- expiryYear: _(number)_
+- cardType: _(string)_ – One of `"visa"`, `"mastercard"`, `"amex"`, `"discover"`, or `"jcb"`
 
-***
+---
 
 [Bubble Plugin](/docs/bubble-plugin)
 
@@ -87,8 +88,8 @@ After a successful scan, your callback function receives a JavaScript object wit
 
 Copy Page
 
-* * [Implementation Guide](#implementation-guide)
+- - [Implementation Guide](#implementation-guide)
 
-  * * [How to Scan a Credit Card](#how-to-scan-a-credit-card)
-    * [Available Scanning Options](#available-scanning-options)
-    * [Scan Result Format](#scan-result-format)
+  - - [How to Scan a Credit Card](#how-to-scan-a-credit-card)
+    - [Available Scanning Options](#available-scanning-options)
+    - [Scan Result Format](#scan-result-format)

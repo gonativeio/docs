@@ -8,9 +8,10 @@ You may add support for dark and light modes within your web content by making u
 You may add a control toggle within your web content to force Light or Dark mode in addition to following the device setting (Auto mode). Median will set a property on your webpage called `data-color-scheme-option` with the current app setting of `light`, `dark`, or `auto`. You can use the value of this property to set the state of said toggle.
 
 <Check>
-  ### Developer Demo
+**Developer Demo**
 
-  Display our demo page in your app to test during development [https://median.dev/dark-mode/](https://median.dev/dark-mode/)
+Display our demo page in your app to test during development [https://median.dev/dark-mode/](https://median.dev/dark-mode/)
+
 </Check>
 
 <CodeGroup>
@@ -21,24 +22,25 @@ You may add a control toggle within your web content to force Light or Dark mode
     median.screen.setColorScheme("light");
   }
 
-  // Force Dark Mode
-  // Always use Dark styling irrespective of device mode
-  if (navigator.userAgent.indexOf("median") > -1) {
-    median.screen.setColorScheme("dark");
-  }
+// Force Dark Mode
+// Always use Dark styling irrespective of device mode
+if (navigator.userAgent.indexOf("median") > -1) {
+median.screen.setColorScheme("dark");
+}
 
-  // Auto Mode
-  // Set to Auto mode to follow the device mode (Light or Dark)
-  if (navigator.userAgent.indexOf("median") > -1) {
-    median.screen.setColorScheme("auto");
-  }
+// Auto Mode
+// Set to Auto mode to follow the device mode (Light or Dark)
+if (navigator.userAgent.indexOf("median") > -1) {
+median.screen.setColorScheme("auto");
+}
 
-  // Revert to Default
-  // Revert to the default configuration set in the app (Light/Dark/Auto)
-  if (navigator.userAgent.indexOf("median") > -1) {
-    median.screen.resetColorScheme();
-  }
-  ```
+// Revert to Default
+// Revert to the default configuration set in the app (Light/Dark/Auto)
+if (navigator.userAgent.indexOf("median") > -1) {
+median.screen.resetColorScheme();
+}
+
+```
 </CodeGroup>
 
 We recommend using CSS variables to define the desired colors in Light mode versus Dark mode.
@@ -52,3 +54,4 @@ For a live example that you can adapt for your own website check out Median's [D
 ### Next Steps
 
 * [Pull-to-Refresh](/docs/pull-to-refresh)
+```

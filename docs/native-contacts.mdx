@@ -8,16 +8,17 @@ The Native Contacts plugin lets users sync their device contacts with your app, 
 Common use cases include CRM data entry, field service lookups, social connection suggestions, and eCommerce address autofill.
 
 <Check>
-  ### Developer Demo
+**Developer Demo**
 
-  Display our demo page in your app to test during development [https://median.dev/native-contacts/](https://median.dev/native-contacts/)
+Display our demo page in your app to test during development [https://median.dev/native-contacts/](https://median.dev/native-contacts/)
+
 </Check>
 
 ## Why Use Native Contacts
 
-* **CRM integration**: Sync device contacts directly into your app's workflow, eliminating manual data entry for sales and support teams.
-* **Field service and operations**: Look up and act on contact data in real time for scheduling, dispatch, and on-site workflows.
-* **Social and eCommerce features**: Enable social networking platforms and eCommerce shipping solutions to access contact data natively for connection recommendations or address autofill.
+- **CRM integration**: Sync device contacts directly into your app's workflow, eliminating manual data entry for sales and support teams.
+- **Field service and operations**: Look up and act on contact data in real time for scheduling, dispatch, and on-site workflows.
+- **Social and eCommerce features**: Enable social networking platforms and eCommerce shipping solutions to access contact data natively for connection recommendations or address autofill.
 
 ## Implementation Guide
 
@@ -43,14 +44,15 @@ Before accessing contacts, check whether the user has already granted permission
   // Callback style
   median.contacts.getPermissionStatus({ callback: myCallback });
 
-  // Promise style
-  const result = await median.contacts.getPermissionStatus({});
+// Promise style
+const result = await median.contacts.getPermissionStatus({});
 
-  // Return value
-  {
-    "status": "STRING"
-  }
-  ```
+// Return value
+{
+"status": "STRING"
+}
+
+````
 </CodeGroup>
 
 #### Permission Status Values
@@ -78,13 +80,14 @@ Given the differences between both iOS and Android you can expect slightly diffe
 Fetch the complete contacts list stored on the device.
 
 <CodeGroup>
-  ```bash bash
-  // Callback style
-  median.contacts.getAll({ callback: myCallback });
+```bash bash
+// Callback style
+median.contacts.getAll({ callback: myCallback });
 
-  // Promise style
-  const result = await median.contacts.getAll({});
-  ```
+// Promise style
+const result = await median.contacts.getAll({});
+````
+
 </CodeGroup>
 
 **Note**: On iOS the `note` field is not returned by `getAll()` by default. Accessing it requires the `com.apple.developer.contacts.notes entitlement`, which requires approval by Apple.
@@ -101,9 +104,10 @@ Display the device's native contact selection UI, allowing the user to choose on
     multiple: BOOL  // true = allow multi-select; false = single contact only
   });
 
-  // Promise style
-  const result = await median.contacts.pickContact({ multiple: false });
-  ```
+// Promise style
+const result = await median.contacts.pickContact({ multiple: false });
+
+````
 </CodeGroup>
 
 **Note**: The `note` field is available when using `pickContact()` on iOS, without any additional entitlement.
@@ -113,12 +117,13 @@ Display the device's native contact selection UI, allowing the user to choose on
 When permission is granted, all contact methods return an object in the following shape:
 
 <CodeGroup>
-  ```bash bash
-  { 
-    success: true, 
-    contacts: [...] 
-  }
-  ```
+```bash bash
+{
+  success: true,
+  contacts: [...]
+}
+````
+
 </CodeGroup>
 
 `contacts` is an array of contact objects. Available fields depend on the platform.
@@ -216,7 +221,7 @@ You can test the native contact features using our virtual demo app on iOS and A
 |     |         |
 | iOS | Android |
 
-***
+---
 
 [Google In-App Purchases (Legacy)](/docs/google-iap-legacy)
 
@@ -224,11 +229,11 @@ You can test the native contact features using our virtual demo app on iOS and A
 
 Copy Page
 
-* * [Why Use Native Contacts](#why-use-native-contacts)
+- - [Why Use Native Contacts](#why-use-native-contacts)
 
-  * [Implementation Guide](#implementation-guide)
+  - [Implementation Guide](#implementation-guide)
 
-  * * [App Configuration](#app-configuration)
-    * [JavaScript Bridge Implementation](#javascript-bridge-implementation)
+  - - [App Configuration](#app-configuration)
+    - [JavaScript Bridge Implementation](#javascript-bridge-implementation)
 
-  * [Demo App](#demo-app)
+  - [Demo App](#demo-app)

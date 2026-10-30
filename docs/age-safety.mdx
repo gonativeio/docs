@@ -3,10 +3,13 @@ title: "AgeSafety"
 description: "Use iOS and Android age signals to verify user age and supervision status"
 ---
 
-<Warning>
-  ### **Beta API Notice**
+import { MedianLogo } from "/snippets/median-logo.jsx";
 
-  The underlying platform APIs are currently in beta. During the beta period, Play Age Signals may return `API_NOT_AVAILABLE` or throw exceptions on some devices. Always handle these cases gracefully and provide conservative fallbacks for age-gated flows.
+<Warning>
+  **Beta API Notice**
+
+The underlying platform APIs are currently in beta. During the beta period, Play Age Signals may return `API_NOT_AVAILABLE` or throw exceptions on some devices. Always handle these cases gracefully and provide conservative fallbacks for age-gated flows.
+
 </Warning>
 
 AgeSafety exposes system-provided age signals and supervision state so you can determine whether a user is a minor, whether their account is supervised (Family Link / Screen Time), and whether parental approval is required for significant app changes or feature enablement.
@@ -14,17 +17,18 @@ AgeSafety exposes system-provided age signals and supervision state so you can d
 The plugin intentionally passes through platform signals (it does not collect or send identifiable data itself). Use the plugin to gate UI, require parental confirmation, or disable features for underage users.
 
 <Check>
-  ### Developer Demo
+**Developer Demo**
 
-  Test your implementation using our developer demo page at [https://median.dev/age-safety](https://median.dev/age-safety)
+Test your implementation using our developer demo page at [https://median.dev/age-safety](https://median.dev/age-safety)
+
 </Check>
 
 ## Why use AgeSafety?
 
-* **Compliance made simple**: Meet platform requirements for age-appropriate content
-* **User safety first**: Protect minors with proper age verification
-* **Parental controls**: Respect existing family supervision settings
-* **Unified approach**: One API works across both Android and iOS platforms
+- **Compliance made simple**: Meet platform requirements for age-appropriate content
+- **User safety first**: Protect minors with proper age verification
+- **Parental controls**: Respect existing family supervision settings
+- **Unified approach**: One API works across both Android and iOS platforms
 
 ## Key terms
 
@@ -42,8 +46,8 @@ The following terms will help you implement AgeSafety:
 
 ## Privacy and security
 
-* The plugin surfaces system-provided signals only. It does not log or transmit personally-identifying information.
-* Follow platform rules: you may only use information from the Play Age Signals API to provide age-appropriate content and experiences in compliance with laws. You may not use the Play Age Signals API for any other purpose including, but not limited to, advertising, marketing, user profiling, or analytics.
+- The plugin surfaces system-provided signals only. It does not log or transmit personally-identifying information.
+- Follow platform rules: you may only use information from the Play Age Signals API to provide age-appropriate content and experiences in compliance with laws. You may not use the Play Age Signals API for any other purpose including, but not limited to, advertising, marketing, user profiling, or analytics.
 
 ## Implementation guide
 
@@ -59,19 +63,21 @@ Enable the AgeSafety plugin in your Median dashboard before calling any JavaScri
 
 Retrieve age and supervision signals from the platform.
 
+<MedianLogo />
 <CodeGroup>
   ```bash bash
   // Using promises
   const resp = await median.ageSafety.getAgeSignals({ ageGates: [13, 17, 21] });
   console.log('Age signals:', resp);
 
-  // Using callback methods
-  median.ageSafety.getAgeSignals({ ageGates: [13, 17] }, function (resp) {
-          console.log('Age signals callback:', resp);
-  }, function (err) {
-          console.error('AgeSafety error (callback)', err);
-  });
-  ```
+// Using callback methods
+median.ageSafety.getAgeSignals({ ageGates: [13, 17] }, function (resp) {
+console.log('Age signals callback:', resp);
+}, function (err) {
+console.error('AgeSafety error (callback)', err);
+});
+
+````
 </CodeGroup>
 
 Return value (resolved Promise/success callback) is an AgeSignalsResponse.
@@ -80,41 +86,44 @@ Return value (resolved Promise/success callback) is an AgeSignalsResponse.
 
 A convenience helper that checks whether the user meets a numeric minimum age.
 
+<MedianLogo />
 <CodeGroup>
-  ```bash bash
-  async function checkMinimumAge(requiredAge) {
-      // Async/await style
-    try {
-      const resp = await median.ageSafety.requireMinimumAge(requiredAge);
-      if (resp.allowed) {
-        // show content
-      } else {
-        // show age-gated message
-      }
-    } catch (err) {
-      console.error('Age safety check failed', err);
+```bash bash
+async function checkMinimumAge(requiredAge) {
+    // Async/await style
+  try {
+    const resp = await median.ageSafety.requireMinimumAge(requiredAge);
+    if (resp.allowed) {
+      // show content
+    } else {
+      // show age-gated message
     }
+  } catch (err) {
+    console.error('Age safety check failed', err);
   }
+}
 
-  checkMinimumAge(13);
+checkMinimumAge(13);
 
-  // Callback style
-  median.ageSafety.requireMinimumAge(18, function (resp) {
-    console.log('requireMinimumAge', resp.allowed);
-  }, function (err) {
-    console.error(err);
-  });
-  ```
+// Callback style
+median.ageSafety.requireMinimumAge(18, function (resp) {
+  console.log('requireMinimumAge', resp.allowed);
+}, function (err) {
+  console.error(err);
+});
+````
+
 </CodeGroup>
 
 AgeRequirementResponse.allowed is computed as `ageLowerBound` >= `requiredAge` when age bounds are available. If bounds are missing, allowed may be false, and an app-level conservative policy should apply.
 
-***
+---
 
 ### Implementation example - Gate a purchase flow
 
 This example verifies a user's age before allowing a purchase, routes supervised accounts to a parental-approval flow, and falls back conservatively when signals are unavailable.
 
+<MedianLogo />
 <CodeGroup>
   ```bash bash
   async function attemptPurchase() {
@@ -150,58 +159,24 @@ For more on JavaScript Bridge fundamentals used above, see [Basic Usage](https:/
 
 Use this checklist to confirm AgeSafety is working correctly in your app:
 
-* [ ] `getAgeSignals` returns a valid response object on a supported device
-* [ ] `requireMinimumAge` returns `allowed: true` for users above the threshold
-* [ ] `requireMinimumAge` returns `allowed: false` for users below the threshold
-* [ ] Age signals return correctly on Android devices
-* [ ] Age signals return correctly on iOS devices
-* [ ] `verificationMethod` is present on iOS responses
-* [ ] Supervised-account detection works correctly on Family Link / Screen Time devices
-* [ ] `NOT_SUPPORTED` is handled gracefully with a conservative fallback
-* [ ] `API_ERROR` is caught and the app applies a conservative default
-* [ ] Missing `ageLowerBound` / `ageUpperBound` is handled gracefully when signals return `UNKNOWN`
+- [ ] `getAgeSignals` returns a valid response object on a supported device
+- [ ] `requireMinimumAge` returns `allowed: true` for users above the threshold
+- [ ] `requireMinimumAge` returns `allowed: false` for users below the threshold
+- [ ] Age signals return correctly on Android devices
+- [ ] Age signals return correctly on iOS devices
+- [ ] `verificationMethod` is present on iOS responses
+- [ ] Supervised-account detection works correctly on Family Link / Screen Time devices
+- [ ] `NOT_SUPPORTED` is handled gracefully with a conservative fallback
+- [ ] `API_ERROR` is caught and the app applies a conservative default
+- [ ] Missing `ageLowerBound` / `ageUpperBound` is handled gracefully when signals return `UNKNOWN`
 
 ## Troubleshooting
 
 ### AgeSafety functions are undefined or not working
-
-**AgeSafety functions are undefined or not working⎘ Copy link
-
 Ensure the JavaScript Bridge is enabled in Median App Studio and that you're calling the functions after the `deviceready` event. Also verify that the plugin is enabled in your app configuration.
 
 ### getAgeSignals always throws an error on some Android devices
-
-**getAgeSignals always throws an error on some Android devices⎘ Copy link
-
 During the beta period, Play Age Signals may return `API_NOT_AVAILABLE` or throw exceptions on some devices. Always wrap calls in a try/catch block and provide a conservative fallback for age-gated flows when signals are unavailable.
 
 ### requireMinimumAge returns allowed: false even for adult users
-
-**requireMinimumAge returns allowed: false even for adult users⎘ Copy link
-
 If `ageLowerBound` is missing from the response (signals returned UNKNOWN), `allowed` will be false. This is expected behavior. Design your UI to apply a conservative default when verification is not available, and provide an alternative flow if needed.
-
-***
-
-[Native Functionality](/docs/native-functionality)
-
-[App Review](/docs/app-review)
-
-Copy Page
-
-* * [Why use AgeSafety?](#why-use-agesafety)
-
-  * [Key terms](#key-terms)
-
-  * [Privacy and security](#privacy-and-security)
-
-  * [Implementation guide](#implementation-guide)
-
-  * * [App Setup](#app-setup)
-    * [JavaScript Bridge guide](#javascript-bridge-guide)
-    * [Implementation example - Gate a purchase flow](#implementation-example---gate-a-purchase-flow)
-    * [Error handling](#error-handling)
-
-  * [Testing Checklist](#testing-checklist)
-
-  * [Troubleshooting](#troubleshooting)

@@ -8,9 +8,10 @@ The **Branch.io Plugin** enables **deferred deep linking** within your app, allo
 This guide provides step-by-step instructions for configuring the plugin and utilizing its features through the [Median JavaScript Bridge](https://median.co/docs/javascript-bridge).
 
 <Check>
-  ### Developer Demo
+**Developer Demo**
 
-  Display our demo page in your app to test during development [https://median.dev/branch](https://median.dev/branch)
+Display our demo page in your app to test during development [https://median.dev/branch](https://median.dev/branch)
+
 </Check>
 
 ## Implementation Guide
@@ -50,22 +51,21 @@ Access Branch.io values from the Branch Dashboard ([https://dashboard.branch.io]
 
 1. **Branch Key** (Required)
 
-* **Path**: *Account Settings → Profile → Branch Key*
-* **Usage**: Set as `liveKey`.
+- **Path**: _Account Settings → Profile → Branch Key_
+- **Usage**: Set as `liveKey`.
 
 2. **App Link Domains** (Required for deep linking)
 
-* **Path**: *Configuration → General → Link Domain*
+- **Path**: _Configuration → General → Link Domain_
 
-* **Usage**:
-
-  * `linkDomain` (Primary domain for deep linking)
-  * `alternateLinkDomain` (Required for Journeys/Web SDK and Deepviews)
+- **Usage**:
+  - `linkDomain` (Primary domain for deep linking)
+  - `alternateLinkDomain` (Required for Journeys/Web SDK and Deepviews)
 
 3. **URI Scheme** (Optional for app redirection)
 
-* **Path**: *Configuration → General → Android Redirects*
-* **Usage**: Set as `uriScheme`.
+- **Path**: _Configuration → General → Android Redirects_
+- **Usage**: Set as `uriScheme`.
 
 ##### Test Mode Configuration
 
@@ -73,17 +73,16 @@ For testing purposes, **enable Test Mode on the Branch.io Dashboard** and set `e
 
 1. **Test Branch Key**
 
-* **Path**: *Account Settings → Profile → Branch Key*
-* **Usage**: Set as `testKey`.
+- **Path**: _Account Settings → Profile → Branch Key_
+- **Usage**: Set as `testKey`.
 
 2. **Test App Link Domains**
 
-* **Path**: *Configuration → General → Link Domain*
+- **Path**: _Configuration → General → Link Domain_
 
-* **Usage**:
-
-  * `testLinkDomain` (Test version of the link domain)
-  * `testAlternateLinkDomain` (Test version of the alternate domain)
+- **Usage**:
+  - `testLinkDomain` (Test version of the link domain)
+  - `testAlternateLinkDomain` (Test version of the alternate domain)
 
 ### Branch.io Configuration
 
@@ -96,7 +95,8 @@ Enable Android-specific deep linking features in your Branch Dashboard:
 <Warning>
   ### SHA256 Cert Fingerprints
 
-  It’s important to specify the SHA256 Cert Fingerprints for App links to work properly on Android. Please see [https://help.branch.io/using-branch/docs/configure-default-link-behaviors](https://help.branch.io/using-branch/docs/configure-default-link-behaviors) for additional information.
+It’s important to specify the SHA256 Cert Fingerprints for App links to work properly on Android. Please see [https://help.branch.io/using-branch/docs/configure-default-link-behaviors](https://help.branch.io/using-branch/docs/configure-default-link-behaviors) for additional information.
+
 </Warning>
 
 ### JavaScript Bridge Functions
@@ -154,7 +154,7 @@ Returns the data from the link that referred the current session.
 
 If configured correctly, the user should be redirected into your app, with deep link data accessible through the JavaScript Bridge methods.
 
-***
+---
 
 [AppsFlyer](/docs/appsflyer)
 
@@ -162,9 +162,9 @@ If configured correctly, the user should be redirected into your app, with deep 
 
 Copy Page
 
-* * [Implementation Guide](#implementation-guide)
+- - [Implementation Guide](#implementation-guide)
 
-  * * [Plugin Configuration](#plugin-configuration)
-    * [Branch.io Configuration](#branchio-configuration)
-    * [JavaScript Bridge Functions](#javascript-bridge-functions)
-    * [Testing Your Integration](#testing-your-integration)
+  - - [Plugin Configuration](#plugin-configuration)
+    - [Branch.io Configuration](#branchio-configuration)
+    - [JavaScript Bridge Functions](#javascript-bridge-functions)
+    - [Testing Your Integration](#testing-your-integration)

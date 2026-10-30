@@ -6,9 +6,10 @@ description: "Configure the initial zoom level of your webview and dynamically c
 You can set the initial zoom level in App Studio during configuration, or control it dynamically using the Median JavaScript Bridge for runtime adjustments.
 
 <Check>
-  ### Developer Demo
+**Developer Demo**
 
-  Display our demo page in your app to test during development [https://median.dev/webview-zoom/](https://median.dev/webview-zoom/)
+Display our demo page in your app to test during development [https://median.dev/webview-zoom/](https://median.dev/webview-zoom/)
+
 </Check>
 
 ## Implementation Guide
@@ -29,23 +30,17 @@ To use the WebView zoom feature, set the Viewport Width to **WebView Scale** in 
 
 To retrieve the current zoom level of the webview:
 
-<CodeGroup>
-  ```bash bash
-  median.webview.getZoom();
-  ```
-</CodeGroup>
+<CodeGroup>```bash bash median.webview.getZoom(); ```</CodeGroup>
 
 #### Set Zoom Level
 
 To set a new zoom level at runtime:
 
 <CodeGroup>
-  ```bash bash
-  median.webview.setZoom(1.1); // Sets zoom to 110%
-  ```
+  ```bash bash median.webview.setZoom(1.1); // Sets zoom to 110% ```
 </CodeGroup>
 
-***
+---
 
 [Font Scaling](/docs/font-scaling)
 
@@ -53,7 +48,7 @@ To set a new zoom level at runtime:
 
 Copy Page
 
-* * [Implementation Guide](#implementation-guide)
+- - [Implementation Guide](#implementation-guide)
 
-  * * [App Configuration](#app-configuration)
-    * [JavaScript Implementation](#javascript-implementation)
+  - - [App Configuration](#app-configuration)
+    - [JavaScript Implementation](#javascript-implementation)

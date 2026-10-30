@@ -8,9 +8,10 @@ The following implementation shows how to detect the user's language, apply a tr
 ## Implementation Guide
 
 <Check>
-  ### Developer Demo
+**Developer Demo**
 
-  Display our demo page in your app to test during development [https://median.dev/tab-bar-navigation/localized-nav](https://median.dev/tab-bar-navigation/localized-nav)
+Display our demo page in your app to test during development [https://median.dev/tab-bar-navigation/localized-nav](https://median.dev/tab-bar-navigation/localized-nav)
+
 </Check>
 
 ### JavaScript Implementation
@@ -21,36 +22,36 @@ The following implementation shows how to detect the user's language, apply a tr
   let userLanguage = navigator.language || navigator.userLanguage;
   let languageCode = userLanguage.split("-")[0];
 
-  // Function to localize the tab items
-  function localizeTabItems(tabItems) {
-    // Define translations for the labels
-    const translations = {
-      en: {
-        "Tab 1": "Tab 1",
-        "Tab 2": "Tab 2",
-        "Tab 3": "Tab 3",
-      },
-      fr: {
-        "Tab 1": "Onglet 1",
-        "Tab 2": "Onglet 2",
-        "Tab 3": "Onglet 3",
-      },
-      es: {
-        "Tab 1": "Pestaña 1",
-        "Tab 2": "Pestaña 2",
-        "Tab 3": "Pestaña 3",
-      },
-      de: {
-        "Tab 1": "Register 1",
-        "Tab 2": "Register 2",
-        "Tab 3": "Register 3",
-      },
-      it: {
-        "Tab 1": "Scheda 1",
-        "Tab 2": "Scheda 2",
-        "Tab 3": "Scheda 3",
-      },
-    };
+// Function to localize the tab items
+function localizeTabItems(tabItems) {
+// Define translations for the labels
+const translations = {
+en: {
+"Tab 1": "Tab 1",
+"Tab 2": "Tab 2",
+"Tab 3": "Tab 3",
+},
+fr: {
+"Tab 1": "Onglet 1",
+"Tab 2": "Onglet 2",
+"Tab 3": "Onglet 3",
+},
+es: {
+"Tab 1": "Pestaña 1",
+"Tab 2": "Pestaña 2",
+"Tab 3": "Pestaña 3",
+},
+de: {
+"Tab 1": "Register 1",
+"Tab 2": "Register 2",
+"Tab 3": "Register 3",
+},
+it: {
+"Tab 1": "Scheda 1",
+"Tab 2": "Scheda 2",
+"Tab 3": "Scheda 3",
+},
+};
 
     // Get the user's language
     const userLanguage = navigator.language || navigator.userLanguage;
@@ -64,34 +65,36 @@ The following implementation shows how to detect the user's language, apply a tr
       ...item,
       label: userTranslations[item.label] || item.label,
     }));
-  }
 
-  const tabItems = [
-    {
-      icon: "fas fa-cloud",
-      label: "Tab 1",
-      url: "javascript:alert('You selected tab 1')",
-    },
-    {
-      icon: "fas fa-globe",
-      label: "Tab 2",
-      url: "javascript:alert('You selected tab 2')",
-    },
-    {
-      icon: "fas fa-users",
-      label: "Tab 3",
-      url: "javascript:alert('You selected tab 3')",
-    },
-  ];
+}
 
-  // Localize tab bar items
-  const localizedTabItems = localizeTabItems(tabItems);
+const tabItems = [
+{
+icon: "fas fa-cloud",
+label: "Tab 1",
+url: "javascript:alert('You selected tab 1')",
+},
+{
+icon: "fas fa-globe",
+label: "Tab 2",
+url: "javascript:alert('You selected tab 2')",
+},
+{
+icon: "fas fa-users",
+label: "Tab 3",
+url: "javascript:alert('You selected tab 3')",
+},
+];
 
-  // Render bottom tab bar
-  function median_library_ready() {
-    median.tabNavigation.setTabs({ enabled: true, items: localizedTabItems });
-  }
-  ```
+// Localize tab bar items
+const localizedTabItems = localizeTabItems(tabItems);
+
+// Render bottom tab bar
+function median_library_ready() {
+median.tabNavigation.setTabs({ enabled: true, items: localizedTabItems });
+}
+
+```
 </CodeGroup>
 
 ## Tab Bar Localization Demo
@@ -99,7 +102,7 @@ The following implementation shows how to detect the user's language, apply a tr
 This animated demo shows how the tab labels dynamically change when the user's device language is changed from English to Spanish.
 
 <Frame caption="Bottom Tab Bar Localization Demo">
-  <img src="/images/docs/d368ad8463b47418acb75bd63fa58ad253cc7f7aa1448cd0ac1034cb4384c836-demo.gif" />
+<img src="/images/docs/d368ad8463b47418acb75bd63fa58ad253cc7f7aa1448cd0ac1034cb4384c836-demo.gif" />
 </Frame>
 
 ***
@@ -111,5 +114,6 @@ This animated demo shows how the tab labels dynamically change when the user's d
 Copy Page
 
 * * [Implementation Guide](#implementation-guide)
-  * * [JavaScript Implementation](#javascript-implementation)
-  * [Tab Bar Localization Demo](#tab-bar-localization-demo)
+* * [JavaScript Implementation](#javascript-implementation)
+* [Tab Bar Localization Demo](#tab-bar-localization-demo)
+```

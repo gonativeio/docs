@@ -3,12 +3,14 @@ title: "Android Biometric"
 description: "Authenticate Instantly with Android Biometrics"
 ---
 
+import { MedianLogo } from "/snippets/median-logo.jsx";
+
 Securely authenticate users on Android devices using fingerprint, facial recognition, or other biometric methods with the Median Android Biometric Authentication Plugin. This plugin uses the Median JavaScript Bridge to store and retrieve encrypted secrets, enabling biometric login experiences.
 
 The plugin supports both:
 
-* **Strong Biometrics**: Fingerprint sensors, infrared facial recognition (hardware-backed)
-* **Weak Biometrics**: Face unlock via standard camera (software-only)
+- **Strong Biometrics**: Fingerprint sensors, infrared facial recognition (hardware-backed)
+- **Weak Biometrics**: Face unlock via standard camera (software-only)
 
 As the developer, you define the minimum biometric level required (strong or weak) depending on your app’s security needs.
 
@@ -20,9 +22,10 @@ As the developer, you define the minimum biometric level required (strong or wea
 4. **Use Secret to Log In**Once the secret is recovered, you can either use it to directly login the user or populate the login form on your web app.
 
 <Check>
-  ### Developer Demo
+**Developer Demo**
 
-  Display our demo page in your app with the Face ID / Touch ID Android Biometric Native Plugin active to test during development [https://median.dev/auth/](https://median.dev/auth/)
+Display our demo page in your app with the Face ID / Touch ID Android Biometric Native Plugin active to test during development [https://median.dev/auth/](https://median.dev/auth/)
+
 </Check>
 
 ## Implementation Guide
@@ -33,29 +36,32 @@ This guide assumes a working publicly-accessible website (or test site) with a u
 
 After a user successfully logs in to your website with their username and password, check to see the device has biometric capabilities available. If biometrics are available then seamlessly save a secret for future retrieval. The secret must be a single string, and can be a combination of the username and password or an authentication token. You may specify a minimum biometric level to support, either `strong` or `weak`.
 
-> For example, you may embed this JavaScript into your post-login page:
+javascriptFor example, you may embed this JavaScript into your post-login page:
 
+<MedianLogo />
 <CodeGroup>
-  ```bash bash
+  ```javascript javascript
   var username = 'andy'
   var password = 'password';
 
-  median.auth.status({'callbackFunction': median_status_afterlogin}); // returns promise
+median.auth.status({'callbackFunction': median_status_afterlogin}); // returns promise
 
-  function median_status_afterlogin(data) {
-      if (data && data.hasTouchId) {
-      	var secret = JSON.stringify({
-              username: username,
-              password: password
-          });
-          
+function median_status_afterlogin(data) {
+if (data && data.hasTouchId) {
+var secret = JSON.stringify({
+username: username,
+password: password
+});
+
           median.auth.save({
-            'secret': secret, 
+            'secret': secret,
             'minimumAndroidBiometric': 'strong'
           });
       }
-  }
-  ```
+
+}
+
+````
 </CodeGroup>
 
 **Tip: Some JS Bridge commands return promises. They are usually declared as such through a comment to help you identify them.[Learn More](https://median.co/docs/javascript-bridge#promises).**
@@ -64,38 +70,41 @@ In this example, we have saved the username and password as the secret. You may 
 
 ### Checking for a Saved Secret on Login Page
 
-> On the login page, you will need to know whether or not to prompt for biometric login. Start by getting the status:
+javascriptOn the login page, you will need to know whether or not to prompt for biometric login. Start by getting the status:
 
+<MedianLogo />
 <CodeGroup>
-  ```bash bash
-  median.auth.status({'callbackFunction': median_status_beforelogin}); // returns promise
+```javascript javascript
+median.auth.status({'callbackFunction': median_status_beforelogin}); // returns promise
 
-  function median_status_beforelogin(data) {
-     if (data && data.hasTouchId && data.hasSecret) {
-         // Prompt the user to use biometrics to log in
-         median.auth.get({'callbackFunction': median_secret_callback});
-     }
-  }
+function median_status_beforelogin(data) {
+   if (data && data.hasTouchId && data.hasSecret) {
+       // Prompt the user to use biometrics to log in
+       median.auth.get({'callbackFunction': median_secret_callback});
+   }
+}
 
-  function median_secret_callback(data) {
-      if (data && data.success && data.secret) {
-          var credentials = JSON.parse(data.secret);
-          var username = credentials.username;
-          var password = credentials.password;
-          
-          // Use username and password to do login here,
-          // e.g. an http post or ajax request
-      } else {
-          // Allow manual entry
-      }
-  }
-  ```
+function median_secret_callback(data) {
+    if (data && data.success && data.secret) {
+        var credentials = JSON.parse(data.secret);
+        var username = credentials.username;
+        var password = credentials.password;
+
+        // Use username and password to do login here,
+        // e.g. an http post or ajax request
+    } else {
+        // Allow manual entry
+    }
+}
+````
+
 </CodeGroup>
 
-> Once the `median_secret_callback` function is called with the previously saved secret, it should perform a request to log in the user. If the credentials are incorrect, you should delete the secret and allow manual login by running the function:
+Once the `median_secret_callback` function is called with the previously saved secret, it should perform a request to log in the user. If the credentials are incorrect, you should delete the secret and allow manual login by running the function:
 
+<MedianLogo />
 <CodeGroup>
-  ```bash bash
+  ```javascript javascript
   // delete secret if credentials are incorrect
   median.auth.delete({'callbackFunction': CALLBACK});
   ```
@@ -105,10 +114,11 @@ In this example, we have saved the username and password as the secret. You may 
 
 ### Check Biometric Availability
 
-> Run the JavaScript function:
+Run the JavaScript function:
 
+<MedianLogo />
 <CodeGroup>
-  ```bash bash
+  ```javascript javascript
   median.auth.status({
     'minimumAndroidBiometric': 'strong' | 'weak', // optional, default is 'strong'
     'callbackFunction': CALLBACK // optional if callback is used rather than promise
@@ -116,19 +126,20 @@ In this example, we have saved the username and password as the secret. You may 
   ```
 </CodeGroup>
 
-> The app will return a promise, or if provided execute CALLBACK, with an object parameter containing the fields:
->
-> * `hasTouchId`: `true` or `false`. Set to `true` on Android devices with fingerprints enrolled.
-> * `hasSecret`: `true` or `false`
+javascriptThe app will return a promise, or if provided execute CALLBACK, with an object parameter containing the fields:
+
+> javascript- `hasTouchId`: `true` or `false`. Set to `true` on Android devices with fingerprints enrolled.
+> javascript- `hasSecret`: `true` or `false`
 
 ### Save a Secret
 
 Typically you will want to first check that biometrics are available via the status function above and then save the secret.
 
-> Run the JavaScript function:
+Run the JavaScript function:
 
+<MedianLogo />
 <CodeGroup>
-  ```bash bash
+  ```javascript javascript
   median.auth.save({
     'secret': secret,
     'minimumAndroidBiometric': 'strong' | 'weak', // optional, default is 'strong'
@@ -137,14 +148,15 @@ Typically you will want to first check that biometrics are available via the sta
   ```
 </CodeGroup>
 
-> The app will return a promise, or if provided execute CALLBACK, with an object with a `success` field
+javascriptThe app will return a promise, or if provided execute CALLBACK, with an object with a `success` field
 
 ### Retrieving a Secret
 
-> Run the JavaScript function:
+javascriptRun the JavaScript function:
 
+<MedianLogo />
 <CodeGroup>
-  ```bash bash
+  ```javascript javascript
   median.auth.get({
     'callbackFunction': CALLBACK, // optional if callback is used rather than promise
     'minimumAndroidBiometric': 'strong' | 'weak', // optional, default is 'strong'
@@ -154,41 +166,42 @@ Typically you will want to first check that biometrics are available via the sta
   ```
 </CodeGroup>
 
-> **Prompt is only available for iOS and it has been included above to ensure cross-platform compatibility.** The app will return a promise, or if provided execute CALLBACK, with an object parameter containing the fields:
+javascript**Prompt is only available for iOS and it has been included above to ensure cross-platform compatibility.** The app will return a promise, or if provided execute CALLBACK, with an object parameter containing the fields:
+
+> javascript- `success`: true or false
+> javascript- `error`: provided success is false (see error codes below)
+> javascript- `secret`: the previously stored secret
 >
-> * `success`: true or false
-> * `error`: provided success is false (see error codes below)
-> * `secret`: the previously stored secret
->
-> `callbackOnCancel` is optional. If set to `1` and a `callbackFunction` has been provided, when the user cancels the authentication the callback function will be invoked with `success=false`, `error=userCanceled`. If `callbackOnCancel` is not set (or set to 0), the callback will not be run on cancel.
+> javascript`callbackOnCancel` is optional. If set to `1` and a `callbackFunction` has been provided, when the user cancels the authentication the callback function will be invoked with `success=false`, `error=userCanceled`. If `callbackOnCancel` is not set (or set to 0), the callback will not be run on cancel.
 
 ### Delete a Secret
 
-> Run the JavaScript function:
+javascriptRun the JavaScript function:
 
+<MedianLogo />
 <CodeGroup>
-  ```bash bash
+  ```javascript javascript
   median.auth.delete({
     'callbackFunction': CALLBACK // optional if callback is used rather than promise
   });
   ```
 </CodeGroup>
 
-> The app will return a promise, or if provided execute CALLBACK, with an object parameter containing the fields:
->
-> * `success`: true or false
-> * `error`: provided if success is false
+javascriptThe app will return a promise, or if provided execute CALLBACK, with an object parameter containing the fields:
+
+> javascript- `success`: true or false
+> javascript- `error`: provided if success is false
 
 ### Possible error values
 
 In general, you will only need to handle authenticationFailed in the "get secret" request.
 
-* `duplicateItem`: Secret already exists
-* `itemNotFound`: No secret saved
-* `authenticationFailed`: Biometric check failed
-* `genericError`: Unexpected failure
-* `userCanceled`: User canceled the auth prompt
-* `unimplemented`: Plugin not supported
+- `duplicateItem`: Secret already exists
+- `itemNotFound`: No secret saved
+- `authenticationFailed`: Biometric check failed
+- `genericError`: Unexpected failure
+- `userCanceled`: User canceled the auth prompt
+- `unimplemented`: Plugin not supported
 
 ## Testing Android Biometric Integration
 
@@ -212,30 +225,3 @@ To do so, go to the Native Plugins tab in the Median App Studio, click Settings 
 Regular expressions are supported to allow wildcards in the URL.
 
 ![Whitelisting URLs for Access](/images/docs/74b826bc4c59b1258b41570a969ce3b082e27cff0497220d47b6fef189721477-Screenshot_2025-07-15_at_11.32.35.png)
-
-***
-
-[Apple Face ID & Touch ID](/docs/apple-face-id-touch-id)
-
-[Passkey Authentication (WebAuthn)](/docs/passkey-authentication)
-
-Copy Page
-
-* * [How it works](#how-it-works)
-
-  * [Implementation Guide](#implementation-guide)
-
-  * * [Saving a Secret After Login](#saving-a-secret-after-login)
-    * [Checking for a Saved Secret on Login Page](#checking-for-a-saved-secret-on-login-page)
-
-  * [Median JavaScript Bridge Reference](#median-javascript-bridge-reference)
-
-  * * [Check Biometric Availability](#check-biometric-availability)
-    * [Save a Secret](#save-a-secret)
-    * [Retrieving a Secret](#retrieving-a-secret)
-    * [Delete a Secret](#delete-a-secret)
-    * [Possible error values](#possible-error-values)
-
-  * [Testing Android Biometric Integration](#testing-android-biometric-integration)
-
-  * [Whitelist Domains for Plugin Access](#whitelist-domains-for-plugin-access)

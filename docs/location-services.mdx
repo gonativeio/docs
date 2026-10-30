@@ -4,9 +4,10 @@ description: "To access device location services in your Android or iOS app, you
 ---
 
 <Check>
-  ### Developer Demo
+**Developer Demo**
 
-  Display our demo page in your app to test during development [https://median.dev/location-services/](https://median.dev/location-services/)
+Display our demo page in your app to test during development [https://median.dev/location-services/](https://median.dev/location-services/)
+
 </Check>
 
 ## Implementation Guide
@@ -30,11 +31,12 @@ This function ensures the web-based geolocation API uses the native implementati
     navigator.geolocation.getCurrentPosition(locationSuccess, locationError, locationOptions);
   }
 
-  // Fallback: Call immediately on non-iOS platforms
-  if (!navigator.userAgent.includes('MedianIOS')) {
-    median_geolocation_ready();
-  }
-  ```
+// Fallback: Call immediately on non-iOS platforms
+if (!navigator.userAgent.includes('MedianIOS')) {
+median_geolocation_ready();
+}
+
+````
 </CodeGroup>
 
 ## Android: Request Runtime Location Permission
@@ -46,13 +48,14 @@ On Android, geolocation permission must be requested at runtime using the Median
 Ensure you have Location Services permission enabled in your app configuration, then prompt for permission at runtime by using the following Median JavaScript Bridge command.
 
 <CodeGroup>
-  ```bash bash
-  median.android.geoLocation.promptLocationServices();
-  ```
+```bash bash
+median.android.geoLocation.promptLocationServices();
+````
+
 </CodeGroup>
 
-* If the user has already granted permission, this command has no effect.
-* If permission has not been granted, the app will display a native dialog.
+- If the user has already granted permission, this command has no effect.
+- If permission has not been granted, the app will display a native dialog.
 
 ### Check Location Permission Status
 
@@ -70,10 +73,10 @@ You can verify whether location services are enabled using:
 
 ## Additional Resources
 
-* [Location Services Demo App](https://median.dev/location-services)
-* [Background Location Native Plugin](https://docs.median.co/docs/background-location)
+- [Location Services Demo App](https://median.dev/location-services)
+- [Background Location Native Plugin](https://docs.median.co/docs/background-location)
 
-***
+---
 
 [Downloads Directory](/docs/downloads-directory)
 
@@ -81,13 +84,13 @@ You can verify whether location services are enabled using:
 
 Copy Page
 
-* * [Implementation Guide](#implementation-guide)
+- - [Implementation Guide](#implementation-guide)
 
-  * * [iOS: Avoid Duplicate Geolocation Prompts](#ios-avoid-duplicate-geolocation-prompts)
+  - - [iOS: Avoid Duplicate Geolocation Prompts](#ios-avoid-duplicate-geolocation-prompts)
 
-  * [Android: Request Runtime Location Permission](#android-request-runtime-location-permission)
+  - [Android: Request Runtime Location Permission](#android-request-runtime-location-permission)
 
-  * * [Prompt for Location Permission](#prompt-for-location-permission)
-    * [Check Location Permission Status](#check-location-permission-status)
+  - - [Prompt for Location Permission](#prompt-for-location-permission)
+    - [Check Location Permission Status](#check-location-permission-status)
 
-  * [Additional Resources](#additional-resources)
+  - [Additional Resources](#additional-resources)

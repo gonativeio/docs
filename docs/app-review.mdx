@@ -11,9 +11,10 @@ The App Review Native Plugin enables you to prompt users to leave a rating and r
 | Apple App Store App Review                           | Google Play App Review                               |
 
 <Check>
-  ### Developer Demo
+**Developer Demo**
 
-  Display our demo page in your app to test during development [https://median.dev/app-review/](https://median.dev/app-review/)
+Display our demo page in your app to test during development [https://median.dev/app-review/](https://median.dev/app-review/)
+
 </Check>
 
 ## Implementation Guide
@@ -42,7 +43,7 @@ Once the plugin is installed, trigger the in-app review modal using the followin
 
 Apple controls when the review prompt is displayed to avoid spamming users. Even if your code requests a prompt, it may not appear in production. During development, prompts always display for testing, but they will not display when using TestFlight builds.
 
-**Testing Guide for In-App Reviews**: [Apple's Documentation](https://developer.apple.com/documentation/storekit/appstore/requestreview\(in:\)-1q8qs/)
+**Testing Guide for In-App Reviews**: [Apple's Documentation](<https://developer.apple.com/documentation/storekit/appstore/requestreview(in:)-1q8qs/>)
 
 ### Android: Google Play Review Quota
 
@@ -54,13 +55,13 @@ Google Play enforces a rate-limiting quota on in-app review prompts, restricting
 
 Best practices for Google Play:
 
-* Avoid triggering reviews via direct call-to-action (CTA) buttons.
-* Target natural interaction points (e.g., after completing a task).
-* If quota is likely exceeded, consider redirecting users to your app’s Play Store listing instead.
+- Avoid triggering reviews via direct call-to-action (CTA) buttons.
+- Target natural interaction points (e.g., after completing a task).
+- If quota is likely exceeded, consider redirecting users to your app’s Play Store listing instead.
 
 The Apple App Store controls the actual display of prompt so it may not show for some cases. This is to prevent frequent rating prompts which can be irritating for users. While your app is in development mode, a rating and review request is always displayed so you can test the user interface and experience. However, this method has no effect when you call it in an app that you distribute using TestFlight. See more details on display considerations and testing in [Apple's Documentation](https://developer.apple.com/documentation/storekit/skstorereviewcontroller/2851536-requestreview?language=objc#discussion).
 
-***
+---
 
 [AgeSafety](/docs/age-safety)
 
@@ -68,12 +69,12 @@ The Apple App Store controls the actual display of prompt so it may not show for
 
 Copy Page
 
-* * [Implementation Guide](#implementation-guide)
+- - [Implementation Guide](#implementation-guide)
 
-  * * [iOS App Store Configuration](#ios-app-store-configuration)
-    * [JavaScript Bridge Command](#javascript-bridge-command)
+  - - [iOS App Store Configuration](#ios-app-store-configuration)
+    - [JavaScript Bridge Command](#javascript-bridge-command)
 
-  * [Platform-Specific Display Considerations](#platform-specific-display-considerations)
+  - [Platform-Specific Display Considerations](#platform-specific-display-considerations)
 
-  * * [iOS: App Store Review Prompt Limitations](#ios-app-store-review-prompt-limitations)
-    * [Android: Google Play Review Quota](#android-google-play-review-quota)
+  - - [iOS: App Store Review Prompt Limitations](#ios-app-store-review-prompt-limitations)
+    - [Android: Google Play Review Quota](#android-google-play-review-quota)

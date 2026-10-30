@@ -5,7 +5,8 @@ title: "Legacy Mode"
 <Info>
   ### Important note
 
-  **This guide applies only to apps using the legacy OneSignal integration (iOS v3 SDK or Android v4 SDK).** If your app was set up recently through Median.co, it's already on the current SDK (v5+) with a user-centric data model — this page doesn't apply to you. For new integrations, start with [Get started with OneSignal](https://docs.median.co/docs/onesignal).
+**This guide applies only to apps using the legacy OneSignal integration (iOS v3 SDK or Android v4 SDK).** If your app was set up recently through Median.co, it's already on the current SDK (v5+) with a user-centric data model — this page doesn't apply to you. For new integrations, start with [Get started with OneSignal](https://docs.median.co/docs/onesignal).
+
 </Info>
 
 ## What Legacy Mode is
@@ -13,20 +14,21 @@ title: "Legacy Mode"
 By default, Median.co apps integrate with the latest OneSignal iOS and Android SDKs (v5+) and the user-centric data model. With Legacy Mode enabled, your app falls back to OneSignal's previous iOS v3 and Android v4 SDKs, which use a **device-centric** data model where each device has a unique Player ID.
 
 <Check>
-  ### Developer Demo
+**Developer Demo**
 
-  Display our demo page in your app to test during development [https://median.dev/onesignal-legacy](https://median.dev/onesignal-legacy)
+Display our demo page in your app to test during development [https://median.dev/onesignal-legacy](https://median.dev/onesignal-legacy)
+
 </Check>
 
-***
+---
 
 ## Sending personalized notifications in Legacy Mode
 
 There are many use cases for sending push notifications to specific users, either individually or as part of a group:
 
-* Alerting users of new messages or deliveries
-* Re-engaging users based on past activity
-* Sending promotional offers aligned with user preferences
+- Alerting users of new messages or deliveries
+- Re-engaging users based on past activity
+- Sending promotional offers aligned with user preferences
 
 There are two ways to send personalized notifications under the legacy model.
 
@@ -49,24 +51,25 @@ Add JavaScript to a login success page to retrieve the `oneSignalInfo` object. T
   /* Login Page Sample Code */
   var gn_oneSignalUserId;
 
-  function median_onesignal_info(oneSignalInfo){
-    gn_OneSignalUserId = oneSignalInfo.oneSignalUserId;
-  }
+function median_onesignal_info(oneSignalInfo){
+gn_OneSignalUserId = oneSignalInfo.oneSignalUserId;
+}
 
-  function yourLoginFunction(){
-    if(gn_OneSignalUserId){
-      $.ajax({
-        url: updateUserRecord,
-        type: "POST",
-        data: {
-          yourAppUserId: userId,
-          oneSignalUserId: gn_OneSignalUserId
-        },
-        contentType: "application/json"
-      });
-    }
-  }
-  ```
+function yourLoginFunction(){
+if(gn_OneSignalUserId){
+$.ajax({
+url: updateUserRecord,
+type: "POST",
+data: {
+yourAppUserId: userId,
+oneSignalUserId: gn_OneSignalUserId
+},
+contentType: "application/json"
+});
+}
+}
+
+````
 </CodeGroup>
 
 For more JavaScript examples, see [OneSignal Info](https://docs.median.co/docs/onesignal-info).
@@ -85,18 +88,19 @@ The POST is sent:
 Instead of managing Player IDs in your own database, you can use OneSignal's External User ID to associate your own identifiers — such as an email address or account number — with the device record in OneSignal. OneSignal manages the user-device relationship for you, though the functionality is more limited.
 
 <CodeGroup>
-  ```bash bash
-  // Set an External ID
-  median.onesignal.externalUserId.set({
-    externalId: STRING // e.g. [email protected]
-  });
+```bash bash
+// Set an External ID
+median.onesignal.externalUserId.set({
+  externalId: STRING // e.g. [email protected]
+});
 
-  // Remove an External ID
-  median.onesignal.externalUserId.remove();
-  ```
+// Remove an External ID
+median.onesignal.externalUserId.remove();
+````
+
 </CodeGroup>
 
-***
+---
 
 ## Comparing the two options
 
@@ -107,7 +111,7 @@ Instead of managing Player IDs in your own database, you can use OneSignal's Ext
 | **Multi-account support**   | Yes                                   | Limited                                  |
 | **Inactive device removal** | Yes                                   | No                                       |
 
-***
+---
 
 ## Migrating away from Legacy Mode
 
@@ -120,7 +124,7 @@ The primary areas to update are:
 
 Once you've updated both areas, disable Legacy Mode and rebuild your app.
 
-***
+---
 
 [In-App Messages](/docs/in-app-messages)
 
@@ -128,7 +132,7 @@ Once you've updated both areas, disable Legacy Mode and rebuild your app.
 
 Copy Page
 
-* * [What Legacy Mode is](#what-legacy-mode-is)
-  * [Sending personalized notifications in Legacy Mode](#sending-personalized-notifications-in-legacy-mode)
-  * [Comparing the two options](#comparing-the-two-options)
-  * [Migrating away from Legacy Mode](#migrating-away-from-legacy-mode)
+- - [What Legacy Mode is](#what-legacy-mode-is)
+  - [Sending personalized notifications in Legacy Mode](#sending-personalized-notifications-in-legacy-mode)
+  - [Comparing the two options](#comparing-the-two-options)
+  - [Migrating away from Legacy Mode](#migrating-away-from-legacy-mode)

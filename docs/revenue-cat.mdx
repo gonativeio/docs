@@ -8,9 +8,10 @@ The RevenueCat Plugin simplifies the integration of in-app purchases and subscri
 This plugin provides a streamlined approach to fetching products, processing purchases, and restoring past transactions, reducing the complexity of implementing Appleâ€™s StoreKit and Google Play Billing.
 
 <Check>
-  ### Developer Demo
+**Developer Demo**
 
-  Display our demo page in your app to test during development [https://median.dev/revenue-cat](https://median.dev/revenue-cat)
+Display our demo page in your app to test during development [https://median.dev/revenue-cat](https://median.dev/revenue-cat)
+
 </Check>
 
 ## Implementation Guide
@@ -29,8 +30,8 @@ Start by adding your iOS and Android apps in RevenueCat under Apps & Providers.
 
 For your App Store App configuration you will need your App Bundle ID as well as your In-app purchase key configuration. You can find both pieces of information below
 
-* App Bundle ID: [iOS Bundle ID](https://docs.median.co/docs/app-identifiers#ios-bundle-id)
-* In-app purchase key configuration: [Generate keys for In-App Purchases](https://developer.apple.com/help/app-store-connect/configure-in-app-purchase-settings/generate-keys-for-in-app-purchases/)
+- App Bundle ID: [iOS Bundle ID](https://docs.median.co/docs/app-identifiers#ios-bundle-id)
+- In-app purchase key configuration: [Generate keys for In-App Purchases](https://developer.apple.com/help/app-store-connect/configure-in-app-purchase-settings/generate-keys-for-in-app-purchases/)
 
 Business and Enterprise customers may request both values by creating a support ticket within the App Studio, as our team will help with the setup and management of App Store Connect and the App Identifiers.
 
@@ -42,8 +43,8 @@ Business and Enterprise customers may request both values by creating a support 
 
 For your Play Store configuration you will need your Google Play package name as well as your Service account credentials. You can find both pieces of information below
 
-* Google Play package name: [Android Package Name](https://docs.median.co/docs/app-identifiers#android-package-name)
-* Service Account Credentials: [Google Services](https://docs.median.co/docs/google-services)
+- Google Play package name: [Android Package Name](https://docs.median.co/docs/app-identifiers#android-package-name)
+- Service Account Credentials: [Google Services](https://docs.median.co/docs/google-services)
 
 Business and Enterprise customers may request both values by creating a support ticket within the App Studio, as our team will help with the setup and management of Google Firebase and the App Identifiers.
 
@@ -159,11 +160,7 @@ Provide a callback function or return a promise.
 
 Present a paywall that has been configured through the RevenueCat platform. Please follow the [RevenueCat - Creating Paywalls](https://www.revenuecat.com/docs/tools/paywalls/creating-paywalls) guide for style and configuration references.
 
-<CodeGroup>
-  ```bash bash
-  median.revenueCat.presentPaywall();
-  ```
-</CodeGroup>
+<CodeGroup>```bash bash median.revenueCat.presentPaywall(); ```</CodeGroup>
 
 This function provides a call back and will return an error if the user cancels the paywall.
 
@@ -189,7 +186,7 @@ When configuring your payment options and paywalls, carefully follow RevenueCatâ
 
 [RevenueCat - Getting your paywall approved through app review](https://www.revenuecat.com/docs/tools/paywalls/creating-paywalls/app-review)
 
-***
+---
 
 [Master Lock](/docs/master-lock)
 
@@ -197,10 +194,10 @@ When configuring your payment options and paywalls, carefully follow RevenueCatâ
 
 Copy Page
 
-* * [Implementation Guide](#implementation-guide)
+- - [Implementation Guide](#implementation-guide)
 
-  * * [RevenueCat Setup](#revenuecat-setup)
-    * [App Configuration](#app-configuration)
-    * [JavaScript Bridge Functions](#javascript-bridge-functions)
+  - - [RevenueCat Setup](#revenuecat-setup)
+    - [App Configuration](#app-configuration)
+    - [JavaScript Bridge Functions](#javascript-bridge-functions)
 
-  * [Troubleshooting](#troubleshooting)
+  - [Troubleshooting](#troubleshooting)
