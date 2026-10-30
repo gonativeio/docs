@@ -3,6 +3,8 @@ title: "Apple Face ID & Touch ID"
 description: "Authenticate Instantly with iOS Biometrics"
 ---
 
+import { MedianLogo } from "/snippets/median-logo.jsx";
+
 Fingerprint authentication has been available on iOS since the iPhone 5s (iOS 9.0). This plugin enables your app to use this secure and convenient method of user authentication via Touch ID or Face ID.
 
 The Median Face ID / Touch ID plugin uses the Median JavaScript Bridge to securely store and retrieve user credentials. The plugin communicates between the web page and the native app by opening a specific URL with query parameters. Responses from the native app are returned via a callback function in the JavaScript context.
@@ -31,10 +33,11 @@ This guide assumes a working publicly-accessible website (or test site) with a u
 
 After a user successfully logs in to your website with their username and password, check to see if Touch ID is available. If it is, save a secret for future retrieval. The secret must be a single string and can be a combination of the username and password, or an authentication token.
 
-> For example, you may embed this JavaScript into your post-login page:
+For example, you may embed this JavaScript into your post-login page:
 
+<MedianLogo />
 <CodeGroup>
-  ```bash bash
+  ```JavaScript JavaScript
   var username = 'andy'
   var password = 'password';
 
@@ -74,10 +77,11 @@ In this example, we have saved the username and password as the secret. You may 
 
 ### Check for secret on login page
 
-> On the login page, you will need to know whether or not to prompt for TouchID credentials. Start by getting the status:
+On the login page, you will need to know whether or not to prompt for TouchID credentials. Start by getting the status:
 
+<MedianLogo />
 <CodeGroup>
-```bash bash
+```JavaScript JavaScript
 median.auth.status({'callbackFunction': median_status_beforelogin});
 
 function median_status_beforelogin(data) {
@@ -111,10 +115,11 @@ median.auth.status().then(function (result) {
 
 </CodeGroup>
 
-> Once the `median_secret_callback` function is called with the previously saved secret, it should perform a request to log in the user. If the credentials are incorrect, you should delete the secret and allow manual login by running the function:
+Once the `median_secret_callback` function is called with the previously saved secret, it should perform a request to log in the user. If the credentials are incorrect, you should delete the secret and allow manual login by running the function:
 
+<MedianLogo />
 <CodeGroup>
-  ```bash bash
+  ```JavaScript JavaScript
   // delete secret if credentials are incorrect
   median.auth.delete({'callbackFunction': CALLBACK});
   ```
@@ -124,28 +129,30 @@ median.auth.status().then(function (result) {
 
 ### Retrieving FaceID / Touch ID availability
 
-> Run the JavaScript function:
+Run the JavaScript function:
 
+<MedianLogo />
 <CodeGroup>
-  ```bash bash
+  ```JavaScript JavaScript
   median.auth.status({'callbackFunction': CALLBACK});
   ```
 </CodeGroup>
 
-> Callback is required. The app will execute CALLBACK with an object parameter containing the fields:
->
-> - `hasTouchId`: `true` or `false`. Indicates if the device is running iOS 9+ and there are fingerprints enrolled, or FaceID is enabled.
-> - `biometryType`: ‘touchId’, ‘faceId’, or ‘none’. This field is populated on iOS only to differentiate between TouchID and FaceID.
-> - `hasSecret`: `true` or `false`
+Callback is required. The app will execute CALLBACK with an object parameter containing the fields:
+
+- `hasTouchId`: `true` or `false`. Indicates if the device is running iOS 9+ and there are fingerprints enrolled, or FaceID is enabled.
+- `biometryType`: ‘touchId’, ‘faceId’, or ‘none’. This field is populated on iOS only to differentiate between TouchID and FaceID.
+- `hasSecret`: `true` or `false`
 
 ### Saving a Secret
 
 Typically you will want to first check that Face ID / Touch ID is available via the status function above and then save the secret.
 
-> Run the JavaScript function:
+Run the JavaScript function:
 
+<MedianLogo />
 <CodeGroup>
-  ```bash bash
+  ```JavaScript JavaScript
   median.auth.save({'secret': secret});
   ```
 </CodeGroup>
@@ -154,34 +161,36 @@ Typically you will want to first check that Face ID / Touch ID is available via 
 
 ### Retrieving a Secret
 
-> Run the JavaScript function:
+Run the JavaScript function:
 
+<MedianLogo />
 <CodeGroup>
-  ```bash bash
+  ```JavaScript JavaScript
   median.auth.get({'callbackFunction': CALLBACK, 'prompt': 'PROMPT'});
   ```
 </CodeGroup>
 
-> Callback is required. Prompt is optional, and provides a message that can be displayed when iOS requests the user touch the fingerprint sensor. The app will execute CALLBACK with an object parameter containing the fields:
->
-> - `success`: `true` or `false`
-> - `error`: provided success is `false` (see error codes below)
-> - `secret`: the previously stored secret Another optional query parameter is `callbackOnCancel`. If set to 1 and the user cancels the authentication, the callback will be run with `success=false`, `error=userCanceled`. If `callbackOnCancel` is not set (or set to 0), the callback will not be run.
+Callback is required. Prompt is optional, and provides a message that can be displayed when iOS requests the user touch the fingerprint sensor. The app will execute CALLBACK with an object parameter containing the fields:
+
+- `success`: `true` or `false`
+- `error`: provided success is `false` (see error codes below)
+- `secret`: the previously stored secret Another optional query parameter is `callbackOnCancel`. If set to 1 and the user cancels the authentication, the callback will be run with `success=false`, `error=userCanceled`. If `callbackOnCancel` is not set (or set to 0), the callback will not be run.
 
 ### Delete a Secret
 
-> Run the JavaScript function:
+Run the JavaScript function:
 
+<MedianLogo />
 <CodeGroup>
-  ```bash bash
+  ```JavaScript JavaScript
   median.auth.delete({'callbackFunction': CALLBACK});
   ```
 </CodeGroup>
 
-> Callback is optional. The app will execute CALLBACK with an object parameter containing the fields:
->
-> - `success`: true or false
-> - `error`: provided if success is false
+Callback is optional. The app will execute CALLBACK with an object parameter containing the fields:
+
+- `success`: true or false
+- `error`: provided if success is false
 
 ### Possible error values
 
@@ -220,30 +229,3 @@ Regular expressions are supported to allow wildcards in the URL.
 <Frame caption="Whitelisting URLs for Access">
   <img src="/images/docs/6ac6443f60d854e11d699edae7fa95c860c78b958e13862a4ce17e14151161c2-Screenshot_2025-07-15_at_11.32.35.png" />
 </Frame>
-
----
-
-[Face ID & Touch ID Android Biometric](/docs/auth)
-
-[Android Biometric](/docs/android-biometric-auth)
-
-Copy Page
-
-- - [How it works](#how-it-works)
-
-  - [Implementation Guide](#implementation-guide)
-
-  - - [Save secret on successful login](#save-secret-on-successful-login)
-    - [Check for secret on login page](#check-for-secret-on-login-page)
-
-  - [Median JavaScript Bridge Reference](#median-javascript-bridge-reference)
-
-  - - [Retrieving FaceID / Touch ID availability](#retrieving-faceid--touch-id-availability)
-    - [Saving a Secret](#saving-a-secret)
-    - [Retrieving a Secret](#retrieving-a-secret)
-    - [Delete a Secret](#delete-a-secret)
-    - [Possible error values](#possible-error-values)
-
-  - [Testing Face ID / Touch ID Integration](#testing-face-id--touch-id-integration)
-
-  - [Whitelist Domains for Plugin Access](#whitelist-domains-for-plugin-access)

@@ -17,10 +17,10 @@ All new Median app licenses include 6 months of ongoing app updates. During your
 
 Your app will function indefinitely on the devices supported at the time of its launch. However, we recommend updating your app:
 
-* Annually, or to coincide with major iOS and Android OS releases.
-* When new device form factors (e.g., new iPhone screen sizes) are released.
-* To take advantage of ongoing performance optimizations and new Median features.
-* If you see the warning "App update from Median.co / GoNative.io is required", which indicates Google or Apple have mandated new OS compatibility requirements.
+- Annually, or to coincide with major iOS and Android OS releases.
+- When new device form factors (e.g., new iPhone screen sizes) are released.
+- To take advantage of ongoing performance optimizations and new Median features.
+- If you see the warning "App update from Median.co / GoNative.io is required", which indicates Google or Apple have mandated new OS compatibility requirements.
 
 ### How to Publish an App Update
 
@@ -32,7 +32,9 @@ Step 3 - Publish:
 
 Full-Service Publishing: Purchase an App Update Publishing service on the Services tab. The Median Publishing Team will handle the update process, including TestFlight distribution and App Store submission
 
-![Median App Studio - App Publishing](/images/docs/f9a22c38ea945275605fc097a9fd31a4a71b6cda347c608a81cf75eb0ab33070-Screenshot_2025-07-03_at_14.49.33.png)
+<Frame caption="Median App Studio - App Publishing">
+  ![](/images/docs/f9a22c38ea945275605fc097a9fd31a4a71b6cda347c608a81cf75eb0ab33070-Screenshot_2025-07-03_at_14.49.33.png)
+</Frame>
 
 Self-Publishing: Use the App Store Connect API workflow in the App Studio to upload iOS builds to TestFlight. For Android, follow the Android Build & Deployment guide to submit your APK/AAB.
 
@@ -44,18 +46,18 @@ Because Median natively wraps your web content, changes made to your website ref
 
 Median native apps obey the standard cache headers sent by your web server. If website changes are not appearing in your app:
 
-* Wait and Refresh: Browser caches may have a short delay. Wait a few minutes and refresh the page.
+- Wait and Refresh: Browser caches may have a short delay. Wait a few minutes and refresh the page.
 
-* Check Server Headers: Inspect the cache headers sent by your web server to ensure they aren't forcing the app to cache resources longer than intended.
+- Check Server Headers: Inspect the cache headers sent by your web server to ensure they aren't forcing the app to cache resources longer than intended.
 
-* Cache Busting: Use version suffixes on your website's resource files (e.g., `application_v2.js`). This forces the app to retrieve the latest file directly from the server.
+- Cache Busting: Use version suffixes on your website's resource files (e.g., `application_v2.js`). This forces the app to retrieve the latest file directly from the server.
 
-* Clear Webview Cache Command: Use the Median JavaScript Bridge command to clear the cache via JavaScript.
+- Clear Webview Cache Command: Use the Median JavaScript Bridge command to clear the cache via JavaScript.
 
-* Android Auto-Clear Cache: For Android, you can configure the app to clear the WebView cache every time it is exited. Add the following to your appConfig.json (or configure it in the App Studio):
+- Android Auto-Clear Cache: For Android, you can configure the app to clear the WebView cache every time it is exited. Add the following to your appConfig.json (or configure it in the App Studio):
 
 <CodeGroup>
-  ```bash bash
+  ```JSON JSON
   "general": {
     "androidClearCache": true
   }
@@ -74,11 +76,11 @@ Follow these technical requirements to ensure a smooth transition:
 
 Before migrating, verify that your new Median configuration provides the core functionality your users expect:
 
-* Navigation: Use Median’s Top Navigation Bars, Bottom Tab Bars, and Sidebar Menus for a native feel without writing native code. You can also use your existing web navigation.
+- Navigation: Use Median’s Top Navigation Bars, Bottom Tab Bars, and Sidebar Menus for a native feel without writing native code. You can also use your existing web navigation.
 
-* Native Features: Enable corresponding Median Native Plugins (e.g., Push Notifications, Biometrics, QR Scanning) in the App Studio to replace your old app's native features.
+- Native Features: Enable corresponding Median Native Plugins (e.g., Push Notifications, Biometrics, QR Scanning) in the App Studio to replace your old app's native features.
 
-* User Sessions: Local storage and secure credentials from your old app will not automatically transfer to the Median WebView context. Ensure your web application uses persistent cookies so returning users can log in easily.
+- User Sessions: Local storage and secure credentials from your old app will not automatically transfer to the Median WebView context. Ensure your web application uses persistent cookies so returning users can log in easily.
 
 ### Step 2 - Match App Identifiers Exactly
 
@@ -113,8 +115,6 @@ Finally, open the updated app to verify that it launches smoothly, the UI render
 ## Frequently Asked Questions
 
 ### Can I force an app update?
-
-**Can I force an app update?⎘ Copy link
 
 Although you cannot force users to update the app, you can use the version number returned by `median.deviceInfo()` to conditionally display a page prompting them to install the latest version.
 
