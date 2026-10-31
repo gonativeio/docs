@@ -20,7 +20,7 @@ You can configure the custom headers by editing the appConfig.json file directly
 ### Example Configuration for Android and iOS
 
 <CodeGroup>
-  ```bash bash
+  ```JSON JSON
   "general": {   
       "androidCustomHeaders": {
           "x-median-example-parameter": "example_value",
@@ -42,8 +42,8 @@ In this example, the custom headers for both Android and iOS apps include a vers
 
 ## Important Notes on Custom Headers
 
-* **Header Inclusion**: Custom headers are only included in the initial document request. Other resource types like CSS, JS, images, or AJAX requests will not carry these custom headers to maintain fast performance.
-* **Performance Consideration**: While custom headers are crucial for some use cases, it's essential to limit the number of headers in requests to ensure fast performance, especially for static resources.
+- **Header Inclusion**: Custom headers are only included in the initial document request. Other resource types like CSS, JS, images, or AJAX requests will not carry these custom headers to maintain fast performance.
+- **Performance Consideration**: While custom headers are crucial for some use cases, it's essential to limit the number of headers in requests to ensure fast performance, especially for static resources.
 
 ## Testing Custom Headers
 
@@ -55,17 +55,3 @@ To test the custom headers in your app:
 4. Inspect the network traffic and request headers to verify that the custom headers are being sent correctly.
 
 This allows you to monitor real-time network requests and ensure that your custom headers are configured and transmitted as expected.
-
-***
-
-[Custom User Agent](/docs/custom-user-agent)
-
-[Custom CSS](/docs/custom-css)
-
-Copy Page
-
-* * [Available Device Variables for Custom Headers](#available-device-variables-for-custom-headers)
-  * [Editing the appConfig.json File for Custom Header Configuration](#editing-the-appconfigjson-file-for-custom-header-configuration)
-  * * [Example Configuration for Android and iOS](#example-configuration-for-android-and-ios)
-  * [Important Notes on Custom Headers](#important-notes-on-custom-headers)
-  * [Testing Custom Headers](#testing-custom-headers)
