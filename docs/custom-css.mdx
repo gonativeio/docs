@@ -18,7 +18,7 @@ Custom CSS only affects content rendered inside the webview. It cannot restyle M
 In App Studio, open the Web Overrides > Custom CSS field and paste your rules. For example, the snippet below restyles the navigation and footer on every page:
 
 <CodeGroup>
-  ```bash bash
+  ```CSS CSS
   .nav
   { 
     margin-top: 5px !important;
@@ -26,17 +26,18 @@ In App Studio, open the Web Overrides > Custom CSS field and paste your rules. F
   }
 
   #header, #footer
-  { 
+  {
     background-color: #4c4c4c !important;
-    margin-bottom: 0px !important; 
+    margin-bottom: 0px !important;
   }
-  ```
+
+```
 </CodeGroup>
 
 <Warning>
-  ### Use `!important` to prevent flicker
+**Use `!important` to prevent flicker**
 
-  We recommend using the `!important` flag as shown in the above examples to prevent flicker. `!important` ensures your app's custom CSS rules always takes priority and override any other CSS rules on your website or external files which may load and be processed subsequently.
+We recommend using the `!important` flag as shown in the above examples to prevent flicker. `!important` ensures your app's custom CSS rules always takes priority and override any other CSS rules on your website or external files which may load and be processed subsequently.
 </Warning>
 
 ### Apply Conditional CSS Using JavaScript
@@ -44,28 +45,29 @@ In App Studio, open the Web Overrides > Custom CSS field and paste your rules. F
 As an alternative to hardcoded CSS overrides, you can apply CSS dynamically using JavaScript. This is especially useful if your design changes frequently or you need conditional logic. Here’s how to do it:
 
 <CodeGroup>
-  ```bash bash
-  <script>
-    if (navigator.userAgent.indexOf('median') > -1) {
+```JavaScript JavaScript
+<script>
+  if (navigator.userAgent.indexOf('median') > -1) {
 
-      // Option 1: Vanilla JavaScript
-      document.querySelector('.nav').style.visibility = "hidden";
-      document.querySelector('#header').style.visibility = "hidden";
-      document.querySelector('#footer').style.visibility = "hidden";
+    // Option 1: Vanilla JavaScript
+    document.querySelector('.nav').style.visibility = "hidden";
+    document.querySelector('#header').style.visibility = "hidden";
+    document.querySelector('#footer').style.visibility = "hidden";
 
-      // Option 2: jQuery
-      $('.nav').hide();
-      $('#header').hide();
-      $('#footer').hide();
+    // Option 2: jQuery
+    $('.nav').hide();
+    $('#header').hide();
+    $('#footer').hide();
 
-      // Option 3: WordPress (uses jQuery() instead of $() to avoid
-      // conflicts with other scripts using the $ shorthand)
-      jQuery('.nav').hide();
-      jQuery('#header').hide();
-      jQuery('#footer').hide();
-    }
-  </script>
-  ```
+    // Option 3: WordPress (uses jQuery() instead of $() to avoid
+    // conflicts with other scripts using the $ shorthand)
+    jQuery('.nav').hide();
+    jQuery('#header').hide();
+    jQuery('#footer').hide();
+  }
+</script>
+````
+
 </CodeGroup>
 
 **Tip**: On WordPress, use a plugin like [Insert Headers and Footers](https://wordpress.org/plugins/insert-headers-and-footers/) to safely add this script to your site header.
@@ -84,39 +86,21 @@ To change or remove a Custom CSS rule after your app is live, you need to update
 
 This has a few practical consequences worth planning around:
 
-* **Selector drift breaks silently** - If your website's markup changes later (e.g.: a class gets renamed, a widget gets swapped out) your Custom CSS rules can stop matching anything, or worse, start matching the wrong elements.
-* **Rollout isn't instant** - Even after you republish, users only get the updated CSS once they update the app, and Apple/Google's review process adds delay before that's even possible.
-* **It scales poorly for frequently changing UI** - If your website's layout changes often, every one of those changes potentially requires a new app submission just to keep the CSS override correct.
+- **Selector drift breaks silently** - If your website's markup changes later (e.g.: a class gets renamed, a widget gets swapped out) your Custom CSS rules can stop matching anything, or worse, start matching the wrong elements.
+- **Rollout isn't instant** - Even after you republish, users only get the updated CSS once they update the app, and Apple/Google's review process adds delay before that's even possible.
+- **It scales poorly for frequently changing UI** - If your website's layout changes often, every one of those changes potentially requires a new app submission just to keep the CSS override correct.
 
 ## Troubleshooting
 
-**My CSS isn't applying at all** Confirm the rules were saved under **Web Overrides > Custom CSS** in App Studio. During development, use App Studio's preview/simulator to check changes but remember that once your app is live, any edit to Custom CSS requires a full republish before real users see it (see [Maintainability and Risks](#maintainability-and-risks)). Also check the browser console for CSS syntax errors, which will silently fail to apply.
+### My CSS isn't applying at all
 
-**My CSS applies, then gets overridden a moment later (flicker)** This is almost always a missing `!important` flag. Since your website's own stylesheets may load or re-render after Median injects your custom CSS, `!important` is what guarantees your rules win.
+Confirm the rules were saved under **Web Overrides > Custom CSS** in App Studio. During development, use App Studio's preview/simulator to check changes but remember that once your app is live, any edit to Custom CSS requires a full republish before real users see it (see [Maintainability and Risks](#maintainability-and-risks)). Also check the browser console for CSS syntax errors, which will silently fail to apply.
+
+### My CSS applies, then gets overridden a moment later (flicker)
+
+This is almost always a missing `!important` flag. Since your website's own stylesheets may load or re-render after Median injects your custom CSS, `!important` is what guarantees your rules win.
 
 ## Additional Resources
 
-* [W3Schools CSS Reference](https://www.w3schools.com/cssref/default.asp)
-* [W3Schools CSS Selectors Reference](https://www.w3schools.com/cssref/css_selectors.asp)
-
-***
-
-### Next Steps
-
-* [Custom User Agent](/docs/custom-user-agent)
-
-Copy Page
-
-* * [Scope and limitations](#scope-and-limitations)
-
-  * [Custom CSS in Median Apps](#custom-css-in-median-apps)
-
-  * * [Apply Global CSS Rules](#apply-global-css-rules)
-    * [Apply Conditional CSS Using JavaScript](#apply-conditional-css-using-javascript)
-    * [Advanced: Server-Side CSS Based on User Agent](#advanced-server-side-css-based-on-user-agent)
-
-  * [Maintainability and Risks](#maintainability-and-risks)
-
-  * [Troubleshooting](#troubleshooting)
-
-  * [Additional Resources](#additional-resources)
+- [W3Schools CSS Reference](https://www.w3schools.com/cssref/default.asp)
+- [W3Schools CSS Selectors Reference](https://www.w3schools.com/cssref/css_selectors.asp)

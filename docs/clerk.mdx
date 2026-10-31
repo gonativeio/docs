@@ -47,7 +47,7 @@ In the Native Plugins tab of the App Studio, enter your **Publishable Key**:
 </Frame>
 
 <Info>
-  ### Auto-Initialization
+  **Auto-Initialization**
 
 On iOS and Android, the Clerk SDK is automatically initialized at app startup using the `publishableKey` from the app configuration.
 
@@ -61,7 +61,7 @@ Presents Clerk's native sign-in UI. The interface supports both sign-in and sign
 
 <MedianLogo />
 <CodeGroup>
-  ```bash bash
+  ```JavaScript JavaScript
   const result = await median.clerk.presentSignIn();
 
 // result object
@@ -77,7 +77,7 @@ token: "eyJ..." // present when hasValidToken is true
 
 <MedianLogo />
 <CodeGroup>
-```bash bash
+```JavaScript JavaScript
 // Callback example
 median.clerk.presentSignIn({
   callback: function(result) {
@@ -97,19 +97,18 @@ Signs the current user out and invalidates their Clerk session. For this functio
 
 <MedianLogo />
 <CodeGroup>
-  ```bash bash
+  ```JavaScript JavaScript
   const result = await median.clerk.signOut();
 
 // result object
 {
-success: true | false,
-error: { // present on failure only
-code: "NOT_INITIALIZED" | "SDK_ERROR",
-message: "..."
+  success: true | false,
+  error: { // present on failure only
+    code: "NOT_INITIALIZED" | "SDK_ERROR",
+    message: "..."
+  }
 }
-}
-
-````
+```
 </CodeGroup>
 
 #### Get Auth Status
@@ -118,7 +117,7 @@ Retrieves the current authentication status, including the session token and use
 
 <MedianLogo />
 <CodeGroup>
-```bash bash
+```JavaScript JavaScript
 const result = await median.clerk.getAuthStatus();
 
 // result object
@@ -132,8 +131,9 @@ const result = await median.clerk.getAuthStatus();
 
 </CodeGroup>
 
+<MedianLogo />
 <CodeGroup>
-  ```bash bash
+  ```JavaScript JavaScript
   // Example: use token for API request
   const status = await median.clerk.getAuthStatus();
   if (status.state === 'signedIn' && status.hasValidToken) {
@@ -168,30 +168,20 @@ Use this checklist to ensure Clerk is working correctly in your app:
 
 ### median.clerk functions are undefined or not working
 
-\*\*median.clerk functions are undefined or not working⎘ Copy link
-
 Ensure the JavaScript Bridge is enabled in Median App Studio and that the Clerk native plugin is enabled and configured. On iOS, verify that `median.clerk.initialize()` is called before any other method and that the call returns `success: true`.
 
 ### NOT_INITIALIZED error on iOS
-
-\*\*NOT_INITIALIZED error on iOS⎘ Copy link
 
 On iOS, the Clerk SDK is not initialized automatically at startup — you must call `median.clerk.initialize({ publishableKey: 'pk_...' })` from JavaScript before calling `presentSignIn`, `signOut`, or `getAuthStatus`. On Android, this call is optional because the SDK initializes from the server configuration.
 
 ### Sign-in completes but token is missing or hasValidToken is false
 
-\*\*Sign-in completes but token is missing or hasValidToken is false⎘ Copy link
-
 Check that your Clerk application is configured correctly in the Clerk Dashboard and that the publishable key matches your app environment. Also verify that the user fully completed the sign-in flow rather than dismissing it — a dismissed flow returns `state: "signedOut"` with no token.
 
 ### SDK_ERROR on sign-in or sign-out
-
-\*\*SDK_ERROR on sign-in or sign-out⎘ Copy link
 
 Check the `error.message` field for details. Common causes include network connectivity issues, an invalid or revoked publishable key, or a temporary Clerk service issue. Verify the publishable key in App Studio matches your Clerk Dashboard and that the device has network access.
 
 ### Session token is rejected by your API
 
-\*\*Session token is rejected by your API⎘ Copy link
-
-Always call `median.clerk.getAuthStatus()` immediately before making an API request to get a fresh token — do not cache the token from a previous call. Ensure your backend is validating the JWT against your Clerk instance's public key, not a hardcoded secret.
+Always call `median.clerk.getAuthStatus()` immediately before making an API request to get a fresh token and do not cache the token from a previous call. Ensure your backend is validating the JWT against your Clerk instance's public key, not a hardcoded secret.

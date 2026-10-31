@@ -21,9 +21,10 @@ If you are unable to connect to App Store Connect, you can still configure certi
 4. Click Generate.
 
 <Warning>
-  ### Download your private key immediately
+  **Download your private key immediately**
 
-  Apple lets you download the `.p8` private key file exactly once. If you close this dialog before downloading it, you cannot retrieve the same key again. You'll need to revoke it in App Store Connect and generate a new one from scratch.
+Apple lets you download the `.p8` private key file exactly once. If you close this dialog before downloading it, you cannot retrieve the same key again. You'll need to revoke it in App Store Connect and generate a new one from scratch.
+
 </Warning>
 
 <Frame caption="App Store Connect API Keys">
@@ -32,14 +33,15 @@ If you are unable to connect to App Store Connect, you can still configure certi
 
 You'll need three things from this step to complete Step 2:
 
-* **Issuer ID** (shown at the top of the API Keys page)
-* **Key ID** (shown in the key's row in the table)
-* The downloaded `.p8` **private key file**
+- **Issuer ID** (shown at the top of the API Keys page)
+- **Key ID** (shown in the key's row in the table)
+- The downloaded `.p8` **private key file**
 
 <Warning>
-  ### Individual vs. Team keys
+  **Individual vs. Team keys**
 
-  If your Apple Developer account belongs to an organization, generate the key from an account with Team (organization) access, not an individual/personal API key. Individual keys are scoped to a single Apple ID and can cause permission errors partway through a build or upload.
+If your Apple Developer account belongs to an organization, generate the key from an account with Team (organization) access, not an individual/personal API key. Individual keys are scoped to a single Apple ID and can cause permission errors partway through a build or upload.
+
 </Warning>
 
 ### Step 2: Connect the key to Median
@@ -57,7 +59,6 @@ You'll need three things from this step to complete Step 2:
 Once connected, the card displays a Connected badge along with **Test API Key** and **Disconnect** actions to validate the configuration and disconnect the API connection.
 
 4. In the **Bundle ID & App Store Connect App** section:
-
    1. Register the Bundle ID for your app within your Apple Developer account. (We also provide an option to register your Bundle ID automatically via the API connection).
    2. Create an App Store Connect App Record for your app. (This step cannot be completed through the API and must be configured manually in App Store Connect).
 
@@ -87,43 +88,16 @@ Continue with ​[Register Testing Devices](https://docs.median.co/docs/register
 
 ### What's the difference between an Individual and a Team API key?
 
-**What's the difference between an Individual and a Team API key?⎘ Copy link
-
 A Team key is scoped to your whole Apple Developer organization account and is the correct choice for most setups. An Individual key is tied to a single personal Apple ID and can cause permission errors mid-build if that person's access changes — use a Team key whenever your account is an organization account.
 
-### I closed the dialog before downloading my .p8 file — what do I do?
-
-**I closed the dialog before downloading my .p8 file — what do I do?⎘ Copy link
+### I closed the dialog before downloading my .p8 file - how can I retrieve it?
 
 Apple only allows the private key to be downloaded once. Go back to Users and Access → Integrations → API Keys, revoke the key you just created, and generate a new one, making sure to download the .p8 file before closing the dialog.
 
 ### Can I disconnect App Store Connect later?
 
-**Can I disconnect App Store Connect later?⎘ Copy link
-
 Yes. Click Disconnect on the Apple Developer API Connection card in Median, or revoke the key directly from App Store Connect. Builds you've already produced aren't affected, but you'll need to reconnect before starting new automatic builds or uploads.
 
 ### Does this connection apply to one app or my whole organization?
 
-**Does this connection apply to one app or my whole organization?⎘ Copy link
-
 It's organization-wide. Once connected, every app in your Median organization can use this same key for signing and uploads and you don't need to repeat this setup per app.
-
-***
-
-### Next Steps
-
-* [Registering Testing Devices](/docs/registering-testing-devices)
-
-Copy Page
-
-* * [Step-by-Step](#step-by-step)
-
-  * * [Step 1: Generate an API key in App Store Connect](#step-1-generate-an-api-key-in-app-store-connect)
-    * [Step 2: Connect the key to Median](#step-2-connect-the-key-to-median)
-
-  * [Prefer not to use an API key?](#prefer-not-to-use-an-api-key)
-
-  * [Next Step](#next-step)
-
-  * [Frequently Asked Questions](#frequently-asked-questions)

@@ -3,6 +3,8 @@ title: "Google Firebase Crashlytics"
 description: "Firebase Crashlytics is a real-time crash reporter that helps developers track, prioritize, and fix stability issues in their apps"
 ---
 
+import { MedianLogo } from "/snippets/median-logo.jsx";
+
 Firebase Crashlytics is a real-time crash reporting solution that helps you identify, prioritize, and resolve the most critical issues affecting your app users. This plugin integrates the iOS and Android [Firebase Crashlytics SDKs](https://firebase.google.com/docs/crashlytics/get-started) into your app and supports logging of native crashes, WebView console errors, and (on Android) toast errors.
 
 ## Why use Google Firebase Crashlytics
@@ -11,8 +13,6 @@ Firebase Crashlytics is a real-time crash reporting solution that helps you iden
 - **WebView console errors**: WebView console errors logged to Crashlytics.
 - **Android toast errors**: Android-only (e.g. SSL certificate warnings).
 - **Runtime control**: Enable/disable log collection and set user IDs via the Median JavaScript Bridge.
-
----
 
 ## Prerequisites
 
@@ -28,8 +28,6 @@ Display our demo page in your app to test during development [https://median.dev
 
 </Check>
 
----
-
 ## When to use this plugin
 
 Firebase Crashlytics is essential for apps that need to:
@@ -42,21 +40,7 @@ Firebase Crashlytics is essential for apps that need to:
 | **Per-user tracking**    | Set a custom user ID to track crash logs per user |
 | **Privacy compliance**   | Request user opt-in before collecting logs        |
 
----
-
-## What You'll Do
-
-Use this section as a fast navigation map into the full setup and implementation details:
-
-1. **Enable the plugin in App Studio**: Go to [Plugin Setup](#plugin-setup) and complete [Enable the Plugin](#enable-the-plugin).
-2. **Configure log collection behavior**: Review [Configuration Options](#configuration-options) to set `requestOptIn`, `toastErrorLogsEnabled`, and `webErrorLogsEnabled`.
-3. **Control logging at runtime**: Use [JavaScript Bridge Functions](#javascript-bridge-functions), especially enable, webErrorLogsEnabled, and toastErrorLogsEnabled.
-4. **Attach logs to specific users**: Implement setUserId and unsetUserId in JavaScript Bridge Functions.
-5. **Add consent when required**: Configure [Optional: Request User Consent for Log Collection](#optional-request-user-consent-for-log-collection).
-
----
-
-## Plugin Setup
+## Integration Guide
 
 ### Enable the Plugin
 
@@ -105,10 +89,6 @@ Once the configuration files are uploaded, save the changes and rebuild your app
   <img src="/images/docs/673adab78087bd5a5039f6da1ecab94c9b409bde8d0b665e064586218b4a35ff-analytics.gif" />
 </Frame>
 
----
-
-## Implementation Guide
-
 ### JavaScript Bridge Functions
 
 The Median JavaScript Bridge allows you to control Crashlytics at runtime.
@@ -117,8 +97,9 @@ The Median JavaScript Bridge allows you to control Crashlytics at runtime.
 
 Enable or disable Crashlytics log collection at runtime.
 
+<MedianLogo />
 <CodeGroup>
-  ```bash bash
+  ```JavaScript JavaScript
   // Enable/disable Crashlytics
   median.firebaseCrashlytics.enable(true);
   median.firebaseCrashlytics.enable(false);
@@ -144,8 +125,9 @@ median.firebaseCrashlytics.toastErrorLogsEnabled(false);
 
 Assign a custom user ID to track crash logs per user in Firebase. Persists between app launches; cleared on uninstall/reinstall.
 
+<MedianLogo />
 <CodeGroup>
-```bash bash
+```JavaScript JavaScript
 median.firebaseCrashlytics.setUserId("user_123");
 ````
 
@@ -159,11 +141,10 @@ median.firebaseCrashlytics.setUserId("user_123");
 
 Remove the previously set user ID.
 
+<MedianLogo />
 <CodeGroup>
-  ```bash bash median.firebaseCrashlytics.unsetUserId(); ```
+  ```JavaScript JavaScript median.firebaseCrashlytics.unsetUserId(); ```
 </CodeGroup>
-
----
 
 ## Optional: Request user consent for log collection
 
@@ -173,15 +154,11 @@ To comply with privacy policies or regulations, you can ask users for permission
   <img src="/images/docs/ba4493a-2024-02-14_14-56-43_High_Res_Screenshot.png" />
 </Frame>
 
----
-
 ## Testing checklist
 
 Use this checklist to verify Crashlytics is configured and logging as expected:
 
 ### Basic Functionality
-
-\*\*Basic Functionality⎘ Copy link
 
 - [ ] Firebase Crashlytics plugin is enabled in App Studio
 - [ ] `GoogleService-Info.plist` (iOS) and `google-services.json` (Android) are uploaded in **Build & Deploy > Google Services**
@@ -190,22 +167,16 @@ Use this checklist to verify Crashlytics is configured and logging as expected:
 
 ### Platform Testing
 
-\*\*Platform Testing⎘ Copy link
-
 - [ ] `median.firebaseCrashlytics.webErrorLogsEnabled(true/false)` updates WebView error logging behavior
 - [ ] `median.firebaseCrashlytics.toastErrorLogsEnabled(true/false)` updates Android toast error logging behavior
 
 ### Configuration Testing
-
-\*\*Configuration Testing⎘ Copy link
 
 - [ ] `median.firebaseCrashlytics.setUserId('user_123')` sets a user identifier for crash logs
 - [ ] `median.firebaseCrashlytics.unsetUserId()` removes the user identifier
 - [ ] If `requestOptIn` is enabled, the permission prompt appears on first app launch after install
 
 ### User Experience
-
-\*\*User Experience⎘ Copy link
 
 - [ ] Open [https://median.dev/crashlytics](https://median.dev/crashlytics) inside your app and confirm logs/events are received in Firebase Crashlytics
 - [ ] Consent prompt (if used) appears at an appropriate time and copy matches your policy
@@ -216,70 +187,27 @@ Use this checklist to verify Crashlytics is configured and logging as expected:
 
 ### Crashlytics functions are undefined or not working
 
-\*\*Crashlytics functions are undefined or not working⎘ Copy link
-
 Ensure the JavaScript Bridge is enabled in your Median dashboard and that you call functions after the `deviceready` event. Verify the plugin is enabled and `GoogleService-Info.plist` (iOS) and `google-services.json` (Android) are uploaded in **Build & Deploy > Google Services**.
 
 ### Logs do not appear in Firebase Crashlytics
-
-\*\*Logs do not appear in Firebase Crashlytics⎘ Copy link
 
 Confirm the app was rebuilt after uploading Google services files and saving plugin settings. Also verify log collection is enabled with `median.firebaseCrashlytics.enable(true)` and that the correct Firebase project files were uploaded for each platform.
 
 ### WebView errors are not being captured
 
-\*\*WebView errors are not being captured⎘ Copy link
-
 Check that `webErrorLogsEnabled` is enabled in plugin settings (and at runtime if you manage it dynamically).
 
 ### Android toast errors are not being captured
-
-\*\*Android toast errors are not being captured⎘ Copy link
 
 `toastErrorLogsEnabled` applies to Android only. Ensure it is enabled in settings and test on an Android build.
 
 ### User consent prompt does not appear
 
-\*\*User consent prompt does not appear⎘ Copy link
-
 The prompt only appears when `requestOptIn` is enabled and is shown on first launch post-installation. Reinstall the app to retest first-launch behavior.
 
 <Info>
-  ## Still having trouble?
+  **Still having trouble?**
 
 For Firebase Crashlytics outside Median.co refer to [Firebase Crashlytics documentation.](https://firebase.google.com/docs/crashlytics/get-started)
 
 </Info>
-
----
-
-[Google Firebase Analytics](/docs/firebase-analytics)
-
-[Meta App Events](/docs/facebook)
-
-Copy Page
-
-- - [Why use Google Firebase Crashlytics](#why-use-google-firebase-crashlytics)
-
-  - [Prerequisites](#prerequisites)
-
-  - [When to use this plugin](#when-to-use-this-plugin)
-
-  - [What You'll Do](#what-youll-do)
-
-  - [Plugin Setup](#plugin-setup)
-
-  - - [Enable the Plugin](#enable-the-plugin)
-    - [Configuration Options](#configuration-options)
-    - [App Configuration](#app-configuration)
-    - [Finalizing the App Build](#finalizing-the-app-build)
-
-  - [Implementation Guide](#implementation-guide)
-
-  - - [JavaScript Bridge Functions](#javascript-bridge-functions)
-
-  - [Optional: Request user consent for log collection](#optional-request-user-consent-for-log-collection)
-
-  - [Testing checklist](#testing-checklist)
-
-  - [Troubleshooting](#troubleshooting)

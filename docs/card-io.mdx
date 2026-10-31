@@ -3,6 +3,8 @@ title: "Card.io"
 description: "Simplify payment form completion using the device camera and machine vision to read any credit card. Hold your card in front of the card to capture cardholder name, card number, and expiry date without typing."
 ---
 
+import { MedianLogo } from "/snippets/median-logo.jsx";
+
 The Card.io module improves customer conversion by simplifying the payment process. All machine vision image processing is performed locally on the device, thus sensitive cardholder information remains secure within your website.
 
 Formerly a commercial pay-for-use SDK, Card.io is now open source supported by PayPal. Therefore there are no additional licenses or ongoing fees to use this module.
@@ -21,7 +23,7 @@ Display our demo page in your app to test during development [https://median.dev
 Define a JavaScript callback function to handle the scan result:
 
 <CodeGroup>
-  ```bash bash
+  ```JavaScript JavaScript
   function processCard(data) {
     alert(JSON.stringify(data));
   }
@@ -30,10 +32,11 @@ Define a JavaScript callback function to handle the scan result:
 
 Trigger the card scanner using:
 
-> To initiate a scan, open the URL:
+To initiate a scan, open the URL:
 
+<MedianLogo />
 <CodeGroup>
-  ```bash bash
+  ```JavaScript JavaScript
   median.card_io.scanCard({
     callbackFunction: processCard
   });
@@ -60,8 +63,9 @@ Customize the card scanning experience by passing optional parameters:
 
 To collect the cardholder’s postal code and specify that it must be numeric:
 
+<MedianLogo />
 <CodeGroup>
-  ```bash bash
+  ```JavaScript JavaScript
   median.card_io.scanCard({
     callbackFunction: processCard,
     requirePostalCode: true,
@@ -79,17 +83,3 @@ After a successful scan, your callback function receives a JavaScript object wit
 - expiryMonth: _(number)_
 - expiryYear: _(number)_
 - cardType: _(string)_ – One of `"visa"`, `"mastercard"`, `"amex"`, `"discover"`, or `"jcb"`
-
----
-
-[Bubble Plugin](/docs/bubble-plugin)
-
-[Master Lock](/docs/master-lock)
-
-Copy Page
-
-- - [Implementation Guide](#implementation-guide)
-
-  - - [How to Scan a Credit Card](#how-to-scan-a-credit-card)
-    - [Available Scanning Options](#available-scanning-options)
-    - [Scan Result Format](#scan-result-format)

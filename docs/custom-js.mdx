@@ -14,28 +14,18 @@ JavaScript should be written exactly as it would appear in a standalone .js file
 Use the Median JavaScript Bridge to access device information and send it to your server, such as during user login or registration flows:
 
 <CodeGroup>
-  ```bash bash
+  ```JavaScript JavaScript
   /* This script checks if the current page path starts with /login and then calls median.deviceInfo() to retrieve device details. It sends that data to your server via a POST request. */
 
-  if(location.pathname.startsWith('/login'){
-    median.deviceInfo().then(function (deviceInfo) {
-      fetch('https://yourwebsite.com/api/registration', {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(deviceInfo),
-      });
+if(location.pathname.startsWith('/login'){
+  median.deviceInfo().then(function (deviceInfo) {
+    fetch('https://yourwebsite.com/api/registration', {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(deviceInfo),
     });
-  }
-  ```
+  });
+}
+
+```
 </CodeGroup>
-
-***
-
-[Custom CSS](/docs/custom-css)
-
-[Cookie Persistence](/docs/cookie-persistence)
-
-Copy Page
-
-* * [Injecting JavaScript Without \<script> Tags](#injecting-javascript-without-script-tags)
-  * [Example: Send Device Info on your login page](#example-send-device-info-on-your-login-page)

@@ -3,6 +3,8 @@ title: "Clipboard"
 description: "Manage the device clipboard contents"
 ---
 
+import { MedianLogo } from "/snippets/median-logo.jsx";
+
 Access the device clipboard from your web app using the Median JavaScript Bridge. You can write text to the clipboard and read the current clipboard contents.
 
 <Check>
@@ -29,8 +31,9 @@ Both iOS and Android are supported. `clipboard.get()` supports two async pattern
 
 Use `median.clipboard.set()` to copy a string to the system clipboard. This is the equivalent of a user pressing Ctrl+C / Cmd+C on their desktop browser.
 
+<MedianLogo />
 <CodeGroup>
-  ```bash bash
+  ```JavaScript JavaScript
   median.clipboard.set({ data: "Text to copy" });
   ```
 </CodeGroup>
@@ -43,8 +46,9 @@ Use `median.clipboard.set()` to copy a string to the system clipboard. This is t
 
 **Example use case**: Providing a "Copy to clipboard" button for invite codes, promo codes, links or other content.
 
+<MedianLogo />
 <CodeGroup>
-  ```bash bash
+  ```JavaScript JavaScript
   document.getElementById("copy-btn").addEventListener("click", function () {
     median.clipboard.set({ data: "PROMO2024" });
   });
@@ -61,8 +65,9 @@ Choose the pattern that best fits your codebase: Promises or Callbacks.
 
 Promises integrate cleanly with async/await and modern JavaScript workflows.
 
+<MedianLogo />
 <CodeGroup>
-  ```bash bash
+  ```JavaScript JavaScript
   median.clipboard.get().then(function (result) {
     if (result.data) {
       console.log("Clipboard contents:", result.data);
@@ -93,8 +98,9 @@ Named callbacks are useful when integrating with legacy codebases or when you ne
 
 Pass the name of your callback function as a string using the callback key:
 
+<MedianLogo />
 <CodeGroup>
-```bash bash
+```JavaScript JavaScript
 median.clipboard.get({ callback: "clipboardCallback" });
 
 function clipboardCallback(result) {
@@ -104,8 +110,7 @@ function clipboardCallback(result) {
     console.error("Clipboard error:", result.error);
   }
 }
-````
-
+```
 </CodeGroup>
 
 **Response Object**
@@ -123,20 +128,3 @@ Always check for result.data before using the value, and handle the result.error
 
 - **iOS**: On iOS 14+, the system may display a notification banner informing the user that your app has accessed the clipboard. This is an OS-level behavior and cannot be suppressed.
 - **Android**: Clipboard read access may be restricted on Android 10+ when your app is not in the foreground. Ensure clipboard reads are triggered by an explicit user action.
-
----
-
-### Next Steps
-
-- [Prompt Share Dialogue](/docs/prompt-share-dialogue)
-
-Copy Page
-
-- - [Overview](#overview)
-
-  - [Implementation Guide](#implementation-guide)
-
-  - - [Writing to the Clipboard](#writing-to-the-clipboard)
-    - [Reading from the Clipboard](#reading-from-the-clipboard)
-
-  - [Platform Behavior](#platform-behavior)
