@@ -1,33 +1,110 @@
 ---
 title: "Custom Icons"
+description: "Upload your own SVG icons and use them across your app's native navigation components"
 ---
 
-1. Open Median App Studio and open the app you'd like to edit.
+## Overview
 
-2. Click "Edit App"
+Median includes a large library of built-in icons, but many apps need icons that match their own brand or represent app-specific features. With **Custom Icons**, you can upload your own SVG files and use them anywhere native navigation icons are supported, including the Bottom Tab Bar, Top Navigation Bar, Sidebar Menu, and Contextual Navigation.
 
-3. Click on Native Navigation in the Configuration Menu
+Custom icons are packaged into an icon font using [Fontello](https://fontello.com), an integrated tool that opens directly inside App Studio. Once imported, your icons appear alongside the built-in icon sets in the icon picker.
 
-4. Choose Bottom Tab Bar
+<Frame>
+  <iframe
+    className="w-full aspect-video rounded-xl"
+    src="https://www.youtube.com/embed/pGCTAI-gCX4"
+    title="Median.co Custom Icons"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowFullScreen
+  ></iframe>
+</Frame>
 
-5. Scroll to the bottom of the page, to the Bottom Tab Bar Visual Editor section. If there is no existing Bottom Tab Bar, click Add Bottom Tab Bar.
+## Before you begin
 
-6. Click on the icon to be changed to a custom icon.
+Make sure you have the following ready:
 
-7. Within the pop-up window, click on the icon.
+- An app in **Median App Studio** that you can edit
+- One or more icons in **SVG format**
 
-8. Within that pop-up window, at the top, choose "Custom" and "Add Custom Icons".
+<Tip>
+  For best results, use simple, single-color SVG icons built from filled paths.
+  Convert strokes and text to outlines and merge shapes into a single compound
+  path before exporting. Fontello ignores colors, gradients, and embedded
+  images, so icons render in the color configured for each navigation component.
+</Tip>
 
-9. A Fontello page will open in the right-hand panel. Click on the wrench icon, then Import, and import the .svg file that you would like to upload.
+## Adding custom icons
 
-10. Ensure that the "CSS prefix:" is set to "icon-" and "add after icon name" is NOT checked. The font name beside the wrench icon must always be set to "custom-icons".
+The steps below use the Bottom Tab Bar as the entry point, but once uploaded, your custom icons are available to every native navigation component.
 
-11. When done, select and highlight the icons you wish to load to your app and then click “Export font” to return to your app. You can then use your custom icons for all native navigation components.
+<Steps>
+  <Step title="Open your app in App Studio">
+    Open [Median App Studio](https://median.co/app), select the app you'd like to edit, and click **Edit App**.
+  </Step>
+  <Step title="Go to Native Navigation">
+    In the Configuration Menu, click **Native Navigation**, then select **Bottom Tab Bar**.
+  </Step>
+  <Step title="Open the Bottom Tab Bar Visual Editor">
+    Scroll to the **Bottom Tab Bar Visual Editor** section at the bottom of the page. If your app doesn't have a Bottom Tab Bar yet, click **Add Bottom Tab Bar**.
+  </Step>
+  <Step title="Select the icon to replace">
+    Click the tab whose icon you want to change, then click its icon in the pop-up window to open the icon picker.
+  </Step>
+  <Step title="Open the custom icon uploader">
+    At the top of the icon picker, select **Custom**, then click **Add Custom Icons**. The Fontello editor opens in the right-hand panel.
+  </Step>
+  <Step title="Import your SVG files">
+    In Fontello, click the **wrench icon**, select **Import**, and choose the `.svg` file(s) you'd like to upload. Imported icons appear in the **Custom Icons** section of the Fontello editor.
+  </Step>
+  <Step title="Configure the font settings">
+    Before exporting, open the wrench menu and confirm the settings below. These values are required for your icons to load correctly in your app.
 
-<iframe
-  className="w-full aspect-video rounded-xl"
-  src="https://www.youtube.com/embed/pGCTAI-gCX4"
-  title="Median.co Custom Icons"
-  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-  allowFullScreen
-></iframe>
+    | Setting | Required value |
+    | --- | --- |
+    | Font name (next to the wrench icon) | `custom-icons` |
+    | CSS prefix | `icon-` |
+    | Add after icon name | Unchecked |
+
+    <Warning>
+      If the font name, CSS prefix, or suffix setting differ from the values above, your custom icons will not display in your app.
+    </Warning>
+
+  </Step>
+  <Step title="Select and export your icons">
+    Click each icon you want to include so that it is highlighted, then click **Export font**. Fontello closes and returns you to App Studio.
+  </Step>
+  <Step title="Assign your custom icon">
+    Your icons now appear under the **Custom** tab of the icon picker. Select the icon you want to use for the tab and save your changes.
+  </Step>
+</Steps>
+
+<Note>
+  Changes to native navigation icons require a new build of your app. Rebuild
+  your app in App Studio to see your custom icons on device.
+</Note>
+
+## Using custom icons in other components
+
+Once exported, your custom icon font is shared across your entire app configuration. Open the icon picker in any native navigation component, select **Custom**, and choose from your uploaded icons. You don't need to import the same icons again.
+
+## Updating or adding icons
+
+To add more icons later, repeat the steps above and import the new SVG files in Fontello. Make sure your existing custom icons are still selected (highlighted) before clicking **Export font**. Only highlighted icons are included in the exported font, so any icon left unselected will be removed from your app.
+
+## Troubleshooting
+
+### My custom icon doesn't appear in the app
+
+Check that the font name is set to `custom-icons`, the CSS prefix is set to `icon-`, and **Add after icon name** is unchecked. Then confirm the icon was highlighted when you clicked **Export font**, and rebuild your app.
+
+### My icon appears blank, distorted, or as a solid shape
+
+    This usually means the SVG uses strokes, masks, or overlapping shapes that Fontello can't convert. Open the file in a vector editor, convert strokes to outlines, combine shapes into a single compound path, and import it again.
+
+### My icon shows the wrong color
+
+    Icon fonts are single-color. Colors defined in the SVG are ignored, and the icon uses the color set for the navigation component in App Studio. Adjust the component's icon color settings instead.
+
+### Previously uploaded icons disappeared
+
+    Only icons that are highlighted at export are included in the font. Reopen Fontello, select all the icons you want to keep, and export again.
