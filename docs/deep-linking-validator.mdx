@@ -3,6 +3,8 @@ title: "Deep Linking Validator"
 description: "Automatically analyze your site to verify that your apple-app-site-association and assetlinks.json files are properly configured for deep linking."
 ---
 
+import { DeepLinkingValidator } from "/snippets/deep-linking-validator.jsx";
+
 <Info>
   We've launched a new and improved Deep Linking Validator at https://median.co/deep-linking-validator. The new tool offers even faster scans of your domain configuration and additional debugging functionality.
 
@@ -18,9 +20,9 @@ It helps verify:
 - Responses use the correct **headers** and **status codes**.
 - JSON is valid and meets **Apple and Android** expectations.
 
-If your files validate successfully but deep linking isn’t functioning as expected for your app, we recommend posting in our [Discussion Forum](https://median.co/discuss).
+## Validate your domain
 
-Domain to validate: e.g. median.co Validate
+<DeepLinkingValidator />
 
 ## Testing deep links
 
