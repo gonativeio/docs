@@ -21,26 +21,26 @@ export const PublishingGuide = () => {
   const [compact, setCompact] = useState(false);
   const [mobile, setMobile] = useState(false);
 
-  // Tablet and smaller: swap the step sidebar for a dropdown and stack the layout.
+  // Narrow container: swap the step sidebar for a dropdown and stack the layout.
+  // Measure the guide itself, not the viewport — Mintlify's nav and TOC leave the
+  // content column far narrower than the window on desktop.
   useEffect(() => {
-    if (typeof window === "undefined" || !window.matchMedia) return undefined;
-    const mq = window.matchMedia("(max-width: 1023px)");
-    const mqMobile = window.matchMedia("(max-width: 767px)");
+    if (typeof window === "undefined") return undefined;
+    const el = document.getElementById("publishing-wizard");
+    if (!el) return undefined;
     const update = () => {
-      setCompact(mq.matches);
-      setMobile(mqMobile.matches);
+      const width = el.getBoundingClientRect().width;
+      setCompact(width < 720);
+      setMobile(width < 480);
     };
     update();
-    [mq, mqMobile].forEach((m) => {
-      if (m.addEventListener) m.addEventListener("change", update);
-      else m.addListener(update);
-    });
-    return () => {
-      [mq, mqMobile].forEach((m) => {
-        if (m.removeEventListener) m.removeEventListener("change", update);
-        else m.removeListener(update);
-      });
-    };
+    if (typeof ResizeObserver === "undefined") {
+      window.addEventListener("resize", update);
+      return () => window.removeEventListener("resize", update);
+    }
+    const ro = new ResizeObserver(update);
+    ro.observe(el);
+    return () => ro.disconnect();
   }, []);
 
   const ExtLink = ({ href, children }) => (
@@ -897,7 +897,6 @@ export const PublishingGuide = () => {
       <div
         style={{
           display: "flex",
-          flexWrap: "wrap",
           flexDirection: compact ? "column" : "row",
           alignItems: "stretch",
           minHeight: compact ? 0 : "520px",
