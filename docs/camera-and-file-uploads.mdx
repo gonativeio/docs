@@ -3,6 +3,9 @@ title: "Camera and File Uploads"
 description: "Full camera control for your mobile app"
 ---
 
+import { AppetizeEmbed } from "/snippets/appetize-embed.jsx";
+import { MedianLogo } from "/snippets/median-logo.jsx";
+
 ## Overview
 
 Adding camera access and file upload capabilities to your mobile app enhances user experience, boosts engagement, and expands functionality. Common use cases include profile photo customization, document submission, in-app image capture, and media sharing which are critical features for social, e-commerce, and business applications.
@@ -12,7 +15,10 @@ This guide covers everything you need to implement camera and file upload suppor
 <Check>
 **Developer Demo**
 
-Test camera and file upload functionality during development using the live demo pages.File and Camera Uploads: [https://median.dev/camera/](https://median.dev/camera/)Android Camera Settings: [https://median.dev/camera-settings](https://median.dev/camera-settings)
+Test camera and file upload functionality during development using the live demo pages.
+
+- File and Camera Uploads: [https://median.dev/camera/](https://median.dev/camera/)
+- Android Camera Settings: [https://median.dev/camera-settings](https://median.dev/camera-settings)
 
 </Check>
 
@@ -27,7 +33,7 @@ For the full list of supported attributes and implementation best practices, ref
 ### Android Camera Capture Configuration
 
 <Warning>
-  ### Android only
+  **Android only**
 
 The camera capture configuration options below are Android-specific and are not supported on iOS.
 
@@ -50,8 +56,9 @@ For technical details on how these quality levels map to Android's media capture
 
 **Set capture quality via the Median JavaScript Bridge**
 
+<MedianLogo />
 <CodeGroup>
-  ```bash bash
+  ```JavaScript JavaScript
   // Set camera capture quality to low
   median.camera.setCaptureQuality("low")
 
@@ -69,8 +76,9 @@ This preference persists across sessions once set.
 
 **Control gallery storage via the Median JavaScript Bridge**
 
+<MedianLogo />
 <CodeGroup>
-```bash bash
+```JavaScript JavaScript
 // Prevent captured media from being saved to the gallery
 median.camera.saveToGallery(false)
 
@@ -88,20 +96,7 @@ median.camera.saveToGallery(true)
   capture.
 </Warning>
 
-|     |         |
-| --- | ------- |
-|     |         |
-| iOS | Android |
-
----
-
-[Apple App Tracking Transparency](/docs/apple-att)
-
-[Downloads Directory](/docs/downloads-directory)
-
-Copy Page
-
-- - [Overview](#overview)
-  - [Implementation Guide](#implementation-guide)
-  - - [Android Camera Capture Configuration](#android-camera-capture-configuration)
-  - [Demo App](#demo-app)
+<AppetizeEmbed
+  iosEmbedCode="c4c3wdzcjbgkxxkstndhaybxfe"
+  androidEmbedCode="miawe4w5is4z5wgvia2kvah7ma"
+/>
