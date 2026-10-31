@@ -18,6 +18,30 @@ export const PublishingGuide = () => {
   );
   const [step, setStep] = useState(typeof stored.step === "number" ? stored.step : 0);
   const [lightbox, setLightbox] = useState(null);
+  const [compact, setCompact] = useState(false);
+  const [mobile, setMobile] = useState(false);
+
+  // Tablet and smaller: swap the step sidebar for a dropdown and stack the layout.
+  useEffect(() => {
+    if (typeof window === "undefined" || !window.matchMedia) return undefined;
+    const mq = window.matchMedia("(max-width: 1023px)");
+    const mqMobile = window.matchMedia("(max-width: 767px)");
+    const update = () => {
+      setCompact(mq.matches);
+      setMobile(mqMobile.matches);
+    };
+    update();
+    [mq, mqMobile].forEach((m) => {
+      if (m.addEventListener) m.addEventListener("change", update);
+      else m.addListener(update);
+    });
+    return () => {
+      [mq, mqMobile].forEach((m) => {
+        if (m.removeEventListener) m.removeEventListener("change", update);
+        else m.removeListener(update);
+      });
+    };
+  }, []);
 
   const ExtLink = ({ href, children }) => (
     <a
@@ -725,14 +749,16 @@ export const PublishingGuide = () => {
   const platformBtn = (active) => ({
     display: "inline-flex",
     alignItems: "center",
-    gap: "8px",
-    padding: "8px 14px",
+    gap: "6px",
+    padding: compact ? "6px 11px" : "8px 14px",
     borderRadius: "999px",
     border: active ? "1px solid " + ACCENT : "1px solid #d1d5db",
     background: active ? "#111827" : "#ffffff",
     color: active ? "#ffffff" : "#374151",
-    fontSize: "14px",
+    fontSize: compact ? "13px" : "14px",
     fontWeight: 600,
+    lineHeight: 1.2,
+    whiteSpace: "nowrap",
     cursor: "pointer",
   });
 
@@ -770,19 +796,28 @@ export const PublishingGuide = () => {
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
+          flexWrap: "wrap",
           gap: "12px",
-          padding: "16px 20px",
+          padding: compact ? "12px 16px" : "16px 20px",
           borderBottom: "1px solid #e5e7eb",
         }}
       >
-        <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: compact ? "10px" : "12px",
+            flex: "1 1 auto",
+            minWidth: 0,
+          }}
+        >
           <a
             href="https://median.co"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Median"
             style={{
-              display: "block",
+              display: compact ? "none" : "block",
               width: "32px",
               height: "32px",
               overflow: "hidden",
@@ -811,18 +846,34 @@ export const PublishingGuide = () => {
                 color: ACCENT,
                 textTransform: "uppercase",
                 letterSpacing: "0.04em",
+                lineHeight: 1.3,
+                whiteSpace: "nowrap",
               }}
             >
               Interactive publishing guide
             </p>
           </div>
         </div>
-        <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
+        <div
+          style={{
+            display: "flex",
+            gap: compact ? "6px" : "8px",
+            flexWrap: "nowrap",
+            flex: "0 0 auto",
+            marginLeft: mobile ? 0 : "auto",
+          }}
+        >
           <button
             type="button"
             style={platformBtn(platform === "apple")}
             onClick={() => resetTo("apple")}
           >
+            <Icon
+              icon="apple"
+              iconType="brands"
+              size={compact ? 13 : 14}
+              color={platform === "apple" ? "#ffffff" : "#374151"}
+            />
             Apple
           </button>
           {SHOW_GOOGLE ? (
@@ -831,6 +882,12 @@ export const PublishingGuide = () => {
               style={platformBtn(platform === "google")}
               onClick={() => resetTo("google")}
             >
+              <Icon
+                icon="google"
+                iconType="brands"
+                size={compact ? 13 : 14}
+                color={platform === "google" ? "#ffffff" : "#374151"}
+              />
               Google
             </button>
           ) : null}
@@ -841,12 +898,14 @@ export const PublishingGuide = () => {
         style={{
           display: "flex",
           flexWrap: "wrap",
+          flexDirection: compact ? "column" : "row",
           alignItems: "stretch",
-          minHeight: "520px",
+          minHeight: compact ? 0 : "520px",
         }}
       >
         <div
           style={{
+            display: compact ? "none" : "block",
             width: "260px",
             maxWidth: "100%",
             flex: "0 0 260px",
@@ -883,7 +942,79 @@ export const PublishingGuide = () => {
           </div>
         </div>
 
-        <div style={{ flex: "1 1 320px", padding: "20px", boxSizing: "border-box" }}>
+        <div
+          style={{
+            flex: compact ? "1 1 auto" : "1 1 320px",
+            minWidth: 0,
+            padding: compact ? "16px" : "20px",
+            boxSizing: "border-box",
+          }}
+        >
+          {compact ? (
+            <div style={{ marginBottom: "16px" }}>
+              <label
+                htmlFor="publishing-wizard-step"
+                style={{
+                  display: "block",
+                  marginBottom: "6px",
+                  fontSize: "12px",
+                  fontWeight: 600,
+                  color: "#6b7280",
+                }}
+              >
+                Guide Steps
+              </label>
+              <div style={{ position: "relative" }}>
+                <select
+                  id="publishing-wizard-step"
+                  value={safeStep}
+                  onChange={(event) => setStep(Number(event.target.value))}
+                  style={{
+                    display: "block",
+                    width: "100%",
+                    padding: "10px 40px 10px 12px",
+                    borderRadius: "10px",
+                    border: "1px solid #d1d5db",
+                    background: "#ffffff",
+                    color: "#111827",
+                    fontSize: "16px",
+                    fontWeight: 600,
+                    lineHeight: 1.3,
+                    appearance: "none",
+                    WebkitAppearance: "none",
+                    MozAppearance: "none",
+                    cursor: "pointer",
+                  }}
+                >
+                  {steps.map((item, index) => (
+                    <option key={item.nav + index} value={index}>
+                      {"Step " + (index + 1) + ": " + item.nav}
+                    </option>
+                  ))}
+                </select>
+                <svg
+                  aria-hidden="true"
+                  viewBox="0 0 24 24"
+                  width="18"
+                  height="18"
+                  fill="none"
+                  stroke="#6b7280"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  style={{
+                    position: "absolute",
+                    right: "12px",
+                    top: "50%",
+                    transform: "translateY(-50%)",
+                    pointerEvents: "none",
+                  }}
+                >
+                  <path d="m6 9 6 6 6-6" />
+                </svg>
+              </div>
+            </div>
+          ) : null}
           <div
             style={{
               display: "flex",
@@ -981,7 +1112,7 @@ export const PublishingGuide = () => {
           <h3
             style={{
               margin: "0 0 12px",
-              fontSize: "28px",
+              fontSize: compact ? "22px" : "28px",
               fontWeight: 600,
               letterSpacing: "-0.025em",
               color: "#111827",
