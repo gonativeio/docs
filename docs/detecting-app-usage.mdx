@@ -3,12 +3,14 @@ title: "Detecting App Usage"
 description: "Master the Difference Between App and Browser Traffic"
 ---
 
+import { MedianLogo } from "/snippets/median-logo.jsx";
+
 When your website runs inside a Median-built native app, it behaves differently than it does in a standard browser. Detecting whether a user is on the native app or a browser lets you:
 
-* Enable JavaScript Bridge commands (which are only available inside the app)
-* Customize your UI and UX (e.g. hiding a website nav bar in favour of a native navigation menu, or hiding a footer to create a cleaner app interface)
-* Track analytics separately for app vs. browser sessions
-* Restrict which pages or features are accessible within the app
+- Enable JavaScript Bridge commands (which are only available inside the app)
+- Customize your UI and UX (e.g. hiding a website nav bar in favour of a native navigation menu, or hiding a footer to create a cleaner app interface)
+- Track analytics separately for app vs. browser sessions
+- Restrict which pages or features are accessible within the app
 
 Median supports three detection strategies. Use whichever best suits your architecture, or combine them.
 
@@ -31,8 +33,9 @@ You can change this string in the Website Overrides tab. See [Custom User Agent]
 
 Use `navigator.userAgent` to check for the median string on the client side.
 
+<MedianLogo />
 <CodeGroup>
-  ```bash bash
+  ```JavaScript JavaScript
   if (navigator.userAgent.indexOf('median') > -1) {
       // Running inside the Median app
 
@@ -42,8 +45,8 @@ Use `navigator.userAgent` to check for the median string on the client side.
       // Adjust UI for the native app experience
       document.querySelector('.webNav').style.display = 'none';
       document.querySelector('.appOnly').style.display = 'block';
-  }
-  ```
+}
+```
 </CodeGroup>
 
 **Detecting the user agent: backend (eg Node.js)**
@@ -51,15 +54,16 @@ Use `navigator.userAgent` to check for the median string on the client side.
 You can read the `User-Agent` header on the server to serve different content or responses based on context.
 
 <CodeGroup>
-  ```bash bash
-  app.get('/', (req, res) => {
-      if (req.header('User-Agent').indexOf('median') > -1) {
-          res.send('App version of the website');
-      } else {
-          res.send('Browser version of the website');
-      }
-  });
-  ```
+```JavaScript JavaScript
+app.get('/', (req, res) => {
+    if (req.header('User-Agent').indexOf('median') > -1) {
+        res.send('App version of the website');
+    } else {
+        res.send('Browser version of the website');
+    }
+});
+````
+
 </CodeGroup>
 
 This pattern works in any server-side language. Look for the median string in the User-Agent HTTP header.
@@ -70,8 +74,9 @@ We recommend creating helper functions to simplify complex integrations and to r
 
 Analytics using [Google Firebase Analytics Native Plugin](/docs/firebase-analytics) for true native app analytics
 
+<MedianLogo />
 <CodeGroup>
-  ```bash bash
+  ```JavaScript JavaScript
   function logAnalyticsEvent(eventName, eventProperties){
     if (navigator.userAgent.indexOf('median') > -1) { // web content is being displayed in app
         // send event using Firebase Google Analytics Native Plugin
@@ -91,7 +96,7 @@ Analytics using [Google Firebase Analytics Native Plugin](/docs/firebase-analyti
 Analytics using only web-based Google Analytics with additional parameter added to filter web versus app events
 
 <CodeGroup>
-  ```bash bash
+  ```JavaScript JavaScript
   function logAnalyticsEvent(eventName, eventProperties){
     if (navigator.userAgent.indexOf('MedianIOS') > -1) { // iOS app
         eventProperties.analyticsSource = 'ios';
@@ -119,7 +124,7 @@ Instead of (or in addition to) user-agent detection, you can configure your app 
 Example: adding an `X-App-Platform: median-ios` header on the iOS app, then reading it server-side:
 
 <CodeGroup>
-  ```bash bash
+  ```JavaScript JavaScript
   // Node.js / Express
   app.get('/', (req, res) => {
       const platform = req.header('X-App-Platform');
@@ -154,21 +159,3 @@ This strategy works well when the app and browser experiences differ significant
 | Dedicated app URL             | Fully separate app vs. browser experiences | Medium     |
 
 For most projects, user-agent detection in JavaScript is the quickest starting point. Add a helper function early so detection logic stays centralized as your codebase grows.
-
-***
-
-### Next Steps
-
-* [Custom User Agent](/docs/custom-user-agent)
-* [Custom Headers](/docs/custom-headers)
-* [JavaScript Bridge Overview](/docs/javascript-bridge)
-
-Copy Page
-
-* * [Detection Strategies](#detection-strategies)
-
-  * * [Strategy 1: Detect the Custom User Agent](#strategy-1-detect-the-custom-user-agent)
-    * [Strategy 2: Set Custom HTTP Headers](#strategy-2-set-custom-http-headers)
-    * [Strategy 3: Use a Dedicated App URL](#strategy-3-use-a-dedicated-app-url)
-
-  * [Choosing a Strategy](#choosing-a-strategy)

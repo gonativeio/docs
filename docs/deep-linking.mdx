@@ -16,8 +16,6 @@ After setup, validate your implementation using the [Deep Linking Validator.](ht
 
 </Check>
 
----
-
 ## How deep linking works
 
 Configure **Universal Links** (iOS) or **App Links** (Android) in Median App Studio. Once configured, links that match the domains you specify open in the app instead of the browser.
@@ -26,15 +24,11 @@ Configure **Universal Links** (iOS) or **App Links** (Android) in Median App Stu
 
 Add both your **root domain** and the **`www`** host (for example, `median.co` and `www.median.co`) so coverage matches how links are shared.
 
----
-
 ## Platform configuration
 
 ### Android
 
 ### App Links configuration
-
-\*\*App Links configuration⎘ Copy link
 
 Tapping a deep link on Android may show a **disambiguation** dialog so the user can pick your app or a browser.
 
@@ -49,7 +43,7 @@ Host `assetlinks.json` correctly **before** you publish; otherwise verification 
 #### Example: `assetlinks.json`
 
 <CodeGroup>
-  ```bash bash
+  ```JSON JSON
   /* Example - Android assetlinks.json */
   [
     {
@@ -70,8 +64,6 @@ Host `assetlinks.json` correctly **before** you publish; otherwise verification 
 
 ### Universal Links configuration
 
-\*\*Universal Links configuration⎘ Copy link
-
 On iOS, the user may see a confirmation step to open a Universal Link in your app. You must host an **Apple App Site Association** (AASA) file at:
 
 `/apple-app-site-association` or `/.well-known/apple-app-site-association`
@@ -87,7 +79,7 @@ Requirements:
 #### Example: `apple-app-site-association`
 
 <CodeGroup>
-  ```bash bash
+  ```JSON JSON
   /* Example - /apple-app-site-association */
   {
     "applinks": {
@@ -104,21 +96,19 @@ Requirements:
 </CodeGroup>
 
 <Warning>
-  ### **iOS tips**
+  **iOS tips**
 
 - Deep links on iOS require a path in the URL. For example, `http://example.com` will not work, but `http://example.com/PATH` will.
 - If you use multiple subdomains (`example.com`, `www.example.com`, `support.example.com`, and so on), each needs its own Associated Domains entry and its own `apple-app-site-association` file.
 - Serve the AASA file with `Content-Type: application/json`, over `https://` with a valid certificate, returning HTTP 200 with no redirects. After deployment, you can test the file with [Branch’s AASA validator](https://branch.io/resources/aasa-validator/). Additional references: [Universal Links](https://developer.apple.com/library/prerelease/ios/documentation/General/Conceptual/AppSearch/UniversalLinks.html) and [Associated Domains](https://developer.apple.com/documentation/xcode/supporting-associated-domains).
-  </Warning>
-
----
+</Warning>
 
 ## URL scheme protocol
 
 Custom URL schemes are an **advanced** option: app-specific link formats (for example `youruniquestring://example.com/path`) that open content in your mobile app instead of a browser. They are commonly used for **mobile authentication redirects** and advanced in-app navigation.
 
 <Warning>
-  ### Note
+  **Note**
 
 Custom URL schemes only work on mobile devices and are not supported in desktop browsers. Implementation is recommended for advanced developers.
 
@@ -137,7 +127,7 @@ Once configured, your app can recognize URLs such as:
 If the app is installed and the user taps a matching link, the system launches your app and opens the path (for example, `https://example.com/path`) inside it.
 
 <Warning>
-  ### Important
+  **Important**
 
 Use only lowercase letters in your custom scheme. Uppercase letters and numbers may lead to inconsistent behavior across platforms.
 
@@ -156,27 +146,3 @@ On supported mobile devices, these open the corresponding experience inside your
 
 - [Define a Custom URL Scheme for Your iOS App (Apple Developer)](https://developer.apple.com/documentation/xcode/allowing_apps_and_websites_to_link_to_your_content/defining_a_custom_url_scheme_for_your_app)
 - [Create Deep Links in Your Android App (Android Developers)](https://developer.android.com/training/app-links/deep-linking)
-
----
-
-### Next Steps
-
-- [Testing Deep Links](/docs/deep-linking-testing)
-- [URL Scheme Protocol](/docs/url-scheme-protocol)
-
-Copy Page
-
-- - [How deep linking works](#how-deep-linking-works)
-
-  - - [Best practice](#best-practice)
-
-  - [Platform configuration](#platform-configuration)
-
-  - - [Android](#android)
-    - [iOS](#ios)
-
-  - [URL scheme protocol](#url-scheme-protocol)
-
-  - - [How URL schemes work on Android and iOS](#how-url-schemes-work-on-android-and-ios)
-    - [Example use case](#example-use-case)
-    - [Platform-specific implementation guides](#platform-specific-implementation-guides)
