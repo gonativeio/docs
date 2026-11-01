@@ -2,8 +2,6 @@
 title: "Facebook Login Configuration"
 ---
 
-## Overview
-
 This guide walks you through creating and configuring a Facebook App to enable Facebook Login. You'll configure settings in Meta's Developer Portal and gather the credentials needed for Median App Studio.
 
 ## Before you begin
@@ -16,8 +14,6 @@ Make sure you have:
 * our app's **Android Key Hash** (available from [median.deviceInfo()](https://docs.median.co/docs/device-info#example-payload) or from the Social Login plugin page in App Studio)
 * An Admin or Developer role in your Facebook account
 * A verified Business in Meta Business Manager
-
-***
 
 ## Step 1: Create your Facebook app
 
@@ -44,8 +40,6 @@ Make sure you have:
 <Frame caption="Display Name (eg 'Test App') and App ID (eg 845xxxxxxxx5)">
   <img src="/images/docs/4c736eea6960a56d537c26f4a38ab8af5a03594dfcd9f18854aa192855d6c19d-image.png" />
 </Frame>
-
-***
 
 ## Step 2: Configure basic settings
 
@@ -79,7 +73,9 @@ Make sure you have:
 </Frame>
 
 <Warning>
-  **App Review Required** Some permissions require Facebook's approval before going live. [Learn about Facebook App Review](https://developers.facebook.com/docs/app-review)
+  **App Review Required** 
+  
+  Some permissions require Facebook's approval before going live. [Learn about Facebook App Review](https://developers.facebook.com/docs/app-review)
 </Warning>
 
 ### 2.3 Get your client token
@@ -93,8 +89,6 @@ Make sure you have:
   <img src="/images/docs/2a138b81841f34538e5f916843d25932a641b670bb3e225ebf67c5516414e4b2-image.png" />
 </Frame>
 
-***
-
 ## Step 3: Add platform configurations
 
 You need to configure **both iOS and Android** platforms (these are separate, parallel steps).
@@ -104,7 +98,9 @@ iOS ConfigurationAndroid ConfigurationGoogle Play App SigningLocal Debugging
 1. In left sidebar: **Settings** → **Basic**.
 2. Scroll to bottom → Click **"+ Add Platform"**.
 
-![2872](/images/docs/2b6d0a564fd19cccba174e3f88b23a5b26e4183e7f6f84fc42adf6716c758c6d-image.png "Android Select Platform.png")
+<Frame caption="Add Platform">
+  <img src="/images/docs/2b6d0a564fd19cccba174e3f88b23a5b26e4183e7f6f84fc42adf6716c758c6d-image.png" />
+</Frame>
 
 3. Select **iOS**.
 
@@ -125,13 +121,16 @@ iOS ConfigurationAndroid ConfigurationGoogle Play App SigningLocal Debugging
 4. Click **Save Changes**
 
 <Warning>
-  ### **Meta Portal Instability** If you encounter saving issues, try: different browser, incognito mode, or VPN connection. You can skip the "iPhone Store ID" field during initial setup.
+  **Meta Portal Instability** 
+  If you encounter saving issues, try: different browser, incognito mode, or VPN connection. You can skip the "iPhone Store ID" field during initial setup.
 </Warning>
 
 1. In left sidebar: **Settings** → **Basic**.
 2. Scroll to bottom → Click **"+ Add Platform"**.
 
-![2872](/images/docs/2b6d0a564fd19cccba174e3f88b23a5b26e4183e7f6f84fc42adf6716c758c6d-image.png "Android Select Platform.png")
+<Frame caption="Add Platform">
+  <img src="/images/docs/2b6d0a564fd19cccba174e3f88b23a5b26e4183e7f6f84fc42adf6716c758c6d-image.png" />
+</Frame>
 
 3. Select **Android**.
 
@@ -147,7 +146,10 @@ iOS ConfigurationAndroid ConfigurationGoogle Play App SigningLocal Debugging
 
 3. **Key Hash** Your Android signing certificate hash. If you are using Median to sign your Android app, contact our team to obtain this value.
 
-![](/images/docs/90f9aced132d1367aa9ff111a3574a44201bc4ee48eb8e4719efb5f7a0139d1f-Screenshot_2025-01-22_at_15.49.31.png)
+<Frame caption="Android Configuration">
+  <img src="/images/docs/90f9aced132d1367aa9ff111a3574a44201bc4ee48eb8e4719efb5f7a0139d1f-Screenshot_2025-01-22_at_15.49.31.png" />
+</Frame>
+
 
 **If using Google Play App Signing:**
 
@@ -172,7 +174,7 @@ iOS ConfigurationAndroid ConfigurationGoogle Play App SigningLocal Debugging
 *Default password:`android`*
 
 <Info>
-  ### **Multiple Development Machines**
+ **Multiple Development Machines**
 
   Create a separate OAuth client for each developer's machine using their local SHA-1 fingerprint.
 </Info>
@@ -185,8 +187,6 @@ If building debug variants, append `.debug` to your Package Name:
 * **Debug**: `co.median.android.soclogin.debug`
 
 Create separate Facebook platform configurations for production and debug builds.
-
-***
 
 ## Step 4: Review and Publish your app
 
@@ -221,8 +221,6 @@ Now that your Facebook App is configured, add these credentials to the Median Ap
 4. Click **Confirm** and **Save**.
 5. **Rebuild your app** for changes to take effect.
 
-***
-
 ## Step 6: Test your configuration
 
 Before going live:
@@ -232,8 +230,6 @@ Before going live:
 * [ ] Test with multiple Facebook accounts
 * [ ] Test on both iOS and Android devices
 * [ ] Verify that the user profile data is returned correctly
-
-***
 
 ## Important notes
 
@@ -258,39 +254,3 @@ App Tracking Transparency permission is required to use standard Facebook Login 
 3. If the user declines, the limited login version opens automatically
 
 You can also force limited login by setting the `forceLimitedLogin: true` in your JavaScript Bridge call.
-
-***
-
-### Next Steps
-
-* [Social Login](/docs/social-login)
-
-Copy Page
-
-* * [Overview](#overview)
-
-  * [Before you begin](#before-you-begin)
-
-  * [Step 1: Create your Facebook app](#step-1-create-your-facebook-app)
-
-  * * [1.1 Start a new app](#11-start-a-new-app)
-    * [1.2 Add app details](#12-add-app-details)
-
-  * [Step 2: Configure basic settings](#step-2-configure-basic-settings)
-
-  * * [2.1 Configure OAuth settings](#21-configure-oauth-settings)
-    * [2.2 Configure permissions](#22-configure-permissions)
-    * [2.3 Get your client token](#23-get-your-client-token)
-
-  * [Step 3: Add platform configurations](#step-3-add-platform-configurations)
-
-  * [Step 4: Review and Publish your app](#step-4-review-and-publish-your-app)
-
-  * [Step 5: Add credentials to the Median App Studio](#step-5-add-credentials-to-the-median-app-studio)
-
-  * [Step 6: Test your configuration](#step-6-test-your-configuration)
-
-  * [Important notes](#important-notes)
-
-  * * [Facebook Limited Login (iOS)](#facebook-limited-login-ios)
-    * [App Tracking Transparency](#app-tracking-transparency)
