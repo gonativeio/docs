@@ -3,6 +3,8 @@ title: "Google Firebase Analytics"
 description: "Unlock real-time insights, user behavior tracking, and integration with other Firebase services."
 ---
 
+import { MedianLogo } from "/snippets/median-logo.jsx";
+
 Google Firebase Analytics provides powerful insights into user behavior within your app, helping you understand how users engage and interact. It offers essential app metrics such as average revenue per user (ARPU), active users, retention reports, and event counts, along with detailed user properties like device type, app version, and OS version. By combining these data points, Firebase Analytics enables data-driven decision-making to optimize app performance and user experience.
 
 ## Why use Google Firebase Analytics?
@@ -11,8 +13,6 @@ Google Firebase Analytics provides powerful insights into user behavior within y
 - **Essential metrics**: ARPU, active users, retention, event counts, device type, app version, OS version.
 - **Consent management**: Configure ad storage, analytics storage, ad user data, and ad personalization at runtime.
 - **JavaScript Bridge**: Enable/disable logging, set user ID and properties, log custom events and screen views, and use eCommerce events.
-
----
 
 ## Prerequisites
 
@@ -29,29 +29,6 @@ Google Firebase Analytics provides powerful insights into user behavior within y
 Display our demo page in your app to test during development [https://median.dev/firebase-analytics/](https://median.dev/firebase-analytics/)
 
 </Check>
-
----
-
-## When to use this plugin
-
-Firebase Analytics is essential for apps that need to:
-
-| Use Case          | Example                                                                            |
-| ----------------- | ---------------------------------------------------------------------------------- |
-| **User behavior** | Understand how users engage and interact with the app                              |
-| **Metrics**       | ARPU, active users, retention, event counts                                        |
-| **Consent**       | Comply with EU User Consent Policy (deny/allow for ad and analytics storage)       |
-| **Custom events** | Log custom events and screen views via the JavaScript Bridge                       |
-| **eCommerce**     | Log add to cart, remove from cart, wishlist, view item (Firebase eCommerce events) |
-
-## What you'll do
-
-1. **Firebase project**: Create or open a project and register Android and iOS apps ([Google Firebase Project Setup](#google-firebase-project-setup)).
-2. **Upload configs**: Add `GoogleService-Info.plist` and `google-services.json` in App Studio (**Build & Deploy > Google Services**), set consent defaults, enable the plugin, and rebuild ([Plugin setup](#plugin-setup)).
-3. **Runtime APIs**: Use `median.firebaseAnalytics.event.*` for consent, collection, user, events, screens, and eCommerce ([JavaScript bridge functions](#javascript-bridge-functions)).
-4. **Verify**: Use [Testing Checklist](#testing-checklist) and the Firebase / Google Analytics consoles.
-
----
 
 ## Implementation Guide
 
@@ -87,8 +64,6 @@ Once registered, download `GoogleService-Info.plist` for the App Configuration s
 
 ![Download the GoogleService-Info.plist configuration file](/images/docs/febb23bbeaa07a30a5006d3eb6c44c8f76acf440b7de2e46ff14d720ddf4e136-image.png)
 
----
-
 ### Enable the Plugin
 
 1. **Google Services Configuration**: Upload GoogleService-Info.plist (iOS) and google-services.json (Android) in Build & Deploy > Google Services in App Studio. You can upload files from Firebase or copy and paste their contents.
@@ -101,16 +76,15 @@ Once you upload the configuration files, save the changes and rebuild your app.
 
 ![Upload your GoogleService-Info.plist and google-services.json configurations](/images/docs/673adab78087bd5a5039f6da1ecab94c9b409bde8d0b665e064586218b4a35ff-analytics.gif)
 
----
-
 ### JavaScript Bridge Functions
 
 #### Consent Management
 
 Configure consent for ad storage, analytics storage, ad user data, and ad personalization at runtime.
 
+<MedianLogo />
 <CodeGroup>
-  ```bash bash
+  ```JavaScript JavaScript
   median.firebaseAnalytics.event.setConsent({
     adStorage: true | false,
     analyticsStorage: true | false,
@@ -130,8 +104,9 @@ Configure consent for ad storage, analytics storage, ad user data, and ad person
 
 Enable or disable all event logging (including automatic app events). Logging is enabled by default. Effect is persistent; once disabled, re-enable by calling again with `true`.
 
+<MedianLogo />
 <CodeGroup>
-  ```bash bash
+  ```JavaScript JavaScript
   median.firebaseAnalytics.event.collection({ enabled: BOOLEAN });
   ```
 </CodeGroup>
@@ -146,8 +121,9 @@ Enable or disable all event logging (including automatic app events). Logging is
 
 Set a custom user ID (e.g. after login when the user is no longer anonymous).
 
+<MedianLogo />
 <CodeGroup>
-  ```bash bash
+  ```JavaScript JavaScript
   median.firebaseAnalytics.event.setUser({ ID: STRING });
   ```
 </CodeGroup>
@@ -162,8 +138,9 @@ Set a custom user ID (e.g. after login when the user is no longer anonymous).
 
 Associate additional properties with the user.
 
+<MedianLogo />
 <CodeGroup>
-  ```bash bash
+  ```JavaScript JavaScript
   median.firebaseAnalytics.event.setUserProperty({ key: STRING, value: STRING });
   ```
 </CodeGroup>
@@ -178,9 +155,12 @@ Associate additional properties with the user.
 
 Set default event parameters logged alongside other information for log event.
 
+<MedianLogo />
 <CodeGroup>
-  ```bash bash median.firebaseAnalytics.event.defaultEventParameters(data);
-  //data is an object of key-value pairs converted into bundle params ```
+  ```JavaScript JavaScript 
+  median.firebaseAnalytics.event.defaultEventParameters(data);
+  //data is an object of key-value pairs converted into bundle params 
+  ```
 </CodeGroup>
 
 **Parameters:**
@@ -193,8 +173,9 @@ Set default event parameters logged alongside other information for log event.
 
 Log a custom event. The `data` object is flexible.
 
+<MedianLogo />
 <CodeGroup>
-  ```bash bash
+  ```JavaScript JavaScript
   median.firebaseAnalytics.event.logEvent({ event: STRING, data: OBJECT });
   ```
 </CodeGroup>
@@ -210,8 +191,9 @@ Log a custom event. The `data` object is flexible.
 
 Log a customized screen view event (in addition to default logging).
 
+<MedianLogo />
 <CodeGroup>
-  ```bash bash
+  ```JavaScript JavaScript
   median.firebaseAnalytics.event.logScreen({ screen: STRING });
   ```
 </CodeGroup>
@@ -226,10 +208,11 @@ Log a customized screen view event (in addition to default logging).
 
 Firebase offers a special command set that is tailored for ecommerce integrations. You can learn more about the commands in the [Firebase Measure ecommerce documentation](https://firebase.google.com/docs/analytics/measure-ecommerce).
 
-> Log item views
+Log item views
 
+<MedianLogo />
 <CodeGroup>
-  ```bash bash
+  ```JavaScript JavaScript
   median.firebaseAnalytics.event.viewItem({
     data: JsonProductItem,
     currency: STRING,
@@ -241,10 +224,11 @@ Firebase offers a special command set that is tailored for ecommerce integration
   ```
 </CodeGroup>
 
-> Log wishlist additions
+Log wishlist additions
 
+<MedianLogo />
 <CodeGroup>
-  ```bash bash
+  ```JavaScript JavaScript
   median.firebaseAnalytics.event.addToWishlist({
     data: JsonProductItem,
     currency: STRING,
@@ -258,10 +242,11 @@ Firebase offers a special command set that is tailored for ecommerce integration
   ```
 </CodeGroup>
 
-> Log add to cart events
+Log add to cart events
 
+<MedianLogo />
 <CodeGroup>
-  ```bash bash
+  ```JavaScript JavaScript
   median.firebaseAnalytics.event.addToCart({
     data: JsonProductItem,
     currency: STRING,
@@ -275,10 +260,11 @@ Firebase offers a special command set that is tailored for ecommerce integration
   ```
 </CodeGroup>
 
-> Log remove from cart events
+Log remove from cart events
 
+<MedianLogo />
 <CodeGroup>
-  ```bash bash
+  ```JavaScript JavaScript
   median.firebaseAnalytics.event.removeFromCart({
     data: JsonProductItem,
     currency: STRING,
@@ -292,120 +278,73 @@ Firebase offers a special command set that is tailored for ecommerce integration
   ```
 </CodeGroup>
 
-> \*Note: `ProductItem` may include the following fields. All fields are optional though it is recommended to provide at least an `item_id` or `item_name`.
+**Note:** `ProductItem` may include the following fields. All fields are optional though it is recommended to provide at least an `item_id` or `item_name`.
 
 <CodeGroup>
-  ```bash bash String item_id String item_name String item_category String
-  item_variant String item_brand String item_list_name String item_list_id
-  double price ```
+  ```Java ProductItem
+  String item_id 
+  String item_name 
+  String item_category 
+  String item_variant 
+  String item_brand 
+  String item_list_name 
+  String item_list_id
+  double price 
+  ```
 </CodeGroup>
-
----
 
 ## Default Event Logging
 
 By default, Firebase Analytics automatically logs key events such as screen_view, session_start, first_open_time. For a complete list of automatic events, see [Google Analytics documentation](https://firebase.google.com/docs/reference/kotlin/com/google/firebase/analytics/FirebaseAnalytics.Event).
 
----
-
 ## Testing Checklist
 
-### Basic Functionality
-
-\*\*Basic Functionality⎘ Copy link
+**Basic Functionality**
 
 - [ ] Plugin is enabled in App Studio (`Native Plugins > Google Firebase Analytics > Settings`)
 - [ ] `google-services.json` (Android) and `GoogleService-Info.plist` (iOS) are uploaded in `Build & Deploy > Google Services`
 - [ ] App rebuilt after configuration changes
 - [ ] Firebase Analytics initializes without JavaScript Bridge errors
 
-### Platform Testing
-
-\*\*Platform Testing⎘ Copy link
+**Platform Testing**
 
 - [ ] `median.firebaseAnalytics.event.setConsent(...)` behaves as expected for your test scenario
 - [ ] `median.firebaseAnalytics.event.collection({'enabled': false})` then `true` changes logging behavior
 
-### Configuration Testing
-
-\*\*Configuration Testing⎘ Copy link
+**Configuration Testing**
 
 - [ ] Default consent option in Plugin Settings matches your policy (`Follow EU Consent Policy`, `Deny`, or `Allow`)
 - [ ] `setUser`, `setUserProperty`, `logEvent`, `logScreen`, and eCommerce calls appear in Firebase Analytics as expected
 
-### User Experience
-
-\*\*User Experience⎘ Copy link
+**User Experience**
 
 - [ ] Consent and analytics behavior align with your privacy disclosures
 - [ ] Custom events and screen views do not block core web flows
-
----
 
 ## Troubleshooting
 
 ### Firebase Analytics functions are undefined or not working
 
-\*\*Firebase Analytics functions are undefined or not working⎘ Copy link
-
 Enable the JavaScript Bridge in your Median dashboard, then call Firebase methods after the `deviceready` event. In App Studio (`Native Plugins > Google Firebase Analytics`), confirm the plugin is enabled and that `GoogleService-Info.plist` (iOS) and `google-services.json` (Android) are uploaded under `Build & Deploy > Google Services`. Save and rebuild after configuration changes.
 
 ### Custom events are not appearing in Firebase Analytics
-
-\*\*Custom events are not appearing in Firebase Analytics⎘ Copy link
 
 Verify event collection is enabled with `median.firebaseAnalytics.event.collection({'enabled': true})`. Then trigger a known test event, for example `median.firebaseAnalytics.event.logEvent({'event': 'test_event', 'data': {...}})`, and confirm your app build includes the latest plugin and Google Services configuration files.
 
 ### Consent behavior does not match the selected policy
 
-\*\*Consent behavior does not match the selected policy⎘ Copy link
-
 Check the default consent option in Plugin Settings (`Follow EU Consent Policy`, `Deny`, or `Allow`) and confirm you are not overriding it unexpectedly at runtime. If you call `setConsent`, verify each key (`adStorage`, `analyticsStorage`, `adUserData`, `adPersonalization`) is set to the intended boolean value.
 
 ### User ID or user properties are missing from analytics data
-
-\*\*User ID or user properties are missing from analytics data⎘ Copy link
 
 Set the user ID only after the user is authenticated using `median.firebaseAnalytics.event.setUser({'ID': 'your_user_id'})`, then apply properties with `setUserProperty`. Trigger a follow-up event after those calls so the updated identity and properties are attached to event data.
 
 ### eCommerce events are incomplete or rejected
 
-\*\*eCommerce events are incomplete or rejected⎘ Copy link
-
 Confirm your eCommerce payload includes valid `currency` (3-letter uppercase code), numeric `price`, and `quantity` where required. For `data`, include a valid ProductItem map and provide at least `item_id` or `item_name` to improve event quality and reporting reliability.
 
 <Info>
-  ## Still having trouble?
+  **Still having trouble?**
 
 For Firebase Analytics behavior outside Median’s bridge, refer to [Google Firebase Analytics documentation.](https://firebase.google.com/docs/analytics)
-
 </Info>
-
----
-
-### Next Steps
-
-- [App Identifiers](/docs/app-identifiers)
-
-Copy Page
-
-- - [Why use Google Firebase Analytics?](#why-use-google-firebase-analytics)
-
-  - [Prerequisites](#prerequisites)
-
-  - [When to use this plugin](#when-to-use-this-plugin)
-
-  - [What you'll do](#what-youll-do)
-
-  - [Implementation Guide](#implementation-guide)
-
-  - - [Google Firebase Project Setup](#google-firebase-project-setup)
-    - [Enable the Plugin](#enable-the-plugin)
-    - [JavaScript Bridge Functions](#javascript-bridge-functions)
-    - [eCommerce Events](#ecommerce-events)
-
-  - [Default Event Logging](#default-event-logging)
-
-  - [Testing Checklist](#testing-checklist)
-
-  - [Troubleshooting](#troubleshooting)
