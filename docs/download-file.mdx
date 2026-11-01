@@ -1,7 +1,10 @@
 ---
 title: "Download File"
-description: "Your app can handle file downloads and inline viewing by following the  header set by your server. This allows you to control whether files are displayed within the app's webview or downloaded to the user's device."
 ---
+
+import { MedianLogo } from "/snippets/median-logo.jsx";
+
+Your app can handle file downloads and inline viewing by following the header set by your server. This allows you to control whether files are displayed within the app's webview or downloaded to the user's device.
 
 ## Supported Content-Disposition Headers
 
@@ -36,10 +39,11 @@ You can see the PDF viewer in action on our demo page [https://median.dev/pdf-do
 
 Use the following command to download a file via the Median JavaScript Bridge:
 
-> To download a file:
+To download a file:
 
+<MedianLogo />
 <CodeGroup>
-  ```bash bash
+  ```JavaScript JavaScript
   median.share.downloadFile({url: 'https://yoursite.com/file.pdf', open: true|false})
   // Note: 'open' is an Android-only parameter, refer to below
   ```
@@ -62,8 +66,9 @@ You can learn more about the permissions in [Downloads Directory](https://median
 
 To download and save an image to the user’s photo gallery (iOS Photos or Android Gallery), use:
 
+<MedianLogo />
 <CodeGroup>
-  ```bash bash
+  ```JavaScript JavaScript
   median.share.downloadImage({url: 'https://yoursite.com/file.jpg'})
   ```
 </CodeGroup>
@@ -81,15 +86,18 @@ You can view PDF files directly within your app using one of the following metho
 
 **Option 1: Open via URL**
 
+
 <CodeGroup>
-  ```bash bash // Navigate to the PDF file's url window.location.href =
-  'https://yoursite.com/file.pdf' ```
+  ```JavaScript JavaScript 
+  // Navigate to the PDF file's url window.location.href = 'https://yoursite.com/file.pdf' 
+  ```
 </CodeGroup>
 
 **Option 2: Use JavaScript Bridge**
 
+<MedianLogo />
 <CodeGroup>
-  ```bash bash
+  ```JavaScript JavaScript
   // Use the downloadFile function
   median.share.downloadFile({url: 'https://yoursite.com/file.pdf', open: true})
   ```
@@ -97,10 +105,9 @@ You can view PDF files directly within your app using one of the following metho
 
 For iOS, we utilize the built-in PDFKit framework provided by Apple. For Android we are using the PDFViewer library [https://github.com/afreakyelf/Pdf-Viewer](https://github.com/afreakyelf/Pdf-Viewer)
 
-|                                                      |                                                          |
-| ---------------------------------------------------- | -------------------------------------------------------- |
+|                         iOS                          |                         Android                          |
+| :--------------------------------------------------: | :------------------------------------------------------: |
 | ![](/images/docs/docs/pdf-viewer/pdf-viewer-ios.png) | ![](/images/docs/docs/pdf-viewer/pdf-viewer-android.png) |
-| iOS                                                  | Android                                                  |
 
 ### Printing PDF files
 
@@ -108,24 +115,3 @@ If the device supports printing services, users can print PDF files directly fro
 
 - iOS: Tap the Print icon in the bottom-right corner of the PDF viewer.
 - Android: Tap the Print icon in the top-right corner.
-
----
-
-### Next Steps
-
-- [App Settings](/docs/app-settings)
-- [Downloads Directory](/docs/downloads-directory)
-
-Copy Page
-
-- - [Supported Content-Disposition Headers](#supported-content-disposition-headers)
-
-  - - [Content-Disposition: inline](#content-disposition-inline)
-    - [Content-Disposition: attachment](#content-disposition-attachment)
-
-  - [Implementation Guide](#implementation-guide)
-
-  - - [Download File at Specified URL](#download-file-at-specified-url)
-    - [Save Image to Photos](#save-image-to-photos)
-    - [Viewing PDF files in the app](#viewing-pdf-files-in-the-app)
-    - [Printing PDF files](#printing-pdf-files)
