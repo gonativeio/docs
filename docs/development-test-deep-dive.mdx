@@ -1,45 +1,61 @@
 ---
 title: "Overview"
-description: "Building and testing your Median app is the path from configuration to deployment. This section covers how to use Median App Studio, development tools, and platform-specific build and deployment workflows so you can run your app on simulators and devices and publish to the App Store and Google Play."
 ---
+
+Building and testing your Median app is the path from configuration to deployment. This section covers how to use Median App Studio, development tools, and platform-specific build and deployment workflows so you can run your app on simulators and devices and publish to the App Store and Google Play.
 
 ## Related Documentation
 
-[](https://docs.median.co/docs/app-studio)
-
-#### [Median App Studio](https://docs.median.co/docs/app-studio)
-
-[Use the cloud-based App Studio to configure your app, preview changes in browser simulators, and manage builds without installing Xcode or Android Studio.](https://docs.median.co/docs/app-studio)
-
-[](https://docs.median.co/docs/install-ios-ipa)
-
-#### [Device Installation](https://docs.median.co/docs/install-ios-ipa)
-
-[Install development builds on physical devices, use TestFlight for iOS distribution builds, and download Android APKs for testing.](https://docs.median.co/docs/install-ios-ipa)
-
-[](https://docs.median.co/docs/debug-tools)
-
-#### [Debug Tools](https://docs.median.co/docs/debug-tools)
-
-[Debug and optimize your web experience with browser dev tools, inspect network and console, and use Median's developer resources for testing app behavior.](https://docs.median.co/docs/debug-tools)
-
-[](https://docs.median.co/docs/ios-build-deployment)
-
-#### [iOS Build & Deployment](https://docs.median.co/docs/ios-build-deployment)
-
-[Build iOS binaries (IPA), configure signing, connect to App Store Connect, register test devices, upload to TestFlight, and publish to the App Store.](https://docs.median.co/docs/ios-build-deployment)
-
-[](https://docs.median.co/docs/android-build-deployment)
-
-#### [Android Build & Deployment](https://docs.median.co/docs/android-build-deployment)
-
-[Build Android APKs and AABs, install on devices, connect Android Studio simulators to localhost, and upload to Google Play.](https://docs.median.co/docs/android-build-deployment)
-
-[](https://docs.median.co/docs/app-configuration-management)
-
-#### [App Configuration & Management](https://docs.median.co/docs/app-configuration-management)
-
-[Manage app identifiers, app configuration (appconfig.json), Google Services, backup, multiple app instances, and CI/CD integration.](https://docs.median.co/docs/app-configuration-management)
+<Columns cols={2}>
+  <Card
+    title="Median App Studio"
+    icon="cloud"
+    color="blue-500"
+    href="https://docs.median.co/docs/app-studio"
+  >
+    Use the cloud-based App Studio to configure your app, preview changes in browser simulators, and manage builds without installing Xcode or Android Studio.
+  </Card>
+  <Card
+    title="Device Installation"
+    icon="download"
+    color="blue-500"
+    href="https://docs.median.co/docs/install-ios-ipa"
+  >
+    Install development builds on physical devices, use TestFlight for iOS distribution builds, and download Android APKs for testing.
+  </Card>
+  <Card
+    title="Debug Tools"
+    icon="tools"
+    color="blue-500"
+    href="https://docs.median.co/docs/debug-tools"
+  >
+    Debug and optimize your web experience with browser dev tools, inspect network and console, and use Median's developer resources for testing app behavior.
+  </Card>
+    <Card
+    title="iOS Build & Deployment"
+    icon="apple"
+    color="blue-500"
+    href="https://docs.median.co/docs/ios-build-deployment"
+  >
+    Build iOS binaries (IPA), configure signing, connect to App Store Connect, register test devices, upload to TestFlight, and publish to the App Store.
+  </Card>
+    <Card
+    title="Android Build & Deployment"
+    icon="android"
+    color="blue-500"
+    href="https://docs.median.co/docs/android-build-deployment"
+  >
+    Build Android APKs and AABs, install on devices, connect Android Studio simulators to localhost, and upload to Google Play.
+  </Card>
+    <Card
+    title="App Configuration & Management"
+    icon="cog"
+    color="blue-500"
+    href="https://docs.median.co/docs/app-configuration-management"
+  >
+    Manage app identifiers, app configuration (appconfig.json), Google Services, backup, multiple app instances, and CI/CD integration.
+  </Card>
+</Columns>
 
 ## What to Test
 
@@ -75,7 +91,13 @@ Validate plugin configuration using [median.dev](https://median.dev) demos or di
 
 Cloud-based virtual devices in [Median App Studio](https://docs.median.co/docs/app-studio) let you quickly test configuration changes in a browser. You can switch between devices, operating systems, and orientations.
 
-> **Simulator limitations** — Some native device functionality and third-party SDKs integrated through plugins cannot be tested in simulators. We highlight those cases in the documentation with a warning label.
+<Info>
+  **Simulator limitations** 
+  
+  Some native device functionality and third-party
+  SDKs integrated through plugins cannot be tested in simulators. We highlight
+  those cases in the documentation with a warning label.
+</Info>
 
 ### Browser Development Tools
 
@@ -107,45 +129,80 @@ When performing QA, you may need to uninstall older test versions:
 
 For in-depth logs, system information, and application metrics, use platform diagnostic tools: [Android Debug Bridge (adb)](https://developer.android.com/tools/adb) and [Sysdiagnose](https://it-training.apple.com/tutorials/support/sup075/). See [Development Tools](https://docs.median.co/docs/debug-tools) for more on debugging in the app.
 
-## Mapping Test Cases and Tools
+## Choosing a testing tool
 
-| Tool                      | UI / UX                                          | App Performance                                  | Native Device Features                           | Plugin Configuration                                         |
-| ------------------------- | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------------------ |
-| App Studio Simulators     | **Recommended** switch devices, OS, orientations | **Not recommended** no detailed logs             | **Limited** simulators lack full native support  | **Limited** high-level info only                             |
-| Browser Development Tools | **Limited** user agent and viewport              | **Recommended** analyze web assets               | **Not recommended** native features not testable | **Limited** console only                                     |
-| Appetize Debug Mode       | **Recommended** switch devices, OS, orientations | **Limited** network logs available               | **Limited** simulators lack full native support  | **Recommended** device logs for plugin validation            |
-| Physical Device           | **Limited** device suite maintenance             | **Limited** device suite maintenance             | **Recommended** required for native features     | **Recommended** fastest way to validate plugins              |
-| adb and sysdiagnose       | **Not recommended** not ideal for UI/UX          | **Recommended** metrics and performance analysis | **Recommended** logs and error codes             | **Recommended** best for SDK diagnosis and vendor engagement |
+| Tool                    |                   UI / UX                    |                 Performance                  |               Native features                |                Plugin config                 |
+| ----------------------- | :------------------------------------------: | :------------------------------------------: | :------------------------------------------: | :------------------------------------------: |
+| App Studio simulators   | <Icon icon="circle-check" color="#16A34A" /> | <Icon icon="circle-xmark" color="#DC2626" /> | <Icon icon="circle-minus" color="#D97706" /> | <Icon icon="circle-minus" color="#D97706" /> |
+| Browser DevTools        | <Icon icon="circle-minus" color="#D97706" /> | <Icon icon="circle-check" color="#16A34A" /> | <Icon icon="circle-xmark" color="#DC2626" /> | <Icon icon="circle-minus" color="#D97706" /> |
+| Appetize debug mode     | <Icon icon="circle-check" color="#16A34A" /> | <Icon icon="circle-minus" color="#D97706" /> | <Icon icon="circle-minus" color="#D97706" /> | <Icon icon="circle-check" color="#16A34A" /> |
+| Physical device         | <Icon icon="circle-minus" color="#D97706" /> | <Icon icon="circle-minus" color="#D97706" /> | <Icon icon="circle-check" color="#16A34A" /> | <Icon icon="circle-check" color="#16A34A" /> |
+| `adb` and `sysdiagnose` | <Icon icon="circle-xmark" color="#DC2626" /> | <Icon icon="circle-check" color="#16A34A" /> | <Icon icon="circle-check" color="#16A34A" /> | <Icon icon="circle-check" color="#16A34A" /> |
 
+<p
+  style={{
+    display: "flex",
+    flexWrap: "wrap",
+    justifyContent: "center",
+    alignItems: "center",
+    gap: "0.5rem 1.5rem",
+  }}
+>
+  <span
+    style={{ display: "inline-flex", alignItems: "center", gap: "0.375rem" }}
+  >
+    <Icon icon="circle-check" color="#16A34A" />
+    Recommended
+  </span>
+  <span
+    style={{ display: "inline-flex", alignItems: "center", gap: "0.375rem" }}
+  >
+    <Icon icon="circle-minus" color="#D97706" />
+    Limited
+  </span>
+  <span
+    style={{ display: "inline-flex", alignItems: "center", gap: "0.375rem" }}
+  >
+    <Icon icon="circle-xmark" color="#DC2626" />
+    Not recommended
+  </span>
+</p>
+
+<AccordionGroup>
+  <Accordion title="App Studio simulators" icon="mobile-screen">
+    - **UI / UX:** Switch between devices, OS versions, and orientations.
+    - **Performance:** No detailed logs.
+    - **Native features:** Simulators don't fully support native features.
+    - **Plugin config:** Shows high-level information only.
+  </Accordion>
+
+<Accordion title="Browser DevTools" icon="window-maximize">
+  - **UI / UX:** Limited to changing the user agent and viewport. 
+  - **Performance:** Best for analyzing web assets. 
+  - **Native features:** Native features can't be tested in a browser. 
+  - **Plugin config:** Console output only.
+</Accordion>
+
+<Accordion title="Appetize debug mode" icon="bug">
+  - **UI / UX:** Switch between devices, OS versions, and orientations. 
+  - **Performance:** Network logs are available. 
+  - **Native features:** Simulators don't fully support native features. 
+  - **Plugin config:** Device logs help validate plugin behavior.
+</Accordion>
+
+<Accordion title="Physical device" icon="mobile">
+  - **UI / UX and performance:** Coverage depends on maintaining a suite of test devices. 
+  - **Native features:** Required to test native features. 
+  - **Plugin config:** The fastest way to validate plugins.
+</Accordion>
+
+  <Accordion title="adb and sysdiagnose" icon="terminal">
+    - **UI / UX:** Not suited to visual testing.
+    - **Performance:** Detailed metrics and performance analysis.
+    - **Native features:** Logs and error codes.
+    - **Plugin config:** Best for diagnosing SDK issues and sharing logs with vendors.
+  </Accordion>
+</AccordionGroup>
 ## Summary
 
 Use **Median App Studio** to configure and preview your app, **Development Tools** and median.dev to debug and test behavior, and **iOS Build & Deployment** and **Android Build & Deployment** to produce installable builds and publish to the stores. **App Configuration & Management** covers identifiers, config, and CI/CD so your build pipeline stays consistent.
-
----
-
-[App Marketing & Growth](/docs/app-marketing-growth)
-
-[Median App Studio](/docs/app-studio)
-
-Copy Page
-
-- - [Related Documentation](#related-documentation)
-
-  - [What to Test](#what-to-test)
-
-  - - [UI & UX](#ui--ux)
-    - [App Performance](#app-performance)
-    - [Native Device Features](#native-device-features)
-    - [Plugin Configuration](#plugin-configuration)
-
-  - [Testing & Development Tools](#testing--development-tools)
-
-  - - [App Studio Simulators](#app-studio-simulators)
-    - [Browser Development Tools](#browser-development-tools)
-    - [Developer Demos](#developer-demos)
-    - [Physical Device Testing](#physical-device-testing)
-    - [adb and sysdiagnose](#adb-and-sysdiagnose)
-
-  - [Mapping Test Cases and Tools](#mapping-test-cases-and-tools)
-
-  - [Summary](#summary)
