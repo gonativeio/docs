@@ -2,37 +2,109 @@
 title: "Dynamic Menu Items"
 ---
 
-> To set the example sidebar navigation menu options run the command below. The `enabled` parameter is required to activate the sidebar if it is hidden. The `persist` parameter is used to keep the changes after your app is closed and reloaded.
+import { MedianLogo } from "/snippets/median-logo.jsx";
 
+Change the links in your app's sidebar menu from your website's JavaScript, without rebuilding your app.
+
+The sidebar menu you configure in the App Studio is the same for every user. With `median.sidebar.setItems()`, your web code can replace those menu items at runtime. For example, it can show different links to signed-in users, adjust the menu for different user roles, or add a link to a new section of your site. You can also turn the sidebar on if it's hidden and choose whether your changes are kept after the app restarts.
+
+## When to use dynamic menu items
+
+Use dynamic menu items when your menu depends on who is using the app or what they're doing:
+
+- **Signed-in vs. signed-out users:** Show "Account" and "Log out" links after login, and "Sign in" before.
+- **Role-based menus:** Show admin or premium links only to the users who should see them.
+- **Content changes:** Add or remove links without publishing a new app version.
+
+If your menu is the same for every user, configure it in the App Studio instead.
+
+## Set the sidebar menu items
+
+Call `median.sidebar.setItems()` with an array of menu items. The example below creates a menu with a single link, a group containing two links, and a link that runs JavaScript.
+
+<MedianLogo />
 <CodeGroup>
-  ```bash bash
-  var items = [{
-            label: "Google",
-            url: "https://google.com",
-            icon: "fas fa-cog" // optional Font Awesome icon
-          }, {
-            label: "Sample Grouping",
-            isGrouping: true, 
-            subLinks: [{
-              label: "Apple",
-              url: "https://apple.com",
-              icon: "fas fa-home" // optional
-            }, {
-              label: "Google",
-              url: "https://google.com",
-              icon: "fas fa-home" //optional
-            }]
-          }, {
-            label: "Sample Javascript",
-            url: "javascript:alert('test')"
-        }];
+```javascript JavaScript
+const items = [
+  {
+    label: "Google",
+    url: "https://google.com",
+    icon: "fas fa-cog" // optional Font Awesome icon
+  },
+  {
+    label: "Sample Grouping",
+    isGrouping: true,
+    subLinks: [
+      {
+        label: "Apple",
+        url: "https://apple.com",
+        icon: "fas fa-home" // optional
+      },
+      {
+        label: "Google",
+        url: "https://google.com",
+        icon: "fas fa-home" // optional
+      }
+    ]
+  },
+  {
+    label: "Sample JavaScript",
+    url: "javascript:alert('test')"
+  }
+];
 
-  median.sidebar.setItems({"items":items,"enabled":true, "persist":true});     
-  ```
+if (typeof median !== "undefined") {
+  median.sidebar.setItems({ items: items, enabled: true, persist: true });
+}
+```
 </CodeGroup>
 
-***
+<Info>
+The `typeof median` check makes sure the code only runs inside your Median app. In a regular browser, the call is skipped.
+</Info>
 
-### Next Steps
+### Parameters
 
-* [Sidebar Demo App](/docs/sidebar-demo-app)
+| Parameter | Type | Description |
+| --- | --- | --- |
+| `items` | Array | The menu items to show in the sidebar. These replace the current items. |
+| `enabled` | Boolean | Set to `true` to show the sidebar if it's hidden. |
+| `persist` | Boolean | Set to `true` to keep your changes after the app is closed and reopened. If `false`, the menu returns to your App Studio configuration on the next launch. |
+
+### Menu item properties
+
+| Property | Type | Description |
+| --- | --- | --- |
+| `label` | String | The text shown in the menu. |
+| `url` | String | The page to open when the item is tapped. Use an absolute URL, or a `javascript:` URL to run code instead of opening a page. |
+| `icon` | String | Optional. A Font Awesome icon class, for example `fas fa-home`. |
+| `isGrouping` | Boolean | Optional. Set to `true` to create an expandable group instead of a link. |
+| `subLinks` | Array | The menu items inside a group. Each one uses the same properties as a top-level item. |
+
+## Testing checklist
+
+- [ ] The sidebar shows your new items after `setItems()` runs
+- [ ] Groups expand and collapse, and their links open the right pages
+- [ ] Icons appear next to the items that define them
+- [ ] `javascript:` items run their code
+- [ ] With `persist: true`, the menu is still there after closing and reopening the app
+- [ ] With `persist: false`, the menu returns to your App Studio configuration after reopening
+- [ ] Tested on both iOS and Android
+
+## Troubleshooting
+
+### The sidebar doesn't appear
+
+Pass `enabled: true` in the call. Without it, the new items are set but a hidden sidebar stays hidden.
+
+### My changes disappear after restarting the app
+
+Pass `persist: true`. Otherwise, the app loads your App Studio sidebar configuration on the next launch.
+
+### `median.sidebar` is undefined
+
+The JavaScript Bridge is only available inside your Median app. Make sure you're testing in the app, not in a desktop browser, and that the call runs after the page has loaded.
+
+### Icons don't show up
+
+Use the full Font Awesome class, including the style prefix, for example `fas fa-home` instead of `fa-home`.
