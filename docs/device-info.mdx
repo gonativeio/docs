@@ -3,6 +3,9 @@ title: "Device Info"
 description: "Retrieve device, app, and advertising identifier data with the JavaScript Bridge"
 ---
 
+import { MedianLogo } from "/snippets/median-logo.jsx";
+import { AppetizeEmbed } from "/snippets/appetize-embed.jsx";
+
 The `deviceInfo` function of the Median JavaScript Bridge returns real-time information about the user's device and your native app. Use it for analytics, feature compatibility checks, technical support, and advertising attribution.
 
 <Check>
@@ -36,12 +39,12 @@ Display our demo page in your app to test during development [https://median.dev
 See the full field reference for every key returned in the payload.
 
 <Info>
-  ### Important considerations
+  **Important considerations**
 
 - On Android, the `carrierNames` field requires the `READ_PHONE_STATE` permission.
 - `gaid` and `idfa` are only returned when a supported advertising SDK is configured — see Advertising Identifiers below.
 - `median_device_info()` is called by the native app as soon as the page loads. The function must be defined at page load time — it cannot be added asynchronously or deferred.
-  </Info>
+</Info>
 
 ## Advertising identifiers (GAID and IDFA)
 
@@ -88,8 +91,6 @@ The Google Advertising ID is subject to platform limitations that affect its rel
 - **Increasing OS restrictions:** Recent Android versions increasingly restrict access to the GAID.
 - **Requires Google Play Services:** Devices without Google Play Services (for example, Huawei devices) have no GAID, and `gaid` is omitted regardless of plugin configuration. Treat `gaid` as a best-effort signal, and handle missing or reset values gracefully in your attribution logic.
 
----
-
 ## Field reference
 
 | Key              | Type            | Platform     | Description                                                                                        |
@@ -113,8 +114,6 @@ The Google Advertising ID is subject to platform limitations that affect its rel
 | `idfa`           | string          | iOS only     | Identifier for Advertisers (requires an [advertising SDK](#advertising-identifiers-gaid-and-idfa)) |
 | `gaid`           | string          | Android only | Google Advertising ID (requires an [advertising SDK](#advertising-identifiers-gaid-and-idfa))      |
 
----
-
 ## Integration guide
 
 ### Website configuration (JavaScript Bridge)
@@ -125,12 +124,11 @@ The Google Advertising ID is subject to platform limitations that affect its rel
 - **Data processing:** You may `POST` the device data to your server via AJAX, or process it using any other method required in JavaScript.
 - **NPM Library Helper Method:** When using the [Median JS Bridge NPM Library](https://www.npmjs.com/package/median-js-bridge), you may call the helper function `getPlatform()`, which returns `web`, `ios`, or `android` accordingly.
 
----
-
 ## Example deviceInfo payload
 
+<MedianLogo />
 <CodeGroup>
-  ```bash bash
+  ```JavaScript JavaScript
   // You define this function on your page, but do not call it directly.
   // If present on a page, it will be called by the app when the page loads.
   function median_device_info(deviceInfo) {
@@ -171,16 +169,15 @@ The Google Advertising ID is subject to platform limitations that affect its rel
   ```
 </CodeGroup>
 
----
-
 ## Advanced example: Enforce a minimum app version
 
 When deploying new features or critical security updates, you may need to ensure all users are running a specific version of your native app. Using `deviceInfo`, you can retrieve the app version and redirect users to an "Update Required" page if they fall behind your required threshold.
 
 Place the following script in your site's `<head>`. It uses Semantic Versioning (SemVer) logic to compare the user's current app version (`appVersion`) against your required `MIN_APP_VERSION`.
 
+<MedianLogo />
 <CodeGroup>
-  ```bash bash
+  ```JavaScript JavaScript
   <script>
     /**
      * Configuration for Version Enforcement
@@ -238,37 +235,7 @@ Place the following script in your site's `<head>`. It uses Semantic Versioning 
 
 ## Example app
 
-|     |         |
-| --- | ------- |
-|     |         |
-| iOS | Android |
-
----
-
-[SPA Navigation](/docs/npm-package-spa-navigation)
-
-[Clipboard](/docs/clipboard)
-
-Copy Page
-
-- - [Why use Device Info?](#why-use-device-info)
-
-  - [What data does deviceInfo return?](#what-data-does-deviceinfo-return)
-
-  - [Advertising identifiers (GAID and IDFA)](#advertising-identifiers-gaid-and-idfa)
-
-  - - [Dependency: an advertising SDK is required](#dependency-an-advertising-sdk-is-required)
-    - [IDFA (iOS)](#idfa-ios)
-    - [GAID (Android)](#gaid-android)
-
-  - [Field reference](#field-reference)
-
-  - [Integration guide](#integration-guide)
-
-  - - [Website configuration (JavaScript Bridge)](#website-configuration-javascript-bridge)
-
-  - [Example deviceInfo payload](#example-deviceinfo-payload)
-
-  - [Advanced example: Enforce a minimum app version](#advanced-example-enforce-a-minimum-app-version)
-
-  - [Example app](#example-app)
+<AppetizeEmbed
+  iosEmbedCode="yq6mibv6wwo7bynub7y67qbuhu"
+  androidEmbedCode="smvqynd3xmxx7eqmlcrfi4e23y"
+/>
