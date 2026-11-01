@@ -1,13 +1,8 @@
 ---
 title: "Google Sign-in Configuration"
-description: "This guide walks you through setting up Google Sign-In for your app. You'll create a Google Cloud Project, configure OAuth clients for iOS and Android, and gather the credentials needed for Median App Studio."
 ---
 
-## Overview
-
 This guide walks you through setting up Google Sign-In for your app. You'll create a Google Cloud Project, configure OAuth clients for iOS and Android, and gather the credentials needed for Median App Studio.
-
-***
 
 ## Before you start
 
@@ -18,8 +13,6 @@ Make sure you have:
 * Your app's **Android Package Name** (example: `co.median.android.soclogin`)
 * Your app's **Android SHA-1 certificate fingerprint** (get from the Median.co team if we're signing your app)
 * Admin access to Google Cloud Console
-
-***
 
 ## Step 1: Create a Google Cloud project
 
@@ -34,8 +27,6 @@ Make sure you have:
 3. Enter a **Project name** (example: `MySocialLoginApp`).
 4. Click **Create**.
 
-***
-
 ## Step 2: Configure the OAuth consent screen
 
 Before creating OAuth clients, you need to configure the OAuth consent screen that users will see during sign-in.
@@ -44,7 +35,9 @@ Before creating OAuth clients, you need to configure the OAuth consent screen th
 
 1. In Google Cloud Console, go to **APIs & Services** → **OAuth consent screen**.
 
-![](/images/docs/2734798e13008b8b54c0f2612b2afebe59170547178430f01b5e57249208a014-Screenshot_2025-04-11_at_12.13.24.png)
+<Frame caption="Google Cloud - OAuth Consent Screen">
+  <img src="/images/docs/2734798e13008b8b54c0f2612b2afebe59170547178430f01b5e57249208a014-Screenshot_2025-04-11_at_12.13.24.png" />
+</Frame>
 
 ### 2.2 Configure the consent screen
 
@@ -69,10 +62,9 @@ Before creating OAuth clients, you need to configure the OAuth consent screen th
 </Frame>
 
 <Info>
-  **Firebase Users**If you use Firebase Console, make sure to configure the Support Email in Firebase Console → Settings → General → Public Settings → Support Email
+  **Firebase Users*
+  If you use Firebase Console, make sure to configure the Support Email in Firebase Console → Settings → General → Public Settings → Support Email
 </Info>
-
-***
 
 ## Step 3: Create OAuth clients
 
@@ -88,7 +80,9 @@ iOS ClientAndroid ClientWeb Client
 6. Click **Create**.
 7. Save your **iOS Client ID**.
 
-![iOS OAuth Client Setup](/images/docs/81e01ecb2de2174683e3baa71ac51bad7729213825332fef92c9988e23874088-Screenshot_2025-04-11_at_12.17.21.png)
+<Frame caption="Google Cloud - iOS OAuth Client Setup">
+  <img src="/images/docs/81e01ecb2de2174683e3baa71ac51bad7729213825332fef92c9988e23874088-Screenshot_2025-04-11_at_12.17.21.png" />
+</Frame>
 
 1. Navigate to **APIs & Services** → **Credentials**.
 
@@ -109,7 +103,10 @@ iOS ClientAndroid ClientWeb Client
 
 8. **Save your Android Client ID**.
 
-![Android OAuth Client Setup](/images/docs/8c74472a4bcbeb915107c5dca3655eb48ec479dfcbd02189d7d93067a5d59b68-Screenshot_2025-04-11_at_12.42.07.png)
+<Frame caption="Google Cloud - Android OAuth Client Setup">
+  <img src="/images/docs/8c74472a4bcbeb915107c5dca3655eb48ec479dfcbd02189d7d93067a5d59b68-Screenshot_2025-04-11_at_12.42.07.png" />
+</Frame>
+
 
 **For local debugging:**
 
@@ -129,7 +126,9 @@ Enter the keystore password (default for debug keystore is `android`).
 
 Create a separate OAuth client for each developer machine with a descriptive name.
 
-![SHA-1 of Android Debug Keystore](/images/docs/a8fcc916483671386c24606bd1de06fb017d2d90de18e97a53f28fe509c8c312-Screenshot_2025-04-11_at_14.11.12.png)
+<Frame caption="SHA-1 of Android Debug Keystore">
+  <img src="/images/docs/a8fcc916483671386c24606bd1de06fb017d2d90de18e97a53f28fe509c8c312-Screenshot_2025-04-11_at_14.11.12.png" />
+</Frame>
 
 1. Navigate to **APIs & Services** → **Credentials**.
 2. Click **Create Credentials** → Select **OAuth client ID**.
@@ -139,9 +138,9 @@ Create a separate OAuth client for each developer machine with a descriptive nam
 6. Click **Create**.
 7. **Save your Web Client ID** for the Median.co configuration.
 
-![Web OAuth Client Setup](/images/docs/795c5a9513a5cf06589b1edc0aeb4d9ebc9bee068e05ce13e6ec5f579f48a7ff-Screenshot_2025-04-11_at_12.46.46.png)
-
-***
+<Frame caption="Web OAuth Client Setup">
+  <img src="/images/docs/795c5a9513a5cf06589b1edc0aeb4d9ebc9bee068e05ce13e6ec5f579f48a7ff-Screenshot_2025-04-11_at_12.46.46.png" />
+</Frame>
 
 ## Step 4: Verify the OAuth client dashboard
 
@@ -158,8 +157,6 @@ Your Google Cloud Credentials dashboard should now show:
 <Info>
   **Configuration Complete**You've successfully configured Google Cloud. Next, add these credentials to the Median App Studio.
 </Info>
-
-***
 
 ## Step 5: Add credentials to the Median App Studio
 
@@ -185,15 +182,9 @@ Now that your Google Cloud OAuth clients are configured, add these credentials t
   <img src="/images/docs/45689f3ce342af1f29e6918e51f477bb412c85e0e4506b5b3010c95ed81afe0e-Screenshot_2026-07-13_at_10.24.50.png" />
 </Frame>
 
-***
-
 ## Frequently Asked Questions
 
 ### Android App doesn't display the prompt to select the account.
-
-**Android App doesn't display the prompt to select the account.⎘ Copy link
-
-**My Android app does not display the prompt to select the account. What can I do to resolve this issue?**
 
 If your Google Sign-In button is not launching the overlay to select your google account it typically manifests as a `No credentials available` issue in the debug console. The full stack trace typically shows as follows:
 
@@ -229,39 +220,6 @@ To resolve the issue, please follow the three troubleshooting steps below to con
 
 ### How to find your Android package name and iOS Bundle ID?
 
-**How to find your Android package name and iOS Bundle ID?⎘ Copy link
-
-**How to find your Android package name and iOS Bundle ID?**
-
 For applications in **development**, the required parameters can be found in the [App Identifiers](https://median.co/docs/app-identifiers) section of the App Studio.
 
 For **live or published apps**, use the [deviceInfo() ](https://median.co/docs/device-info)JavaScript bridge command to retrieve the corresponding value, which is stored under the `appId` key.
-
-***
-
-[Facebook Login Configuration](/docs/facebook-login-configuration)
-
-[Sign In with Apple Configuration](/docs/sign-in-with-apple-configuration)
-
-Copy Page
-
-* * [Overview](#overview)
-
-  * [Before you start](#before-you-start)
-
-  * [Step 1: Create a Google Cloud project](#step-1-create-a-google-cloud-project)
-
-  * * [1.1 Create new project](#11-create-new-project)
-
-  * [Step 2: Configure the OAuth consent screen](#step-2-configure-the-oauth-consent-screen)
-
-  * * [2.1 Access OAuth consent screen](#21-access-oauth-consent-screen)
-    * [2.2 Configure the consent screen](#22-configure-the-consent-screen)
-
-  * [Step 3: Create OAuth clients](#step-3-create-oauth-clients)
-
-  * [Step 4: Verify the OAuth client dashboard](#step-4-verify-the-oauth-client-dashboard)
-
-  * [Step 5: Add credentials to the Median App Studio](#step-5-add-credentials-to-the-median-app-studio)
-
-  * [Frequently Asked Questions](#frequently-asked-questions)
