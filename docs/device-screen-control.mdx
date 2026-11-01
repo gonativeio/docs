@@ -14,46 +14,45 @@ Display our demo page in your app to test during development [https://median.dev
 
 ## Screen Controls
 
-[](https://docs.median.co/docs/screen-brightness)
-
-#### [Screen Brightness](https://docs.median.co/docs/screen-brightness)
-
-[Dynamically adjust the device's screen brightness while users are inside your app.](https://docs.median.co/docs/screen-brightness)
-
-[](https://docs.median.co/docs/keep-screen-on)
-
-#### [Keep Screen On](https://docs.median.co/docs/keep-screen-on)
-
-[Prevent the device from automatically turning off or locking the screen while your app is in use.](https://docs.median.co/docs/keep-screen-on)
-
-[](https://docs.median.co/docs/full-screen)
-
-#### [Full Screen](https://docs.median.co/docs/full-screen)
-
-[Allow your app to use the entire available display by hiding system UI.](https://docs.median.co/docs/full-screen)
-
-[](https://docs.median.co/docs/screen-orientation)
-
-#### [Screen Orientation](https://docs.median.co/docs/screen-orientation)
-
-[Manage how your app responds to device rotation.](https://docs.median.co/docs/screen-orientation)
+<Columns cols={2}>
+  <Card
+    title="Screen Brightness"
+    icon="sun"
+    color="yellow-500"
+    href="https://docs.median.co/docs/screen-brightness"
+  >
+    Dynamically adjust the device's screen brightness while users are inside
+    your app.
+  </Card>
+  <Card
+    title="Keep Screen On"
+    icon="lightbulb"
+    color="blue-500"
+    href="https://docs.median.co/docs/keep-screen-on"
+  >
+    Prevent the device from automatically turning off or locking the screen
+    while your app is in use.
+  </Card>
+  <Card
+    title="Full Screen"
+    icon="expand"
+    color="pink-500"
+    href="https://docs.median.co/docs/full-screen"
+  >
+    Allow your app to use the entire available display by hiding system UI.
+  </Card>
+  <Card
+    title="Screen Orientation"
+    icon="mobile-screen"
+    color="orange-500"
+    href="https://docs.median.co/docs/screen-orientation"
+  >
+    Manage how your app responds to device rotation.
+  </Card>
+</Columns>
 
 ## Configure Screen Controls
 
 Many screen controls can be configured as default app behavior through App Studio → Interface. Runtime controls are available through the Median JavaScript Bridge where supported.
 
 For implementation details, platform behavior, and JavaScript Bridge examples, see the individual guides above.
-
----
-
-### Next Steps
-
-- [Screen Brightness](/docs/screen-brightness)
-- [Keep Screen On](/docs/keep-screen-on)
-- [Full Screen](/docs/full-screen)
-- [Screen Orientation](/docs/screen-orientation)
-
-Copy Page
-
-- - [Screen Controls](#screen-controls)
-  - [Configure Screen Controls](#configure-screen-controls)
