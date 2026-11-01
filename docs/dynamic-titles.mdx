@@ -2,15 +2,17 @@
 title: "Dynamic Titles"
 ---
 
-# Overview
+import { MedianLogo } from "/snippets/median-logo.jsx";
 
 Configure the text that shows in the Top Navigation Bar either at build time through your app configuration or at run time through the JavaScript Bridge.
 
-![](/images/docs/assets/-MHABc_2IZgrLlHqPfUS/-MHC8SFE1rWpxISQhUwb/-MHCAGZu9i7szcxvXZAX/Screen-Shot-2020-09-14-at-8.12.54-AM.png)
+<Frame caption="iOS NavigationBar example">
+  <img src="/images/docs/assets/-MHABc_2IZgrLlHqPfUS/-MHC8SFE1rWpxISQhUwb/-MHCAGZu9i7szcxvXZAX/Screen-Shot-2020-09-14-at-8.12.54-AM.png" />
+</Frame>
 
-iOS NavigationBar example
+## Implementation Guide
 
-# App Configuration
+### App Configuration
 
 You may specify text titles or set image display for different URLs in the Dynamic Titles options within the Native Top Navigation Bar section of the App Studio interface.
 
@@ -21,7 +23,7 @@ Rules are prioritized from top to bottom. If no match is found, your app name wi
 An example JSON formatting for BooyaFitness.com is provided below:
 
 <CodeGroup>
-  ```bash bash
+  ```JSON JSON
   [
       {
           "regex": "https://www.booyafitness.com/",
@@ -57,12 +59,13 @@ An example JSON formatting for BooyaFitness.com is provided below:
 
 A default navigation title can be defined in the app configuration that is then overwritten dynamically as required. Or alternatively, the configuration can be left blank and all titles set at runtime by your website.
 
-# JavaScript Bridge
+### JavaScript Bridge
 
-> Create your navigation title structure, and then run the `median.navigationTitles.set()` Javascript Bridge function to set the values. To set the example navigation title run the following:
+Create your navigation title structure, and then run the `median.navigationTitles.set()` Javascript Bridge function to set the values. To set the example navigation title run the following:
 
+<MedianLogo />
 <CodeGroup>
-  ```bash bash
+  ```JavaScript JavaScript
   var menuItems = {
       active: true,
       titles: [{
@@ -79,44 +82,30 @@ A default navigation title can be defined in the app configuration that is then 
   ```
 </CodeGroup>
 
-> Setting `persist=true` will save the navigation titles for use the next time the app is launched, otherwise, it will only take effect for the current session.
->
-> To revert the navigation titles to the configuration set at build time, run the following command:
+Setting `persist=true` will save the navigation titles for use the next time the app is launched, otherwise, it will only take effect for the current session.
 
+To revert the navigation titles to the configuration set at build time, run the following command:
+
+<MedianLogo />
 <CodeGroup>
-  ```bash bash
+  ```JavaScript JavaScript
   if (navigator.userAgent.indexOf('median') > -1) {
       median.navigationTitles.set({'persist':true});
   }
   ```
 </CodeGroup>
 
-> For a one-off setting of the current page's title, URL encode the desired title and run the following command:
+For a one-off setting of the current page's title, URL encode the desired title and run the following command:
 
+<MedianLogo />
 <CodeGroup>
-  ```bash bash
+  ```JavaScript JavaScript
   if (navigator.userAgent.indexOf('median') > -1) {
       median.navigationTitles.setCurrent({'title':'Hello%20World'})
   }
   ```
 
-  ```bash bash
-  <a onclick="gonative.navigationTitles.setCurrent({'title':'Hello%20World'})">Set Current Page's Title</a>
-  ```
+```HTML HTML
+<a onclick="gonative.navigationTitles.setCurrent({'title':'Hello%20World'})">Set Current Page's Title</a>
+```
 </CodeGroup>
-
-***
-
-### Next Steps
-
-* [Auto New Windows](/docs/auto-new-windows)
-* [Search Form](/docs/search-bar-form)
-* [Refresh Button](/docs/refresh-button)
-* [Custom Buttons](/docs/add-custom-buttons)
-* [Sidebar Navigation](/docs/sidebar-navigation-menu)
-
-Copy Page
-
-* * [Overview](#overview)
-  * [App Configuration](#app-configuration)
-  * [JavaScript Bridge](#javascript-bridge)
