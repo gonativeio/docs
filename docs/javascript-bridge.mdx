@@ -3,12 +3,14 @@ title: "Overview"
 description: "Learn how to use the Median JavaScript Bridge to control native app features and device hardware"
 ---
 
+import { MedianLogo } from "/snippets/median-logo.jsx";
+
 The Median JavaScript Bridge is an API embedded in your app that lets your website control and configure the app and access native device functionality and hardware. Your web code can call the bridge to trigger native actions, read device info, manage navigation, and integrate with native plugins.
 
 There are two ways to use the JavaScript Bridge: the [JavaScript Bridge Library](https://docs.median.co/docs/javascript-bridge#javascript-bridge-library), which provides helper functions and an abstraction layer, or the [Median Protocol](https://docs.median.co/docs/javascript-bridge#median-protocol) (`median://`) for direct, lower-level access without the library.
 
 <Check>
-  ### Legacy GoNative Namespace
+  **Legacy GoNative Namespace**
 
 For existing apps that were last updated on the GoNative.io platform you must use `gonative` rather than `median`. For example `gonative.statusbar.set()` or `gonative://statusbar/set`.
 
@@ -18,65 +20,85 @@ For apps that have been updated on Median.co you may use either `gonative` or `m
 
 ## Related Documentation
 
-[](https://docs.median.co/docs/detecting-app-usage)
-
-#### [Detecting App Usage](https://docs.median.co/docs/detecting-app-usage)
-
-[Detect when your website is running inside the Median app so you can adapt UI, analytics, or behavior for the in-app experience.](https://docs.median.co/docs/detecting-app-usage)
-
-[](https://docs.median.co/docs/npm-package)
-
-#### [NPM Package](https://docs.median.co/docs/npm-package)
-
-[Use the median-js-bridge NPM package in React, Vue, or other frameworks. Basic usage, listeners, and SPA navigation support.](https://docs.median.co/docs/npm-package)
-
-[](https://docs.median.co/docs/device-info)
-
-#### [Device Info](https://docs.median.co/docs/device-info)
-
-[Retrieve device information such as platform, OS version, and app version from the JavaScript Bridge.](https://docs.median.co/docs/device-info)
-
-[](https://docs.median.co/docs/clipboard)
-
-#### [Clipboard](https://docs.median.co/docs/clipboard)
-
-[Read from and write to the device clipboard via the JavaScript Bridge.](https://docs.median.co/docs/clipboard)
-
-[](https://docs.median.co/docs/prompt-share-dialogue)
-
-#### [Prompt Share Dialogue](https://docs.median.co/docs/prompt-share-dialogue)
-
-[Trigger the native share sheet to share URLs or content from your web app.](https://docs.median.co/docs/prompt-share-dialogue)
-
-[](https://docs.median.co/docs/app-resumed-callback)
-
-#### [App Resumed Callback](https://docs.median.co/docs/app-resumed-callback)
-
-[Run code when the user returns to your app from the background. Handle app resume events from your web code.](https://docs.median.co/docs/app-resumed-callback)
-
-[](https://docs.median.co/docs/keyboard-state-tracking)
-
-#### [Keyboard State Tracking](https://docs.median.co/docs/keyboard-state-tracking)
-
-[Track when the device keyboard is shown or hidden and respond to keyboard state changes.](https://docs.median.co/docs/keyboard-state-tracking)
-
-[](https://docs.median.co/docs/download-file)
-
-#### [Download File](https://docs.median.co/docs/download-file)
-
-[Download files from your web app to the device using the native download manager.](https://docs.median.co/docs/download-file)
-
-[](https://docs.median.co/docs/clear-webview-cache)
-
-#### [Clear Webview Cache](https://docs.median.co/docs/clear-webview-cache)
-
-[Clear the app webview cache programmatically from your web code.](https://docs.median.co/docs/clear-webview-cache)
-
-[](https://docs.median.co/docs/iframe-callbacks)
-
-#### [Accessing callbacks in an iframe](https://docs.median.co/docs/iframe-callbacks)
-
-[Use JavaScript Bridge callbacks when your content runs inside an iframe. Expose functions and handle cross-frame communication.](https://docs.median.co/docs/iframe-callbacks)
+<Columns cols={2}>
+  <Card
+    title="Detecting App Usage"
+    icon="mobile-alt"
+    href="https://docs.median.co/docs/detecting-app-usage"
+  >
+    Detect when your website is running inside the Median app so you can adapt
+    UI, analytics, or behavior for the in-app experience.
+  </Card>
+  <Card
+    title="NPM Package"
+    icon="npm"
+    href="https://docs.median.co/docs/npm-package"
+  >
+    Use the median-js-bridge NPM package in React, Vue, or other frameworks.
+    Basic usage, listeners, and SPA navigation support.
+  </Card>
+  <Card
+    title="Device Info"
+    icon="info-circle"
+    href="https://docs.median.co/docs/device-info"
+  >
+    Retrieve device information such as platform, OS version, and app version
+    from the JavaScript Bridge.
+  </Card>
+  <Card
+    title="Clipboard"
+    icon="clipboard"
+    href="https://docs.median.co/docs/clipboard"
+  >
+    Read from and write to the device clipboard via the JavaScript Bridge.
+  </Card>
+  <Card
+    title="Prompt Share Dialogue"
+    icon="share-alt"
+    href="https://docs.median.co/docs/prompt-share-dialogue"
+  >
+    Trigger the native share sheet to share URLs or content from your web app.
+  </Card>
+  <Card
+    title="App Resumed Callback"
+    icon="play-circle"
+    href="https://docs.median.co/docs/app-resumed-callback"
+  >
+    Run code when the user returns to your app from the background. Handle app
+    resume events from your web code.
+  </Card>
+  <Card
+    title="Keyboard State Tracking"
+    icon="keyboard"
+    href="https://docs.median.co/docs/keyboard-state-tracking"
+  >
+    Track when the device keyboard is shown or hidden and respond to keyboard
+    state changes.
+  </Card>
+  <Card
+    title="Download File"
+    icon="download"
+    href="https://docs.median.co/docs/download-file"
+  >
+    Download files from your web app to the device using the native download
+    manager.
+  </Card>
+  <Card
+    title="Clear Webview Cache"
+    icon="broom"
+    href="https://docs.median.co/docs/clear-webview-cache"
+  >
+    TrClear the app webview cache programmatically from your web code.
+  </Card>
+  <Card
+    title="Accessing callbacks in an iframe"
+    icon="code"
+    href="https://docs.median.co/docs/iframe-callbacks"
+  >
+    Use JavaScript Bridge callbacks when your content runs inside an iframe.
+    Expose functions and handle cross-frame communication.
+  </Card>
+</Columns>
 
 ## JavaScript Bridge Library
 
@@ -108,8 +130,9 @@ The library is not available until it initializes. For commands that must run on
 
 If `median_library_ready()` is not called (e.g. the library initializes before your page defines it), call it manually when the library is ready:
 
+<MedianLogo />
 <CodeGroup>
-  ```bash bash
+  ```JavaScript JavaScript
   function median_library_ready() {
     // Your code here
   }
@@ -123,8 +146,9 @@ If `median_library_ready()` is not called (e.g. the library initializes before y
 
 Some bridge commands return JavaScript promises. Handle them with `async/await` or `.then()/.catch()` :
 
+<MedianLogo />
 <CodeGroup>
-  ```bash bash
+  ```JavaScript JavaScript
   median.iap.purchase({ productID: 'product_id' })
     .then(function(data) { /* handle success */ })
     .catch(function(error) { /* handle error */ });
@@ -157,28 +181,4 @@ Important Considerations
 
 ### Why do I see 'median is not defined' in the console?
 
-\*\*Why do I see 'median is not defined' in the console?⎘ Copy link
-
 The library is injected at runtime by the app and is not available in a desktop browser. Use the [NPM Package](https://docs.median.co/docs/npm-package) if you need to develop or test outside the app, and disable library injection in App Studio → Website Overrides when using the package.
-
----
-
-### Next Steps
-
-- [NPM Package](/docs/npm-package)
-- [Device Info](/docs/device-info)
-
-Copy Page
-
-- - [Related Documentation](#related-documentation)
-
-  - [JavaScript Bridge Library](#javascript-bridge-library)
-
-  - - [Calling Commands on Page Load](#calling-commands-on-page-load)
-    - [Promises](#promises)
-
-  - [Median Protocol](#median-protocol)
-
-  - [Restricting Bridge Access by URL](#restricting-bridge-access-by-url)
-
-  - [Frequently Asked Questions](#frequently-asked-questions)
