@@ -519,5 +519,21 @@
     "light": "/images/median/median-logo-light.png",
     "dark": "/images/median/median-logo-dark.png",
     "href": "https://docs.median.co/docs"
+  },
+  "navbar": {
+    "links": [
+      {
+        "href": "https://docs.median.co/docs/release-notes",
+        "label": "Release Notes"
+      },
+      {
+        "href": "https://median.co/privacy",
+        "label": "Privacy Policy"
+      },
+      {
+        "href": "https://median.co/terms",
+        "label": "Online Terms"
+      }
+    ]
   }
 }
