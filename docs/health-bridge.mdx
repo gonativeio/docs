@@ -2,8 +2,16 @@
 title: "Health Bridge"
 description: "Build Smarter Wellness Features with Health Bridge for Apple HealthKit and Google Health Connect"
 ---
+import { MedianLogo } from "/snippets/median-logo.jsx";
 
 Health Bridge provides a unified interface to access and sync health data from users' devices using **Apple HealthKit** (iOS) and **Google Health Connect** (Android). The plugin enables you to fetch health metrics such as steps, heart rate, calories, and sleep data - allowing you to build powerful wellness and fitness features in your app.
+
+<Check>
+**Developer Demo**
+
+Display our demo page in your app to test during development [https://median.dev/health-bridge/](https://median.dev/health-bridge/)
+
+</Check>
 
 ## Why use Health Bridge?
 
@@ -13,24 +21,6 @@ Health Bridge takes care of handling platform-specific details like permissions,
 - **Platform Handling**: Automatically manages platform-specific permissions, data sources, and user consent flows
 - **Wellness Features**: Access comprehensive health metrics including steps, heart rate, calories, sleep, and more
 - **Data Accessibility**: Retrieve historical health data with flexible date ranges and grouping options
-
-### Use Cases
-
-Health Bridge is essential for apps that need to:
-
-| Use Case                    | Example                                           |
-| --------------------------- | ------------------------------------------------- |
-| **Daily Activity Tracking** | Displaying a user's daily or weekly step count    |
-| **Progress Visualization**  | Creating activity rings or health streaks         |
-| **Personalized Insights**   | Personalized fitness insights based on user data  |
-| **Sleep & Recovery**        | Sleep or recovery tracking with historical trends |
-
-<Check>
-**Developer Demo**
-
-Display our demo page in your app to test during development [https://median.dev/health-bridge/](https://median.dev/health-bridge/)
-
-</Check>
 
 ## Before You Start
 
@@ -54,73 +44,58 @@ The following concepts will help you implement Health Bridge:
 
 **Supported Data Types**: Health Bridge supports a comprehensive set of health metrics organized by category, all returned in **metric units only**. Click the icons below to view the complete metric details:
 
-### Activity
-
-\*\*Activity⎘ Copy link
-
-| Data Type             | Description            | Unit                    |
-| --------------------- | ---------------------- | ----------------------- |
-| `steps`               | Number of steps taken  | count                   |
-| `distance`            | Distance walked or run | meters (m)              |
-| `activeEnergy`        | Active calories burned | kilocalories (kcal)     |
-| `totalCaloriesBurned` | Total Calories Burned  | kilocalories (kcal)     |
-| `exerciseTime`        | Time spent exercising  | minutes (min)           |
-| `elevationGain`       | Elevation Gain         | meters (m)              |
-| `speed`               | Speed                  | meters per second (m/s) |
-
-### Body measurements
-
-\*\*Body measurements⎘ Copy link
-
-| Data Type         | Description      | Unit               |
-| ----------------- | ---------------- | ------------------ |
-| `height`          | User's height    | meters (m)         |
-| `weight`          | User's weight    | kilograms (kg)     |
-| `bmi`             | Body Mass Index  | unitless           |
-| `bodyFat`         | Body Fat         | percent (%)        |
-| `bodyTemperature` | Body Temperature | degree celsius (C) |
-
-### Cycle tracking
-
-\*\*Cycle tracking⎘ Copy link
-
-| Data Type      | Description  | Unit |
-| -------------- | ------------ | ---- |
-| `menstruation` | Menstruation |      |
-
-### Nutrition
-
-\*\*Nutrition⎘ Copy link
-
-| Data Type       | Description            | Unit                |
-| --------------- | ---------------------- | ------------------- |
-| `calorieIntake` | Dietary calorie intake | kilocalories (kcal) |
-| `waterIntake`   | Water consumed         | milliliters (ml)    |
-| `nutrition`     | Nutrition              |                     |
-
-### Sleep
-
-\*\*Sleep⎘ Copy link
-
-| Data Type | Description    | Unit          |
-| --------- | -------------- | ------------- |
-| `sleep`   | Sleep duration | minutes (min) |
-
-### Vitals
-
-\*\*Vitals⎘ Copy link
-
-| Data Type              | Description            | Unit                                            |
-| ---------------------- | ---------------------- | ----------------------------------------------- |
-| `heartRate`            | Heart Rate             | beats per minute (bpm)                          |
-| `restingHeartRate`     | Resting Heart Rate     | beats per minute (bpm)                          |
-| `heartRateVariability` | Heart Rate Variability | milliseconds (ms)                               |
-| `bloodPressure`        | Blood Pressure         | millimetres of mercury (mmHg)                   |
-| `bloodGlucose`         | Blood Glucose          | millimoles per litre (mmol/L)                   |
-| `oxygenSaturation`     | Oxygen Saturation      | percent (%)                                     |
-| `bodyTemperature`      | Body Temperature       | degree celsius (C)                              |
-| `respiratoryRate`      | Respiratory Rate       | breaths per minute                              |
-| `vo2Max`               | VO2 Max                | milliliters per minute per kilogram (ml/kg/min) |
+<AccordionGroup>
+  <Accordion title="Activity features" icon="person-running">
+    | Data Type             | Description            | Unit                    |
+    | --------------------- | ---------------------- | ----------------------- |
+    | `steps`               | Number of steps taken  | count                   |
+    | `distance`            | Distance walked or run | meters (m)              |
+    | `activeEnergy`        | Active calories burned | kilocalories (kcal)     |
+    | `totalCaloriesBurned` | Total Calories Burned  | kilocalories (kcal)     |
+    | `exerciseTime`        | Time spent exercising  | minutes (min)           |
+    | `elevationGain`       | Elevation Gain         | meters (m)              |
+    | `speed`               | Speed                  | meters per second (m/s) |
+  </Accordion>
+  <Accordion title="Body measurements" icon="weight-scale">
+    | Data Type         | Description      | Unit               |
+    | ----------------- | ---------------- | ------------------ |
+    | `height`          | User's height    | meters (m)         |
+    | `weight`          | User's weight    | kilograms (kg)     |
+    | `bmi`             | Body Mass Index  | unitless           |
+    | `bodyFat`         | Body Fat         | percent (%)        |
+    | `bodyTemperature` | Body Temperature | degree celsius (C) |
+  </Accordion>
+  <Accordion title="Cycle tracking" icon="calendar-days">
+    | Data Type      | Description  | Unit |
+    | -------------- | ------------ | ---- |
+    | `menstruation` | Menstruation |      |
+  </Accordion>
+  <Accordion title="Nutrition" icon="apple-whole">
+    | Data Type       | Description            | Unit                |
+    | --------------- | ---------------------- | ------------------- |
+    | `calorieIntake` | Dietary calorie intake | kilocalories (kcal) |
+    | `waterIntake`   | Water consumed         | milliliters (ml)    |
+    | `nutrition`     | Nutrition              |                     |
+  </Accordion>
+  <Accordion title="Sleep" icon="moon">
+    | Data Type | Description    | Unit          |
+    | --------- | -------------- | ------------- |
+    | `sleep`   | Sleep duration | minutes (min) |
+  </Accordion>
+  <Accordion title="Vitals" icon="heart-pulse">
+    | Data Type              | Description            | Unit                                            |
+    | ---------------------- | ---------------------- | ----------------------------------------------- |
+    | `heartRate`            | Heart Rate             | beats per minute (bpm)                          |
+    | `restingHeartRate`     | Resting Heart Rate     | beats per minute (bpm)                          |
+    | `heartRateVariability` | Heart Rate Variability | milliseconds (ms)                               |
+    | `bloodPressure`        | Blood Pressure         | millimetres of mercury (mmHg)                   |
+    | `bloodGlucose`         | Blood Glucose          | millimoles per litre (mmol/L)                   |
+    | `oxygenSaturation`     | Oxygen Saturation      | percent (%)                                     |
+    | `bodyTemperature`      | Body Temperature       | degree celsius (C)                              |
+    | `respiratoryRate`      | Respiratory Rate       | breaths per minute                              |
+    | `vo2Max`               | VO2 Max                | milliliters per minute per kilogram (ml/kg/min) |
+  </Accordion>
+</AccordionGroup>
 
 **Platform Permissions Model**: Permissions work differently on each platform:
 
@@ -134,8 +109,6 @@ The following concepts will help you implement Health Bridge:
 - Some data types (like sleep) may only be available for recent timeframes
 - Date range limitations vary by platform and data type
 
----
-
 ## Integration Guide
 
 Follow the steps below to navigate the App Configuration and JavaScript Bridge Functions.
@@ -144,9 +117,15 @@ Follow the steps below to navigate the App Configuration and JavaScript Bridge F
 
 #### Enable the Plugin
 
-1. **Navigate to Plugins**: In your Median dashboard, go to the plugins section
-2. **Enable Health Bridge**: Toggle the Health Bridge plugin to enabled status
-3. **Configure Settings**: No additional configuration is required in the dashboard
+1. **Navigate to Plugins**: In your Median dashboard, go to **Native Plugins** and select **Health Bridge**
+2. **Enable Health Bridge**: Toggle **Plugin Enabled** on
+3. **Configure the iOS Permission Description**: Explain to users why your app needs access to their Health data (see below)
+4. **Select Android Read Permissions**: Enable only the health data types your app uses (see below)
+5. **Save and Rebuild**: Click **Save** and rebuild your app for the changes to take effect
+
+<Frame caption="Health Bridge Plugin Configuration">
+  <img src="/images/docs/health-bridge-config.png" />
+</Frame>
 
 ### JavaScript Bridge functions
 
@@ -156,9 +135,11 @@ Follow these steps to start using the Health Bridge plugin in your app:
 
 Although not required, we recommend calling `requestPermissions()` upfront as it improves user transparency and experience. This prompts users to grant access to the specific health data types your app will use.
 
+<MedianLogo />
 <CodeGroup>
-  ```bash bash await median.healthBridge.requestPermissions([ "steps", "sleep",
-  "calorieIntake", ]); ```
+  ```JavaScript JavaScript 
+  await median.healthBridge.requestPermissions([ "steps", "sleep", "calorieIntake", ]); 
+  ```
 </CodeGroup>
 
 This method accepts an array of data types and returns an object indicating which permissions were granted or declined.
@@ -168,7 +149,7 @@ This method accepts an array of data types and returns an object indicating whic
 
 - **Android**: Returns a list of granted and declined data types.
 - **iOS**: Does not return any information about permission status. The OS will prompt the user when data is first requested, and you won't get confirmation about which permissions were granted.
-  </Warning>
+</Warning>
 
 You can optionally skip requestPermissions() and directly call getData() (next step) and the OS will handle permissions automatically.
 
@@ -198,8 +179,9 @@ After permissions are granted (or requested implicitly), use the `getData()` met
 | `hour`   | Data grouped per hour              |
 | `day`    | Data grouped per day (recommended) |
 
+<MedianLogo />
 <CodeGroup>
-  ```bash bash
+  ```JavaScript JavaScript
   const result = await median.healthBridge.getData({
     dataTypes: granted, // list of granted permissions from previous step
     startDate: "2025-05-01T00:00:00Z",
@@ -207,13 +189,12 @@ After permissions are granted (or requested implicitly), use the `getData()` met
     bucket: "day",
   });
 
-console.log(result.data.steps);
-// [
-// { timestamp: '2025-05-01T00:00:00Z', value: 8123 },
-// { timestamp: '2025-05-02T00:00:00Z', value: 7890 },
-// ...
-// ]
-
+  console.log(result.data.steps);
+  // [
+  // { timestamp: '2025-05-01T00:00:00Z', value: 8123 },
+  // { timestamp: '2025-05-02T00:00:00Z', value: 7890 },
+  // ...
+  // ]
 ````
 </CodeGroup>
 
@@ -224,7 +205,7 @@ Want to show a daily step chart for the past week? Just fetch steps with bucket:
 **Example response**
 
 <CodeGroup>
-```bash bash
+```JSON JSON
 {
   "data": {
     "height": [
@@ -282,41 +263,16 @@ You can reference the following to confirm that the capability has been added as
 
 Follow the steps below to add test data to your iOS simulator using the Health app:
 
-| Step 1                                                                                                                   | Step 2                                                                                                                   | Step 3                                                                                                                   |
-| ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
+|                                                          Step 1                                                          |                                                          Step 2                                                          |                                                          Step 3                                                          |
+| :----------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------: |
 | ![](/images/docs/93434d9c7a1b1d9526f86c8d95aa78a73e99199ad3ce0a5982318320ff5d04bc-Screenshot_2025-12-03_at_11.29.10.png) | ![](/images/docs/e79b4e2034116675065c1043c39ea950a6d193bde01e6c3d98a640743ae72f11-Screenshot_2025-12-03_at_11.30.00.png) | ![](/images/docs/d71b4ed75a8a0ad81907860f5b1abb659fcb05a0b92522276b62f83275d6a456-Screenshot_2025-12-03_at_11.30.29.png) |
-| Suspend the app and find the 'Health' app on your home screen.                                                           | Select a metric and manually add test data using the '+' button                                                          | Confirm that your test data has been added in the Health app                                                             |
+|                              Suspend the app and find the 'Health' app on your home screen.                              |                             Select a metric and manually add test data using the '+' button                              |                               Confirm that your test data has been added in the Health app                               |
 
 #### Step 3 - Access your data
 
 After adding test data to your account, follow the steps below to access the data through the Health Bridge:
 
-| Step 1                                                                                                                   | Step 2                                                                                                                   | Step 3                                                                                                                   |
-| ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
+|                                                          Step 1                                                          |                                                          Step 2                                                          |                                                          Step 3                                                          |
+| :----------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------: |
 | ![](/images/docs/c1842880c7736a706ed6030739241666633f889565a6c4442acdcff611c17024-Screenshot_2025-12-03_at_12.09.21.png) | ![](/images/docs/4a264ae575a92db90fe02ec73c722c5e0de6e9606593f4da1369d37e9a03f4f4-Screenshot_2025-12-03_at_12.09.31.png) | ![](/images/docs/cb88d3018a175bbc9bcb847d1c1464481caa25ca17c2e892dc4dd4c858ed0236-Screenshot_2025-12-03_at_12.09.45.png) |
-| Select the data points, bucket and date range for the request                                                            | Confirm the access                                                                                                       | Access the returned data in the JSON object                                                                              |
-
----
-
-[Haptics](/docs/haptics)
-
-[In-App Purchases](/docs/iap)
-
-Copy Page
-
-- - [Why use Health Bridge?](#why-use-health-bridge)
-
-  - - [Use Cases](#use-cases)
-
-  - [Before You Start](#before-you-start)
-
-  - [Key Concepts](#key-concepts)
-
-  - [Integration Guide](#integration-guide)
-
-  - - [App configuration](#app-configuration)
-    - [JavaScript Bridge functions](#javascript-bridge-functions)
-
-  - [Integration testing](#integration-testing)
-
-  - - [Testing on iOS](#testing-on-ios)
+|                              Select the data points, bucket and date range for the request                               |                                                    Confirm the access                                                    |                                       Access the returned data in the JSON object                                        |

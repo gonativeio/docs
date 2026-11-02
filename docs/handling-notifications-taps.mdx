@@ -2,6 +2,7 @@
 title: "Handling Notifications Taps"
 description: "Learn about configuring notification taps"
 ---
+import { MedianLogo } from "/snippets/median-logo.jsx";
 
 When a user taps a notification you can route them to a specific page, pass custom data to trigger JavaScript logic, or combine both. This guide covers the two main patterns and the key distinction that trips most developers up.
 
@@ -13,30 +14,31 @@ You configure both of these in the **Additional Data** section of any notificati
 
 ### Diagram: Notification tap decision flow
 
-**Diagram: Notification tap decision flow⎘ Copy link
-
-```
-flowchart TD
-    A[User taps notification] --> B[App opens]
-    B --> C{Payload contains targetUrl?}
-    C -->|Yes| D[Navigate to targetUrl inside app]
-    C -->|No| E{Payload contains custom data?}
-    D --> F{Also has custom data?}
-    F -->|Yes| G[Call JS handler with data]
-    F -->|No| H[Done]
-    E -->|Yes| G
-    E -->|No| I[Open app home screen]
-    G --> H
+```mermaid
+%%{init: {'flowchart': {'defaultRenderer': 'elk'}}}%%
+flowchart LR
+    A[Tap notification] --> B{Has targetUrl?}
+    B -->|Yes| C[Open targetUrl] --> D{Has custom data?}
+    B -->|No| E{Has custom data?}
+    D -->|Yes| F[Call JS handler]
+    E -->|Yes| F
+    D -->|No| G[Done]
+    E -->|No| H[Open home screen]
+    F --> G
 ```
 
 ## Handling notification taps (deep linking)
 
 To deep-link a user to a specific page when they tap a notification, add `targetUrl` to the **Additional Data** section of your notification:
 
+<CodeGroup>
+```JSON JSON
+{
+  Key: targetUrl,
+  Value: https://yourapp.com/inbox/thread/482
+}
 ```
-Key:   targetUrl
-Value: https://yourapp.com/inbox/thread/482
-```
+</CodeGroup>
 
 <Frame caption="Add Additional Data to send to your app">
   <img src="/images/docs/b4afc2a-additional-data.png" />
@@ -61,29 +63,34 @@ Separately from navigation, you can attach any custom key-value pairs to Additio
 
 Define a handler function on your page. Median calls it automatically when a notification is opened:
 
-```
-// Define this function on your page — Median calls it automatically when the app >opens from a tap
-function median_onesignal_push_opened(data) {
- console.log(JSON.stringify(data));
-}
+<MedianLogo />
+<CodeGroup>
+```JavaScript JavaScript
+  // Define this function on your page — Median calls it automatically when the app >opens from a tap
+  function median_onesignal_push_opened(data) {
+    console.log(JSON.stringify(data));
+  }
 
-// Example payload passed to the handler
-{
- "airport": "sfo",
- "direction": "outbound",
- "dateRange": "week"
-}
+  // Example payload passed to the handler
+  {
+    "airport": "sfo",
+    "direction": "outbound",
+    "dateRange": "week"
+  }
 ```
+</CodeGroup>
 
 ## Combining navigation and data
 
 A single notification tap can both navigate and trigger your handler. Include targetUrl alongside your custom keys in Additional Data:
 
+<CodeGroup>
 ```
-targetUrl:   https://yourapp.com/inbox/thread/482
-airport:     sfo
-direction:   outbound
+  targetUrl: https://yourapp.com/inbox/thread/482
+  airport: sfo
+  direction: outbound
 ```
+</CodeGroup>
 
 Median navigates to `targetUrl` first, then calls `median_onesignal_push_opened` with the full data payload so your page can react after the navigation completes.
 
@@ -91,39 +98,16 @@ Median navigates to `targetUrl` first, then calls `median_onesignal_push_opened`
 
 ### Do I need to write code to make targetUrl work?
 
-**Do I need to write code to make targetUrl work?⎘ Copy link
-
 No - `targetUrl` is handled natively by Median and the app navigates automatically.
 
 ### Can I use targetUrl and custom data in the same notification?
-
-**Can I use targetUrl and custom data in the same notification?⎘ Copy link
 
 Median navigates to `targetUrl` and then calls `median_onesignal_push_opened` with the complete payload.
 
 ### Why isn't my Launch URL opening inside my app the way I expect?
 
-**Why isn't my Launch URL opening inside my app the way I expect?⎘ Copy link
-
 `Launch URL` opens in a separate popup browser window without JavaScript Bridge or native plugin access. For in-app navigation, use `targetUrl` in Additional Data instead.
 
 ### What happens if I use
 
-**What happens if I use ⎘ Copy link
-
 `targetUrl`is a reserved key in Additional Data; including it automatically triggers in-app URL navigation when the notification is tapped. If you want to conditionally navigate to a URL based on your own JavaScript logic instead, use a different key name (e.g.,`openUrl`, `deepLink`) and handle the navigation yourself inside `median_onesignal_push_opened`.
-
-***
-
-[Customize Push Notifications](/docs/notification-customization)
-
-[In-App Messages](/docs/in-app-messages)
-
-Copy Page
-
-* * [How it works](#how-it-works)
-  * [Handling notification taps (deep linking)](#handling-notification-taps-deep-linking)
-  * * [targetUrl vs. Launch URL](#targeturl-vs-launch-url)
-  * [Sending custom data to JavaScript](#sending-custom-data-to-javascript)
-  * [Combining navigation and data](#combining-navigation-and-data)
-  * [Frequently Asked Questions](#frequently-asked-questions)
