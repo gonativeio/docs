@@ -2,6 +2,7 @@
 title: "Intercom"
 description: "Engage your users by enabling Intercom push notifications"
 ---
+import { MedianLogo } from "/snippets/median-logo.jsx";
 
 The Intercom Plugin enables mobile push notifications, and event tracking in your Median-powered app to increase user engagement. It integrates directly with the official Intercom SDK for Android and Intercom SDK for iOS.
 
@@ -11,18 +12,6 @@ The Intercom Plugin enables mobile push notifications, and event tracking in you
 - **Event Tracking**: Log custom events to track user behavior and create personalized experiences
 - **Deep Linking Support**: The Intercom Plugin supports [Deep Linking](/docs/deep-linking). When deep links are configured, tapping on a push notification will open the corresponding screen in your app rather than the mobile device browser.
 - **Official SDK Integration**: Built on Intercom's official Android and iOS SDKs for reliability and feature completeness
-
-## When to use this plugin
-
-Intercom is essential for apps that need to:
-
-| Use Case               | Example                                                         |
-| ---------------------- | --------------------------------------------------------------- |
-| **User Engagement**    | Send push notifications to re-engage inactive users             |
-| **Customer Support**   | Provide in-app messaging and support through Intercom messenger |
-| **User Onboarding**    | Display mobile carousels to guide new users through features    |
-| **Event Tracking**     | Log custom events to understand user behavior patterns          |
-| **Targeted Messaging** | Send personalized messages based on user attributes and actions |
 
 ## Prerequisites
 
@@ -38,8 +27,6 @@ Intercom is essential for apps that need to:
 Display our demo page in your app to test during development [https://median.dev/intercom/](https://median.dev/intercom/)
 
 </Check>
-
----
 
 ## Implementation Guide
 
@@ -103,7 +90,7 @@ Once your app is set up in Intercom, configure the Intercom plugin in the **Medi
 You can reference this JSON snippet as an example, but you'll need to replace the parameters with your own Intercom App ID and API keys.
 
 <CodeGroup>
-  ```bash bash
+  ```JSON JSON
   {
     "androidApiKey": "android_sdk-xxxd6",
     "iosApiKey": "ios_sdk-xxxad",
@@ -111,8 +98,6 @@ You can reference this JSON snippet as an example, but you'll need to replace th
   }
   ```
 </CodeGroup>
-
----
 
 ## Javascript Bridge Functions
 
@@ -122,8 +107,9 @@ The Intercom Plugin exposes several methods via the [Median JavaScript Bridge](h
 
 Request push notification permission, which will show a dialog for users to confirm permission. For Android, the dialog is only shown on Android 13 and above. On Android 12 and below, permission will always be granted without user intervention.
 
+<MedianLogo />
 <CodeGroup>
-  ```bash bash
+  ```JavaScript JavaScript
   median.intercom.registerPush({'callback': function});
   // Return value:
   {
@@ -142,8 +128,9 @@ Request push notification permission, which will show a dialog for users to conf
 
 Creates or updates a user in Intercom using arbitrary key/value pairs such as `name`, `email`, or custom attributes.
 
+<MedianLogo />
 <CodeGroup>
-  ```bash bash
+  ```JavaScript JavaScript
   // Example usage
   median.intercom.updateUser({
     name: "Bob",
@@ -162,8 +149,9 @@ Creates or updates a user in Intercom using arbitrary key/value pairs such as `n
 
 Logs a custom event in Intercom for tracking user behavior.
 
+<MedianLogo />
 <CodeGroup>
-  ```bash bash
+  ```JavaScript JavaScript
   // Example usage
   median.intercom.logEvent({
     eventName: "completed_purchase",
@@ -181,8 +169,9 @@ Logs a custom event in Intercom for tracking user behavior.
 
 Displays an Intercom Mobile Carousel using its `carouselID` from your Intercom workspace.
 
+<MedianLogo />
 <CodeGroup>
-  ```bash bash
+  ```JavaScript JavaScript
   // Example usage
   median.intercom.presentCarousel({
     carouselID: "your-carousel-id",
@@ -195,8 +184,6 @@ Displays an Intercom Mobile Carousel using its `carouselID` from your Intercom w
 | Parameter    | Type     | Required | Description                       |
 | ------------ | -------- | -------- | --------------------------------- |
 | `carouselID` | `string` | Yes      | The ID of the carousel to display |
-
----
 
 ## Sending Push Notifications and Mobile Carousels
 
@@ -219,42 +206,32 @@ Sending push notifications programmatically via the Intercom API is not supporte
 
 [Intercom - Can I send push notifications through the API?](https://www.intercom.com/help/en/articles/5053702-can-i-send-push-notifications-through-intercom-s-api)
 
----
-
 ## Testing Checklist
 
 Use this checklist to ensure Intercom is working correctly in your app:
 
-### Basic Functionality
-
-\*\*Basic Functionality⎘ Copy link
+**Basic Functionality**
 
 - [ ] Push notification registration works as expected
 - [ ] User information updates successfully in the Intercom dashboard
 - [ ] Custom events appear in Intercom event tracking
 - [ ] Mobile carousels display correctly when triggered
 
-### Platform Testing
-
-\*\*Platform Testing⎘ Copy link
+**Platform Testing**
 
 - [ ] Push notifications work on Android devices
 - [ ] Push notifications work on iOS devices
 - [ ] Permission dialog appears correctly on Android 13+
 - [ ] Deep linking works from notification taps
 
-### Configuration Testing
-
-\*\*Configuration Testing⎘ Copy link
+**Configuration Testing**
 
 - [ ] App ID is correctly configured in plugin settings
 - [ ] iOS API key is valid and working
 - [ ] Android API key is valid and working
 - [ ] Google Services files are properly uploaded
 
-### User Experience
-
-\*\*User Experience⎘ Copy link
+**User Experience**
 
 - [ ] Push permission request appears at the appropriate time
 - [ ] Notification content displays correctly
@@ -262,39 +239,8 @@ Use this checklist to ensure Intercom is working correctly in your app:
 - [ ] User data appears correctly in the Intercom dashboard
 
 <Info>
-  ### Still having trouble?
+  **Still having trouble?**
 
 For issues related to Intercom's own configuration, permissions, or platform-specific behavior outside of Median.co, refer to [Intercom's integration documentation.](https://developers.intercom.com/installing-intercom/docs)
 
 </Info>
-
----
-
-[Firebase Cloud Messaging](/docs/firebase-cloud-messaging)
-
-[Iterable](/docs/iterable)
-
-Copy Page
-
-- - [Why use Intercom?](#why-use-intercom)
-
-  - [When to use this plugin](#when-to-use-this-plugin)
-
-  - [Prerequisites](#prerequisites)
-
-  - [Implementation Guide](#implementation-guide)
-
-  - - [Intercom Setup](#intercom-setup)
-    - [App Configuration](#app-configuration)
-
-  - [Javascript Bridge Functions](#javascript-bridge-functions)
-
-  - - [Register Push](#register-push)
-    - [Update User](#update-user)
-    - [Log Event](#log-event)
-
-  - [Sending Push Notifications and Mobile Carousels](#sending-push-notifications-and-mobile-carousels)
-
-  - - [Programmatic Push Notifications](#programmatic-push-notifications)
-
-  - [Testing Checklist](#testing-checklist)
