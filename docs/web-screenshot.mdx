@@ -23,7 +23,7 @@ The following command allows you to capture and share the visible portion of a w
 
 <CodeGroup>
 
-```bash bash
+```javascript JavaScript
 median.webScreenshot.shareScreen({
   url: "https://www.median.dev",
   text: "Median Developer Demo",
@@ -40,7 +40,7 @@ The following command allows you to capture and share a specific web element, su
 
 <CodeGroup>
 
-```bash bash
+```javascript JavaScript
 const element = document.getElementById("content");
 median.webScreenshot.shareElement(element, {
   url: "https://median.dev/",
@@ -58,7 +58,7 @@ You can export the screenshot as a `Blob` object to upload to your server or use
 
 <CodeGroup>
 
-```bash bash
+```javascript JavaScript
 // Capture the visible screen area
 const screenShotblob = median.webScreenshot.captureScreen();
 // Capture a web element
