@@ -18,10 +18,12 @@ export const AppetizeEmbed = ({
   const devices = [
     {
       label: "iOS",
+      code: iosEmbedCode,
       url: buildUrl(iosEmbedCode, iosDevice, iosScale, iosOsVersion),
     },
     {
       label: "Android",
+      code: androidEmbedCode,
       url: buildUrl(
         androidEmbedCode,
         androidDevice,
@@ -29,7 +31,11 @@ export const AppetizeEmbed = ({
         androidOsVersion,
       ),
     },
-  ];
+  ].filter(({ code }) => code);
+
+  if (devices.length === 0) {
+    return null;
+  }
 
   return (
     <div className="not-prose flex flex-wrap justify-center gap-6 my-6">
