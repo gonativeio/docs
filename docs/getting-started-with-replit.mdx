@@ -2,6 +2,8 @@
 title: "Getting Started With Replit"
 description: "This guide walks you through building a mobile-first todo list application in Replit from scratch, then converting it to a native mobile app with Median."
 ---
+import { MedianLogo } from "/snippets/median-logo.jsx";
+import { InstantPreviewCTAInline } from "/snippets/instant-preview-cta-inline.jsx";
 
 We'll build the complete app using Replit, then add native mobile features like push notifications and haptic feedback. We provide example prompts at every step so you can follow along or adapt them for your own projects.
 
@@ -20,15 +22,14 @@ It's simple enough to build quickly but complex enough to showcase real native f
 
 Since Lovable uses tokens or credits when building apps, you might prefer to use similar prompts to build an app of your own choice rather than following this exact to-do app example. The prompts and patterns in this guide work for any mobile app; just adapt them to your project. Feel free to substitute your own app idea and customize the prompts accordingly.
 
-***
 
 ## Step 1: Build your to-do app
 
 Let's start by building your to-do list app in Replit. Open a new Replit project and use Replit Agent to create your mobile-first to-do application.
 
-```
+<Prompt description="Build a mobile-first to-do app.">
 Build a mobile-first web application to-do list. Add authentication for signup and sign in (including Apple, Google and Facebook sign-in) and add a backend that stores the user data along with their to-dos. The to-do app should have functions to add, edit and remove to-dos and each to-do needs to have a title, description, priority (high, med, low) and a deadline (time).
-```
+</Prompt>
 
 **What this prompt does:**
 
@@ -50,8 +51,6 @@ Replit Agent will generate your complete to-do app with authentication and datab
 
 Next: once your app is built and deployed, you're ready to convert it to a native mobile app with our platform.
 
-***
-
 ## Step 2: Get your Replit app URL
 
 The first step in your mobile app journey is simple: we need to tell Median.co where to find your web application. This requires your Replit app's public URL, the link that allows anyone on the internet to view your app.
@@ -61,7 +60,7 @@ The first step in your mobile app journey is simple: we need to tell Median.co w
 3. **Copy the URL:** Save this URL; you'll paste it into the Median App Studio in the next step to begin the conversion process.
 
 <Warning>
-  ### **Important requirements**
+  **Important requirements**
 
   Your Replit app must be deployed and publicly accessible for Median.co to analyze and convert it. Make sure your Repl is running and the URL loads without requiring authentication.
 
@@ -70,21 +69,15 @@ The first step in your mobile app journey is simple: we need to tell Median.co w
   **Note:** Replit apps go to sleep when inactive. For production apps, consider upgrading to a paid Replit plan for always-on deployments, or use Replit's deployment options to ensure your app stays accessible.
 </Warning>
 
-***
-
 ## Step 3: Create your app in Median App Studio
 
-Enter any URL to try it out
-
-Build Now
+<InstantPreviewCTAInline articleType="replit" />
 
 1. **Access the Studio:** Visit [https://median.co/login](https://median.co/login) or click "Sign In" via the navigation bar.
 2. **Initialize your project:** Click the **Create a New App** button to start your mobile app project.
 3. **Connect your Replit app:** Paste the Replit app URL you copied in the previous step. This tells us where to find your web application.
 
 Once you hit enter, our platform springs into action, automatically analyzing your site's structure, detecting mobile compatibility features, and generating a real-time preview across multiple device simulators. You'll instantly see how your Replit app will look and behave on actual iOS and Android devices.
-
-***
 
 ## Step 4: Configure basic app settings
 
@@ -93,8 +86,6 @@ You can completely customize your app. In the App Studio, navigate through the s
 * **App name:** Set the name that will appear under your app icon.
 * **Branding:** Upload your app icon (what users see on their home screen) and splash screen (what users see when the app opens).
 * **Navigation:** Configure native UI elements like a top navigation bar or a tab menu. These complement your web content and make your app feel truly native.
-
-***
 
 ## Step 5: Install the Median JavaScript Bridge
 
@@ -110,13 +101,12 @@ While your web app will work perfectly fine with our conversion, adding native f
 2. **Access Replit Agent:** Open Replit's AI assistant.
 3. **Install the JavaScript Bridge:** Use this simple prompt to add the Median JavaScript library to your project:
 
-```
+<Prompt description="Add Median JavaScript Bridge to your project.">
 Please add the Median JavaScript library to this project. I plan to use Median.co to convert this web app into iOS and Android Mobile Apps. Install the median-js-bridge npm package and import it in the appropriate files.
-```
+</Prompt>
+
 
 Replit Agent will install the `median-js-bridge` package and add the necessary imports to your code. You can verify this by checking your `package.json` file in the file explorer.
-
-***
 
 ## Step 6: Configure npm package settings in App Studio
 
@@ -141,8 +131,6 @@ For detailed configuration instructions, see our [NPM Package Documentation](htt
 
 Once the AI installs the library, you'll have access to dozens of native mobile features. In the following sections, we'll show you exactly which prompts to use to add specific functionality like push notifications and haptic feedback.
 
-***
-
 ## Step 7: Detect mobile app usage
 
 Before adding any native feature, your app must know when it's running inside the native mobile app versus a standard web browser.
@@ -159,16 +147,17 @@ Native features only work inside of your mobile app. If you (or Replit Agent) tr
 
 To get started, open Replit Agent. Use the following prompt, which specifically requests the officially recommended detection method.
 
-```
+<Prompt description="Add mobile app detection.">
 I am using Median.co to turn this web app into a native mobile app. Please create a global JavaScript helper variable or function named `isMedianApp`. This helper should check if `navigator.userAgent.indexOf('median') > -1`. I will use this variable to conditionally show mobile-only features.
-```
+</Prompt>
 
 ### What Replit Agent will implement
 
 Replit Agent will add detection code that looks similar to this:
 
+<MedianLogo />
 <CodeGroup>
-  ```bash bash
+  ```JavaScript JavaScript
   // Detect if running in Median mobile app (official method)
   const isMedianApp = navigator.userAgent.indexOf('median') > -1;
 
@@ -192,36 +181,3 @@ Replit Agent will add detection code that looks similar to this:
 3. Open your app in the Median simulator or on your mobile device. Check the remote console. You should see: `isMedianApp = true` (or "Running inside a Median native app!").
 
 Once detection works, you're ready to add other native features.
-
-***
-
-### Next Steps
-
-Congratulations! You've built your to-do app, set it up in the Median App Studio, and installed the JavaScript Bridge. Now you're ready to add powerful native mobile features.
-
-* [Add Push Notifications To Your Replit App](/docs/add-push-notifications-to-a-replit-app)
-* [Add Haptic Feedback To Your Replit App](/docs/add-haptic-feedback-to-your-replit-app)
-
-Copy Page
-
-* * [Step 1: Build your to-do app](#step-1-build-your-to-do-app)
-
-  * [Step 2: Get your Replit app URL](#step-2-get-your-replit-app-url)
-
-  * [Step 3: Create your app in Median App Studio](#step-3-create-your-app-in-median-app-studio)
-
-  * [Step 4: Configure basic app settings](#step-4-configure-basic-app-settings)
-
-  * [Step 5: Install the Median JavaScript Bridge](#step-5-install-the-median-javascript-bridge)
-
-  * * [Why this matters](#why-this-matters)
-    * [Adding the JavaScript Bridge](#adding-the-javascript-bridge)
-
-  * [Step 6: Configure npm package settings in App Studio](#step-6-configure-npm-package-settings-in-app-studio)
-
-  * [Step 7: Detect mobile app usage](#step-7-detect-mobile-app-usage)
-
-  * * [Why detection matters](#why-detection-matters)
-    * [Prompt Replit Agent to add detection](#prompt-replit-agent-to-add-detection)
-    * [What Replit Agent will implement](#what-replit-agent-will-implement)
-    * [Test your detection](#test-your-detection)

@@ -3,6 +3,9 @@ title: "Getting Started with Base44"
 description: "This guide walks you through building a mobile-first todo list application in Base44 from scratch, then converting it to a native mobile app with Median.co"
 ---
 
+import { MedianLogo } from "/snippets/median-logo.jsx";
+import { InstantPreviewCTAInline } from "/snippets/instant-preview-cta-inline.jsx";
+
 We'll build the complete app using Base44, then add native mobile features like push notifications and haptic feedback. We provide example prompts at every step so you can follow along or adapt them for your own projects.
 
 **What we'll build:**
@@ -20,15 +23,13 @@ It's simple enough to build quickly but complex enough to showcase real native f
 
 The prompts and patterns in this guide work for any mobile app; just adapt them to your project. We use a to-do list here because it's a simple example that lets us walk through the complete process quickly. Feel free to substitute your own app idea and customize the prompts accordingly.
 
-***
-
 ## Step 1: Build your to-do app
 
 Let's start by building your to-do list app in Base44. Open a new Base44 project and use the Builder chat to create your mobile-first to-do application.
 
-```
+<Prompt description="Build a to-do list app">
 Build a mobile-first web application to-do list. Add authentication for signup and sign in using username and password (Base44's current authentication system). Add a backend using Base44's integrated database that stores user data along with their to-dos. The to-do app should have functions to add, edit and remove to-dos and each to-do needs to have a title, description, priority (high, med, low) and a deadline (time). Make sure the interface is responsive and optimized for mobile devices.
-```
+</Prompt>
 
 **What this prompt does:**
 
@@ -52,8 +53,6 @@ Base44's AI will generate your complete to-do app with authentication and databa
 
 Next: Once your app is built and published, you're ready to convert it to a native mobile app with Median.
 
-***
-
 ## Step 2: Get your Base44 app URL
 
 The first step in your mobile app journey is simple: we need to tell Median.co where to find your web application. This requires your Base44 app's public URL, the link that allows anyone on the internet to view your app.
@@ -63,7 +62,7 @@ The first step in your mobile app journey is simple: we need to tell Median.co w
 3. **Copy the URL:** Save this URL; you'll paste it into the Median App Studio in the next step to begin the conversion process.
 
 <Warning>
-  ### **Important requirements**
+  **Important requirements**
 
   Your Base44 app must be published and publicly accessible for Median.co to analyze and convert it. Make sure your app is published using Base44's publishing workflow and the URL loads without requiring authentication to view the main interface.
 
@@ -72,11 +71,9 @@ The first step in your mobile app journey is simple: we need to tell Median.co w
   **Note:** Base44 apps require publishing for changes to take effect. For production apps, consider Base44's hosting options and custom domain setup for a professional appearance.
 </Warning>
 
-***
-
 ## Step 3: Create your app in Median App Studio
 
-Enter any URL to try it out
+<InstantPreviewCTAInline articleType="base44" />
 
 Build Now
 
@@ -86,8 +83,6 @@ Build Now
 
 Once you hit enter, Median.co automatically analyzes your site's structure, detecting mobile compatibility features, and generating a real-time preview across multiple device simulators. You'll instantly see how your Base44 app will look and behave on actual iOS and Android devices.
 
-***
-
 ## Step 4: Configure basic app settings
 
 You can completely customize your app. In the App Studio, navigate through the sidebar tabs:
@@ -95,8 +90,6 @@ You can completely customize your app. In the App Studio, navigate through the s
 * **App name:** Set the name that will appear under your app icon.
 * **Branding:** Upload your app icon (what users see on their home screen) and splash screen (what users see when the app opens).
 * **Navigation:** Configure native UI elements like a top navigation bar or a tab menu. These complement your web content and make your app feel truly native.
-
-***
 
 ## Step 5: Add the JavaScript Bridge
 
@@ -114,9 +107,10 @@ While your web app will work perfectly fine with our conversion, adding native f
 
 **Note:** Remember that this may require a paid Base44 plan for npm package installation.
 
-```
+<Prompt description="Add Median JavaScript library.">
 Please add the Median JavaScript library to this project. I plan to use Median.co to convert this web app into iOS and Android Mobile Apps. Install the median-js-bridge npm package and import it properly in the appropriate files for JavaScript Bridge functionality.
-```
+</Prompt>
+
 
 Base44's AI will install the `median-js-bridge` package and add the necessary imports to your code. You can verify this by checking if the package appears in your project's dependencies.
 
@@ -125,8 +119,6 @@ Base44's AI will install the `median-js-bridge` package and add the necessary im
 * **Publishing required:** Remember to publish your app after the AI installs the package, as changes don't take effect until published.
 * **Plan requirements:** Installing npm packages may require a paid Base44 plan.
 * **Manual fixes:** Base44's AI may occasionally make import errors that require manual correction.
-
-***
 
 ## Step 6: Configure npm package settings in App Studio
 
@@ -151,8 +143,6 @@ For detailed configuration instructions, see our [NPM Package Documentation](htt
 
 Once Base44's AI installs the library, you'll have access to dozens of native mobile features. In the following guides, we'll show you exactly which prompts to use to add specific functionality like push notifications and haptic feedback.
 
-***
-
 ## Step 7: Detect mobile app usage
 
 Before adding any native feature, your app must know when it's running inside the native mobile app versus a standard web browser.
@@ -169,14 +159,15 @@ Native features only work inside of your mobile app. If you (or Base44's AI) try
 
 To get started, open Base44's Builder chat. Use the following prompt, which specifically requests the officially recommended detection method.
 
-```
+<Prompt description="Add mobile app detection">
 I am using Median.co to turn this web app into a native mobile app. Please create a global JavaScript helper variable or function named `isMedianApp`. This helper should check if `navigator.userAgent.indexOf('median') > -1`. I will use this variable to conditionally show mobile-only features. Remember to publish changes after implementation.
-```
+</Prompt>
 
 Base44's AI will add detection code that looks similar to this:
 
+<MedianLogo />
 <CodeGroup>
-  ```bash bash
+  ```JavaScript JavaScript
   // Detect if running in Median mobile app (official method)
   const isMedianApp = navigator.userAgent.indexOf('median') > -1;
 
@@ -211,34 +202,9 @@ Base44's AI will add detection code that looks similar to this:
 
 Once detection works, you're ready to add other native features.
 
-***
-
 ### Next Steps
 
 Congratulations! You've built your to-do app, set it up in the Median App Studio, and installed the JavaScript Bridge. Now you're ready to add powerful native mobile features.
 
 * [Add Push Notifications to a Base44 App](/docs/add-push-notifications-to-a-base44-app)
 * [Adding Haptic Feedback to Your Base44 App](/docs/adding-haptic-feedback-to-your-base44-app)
-
-Copy Page
-
-* * [Step 1: Build your to-do app](#step-1-build-your-to-do-app)
-
-  * [Step 2: Get your Base44 app URL](#step-2-get-your-base44-app-url)
-
-  * [Step 3: Create your app in Median App Studio](#step-3-create-your-app-in-median-app-studio)
-
-  * [Step 4: Configure basic app settings](#step-4-configure-basic-app-settings)
-
-  * [Step 5: Add the JavaScript Bridge](#step-5-add-the-javascript-bridge)
-
-  * * [Why this matters](#why-this-matters)
-    * [Installing the JavaScript Bridge](#installing-the-javascript-bridge)
-
-  * [Step 6: Configure npm package settings in App Studio](#step-6-configure-npm-package-settings-in-app-studio)
-
-  * [Step 7: Detect mobile app usage](#step-7-detect-mobile-app-usage)
-
-  * * [Why detection matters](#why-detection-matters)
-    * [Adding detection](#adding-detection)
-    * [Test your detection](#test-your-detection)
