@@ -2,6 +2,7 @@
 title: "Iterable"
 description: "Engage your users by enabling Iterable push notifications"
 ---
+import { MedianLogo } from "/snippets/median-logo.jsx";
 
 The Iterable plugin connects your app to Iterable’s iOS and Android SDKs ([Overview of Iterable's iOS and Android SDKs](https://support.iterable.com/hc/en-us/articles/360028925511-Overview-of-Iterable-s-iOS-and-Android-SDKs/)) for push delivery, audience targeting, and user identification.
 
@@ -28,8 +29,6 @@ Display our demo page in your app to test during development [https://median.dev
 - [ ] An Iterable API key and (if applicable) a data region such as `EU`
 - [ ] Deep linking enabled in the app if notification URLs should open in-app
 
----
-
 ## Integration Guide
 
 ### Plugin setup
@@ -52,7 +51,7 @@ Display our demo page in your app to test during development [https://median.dev
 **Example configuration:**
 
 <CodeGroup>
-  ```bash bash
+  ```JSON JSON
   {
     "active": true | false,
     "autoRegister": true | false, // optional, if true push permission will be requested automatically
@@ -70,8 +69,9 @@ Display our demo page in your app to test during development [https://median.dev
 
 Manually initializes the Iterable SDK when you are not relying on automatic initialization from App Studio config.
 
+<MedianLogo />
 <CodeGroup>
-  ```bash bash
+  ```JavaScript JavaScript
   median.iterable.initialize({
     'apiKey': STRING,
     'dataRegion': STRING, // optional, e.g. 'EU'
@@ -96,8 +96,9 @@ Manually initializes the Iterable SDK when you are not relying on automatic init
 
 Returns whether the Iterable SDK has been initialized and, when initialized, echoes the active `apiKey` and `dataRegion`.
 
+<MedianLogo />
 <CodeGroup>
-  ```bash bash
+  ```JavaScript JavaScript
   median.iterable.isInitialized({'callback': function});
   // Return value:
   {
@@ -118,8 +119,9 @@ Returns whether the Iterable SDK has been initialized and, when initialized, ech
 
 Registers the current user for push notifications and refreshes the device token.
 
+<MedianLogo />
 <CodeGroup>
-  ```bash bash
+  ```JavaScript JavaScript
   median.iterable.registerPush({'callback': function});
   // Return value:
   {
@@ -138,8 +140,9 @@ Registers the current user for push notifications and refreshes the device token
 
 Prompts the user for push notification permission.
 
+<MedianLogo />
 <CodeGroup>
-  ```bash bash
+  ```JavaScript JavaScript
   median.iterable.requestPermission({'callback': function});
   // Return value:
   {
@@ -158,8 +161,9 @@ Prompts the user for push notification permission.
 
 Identifies the current user by email in Iterable. After a successful call, invoke `registerPush` to generate a new token for that profile.
 
+<MedianLogo />
 <CodeGroup>
-  ```bash bash
+  ```JavaScript JavaScript
   median.iterable.setEmail({
     'email': STRING,
     'callback': function // optional otherwise returns promise
@@ -182,8 +186,9 @@ Identifies the current user by email in Iterable. After a successful call, invok
 
 Identifies the current user by user ID. After a successful call, invoke `registerPush` to generate a new token for that profile.
 
+<MedianLogo />
 <CodeGroup>
-  ```bash bash
+  ```JavaScript JavaScript
   median.iterable.setUserId({
     'userId': STRING,
     'callback': function
@@ -206,92 +211,59 @@ Identifies the current user by user ID. After a successful call, invoke `registe
 
 Use this checklist to ensure Iterable is working correctly in your app:
 
-#### Basic Functionality
+**Basic Functionality**
 
 - [ ] Plugin configuration includes `active`, valid `apiKey`, and correct `dataRegion` when applicable
 - [ ] `median.iterable.isInitialized()` reflects the expected state after dashboard config or `initialize()`
 - [ ] `median.iterable.requestPermission()` (or `autoRegister`) yields the expected permission outcome
 - [ ] `median.iterable.registerPush()` completes with `success: true` after permission is granted
 
-#### Platform Testing
+**Platform Testing**
 
 - [ ] Push registration and receipt behave on Android test devices
 - [ ] Push registration and receipt behave on iOS test devices
 - [ ] Iterable test sends reach the device after `setEmail` / `setUserId` and `registerPush`
 
-#### Error Scenarios
+**Error Scenarios**
 
 - [ ] Failed `initialize` or `registerPush` paths do not leave the app in a broken state (retry or messaging as needed)
 - [ ] Behavior is sane when permission is denied (no silent assumptions that push is enabled)
 
-#### Edge Cases
+**Edge Cases**
 
 - [ ] Runtime `initialize` with `apiKey` / `dataRegion` matches your Iterable project
 - [ ] User switching (`setEmail` / `setUserId` changes) is followed by `registerPush` so tokens stay aligned
 
-#### User Experience
+**User Experience**
 
 - [ ] Permission prompts appear at a sensible time relative to your onboarding
 - [ ] Deep-linked notification opens land on the correct in-app destination
-
----
 
 ## Troubleshooting
 
 ### Why are Iterable bridge functions undefined or not working?
 
-\*\*Why are Iterable bridge functions undefined or not working?⎘ Copy link
-
 Confirm the JavaScript Bridge is enabled in Median App Studio, call bridge APIs after the `deviceready` event, and verify Iterable is enabled under **Push Notifications** with `active` set appropriately.
 
 ### Why is isInitialized false, or why does initialize keep failing?
-
-\*\*Why is isInitialized false, or why does initialize keep failing?⎘ Copy link
 
 Check that the **API key** and optional **data region** match your Iterable project. If you rely on runtime initialization, ensure `median.iterable.initialize()` runs before other Iterable calls and that network access is available.
 
 ### Why aren't test notifications reaching the device?
 
-\*\*Why aren't test notifications reaching the device?⎘ Copy link
-
 Ensure you have called `setEmail` or `setUserId` for the test profile, then `registerPush`, and that the user has granted notification permission. Confirm the device is registered in Iterable for that identifier.
 
 ### Why do notification links open in the browser instead of the app?
-
-\*\*Why do notification links open in the browser instead of the app?⎘ Copy link
 
 Enable and configure **Deep linking** for your Median app so URLs from Iterable notifications route in-app. Verify URL patterns match your app’s deep link configuration.
 
 ### Why isn't my EU data region working correctly?
 
-\*\*Why isn't my EU data region working correctly?⎘ Copy link
-
 If your Iterable workspace uses the EU stack, set `dataRegion` (for example `EU`) consistently in App Studio config or in `initialize()` so the SDK talks to the correct endpoints.
 
 <Info>
-  ### Still having issues?
+  **Still having issues?**
 
 For issues related to Iterable's own configuration, permissions, or platform-specific behavior outside of Median.co, refer to the [Iterable integration documentation](https://support.iterable.com/hc/en-us/articles/360035079872-Push-Notification-Overview).
 
 </Info>
-
----
-
-[Intercom](/docs/intercom)
-
-[Klaviyo](/docs/klaviyo)
-
-Copy Page
-
-- - [Why use Iterable](#why-use-iterable)
-
-  - [Prerequisites](#prerequisites)
-
-  - [Integration Guide](#integration-guide)
-
-  - - [Plugin setup](#plugin-setup)
-    - [JavaScript bridge functions](#javascript-bridge-functions)
-    - [Set email](#set-email)
-    - [Testing checklist](#testing-checklist)
-
-  - [Troubleshooting](#troubleshooting)
