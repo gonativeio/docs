@@ -2,6 +2,7 @@
 title: "Identifying & Targeting Users"
 description: "Learn how to associate users with identifiers, retrieve user data, and segment users with data tags."
 ---
+import { MedianLogo } from "/snippets/median-logo.jsx";
 
 With OneSignal's user-centric model, you have the flexibility to reach the right users on the right devices. This guide covers how to associate users with identifiers, retrieve the data you need for backend targeting, and segment users with data tags.
 
@@ -13,9 +14,8 @@ This is the foundation of targeted notifications. Without associating your own u
 
 ### View diagram
 
-\*\*View diagram⎘ Copy link
-
-```
+```mermaid
+%%{init: {'flowchart': {'defaultRenderer': 'elk'}}}%%
 flowchart TD
     A[User opens app on Phone A] --> B[OneSignal assigns oneSignalId]
     B --> C[You call login with externalId]
@@ -28,20 +28,21 @@ flowchart TD
     I --> J[Delivered to Phone A and Phone B]
 ```
 
----
-
 ## Logging users in and out
 
 Associate a user with your own identifier, using their email address, account ID, or any unique string, by calling `login()` after they authenticate in your app:
 
+<MedianLogo />
 <CodeGroup>
-  ```bash bash median.onesignal.login("[email protected]"); ```
+  ```JavaScript JavaScript 
+  median.onesignal.login("[email protected]"); 
+  ```
 </CodeGroup>
 
 OneSignal will link that identifier to the user's `oneSignalId` and maintain the association across reinstalls and devices. You can then target that user by their `externalId` from your server.
 
 <Warning>
-  ### External ID Limits
+  **External ID Limits**
 
 OneSignal rejects the values below as External IDs to prevent accidental User merges, since teams commonly use them as placeholders or fallbacks. Submitting one of these values fails the assignment and leaves the User in its previous state. Use stable identifiers from your auth or billing system instead.
 
@@ -57,18 +58,21 @@ Additionally, External IDs have a maximum length of 128 characters.
 
 When a user logs out of your app, call `logout()` to disassociate them from their OneSignal user record:
 
-<CodeGroup>```bash bash median.onesignal.logout(); ```</CodeGroup>
+<MedianLogo />
+<CodeGroup>
+```JavaScript JavaScript 
+median.onesignal.logout(); 
+```
+</CodeGroup>
 
 After logout, notifications sent to that `externalId` won't reach the device until `login()` is called again. This prevents users from receiving each other's notifications on a shared device.
 
 <Info>
   **When to call login():**
 
-Call it as soon as your user authenticates — on your login confirmation page or immediately after a successful session check. Don't wait for a user action.
+Call it as soon as your user authenticates - on your login confirmation page or immediately after a successful session check. Don't wait for a user action.
 
 </Info>
-
----
 
 ## Retrieving user & device identifiers
 
@@ -89,8 +93,9 @@ Your website can access a `oneSignalInfo` object through the Median JavaScript B
 
 Define a function named `median_onesignal_info` on your page. The app calls it automatically after the page loads, passing the `oneSignalInfo` object as the argument:
 
+<MedianLogo />
 <CodeGroup>
-  ```bash bash
+  ```JavaScript JavaScript
   function median_onesignal_info(data) {
       console.log(data.oneSignalId);
       console.log(data.subscription.id);
@@ -109,8 +114,9 @@ This function must be defined synchronously at page load time. It can't be loade
 
 Call `median.onesignal.info()` directly to trigger the callback on demand. Useful for single-page applications where the callback function may not be present at initial load:
 
+<MedianLogo />
 <CodeGroup>
-  ```bash bash
+  ```JavaScript JavaScript
   median.onesignal.info({ callback: "median_onesignal_info" });
   ```
 </CodeGroup>
@@ -119,17 +125,17 @@ Call `median.onesignal.info()` directly to trigger the callback on demand. Usefu
 
 If you can't guarantee the callback function will be defined at page load, use the promise approach:
 
+<MedianLogo />
 <CodeGroup>
-  ```bash bash
+  ```JavaScript JavaScript
   median.onesignal.onesignalInfo().then(function(data) {
       console.log(data.oneSignalId);
       console.log(data.subscription.id);
   });
 
-// Or with async/await:
-const data = await median.onesignal.onesignalInfo();
-
-````
+  // Or with async/await:
+  const data = await median.onesignal.onesignalInfo();
+  ```
 </CodeGroup>
 
 This is the most flexible approach for modern single-page applications.
@@ -142,29 +148,30 @@ If you send notifications from your own server or need to correlate OneSignal da
 2. Call `median.onesignal.info()` or `median.onesignal.onesignalInfo()` (after the user has logged in)
 3. POST the result to your backend and store it keyed by your app's user ID.
 
-**Example: login page — associate OneSignal IDs with your user**
+**Example: Associate OneSignal IDs with your user on the login page**
 
+<MedianLogo />
 <CodeGroup>
-```bash bash
-/* Login Page Sample Code */
+```JavaScript JavaScript
+  /* Login Page Sample Code */
 
-async function loginUserAndPostOSId() {
-  await median.onesignal.login("[email protected]");
+  async function loginUserAndPostOSId() {
+    await median.onesignal.login("[email protected]");
 
-  const osInfo = await median.onesignal.info();
+    const osInfo = await median.onesignal.info();
 
-  $.ajax({
-    url: updateUserRecord,
-    type: "POST",
-    data: {
-      yourAppUserId: userId,
-      oneSignalUserId: osInfo.oneSignalId, // user-specific and will change after login
-      oneSignalExternalId: osInfo.externalId, // will be the same as userId
-      oneSignalSubscriptionId: osInfo.subscription.id // device-specific will not change after login
-    },
-    contentType: "application/json"
-  });
-}
+    $.ajax({
+      url: updateUserRecord,
+      type: "POST",
+      data: {
+        yourAppUserId: userId,
+        oneSignalUserId: osInfo.oneSignalId, // user-specific and will change after login
+        oneSignalExternalId: osInfo.externalId, // will be the same as userId
+        oneSignalSubscriptionId: osInfo.subscription.id // device-specific will not change after login
+      },
+      contentType: "application/json"
+    });
+  }
 ````
 
 </CodeGroup>
@@ -178,8 +185,6 @@ The results of the `median_onesignal_info()` callback and other OneSignal functi
 
 </Check>
 
----
-
 ## When to use each identifier
 
 | Identifier        | Use it when...                                                                                                                          |
@@ -189,8 +194,6 @@ The results of the `median_onesignal_info()` callback and other OneSignal functi
 | `subscription.id` | You want to target one specific device; this ID persists across logins and is stable per device install                                 |
 
 For most apps, `externalId` is the right choice for personalized notifications since it maps naturally to your existing user database without any additional device tracking.
-
----
 
 ## Segmenting with data tags
 
@@ -206,7 +209,12 @@ OneSignal provides a native subscription preference screen — no custom HTML re
 2. In App Studio, go to **Native Plugins > OneSignal** and set the **Data Tags Native UI JSON URL** to your hosted file.
 3. Trigger the UI from anywhere in your app:
 
-<CodeGroup>```bash bash median.onesignal.showTagsUI(); ```</CodeGroup>
+<MedianLogo />
+<CodeGroup>
+  ```JavaScript JavaScript 
+  median.onesignal.showTagsUI(); 
+  ```
+</CodeGroup>
 
 The native UI renders as a system-style preference screen, grouped into the sections and items defined in your JSON file.
 
@@ -222,8 +230,9 @@ Build subscription controls in your **web** layer — anything you render in the
 
 **Set tags**
 
+<MedianLogo />
 <CodeGroup>
-  ```bash bash
+  ```JavaScript JavaScript
   var onesignalTags = {
     tags: {
       category: "sports",
@@ -232,53 +241,52 @@ Build subscription controls in your **web** layer — anything you render in the
     }
   };
 
-// Promise-based
-median.onesignal.tags.setTags(onesignalTags).then(function (tagResult) {
-console.log(tagResult); // { success: true }
-});
+  // Promise-based
+  median.onesignal.tags.setTags(onesignalTags).then(function (tagResult) {
+  console.log(tagResult); // { success: true }
+  });
 
-// Or with an optional callback
-function tagSetCallbackFunction(tagResult) {
-console.log(tagResult);
-}
-median.onesignal.tags.setTags({
-tags: onesignalTags.tags,
-callback: tagSetCallbackFunction
-});
-
+  // Or with an optional callback
+  function tagSetCallbackFunction(tagResult) {
+    console.log(tagResult);
+  }
+  median.onesignal.tags.setTags({
+    tags: onesignalTags.tags,
+    callback: tagSetCallbackFunction
+  });
 ````
 </CodeGroup>
 
 **Get tags**
 
+<MedianLogo />
 <CodeGroup>
-```bash bash
-median.onesignal.tags.getTags().then(function (tagResult) {
-  console.log(tagResult); // { success: true, tags: { ... } }
-});
+```JavaScript JavaScript
+  median.onesignal.tags.getTags().then(function (tagResult) {
+    console.log(tagResult); // { success: true, tags: { ... } }
+  });
 
-function tagGetCallbackFunction(tagResult) {
-  console.log(tagResult);
-}
-median.onesignal.tags.getTags({ callback: tagGetCallbackFunction });
-````
-
+  function tagGetCallbackFunction(tagResult) {
+    console.log(tagResult);
+  }
+  median.onesignal.tags.getTags({ callback: tagGetCallbackFunction });
+```
 </CodeGroup>
 
 **Delete tags**
 
+<MedianLogo />
 <CodeGroup>
-  ```bash bash
+  ```JavaScript JavaScript
   // Specific keys (promise)
   median.onesignal.tags.deleteTags({ tags: ["category", "lastSeen"] }).then(function (tagResult) {
     console.log(tagResult); // { success: true }
   });
 
-// All tags (promise)
-median.onesignal.tags.deleteTags().then(function (tagResult) {
-console.log(tagResult); // { success: true }
-});
-
+  // All tags (promise)
+  median.onesignal.tags.deleteTags().then(function (tagResult) {
+    console.log(tagResult); // { success: true }
+  });
 ```
 </CodeGroup>
 
@@ -302,31 +310,3 @@ Or you can surface individual tags in context, such as a single "Follow this Top
 | ---------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Native UI (`showTagsUI`)                                   | Fast deployment of a dedicated, platform-standard notification settings menu. Layout updates require editing only your hosted JSON configuration file.          |
 | Web UI + JavaScript (`setTags` / `getTags` / `deleteTags`) | Completely custom designs, inline contextual buttons (e.g., a "Follow this Topic" switch on an article page), or flows that need to match your web app's style. |
-
-***
-
-[Managing Permissions and Consent](/docs/user-consent-management)
-
-[Sending Push Notifications](/docs/onesignal-notifications)
-
-Copy Page
-
-* * [How the OneSignal user model works](#how-the-onesignal-user-model-works)
-
-* [Logging users in and out](#logging-users-in-and-out)
-
-* [Retrieving user & device identifiers](#retrieving-user--device-identifiers)
-
-* * [Data structure (SDK v5+)](#data-structure-sdk-v5)
-  * [Retrieval method 1: Automatic callback](#retrieval-method-1-automatic-callback)
-  * [Retrieval method 2: Manual invocation](#retrieval-method-2-manual-invocation)
-  * [Retrieval method 3: Promise-based](#retrieval-method-3-promise-based)
-  * [Save identifiers to your backend](#save-identifiers-to-your-backend)
-
-* [When to use each identifier](#when-to-use-each-identifier)
-
-* [Segmenting with data tags](#segmenting-with-data-tags)
-
-* * [Method 1: Native UI](#method-1-native-ui)
-  * [Method 2: Web UI and JavaScript](#method-2-web-ui-and-javascript)
-```
