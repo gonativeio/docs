@@ -2,6 +2,7 @@
 title: "Link Behavior"
 description: "Control how links open in your Median.co app and customize link handling options"
 ---
+import { MedianLogo } from "/snippets/median-logo.jsx";
 
 URLs in your app can be loaded in three ways:
 
@@ -18,10 +19,27 @@ Display our demo page in your app to test during development [https://median.dev
 
 ### In-app browser (reference)
 
-|                     | iOS                                                                                 | Android                                                                                           |
-| ------------------- | ----------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
-| Initial view        | ![iOS in-app browser initial](/images/docs/docs/in-app-browser/ios.png)             | ![Android in-app browser initial](/images/docs/docs/in-app-browser/android.png)                   |
-| After scroll / menu | ![iOS in-app browser after scroll](/images/docs/docs/in-app-browser/ios-scroll.png) | ![Android in-app browser context menu](/images/docs/docs/in-app-browser/android-context-menu.png) |
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th style={{textAlign: "center"}}>iOS</th>
+      <th style={{textAlign: "center"}}>Android</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style={{verticalAlign: "middle", textAlign: "center"}}>**Initial view**</td>
+      <td style={{textAlign: "center"}}><img src="/images/docs/docs/in-app-browser/ios.png" alt="iOS in-app browser initial" /></td>
+      <td style={{textAlign: "center"}}><img src="/images/docs/docs/in-app-browser/android.png" alt="Android in-app browser initial" /></td>
+    </tr>
+    <tr>
+      <td style={{verticalAlign: "middle", textAlign: "center"}}>**After scroll / menu**</td>
+      <td style={{textAlign: "center"}}><img src="/images/docs/docs/in-app-browser/ios-scroll.png" alt="iOS in-app browser after scroll" /></td>
+      <td style={{textAlign: "center"}}><img src="/images/docs/docs/in-app-browser/android-context-menu.png" alt="Android in-app browser context menu" /></td>
+    </tr>
+  </tbody>
+</table>
 
 On iOS you can set the color of native in-app browser controls from **App Studio → Branding**.
 
@@ -29,15 +47,14 @@ On iOS you can set the color of native in-app browser controls from **App Studio
 
 You can detect when a user closes the in-app browser by defining `median_appbrowser_closed`. The app calls this function automatically when the in-app browser closes.
 
+<MedianLogo />
 <CodeGroup>
-  ```bash bash
+  ```JavaScript JavaScript
   function median_appbrowser_closed() {
     window.alert("App browser closed!");
   }
   ```
 </CodeGroup>
-
----
 
 ## Opening links
 
@@ -47,17 +64,18 @@ Regular links on a page follow the **link handling rules** configured for your a
 
 When opening a URL through the Bridge, use one of the following modes:
 
-- `blank` — New WebView window instance (default when mode is omitted).
-- `internal` — Current WebView window instance.
-- `external` — Mobile browser or the app registered for the URL’s deep link.
-- `appbrowser` — In-app browser window (see screenshots above).
+- `blank` - New WebView window instance (default when mode is omitted).
+- `internal` - Current WebView window instance.
+- `external` - Mobile browser or the app registered for the URL’s deep link.
+- `appbrowser` - In-app browser window (see screenshots above).
 
+<MedianLogo />
 <CodeGroup>
-  ```bash bash median.window.open(url, mode); // mode = blank (default) |
-  internal | external | appbrowser ```
+  ```JavaScript JavaScript 
+  median.window.open(url, mode); 
+  // mode = blank (default) | internal | external | appbrowser 
+  ```
 </CodeGroup>
-
----
 
 ### Link handling rules
 
@@ -88,21 +106,21 @@ To match arbitrary domains with a query flag, use a regex such as `https?:\/\/.*
 
 - [regex101](https://regex101.com/)
 
-  <Warning>
-  ### **Regex compatibility warning**
+<Warning>
+**Regex compatibility warning**
 
   Lookahead and lookbehind expressions, including negative variants, **are not supported on Android** and are only available **on iOS 14 and later**. Rules using these patterns will silently fail to match on unsupported platforms. Use simple, positive regular expressions to ensure consistent behavior across both platforms.
-
-  </Warning>
+</Warning>
 
 #### Changing rules at runtime
 
 Apply internal / external / app browser routing dynamically:
 
-> Run the following Median JavaScript Bridge command to apply new internal/external rules:
+ Run the following Median JavaScript Bridge command to apply new internal/external rules:
 
+<MedianLogo />
 <CodeGroup>
-  ```bash bash
+  ```JavaScript JavaScript
   var rulesArray = [
     {
       id: 1,
@@ -131,12 +149,9 @@ Apply internal / external / app browser routing dynamically:
     },
   ];
 
-median.internalExternal.set({ rules: rulesArray });
-
-````
+  median.internalExternal.set({ rules: rulesArray });
+```
 </CodeGroup>
-
-***
 
 ## Context menu
 
@@ -150,18 +165,21 @@ Display our demo page in your app to test during development [https://median.dev
 
 ### Enable or disable
 
+<MedianLogo />
 <CodeGroup>
-```bash bash
-median.contextMenu.setEnabled(true); // or false to disable
-````
-
+```JavaScript JavaScript
+  median.contextMenu.setEnabled(true); // or false to disable
+```
 </CodeGroup>
 
 ### Set available actions
 
+<MedianLogo />
 <CodeGroup>
-  ```bash bash // Define which actions appear in the context menu
-  median.contextMenu.setActions(["copyLink", "openExternal"]); ```
+  ```JavaScript JavaScript 
+  // Define which actions appear in the context menu
+  median.contextMenu.setActions(["copyLink", "openExternal"]); 
+  ```
 </CodeGroup>
 
 ### Supported actions
@@ -174,26 +192,3 @@ median.contextMenu.setEnabled(true); // or false to disable
 | iOS                                                                    | Android                                                                        |
 | ---------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
 | ![Context menu on iOS](/images/docs/docs/context-menu/context-ios.gif) | ![Context menu on Android](/images/docs/docs/context-menu/context-android.gif) |
-
----
-
-[Link Handling Overview](/docs/link-handling-overview)
-
-[Deep Linking](/docs/deep-linking)
-
-Copy Page
-
-- - - [In-app browser (reference)](#in-app-browser-reference)
-    - [In-app browser closed callback](#in-app-browser-closed-callback)
-
-  - [Opening links](#opening-links)
-
-  - - [JavaScript Bridge: open modes](#javascript-bridge-open-modes)
-    - [Link handling rules](#link-handling-rules)
-
-  - [Context menu](#context-menu)
-
-  - - [Enable or disable](#enable-or-disable)
-    - [Set available actions](#set-available-actions)
-    - [Supported actions](#supported-actions)
-    - [UI preview](#ui-preview)
