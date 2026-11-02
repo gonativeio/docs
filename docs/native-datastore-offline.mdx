@@ -1,14 +1,16 @@
 ---
 title: "Native Datastore Offline"
-description: "This guide demonstrates how to create a custom offline page that launches the , and stores the scanned result using the . This is useful for scenarios where users scan QR codes while offline and sync the data once the device is back online."
 ---
+
+This guide demonstrates how to create a custom offline page that launches the , and stores the scanned result using the . This is useful for scenarios where users scan QR codes while offline and sync the data once the device is back online.
 
 The Barcode Scanner is one of several [Native Plugins](https://median.co/docs/native-plugins-overview) that work without a continuous internet connection. Any plugin that processes data locally on the device and does not rely on third-party services can function offline.
 
 <Info>
-  ### Proof of Concept
+  **Proof of Concept**
 
-  This documentation provides a proof of concept. We advise reviewing the implementation with your security and product teams, as you may need to handle advanced use cases like storing multiple key-value pairs.
+This documentation provides a proof of concept. We advise reviewing the implementation with your security and product teams, as you may need to handle advanced use cases like storing multiple key-value pairs.
+
 </Info>
 
 Please refer to [Offline Page](https://median.co/docs/offline-page) as a general reference on how to set up a custom offline page.
@@ -17,14 +19,14 @@ Please refer to [Offline Page](https://median.co/docs/offline-page) as a general
 
 Below is a sample offline.html page with buttons to:
 
-* Launch the QR code scanner
-* Store the scanned value locally using Native Datastore
-* Navigate to an online test page
+- Launch the QR code scanner
+- Store the scanned value locally using Native Datastore
+- Navigate to an online test page
 
 ### Offline.html
 
 <CodeGroup>
-  ```bash bash
+  ```HTML Offline.html
   <!DOCTYPE html>
   <html lang="en">
   <head>
@@ -114,6 +116,7 @@ Below is a sample offline.html page with buttons to:
               white-space: pre-wrap;
           }
       </style>
+
   </head>
   <body>
       <h1>Native Datastore Offline Demo</h1>
@@ -150,6 +153,7 @@ Below is a sample offline.html page with buttons to:
           }
 
       </script>
+
   </body>
   </html>
   ```
@@ -159,10 +163,8 @@ Below is a sample offline.html page with buttons to:
 
 Use the QR code below to test your offline implementation. It encodes the URL: `https://median.co/`.
 
-<Frame caption="Sample QR Code for the URL">
+<Frame caption="Sample QR Code for the URL https://median.co">
   <img src="/images/docs/33933077aa2a3906b9b57fd9af88baebc92a1d4aa171416230086f5c10577ca4-Untitled_design.png" />
-
-  [https://median.co/](https://median.co/)
 </Frame>
 
 ### Demo Recording
@@ -173,18 +175,6 @@ After saving the value, the user clicks the "Go Online" button, which redirects 
 
 While the video demonstration was recorded on an Android device, the same workflow is fully compatible with iOS.
 
-![](/images/docs/8f4baf7dadfe047b0397e9702620c0f9f4e6319fa1acd2bcdaf7207a47520c02-native-offline.gif)
-
-***
-
-[Service Workers](/docs/service-workers)
-
-[iOS Split View Support](/docs/ios-split-view)
-
-Copy Page
-
-* * [Example Implementation](#example-implementation)
-
-  * * [Offline.html](#offlinehtml)
-    * [Test QR Code](#test-qr-code)
-    * [Demo Recording](#demo-recording)
+<Frame caption="Demo Recording">
+  <img src="/images/docs/8f4baf7dadfe047b0397e9702620c0f9f4e6319fa1acd2bcdaf7207a47520c02-native-offline.gif" />
+</Frame>
