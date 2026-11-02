@@ -1,11 +1,9 @@
 ---
 title: "Install Median's GTM Tag Template"
-description: "Use Median's GTM Tag template to trigger JavaScript Bridge commands using GTM tags."
+description: "Use Median's GTM Tag template to trigger JavaScript Bridge commands using GTM tags"
 ---
 
 Use Median's GTM Tag template to execute JavaScript Bridge commands directly from GTM tags instead of updating your website. Learn how to install your GTM container in your app and import Median's Tag template into your GTM workspace.
-
-***
 
 ## Prerequisites
 
@@ -35,7 +33,7 @@ Use Median's GTM Tag template to execute JavaScript Bridge commands directly fro
 1. On line 1 of the snippet below, replace `ENTER-GTM-ID-HERE` with your GTM container ID and copy the snippet to your clipboard
 
 <CodeGroup>
-  ```bash bash
+  ```JavaScript JavaScript
   var gtmId = 'ENTER-GTM-ID-HERE';
   window.dataLayer = window.dataLayer || [];
   window.dataLayer.push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
@@ -102,7 +100,7 @@ You can create additional tags and triggers to call Bridge commands. For example
 
 Use this checklist to ensure GTM is working correctly:
 
-### Basic setup
+**Basic setup**
 
 * [ ] The app is using the [JavaScript Bridge NPM package](https://docs.median.co/docs/npm-package#app-configuration)
 * [ ] The custom JavaScript snippet is pasted in the App Studio > Web Overrides with the correct GTM container ID
@@ -110,17 +108,17 @@ Use this checklist to ensure GTM is working correctly:
 * [ ] Median's `.tpl` Tag template is successfully imported into the GTM workspace
 * [ ] A tag has been created from the template and set to fire on "All Pages"
 
-### Triggers
+**Triggers**
 
 * [ ] GTM triggers are configured correctly to fire on specific app events (e.g., page views, button clicks)
 * [ ] Tags fire exactly when expected according to the defined trigger conditions
 
-### JavaScript Bridge commands
+**JavaScript Bridge commands**
 
 * [ ] Custom tags correctly execute Median JavaScript Bridge commands
 * [ ] Executed commands trigger the intended native device features
 
-### Publishing and live testing
+**Publishing and live testing**
 
 * [ ] The tags are firing in GTM's preview tool
 * [ ] The GTM container is successfully published to the live environment
@@ -129,46 +127,12 @@ Use this checklist to ensure GTM is working correctly:
 
 ### GTM Tags are not firing
 
-**GTM Tags are not firing⎘ Copy link
-
 Verify that you replaced `ENTER-GTM-ID-HERE` with your actual GTM Container ID in the Custom JavaScript snippet under **Web Overrides**. Use [GTM's Preview mode](https://support.google.com/tagmanager/answer/6107056?hl=en-US) to ensure your triggers are configured correctly and firing on the expected events.
 
 ### JavaScript Bridge commands are not executing
-
-**JavaScript Bridge commands are not executing⎘ Copy link
 
 Ensure you have imported the Median Tag template (`.tpl`) into your GTM workspace and created the initialization tag set to fire on **All Pages**. Also, confirm you generated a new app build in App Studio after saving your Web Overrides.
 
 ### App is not reflecting GTM changes
 
-**App is not reflecting GTM changes⎘ Copy link
-
 Changes made within Google Tag Manager do not require a new app build, but they must be published to go live. Make sure you have clicked **Submit** and **Publish** in your GTM workspace after creating or modifying tags.
-
-***
-
-[Control your Median app with Google Tag Manager](/docs/google-tag-manager)
-
-[Native Plugins Overview](/docs/native-plugins-overview)
-
-Copy Page
-
-* * [Prerequisites](#prerequisites)
-
-  * * [Key Concepts](#key-concepts)
-
-  * [Implementation Guide](#implementation-guide)
-
-  * * [Install your GTM container](#install-your-gtm-container)
-    * [Import Median's Tag template in GTM](#import-medians-tag-template-in-gtm)
-    * [Build your own tags](#build-your-own-tags)
-    * [Reference documentation from Google](#reference-documentation-from-google)
-
-  * [Setup Checklist](#setup-checklist)
-
-  * * [Basic setup](#basic-setup)
-    * [Triggers](#triggers)
-    * [JavaScript Bridge commands](#javascript-bridge-commands)
-    * [Publishing and live testing](#publishing-and-live-testing)
-
-  * [Troubleshooting](#troubleshooting)
