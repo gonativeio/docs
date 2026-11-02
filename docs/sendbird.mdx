@@ -13,13 +13,13 @@ The Sendbird plugin simplifies integrating in-app messaging and push notificatio
 
 ## When to use this plugin
 
-| Use Case                    | Example                                                                           |
-| --------------------------- | --------------------------------------------------------------------------------- |
-| **In-app messaging**        | Let users chat in group channels using Sendbird’s native messaging UI.            |
-| **Push notifications**      | Deliver Sendbird push notifications via APNs (iOS) and FCM (Android).             |
-| **User sessions**           | Log users in with `userId`, update profile info, disconnect or log out as needed. |
-| **Channel creation**        | Create group channels programmatically and open them in the Sendbird UI.          |
-| **Demo-driven development** | Load the developer demo in your app to test integration during development        |
+| Use Case | Example |
+| --- | --- |
+| **In-app messaging** | Let users chat in group channels using Sendbird’s native messaging UI. |
+| **Push notifications** | Deliver Sendbird push notifications via APNs (iOS) and FCM (Android). |
+| **User sessions** | Log users in with `userId`, update profile info, disconnect or log out as needed. |
+| **Channel creation** | Create group channels programmatically and open them in the Sendbird UI. |
+| **Demo-driven development** | Load the developer demo in your app to test integration during development |
 
 ## What you'll do
 
@@ -32,10 +32,9 @@ Use this section as a fast navigation map into the full setup and implementation
 5. **Test and resolve issues**: Work through [Testing Scenarios](#testing-scenarios) and [Troubleshooting (FAQ)](#troubleshooting-faq).
 
 <Check>
-**Developer Demo**
+  **Developer Demo**
 
-Display our demo page in your app to test during development [https://median.dev/sendbird/](https://median.dev/sendbird)
-
+  Display our demo page in your app to test during development [https://median.dev/sendbird/](https://median.dev/sendbird)
 </Check>
 
 ---
@@ -63,9 +62,9 @@ The following terms will help you implement Sendbird effectively:
 <Info>
   **Important considerations**
 
-- If you need help locating push or Firebase values, contact Median support.
-- Android FCM requires `google-services.json` in the app **and** FCM configuration in the Sendbird dashboard (including the FCM server key).
-  </Info>
+  - If you need help locating push or Firebase values, contact Median support.
+  - Android FCM requires `google-services.json` in the app **and** FCM configuration in the Sendbird dashboard (including the FCM server key).
+</Info>
 
 ---
 
@@ -80,7 +79,9 @@ Configure Sendbird and push outside Median.co before or in parallel with the App
 Sendbird’s SDK requires the **Application ID** of your Sendbird application to initialize. You can find it in the dashboard of your Sendbird application.
 
 <Frame caption="Sendbird- Find Application ID">
-  <img src="/images/docs/ebd99f951c390390ffd69607f0dea32abe8c130b162b2813cd1e8b6fc414281a-Screenshot_2026-03-12_at_8.40.44_AM.png" />
+  <img
+    src="/images/docs/ebd99f951c390390ffd69607f0dea32abe8c130b162b2813cd1e8b6fc414281a-Screenshot_2026-03-12_at_8.40.44_AM.png"
+  />
 </Frame>
 
 #### Setup Sendbird push notifications (APNs and FCM)
@@ -110,7 +111,9 @@ In the dashboard of your Sendbird app:
 3. Add your push notification credentials.
 
 <Frame caption="Sendbird- Push Notification Settings">
-  <img src="/images/docs/6f38aed3d9dd08ec859009e072fe1ca8a4577d7e51289efc34dae67b4be34e6f-Screenshot_2026-03-13_at_2.41.34_PM.png" />
+  <img
+    src="/images/docs/6f38aed3d9dd08ec859009e072fe1ca8a4577d7e51289efc34dae67b4be34e6f-Screenshot_2026-03-13_at_2.41.34_PM.png"
+  />
 </Frame>
 
 ### Median App Studio Configuration
@@ -120,7 +123,9 @@ In the dashboard of your Sendbird app:
 1. In **App Studio**, open the **Native Plugins** tab and enable the **Sendbird** plugin.
 
 <Frame caption="Sendbird Plugin Enablement">
-  <img src="/images/docs/ee1bf8fd2155fe5ee7df642c17c613d067fc4721e41d53bebbdc7e84091b1834-Screenshot_2026-03-13_at_2.43.32_PM.png" />
+  <img
+    src="/images/docs/ee1bf8fd2155fe5ee7df642c17c613d067fc4721e41d53bebbdc7e84091b1834-Screenshot_2026-03-13_at_2.43.32_PM.png"
+  />
 </Frame>
 
 #### Configuration Options
@@ -128,28 +133,32 @@ In the dashboard of your Sendbird app:
 For advanced configuration, add the parameters below to the **Advanced Configuration** field (optional):
 
 <CodeGroup>
-  ```bash bash
-  {
-  "active": true | false,
-  "autoRegister": true | false,
-  // if true push permission will be requested automatically
-  "appId": STRING  // optional - if defined the Sendbird SDK will be initialized automatically
-  }
-  ```
+
+```bash bash
+{
+"active": true | false,
+"autoRegister": true | false,
+// if true push permission will be requested automatically
+"appId": STRING  // optional - if defined the Sendbird SDK will be initialized automatically
+}
+```
+
 </CodeGroup>
 
-| Setting            | Description                                                                  |
-| ------------------ | ---------------------------------------------------------------------------- |
-| **`active`**       | `true` or `false`.                                                           |
-| **`autoRegister`** | `true` or `false` — if `true`, push permission is requested automatically.   |
-| **`appId`**        | Optional string — if defined, the Sendbird SDK is initialized automatically. |
+| Setting | Description |
+| --- | --- |
+| **`active`** | `true` or `false`. |
+| **`autoRegister`** | `true` or `false` — if `true`, push permission is requested automatically. |
+| **`appId`** | Optional string — if defined, the Sendbird SDK is initialized automatically. |
 
 #### Android — `google-services.json`
 
 Firebase Cloud Messaging (FCM) requires embedding a `google-services.json` file in the app to send Android push notifications. Upload this file in the **Build & Deploy** tab of App Studio.
 
 <Frame caption="Adding google-services.json in the median app studio">
-  <img src="/images/docs/6f9e4820184e1192763f4af308eb26544d1c6900d43562b579a90c003c1241b2-Screenshot_2026-03-13_at_2.46.17_PM.png" />
+  <img
+    src="/images/docs/6f9e4820184e1192763f4af308eb26544d1c6900d43562b579a90c003c1241b2-Screenshot_2026-03-13_at_2.46.17_PM.png"
+  />
 </Frame>
 
 Push notifications must also be configured in your **Sendbird** dashboard by adding the FCM server key. Refer to the Sendbird push setup steps above.
@@ -162,25 +171,29 @@ Unless noted, you may provide a **callback** or use the **promise** returned by 
 
 Initialize the Sendbird SDK using the `appId` of your Sendbird application. Once initialized, the `appId` is saved and the SDK initializes automatically on the next app start. The `appId` lets you reference users and channels for that Sendbird application. See the Sendbird dashboard screenshot in setup for locating `appId`.
 
-<CodeGroup>```bash bash median.sendbird.initialize(STRING); ```</CodeGroup>
+<CodeGroup>
+  `bash bash median.sendbird.initialize(STRING); `
+</CodeGroup>
 
 **Parameters:** `appId` (string) — Sendbird Application ID.
 
 #### Verify SDK Initialization
 
 <CodeGroup>
-  ```bash bash
-  median.sendbird.isInitialized({callback: function})
-  // Return value if initialized:
-  {
-    "initialized": true,
-    "appId": STRING
-  }
-  // Return value if not initialized (appId not provided or is invalid):
-  {
-    "initialized": false
-  }
-  ```
+
+```bash bash
+median.sendbird.isInitialized({callback: function})
+// Return value if initialized:
+{
+  "initialized": true,
+  "appId": STRING
+}
+// Return value if not initialized (appId not provided or is invalid):
+{
+  "initialized": false
+}
+```
+
 </CodeGroup>
 
 #### **Request Push Notification permission**
@@ -188,15 +201,16 @@ Initialize the Sendbird SDK using the `appId` of your Sendbird application. Once
 Request push notification permission. On iOS and Android 13+, a system dialog is shown. On Android 12 and below, permission is granted without user input.
 
 <CodeGroup>
-  ```bash bash
-  median.sendbird.promptNotification({'callback': function})
+
+```bash bash
+median.sendbird.promptNotification({'callback': function})
 
 // Return value:
 {
 "granted": true | false
 }
+```
 
-````
 </CodeGroup>
 
 #### **Check Push Notification permission status**
@@ -204,6 +218,7 @@ Request push notification permission. On iOS and Android 13+, a system dialog is
 Check whether push notification permission has been granted or denied.
 
 <CodeGroup>
+
 ```bash bash
 median.sendbird.notificationEnabled({'callback':  function})
 
@@ -211,7 +226,7 @@ median.sendbird.notificationEnabled({'callback':  function})
 {
   "granted": true | false
 }
-````
+```
 
 </CodeGroup>
 
@@ -219,7 +234,9 @@ median.sendbird.notificationEnabled({'callback':  function})
 
 Log in a user on the Sendbird application using `userId`. If the user is not logged out, they stay logged in on future app starts. If `userId` does not exist, a new user is registered.
 
-<CodeGroup>```bash bash median.sendbird.setUserId("USER_ID"); ```</CodeGroup>
+<CodeGroup>
+  `bash bash median.sendbird.setUserId("USER_ID"); `
+</CodeGroup>
 
 **Parameters:** `userId` (string).
 
@@ -228,13 +245,15 @@ Log in a user on the Sendbird application using `userId`. If the user is not log
 Returns the `userId` of the logged-in user.
 
 <CodeGroup>
-  ```bash bash
-  median.sendbird.getUserId({callback:  function})
-  // Return value:
-  {
-   "userId":  STRING
-  }
-  ```
+
+```bash bash
+median.sendbird.getUserId({callback:  function})
+// Return value:
+{
+ "userId":  STRING
+}
+```
+
 </CodeGroup>
 
 #### **Check User Connection**
@@ -242,13 +261,15 @@ Returns the `userId` of the logged-in user.
 Check whether the user is connected to the Sendbird server after logging in.
 
 <CodeGroup>
-  ```bash bash
-  median.sendbird.isConnected({callback:  function})
-  // Return value:
-  {
-   "connected":  BOOLEAN
-  }
-  ```
+
+```bash bash
+median.sendbird.isConnected({callback:  function})
+// Return value:
+{
+ "connected":  BOOLEAN
+}
+```
+
 </CodeGroup>
 
 #### **Update User Profile**
@@ -256,17 +277,19 @@ Check whether the user is connected to the Sendbird server after logging in.
 Update the nickname and profile image URL of the logged-in user.
 
 <CodeGroup>
-  ```bash bash
-  median.sendbird.updateUserInfo({
-   nickname:  STRING,  // optional
-   profileImageUrl:  STRING,  // optional
-   callback:  function
-   })
-  // Return value:
-  {
-   "success":  BOOLEAN
-   }
-  ```
+
+```bash bash
+median.sendbird.updateUserInfo({
+ nickname:  STRING,  // optional
+ profileImageUrl:  STRING,  // optional
+ callback:  function
+ })
+// Return value:
+{
+ "success":  BOOLEAN
+ }
+```
+
 </CodeGroup>
 
 **Parameters:** `nickname` (optional string), `profileImageUrl` (optional string), `callback` (function).
@@ -276,15 +299,16 @@ Update the nickname and profile image URL of the logged-in user.
 Log out the current user: disconnects from Sendbird, removes user details from the app, and unregisters push notifications.
 
 <CodeGroup>
-  ```bash bash
-  median.sendbird.logout({callback:  function})
+
+```bash bash
+median.sendbird.logout({callback:  function})
 
 // Return value
 {
 "success": BOOLEAN
 }
+```
 
-````
 </CodeGroup>
 
 #### **Disconnect User Session**
@@ -292,6 +316,7 @@ Log out the current user: disconnects from Sendbird, removes user details from t
 Disconnect the current session. The user remains logged in and details stay saved; the app continues to receive push notifications.
 
 <CodeGroup>
+
 ```bash bash
 median.sendbird.disconnect({callback:  function})
 
@@ -299,7 +324,7 @@ median.sendbird.disconnect({callback:  function})
 {
  "success":  BOOLEAN
  }
-````
+```
 
 </CodeGroup>
 
@@ -308,50 +333,54 @@ median.sendbird.disconnect({callback:  function})
 Creates a group channel. Returns success and the channel URL.
 
 <CodeGroup>
-  ```bash bash
-  median.sendbird.createGroupChannel({
-    name:  STRING,
-    coverImageUrl:  STRING,  // optional
-    userIds:  [STRING],  // at least 1 userId is required
-    isDistinct:  BOOLEAN,  // default is false, set to true to
-    ensure if a channel exists, it is utilized
-    customType:  STRING,  // optional channel type for grouping
-    callback: function
-    })
 
-    // Return value:
-    {
-      "success": BOOLEAN,
-      "channelUrl": STRING
-       }
+```bash bash
+median.sendbird.createGroupChannel({
+  name:  STRING,
+  coverImageUrl:  STRING,  // optional
+  userIds:  [STRING],  // at least 1 userId is required
+  isDistinct:  BOOLEAN,  // default is false, set to true to
+  ensure if a channel exists, it is utilized
+  customType:  STRING,  // optional channel type for grouping
+  callback: function
+  })
 
-````
+  // Return value:
+  {
+    "success": BOOLEAN,
+    "channelUrl": STRING
+     }
+```
+
 </CodeGroup>
 
 **Parameters:**
 
-| Parameter       | Notes                                                                     |
-| --------------- | ------------------------------------------------------------------------- |
-| `name`          | Channel name (string).                                                    |
-| `coverImageUrl` | Optional.                                                                 |
-| `userIds`       | Array of strings; at least one `userId` required.                         |
-| `isDistinct`    | Default `false`; set `true` to reuse an existing channel when applicable. |
-| `customType`    | Optional; for grouping channel types.                                     |
-| `callback`      | Optional if using promises.                                               |
+| Parameter | Notes |
+| --- | --- |
+| `name` | Channel name (string). |
+| `coverImageUrl` | Optional. |
+| `userIds` | Array of strings; at least one `userId` required. |
+| `isDistinct` | Default `false`; set `true` to reuse an existing channel when applicable. |
+| `customType` | Optional; for grouping channel types. |
+| `callback` | Optional if using promises. |
 
 #### **Show Channels UI**
 
 Displays Sendbird’s messaging UI with the user’s group channels. Users can enter channels, create channels, and leave the UI.
 
 <CodeGroup>
+
 ```bash bash
 median.sendbird.showUI();
-````
+```
 
 </CodeGroup>
 
 <Frame caption="Sendbird Demo App- Show Channels UI">
-  <img src="/images/docs/aa2cf1bef7fce2e81593df7719056f0b74cdd8625efab8e8c3ba98a27fbba76e-Screenshot_2026-03-19_at_5.07.46_PM.png" />
+  <img
+    src="/images/docs/aa2cf1bef7fce2e81593df7719056f0b74cdd8625efab8e8c3ba98a27fbba76e-Screenshot_2026-03-19_at_5.07.46_PM.png"
+  />
 </Frame>
 
 #### **Show Channels UI and Enter Channel**
@@ -359,15 +388,19 @@ median.sendbird.showUI();
 Opens Sendbird’s UI and enters a channel by URL.
 
 <CodeGroup>
-  ```bash bash
-  median.sendbird.showChannelUI({ url: STRING });
-  ```
+
+```bash bash
+median.sendbird.showChannelUI({ url: STRING });
+```
+
 </CodeGroup>
 
 **Parameters:** `url` (string) — channel URL.
 
 <Frame caption="Sendbird Demo App- Show Channels UI and Enter Channel">
-  <img src="/images/docs/6434cce2d7c960e1f9043c2ad271026f3789d8d7561a653fdfa434dbb71b0727-Screenshot_2026-03-19_at_5.09.39_PM.png" />
+  <img
+    src="/images/docs/6434cce2d7c960e1f9043c2ad271026f3789d8d7561a653fdfa434dbb71b0727-Screenshot_2026-03-19_at_5.09.39_PM.png"
+  />
 </Frame>
 
 #### Close UI callback
@@ -375,11 +408,13 @@ Opens Sendbird’s UI and enters a channel by URL.
 Define this function on your webpage to run when the user closes the Sendbird UI:
 
 <CodeGroup>
-  ```bash bash
-  function median_sendbird_uiclosed() {
-    alert("UI Closed");
-  }
-  ```
+
+```bash bash
+function median_sendbird_uiclosed() {
+  alert("UI Closed");
+}
+```
+
 </CodeGroup>
 
 ---
@@ -445,8 +480,7 @@ Verify `google-services.json` is uploaded under **Build & Deploy** and that FCM 
 <Info>
   ## Still having trouble?
 
-For issues related to Sendbird's own configuration, permissions, or platform-specific behavior outside of Median.co, refer to [Sendbird's integration documentation.](https://sendbird.com/developer/tutorials)
-
+  For issues related to Sendbird's own configuration, permissions, or platform-specific behavior outside of Median.co, refer to [Sendbird's integration documentation.](https://sendbird.com/developer/tutorials)
 </Info>
 
 ---
@@ -458,21 +492,13 @@ For issues related to Sendbird's own configuration, permissions, or platform-spe
 Copy Page
 
 - - [Why use Sendbird?](#why-use-sendbird)
-
   - [When to use this plugin](#when-to-use-this-plugin)
-
   - [What you'll do](#what-youll-do)
-
   - [Prerequisites](#prerequisites)
-
   - - [Key Concepts](#key-concepts)
-
   - [Integration Guide](#integration-guide)
-
   - - [Plugin Platform Setup](#plugin-platform-setup)
     - [Median App Studio Configuration](#median-app-studio-configuration)
     - [Website Configuration (JavaScript Bridge)](#website-configuration-javascript-bridge)
-
   - [Testing](#testing)
-
   - - [Troubleshooting](#troubleshooting)
