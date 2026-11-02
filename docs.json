@@ -514,5 +514,14 @@
         ]
       }
     ]
+  },
+  "contextual": {
+    "options": [
+      "chatgpt",
+      "claude",
+      "perplexity",
+      "grok"
+    ],
+    "display": "header"
   }
 }
