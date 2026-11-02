@@ -22,25 +22,24 @@ Jailbreak/Root Detection is essential for apps that need to:
 
 ## Before you start
 
-* [ ] A Median.co app with JavaScript Bridge enabled
-* [ ] A secure landing page for compromised device redirects
+- [ ] A Median.co app with JavaScript Bridge enabled
+- [ ] A secure landing page for compromised device redirects
 
 <Warning>
-  ### Limitations of Device Detection
+  **Limitations of Device Detection**
 
-  While this plugin provides robust detection capabilities, it's important to note that jailbreaking and rooting a device inherently grants elevated access, which could be used to bypass detection methods. Thus, no detection system can guarantee 100% effectiveness.
+While this plugin provides robust detection capabilities, it's important to note that jailbreaking and rooting a device inherently grants elevated access, which could be used to bypass detection methods. Thus, no detection system can guarantee 100% effectiveness.
 
-  This plugin is designed to offer a reasonable level of detection, which can be used to alert users or disable specific app functionalities if a compromised device is detected.
+This plugin is designed to offer a reasonable level of detection, which can be used to alert users or disable specific app functionalities if a compromised device is detected.
+
 </Warning>
-
-***
 
 ## How it works
 
 When the native app detects that a device has been tampered with, it appends `rootDetected=true` or `isRooted=true` to your Initial URL. By using the Median JavaScript Bridge, you can programmatically handle these users before they access sensitive features.
 
-* `rootDetected=true`
-* `isRooted=true`
+- `rootDetected=true`
+- `isRooted=true`
 
 For example, instead of loading `https://example.com/`, the app will load `https://example.com/?rootDetected=true`. Be sure to check for both query parameter values list above to identify compromised devices.
 
@@ -57,8 +56,6 @@ For example, instead of loading `https://example.com/`, the app will load `https
 
 **Android Root Detection**: For Android, we rely on the [Rootbeer](https://github.com/scottyab/rootbeer) library, as well as additional methods.
 
-***
-
 ## Integration Guide
 
 ### Website Configuration (JavaScript Bridge)
@@ -68,7 +65,7 @@ For example, instead of loading `https://example.com/`, the app will load `https
 Place the following script within the `<head>` of your index page or your global JavaScript file.
 
 <CodeGroup>
-  ```bash bash
+  ```JavaScript JavaScript
   <script>
     /**
      * Evaluates device security status and redirects compromised devices.
@@ -77,8 +74,8 @@ Place the following script within the `<head>` of your index page or your global
       const params = new URLSearchParams(window.location.search);
 
       // Check for Median-injected security flags
-      const isCompromised = 
-        params.get("rootDetected") === "true" || 
+      const isCompromised =
+        params.get("rootDetected") === "true" ||
         params.get("isRooted") === "true";
 
       if (isCompromised) {
@@ -103,11 +100,10 @@ Place the following script within the `<head>` of your index page or your global
     if (window.median) {
       handleCompromisedDevice();
     }
+
   </script>
   ```
 </CodeGroup>
-
-***
 
 ## Technical Best Practises
 
@@ -126,28 +122,3 @@ By wrapping this logic in` median_library_ready()`, you ensure the check occurs 
 #### Lightweight redirect
 
 Ensure your /compromised-device.html page is lightweight and does not require further authentication, as a rooted device may fail secondary security checks.
-
-***
-
-[Enterprise Security](/docs/enterprise-plugin)
-
-[Microsoft Intune](/docs/microsoft-intune)
-
-Copy Page
-
-* * [Why use Jailbreak/Root Detection?](#why-use-jailbreakroot-detection)
-
-  * [Use cases](#use-cases)
-
-  * [Before you start](#before-you-start)
-
-  * [How it works](#how-it-works)
-
-  * * [Summary table: Detection parameters](#summary-table-detection-parameters)
-    * [Libraries used for detection](#libraries-used-for-detection)
-
-  * [Integration Guide](#integration-guide)
-
-  * * [Website Configuration (JavaScript Bridge)](#website-configuration-javascript-bridge)
-
-  * [Technical Best Practises](#technical-best-practises)
