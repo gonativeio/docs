@@ -1,7 +1,10 @@
 ---
 title: "Web Screenshot"
-description: "Capture and share visible web content or website elements with our native Web Screenshot plugin"
+description: "Capture the visible screen or a specific element of your web content and share or export it as an image in your iOS and Android app using the Median JavaScript Bridge."
 ---
+
+import { MedianLogo } from "/snippets/median-logo.jsx";
+import { AppetizeEmbed } from "/snippets/appetize-embed.jsx";
 
 # Overview
 
@@ -10,16 +13,18 @@ Web Screenshot enables you to capture either a specific section or an entire web
 <Check>
   **Developer Demo**
 
-  Display our demo page in your app to test during development [https://median.dev/web-screenshot/](https://median.dev/web-screenshot/)
+  Display our demo page in your app to test during development [https://median.dev/web-screenshot/ <Icon icon="arrow-up-right-from-square" size={12} />](https://median.dev/web-screenshot/)
 </Check>
 
 # Implementation Guide
 
 ## Sharing the visible web content
 
-The following command allows you to capture and share the visible portion of a webpage, excluding native UI elements such as [native navigation bars](https://median.co/docs/native-navigation-overview).
+The following command allows you to capture and share the visible portion of a webpage, excluding native UI elements such as [native navigation bars](/docs/native-navigation-overview).
 
-> Run the following Median JavaScript Bridge command to share the screen content
+Run this JavaScript Bridge command to share the screen content.
+
+<MedianLogo />
 
 <CodeGroup>
 
@@ -36,7 +41,9 @@ median.webScreenshot.shareScreen({
 
 The following command allows you to capture and share a specific web element, such as a `<div>` container.
 
-> Run the following Median JavaScript Bridge command to share a div with id `content`
+Run this JavaScript Bridge command to share a div with id `content`.
+
+<MedianLogo />
 
 <CodeGroup>
 
@@ -52,17 +59,21 @@ median.webScreenshot.shareElement(element, {
 
 ## Exporting the screenshot
 
-You can export the screenshot as a `Blob` object to upload to your server or use it with another plugin e.g. [Social Share](/docs/social-share)
+You can export the screenshot as a `Blob` object to upload to your server or use it with another plugin e.g. [Social Share](/docs/social-share).
 
-> Run the following Median JavaScript Bridge command to share the screen content
+Run this JavaScript Bridge command to capture the screen content or a web element as a `Blob`.
+
+<MedianLogo />
 
 <CodeGroup>
 
 ```javascript JavaScript
 // Capture the visible screen area
-const screenShotblob = median.webScreenshot.captureScreen();
-// Capture a web element
-const screenShotblob = median.webScreenshot.captureElement(element);
+const screenBlob = await median.webScreenshot.captureScreen();
+
+// Capture a specific web element
+const element = document.getElementById("content");
+const elementBlob = await median.webScreenshot.captureElement(element);
 ```
 
 </CodeGroup>
@@ -71,23 +82,4 @@ const screenShotblob = median.webScreenshot.captureElement(element);
 
 Try out the plugin on iOS and Android with our interactive demo apps.
 
-|  |  |
-| --- | --- |
-|  |  |
-| iOS | Android |
-
----
-
-### Next Steps
-
-- [JavaScript Bridge Overview](/docs/javascript-bridge)
-- [Social Share](/docs/social-share)
-
-Copy Page
-
-- - [Overview](#overview)
-  - [Implementation Guide](#implementation-guide)
-  - - [Sharing the visible web content](#sharing-the-visible-web-content)
-    - [Sharing a web element](#sharing-a-web-element)
-    - [Exporting the screenshot](#exporting-the-screenshot)
-  - [Demo App](#demo-app)
+<AppetizeEmbed iosEmbedCode="2lktdphx5jimiqtwx4xodch6xu" androidEmbedCode="vkvzblxvepdydl22ucncao6e7u" />
