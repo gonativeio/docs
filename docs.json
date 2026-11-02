@@ -7,7 +7,10 @@
     "light": "#4299ed",
     "dark": "#4299ed"
   },
-  "favicon": "/97d785d-small-favicon_black-256.png",
+  "favicon": {
+    "light": "/images/median/median-logo-light.png",
+    "dark": "/images/median/median-logo-dark.png"
+  },
   "navigation": {
     "tabs": [
       {
@@ -514,5 +517,9 @@
         ]
       }
     ]
+  },
+  "logo": {
+    "light": "/images/median/median-logo-light.png",
+    "dark": "/images/median/median-logo-dark.png"
   }
 }
