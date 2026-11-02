@@ -134,7 +134,7 @@ For advanced configuration, add the parameters below to the **Advanced Configura
 
 <CodeGroup>
 
-```bash bash
+```javascript JavaScript
 {
 "active": true | false,
 "autoRegister": true | false,
@@ -173,7 +173,7 @@ Initialize the Sendbird SDK using the `appId` of your Sendbird application. Once
 
 <CodeGroup>
 
-```bash bash
+```javascript JavaScript
 median.sendbird.initialize(STRING);
 ```
 
@@ -185,7 +185,7 @@ median.sendbird.initialize(STRING);
 
 <CodeGroup>
 
-```bash bash
+```javascript JavaScript
 median.sendbird.isInitialized({callback: function})
 // Return value if initialized:
 {
@@ -206,7 +206,7 @@ Request push notification permission. On iOS and Android 13+, a system dialog is
 
 <CodeGroup>
 
-```bash bash
+```javascript JavaScript
 median.sendbird.promptNotification({'callback': function})
 
 // Return value:
@@ -223,7 +223,7 @@ Check whether push notification permission has been granted or denied.
 
 <CodeGroup>
 
-```bash bash
+```javascript JavaScript
 median.sendbird.notificationEnabled({'callback':  function})
 
 // Return value:
@@ -239,7 +239,11 @@ median.sendbird.notificationEnabled({'callback':  function})
 Log in a user on the Sendbird application using `userId`. If the user is not logged out, they stay logged in on future app starts. If `userId` does not exist, a new user is registered.
 
 <CodeGroup>
-  `bash bash median.sendbird.setUserId("USER_ID"); `
+
+```javascript JavaScript
+median.sendbird.setUserId("USER_ID");
+```
+
 </CodeGroup>
 
 **Parameters:** `userId` (string).
@@ -250,7 +254,7 @@ Returns the `userId` of the logged-in user.
 
 <CodeGroup>
 
-```bash bash
+```javascript JavaScript
 median.sendbird.getUserId({callback:  function})
 // Return value:
 {
@@ -266,7 +270,7 @@ Check whether the user is connected to the Sendbird server after logging in.
 
 <CodeGroup>
 
-```bash bash
+```javascript JavaScript
 median.sendbird.isConnected({callback:  function})
 // Return value:
 {
@@ -282,7 +286,7 @@ Update the nickname and profile image URL of the logged-in user.
 
 <CodeGroup>
 
-```bash bash
+```javascript JavaScript
 median.sendbird.updateUserInfo({
  nickname:  STRING,  // optional
  profileImageUrl:  STRING,  // optional
@@ -304,7 +308,7 @@ Log out the current user: disconnects from Sendbird, removes user details from t
 
 <CodeGroup>
 
-```bash bash
+```javascript JavaScript
 median.sendbird.logout({callback:  function})
 
 // Return value
@@ -321,7 +325,7 @@ Disconnect the current session. The user remains logged in and details stay save
 
 <CodeGroup>
 
-```bash bash
+```javascript JavaScript
 median.sendbird.disconnect({callback:  function})
 
 // Return value
@@ -338,7 +342,7 @@ Creates a group channel. Returns success and the channel URL.
 
 <CodeGroup>
 
-```bash bash
+```javascript JavaScript
 median.sendbird.createGroupChannel({
   name:  STRING,
   coverImageUrl:  STRING,  // optional
@@ -375,7 +379,7 @@ Displays Sendbird’s messaging UI with the user’s group channels. Users can e
 
 <CodeGroup>
 
-```bash bash
+```javascript JavaScript
 median.sendbird.showUI();
 ```
 
@@ -393,7 +397,7 @@ Opens Sendbird’s UI and enters a channel by URL.
 
 <CodeGroup>
 
-```bash bash
+```javascript JavaScript
 median.sendbird.showChannelUI({ url: STRING });
 ```
 
@@ -413,7 +417,7 @@ Define this function on your webpage to run when the user closes the Sendbird UI
 
 <CodeGroup>
 
-```bash bash
+```javascript JavaScript
 function median_sendbird_uiclosed() {
   alert("UI Closed");
 }
@@ -429,16 +433,12 @@ Use this checklist to ensure Sendbird is working correctly in your app:
 
 ### Basic Functionality
 
-\*\*Basic Functionality⎘ Copy link
-
 - [ ] Sendbird plugin is enabled in Median App Studio and a new build has been generated
 - [ ] `median.sendbird.initialize(appId)` completes and `isInitialized` returns `initialized: true` with the expected `appId`
 - [ ] `setUserId` logs in (or registers) the expected user; `getUserId` returns the same id
 - [ ] `showUI` opens Sendbird’s channel list UI without JavaScript errors
 
 ### Push and Permissions
-
-\*\*Push and Permissions⎘ Copy link
 
 - [ ] `promptNotification` shows a permission dialog on iOS and Android 13+ where applicable
 - [ ] `notificationEnabled` reflects the system permission state after the user responds
@@ -447,15 +447,11 @@ Use this checklist to ensure Sendbird is working correctly in your app:
 
 ### Channels and UI
 
-\*\*Channels and UI⎘ Copy link
-
 - [ ] `createGroupChannel` returns `success` and a `channelUrl` when inputs are valid
 - [ ] `showChannelUI` opens the intended channel using that `channelUrl`
 - [ ] Closing the Sendbird UI triggers `median_sendbird_uiclosed` when defined
 
 ### Session Behavior
-
-\*\*Session Behavior⎘ Copy link
 
 - [ ] `isConnected` reflects connection after login
 - [ ] `logout` clears the session and unregister behavior matches expectations
@@ -465,44 +461,20 @@ Use this checklist to ensure Sendbird is working correctly in your app:
 
 ### Where do I get APNs or Firebase / FCM values?
 
-\*\*Where do I get APNs or Firebase / FCM values?⎘ Copy link
-
 The source documentation directs you to Apple’s APNs registration guide, Firebase **Project settings → Service accounts**, and Median support if you need help finding values.
 
 ### Push notifications are not arriving
-
-\*\*Push notifications are not arriving⎘ Copy link
 
 Confirm push is enabled in the Sendbird dashboard (**Settings → Push Notifications**), credentials are added, and for Android that `google-services.json` is uploaded in App Studio and the FCM server key is set in Sendbird (as described in this guide).
 
 ### Android build or FCM issues
 
-\*\*Android build or FCM issues⎘ Copy link
-
 Verify `google-services.json` is uploaded under **Build & Deploy** and that FCM is configured in Sendbird, not only in Firebase alone.
 
-<Info>
-  ## Still having trouble?
+## Still having trouble?
 
+<Info>
   For issues related to Sendbird's own configuration, permissions, or platform-specific behavior outside of Median.co, refer to [Sendbird's integration documentation.](https://sendbird.com/developer/tutorials)
 </Info>
 
 ---
-
-[Salesforce Marketing Cloud](/docs/salesforce-marketing-cloud)
-
-[JavaScript Bridge Overview](/docs/javascript-bridge)
-
-Copy Page
-
-- - [Why use Sendbird?](#why-use-sendbird)
-  - [When to use this plugin](#when-to-use-this-plugin)
-  - [What you'll do](#what-youll-do)
-  - [Prerequisites](#prerequisites)
-  - - [Key Concepts](#key-concepts)
-  - [Integration Guide](#integration-guide)
-  - - [Plugin Platform Setup](#plugin-platform-setup)
-    - [Median App Studio Configuration](#median-app-studio-configuration)
-    - [Website Configuration (JavaScript Bridge)](#website-configuration-javascript-bridge)
-  - [Testing](#testing)
-  - - [Troubleshooting](#troubleshooting)
