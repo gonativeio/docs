@@ -2,11 +2,12 @@
 title: "Keep Screen On"
 description: "Prevent the device screen from automatically locking or dimming while users are in your app"
 ---
+import { MedianLogo } from "/snippets/median-logo.jsx";
 
 The Keep Screen On JavaScript Bridge method lets you override the device's default screen-lock/timeout behavior so the screen stays awake while your app is in the foreground. It's part of Median's [Device Screen Control](https://docs.median.co/docs/device-screen-control) feature set, alongside [Screen Brightness](https://docs.median.co/docs/screen-brightness) and [Full Screen](https://docs.median.co/docs/full-screen).
 
 <Check>
-  ### **Developer Demo**
+  **Developer Demo**
 
   Display our demo page in your app to test during development [https://median.dev/device-screen-controls/](<https://median.dev/device-screen-controls/&#xA;>)
 </Check>
@@ -18,16 +19,15 @@ The Keep Screen On JavaScript Bridge method lets you override the device's defau
 * **QR code and barcode display**: Keep a boarding pass, ticket, or payment QR code visible long enough to be scanned, even if the user pauses before presenting it.
 * **Fitness and workout sessions**: Keep workout timers, stats, or instructional content visible throughout an active session without the screen dimming or locking.
 
-## Implementation Guide
-
-### JavaScript Bridge Implementation
+## JavaScript Bridge Implementation
 
 #### Enable Keep Screen On
 
 Prevents the device screen from locking or dimming while your app is active.
 
+<MedianLogo />
 <CodeGroup>
-  ```bash bash
+  ```JavaScript JavaScript
   median.screen.keepScreenOn();
   ```
 </CodeGroup>
@@ -36,20 +36,9 @@ Prevents the device screen from locking or dimming while your app is active.
 
 Returns the screen to the device's normal lock/timeout behavior.
 
+<MedianLogo />
 <CodeGroup>
-  ```bash bash
+  ```JavaScript JavaScript
   median.screen.keepScreenNormal();
   ```
 </CodeGroup>
-
-***
-
-[Screen Brightness](/docs/screen-brightness)
-
-[Full Screen](/docs/full-screen)
-
-Copy Page
-
-* * [Why Use Keep Screen On](#why-use-keep-screen-on)
-  * [Implementation Guide](#implementation-guide)
-  * * [JavaScript Bridge Implementation](#javascript-bridge-implementation)
