@@ -1,35 +1,59 @@
 ---
 title: "In-App Purchases"
-description: "Median's Native In-App Purchases (IAP) Plugin provides full support for integrating Apple's StoreKit and Google Play Billing libraries. This allows you to securely offer digital content, subscriptions, and one-time purchases directly within your mobile app."
 ---
 
-## Accepting Payments
+Median's In-App Purchases (IAP) plugin integrates Apple's StoreKit and Google Play Billing, so you can securely sell digital content, subscriptions, and one-time purchases inside your mobile app.
 
-To accept payments through in-app purchases, it is critical to follow the Apple App Store and Google Play Store guidelines. Both platforms have strict requirements that determine whether your app must use their respective IAP systems for digital goods and services.
+<Warning>
+  **Check whether your app must use in-app purchases**
 
-📖 Learn more: [FAQ](/docs/faq-publishing#how-can-i-accept-payments-within-my-app)
+  Apple and Google both require their own billing systems for most digital goods and services sold in an app. Review each platform's guidelines before you implement payments, because using the wrong payment method is a common reason apps are rejected.
 
-## Apple In-App Purchases
+  - [Apple App Review Guidelines: In-App Purchase (section 3.1)](https://developer.apple.com/app-store/review/guidelines/#in-app-purchase)
+  - [Google Play Payments policy](https://support.google.com/googleplay/android-developer/answer/9858738)
+</Warning>
 
-Apple mandates IAPs for a wide range of digital content inside iOS apps, covering consumables (like coins), non‑consumables, non‑renewable subscriptions, and auto‑renewing subscriptions. Learn how to implement implement Median's In-App Purchase plugin to offer an end-to-end purchasing flow in your app.
+## Platform guides
 
-📖 Learn how to set up Apple IAPs: [Apple In-App Purchases](/docs/apple-iap)
+<CardGroup cols={1}>
+  <Card title="Apple In-App Purchases" icon="apple" href="/docs/apple-iap">
+    Integrate StoreKit to support consumables, non-consumables, and auto-renewing subscriptions on iOS.
+  </Card>
+  <Card title="Google In-App Purchases" icon="google-play" href="/docs/google-iap">
+    Integrate Google Play Billing to support one-time purchases and subscriptions on Android.
+  </Card>
+  <Card title="Accepting payments" icon="credit-card" href="/docs/faq-publishing#how-can-i-accept-payments-within-my-app">
+    Understand App Store and Google Play compliance requirements before you implement in-app purchases.
+  </Card>
+</CardGroup>
 
-## Google In-App Purchases
+## When you need in-app purchases
 
-Median enables Google Play IAPs, like one‑time purchases and subscriptions via Google Play. Learn how to implement implement Median's In-App Purchase plugin to offer an end-to-end purchasing flow through the Google Billing API in your app.
+| What you sell | In-app purchases required? |
+| --- | --- |
+| Digital content or features used in the app, such as premium features, in-app currency, or content unlocks | **Yes** |
+| Subscriptions to digital content or services | **Yes**, in most cases |
+| Physical goods,s such as clothing or groceries | **No**. You can use your own payment provider. |
+| Services delivered outside the app, such as rides, bookings, or appointments | **No**. You can use your own payment provider. |
 
-📖 Learn how to set up Google IAPs: [Google In-App Purchases](/docs/google-iap)
+Rules differ by platform, app category, and region, and they change over time. Treat this table as a starting point and confirm the details in the official guidelines linked above.
 
-***
+## Product types
 
-### Next Steps
+| Product type | Apple App Store | Google Play |
+| --- | --- | --- |
+| Consumable (can be bought repeatedly, such as credits) | Consumable | One-time product (consumable) |
+| Non-consumable (bought once, such as a permanent unlock) | Non-consumable | One-time product (non-consumable) |
+| Auto-renewing subscription | Auto-renewable subscription | Subscription |
+| Fixed-term subscription that doesn't renew | Non-renewing subscription | Prepaid subscription plan |
 
-* [Apple In-App Purchases](/docs/apple-iap)
-* [Google In-App Purchases](/docs/google-iap)
+## Testing purchases
 
-Copy Page
+Test purchases before you submit your app. Neither platform charges you for test transactions.
 
-* * [Accepting Payments](#accepting-payments)
-  * [Apple In-App Purchases](#apple-in-app-purchases)
-  * [Google In-App Purchases](#google-in-app-purchases)
+- **iOS:** Use [sandbox testers](https://developer.apple.com/documentation/storekit/testing-in-app-purchases-with-sandbox) from App Store Connect, or distribute a build through TestFlight.
+- **Android:** Add [license testers](https://developer.android.com/google/play/billing/test) in Google Play Console and install the app from an internal testing track.
+
+<Tip>
+  Test on a physical device. App Store and Google Play billing don't work in the App Studio simulators.
+</Tip>

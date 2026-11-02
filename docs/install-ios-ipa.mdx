@@ -6,9 +6,10 @@ description: "Install iOS IPAs for Device Testing"
 This direct-install workflow is useful for development profile builds and quick early testing. For App Store release testing, use a distribution profile with **Upload to App Store Connect** set to **Automatic**, then test the processed build through TestFlight.
 
 <Info>
-  ### **Device must be registered**
+  **Device must be registered**
 
-  This guide assumes your device is enrolled as an iOS tester, as covered in Registering Testing Devices, and that signing is complete per Configure Signing for Your App. Installation will fail on a device that hasn't been registered.
+This guide assumes your device is enrolled as an iOS tester, as covered in Registering Testing Devices, and that signing is complete per Configure Signing for Your App. Installation will fail on a device that hasn't been registered.
+
 </Info>
 
 ## Step-by-Step
@@ -45,29 +46,8 @@ Once the installation page is displayed, click the **Install iOS App** button an
 
 ### Why do I need to enable Developer Mode before installing?
 
-**Why do I need to enable Developer Mode before installing?⎘ Copy link
+iOS only installs apps from outside the App Store when Developer Mode is turned on. This applies to every ad hoc install, not only apps built with Median. To turn it on, go to **Settings → Privacy & Security → Developer Mode**.
 
-iOS blocks installation of apps signed outside the App Store unless Developer Mode is explicitly enabled in Privacy & Security settings — this applies to any ad-hoc install, not just Median's.
+### Why won't the QR code scan or the install page load?
 
-### The QR code won't scan or the install page won't load — what's wrong?
-
-**The QR code won't scan or the install page won't load — what's wrong?⎘ Copy link
-
-iOS blocks installation of apps signed outside the App Store unless Developer Mode is explicitly enabled in Privacy & Security settings — this applies to any ad-hoc install, not just Median's.
-
-***
-
-[Building an iOS Binary with App Groups Entitlement](/docs/building-an-ios-binary-for-apps-using-app-groups-entitlements)
-
-[Build iOS from Source](/docs/build-ios-from-source)
-
-Copy Page
-
-* * [Step-by-Step](#step-by-step)
-
-  * * [Step 1: Enable Developer Mode](#step-1-enable-developer-mode)
-    * [Step 2: Get the install link or QR code](#step-2-get-the-install-link-or-qr-code)
-    * [Step 3: Scan the QR code](#step-3-scan-the-qr-code)
-    * [Step 4: Install the app](#step-4-install-the-app)
-
-  * [Frequently Asked Questions](#frequently-asked-questions)
+Scan the code with the iPhone's built-in Camera app and open the link in Safari. Other browsers and QR code apps may not support app installs. If the page still doesn't load, check that the device is connected to the internet and that the device is registered for the build. Ad hoc builds only install on registered devices.
