@@ -25,7 +25,7 @@ A JWT token will be required to join Zoom video calls. Generate a JWT using your
 Run the following JS Bridge method with the JWT token, meeting number, and an optional username and password as seen below:
 
 <CodeGroup>
-  ```bash bash
+  ```javascript JavaScript
   // If passed to the `join` method as a callback this will be called upon conclusion of the call
   function zoom_callback(data) {
       if (data.error) {
@@ -34,17 +34,17 @@ Run the following JS Bridge method with the JWT token, meeting number, and an op
           console.log('Zoom Status: ' + data.status);
       }
   }
-
-// This command returns a promise if 'callback' is not passed
-median.zoom.join({
-token: string // JWT
-sessionName: string // optional
-userIdentity: string // optional
-password: string // optional
-callback: string | function //optional
-});
-
-```
+  
+  // This command returns a promise if 'callback' is not passed
+  median.zoom.join({
+  token: string // JWT
+  sessionName: string // optional
+  userIdentity: string // optional
+  password: string // optional
+  callback: string | function //optional
+  });
+  
+  ```
 </CodeGroup>
 
 > Details of the query parameters:
@@ -53,5 +53,3 @@ callback: string | function //optional
 > * `sessionName`: Name of the video call room
 > * `userIdentity`: The name that will be shown on the video call room for the user joining the room.
 > * `password`: Password for the session being joined
-
-***
