@@ -485,13 +485,15 @@ Use this checklist to ensure Sendbird is working correctly in your app:
 
 ### Troubleshooting
 
-### Where do I get APNs or Firebase / FCM values?
+<AccordionGroup>
+  <Accordion title="Where do I get APNs or Firebase / FCM values?">
+    The source documentation directs you to Apple’s APNs registration guide, Firebase Project settings → Service accounts, and Median support if you need help finding values.
+  </Accordion>
 
-The source documentation directs you to Apple’s APNs registration guide, Firebase **Project settings → Service accounts**, and Median support if you need help finding values.
-
-### Push notifications are not arriving
-
-Confirm push is enabled in the Sendbird dashboard (**Settings → Push Notifications**), credentials are added, and for Android that `google-services.json` is uploaded in App Studio and the FCM server key is set in Sendbird (as described in this guide).
+  <Accordion title="Push notifications are not arriving">
+    Confirm push is enabled in the Sendbird dashboard (Settings → Push Notifications), credentials are added, and for Android that google-services.json is uploaded in App Studio and the FCM server key is set in Sendbird (as described in this guide).
+  </Accordion>
+</AccordionGroup>
 
 ### Android build or FCM issues
 
