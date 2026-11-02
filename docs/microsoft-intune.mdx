@@ -1,89 +1,121 @@
 ---
 title: "Microsoft Intune"
-description: "Add Microsoft Intune capabilities to your app to support Mobile Device Management (MDM) and Mobile Application Management (MAM) using the Microsoft Endpoint Manager"
+description: "Add Microsoft Intune MDM and MAM capabilities to your iOS and Android app"
 ---
 
-Median’s Microsoft Intune plugin integrates the **Intune Mobile SDK** into your iOS and Android apps. This integration allows your app to utilize Intune’s device management capabilities. For detailed information on the Intune App SDK, visit the official [Microsoft Intune App SDK documentation](https://learn.microsoft.com/en-us/mem/intune/developer/app-sdk).
+Median's Microsoft Intune plugin integrates the **Intune App SDK** into your iOS and Android apps, so you can manage devices and protect corporate data with Mobile Device Management (MDM) and Mobile Application Management (MAM) through [Microsoft Intune](https://learn.microsoft.com/en-us/mem/intune/fundamentals/what-is-intune)<i class="fa fa-external-link" style="paddingLeft: 5px"></i>.
+
+For details on the SDK itself, see the official [Microsoft Intune App SDK documentation](https://learn.microsoft.com/en-us/mem/intune/developer/app-sdk)<i class="fa fa-external-link" style="paddingLeft: 5px"></i>.
+
+<Info>
+**Microsoft product names**
+
+Microsoft has renamed several products referenced in older guides. **Azure Active Directory** is now **Microsoft Entra ID**, and **Microsoft Endpoint Manager** is now the **Microsoft Intune admin center**. Menu labels in the Microsoft portals may differ slightly from the steps below as Microsoft updates its interface.
+
+</Info>
+
+## Use cases
+
+The Microsoft Intune plugin is a good fit for apps that need to:
+
+| Use Case                         | Example                                                                                          |
+| -------------------------------- | ------------------------------------------------------------------------------------------------ |
+| **Enterprise Applications**      | Internal apps that handle sensitive business data and must comply with corporate device policies |
+| **Managed Device Fleets**        | Apps deployed to company-owned iOS and Android devices enrolled in Intune                        |
+| **Bring Your Own Device (BYOD)** | Apps used on personal devices where corporate data must be protected at the app level            |
+| **Regulated Industries**         | Healthcare, finance, and government apps that must meet security and compliance requirements     |
 
 ## Prerequisites
 
 To integrate and configure the Intune Mobile SDK into your app, ensure you have the following:
 
-* Microsoft Intune account
-* Client ID
-* Tenant ID
-* Client secret
+- Microsoft Intune account
+- Client ID
+- Tenant ID
+- Client secret
 
 The implementation steps below showcase where to find each of the required configuration parameters.
 
-## Implementation Guide
+## Integration guide
 
-### Create a client ID and a tenant ID
+<Steps>
+  <Step title="Register your app and get the Client ID and Tenant ID">
+    Register your app in Microsoft Entra ID to get your **Client ID** and **Tenant ID**.
 
-To create your Client ID and Tenant ID for your app, follow these steps:
+    1. Sign in to the [Azure portal](https://portal.azure.com).
+    2. Under **Azure services**, select **Microsoft Entra ID**.
+    3. In the left menu, select **App registrations**.
+    4. Select **New registration**.
+    5. Enter a name for your app, and under **Supported account types**, select **Accounts in this organizational directory only**.
+    6. Select **Register**.
+    7. On the app's **Overview** page, copy the **Application (client) ID** and **Directory (tenant) ID**. You'll need both values later.
 
-1. Log in to [https://portal.azure.com](https://portal.azure.com).
-2. Under **Azure Services**, click **Azure Active Directory**.
-3. In the left-hand menu, select **App registrations**.
-4. On the main page, click **New registration**.
-5. In the **Register an Application** screen, enter your app’s name. Ensure that the Accounts in this organizational directory only option is selected.
-6. Click **Register** to create your application.
-7. After registration, you will see the **Application (Client) ID** and **Tenant ID.** Copy these values for later use.
+  </Step>
 
-### Create a client secret
+  <Step title="Create a Client Secret">
+    Create a Client Secret that your app uses to authenticate with Microsoft.
 
-To generate a Client Secret for your app, follow these steps:
+    1. In the left menu, select **Certificates & secrets**.
+    2. Under **Client secrets**, select **New client secret**.
+    3. Enter a description, such as **Client Secret for [your app name]**.
+    4. Under **Expires**, choose an expiration period that follows your organization's security policy.
+    5. Select **Add**.
+    6. Copy the secret's **Value**.
 
-1. In the left menu, click **Certificates & secrets**.
+    <Warning>
+      The secret value is only shown once, right after you create it. Copy it before you leave the page. If you lose it, you'll need to create a new secret.
+    </Warning>
 
-2. Under the **Client secrets** section, click **New client secret**.
+  </Step>
 
-3. In the Add a client secret popup, do the following:
+  <Step title="Grant Microsoft Graph API permissions">
+    Give your app read access to devices and groups, and permission to manage Intune devices.
 
-   1. Enter a description for your client secret, such as **Client Secret for\[your app name]**.
-   2. Under **Expires**, select Never to ensure the secret remains valid indefinitely. You may need to configure a different value based on your security policies.
-   3. Click **Add**.
+    | Permission | Purpose |
+    | --- | --- |
+    | `Device.Read.All` | Read device properties in your directory |
+    | `Group.Read.All` | Read group information in your directory |
+    | `DeviceManagementManagedDevices.ReadWrite.All` | Read and manage Intune managed devices |
 
-4. The newly created client secret will appear under **Client secrets**. Copy its value for future use.
+    1. In the left menu, select **API permissions**.
+    2. Select **Add a permission**, then select **Microsoft Graph**.
+    3. Select **Application permissions**.
+    4. Search for and select each permission in the table above, then select **Add permissions**.
+    5. Select **Grant admin consent for [your organization]**, then select **Yes** to confirm.
 
-### Add permissions to your app in Microsoft Azure
+    When consent is granted, the **Status** column shows **Granted for [your organization]** for each permission.
 
-To grant your app the necessary permissions, follow these steps:
+  </Step>
+</Steps>
 
-1. In the left navigation menu, click **API permissions**.
+## Technical Best Practises
 
-2. Under **Configured permissions**, click **Add a permission**.
+### Follow the principle of least privilege
 
-3. In the **Request API permissions** popup, do the following:
+Grant only the three permissions listed above. Avoid adding additional Microsoft Graph permissions to this app registration unless Median or Microsoft documentation requires them.
 
-   1. Click **Microsoft Graph**.
+### Use a dedicated app registration
 
-   2. Select **Application permissions**.
+Create a separate app registration for each Median app and each environment (for example, testing and production). This makes it easier to rotate credentials, audit access, and revoke access without affecting other apps.
 
-   3. In the **Select permissions** section, search and select the following permissions:
+### Rotate secrets before they expire
 
-      1. Device.Read.All
-      2. Group.Read.All
-      3. DeviceManagementManagedDevices.ReadWrite.All
+Choose the shortest expiration period your team can manage, and rotate the Client Secret before it expires. After rotating, update the value in Median and rebuild your app if required.
 
-   4. Click Add permissions to save the selected permissions. The permissions are saved for the app you registered above in step 1.
+### Protect your credentials
 
-4. Under **Configured permissions**, click **Grant admin consent** for \[your app name].
+Store the Client Secret in a secrets manager or password vault. If you suspect it has been exposed, delete it in **Certificates & secrets** and create a new one immediately.
 
-5. Click **Yes** to confirm your request. The **Status** column will now show **Granted** for your app.
+### Verify consent before testing
 
-***
+Confirm that all three permissions show **Granted** in the **Status** column before testing on a device. Missing consent is the most common cause of Intune configuration errors.
 
-[Jailbreak/Root Detection](/docs/jailbreak-root-detection)
+## Troubleshooting
 
-[Integrations](/docs/integrations)
-
-Copy Page
-
-* * [Prerequisites](#prerequisites)
-
-  * [Implementation Guide](#implementation-guide)
-
-  * * [Create a client ID and a tenant ID](#create-a-client-id-and-a-tenant-id)
-    * [Create a client secret](#create-a-client-secret)
-    * [Add permissions to your app in Microsoft Azure](#add-permissions-to-your-app-in-microsoft-azure)
+| Issue                                         | Cause                                                  | Solution                                                                     |
+| --------------------------------------------- | ------------------------------------------------------ | ---------------------------------------------------------------------------- |
+| **Grant admin consent** button is disabled    | Your account lacks the required administrator role     | Ask a Global Administrator or Privileged Role Administrator to grant consent |
+| **Status** does not show **Granted**          | Admin consent was not completed                        | Click **Grant admin consent** and confirm                                    |
+| Error `AADSTS7000215` (invalid client secret) | The Secret ID was used instead of the Secret **Value** | Use the secret **Value**. If you no longer have it, create a new secret      |
+| Error `AADSTS7000222` (expired client secret) | The Client Secret has expired                          | Create a new secret in **Certificates & secrets** and update it in Median    |
+| Cannot find the Client ID or Tenant ID        | You are not on the app's **Overview** page             | Open **App registrations**, select your app, and view **Overview**           |
