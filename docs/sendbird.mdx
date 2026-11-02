@@ -487,17 +487,17 @@ Use this checklist to ensure Sendbird is working correctly in your app:
 
 <AccordionGroup>
   <Accordion title="Where do I get APNs or Firebase / FCM values?">
-    Use [Apple’s APNs registration guide](https://developer.apple.com/documentation/usernotifications/registering-your-app-with-apns) to register your app, and in Firebase head over to  **Project settings → Service accounts** to generate your credentials.
+    For iOS follow [Apple’s APNs registration guide](https://developer.apple.com/documentation/usernotifications/registering-your-app-with-apns), and for Android  head over to  **Project settings → Service accounts** to generate your credentials in your Firebase account.
   </Accordion>
 
   <Accordion title="Push notifications are not arriving">
     Confirm push is enabled in the Sendbird dashboard (Settings → Push Notifications), credentials are added, and for Android that google-services.json is uploaded in App Studio and the FCM server key is set in Sendbird (as described in this guide).
   </Accordion>
+
+  <Accordion title="Android build or FCM issues">
+    Verify `google-services.json` is uploaded under **Build & Deploy** and that FCM is configured in Sendbird, not only in Firebase alone.
+  </Accordion>
 </AccordionGroup>
-
-### Android build or FCM issues
-
-Verify `google-services.json` is uploaded under **Build & Deploy** and that FCM is configured in Sendbird, not only in Firebase alone.
 
 ## Still having trouble?
 
