@@ -530,18 +530,13 @@
         "label": "Release Notes"
       },
       {
-        "href": "https://median.co/privacy",
-        "label": "Privacy Policy"
-      },
-      {
         "href": "https://median.co/terms",
         "label": "Online Terms"
+      },
+      {
+        "href": "https://median.co/privacy",
+        "label": "Privacy Policy"
       }
-    ],
-    "primary": {
-      "type": "button",
-      "label": "Create New App",
-      "href": "https://median.co/new"
-    }
+    ]
   }
 }
