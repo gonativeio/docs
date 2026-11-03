@@ -3,6 +3,8 @@ title: "Using Listeners"
 description: "Manage listener functions to respond to native events"
 ---
 
+import MedianLogo from '/snippets/median-logo.jsx';
+
 # Overview
 
 The median-js-bridge NPM package allows you to register listener functions that respond to native events triggered within your app. These listeners function similarly to standard JavaScript callbacks but offer a more streamlined and reliable integration with native mobile features.
@@ -16,6 +18,8 @@ Listeners are event-driven functions that execute when a native event is trigger
 Listeners are added using the .addListener() method available on specific plugin interfaces. Each listener returns an listenerId, which can be used later to remove the listener.
 
 ### Example: App Resumed Event
+
+<MedianLogo />
 
 <CodeGroup>
 
@@ -33,23 +37,35 @@ Respond to push notifications sent via OneSignal.
 
 [Documentation- Handling notification Taps](https://docs.median.co/docs/handling-notifications-taps)
 
-```
+<MedianLogo />
+
+<CodeGroup>
+
+```javascript JavaScript
 const listenerId = Median.oneSignalPushOpened.addListener((data) => {
     console.log(JSON.stringify(data));
 });
 ```
 
+</CodeGroup>
+
 ### Example: Share Into App
 
 Handle data shared into your app using the share intent.
 
-[Documentation](share-into-app)
+[Documentation- Share into app](share-into-app)
 
-```
+<MedianLogo />
+
+<CodeGroup>
+
+```javascript JavaScript
 const listenerId = Median.shareToApp.addListener((data) => {
     console.log(data.url, data.subject);
 });
 ```
+
+</CodeGroup>
 
 ### Example: Device Shake (Haptics Plugin)
 
@@ -57,11 +73,17 @@ Capture device shake gestures for enhanced interaction.
 
 [Documentation](https://docs.median.co/docs/haptics)
 
-```
+<MedianLogo />
+
+<CodeGroup>
+
+```javascript JavaScript
 const listenerId = Median.deviceShake.addListener(() => {
     console.log("Device shake listener");
 });
 ```
+
+</CodeGroup>
 
 ### Example: AppsFlyer Conversion Data
 
