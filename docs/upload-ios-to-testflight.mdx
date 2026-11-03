@@ -41,7 +41,7 @@ Most Median self-publishing workflows do **not** require Xcode. For most develop
 
 ### 1. Register app to App Store Connect
 
-To upload your app for TestFlight, you will first need to register your app in your App Store Connect account by following the steps in the [official documentation](https://developer.apple.com/help/app-store-connect/create-an-app-record/add-a-new-app). This includes registering your app name and [bundle ID](./app-identifiers).
+To upload your app for TestFlight, you will first need to register your app in your App Store Connect account by following the steps in the [official documentation <Icon icon="arrow-up-right-from-square" size={12} />](https://developer.apple.com/help/app-store-connect/create-an-app-record/add-a-new-app). This includes registering your app name and [bundle ID](./app-identifiers).
 
 ### 2. Open app in Xcode
 
@@ -49,13 +49,13 @@ See [Build iOS from source](https://median.co/docs/build-ios-from-source) to dow
 
 In Xcode, select YOUR\_APP from the left panel as seen in Figure 1:
 
-<Frame caption="Xcode- Select your app">
+<Frame caption="Figure 1: Xcode – Select your app">
   <img src="/images/docs/05b22ad-Xcode_SelectApp.png" alt="Xcode project navigator with the app project selected in the left panel" />
 </Frame>
 
 This will open another panel in the middle with various options. Select your target app in the "**TARGETS**" section and select "**Signing & Capabilities**". Now, choose your organization in the "**TEAM**" section and include your Bundle ID that you used to register your app in the previous section as shown in Figure 2:
 
-<Frame caption="Xcode- Add signing configuration">
+<Frame caption="Figure 2: Xcode – Add signing configuration">
   <img src="/images/docs/ead80d3-Xcode_SelectOrganization.png" alt="Xcode Signing & Capabilities tab with the app target, Team and Bundle Identifier set" />
 </Frame>
 
@@ -65,7 +65,7 @@ Now, select **Product > Archive** from the top to archive your app.
 
 If there are no build errors, Xcode will open a new window with your newly archived app as seen in Figure 3.
 
-<Frame caption="Xcode- Archive your app">
+<Frame caption="Figure 3: Xcode – Archived app">
   <img src="/images/docs/e86d630-Xcode_ArchivedApp.png" alt="Xcode Organizer window listing the newly archived app" />
 </Frame>
 
@@ -73,11 +73,11 @@ If there are no build errors, Xcode will open a new window with your newly archi
 
 As seen in Figure 3, Xcode provides an option named "**Validate App**" to conduct an initial, automated limited assessment of the app and offer feedback. If you're looking to verify your app's readiness for TestFlight or the App Store submission without immediately submitting it, select your archive and then click on "**Validate App**".
 
-<Frame caption="Xcode- Validate your app">
+<Frame caption="Figure 4: Xcode – Validate app">
   <img src="/images/docs/0587103-Xcode_ValidateApp.png" alt="Xcode Organizer with the archive selected and the Validate App button" />
 </Frame>
 
-<Frame caption="Xcode- Validate your app">
+<Frame caption="Figure 5: Xcode – App validated">
   <img src="/images/docs/81b7852-Xcode_ValidatedApp.png" alt="Xcode dialog confirming the app was validated successfully" />
 </Frame>
 
@@ -85,31 +85,31 @@ As seen in Figure 3, Xcode provides an option named "**Validate App**" to conduc
 
 When your app is successfully validated, you can proceed to distributing the app to TestFlight by selecting "**Distribute App**". Select "**TestFlight Internal Only**" to allow testing for internal testers of your organization as seen in Figure 6:
 
-<Frame caption="Xcode- App Distribution Method">
+<Frame caption="Figure 6: Xcode – App distribution method">
   <img src="/images/docs/8fdc71f-Xcode_DistributeApp.png" alt="Xcode distribution options with TestFlight Internal Only selected" />
 </Frame>
 
-<Frame caption="Xcode: App Upload complete">
+<Frame caption="Figure 7: Xcode – App upload complete">
   <img src="/images/docs/bdd2b1f-Xcode_DistributedAppOnTestFlight.png" alt="Xcode dialog confirming the app was uploaded to App Store Connect for TestFlight" />
 </Frame>
 
 ### 6. App Store Connect
 
-Visit [App Store Connect's Apps page](https://appstoreconnect.apple.com/apps) and open your registered app from the list. Select "**TestFlight**" from the top bar to see your newly uploaded TestFlight distribution as seen in Figure 8 below.
+Visit [App Store Connect's Apps page <Icon icon="arrow-up-right-from-square" size={12} />](https://appstoreconnect.apple.com/apps) and open your registered app from the list. Select "**TestFlight**" from the top bar to see your newly uploaded TestFlight distribution as seen in Figure 8 below.
 
-<Frame caption="App Store Connect - TestFlight">
+<Frame caption="Figure 8: App Store Connect – TestFlight build with Missing Compliance">
   <img src="/images/docs/2edf532-AppStoreConnect_TestFlight.png" alt="App Store Connect TestFlight tab showing the uploaded build with Missing Compliance" />
 </Frame>
 
 If you are seeing "**Missing Compliance**" such as above, click "**Manage**", choose "**None of the algorithms mentioned above**" from the options and hit "**Save**" as seen in Figure 9 below:
 
-<Frame caption="App Store Connect- Resolve Missing Compliance">
+<Frame caption="Figure 9: App Store Connect – Resolve Missing Compliance">
   <img src="/images/docs/aad6617-AppStoreConnect_ManageCompliance.png" alt="App Store Connect export compliance dialog with None of the algorithms mentioned above selected" />
 </Frame>
 
 Now, you will see that your app is ready to be Tested as seen in Figure 10:
 
-<Frame caption="TestFlight- Internal Testing">
+<Frame caption="Figure 10: App Store Connect – Build ready to test">
   <img src="/images/docs/332a967-AppStoreConnect_ReadyToTest.png" alt="App Store Connect TestFlight tab showing the build as Ready to Test" />
 </Frame>
 
@@ -117,25 +117,25 @@ Now, you will see that your app is ready to be Tested as seen in Figure 10:
 
 Now, if you don't already have an internal testers group, click the "**+**" icon besides the "**Internal Testing**" label (see Figure 10) to create a new Internal Testers group as seen below in Figure 11:
 
-<Frame caption="App Store Connect- Create new Internal Testers group">
+<Frame caption="Figure 11: App Store Connect – Create new internal testing group">
   <img src="/images/docs/a287926-AppStoreConnect_InternalTesters.png" alt="App Store Connect dialog for creating a new Internal Testing group" />
 </Frame>
 
 Once the group is created, it will appear directly below the "**Internal Testers**" label as seen previously. Click the newly created group and you will see the following page with an option named "**Testers (0)**" to add the testers:
 
-<Frame caption="App Store Connect- New Internal Tester Group">
+<Frame caption="Figure 12: App Store Connect – New internal testing group">
   <img src="/images/docs/e37ace2-AppStoreConnect_AddInternalTesters.png" alt="New internal testing group page in App Store Connect with Testers (0)" />
 </Frame>
 
 Click the "**+**" icon besides the "**Testers (0)**" label and add testers from the list of users in your organization. Once added, you will see the list of invited testers as seen in Figure 13 below:
 
-<Frame caption="App Store Connect- Added Testers">
+<Frame caption="Figure 13: App Store Connect – Added testers">
   <img src="/images/docs/f67178b-AppStoreConnect_TestersAdded.png" alt="Internal testing group in App Store Connect listing the invited testers" />
 </Frame>
 
 Each tester will receive an email invite that they can use to test the newly uploaded app on the **TestFlight** iOS app.
 
-<Frame caption="Email Inbox- TestFlight Invite">
+<Frame caption="Figure 14: Email – TestFlight invite">
   <img src="/images/docs/9acf8b9-TestFlightInvite.png" alt="TestFlight email invitation to test the app" />
 </Frame>
 
