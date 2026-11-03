@@ -71,7 +71,7 @@ const listenerId = Median.shareToApp.addListener((data) => {
 
 Capture device shake gestures for enhanced interaction.
 
-[Documentation](https://docs.median.co/docs/haptics)
+[Documentation- Haptics](https://docs.median.co/docs/haptics)
 
 <MedianLogo />
 
@@ -89,41 +89,34 @@ const listenerId = Median.deviceShake.addListener(() => {
 
 Receive install attribution and conversion data from AppsFlyer.
 
-[Documentation](appsflyer)
+[Documentation- AppsFlyer](appsflyer)
 
-```
+<MedianLogo />
+
+<CodeGroup>
+
+```javascript JavaScript
 const listenerId = Median.appsFlyerConversionData.addListener((conversionDataMap) => {
     console.log(conversionDataMap.af_status);
 });
 ```
 
+</CodeGroup>
+
 ## Removing Event Listeners
 
 To stop listening for a specific event, use the `.removeListener()` method with the stored `listenerId`.
 
-```
+<CodeGroup>
+
+```javascript JavaScript
 Median.deviceShake.removeListener(listenerId);
 ```
+
+</CodeGroup>
 
 # Best Practices for Listener Management
 
 * Always store the listenerId if you intend to remove the listener later.
 * Register listeners early, ideally within a component’s useEffect or lifecycle hook.
 * Remove listeners on unmount to avoid memory leaks in Single-Page Applications (SPAs).
-
-***
-
-[Basic Usage](/docs/basic-usage)
-
-[SPA Navigation](/docs/npm-package-spa-navigation)
-
-Copy Page
-
-* * [Overview](#overview)
-
-  * [Listener Implementation](#listener-implementation)
-
-  * * [Registering Event Listeners](#registering-event-listeners)
-    * [Removing Event Listeners](#removing-event-listeners)
-
-  * [Best Practices for Listener Management](#best-practices-for-listener-management)
