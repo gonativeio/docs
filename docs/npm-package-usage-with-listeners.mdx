@@ -3,6 +3,8 @@ title: "Using Listeners"
 description: "Manage listener functions to respond to native events"
 ---
 
+import { MedianLogo } from "/snippets/median-logo.jsx";
+
 # Overview
 
 The median-js-bridge NPM package allows you to register listener functions that respond to native events triggered within your app. These listeners function similarly to standard JavaScript callbacks but offer a more streamlined and reliable integration with native mobile features.
@@ -17,87 +19,106 @@ Listeners are added using the .addListener() method available on specific plugin
 
 ### Example: App Resumed Event
 
-```
+<MedianLogo />
+
+<CodeGroup>
+
+```javascript JavaScript
 const listenerId = Median.appResumed.addListener(() => {
     console.log("App resumed listener triggered");
 });
 ```
 
+</CodeGroup>
+
 ### Example: OneSignal Push Notification
 
 Respond to push notifications sent via OneSignal.
 
-[Documentation](https://docs.median.co/docs/handling-notifications-taps)
+Related: [Handling Notifications Taps](/docs/handling-notifications-taps)
 
-```
-const listenerId = Median.oneSignalPushOpened.addListener((data) => {
+<MedianLogo />
+
+<CodeGroup>
+
+```javascript JavaScript
+const listenerId = Median.onesignal.pushOpened.addListener((data) => {
     console.log(JSON.stringify(data));
 });
 ```
+
+</CodeGroup>
 
 ### Example: Share Into App
 
 Handle data shared into your app using the share intent.
 
-[Documentation](share-into-app)
+Related: [Share into app](/docs/share-into-app)
 
-```
-const listenerId = Median.shareToApp.addListener((data) => {
+<MedianLogo />
+
+<CodeGroup>
+
+```javascript JavaScript
+const listenerId = Median.shareIntoApp.shareResult.addListener((data) => {
     console.log(data.url, data.subject);
 });
 ```
+
+</CodeGroup>
 
 ### Example: Device Shake (Haptics Plugin)
 
 Capture device shake gestures for enhanced interaction.
 
-[Documentation](https://docs.median.co/docs/haptics)
+Related: [Haptics](/docs/haptics)
 
-```
+<MedianLogo />
+
+<CodeGroup>
+
+```javascript JavaScript
 const listenerId = Median.deviceShake.addListener(() => {
     console.log("Device shake listener");
 });
 ```
 
+</CodeGroup>
+
 ### Example: AppsFlyer Conversion Data
 
 Receive install attribution and conversion data from AppsFlyer.
 
-[Documentation](appsflyer)
+Related: [AppsFlyer](/docs/appsflyer)
 
-```
-const listenerId = Median.appsFlyerConversionData.addListener((conversionDataMap) => {
+<MedianLogo />
+
+<CodeGroup>
+
+```javascript JavaScript
+const listenerId = Median.appsflyer.conversionData.addListener((conversionDataMap) => {
     console.log(conversionDataMap.af_status);
 });
 ```
+
+</CodeGroup>
 
 ## Removing Event Listeners
 
 To stop listening for a specific event, use the `.removeListener()` method with the stored `listenerId`.
 
-```
+<MedianLogo />
+
+<CodeGroup>
+
+```javascript JavaScript
 Median.deviceShake.removeListener(listenerId);
 ```
+
+</CodeGroup>
 
 # Best Practices for Listener Management
 
 * Always store the listenerId if you intend to remove the listener later.
 * Register listeners early, ideally within a component’s useEffect or lifecycle hook.
 * Remove listeners on unmount to avoid memory leaks in Single-Page Applications (SPAs).
-
-***
-
-[Basic Usage](/docs/basic-usage)
-
-[SPA Navigation](/docs/npm-package-spa-navigation)
-
-Copy Page
-
-* * [Overview](#overview)
-
-  * [Listener Implementation](#listener-implementation)
-
-  * * [Registering Event Listeners](#registering-event-listeners)
-    * [Removing Event Listeners](#removing-event-listeners)
-
-  * [Best Practices for Listener Management](#best-practices-for-listener-management)
