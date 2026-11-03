@@ -537,6 +537,11 @@
         "href": "https://median.co/privacy",
         "label": "Privacy Policy"
       }
-    ]
+    ],
+    "primary": {
+      "type": "button",
+      "label": "Create New App",
+      "href": "https://median.co/new"
+    }
   }
 }
