@@ -42,7 +42,7 @@ Related: [Handling Notifications Taps](/docs/handling-notifications-taps)
 <CodeGroup>
 
 ```javascript JavaScript
-const listenerId = Median.oneSignalPushOpened.addListener((data) => {
+const listenerId = Median.onesignal.pushOpened.addListener((data) => {
     console.log(JSON.stringify(data));
 });
 ```
@@ -60,7 +60,7 @@ Related: [Share into app](/docs/share-into-app)
 <CodeGroup>
 
 ```javascript JavaScript
-const listenerId = Median.shareToApp.addListener((data) => {
+const listenerId = Median.shareIntoApp.shareResult.addListener((data) => {
     console.log(data.url, data.subject);
 });
 ```
@@ -96,7 +96,7 @@ Related: [AppsFlyer](/docs/appsflyer)
 <CodeGroup>
 
 ```javascript JavaScript
-const listenerId = Median.appsFlyerConversionData.addListener((conversionDataMap) => {
+const listenerId = Median.appsflyer.conversionData.addListener((conversionDataMap) => {
     console.log(conversionDataMap.af_status);
 });
 ```
