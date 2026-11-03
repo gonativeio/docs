@@ -17,7 +17,7 @@ This guide is for developers who've already set up social login ([Facebook](http
 
 ## How it works
 
-You'll use Median JavaScript Bridge methods to trigger native login flows for each social provider. These methods only work when your website is running inside your app, not in a regular browser.
+You'll use the Median JavaScript Bridge methods to trigger native login flows for each social provider. These methods only work when your website is running inside your app, not in a regular browser.
 
 The plugin works with your current authentication infrastructure, using the same API endpoints or JavaScript callback functions you already have for browser-based login. Whether you set up server-side redirects or client-side JavaScript callbacks, the plugin taps into your existing authentication flow without needing to rebuild your backend.
 
@@ -31,21 +31,21 @@ Here's the approach:
 Here's how to set this up with JavaScript:
 
 <CodeGroup>
-  ```bash bash
+  ```html HTML
   <button class="facebook-login browser-only" onclick="facebookLogin()">
   	Log In With Facebook
   </button>
-
-<button
+  
+  <button
   class="facebook-login native-only"
   onclick="median.socialLogin.facebook.login({ 'redirectUri' : 'https://median-social-logins-demo.web.app/auth/facebook/redirect', 'scope' : 'public_profile, email' });"
->
+  >
   Log in With Facebook
-</button>
-
+  </button>
+  
   <script>
   const isMedian = navigator.userAgent.indexOf("median") >= 0;
-
+  
   if (isMedian) {
       	// Remove browser-only buttons
       	const elements = document.getElementsByClassName("browser-only");
@@ -60,20 +60,6 @@ Here's how to set this up with JavaScript:
       	}
   }
   </script>
-
-```
+  
+  ```
 </CodeGroup>
-
-***
-
-### Next Steps
-
-* [Server-side Redirects](/docs/social-login-server-side-redirects)
-* [JavaScript Callbacks](/docs/social-login-javascript-callbacks)
-
-Copy Page
-
-* * [Overview](#overview)
-* [How it works](#how-it-works)
-* * [Example implementation](#example-implementation)
-```
