@@ -3,6 +3,10 @@ title: "Twilio Video"
 description: "Add native Twilio Video to provide your users integrated in-app video calling"
 ---
 
+import { MedianLogo } from "/snippets/median-logo.jsx";
+
+## Overview
+
 Add a native Twilio video chat interface to your app to provide your users an integrated and more performant video chat experience versus a web-based client.
 
 ## Implementation Guide
@@ -10,7 +14,7 @@ Add a native Twilio video chat interface to your app to provide your users an in
 To join a video call, define a callback function in JavaScript, for example:
 
 <CodeGroup>
-  ```bash bash
+  ```javascript JavaScript
   function twilio_callback(data) { 
       if (data.error) {
           console.log('Twilio Error: ' + data.error);
@@ -21,29 +25,23 @@ To join a video call, define a callback function in JavaScript, for example:
   ```
 </CodeGroup>
 
-> Then, run the following JavaScript function, passing in the name of your callback function along with other params `displayName`, `token` and `identity`.
+Then, run the following JavaScript function, passing in the name of your callback function along with other params `displayName`, `token` and `identity`.
+
+<MedianLogo />
 
 <CodeGroup>
-  ```bash bash
+  ```javascript JavaScript
   // This command returns a promise if 'callback' is passed
   median.twilio.video.join({'displayName': 'room', 'token': 'token', 'identity': 'identity', 'callback': twilio_callback});
   ```
 </CodeGroup>
 
-> Details of the query parameters:
->
-> * `displayName`: The name of the video call room to join.
-> * `identity`: The name that will be shown on the video call room for the user joining the room.
-> * `token`: The Access Token received from Twilio after authenticated with Twilio. For more information about how to obtain the access token: [Twilio API: Access Tokens](https://www.twilio.com/docs/iam/access-tokens)
+Details of the query parameters:
 
-**Tip: Some JS Bridge commands return promises. They are usually declared as such through a comment to help you identify them.[Learn More.](https://docs.median.co/docs/javascript-bridge#promises)**
+* `displayName`: The name of the video call room to join.
+* `identity`: The name that will be shown on the video call room for the user joining the room.
+* `token`: The Access Token received from Twilio after authenticated with Twilio. For more information about how to obtain the access token: [Twilio API: Access Tokens <Icon icon="arrow-up-right-from-square" size={12} />](https://www.twilio.com/docs/iam/access-tokens)
 
-***
-
-[Native Media Player](/docs/native-media-player)
-
-[Web Screenshot](/docs/web-screenshot)
-
-Copy Page
-
-* * [Implementation Guide](#implementation-guide)
+<Tip>
+  Some JS Bridge commands return promises. They are usually declared as such through a comment to help you identify them. [Learn more](/docs/javascript-bridge#promises).
+</Tip>

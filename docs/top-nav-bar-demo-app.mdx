@@ -1,15 +1,17 @@
 ---
 title: "Top Nav Bar Demo App"
+description: "Try the Median top navigation bar in live iOS and Android demo apps, with sample dynamic title, page title and custom icon configurations."
 ---
 
-|     |         |
-| --- | ------- |
-|     |         |
-| iOS | Android |
+import { AppetizeEmbed } from "/snippets/appetize-embed.jsx";
+import { MedianLogo } from "/snippets/median-logo.jsx";
+
+<AppetizeEmbed iosEmbedCode="aapujrjx6goyr2vgottjbkhldy" androidEmbedCode="kt2gxucvu2nf2bc7jtmzzyqkjy" />
+
+<MedianLogo />
 
 <CodeGroup>
-  ```bash bash
-  /* Dynamic Title Configuration */
+  ```json Dynamic Title Configuration
   [
     {
       "regex": "https://median.dev/advanced-navigation/index.html",
@@ -26,8 +28,7 @@ title: "Top Nav Bar Demo App"
   ]
   ```
 
-  ```bash bash
-  /* Set Dynamic Title */
+  ```javascript Set Dynamic Title
   median.navigationTitles.set({
     active: true,
     titles: [{
@@ -44,8 +45,7 @@ title: "Top Nav Bar Demo App"
   });
   ```
 
-  ```bash bash
-  /* Set Current Page Title */
+  ```javascript Set Current Page Title
   if (navigator.userAgent.indexOf('median') > -1) {
     median.navigationTitles.setCurrent({
       title: 'Hello World'
@@ -53,8 +53,7 @@ title: "Top Nav Bar Demo App"
   }
   ```
 
-  ```bash bash
-  /* Revert Dynamic Titles */
+  ```javascript Revert Dynamic Titles
   if (navigator.userAgent.indexOf('median') > -1) {
     median.navigationTitles.set({
       persist: true
@@ -62,8 +61,7 @@ title: "Top Nav Bar Demo App"
   }
   ```
 
-  ```bash bash
-  /* Custom Icon Configuration */
+  ```json Custom Icon Configuration
   "navigation": {
       "actionConfig": {
         "actionSelection": [{
@@ -83,9 +81,3 @@ title: "Top Nav Bar Demo App"
   }
   ```
 </CodeGroup>
-
-***
-
-### Next Steps
-
-* [Sidebar Navigation Menu](/docs/sidebar-navigation-menu)
