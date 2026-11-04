@@ -3,6 +3,8 @@ title: "Salesforce LWC Component Deployment and Reference"
 description: "Median Lightning Web Components for Salesforce Experience Cloud"
 ---
 
+import MedianLogo from '/snippets/median-logo.jsx';
+
 This guide covers deploying the open-source `median-salesforce-components` library into your Salesforce org and provides a full API reference for each component. It also includes the recommended patterns for building your own custom components that call the Median JavaScript bridge.
 
 This is part four of a four-part series:
@@ -107,8 +109,10 @@ Integrates the Median OneSignal plugin to manage push notification subscriptions
 
 **Median API methods used:**
 
+<MedianLogo />
+
 <CodeGroup>
-  ```bash bash
+  ```javascript JavaScript
   median.onesignal.info()                          // Promise
   median.onesignal.info({ callback: 'fnName' })    // Callback
   median.onesignal.login(externalUserId)           // Promise
@@ -118,7 +122,7 @@ Integrates the Median OneSignal plugin to manage push notification subscriptions
 
 **Usage note:** The external user ID is typically a Salesforce Contact ID, email address, or another identifier that your push notification service can use to target a specific user. Logout removes the external ID association but does not unsubscribe the device from push notifications entirely.
 
-**This component does only implement a subset of all JavaScript Bridge methods available. Please review our** [**OneSignal documentation**](https://docs.median.co/docs/onesignal) **for a full JavaScript Bridge Reference.**
+**This component only implements a subset of all JavaScript Bridge methods available. Please review our** [**OneSignal documentation**](https://docs.median.co/docs/onesignal) **for a full JavaScript Bridge Reference.**
 
 ***
 
