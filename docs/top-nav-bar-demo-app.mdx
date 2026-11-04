@@ -7,7 +7,7 @@ import { AppetizeEmbed } from "/snippets/appetize-embed.jsx";
 <AppetizeEmbed iosEmbedCode="aapujrjx6goyr2vgottjbkhldy" androidEmbedCode="kt2gxucvu2nf2bc7jtmzzyqkjy" />
 
 <CodeGroup>
-  ```bash bash
+  ```typescript Dynamic Title Configuration
   /* Dynamic Title Configuration */
   [
     {
@@ -25,25 +25,7 @@ import { AppetizeEmbed } from "/snippets/appetize-embed.jsx";
   ]
   ```
 
-  ```bash bash
-  /* Set Dynamic Title */
-  median.navigationTitles.set({
-    active: true,
-    titles: [{
-      title: 'Example Title #1',
-      regex: 'https://median.dev/advanced-navigation/index.html'
-    },
-    { title: 'Example Title #2',
-      regex: 'https://median.dev/advanced-navigation/contact.html'
-    },
-    { title: 'Example Title #3',
-      regex: 'https://median.dev/advanced-navigation/about.html'
-    }],
-    persist: true
-  });
-  ```
-
-  ```bash bash
+  ```javascript Set Dynamic Title
   /* Set Current Page Title */
   if (navigator.userAgent.indexOf('median') > -1) {
     median.navigationTitles.setCurrent({
@@ -52,7 +34,7 @@ import { AppetizeEmbed } from "/snippets/appetize-embed.jsx";
   }
   ```
 
-  ```bash bash
+  ```javascript Revert Dynamic Titles
   /* Revert Dynamic Titles */
   if (navigator.userAgent.indexOf('median') > -1) {
     median.navigationTitles.set({
@@ -61,7 +43,7 @@ import { AppetizeEmbed } from "/snippets/appetize-embed.jsx";
   }
   ```
 
-  ```bash bash
+  ```javascript Custom Icon Configuration
   /* Custom Icon Configuration */
   "navigation": {
       "actionConfig": {
