@@ -64,12 +64,21 @@ import { AppetizeEmbed } from "/snippets/appetize-embed.jsx";
   }
   ```
 
-  ```text Set Dynamic Title
+  ```javascript Set Dynamic Title
+  /* Set Dynamic Title */
+  median.navigationTitles.set({
+    active: true,
+    titles: [{
+      title: 'Example Title #1',
+      regex: 'https://median.dev/advanced-navigation/index.html'
+    },
+    { title: 'Example Title #2',
+      regex: 'https://median.dev/advanced-navigation/contact.html'
+    },
+    { title: 'Example Title #3',
+      regex: 'https://median.dev/advanced-navigation/about.html'
+    }],
+    persist: true
+  });
   ```
 </CodeGroup>
-
-***
-
-### Next Steps
-
-* [Sidebar Navigation Menu](/docs/sidebar-navigation-menu)
