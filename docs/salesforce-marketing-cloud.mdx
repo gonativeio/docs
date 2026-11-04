@@ -242,9 +242,9 @@ Retrieve all tags currently set on the device.
 > To get tags:
 
 <CodeGroup>
-  ```bash bash
+  ```javascript JavaScript
   const result = await median.salesforceCloud.tags.get();
-
+  
   // result object
   {
     success: true,
@@ -260,11 +260,11 @@ Remove a single tag from the device registration. This method is only available 
 > To delete a tag:
 
 <CodeGroup>
-  ```bash bash
+  ```javascript JavaScript
   const result = await median.salesforceCloud.tags.delete({
     tag: 'premium_user'
   });
-
+  
   // result object
   {
     success: true | false,
@@ -278,26 +278,3 @@ Remove a single tag from the device registration. This method is only available 
 | Parameter | Type     | Description                      |
 | --------- | -------- | -------------------------------- |
 | tag       | `string` | **Required**. The tag to remove. |
-
-***
-
-[Optimizely](/docs/optimizely)
-
-[Sendbird](/docs/sendbird)
-
-Copy Page
-
-* * [App Configuration](#app-configuration)
-
-  * [Implementation Guide](#implementation-guide)
-
-  * * [Prompt for Push Notifications](#prompt-for-push-notifications)
-    * [Check Notification Status](#check-notification-status)
-    * [Get Device Info](#get-device-info)
-    * [Set Contact Key](#set-contact-key)
-    * [Get Contact Key](#get-contact-key)
-    * [Set Attributes](#set-attributes)
-    * [Get Attributes](#get-attributes)
-    * [Set Tags](#set-tags)
-    * [Get Tags](#get-tags)
-    * [Delete a Tag (iOS Only)](#delete-a-tag-ios-only)
