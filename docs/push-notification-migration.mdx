@@ -15,17 +15,17 @@ When transitioning between push providers, define how the application will handl
 
 Deploy both the legacy and new SDKs within a single app release. After a sufficient transition period, remove the legacy SDK in a subsequent release.
 
-* **Implementation**: The app initializes both SDKs. The new SDK captures a fresh device token, while the old SDK remains active to ensure users who haven't updated yet still receive messages.
-* **Advantages**: Zero downtime in messaging; allows for a gradual transition.
-* **Considerations**: Slightly larger app binary size; requires logic to avoid "double-notifying" users. Additional publishing after the migration is completed.
+- **Implementation**: The app initializes both SDKs. The new SDK captures a fresh device token, while the old SDK remains active to ensure users who haven't updated yet still receive messages.
+- **Advantages**: Zero downtime in messaging; allows for a gradual transition.
+- **Considerations**: Slightly larger app binary size; requires logic to avoid "double-notifying" users. Additional publishing after the migration is completed.
 
 ### The "Hard Switch" Strategy
 
 Remove the old SDK and replace it entirely with the new one in a single release.
 
-* **Implementation**: You stop sending notifications from the old provider the moment the new version is live.
-* **Advantages**: Clean codebase; no temporary SDK duplication.
-* **Considerations**: You lose the ability to message users who do not update their app immediately. This can lead to a significant drop in reachable users (often 20-40%) during the first few weeks.
+- **Implementation**: You stop sending notifications from the old provider the moment the new version is live.
+- **Advantages**: Clean codebase; no temporary SDK duplication.
+- **Considerations**: You lose the ability to message users who do not update their app immediately. This can lead to a significant drop in reachable users (often 20-40%) during the first few weeks.
 
 ## Managing Device Tokens and Identities
 
@@ -35,8 +35,8 @@ Push tokens are unique identifiers assigned by APNs (iOS) or FCM (Android). Whil
 
 Most modern SDKs (like [OneSignal](https://docs.median.co/docs/onesignal)) do not require you to manually handle raw tokens. However, during migration, you should map your internal User ID to the new SDK's External ID. As an example you can use the Median JavaScript bridge to obtain and sync external IDs to your web application. Examples would be
 
-* OneSignal: `externalId` in the [onesignal.info()](https://docs.median.co/docs/onesignal-info)-function
-* Klaviyo: `median.klaviyo.getProfile();`
+- OneSignal: `externalId` in the [onesignal.info()](https://docs.median.co/docs/onesignal-info)-function
+- Klaviyo: `median.klaviyo.getProfile();`
 
 Alternatively you can implement a Server-Side Sync. If you have a database of tokens from your old provider, check if your new provider allows "Importing" tokens via API. This can help you message users even before they open the new version of the app.
 
@@ -72,35 +72,8 @@ Consider to lock down older app versions and prompt users to update their apps i
 
 Use the migration checklist below to ensure a smooth migration between vendors.
 
-* [ ] Audit [App Identifiers](https://median.co/docs/app-identifiers): Ensure the Bundle ID (iOS) and Package Name (Android) match exactly across both providers.
-* [ ] Update Certificates: Ensure your `.p8` (iOS) and `google-services.json` (Android) are correctly uploaded to the new provider.
-* [ ] Validate JavaScript: Update your website's JavaScript to call the Median JavaScript bridge methods for the new SDK.
-* [ ] Test [Deep Links](https://median.co/docs/deep-linking): Deep linking structures often change between SDKs. Verify that deep linking works on your new provider and that there are no differences in the setup.
-* [ ] Monitor Analytics: Compare delivery and open rates between the two platforms during the overlap period.
-
-***
-
-[Push Notifications Overview](/docs/push-notifications-overview)
-
-[OneSignal](/docs/onesignal)
-
-Copy Page
-
-* * [Migration Strategies](#migration-strategies)
-
-  * * [The "Side-by-Side" Strategy (Recommended)](#the-side-by-side-strategy-recommended)
-    * [The "Hard Switch" Strategy](#the-hard-switch-strategy)
-
-  * [Managing Device Tokens and Identities](#managing-device-tokens-and-identities)
-
-  * * [Token Extraction and Mapping](#token-extraction-and-mapping)
-
-  * [Notification Permissions and Opt-In Status](#notification-permissions-and-opt-in-status)
-
-  * [Publishing Impacts: Multiple SDKs](#publishing-impacts-multiple-sdks)
-
-  * * [Prevent Duplicate Permission Prompts](#prevent-duplicate-permission-prompts)
-    * [Prevent Redundant Notifications](#prevent-redundant-notifications)
-    * [Version Enforcement (Optional)](#version-enforcement-optional)
-
-  * [Migration Checklist](#migration-checklist)
+- [ ] Audit [App Identifiers](https://median.co/docs/app-identifiers): Ensure the Bundle ID (iOS) and Package Name (Android) match exactly across both providers.
+- [ ] Update Certificates: Ensure your `.p8` (iOS) and `google-services.json` (Android) are correctly uploaded to the new provider.
+- [ ] Validate JavaScript: Update your website's JavaScript to call the Median JavaScript bridge methods for the new SDK.
+- [ ] Test [Deep Links](https://median.co/docs/deep-linking): Deep linking structures often change between SDKs. Verify that deep linking works on your new provider and that there are no differences in the setup.
+- [ ] Monitor Analytics: Compare delivery and open rates between the two platforms during the overlap period.
