@@ -15,6 +15,7 @@
     "tabs": [
       {
         "tab": "Documentation",
+        "icon": "book-open",
         "groups": [
           {
             "group": "Welcome",
@@ -23,6 +24,7 @@
               "docs/architecture",
               {
                 "group": "Security & Privacy",
+                "root": "docs/security",
                 "pages": [
                   "docs/security",
                   "docs/report"
@@ -57,6 +59,7 @@
               "docs/app-interface-overview",
               {
                 "group": "Device Screen Control",
+                "root": "docs/device-screen-control",
                 "pages": [
                   "docs/device-screen-control",
                   "docs/screen-brightness",
@@ -72,6 +75,7 @@
               "docs/maximum-windows",
               {
                 "group": "Offline Page",
+                "root": "docs/offline-page",
                 "pages": [
                   "docs/offline-page",
                   "docs/service-workers",
@@ -85,11 +89,13 @@
           },
           {
             "group": "Link Handling",
+            "root": "docs/link-handling-overview",
             "pages": [
               "docs/link-handling-overview",
               "docs/internal-vs-external-links",
               {
                 "group": "Deep Linking",
+                "root": "docs/deep-linking",
                 "pages": [
                   "docs/deep-linking",
                   "docs/deep-linking-validator"
@@ -100,9 +106,9 @@
           {
             "group": "Permissions",
             "pages": [
-              "docs/permissions-overview",
               {
                 "group": "Permissions Overview",
+                "root": "docs/permissions-overview",
                 "pages": [
                   "docs/permissions-overview",
                   "docs/permission-prompt-localization"
@@ -117,6 +123,7 @@
           },
           {
             "group": "Web Overrides",
+            "root": "docs/website-overrides-overview",
             "pages": [
               "docs/website-overrides-overview",
               "docs/custom-user-agent",
@@ -128,6 +135,7 @@
           },
           {
             "group": "Native Navigation",
+            "root": "docs/native-navigation-overview",
             "pages": [
               "docs/native-navigation-overview",
               {
@@ -170,9 +178,9 @@
           {
             "group": "Push Notifications",
             "pages": [
-              "docs/push-notifications-overview",
               {
                 "group": "Push Notifications Overview",
+                "root": "docs/push-notifications-overview",
                 "pages": [
                   "docs/push-notifications-overview",
                   "docs/push-notification-migration"
@@ -180,12 +188,14 @@
               },
               {
                 "group": "OneSignal",
+                "root": "docs/onesignal",
                 "pages": [
                   "docs/onesignal",
                   "docs/user-consent-management",
                   "docs/identifying-targeting-users",
                   {
                     "group": "Sending Push Notifications",
+                    "root": "docs/onesignal-notifications",
                     "pages": [
                       "docs/onesignal-notifications",
                       "docs/programmatic-notifications",
@@ -220,6 +230,7 @@
               "docs/detecting-app-usage",
               {
                 "group": "NPM Package",
+                "root": "docs/npm-package",
                 "pages": [
                   "docs/npm-package",
                   "docs/basic-usage",
@@ -236,7 +247,8 @@
               "docs/clear-webview-cache",
               "docs/iframe-callbacks",
               {
-                "group": "Control your Median app with Google Tag Manager",
+                "group": "Google Tag Manager",
+                "root": "docs/google-tag-manager",
                 "pages": [
                   "docs/google-tag-manager",
                   "docs/install-median-gtm-template"
@@ -250,6 +262,7 @@
               "docs/native-plugins-overview",
               {
                 "group": "Analytics",
+                "root": "docs/analytics",
                 "pages": [
                   "docs/analytics",
                   "docs/adjust",
@@ -262,12 +275,14 @@
               },
               {
                 "group": "Authentication",
+                "root": "docs/authentication",
                 "pages": [
                   "docs/authentication",
                   "docs/auth0",
                   "docs/clerk",
                   {
-                    "group": "Face ID & Touch ID Android Biometric",
+                    "group": "Biometric Authentication",
+                    "root": "docs/auth",
                     "pages": [
                       "docs/auth",
                       "docs/apple-face-id-touch-id",
@@ -277,6 +292,7 @@
                   "docs/passkey-authentication",
                   {
                     "group": "Social Login",
+                    "root": "docs/social-login",
                     "pages": [
                       "docs/social-login",
                       "docs/facebook-login-configuration",
@@ -291,6 +307,7 @@
               },
               {
                 "group": "Enterprise",
+                "root": "docs/enterprise",
                 "pages": [
                   "docs/enterprise",
                   "docs/enterprise-plugin",
@@ -300,6 +317,7 @@
               },
               {
                 "group": "Integrations",
+                "root": "docs/integrations",
                 "pages": [
                   "docs/integrations",
                   "docs/admob-native-ads",
@@ -309,6 +327,7 @@
                   "docs/revenue-cat",
                   {
                     "group": "Social Share",
+                    "root": "docs/social-share",
                     "pages": [
                       "docs/social-share",
                       "docs/social-share-instagram",
@@ -319,6 +338,7 @@
               },
               {
                 "group": "Media",
+                "root": "docs/media",
                 "pages": [
                   "docs/media",
                   "docs/background-audio",
@@ -332,6 +352,7 @@
               },
               {
                 "group": "Native Functionality",
+                "root": "docs/native-functionality",
                 "pages": [
                   "docs/native-functionality",
                   "docs/age-safety",
@@ -342,6 +363,7 @@
                   "docs/health-bridge",
                   {
                     "group": "In-App Purchases",
+                    "root": "docs/iap",
                     "pages": [
                       "docs/iap",
                       "docs/apple-iap",
@@ -359,6 +381,7 @@
               },
               {
                 "group": "Scanning",
+                "root": "docs/scanning",
                 "pages": [
                   "docs/scanning",
                   "docs/document-scanner",
@@ -376,6 +399,7 @@
               "docs/ai-app-builder-overview",
               {
                 "group": "Base44",
+                "root": "docs/base44",
                 "pages": [
                   "docs/base44",
                   "docs/getting-started-with-base44",
@@ -385,6 +409,7 @@
               },
               {
                 "group": "Lovable",
+                "root": "docs/lovable",
                 "pages": [
                   "docs/lovable",
                   "docs/getting-started-with-lovable",
@@ -395,6 +420,7 @@
               },
               {
                 "group": "Replit",
+                "root": "docs/replit",
                 "pages": [
                   "docs/replit",
                   "docs/getting-started-with-replit",
@@ -404,6 +430,7 @@
               },
               {
                 "group": "Salesforce Experience Cloud",
+                "root": "docs/salesforce",
                 "pages": [
                   "docs/salesforce",
                   "docs/getting-started-with-salesforce-experience-cloud",
@@ -423,6 +450,7 @@
               "docs/app-studio",
               {
                 "group": "Debug Tools",
+                "root": "docs/debug-tools",
                 "pages": [
                   "docs/debug-tools",
                   "docs/ios-debugging",
@@ -431,6 +459,7 @@
               },
               {
                 "group": "iOS Build & Deployment",
+                "root": "docs/ios-build-deployment",
                 "pages": [
                   "docs/ios-build-deployment",
                   {
@@ -452,6 +481,7 @@
               },
               {
                 "group": "Android Build & Deployment",
+                "root": "docs/android-build-deployment",
                 "pages": [
                   "docs/android-build-deployment",
                   "docs/install-android-apk",
@@ -463,6 +493,7 @@
               },
               {
                 "group": "App Configuration & Management",
+                "root": "docs/app-configuration-management",
                 "pages": [
                   "docs/app-configuration-management",
                   "docs/app-identifiers",
@@ -478,6 +509,7 @@
           },
           {
             "group": "Publishing",
+            "root": "docs/publishing-overview",
             "pages": [
               "docs/publishing-overview",
               "docs/publishing-guide",
@@ -486,29 +518,35 @@
               "docs/google-play-store",
               "docs/faq-publishing"
             ]
-          },
+          }
+        ]
+      },
+      {
+        "tab": "Release Notes",
+        "icon": "clock-rotate-left",
+        "groups": [
           {
             "group": "Release Notes",
             "pages": [
               "docs/release-notes",
               {
                 "group": "App Studio Release Notes",
+                "root": "docs/release-notes-app-studio",
                 "pages": [
-                  "docs/release-notes-app-studio",
                   "docs/release-notes-app-studio-archive"
                 ]
               },
               {
                 "group": "iOS Release Notes",
+                "root": "docs/release-notes-ios",
                 "pages": [
-                  "docs/release-notes-ios",
                   "docs/release-notes-ios-archive"
                 ]
               },
               {
                 "group": "Android Release Notes",
+                "root": "docs/release-notes-android",
                 "pages": [
-                  "docs/release-notes-android",
                   "docs/release-notes-android-archive"
                 ]
               }
@@ -526,16 +564,8 @@
   "navbar": {
     "links": [
       {
-        "href": "https://docs.median.co/docs/release-notes",
-        "label": "Release Notes"
-      },
-      {
-        "href": "https://median.co/terms",
-        "label": "Online Terms"
-      },
-      {
-        "href": "https://median.co/privacy",
-        "label": "Privacy Policy"
+        "label": "Support",
+        "href": "/docs/support"
       }
     ],
     "primary": {
@@ -543,5 +573,35 @@
       "label": "Create New App",
       "href": "https://median.co/new"
     }
-  }
+  },
+  "footer": {
+    "socials": {
+      "github": "https://github.com/gonativeio"
+    },
+    "links": [
+      {
+        "header": "Legal",
+        "items": [
+          {
+            "label": "Online Terms",
+            "href": "https://median.co/terms"
+          },
+          {
+            "label": "Privacy Policy",
+            "href": "https://median.co/privacy"
+          }
+        ]
+      }
+    ]
+  },
+  "redirects": [
+    {
+      "source": "/docs",
+      "destination": "/docs/overview"
+    },
+    {
+      "source": "/discuss",
+      "destination": "/docs/support"
+    }
+  ]
 }
