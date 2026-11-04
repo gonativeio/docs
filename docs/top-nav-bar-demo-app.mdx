@@ -1,14 +1,17 @@
 ---
 title: "Top Nav Bar Demo App"
+description: "Try the Median top navigation bar in live iOS and Android demo apps, with sample dynamic title, page title and custom icon configurations."
 ---
 
 import { AppetizeEmbed } from "/snippets/appetize-embed.jsx";
+import { MedianLogo } from "/snippets/median-logo.jsx";
 
 <AppetizeEmbed iosEmbedCode="aapujrjx6goyr2vgottjbkhldy" androidEmbedCode="kt2gxucvu2nf2bc7jtmzzyqkjy" />
 
+<MedianLogo />
+
 <CodeGroup>
   ```json Dynamic Title Configuration
-  /* Dynamic Title Configuration */
   [
     {
       "regex": "https://median.dev/advanced-navigation/index.html",
@@ -25,8 +28,24 @@ import { AppetizeEmbed } from "/snippets/appetize-embed.jsx";
   ]
   ```
 
+  ```javascript Set Dynamic Title
+  median.navigationTitles.set({
+    active: true,
+    titles: [{
+      title: 'Example Title #1',
+      regex: 'https://median.dev/advanced-navigation/index.html'
+    },
+    { title: 'Example Title #2',
+      regex: 'https://median.dev/advanced-navigation/contact.html'
+    },
+    { title: 'Example Title #3',
+      regex: 'https://median.dev/advanced-navigation/about.html'
+    }],
+    persist: true
+  });
+  ```
+
   ```javascript Set Current Page Title
-  /* Set Current Page Title */
   if (navigator.userAgent.indexOf('median') > -1) {
     median.navigationTitles.setCurrent({
       title: 'Hello World'
@@ -35,7 +54,6 @@ import { AppetizeEmbed } from "/snippets/appetize-embed.jsx";
   ```
 
   ```javascript Revert Dynamic Titles
-  /* Revert Dynamic Titles */
   if (navigator.userAgent.indexOf('median') > -1) {
     median.navigationTitles.set({
       persist: true
@@ -44,7 +62,6 @@ import { AppetizeEmbed } from "/snippets/appetize-embed.jsx";
   ```
 
   ```json Custom Icon Configuration
-  /* Custom Icon Configuration */
   "navigation": {
       "actionConfig": {
         "actionSelection": [{
@@ -62,23 +79,5 @@ import { AppetizeEmbed } from "/snippets/appetize-embed.jsx";
         "active": true
       }
   }
-  ```
-
-  ```javascript Set Dynamic Title
-  /* Set Dynamic Title */
-  median.navigationTitles.set({
-    active: true,
-    titles: [{
-      title: 'Example Title #1',
-      regex: 'https://median.dev/advanced-navigation/index.html'
-    },
-    { title: 'Example Title #2',
-      regex: 'https://median.dev/advanced-navigation/contact.html'
-    },
-    { title: 'Example Title #3',
-      regex: 'https://median.dev/advanced-navigation/about.html'
-    }],
-    persist: true
-  });
   ```
 </CodeGroup>
