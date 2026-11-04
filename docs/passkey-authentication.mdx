@@ -81,7 +81,7 @@ The Android origin format is:
 
 Run this command in your terminal (replace `\<your-alias>, release.keystore` and `\<your-keystore-password>` with your actual values):
 
-```
+```bash bash
 keytool -exportcert -alias <your-alias> -keystore release.keystore -storepass <your-keystore-password> | \
 openssl sha256 -binary | \
 openssl base64 | \
@@ -96,10 +96,10 @@ When creating WebAuthn registration options for passkey enrollment, you must inc
 
 **Configuration example:**
 
-```
+```JSON JSON
 "authenticatorSelection": {
-  "requireResidentKey": true | false,       // Required for Android compatibility
-  "residentKey": "required",        // Modern WebAuthn field
+  "requireResidentKey": true | false, // Required for Android compatibility
+  "residentKey": "required",          // Modern WebAuthn field
   "userVerification": "preferred"
 }
 ```
@@ -140,7 +140,7 @@ You can follow the steps in [iOS Universal Links Configuration](https://docs.med
 **Example AASA**
 
 <CodeGroup>
-  ```bash bash
+  ```JSON JSON
   /* Example - /apple-app-site-association */
   {
     "applinks": {
@@ -159,7 +159,7 @@ You can follow the steps in [iOS Universal Links Configuration](https://docs.med
 **Example AASA including WebAuthn support**
 
 <CodeGroup>
-  ```bash bash
+  ```JSON JSON
   /* Example - /apple-app-site-association with Passkey Support */
   {
     "applinks": {
@@ -185,25 +185,3 @@ Deep Links and WebAuthn on iOS will not work unless a PATH is specified as part 
 If your site uses multiple subdomains (such as example.com, [www.example.com](http://www.example.com), and support.example.com), EACH requires its own entry in the Associated Domains Entitlement, and each must serve its own /apple-app-site-association file.
 
 You must host the /apple-app-site-association file with a Content-Type: application/json HTTP header, using https\:// with a valid SSL certificate, and with a 200 HTTP Status Code with no redirects.
-
----
-
-[Android Biometric](/docs/android-biometric-auth)
-
-[Social Login](/docs/social-login)
-
-Copy Page
-
-- - [Overview](#overview)
-
-  - [Key Features](#key-features)
-
-  - - [How It Works](#how-it-works)
-    - [Use Cases](#use-cases)
-
-  - [Implementation](#implementation)
-
-  - [Before You Start](#before-you-start)
-
-  - - [Android Setup](#android-setup)
-    - [iOS Setup](#ios-setup)
