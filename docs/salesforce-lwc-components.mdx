@@ -3,7 +3,7 @@ title: "Salesforce LWC Component Deployment and Reference"
 description: "Median Lightning Web Components for Salesforce Experience Cloud"
 ---
 
-import MedianLogo from '/snippets/median-logo.jsx';
+import { MedianLogo } from "/snippets/median-logo.jsx";
 
 This guide covers deploying the open-source `median-salesforce-components` library into your Salesforce org and provides a full API reference for each component. It also includes the recommended patterns for building your own custom components that call the Median JavaScript bridge.
 
@@ -32,7 +32,7 @@ The [median-salesforce-components <Icon icon="arrow-up-right-from-square" size={
 ### Deploy a Single Component
 
 <CodeGroup>
-  ```bash bash
+  ```bash Bash
   sf project deploy start --source-dir force-app/main/default/lwc/oneSignal --target-org my-org
   ```
 </CodeGroup>
@@ -46,8 +46,8 @@ After deployment, open Experience Builder and drag the component from the compon
 * `lightning__AppPage`
 * `lightning__RecordPage`
 
-<Frame caption="Experience Builder - Custom Components">
-  <img src="/images/docs/a0059339083cbf1f9c4e838c1e0a7dc0bc3d3904012c7009f5291a150c234f27-experience-builder.png" />
+<Frame caption="Experience Builder – Custom Components">
+  <img src="/images/docs/a0059339083cbf1f9c4e838c1e0a7dc0bc3d3904012c7009f5291a150c234f27-experience-builder.png" alt="Experience Builder Components panel with the oneSignal custom component placed on a page" />
 </Frame>
 
 ## Building a Custom Component
@@ -157,7 +157,7 @@ Saves and retrieves credentials using the device's native biometric hardware (Fa
   ```
 </CodeGroup>
 
-**Usage note:** `minimumAndroidBiometric` is set to `'strong'` by default, which requires Class 3 (hardware-backed) biometrics on Android. Change this value in `medianAuth.js` if your target device fleet uses Class 2 biometrics. Secrets are encoded as a JSON string in the format `{ "username": "...", "password": "..." }`. Modify the `saveSecret()` method if you need to store a different data shape.
+**Usage note:** `minimumAndroidBiometric` is set to `'strong'` by default, which requires Class 3 (hardware-backed) biometrics on Android. Change this value in `biometricAuth.js` if your target device fleet uses Class 2 biometrics. Secrets are encoded as a JSON string in the format `{ "username": "...", "password": "..." }`. Modify the `saveSecret()` method if you need to store a different data shape.
 
 ***
 
@@ -197,7 +197,7 @@ Launches the device camera for QR code and barcode scanning. Returns the scanned
 **Scan result shape:**
 
 <CodeGroup>
-  ```javascript JavaScript
+  ```json JSON
   {
     "success": true,
     "code": "https://example.com/asset/12345",
@@ -233,7 +233,7 @@ Open `pdfViewer.js` and update the constant at the top of the file:
 
 <CodeGroup>
   ```javascript JavaScript
-  // Line 4 of medianPdfViewer.js
+  // Line 5 of pdfViewer.js
   const DEFAULT_PDF_URL = 'https://your-domain.com/your-document.pdf';
   ```
 </CodeGroup>
