@@ -11,12 +11,10 @@ https\://onesignal.com/integrations/median-co
 
 ## Why use OneSignal with Median.co
 
-* **Web-first control**: Drive push, in-app messaging, user identity, segments, and consent from your site's JavaScript through the [JavaScript Bridge](https://docs.median.co/docs/javascript-bridge).
-* **Consistent cross-platform setup**: One Median.co plugin surface for iOS and Android after you complete each platform's credential steps (APNs and FCM).
-* **Full OneSignal toolkit**: Use dashboard campaigns, [programmatic delivery](https://docs.median.co/docs/programmatic-notifications), [user targeting](https://docs.median.co/docs/onesignal-user-management), and [in-app messages](https://docs.median.co/docs/in-app-messages) from the same integration.
-* **Modern SDK defaults**: Runs on **OneSignal SDK v5+** with a user-centric model; older apps should confirm behavior against [Legacy Mode](https://docs.median.co/docs/onesignal-legacy-mode).
-
-***
+- **Web-first control**: Drive push, in-app messaging, user identity, segments, and consent from your site's JavaScript through the [JavaScript Bridge](https://docs.median.co/docs/javascript-bridge).
+- **Consistent cross-platform setup**: One Median.co plugin surface for iOS and Android after you complete each platform's credential steps (APNs and FCM).
+- **Full OneSignal toolkit**: Use dashboard campaigns, [programmatic delivery](https://docs.median.co/docs/programmatic-notifications), [user targeting](https://docs.median.co/docs/onesignal-user-management), and [in-app messages](https://docs.median.co/docs/in-app-messages) from the same integration.
+- **Modern SDK defaults**: Runs on **OneSignal SDK v5+** with a user-centric model; older apps should confirm behavior against [Legacy Mode](https://docs.median.co/docs/onesignal-legacy-mode).
 
 ## Prerequisites
 
@@ -24,25 +22,26 @@ Make sure you have the following before starting. Missing any one of these will 
 
 **All apps**
 
-* [x] A Median.co app with JavaScript Bridge enabled
-* [x] A [OneSignal account](https://onesignal.com) — free to create
-* [x] Your OneSignal **App ID** (found in your OneSignal dashboard under **Settings > Keys & IDs**)
+- [x] A Median.co app with JavaScript Bridge enabled
+- [x] A [OneSignal account](https://onesignal.com) — free to create
+- [x] Your OneSignal **App ID** (found in your OneSignal dashboard under **Settings > Keys & IDs**)
 
 **iOS apps**
 
-* [x] An Apple Push Notification service (APNs) credential — either a [.p8 token key (recommended)](https://documentation.onesignal.com/docs/en/ios-p8-token-based-connection-to-apns) or a [.p12 certificate](https://documentation.onesignal.com/docs/en/ios-p12-generate-certificates), generated from your Apple Developer account
-* [x] Push Notifications and Background Modes (Remote notifications) capabilities included in your iOS signing setup
-* [x] App Groups capability included if you use badge counts, rich notification images, or confirmed delivery analytics
+- [x] An Apple Push Notification service (APNs) credential — either a [.p8 token key (recommended)](https://documentation.onesignal.com/docs/en/ios-p8-token-based-connection-to-apns) or a [.p12 certificate](https://documentation.onesignal.com/docs/en/ios-p12-generate-certificates), generated from your Apple Developer account
+- [x] Push Notifications and Background Modes (Remote notifications) capabilities included in your iOS signing setup
+- [x] App Groups capability included if you use badge counts, rich notification images, or confirmed delivery analytics
 
 **Android apps**
 
-* [x] A Google Firebase project with Cloud Messaging (FCM) enabled
-* [x] A Firebase Service Account JSON credentials file — downloaded from your Firebase project settings
+- [x] A Google Firebase project with Cloud Messaging (FCM) enabled
+- [x] A Firebase Service Account JSON credentials file — downloaded from your Firebase project settings
 
 <Info>
   ### Already have a OneSignal account connected to Median.co?
 
-  Head straight to [Managing Permissions & Consent](https://docs.median.co/docs/user-consent-management) to control how and when users are prompted.
+Head straight to [Managing Permissions & Consent](https://docs.median.co/docs/user-consent-management) to control how and when users are prompted.
+
 </Info>
 
 ## When to use this plugin
@@ -55,7 +54,7 @@ Median's OneSignal integration is especially useful when you need to:
 | **Re-engagement**                        | Re-engage users with new content, limited-time offers, or abandoned-journey follow-ups.                                                                                                                 |
 | **Segmented or identified audiences**    | Target logged-in users, tags, or segments defined in OneSignal from the dashboard or API.                                                                                                               |
 | **In-app messaging**                     | Show prompts, or announcements inside the app, including flows that don't require push permission first.                                                                                                |
-| **Consent and timing**                   | Control *when* the OS permission dialog appears or wait until privacy consent before initializing OneSignal. See [Managing Permissions & Consent](https://docs.median.co/docs/user-consent-management). |
+| **Consent and timing**                   | Control _when_ the OS permission dialog appears or wait until privacy consent before initializing OneSignal. See [Managing Permissions & Consent](https://docs.median.co/docs/user-consent-management). |
 | **Server-triggered push**                | Send notifications from your backend using [OneSignal's REST API](https://documentation.onesignal.com/reference/rest-api-overview)                                                                      |
 
 ## What you'll do
@@ -108,8 +107,8 @@ In your OneSignal dashboard:
 
 Apple requires an APNs credential to authorize push notifications for your app. OneSignal supports two methods — pick one:
 
-* **.p8 token key (recommended)** — doesn't expire, works across all apps in your Apple Developer account. Follow [OneSignal's p8 token-based guide](https://documentation.onesignal.com/docs/en/ios-p8-token-based-connection-to-apns).
-* **.p12 certificate (alternative)** — app-specific, expires after one year and must be renewed. Follow [OneSignal's p12 certificate guide](https://documentation.onesignal.com/docs/en/ios-p12-generate-certificates).
+- **.p8 token key (recommended)** — doesn't expire, works across all apps in your Apple Developer account. Follow [OneSignal's p8 token-based guide](https://documentation.onesignal.com/docs/en/ios-p8-token-based-connection-to-apns).
+- **.p12 certificate (alternative)** — app-specific, expires after one year and must be renewed. Follow [OneSignal's p12 certificate guide](https://documentation.onesignal.com/docs/en/ios-p12-generate-certificates).
 
 Upload the credential to your OneSignal dashboard under **Settings > Push & In-App > Apple iOS (APNs)**.
 
@@ -125,7 +124,9 @@ For App Studio builds using the App Store Connect API workflow, Median can regis
 
 4. Click **+ Capability** again and add **Background Modes**, then enable **Remote notifications**.
 
-![](/images/docs/bed5c9a-Push_Notifications_Capability.png "Push Notifications Capability.png")
+<Frame caption="Push Notifications Capability.png">
+  <img src="/images/docs/bed5c9a-Push_Notifications_Capability.png" />
+</Frame>
 
 Median's build process requires both capabilities to be present. Without them, push notifications won't be delivered on iOS — even if your OneSignal configuration is otherwise correct.
 
@@ -146,8 +147,6 @@ App Groups are required to support badge counts, rich notification images, and O
 Replace `YOUR_BUNDLE_IDENTIFIER` with your app's actual Bundle Identifier (for example, `com.yourcompany.yourapp`).
 
 **Confirmed delivery requires an eligible OneSignal plan** — it's not available on free plans. Enabling App Groups alone won't produce confirmed-delivery analytics without the plan upgrade. See [OneSignal's pricing](https://onesignal.com/pricing).
-
-***
 
 ## Plugin setup
 
@@ -179,79 +178,59 @@ You'll need these for both the App Studio setup and any server-side or programma
 
 Keep your REST API Key private, it authorizes notification delivery on your behalf.
 
-***
-
 ## Testing checklist
 
 Use this checklist to verify OneSignal is working correctly in your app:
 
-### Basic Functionality
+**Basic Functionality**
 
-**Basic Functionality⎘ Copy link
+- [ ] The App installs and launches on a physical device (push notifications don't work on most simulators)
+- [ ] The Push permission prompt appears and can be accepted on first launch
+- [ ] Push notifications sent from OneSignal are delivered to the device
+- [ ] There are no JavaScript errors in the console
 
-* [ ] The App installs and launches on a physical device (push notifications don't work on most simulators)
-* [ ] The Push permission prompt appears and can be accepted on first launch
-* [ ] Push notifications sent from OneSignal are delivered to the device
-* [ ] There are no JavaScript errors in the console
+**Platform Testing**
 
-### Platform Testing
+- [ ] Push notifications are delivered to Android devices
+- [ ] Push notifications are delivered to iOS devices
+- [ ] Users who denied the push permission prompt do not receive push notifications
 
-**Platform Testing⎘ Copy link
+**Configuration Testing**
 
-* [ ] Push notifications are delivered to Android devices
-* [ ] Push notifications are delivered to iOS devices
-* [ ] Users who denied the push permission prompt do not receive push notifications
+- [ ] In App Studio, the OneSignal App ID is entered in **Native Plugins > OneSignal**
+- [ ] In the OneSignal dashboard, the iOS APNs credential (.p8 key or .p12 certificate) is uploaded under **Settings > Push & In-App > Apple iOS (APNs)**
+- [ ] In the OneSignal dashboard, the Android FCM Service Account JSON is uploaded under **Settings > Push & In-App > Google Android (FCM)**
+- [ ] The iOS Push Notifications and Background Modes (Remote notifications) capabilities are included in your App Studio signing setup, or enabled on the main app target if building from source
+- [ ] (iOS, if using badges/rich media/confirmed delivery) App Groups capability with `group.YOUR_BUNDLE_IDENTIFIER.onesignal` is included in your App Studio signing setup, or enabled on both the main app and OneSignalNotificationServiceExtension targets if building from source
 
-### Configuration Testing
+**User Experience**
 
-**Configuration Testing⎘ Copy link
-
-* [ ] In App Studio, the OneSignal App ID is entered in **Native Plugins > OneSignal**
-* [ ] In the OneSignal dashboard, the iOS APNs credential (.p8 key or .p12 certificate) is uploaded under **Settings > Push & In-App > Apple iOS (APNs)**
-* [ ] In the OneSignal dashboard, the Android FCM Service Account JSON is uploaded under **Settings > Push & In-App > Google Android (FCM)**
-* [ ] The iOS Push Notifications and Background Modes (Remote notifications) capabilities are included in your App Studio signing setup, or enabled on the main app target if building from source
-* [ ] (iOS, if using badges/rich media/confirmed delivery) App Groups capability with `group.YOUR_BUNDLE_IDENTIFIER.onesignal` is included in your App Studio signing setup, or enabled on both the main app and OneSignalNotificationServiceExtension targets if building from source
-
-### User Experience
-
-**User Experience⎘ Copy link
-
-* [ ] Permission prompt appears at the appropriate time (or is deferred using [Managing Permissions & Consent](https://docs.median.co/docs/user-consent-management))
-* [ ] Notifications display on the device as expected
-
-***
+- [ ] Permission prompt appears at the appropriate time (or is deferred using [Managing Permissions & Consent](https://docs.median.co/docs/user-consent-management))
+- [ ] Notifications display on the device as expected
 
 ## Troubleshooting
 
-### Test notification doesn't arrive on iOS
-
-**Test notification doesn't arrive on iOS⎘ Copy link
+**Test notification doesn't arrive on iOS**
 
 Confirm four things:
 
-* Your APNs credential (.p8 key or .p12 certificate) is uploaded in OneSignal under **Settings > Push & In-App > Apple iOS (APNs)**.
-* The Push Notifications capability is included in your iOS signing setup.
-* The Background Modes capability is enabled with **Remote notifications** for your main app target.
-* The device accepted the push permission prompt — denied permissions won't receive notifications.
+- Your APNs credential (.p8 key or .p12 certificate) is uploaded in OneSignal under **Settings > Push & In-App > Apple iOS (APNs)**.
+- The Push Notifications capability is included in your iOS signing setup.
+- The Background Modes capability is enabled with **Remote notifications** for your main app target.
+- The device accepted the push permission prompt — denied permissions won't receive notifications.
 
-### Test notification doesn't arrive on Android
-
-**Test notification doesn't arrive on Android⎘ Copy link
+**Test notification doesn't arrive on Android**
 
 Confirm two things:
 
-* Your FCM Service Account JSON is uploaded in OneSignal under **Settings > Push & In-App > Google Android (FCM)**.
-* You rebuilt the app after entering the OneSignal App ID in Median App Studio.
+- Your FCM Service Account JSON is uploaded in OneSignal under **Settings > Push & In-App > Google Android (FCM)**.
+- You rebuilt the app after entering the OneSignal App ID in Median App Studio.
 
 ### Notifications don't appear on a simulator
-
-**Notifications don't appear on a simulator⎘ Copy link
 
 Install the app on a physical device. Push notifications don't work on most simulators. Accept the push permission prompt when it appears.
 
 ### Badge counts, rich images, or confirmed delivery aren't working on iOS
-
-**Badge counts, rich images, or confirmed delivery aren't working on iOS⎘ Copy link
 
 Enable the App Groups capability on both your main app target and the OneSignalNotificationServiceExtension target using the same identifier: `group.YOUR_BUNDLE_IDENTIFIER.onesignal`. Without App Groups on both targets, badge counts won't sync, rich notification images won't render, and confirmed delivery analytics won't report.
 
@@ -259,44 +238,13 @@ Enable the App Groups capability on both your main app target and the OneSignalN
 
 ### App was built before Median adopted OneSignal SDK v5
 
-**App was built before Median adopted OneSignal SDK v5⎘ Copy link
-
 Median's integration runs on **OneSignal SDK v5+** by default and uses a user-centric data model. Apps built before Median adopted v5 should confirm behavior against [Legacy Mode](https://docs.median.co/docs/onesignal-legacy-mode) before proceeding.
 
 <Info>
-  ## Still having trouble?
+  **Still having trouble?**
 
-  For issues related to OneSignal's own configuration, permissions, or platform-specific behaviour, refer to [OneSignal's integration documentation.](https://documentation.onesignal.com/docs)
+For issues related to OneSignal's own configuration, permissions, or platform-specific behaviour, refer to [OneSignal's integration documentation.](https://documentation.onesignal.com/docs)
 
-  For issues related to the App Studio, please get in touch with the [Median Support Team](https://docs.median.co/docs/support)
+For issues related to the App Studio, please get in touch with the [Median Support Team](https://docs.median.co/docs/support)
+
 </Info>
-
-***
-
-### Next Steps
-
-* [User & Consent Management](/docs/user-consent-management)
-* [OneSignal Push Notifications](/docs/onesignal-notifications)
-* [In-App Messages](/docs/in-app-messages)
-* [Legacy Mode](/docs/onesignal-legacy-mode)
-
-Copy Page
-
-* * [Why use OneSignal with Median.co](#why-use-onesignal-with-medianco)
-
-  * [Prerequisites](#prerequisites)
-
-  * [When to use this plugin](#when-to-use-this-plugin)
-
-  * [What you'll do](#what-youll-do)
-
-  * [Android and iOS configuration](#android-and-ios-configuration)
-
-  * [Plugin setup](#plugin-setup)
-
-  * * [Enable the plugin](#enable-the-plugin)
-    * [Find your OneSignal App ID and REST API Key](#find-your-onesignal-app-id-and-rest-api-key)
-
-  * [Testing checklist](#testing-checklist)
-
-  * [Troubleshooting](#troubleshooting)
