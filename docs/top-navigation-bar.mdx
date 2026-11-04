@@ -1,11 +1,14 @@
 ---
 title: "Top Navigation Bar"
+description: "Show a native top navigation bar in your iOS and Android app with titles, sidebar, search, refresh and custom buttons."
 ---
+
+import { MedianLogo } from "/snippets/median-logo.jsx";
 
 <Check>
 **Developer Demo**
 
-Display our demo page in your app to test during development [https://median.dev/top-navigation-bar/](https://median.dev/top-navigation-bar/)
+Display our demo page in your app to test during development <br /><br />[https://median.dev/top-navigation-bar/ <Icon icon="arrow-up-right-from-square" size={12} />](https://median.dev/top-navigation-bar/)
 
 </Check>
 
@@ -14,39 +17,31 @@ The top navigation bar is only visible if you are using [Sidebar Navigation](/do
 ## Example
 
 <Frame caption="iOS Top Navigation Bar">
-  <img src="/images/docs/7b4dbf1-top-nav-ios.png" />
+  <img src="/images/docs/7b4dbf1-top-nav-ios.png" alt="iOS top navigation bar showing The Mobile Daily logo title and a profile button" />
 </Frame>
 
 <Frame caption="Android Top Navigation Bar">
-  <img src="/images/docs/3fa42ce-top-nav-android.png" />
+  <img src="/images/docs/3fa42ce-top-nav-android.png" alt="Android top navigation bar showing The Mobile Daily logo title and a profile button" />
 </Frame>
 
 ## Frequently Asked Questions
 
-### How do I change the title text in the top navigation bar
+<Accordion title="How do I change the title text in the top navigation bar">
+  You can add the following to each page for which you wish to set a title.
 
-You can add the following to each page for which you wish to set a title.
+  <MedianLogo />
 
-<CodeGroup>
-  ```bash bash
+  <CodeGroup>
+
+  ```html HTML
   <script>
     function median_library_ready() {
       median.navigationTitles.setCurrent({ title: "Your Title" });
     }
   </script>
   ```
-</CodeGroup>
 
-For more details refer to [Dynamic Titles](/docs/dynamic-titles).
+  </CodeGroup>
 
----
-
-### Next Steps
-
-- [Dynamic Titles](/docs/dynamic-titles)
-
-Copy Page
-
-- - [Example](#example)
-  - [Frequently Asked Questions](#frequently-asked-questions)
-  - - [How do I change the title text in the top navigation bar](#how-do-i-change-the-title-text-in-the-top-navigation-bar)
+  For more details refer to [Dynamic Titles](/docs/dynamic-titles).
+</Accordion>
