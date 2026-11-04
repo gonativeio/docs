@@ -2,6 +2,7 @@
 title: "Permissions Overview"
 description: "Learn how to manage device permissions in your app, including camera, location, and contacts"
 ---
+import { MedianLogo } from "/snippets/median-logo.jsx";
 
 Mobile app permissions play a critical role in ensuring secure interaction between users and applications. They serve as a framework that enables apps to access specific features or data on a user's device, such as the camera, microphone, location, or contact list, and allow the user to retain complete control over their privacy and data security.
 
@@ -18,47 +19,29 @@ Display our demo page in your app to test during development [permissions demo p
 
 ## Related Documentation
 
-[](https://docs.median.co/docs/permission-prompt-localization)
-
-#### [Permission Prompt Localization](https://docs.median.co/docs/permission-prompt-localization)
-
-[Localize iOS usage descriptions and customize how permission prompts are presented to users in their language.](https://docs.median.co/docs/permission-prompt-localization)
-
-[](https://docs.median.co/docs/apple-att)
-
-#### [Apple App Tracking Transparency](https://docs.median.co/docs/apple-att)
-
-[Implement ATT for iOS 14.5+ and request user consent for tracking. Required for attribution and some analytics.](https://docs.median.co/docs/apple-att)
-
-[](https://docs.median.co/docs/background-audio)
-
-#### [Background Audio](https://docs.median.co/docs/background-audio)
-
-[Enable audio playback to continue when the app is in the background. Configure background audio capability and usage.](https://docs.median.co/docs/background-audio)
-
-[](https://docs.median.co/docs/camera-and-file-uploads)
-
-#### [Camera and File Uploads](https://docs.median.co/docs/camera-and-file-uploads)
-
-[Configure camera capture and file upload permissions. Control how users select or capture images and files from the device.](https://docs.median.co/docs/camera-and-file-uploads)
-
-[](https://docs.median.co/docs/downloads-directory)
-
-#### [Downloads Directory](https://docs.median.co/docs/downloads-directory)
-
-[Configure where downloaded files are stored and how the app accesses the downloads directory.](https://docs.median.co/docs/downloads-directory)
-
-[](https://docs.median.co/docs/location-services)
-
-#### [Location Services](https://docs.median.co/docs/location-services)
-
-[Request and use location permissions for when-in-use or always-on location access. Configure location-related features.](https://docs.median.co/docs/location-services)
-
-[](https://docs.median.co/docs/web-rtc)
-
-#### [WebRTC Audio & Video](https://docs.median.co/docs/web-rtc)
-
-[Enable microphone and camera access for WebRTC-based features such as voice and video calling.](https://docs.median.co/docs/web-rtc)
+<CardGroup cols={2}>
+  <Card title="Permission prompt localization" icon="language" href="/docs/permission-prompt-localization">
+    Localize iOS usage descriptions and customize how permission prompts appear in each user's language.
+  </Card>
+  <Card title="Apple App Tracking Transparency" icon="apple" href="/docs/apple-att">
+    Request user consent for tracking on iOS 14.5 and later. Required for attribution and some analytics.
+  </Card>
+  <Card title="Background audio" icon="volume-up" href="/docs/background-audio">
+    Keep audio playing when your app is in the background.
+  </Card>
+  <Card title="Camera and file uploads" icon="camera" href="/docs/camera-and-file-uploads">
+    Configure camera and file upload permissions, and control how users capture or select images and files.
+  </Card>
+  <Card title="Downloads directory" icon="folder-open" href="/docs/downloads-directory">
+    Configure where downloaded files are stored and how your app accesses them.
+  </Card>
+  <Card title="Location services" icon="location-dot" href="/docs/location-services">
+    Request when-in-use or always-on location access and configure location features.
+  </Card>
+  <Card title="WebRTC audio & video" icon="video" href="/docs/web-rtc">
+    Enable microphone and camera access for WebRTC features such as voice and video calls.
+  </Card>
+</CardGroup>
 
 ## Permission Prompts
 
@@ -73,8 +56,9 @@ When requesting permissions from your users, they will be asked to provide their
 
 Users can change the permissions granted to your app through their device settings. You can programmatically check the status of permissions using the Median JavaScript Bridge:
 
+<MedianLogo />
 <CodeGroup>
-  ```bash bash
+  ```JavaScript JavaScript
   // get status of all permissions
   const response = await median.permissions.status();
 
@@ -87,7 +71,7 @@ const response = await median.permissions.status(["Contacts", "Camera"]);
 The `response` object includes the current state for each requested permission:
 
 <CodeGroup>
-```bash bash
+```JSON JSON
 {
   "Contacts": "undetermined",
   "Camera": "granted"
@@ -124,7 +108,12 @@ Test launching the app settings menu: [median.dev/app-settings](https://median.d
 
 When users have denied permissions, you can direct them to the app's settings page to enable the required permissions:
 
-<CodeGroup>```bash bash median.open.appSettings(); ```</CodeGroup>
+<MedianLogo />
+<CodeGroup>
+```JavaScript JavaScript 
+median.open.appSettings(); 
+```
+</CodeGroup>
 
 To open the Settings page for your app, use the URL above or the JavaScript Bridge call.
 
@@ -137,8 +126,6 @@ You can also review app permissions on device following the official guides:
 
 ### Can I request Bluetooth Access?
 
-\*\*Can I request Bluetooth Access?⎘ Copy link
-
 As of now Bluetooth is an experimental feature not supported by iOS WebKit or Android WebView.
 
 You can track compatibility here: [MDN - Web Bluetooth API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Bluetooth_API#browser_compatibility)
@@ -146,26 +133,3 @@ You can track compatibility here: [MDN - Web Bluetooth API](https://developer.mo
 We support a range of Bluetooth devices such as payment terminals, printers, sensor devices, etc through vendor provided SDKs and custom native plugins that implement the iOS Core Bluetooth and Android Bluetooth functionality.
 
 We implemented custom Bluetooth integrations in our iBeacon and Master Lock plugins.
-
----
-
-### Next Steps
-
-- [Apple App Tracking Transparency](/docs/apple-att)
-- [Location Services](/docs/location-services)
-- [WebRTC Audio & Video](/docs/web-rtc)
-- [Downloads Directory](/docs/downloads-directory)
-- [Background Audio](/docs/background-audio)
-
-Copy Page
-
-- - [Related Documentation](#related-documentation)
-
-  - [Permission Prompts](#permission-prompts)
-
-  - [JavaScript Bridge Functions](#javascript-bridge-functions)
-
-  - - [Permissions Status](#permissions-status)
-    - [App Settings](#app-settings)
-
-  - [Frequently Asked Questions](#frequently-asked-questions)
