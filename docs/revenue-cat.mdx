@@ -3,6 +3,8 @@ title: "RevenueCat"
 description: "Leverage RevenueCat to power in-app purchases in your app"
 ---
 
+import { MedianLogo } from "/snippets/median-logo.jsx";
+
 The RevenueCat Plugin simplifies the integration of in-app purchases and subscriptions by leveraging RevenueCat’s backend and SDKs for iOS and Android.
 
 This plugin provides a streamlined approach to fetching products, processing purchases, and restoring past transactions, reducing the complexity of implementing Apple’s StoreKit and Google Play Billing.
@@ -80,8 +82,9 @@ To use the RevenueCat Plugin, initialize it with your public `apiKey` and `appUs
 
 Provide a callback function or return a promise.
 
+<MedianLogo />
 <CodeGroup>
-  ```bash bash
+  ```JavaScript JavaScript
   median.revenueCat.configure({
     'apiKey': '<my_api_key>',
     'appUserID': '<my_app_user_id>'
@@ -97,8 +100,9 @@ Provide a callback function or return a promise.
 
 Verify the SDK is initialized before calling any other methods. Provide a callback function or return a promise.
 
+<MedianLogo />
 <CodeGroup>
-  ```bash bash
+  ```JavaScript JavaScript
   median.revenueCat.isInitialized({'callback': function});
   // Return value:
   {
@@ -114,8 +118,9 @@ Fetch available in-app products, subscriptions, and offerings from RevenueCat.
 
 Provide a callback function or return a promise.
 
+<MedianLogo />
 <CodeGroup>
-  ```bash bash
+  ```JavaScript JavaScript
   median.revenueCat.getOfferings()
   // Return value:
   {
@@ -130,8 +135,9 @@ Trigger an in-app purchase using a product identifier.
 
 Provide a callback function or return a promise.
 
+<MedianLogo />
 <CodeGroup>
-  ```bash bash
+  ```JavaScript JavaScript
   median.revenueCat.purchase({'identifier':STRING})
   // Return value:
   {
@@ -146,8 +152,9 @@ Restore a user's previously purchased products and subscriptions.
 
 Provide a callback function or return a promise.
 
+<MedianLogo />
 <CodeGroup>
-  ```bash bash
+  ```JavaScript JavaScript
   median.revenueCat.restorePurchases()
   // Return value:
   {
@@ -160,15 +167,18 @@ Provide a callback function or return a promise.
 
 Present a paywall that has been configured through the RevenueCat platform. Please follow the [RevenueCat - Creating Paywalls](https://www.revenuecat.com/docs/tools/paywalls/creating-paywalls) guide for style and configuration references.
 
-<CodeGroup>```bash bash median.revenueCat.presentPaywall(); ```</CodeGroup>
+<MedianLogo />
+<CodeGroup>
+```JavaScript JavaScript 
+median.revenueCat.presentPaywall(); 
+```
+</CodeGroup>
 
 This function provides a call back and will return an error if the user cancels the paywall.
 
 ## Troubleshooting
 
 ### Can Median manage my RevenueCat configuration?
-
-Can Median manage my RevenueCat configuration?⎘ Copy link
 
 Median maintains its own RevenueCat account for development and QA purposes only. However, Median does not manage your RevenueCat configuration, product setup, or App Store / Play Store metadata.
 
@@ -178,26 +188,8 @@ If you run into issues, consult RevenueCat’s official troubleshooting document
 
 ### What are the app review implications when using paywalls?
 
-What are the app review implications when using paywalls?⎘ Copy link
-
 Paywalls are often one of the most closely reviewed parts of an app during App Store and Play Store review. Both platforms require apps to clearly communicate what users receive before they are asked to pay, ensuring expectations are transparent and not misleading.
 
 When configuring your payment options and paywalls, carefully follow RevenueCat’s guidance to improve your chances of approval:
 
 [RevenueCat - Getting your paywall approved through app review](https://www.revenuecat.com/docs/tools/paywalls/creating-paywalls/app-review)
-
----
-
-[Master Lock](/docs/master-lock)
-
-[Social Share](/docs/social-share)
-
-Copy Page
-
-- - [Implementation Guide](#implementation-guide)
-
-  - - [RevenueCat Setup](#revenuecat-setup)
-    - [App Configuration](#app-configuration)
-    - [JavaScript Bridge Functions](#javascript-bridge-functions)
-
-  - [Troubleshooting](#troubleshooting)
