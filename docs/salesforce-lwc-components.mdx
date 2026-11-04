@@ -53,21 +53,21 @@ After deployment, open Experience Builder and drag the component from the compon
 If you are building your own LWC that calls the Median bridge, follow these conventions for production-ready code. The patterns below are consistent with the open-source library and ensure correct behaviour across Lightning Web Security, multiple Median SDK versions, and both in-app and out-of-app contexts.
 
 <CodeGroup>
-  ```bash bash
+  ```javascript JavaScript
   import { LightningElement } from 'lwc';
-
+  
   export default class MyMedianComponent extends LightningElement {
-
+  
       // Normalise both casing conventions across Median SDK injection methods (NPM or app-injected)
       get _median() {
           return window.median || window.Median || null;
       }
-
+  
       // Always guard before calling the bridge
       get isInMedianApp() {
           return !!this._median;
       }
-
+  
       // Example: call an async bridge method with error handling
       async exampleBridgeCall() {
           if (!this._median) {
@@ -84,8 +84,6 @@ If you are building your own LWC that calls the Median bridge, follow these conv
   }
   ```
 </CodeGroup>
-
-***
 
 ## Component Reference
 
