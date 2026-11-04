@@ -122,15 +122,14 @@ Integrates the Median OneSignal plugin to manage push notification subscriptions
 
 **Usage note:** The external user ID is typically a Salesforce Contact ID, email address, or another identifier that your push notification service can use to target a specific user. Logout removes the external ID association but does not unsubscribe the device from push notifications entirely.
 
-**This component only implements a subset of all JavaScript Bridge methods available. Please review our** [**OneSignal documentation**](https://docs.median.co/docs/onesignal) **for a full JavaScript Bridge Reference.**
-
-***
+<Info>
+  This component only implements a subset of all JavaScript Bridge methods available. Please review our [OneSignal documentation](https://docs.median.co/docs/onesignal) for a full JavaScript Bridge Reference.
+</Info>
 
 ### biometricAuth: Biometric Authentication
 
-|                            |                                                                                      |
-| -------------------------- | ------------------------------------------------------------------------------------ |
-| **Source**                 | `force-app/main/default/lwc/biometricAuth`                                           |
+| **Source** | `force-app/main/default/lwc/biometricAuth` |
+| --- | --- |
 | **Median plugin required** | Face ID and Touch ID / Android Biometric, enabled in Median App Studio under Plugins |
 | **Apex required**          | No                                                                                   |
 
@@ -148,7 +147,7 @@ Saves and retrieves credentials using the device's native biometric hardware (Fa
 **Median API methods used:**
 
 <CodeGroup>
-  ```bash bash
+  ```javascript JavaScript
   median.auth.status()                                    // Promise → { hasTouchId, hasSecret }
   median.auth.save({ secret, minimumAndroidBiometric })   // Promise
   median.auth.get({ callbackFunction: 'fnName' })         // Callback → { success, secret, error }
@@ -162,9 +161,8 @@ Saves and retrieves credentials using the device's native biometric hardware (Fa
 
 ### qrScannerNative: QR Code and Barcode Scanning
 
-|                            |                                                                   |
-| -------------------------- | ----------------------------------------------------------------- |
-| **Source**                 | `force-app/main/default/lwc/qrScannerNative`                      |
+| **Source** | `force-app/main/default/lwc/qrScannerNative` |
+| --- | --- |
 | **Median plugin required** | QR / Barcode Scanner (enabled in Median App Studio under Plugins) |
 | **Apex required**          | No                                                                |
 
@@ -185,7 +183,7 @@ Launches the device camera for QR code and barcode scanning. Returns the scanned
 **Median API methods used:**
 
 <CodeGroup>
-  ```bash bash
+  ```javascript JavaScript
   median.barcode.setPrompt(promptText)             // Synchronous
   median.barcode.scan()                            // Promise
   median.barcode.scan({ callback: 'fnName' })      // Callback
@@ -195,7 +193,7 @@ Launches the device camera for QR code and barcode scanning. Returns the scanned
 **Scan result shape:**
 
 <CodeGroup>
-  ```bash bash
+  ```javascript JavaScript
   {
     "success": true,
     "code": "https://example.com/asset/12345",
@@ -205,8 +203,6 @@ Launches the device camera for QR code and barcode scanning. Returns the scanned
 </CodeGroup>
 
 On cancellation, the scanner returns `{ "success": false, "error": "cancelled" }`. This is handled gracefully with a status badge rather than an error state.
-
-***
 
 ### pdfViewer: Native PDF Handling
 
