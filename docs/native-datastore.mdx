@@ -3,6 +3,9 @@ title: "Native Datastore"
 description: "Store key-value data on the device or in the cloud"
 ---
 
+import { AppetizeEmbed } from "/snippets/appetize-embed.jsx";
+import { MedianLogo } from "/snippets/median-logo.jsx";
+
 The Native Datastore Plugin enables developers to persist key-value data such as user preferences and app settings directly on the user's device or in the cloud via the Median JavaScript Bridge.
 
 This plugin supports both App Storage and Cloud Storage, giving you flexibility in how data is saved and accessed across sessions and devices.
@@ -53,19 +56,20 @@ This option utilizes Android's SharedPreferences and iOS's UserDefaults to store
 
 To save a value, use the following JavaScript Bridge command. To get status of this write operation, define a callback function in JavaScript and pass as `statuscallback` (Optional).
 
+<MedianLogo />
 <CodeGroup>
-  ```bash bash
+  ```JavaScript JavaScript
   median.storage.app.set({
     key: KEY,
     value: VALUE,
     statuscallback: statcb,
   });
 
-// Optional callback for status
-function statcb(result) {
-if (result.status) {
-console.log(result.status);
-}
+  // Optional callback for status
+  function statcb(result) {
+  if (result.status) {
+    console.log(result.status);
+  }
 }
 
 ````
@@ -81,24 +85,25 @@ console.log(result.status);
 
 To retrieve the saved settings define a callback function and call the JavaScript Bridge command below, providing the KEY of the saved setting and the callback that was defined. The status of the read operation is included as a parameter in the result variable as shown below.
 
+<MedianLogo />
 <CodeGroup>
-```bash bash
-// Callback
-median.storage.app.get({
-  key: KEY,
-  callback: cbRead
-});
+```JavaScript JavaScript
+  // Callback
+  median.storage.app.get({
+    key: KEY,
+    callback: cbRead
+  });
 
-function cbRead(result) {
-  console.log(result.data);    // the stored value
-  console.log(result.status);  // operation status
-}
+  function cbRead(result) {
+    console.log(result.data);    // the stored value
+    console.log(result.status);  // operation status
+  }
 
-// Promise method
-median.storage.app.get({ key: KEY })
-  .then(function(result) {
-    console.log(result.data);
-    console.log(result.status);
+  // Promise method
+  median.storage.app.get({ key: KEY })
+    .then(function(result) {
+      console.log(result.data);
+      console.log(result.status);
   });
 ````
 
@@ -113,37 +118,38 @@ median.storage.app.get({ key: KEY })
 
 To delete a setting provide the KEY of the previously saved setting. The status of the delete operation can be accessed through the function passed as `statuscallback` (Optional).
 
+<MedianLogo />
 <CodeGroup>
-  ```bash bash
+  ```JavaScript JavaScript
   median.storage.app.delete({
     key: KEY,
     statuscallback: statcb,
   });
 
-// Optional callback for status
-function statcb(result) {
-if (result.status) {
-console.log(result.status);
-}
-}
-
-````
+  // Optional callback for status
+  function statcb(result) {
+    if (result.status) {
+    console.log(result.status);
+    }
+  }
+```
 </CodeGroup>
 
 #### Delete All
 
 Removes all stored key-value pairs from device-local storage.
 
+<MedianLogo />
 <CodeGroup>
-```bash bash
-median.storage.app.deleteAll({
-  statuscallback: statcb  // optional
-});
+```JavaScript JavaScript
+  median.storage.app.deleteAll({
+    statuscallback: statcb  // optional
+  });
 
-function statcb(result) {
-  console.log(result.status);
-}
-````
+  function statcb(result) {
+    console.log(result.status);
+  }
+```
 
 </CodeGroup>
 
@@ -157,30 +163,31 @@ Note: On Android, the location of the Cloud Storage (SharedPreferences) database
 
 To save a value, use the following JavaScript Bridge command. To get status of this write operation, define a callback function in JavaScript (Optional).
 
+<MedianLogo />
 <CodeGroup>
-  ```bash bash
+  ```JavaScript JavaScript
   median.storage.cloud.set({
     key: KEY,
     value: VALUE,
     statuscallback: statcb,
   });
 
-// Optional callback for status
-function statcb(result) {
-if (result.status) {
-console.log(result.status);
-}
-}
-
-````
+  // Optional callback for status
+  function statcb(result) {
+    if (result.status) {
+      console.log(result.status);
+    }
+  }
+```
 </CodeGroup>
 
 #### Get Command
 
 To retrieve the saved settings define a callback function and call the JavaScript Bridge command below, providing the KEY of the saved setting and the callback that was defined. The status of the read operation is included as a parameter in the result variable as shown below.
 
+<MedianLogo />
 <CodeGroup>
-```bash bash
+```JavaScript JavaScript
 median.storage.cloud.get({
   key: KEY,
   callback: cbRead,
@@ -208,8 +215,7 @@ median.storage.cloud
       console.log(result.status);
     }
   });
-````
-
+```
 </CodeGroup>
 
 > [Learn more about using promises and the Media JavaScript Bridge](https://median.co/docs/javascript-bridge#promises).
@@ -218,29 +224,30 @@ median.storage.cloud
 
 To delete a setting provide the KEY of the previously saved setting. The status of the delete operation can be accessed through the function passed as `statuscallback` (Optional).
 
+<MedianLogo />
 <CodeGroup>
-  ```bash bash
+  ```JavaScript JavaScript
   median.storage.cloud.delete({
     key: KEY,
     statuscallback: statcb,
   });
 
-// Optional callback for status
-function statcb(result) {
-if (result.status) {
-console.log(result.status);
+  // Optional callback for status
+  function statcb(result) {
+    if (result.status) {
+    console.log(result.status);
+  }
 }
-}
-
-````
+```
 </CodeGroup>
 
 #### Delete All
 
 Delete all saved settings from the device:
 
+<MedianLogo />
 <CodeGroup>
-```bash bash
+```JavaScript JavaScript
 median.storage.cloud.deleteAll({ statuscallback: statcb });
 
 function statcb(result) {
@@ -248,8 +255,7 @@ function statcb(result) {
     console.log(result.status);
   }
 }
-````
-
+```
 </CodeGroup>
 
 ### Callback Status Reference
@@ -268,51 +274,21 @@ All write and delete operations return status via `statuscallback`; `get` return
 
 Try out the plugin on iOS and Android with our interactive demo apps.
 
-|     |         |
-| --- | ------- |
-|     |         |
-| iOS | Android |
+<AppetizeEmbed
+  iosEmbedCode="jp2oswaroboxszywr5aptieomi"
+  androidEmbedCode="xu7hr5p7ooi5d33e3wht73jb4m"
+/>
 
 ## Frequently Asked Questions
 
 ### Native Datastore functions are undefined or not working
 
-\*\*Native Datastore functions are undefined or not working⎘ Copy link
-
 Ensure the JavaScript Bridge is enabled in Median App Studio and that your page has fully loaded before calling bridge functions. Verify that the plugin is enabled in your app configuration.
 
-### get returns preference-not-found even though a value was set
-
-\*\*get returns preference-not-found even though a value was set⎘ Copy link
+### `get` returns preference-not-found even though a value was set
 
 Confirm that the `key` used in `get` exactly matches the `key` used in `set`. Keys are case-sensitive. Also verify that the value was successfully stored by checking the status returned to your `statuscallback`.
 
 ### Cloud storage does not sync to another device
 
-\*\*Cloud storage does not sync to another device⎘ Copy link
-
 On Android, BackupManager schedules sync operations asynchronously and the timing is system-determined and cannot be forced. On iOS, Keychain sync depends on the user's iCloud Keychain settings. Verify that iCloud Keychain is enabled on both devices.
-
----
-
-[Native Contacts](/docs/native-contacts)
-
-[Offline Download Manager](/docs/offline-download-manager)
-
-Copy Page
-
-- - [Why Use Native Datastore](#why-use-native-datastore)
-
-  - [Storage Backends](#storage-backends)
-
-  - [Storage Limits](#storage-limits)
-
-  - [Implementation Guide](#implementation-guide)
-
-  - - [App Storage](#app-storage)
-    - [Cloud Storage](#cloud-storage)
-    - [Callback Status Reference](#callback-status-reference)
-
-  - [Demo App](#demo-app)
-
-  - [Frequently Asked Questions](#frequently-asked-questions)

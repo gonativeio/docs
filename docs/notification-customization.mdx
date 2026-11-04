@@ -2,6 +2,7 @@
 title: "Customize Push Notifications"
 description: "Customize the Icon, Badges and Sound of your app's Push Notifications"
 ---
+import { MedianLogo } from "/snippets/median-logo.jsx";
 
 ## Notification icons
 
@@ -20,7 +21,7 @@ Android's notification system renders icons differently than the app launcher ic
 * **Transparent background**; the system colorizes the icon based on the device's accent color
 
 <Warning>
-  ### Important
+  **Important**
 
   Notification icons on Android are compiled directly into the native app code during the build process. Submitting an icon that doesn't meet these specs, such as a full-color logo, will cause rendering issues on some devices, typically appearing as a solid white or colored square. Configure the correct icon in App Studio before building.
 </Warning>
@@ -28,8 +29,6 @@ Android's notification system renders icons differently than the app launcher ic
 To set your Android notification icon, go to **App Studio > Native Plugins > OneSignal** and upload your icon file.
 
 📖 Learn more in the [OneSignal Notification Sounds](https://documentation.onesignal.com/docs/en/notification-sounds#notification-sounds) and [Android notification categories](https://documentation.onesignal.com/docs/en/android-notification-categories).
-
-***
 
 ## Notification sounds
 
@@ -59,16 +58,20 @@ Median handles format conversion automatically; you don't need to prepare separa
 
 **From the OneSignal dashboard:** When composing a notification, look for the **Sound** option in the notification settings and select your uploaded sound.
 
-iOS ExampleAndroid Example
+<Columns cols={2}>
+<Frame caption="iOS Example">
+  <img src="/images/docs/f85329969ff3c4a3937c252b96cf926c72943210b8aec2a0aedd361fc3c916a8-Screenshot_2025-10-31_at_09.54.01.png" />
+</Frame>
 
-![](/images/docs/f85329969ff3c4a3937c252b96cf926c72943210b8aec2a0aedd361fc3c916a8-Screenshot_2025-10-31_at_09.54.01.png)
-
-![](/images/docs/7e9d8abd2bea252922fc8335b549eceb62589347ffaecdf1e7b902be601036f2-Screenshot_2025-10-31_at_09.13.29.png)
+<Frame caption="Android Example">
+  <img src="/images/docs/7e9d8abd2bea252922fc8335b549eceb62589347ffaecdf1e7b902be601036f2-Screenshot_2025-10-31_at_09.13.29.png" />
+</Frame>
+</Columns>
 
 **From the REST API:**
 
 <CodeGroup>
-  ```bash bash
+  ```JSON JSON
   {
     "app_id": "{{YOUR_ONESIGNAL_APP_ID}}",
     "target_channel": "push",
@@ -80,12 +83,10 @@ iOS ExampleAndroid Example
 </CodeGroup>
 
 <Info>
-  ### Android note
+  **Android note**
 
   Custom sounds on Android are tied to notification channels (also called categories). You must create a notification channel with your desired sound configured before it can be used. See OneSignal's [Android notification categories guide](https://documentation.onesignal.com/docs/android-notification-categories) for setup steps. Once a channel is created, use its ID as the `android_channel_id` value.
 </Info>
-
-***
 
 ## Notification badges
 
@@ -100,8 +101,9 @@ Badge counts are the small number overlays that appear on your app icon, a quick
 
 Use the Median JavaScript Bridge to set or clear badge counts from your web app:
 
+<MedianLogo />
 <CodeGroup>
-  ```bash bash
+  ```JavaScript JavaScript
   // Set the badge count to a specific number
   median.onesignal.badgeCount.set(5);
 
@@ -111,8 +113,6 @@ Use the Median JavaScript Bridge to set or clear badge counts from your web app:
 </CodeGroup>
 
 <Info>
-  ### Legacy plugin
-
   **Legacy plugin:** Badge count management is not available if your app uses the legacy OneSignal plugin (iOS v3 SDK / Android v4 SDK). See [Legacy Mode](https://docs.median.co/docs/onesignal-legacy-mode) for details.
 </Info>
 
@@ -139,30 +139,7 @@ Replace `YOUR_BUNDLE_IDENTIFIER` with your actual bundle ID (e.g., `com.yourcomp
 For step-by-step instructions with screenshots, see [OneSignal's iOS setup guide, App Groups](https://documentation.onesignal.com/docs/ios-sdk-setup#3-add-app-groups).
 
 <Info>
-  ### Already completed App Groups during initial setup?
+  **Already completed App Groups during initial setup?**
 
   If you followed the [Get started with OneSignal](https://docs.median.co/update/docs/one-signal-updated-structure) guide and added App Groups during setup, you don't need to repeat these steps; you're already configured.
 </Info>
-
-***
-
-[Foreground Notifications](/docs/foreground-notifications)
-
-[Handling Notifications Taps](/docs/handling-notifications-taps)
-
-Copy Page
-
-* * [Notification icons](#notification-icons)
-
-  * * [Android icon requirements](#android-icon-requirements)
-
-  * [Notification sounds](#notification-sounds)
-
-  * * [Step 1: Upload your sound files](#step-1-upload-your-sound-files)
-    * [Platform format reference](#platform-format-reference)
-    * [Step 2: Attach a sound to a notification](#step-2-attach-a-sound-to-a-notification)
-
-  * [Notification badges](#notification-badges)
-
-  * * [Setting and clearing badge counts](#setting-and-clearing-badge-counts)
-    * [iOS App Groups configuration (required for badge reset)](#ios-app-groups-configuration-required-for-badge-reset)

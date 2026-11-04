@@ -3,6 +3,9 @@ title: "Native Contacts"
 description: "Access and manage user contacts from their mobile devices"
 ---
 
+import { AppetizeEmbed } from "/snippets/appetize-embed.jsx";
+import { MedianLogo } from "/snippets/median-logo.jsx";
+
 The Native Contacts plugin lets users sync their device contacts with your app, enabling form completion and data enrichment based on lookup fields such as email or phone number. You can retrieve all contacts in bulk or prompt the user to select specific contacts through a native UI without building any contact infrastructure yourself.
 
 Common use cases include CRM data entry, field service lookups, social connection suggestions, and eCommerce address autofill.
@@ -39,20 +42,21 @@ All contact functionality is accessed through the [Median JavaScript Bridge](htt
 
 Before accessing contacts, check whether the user has already granted permission. The app will automatically prompt for permission on first access, but this method lets you check current status without triggering a prompt.
 
+<MedianLogo />
 <CodeGroup>
-  ```bash bash
+  ```JavaScript JavaScript
   // Callback style
   median.contacts.getPermissionStatus({ callback: myCallback });
 
-// Promise style
-const result = await median.contacts.getPermissionStatus({});
+  // Promise style
+  const result = await median.contacts.getPermissionStatus({});
 
-// Return value
-{
-"status": "STRING"
-}
+  // Return value
+  {
+    "status": "STRING"
+  }
 
-````
+```
 </CodeGroup>
 
 #### Permission Status Values
@@ -79,15 +83,15 @@ Given the differences between both iOS and Android you can expect slightly diffe
 
 Fetch the complete contacts list stored on the device.
 
+<MedianLogo />
 <CodeGroup>
-```bash bash
+```JavaScript JavaScript
 // Callback style
 median.contacts.getAll({ callback: myCallback });
 
 // Promise style
 const result = await median.contacts.getAll({});
-````
-
+```
 </CodeGroup>
 
 **Note**: On iOS the `note` field is not returned by `getAll()` by default. Accessing it requires the `com.apple.developer.contacts.notes entitlement`, which requires approval by Apple.
@@ -96,18 +100,18 @@ const result = await median.contacts.getAll({});
 
 Display the device's native contact selection UI, allowing the user to choose one or multiple contacts. This is the recommended approach when you need explicit user selection rather than bulk access.
 
+<MedianLogo />
 <CodeGroup>
-  ```bash bash
+  ```JavaScript JavaScript
   // Callback style
   median.contacts.pickContact({
     callback: myCallback,
     multiple: BOOL  // true = allow multi-select; false = single contact only
   });
 
-// Promise style
-const result = await median.contacts.pickContact({ multiple: false });
-
-````
+  // Promise style
+  const result = await median.contacts.pickContact({ multiple: false });
+```
 </CodeGroup>
 
 **Note**: The `note` field is available when using `pickContact()` on iOS, without any additional entitlement.
@@ -117,13 +121,12 @@ const result = await median.contacts.pickContact({ multiple: false });
 When permission is granted, all contact methods return an object in the following shape:
 
 <CodeGroup>
-```bash bash
+```JSON JSON
 {
   success: true,
   contacts: [...]
 }
-````
-
+```
 </CodeGroup>
 
 `contacts` is an array of contact objects. Available fields depend on the platform.
@@ -174,7 +177,7 @@ When permission is granted, all contact methods return an object in the followin
 **Phone Numbers**
 
 <CodeGroup>
-  ```bash bash
+  ```JSON JSON
   {
     "label": "STRING",
     "phoneNumber": "STRING"
@@ -185,7 +188,7 @@ When permission is granted, all contact methods return an object in the followin
 **Email Addresses**
 
 <CodeGroup>
-  ```bash bash
+  ```JSON JSON
   {
     "label": "STRING",
     "emailAddress": "STRING"
@@ -196,7 +199,7 @@ When permission is granted, all contact methods return an object in the followin
 **Postal Addresses**
 
 <CodeGroup>
-  ```bash bash
+  ```JSON JSON
   {
     "label": "STRING",
     "street": "STRING",
@@ -216,24 +219,7 @@ When permission is granted, all contact methods return an object in the followin
 
 You can test the native contact features using our virtual demo app on iOS and Android simulators.
 
-|     |         |
-| --- | ------- |
-|     |         |
-| iOS | Android |
-
----
-
-[Google In-App Purchases (Legacy)](/docs/google-iap-legacy)
-
-[Native Datastore](/docs/native-datastore)
-
-Copy Page
-
-- - [Why Use Native Contacts](#why-use-native-contacts)
-
-  - [Implementation Guide](#implementation-guide)
-
-  - - [App Configuration](#app-configuration)
-    - [JavaScript Bridge Implementation](#javascript-bridge-implementation)
-
-  - [Demo App](#demo-app)
+<AppetizeEmbed
+  iosEmbedCode="g4amgfwnwgjfw2totlew5e5sju"
+  androidEmbedCode="bdxzacqu5khe5yglru3gxkx4ay"
+/>
