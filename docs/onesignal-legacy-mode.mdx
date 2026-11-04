@@ -1,9 +1,10 @@
 ---
 title: "Legacy Mode"
 ---
+import { MedianLogo } from "/snippets/median-logo.jsx";
 
 <Info>
-  ### Important note
+  **Important note**
 
 **This guide applies only to apps using the legacy OneSignal integration (iOS v3 SDK or Android v4 SDK).** If your app was set up recently through Median.co, it's already on the current SDK (v5+) with a user-centric data model — this page doesn't apply to you. For new integrations, start with [Get started with OneSignal](https://docs.median.co/docs/onesignal).
 
@@ -19,8 +20,6 @@ By default, Median.co apps integrate with the latest OneSignal iOS and Android S
 Display our demo page in your app to test during development [https://median.dev/onesignal-legacy](https://median.dev/onesignal-legacy)
 
 </Check>
-
----
 
 ## Sending personalized notifications in Legacy Mode
 
@@ -46,30 +45,30 @@ Add JavaScript to a login success page to retrieve the `oneSignalInfo` object. T
 
 **iOS note:** On iOS, `oneSignalUserId` will not be set if the user has declined the push notification permission prompt.
 
+<MedianLogo />
 <CodeGroup>
-  ```bash bash
+  ```JavaScript JavaScript
   /* Login Page Sample Code */
   var gn_oneSignalUserId;
 
-function median_onesignal_info(oneSignalInfo){
-gn_OneSignalUserId = oneSignalInfo.oneSignalUserId;
-}
+  function median_onesignal_info(oneSignalInfo){
+    gn_OneSignalUserId = oneSignalInfo.oneSignalUserId;
+  }
 
-function yourLoginFunction(){
-if(gn_OneSignalUserId){
-$.ajax({
-url: updateUserRecord,
-type: "POST",
-data: {
-yourAppUserId: userId,
-oneSignalUserId: gn_OneSignalUserId
-},
-contentType: "application/json"
-});
-}
-}
-
-````
+  function yourLoginFunction(){
+    if(gn_OneSignalUserId){
+    $.ajax({
+      url: updateUserRecord,
+      type: "POST",
+      data: {
+        yourAppUserId: userId,
+        oneSignalUserId: gn_OneSignalUserId
+      },
+      contentType: "application/json"
+    });
+    }
+  }
+```
 </CodeGroup>
 
 For more JavaScript examples, see [OneSignal Info](https://docs.median.co/docs/onesignal-info).
@@ -87,8 +86,9 @@ The POST is sent:
 
 Instead of managing Player IDs in your own database, you can use OneSignal's External User ID to associate your own identifiers — such as an email address or account number — with the device record in OneSignal. OneSignal manages the user-device relationship for you, though the functionality is more limited.
 
+<MedianLogo />
 <CodeGroup>
-```bash bash
+```JavaScript JavaScript
 // Set an External ID
 median.onesignal.externalUserId.set({
   externalId: STRING // e.g. [email protected]
@@ -100,18 +100,14 @@ median.onesignal.externalUserId.remove();
 
 </CodeGroup>
 
----
-
 ## Comparing the two options
 
 | Criteria                    | Option 1 (backend managed)            | Option 2 (External User ID)              |
 | --------------------------- | ------------------------------------- | ---------------------------------------- |
-| **Setup complexity**        | Higher — requires backend storage     | Lower — OneSignal manages the mapping    |
-| **Control**                 | Full — you manage every device record | Limited — depends on OneSignal's mapping |
+| **Setup complexity**        | High - requires backend storage       | Low - OneSignal manages the mapping      |
+| **Control**                 | Full - you manage every device record | Limited - depends on OneSignal's mapping |
 | **Multi-account support**   | Yes                                   | Limited                                  |
 | **Inactive device removal** | Yes                                   | No                                       |
-
----
 
 ## Migrating away from Legacy Mode
 
@@ -123,16 +119,3 @@ The primary areas to update are:
 2. **Programmatic notifications:** Transactional notification delivery. See [Programmatic notifications](https://docs.median.co/docs/programmatic-notifications).
 
 Once you've updated both areas, disable Legacy Mode and rebuild your app.
-
----
-
-[In-App Messages](/docs/in-app-messages)
-
-[Braze](/docs/braze)
-
-Copy Page
-
-- - [What Legacy Mode is](#what-legacy-mode-is)
-  - [Sending personalized notifications in Legacy Mode](#sending-personalized-notifications-in-legacy-mode)
-  - [Comparing the two options](#comparing-the-two-options)
-  - [Migrating away from Legacy Mode](#migrating-away-from-legacy-mode)
