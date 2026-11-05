@@ -16,11 +16,11 @@ You may add a sidebar menu group by clicking the circular plus button ⨁ betwee
 If you'd prefer your links to trigger various JavaScript commands, you may wish to specify URLs in the Visual Editor with the following syntax (Option 1). Alternatively, you can set the URL with the JavaScript command directly in the JSON (Option 2).
 
 <CodeGroup>
-  ```bash bash
+  ```javascript Option 1 - Visual Editor
   javascript:alert('test');
   ```
 
-  ```bash bash
+  ```json Option 2 - JSON
   [
     {
       "subLinks": [],
@@ -31,7 +31,7 @@ If you'd prefer your links to trigger various JavaScript commands, you may wish 
   ]
   ```
 
-  ```bash bash
+  ```json Complex JSON Example
   [
       {
         "icon": null,
@@ -147,14 +147,3 @@ If you'd prefer your links to trigger various JavaScript commands, you may wish 
   ]
   ```
 </CodeGroup>
-
-***
-
-### Next Steps
-
-* [Dynamic Menu Items](/docs/dynamic-menu-items)
-
-Copy Page
-
-* * [Grouping Menu Items](#grouping-menu-items)
-  * [Trigger JavaScript Commands from Sidebar Menu Options](#trigger-javascript-commands-from-sidebar-menu-options)
