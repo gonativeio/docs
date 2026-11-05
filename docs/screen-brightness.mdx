@@ -3,11 +3,11 @@ title: "Screen Brightness"
 description: "Dynamically control the device's screen brightness from your web app"
 ---
 
-import MedianLogo from '/snippets/median-logo.jsx';
+import { MedianLogo } from "/snippets/median-logo.jsx";
 
 ## Overview
 
-The Screen Brightness JavaScript Bridge method lets you set the device's screen brightness at runtime, overriding the user's system setting while they're inside your app. It's part of Median's [Device Screen Control](https://docs.median.co/docs/device-screen-control) feature set, alongside [Keep Screen On](https://docs.median.co/docs/keep-screen-on) and [Full Screen](https://docs.median.co/docs/full-screen).
+The Screen Brightness JavaScript Bridge method lets you set the device's screen brightness at runtime, overriding the user's system setting while they're inside your app. It's part of Median's [Device Screen Control](/docs/device-screen-control) feature set, alongside [Keep Screen On](/docs/keep-screen-on) and [Full Screen](/docs/full-screen).
 
 ## Why Use Screen Brightness
 
@@ -24,9 +24,9 @@ The Screen Brightness JavaScript Bridge method lets you set the device's screen 
   Display our demo page in your app to test during development [https://median.dev/device-screen-controls/ <Icon icon="arrow-up-right-from-square" size={12} />](https://median.dev/device-screen-controls/)
 </Check>
 
-### JavaScript Bridge Implementation
+## JavaScript Bridge Implementation
 
-#### Set Screen Brightness
+### Set Screen Brightness
 
 Sets the device screen to a specific brightness level
 
@@ -38,7 +38,7 @@ Sets the device screen to a specific brightness level
   ```
 </CodeGroup>
 
-#### Restore Brightness on Navigation
+### Restore Brightness on Navigation
 
 To apply a brightness change that automatically reverts once the user navigates to a new page:
 
@@ -50,7 +50,7 @@ To apply a brightness change that automatically reverts once the user navigates 
   ```
 </CodeGroup>
 
-#### Reset to Default Brightness
+### Reset to Default Brightness
 
 To clear any brightness override and return control to the device's system setting:
 
