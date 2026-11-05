@@ -522,40 +522,7 @@
         ]
       },
       {
-        "tab": "Release Notes",
-        "icon": "clock-rotate-left",
-        "groups": [
-          {
-            "group": "Release Notes",
-            "pages": [
-              "docs/release-notes",
-              {
-                "group": "App Studio Release Notes",
-                "root": "docs/release-notes-app-studio",
-                "pages": [
-                  "docs/release-notes-app-studio-archive"
-                ]
-              },
-              {
-                "group": "iOS Release Notes",
-                "root": "docs/release-notes-ios",
-                "pages": [
-                  "docs/release-notes-ios-archive"
-                ]
-              },
-              {
-                "group": "Android Release Notes",
-                "root": "docs/release-notes-android",
-                "pages": [
-                  "docs/release-notes-android-archive"
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      {
-        "tab": "Changelog NEW",
+        "tab": "Changelog",
         "icon": "clock-rotate-left",
         "groups": [
           {
