@@ -553,6 +553,26 @@
             ]
           }
         ]
+      },
+      {
+        "tab": "Changelog NEW",
+        "icon": "clock-rotate-left",
+        "groups": [
+          {
+            "group": "Changelog",
+            "pages": [
+              "docs/changelog"
+            ]
+          },
+          {
+            "group": "Changelog archive",
+            "hidden": true,
+            "searchable": true,
+            "pages": [
+              "docs/changelog-archive"
+            ]
+          }
+        ]
       }
     ]
   },
