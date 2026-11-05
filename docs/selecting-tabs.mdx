@@ -3,7 +3,7 @@ title: "Selecting Tabs"
 description: "Select Bottom Tab Bar Items Programmatically"
 ---
 
-import MedianLogo from '/snippets/median-logo.jsx';
+import { MedianLogo } from "/snippets/median-logo.jsx";
 
 ## Overview
 
@@ -40,9 +40,11 @@ Use the Median JavaScript Bridge to select a bottom tab bar item from your websi
   ```
 </CodeGroup>
 
-> Note: The tabs are 0-indexed, i.e. `median.tabNavigation.selectTab(1)` will select the second tab
->
-> Deselect all tabs:
+<Note>
+  Tabs are 0-indexed, so `median.tabNavigation.selectTab(1)` selects the second tab.
+</Note>
+
+#### Deselect all tabs
 
 <MedianLogo />
 
@@ -60,7 +62,6 @@ In the below example we show the "My Account" tab button as active whenever a pa
 
 <CodeGroup>
   ```json JSON
-  /* Regex Tab Selection Example */
   {
     "tabSelectionConfig": [
       {
@@ -77,7 +78,7 @@ In the below example we show the "My Account" tab button as active whenever a pa
             "label": "My Account",
             "icon": "fas fa-user",
             "url": "https://domain.com/account",
-            "regex": "https://domain\\.domain/account.*"
+            "regex": "https://domain\\.com/account.*"
           }
         ]
       }
