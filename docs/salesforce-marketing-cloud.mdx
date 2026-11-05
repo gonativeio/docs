@@ -212,7 +212,7 @@ Add tags to the device for audience segmentation.
   });
   
   // Add multiple tags (Android only)
-  const result = await median.salesforceCloud.tags.set({
+  const multiResult = await median.salesforceCloud.tags.set({
     tags: ['premium_user', 'newsletter_subscriber', 'beta_tester']
   });
   
