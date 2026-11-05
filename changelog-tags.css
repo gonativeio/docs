@@ -1,0 +1,109 @@
+/*
+ * Changelog tag badges (see changelog-tags.js)
+ *
+ * Release types: filled badges, one colour each.
+ * Platforms: outlined badges in Median blue.
+ * Shape differs as well as colour, so the two kinds stay distinguishable
+ * without relying on colour alone.
+ */
+
+/* ---------- Badges on each entry ---------- */
+
+[data-component-part="update-tag"][data-tag-kind] {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.125rem 0.5rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  line-height: 1.25rem;
+  font-weight: 600;
+  border: 1px solid transparent;
+}
+
+/* Release types (filled) */
+[data-component-part="update-tag"][data-tag="new-feature"] {
+  background: #dcfce7;
+  color: #166534;
+}
+[data-component-part="update-tag"][data-tag="bug-fix"] {
+  background: #ffe4e6;
+  color: #9f1239;
+}
+[data-component-part="update-tag"][data-tag="maintenance"] {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+/* Platforms (outlined) */
+[data-component-part="update-tag"][data-tag-kind="platform"] {
+  background: transparent;
+  color: #1d6fc4;
+  border-color: rgba(66, 153, 237, 0.55);
+}
+
+/* Dark mode */
+.dark [data-component-part="update-tag"][data-tag="new-feature"] {
+  background: rgba(34, 197, 94, 0.16);
+  color: #86efac;
+}
+.dark [data-component-part="update-tag"][data-tag="bug-fix"] {
+  background: rgba(244, 63, 94, 0.16);
+  color: #fda4af;
+}
+.dark [data-component-part="update-tag"][data-tag="maintenance"] {
+  background: rgba(245, 158, 11, 0.16);
+  color: #fcd34d;
+}
+.dark [data-component-part="update-tag"][data-tag-kind="platform"] {
+  color: #8cc4f7;
+  border-color: rgba(66, 153, 237, 0.5);
+}
+
+/* ---------- Filter panel: a matching colour dot before each tag name ---------- */
+
+#changelog-filters [data-tag-kind]::before {
+  content: "";
+  display: inline-block;
+  width: 0.5rem;
+  height: 0.5rem;
+  margin-right: 0.4rem;
+  border-radius: 9999px;
+  vertical-align: middle;
+}
+#changelog-filters [data-tag="new-feature"]::before {
+  background: #22c55e;
+}
+#changelog-filters [data-tag="bug-fix"]::before {
+  background: #f43f5e;
+}
+#changelog-filters [data-tag="maintenance"]::before {
+  background: #f59e0b;
+}
+#changelog-filters [data-tag-kind="platform"]::before {
+  background: transparent;
+  box-shadow: inset 0 0 0 1.5px #4299ed;
+}
+
+/* ---------- Changelog page layout: no left sidebar ---------- */
+
+/*
+ * The changelog and its archive are single pages, so the left sidebar only
+ * repeats them (and can render empty on the archive, which isn't in the nav).
+ * Page modes that remove the sidebar (center, wide, custom) also remove the
+ * tag filters, so hide it with CSS instead. Setting --sidebar-width to 0 lets
+ * the content, header and footer reclaim the space. Desktop only: the mobile
+ * navigation drawer is unaffected.
+ */
+html:is(
+  [data-current-path="/docs/changelog"],
+  [data-current-path="/docs/changelog-archive"]
+) {
+  --sidebar-width: 0px;
+}
+html:is(
+    [data-current-path="/docs/changelog"],
+    [data-current-path="/docs/changelog-archive"]
+  )
+  [data-layout-item="sidebar"] {
+  display: none;
+}
