@@ -1,13 +1,13 @@
 ---
 title: "Upload an iOS app to TestFlight"
-description: "Upload your Median iOS app to App Store Connect for TestFlight testing"
+description: "Upload your iOS app to App Store Connect and TestFlight directly from Median App Studio, with no Mac or Xcode required, or manually from Xcode."
 ---
 
 ## Overview
 
 The recommended way to upload your iOS app to TestFlight with Median is directly from the **Median App Studio**.
 
-With the App Store Connect API configured and **Automatic Uploads to App Store Connect** enabled, Median will build a signed distribution IPA in the cloud and upload it directly to App Store Connect. Before uploading, your **App Store Connect app record must already exist** with the same Bundle ID configured in the Median App Studio. After Apple finishes processing the build, you can add it to TestFlight for internal or external testing.
+With the App Store Connect API configured and **Upload to App Store Connect** set to **Automatic**, Median will build a signed distribution IPA in the cloud and upload it directly to App Store Connect. Before uploading, your **App Store Connect app record must already exist** with the same Bundle ID configured in the Median App Studio. After Apple finishes processing the build, you can add it to TestFlight for internal or external testing.
 
 You do not need a Mac, Xcode, or Apple Transporter for this standard workflow.
 
@@ -41,11 +41,11 @@ Most Median self-publishing workflows do **not** require Xcode. For most develop
 
 ### 1. Register app to App Store Connect
 
-To upload your app for TestFlight, you will first need to register your app in your App Store Connect account by following the steps in the [official documentation <Icon icon="arrow-up-right-from-square" size={12} />](https://developer.apple.com/help/app-store-connect/create-an-app-record/add-a-new-app). This includes registering your app name and [bundle ID](./app-identifiers).
+To upload your app for TestFlight, you will first need to register your app in your App Store Connect account by following the steps in the [official documentation <Icon icon="arrow-up-right-from-square" size={12} />](https://developer.apple.com/help/app-store-connect/create-an-app-record/add-a-new-app). This includes registering your app name and [bundle ID](/docs/app-identifiers).
 
 ### 2. Open app in Xcode
 
-See [Build iOS from source](https://median.co/docs/build-ios-from-source) to download and open iOS source code in Xcode.
+See [Build iOS from source](/docs/build-ios-from-source) to download and open iOS source code in Xcode.
 
 In Xcode, select YOUR\_APP from the left panel as seen in Figure 1:
 

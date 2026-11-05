@@ -1,8 +1,10 @@
 ---
 title: "Tutorial: Build a fitness tracker app with Lovable and Median"
-description: "Build the web app with Lovable and convert it to a mobile app with Median."
+description: "Build a fitness tracker web app with Lovable, then turn it into an iOS and Android app with Median, adding Health Bridge, OneSignal push notifications and haptics."
 ---
 import { InstantPreviewCTAInline } from "/snippets/instant-preview-cta-inline.jsx";
+
+## Overview
 
 The app displays the user’s activity data from their iOS and Android devices (steps, average heart rate, and active energy). It also receives push notifications with OneSignal and provides haptic feedback.
 
@@ -79,7 +81,7 @@ The publish setting is in the top right corner of the Lovable dashboard.
 <InstantPreviewCTAInline articleType="lovable" />
 
 2. Follow the prompts to create the app.
-3. Follow our [Quickstart](https://docs.median.co/docs/quickstart) guide to set up and customize your app.
+3. Follow our [Quickstart](/docs/quickstart) guide to set up and customize your app.
 
 You can preview your app in the App Studio simulators to see your customizations.
 
@@ -93,7 +95,7 @@ The Median Javascript Bridge is an API that connects your website (Lovable app) 
 2. Under **JavaScript Frameworks and NPM**, select **Use NPM Package**.
 3. Save your changes.
 
-See [NPM Package](https://docs.median.co/docs/npm-package) for details.
+See [NPM Package](/docs/npm-package) for details.
 
 <Frame caption="App Studio – JavaScript Frameworks and NPM">
 <img src="/images/docs/ea4a8415645261d4a9ee7522cb914d78ed940364774968e5cf1590032f07cafe-image.png" alt="App Studio Web Overrides page with JavaScript Frameworks and NPM set to Use NPM Package and the Save button highlighted" />
@@ -123,7 +125,7 @@ This guide uses OneSignal to send push notifications to the app. To set this up 
 2. Review the configuration settings and update as needed. Click the documentation chips for more information on the settings.
 3. Save and rebuild the app.
 
-Follow our [OneSignal](https://docs.median.co/docs/onesignal) documentation to set up OneSignal, generate and upload the necessary credentials, and learn how to send a test push notification. For best results, send test push notifications while testing on a physical device.
+Follow our [OneSignal](/docs/onesignal) documentation to set up OneSignal, generate and upload the necessary credentials, and learn how to send a test push notification. For best results, send test push notifications while testing on a physical device.
 
 ## Build and test on a device
 
@@ -137,11 +139,11 @@ Follow the relevant documentation below to install the mobile app on a physical 
 
 **iOS**
 
-* [Install iOS IPA](https://docs.median.co/docs/build-ios-binary)
+* [Install iOS IPA](/docs/build-ios-binary)
 
 **Android**
 
-* [Install Android APK](https://docs.median.co/docs/install-android-apk)
+* [Install Android APK](/docs/install-android-apk)
 
 **How to test?**
 
@@ -152,7 +154,7 @@ Follow the relevant documentation below to install the mobile app on a physical 
 * Confirm you can subscribe to push notifications by accepting the device prompts
 * In a normal browser, heath data metrics show up as "—" and there are attempts to execute commands on the Median JavaScript Bridge
 
-When you’re ready for the stores, use [Prepare your Lovable app for publishing](https://docs.median.co/docs/prepare-your-lovable-app-for-publishing).
+When you’re ready for the stores, use [Prepare your Lovable app for publishing](/docs/prepare-your-lovable-app-for-publishing).
 
 ## Development checklist
 
@@ -186,7 +188,7 @@ When you’re ready for the stores, use [Prepare your Lovable app for publishing
 
 ### Health cards still show "—" inside the Median app
 
-Confirm you are testing on a **physical device**, not the App Studio virtual simulator. Verify **Health Bridge** is enabled, then go to **Build & Deploy** and click **Build all**. In the app, tap **Connect Health / Refresh**, grant permissions when prompted, and confirm .isNativeApp()\` is true. For more information on the Health Bridge plugin see [this article](https://docs.median.co/docs/health-bridge).
+Confirm you are testing on a **physical device**, not the App Studio virtual simulator. Verify **Health Bridge** is enabled, then go to **Build & Deploy** and click **Build all**. In the app, tap **Connect Health / Refresh**, grant permissions when prompted, and confirm .isNativeApp()\` is true. For more information on the Health Bridge plugin see [this article](/docs/health-bridge).
 
 ### Health permission prompt never appears
 
@@ -194,15 +196,15 @@ Make sure the Connect Health flow only runs when Median.isNativeApp() is true an
 
 ### Median JS Bridge functions are undefined or not working
 
-Confirm the Lovable project installed `median-js-bridge`, and in App Studio go to **Web Overrides → JavaScript Frameworks and NPM** and set it to **Use NPM package**, then rebuild. Calling Health Bridge, OneSignal, or Haptics in a normal browser will fail; those APIs only work inside the Median app. For more information on the library, see [NPM Package](https://docs.median.co/docs/npm-package).
+Confirm the Lovable project installed `median-js-bridge`, and in App Studio go to **Web Overrides → JavaScript Frameworks and NPM** and set it to **Use NPM package**, then rebuild. Calling Health Bridge, OneSignal, or Haptics in a normal browser will fail; those APIs only work inside the Median app. For more information on the library, see [NPM Package](/docs/npm-package).
 
 ### Haptic feedback does not trigger
 
-Verify the **Haptic Feedback** plugin is enabled in the App Studio and your app build is up to date. Haptics after the health data renders, using `Median.haptics.trigger({ style: "notificationSuccess" })`, and only when `Median.isNativeApp() `is true. Tap the refresh button to trigger another render. Haptics cannot be tested reliably in a desktop browser. See [Haptics](https://docs.median.co/docs/haptics).
+Verify the **Haptic Feedback** plugin is enabled in the App Studio and your app build is up to date. Haptics after the health data renders, using `Median.haptics.trigger({ style: "notificationSuccess" })`, and only when `Median.isNativeApp() `is true. Tap the refresh button to trigger another render. Haptics cannot be tested reliably in a desktop browser. See [Haptics](/docs/haptics).
 
 ### Push notifications are not arriving
 
-Confirm the OneSignal App ID is set under **Native Plugins → OneSignal**, APNs (iOS) and/or FCM (Android) credentials are configured in OneSignal, and the app has been rebuilt after. Test on a physical device. Check that the user opted in (first-login prompt and Profile toggle) per [User consent management](https://docs.median.co/docs/user-consent-management). For more information on OneSignal, see [this article](https://docs.median.co/docs/onesignal).
+Confirm the OneSignal App ID is set under **Native Plugins → OneSignal**, APNs (iOS) and/or FCM (Android) credentials are configured in OneSignal, and the app has been rebuilt after. Test on a physical device. Check that the user opted in (first-login prompt and Profile toggle) per [User consent management](/docs/user-consent-management). For more information on OneSignal, see [this article](/docs/onesignal).
 
 ### Lovable public URL does not load outside the editor
 
@@ -210,7 +212,7 @@ Publish the Lovable app again and copy the public URL from the publish settings 
 
 ### App Studio preview looks fine but native features fail
 
-The App won't display health data in the app studio simulator, only on a physical device or in an [Xcode simulator using mock data](https://docs.median.co/docs/health-bridge#integration-testing). Reference these articles to Install a device build: [Install Android APK](https://docs.median.co/docs/install-android-apk), or [Build iOS Binary](https://docs.median.co/docs/build-ios-binary)) and retest Connect Health, haptics, and push on hardware.
+The App won't display health data in the app studio simulator, only on a physical device or in an [Xcode simulator using mock data](/docs/health-bridge#integration-testing). Reference these articles to Install a device build: [Install Android APK](/docs/install-android-apk), or [Build iOS Binary](/docs/build-ios-binary)) and retest Connect Health, haptics, and push on hardware.
 
 ### What's the difference between median. and Median.?
 

@@ -1,6 +1,9 @@
 ---
 title: "Website Configuration"
+description: "Add native Facebook, Google and Apple sign-in to your iOS and Android app by calling the Median Social Login JavaScript Bridge methods from your existing website login."
 ---
+
+import { MedianLogo } from "/snippets/median-logo.jsx";
 
 ## Overview
 
@@ -24,11 +27,13 @@ The plugin works with your current authentication infrastructure, using the same
 Here's the approach:
 
 - Show your standard login buttons when users visit your site in a browser.
-- Show the same buttons with modified JavaScript functionality that calls the JavaScript Bridge methods when they visit through your app (no styling changes needed)
+- Show the same buttons with modified JavaScript functionality that calls the JavaScript Bridge methods when they visit through your app (no styling changes needed).
 
 ### Example implementation
 
 Here's how to set this up with JavaScript:
+
+<MedianLogo />
 
 <CodeGroup>
   ```html HTML

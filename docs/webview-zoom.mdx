@@ -1,11 +1,11 @@
 ---
 title: "Webview Zoom"
-description: "Configure the initial zoom level of your webview and dynamically control zoom settings at runtime. This feature allows you to optimize content display for different screen sizes and user preferences, ensuring your app content appears at the ideal scale."
+description: "Set the initial zoom level of your app's webview in App Studio and get or change it at runtime with the Median JavaScript Bridge."
 ---
 
 import { MedianLogo } from "/snippets/median-logo.jsx";
 
-# Overview
+## Overview
 
 You can set the initial zoom level in App Studio during configuration, or control it dynamically using the Median JavaScript Bridge for runtime adjustments.
 
@@ -24,7 +24,7 @@ The webview zoom can be controlled both through initial configuration and runtim
 
 To use the WebView zoom feature, set the Viewport Width to **WebView Scale** in the Interface settings of your app.
 
-<Frame caption="App Studio- Viewport Width ">
+<Frame caption="App Studio – Interface – Viewport Width">
   <img
     src="/images/docs/c99bda4d3346eb4646b40a061b2ee9056c7a09bccaeb0f8b1feb4fb70940f0b1-Screenshot_2026-02-10_at_10.20.07.png"
     alt="Viewport Width set to WebView Scale in App Studio"
@@ -33,7 +33,7 @@ To use the WebView zoom feature, set the Viewport Width to **WebView Scale** in 
 
 ### JavaScript Implementation
 
-#### Get Current Zoom Levvel
+#### Get Current Zoom Level
 
 To retrieve the current zoom level of the webview:
 
