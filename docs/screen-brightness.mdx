@@ -42,6 +42,8 @@ Sets the device screen to a specific brightness level
 
 To apply a brightness change that automatically reverts once the user navigates to a new page:
 
+<MedianLogo />
+
 <CodeGroup>
   ```javascript JavaScript
   median.screen.setBrightness({'brightness':'0.8', 'restoreOnNavigation': true});
@@ -52,16 +54,10 @@ To apply a brightness change that automatically reverts once the user navigates 
 
 To clear any brightness override and return control to the device's system setting:
 
+<MedianLogo />
+
 <CodeGroup>
-  ```bash bash
+  ```javascript JavaScript
   median.screen.setBrightness({'brightness':'default'})';
   ```
 </CodeGroup>
-
-***
-
-[Device Screen Control](/docs/device-screen-control)
-
-[Keep Screen On](/docs/keep-screen-on)
-
-Copy Page
