@@ -3,6 +3,8 @@ title: "Screen Brightness"
 description: "Dynamically control the device's screen brightness from your web app"
 ---
 
+import MedianLogo from '/snippets/median-logo.jsx';
+
 ## Overview
 
 The Screen Brightness JavaScript Bridge method lets you set the device's screen brightness at runtime, overriding the user's system setting while they're inside your app. It's part of Median's [Device Screen Control](https://docs.median.co/docs/device-screen-control) feature set, alongside [Keep Screen On](https://docs.median.co/docs/keep-screen-on) and [Full Screen](https://docs.median.co/docs/full-screen).
@@ -28,8 +30,10 @@ The Screen Brightness JavaScript Bridge method lets you set the device's screen 
 
 Sets the device screen to a specific brightness level
 
+<MedianLogo />
+
 <CodeGroup>
-  ```bash bash
+  ```javascript JavaScript
   median.screen.setBrightness({'brightness':'0.8'})';
   ```
 </CodeGroup>
@@ -39,7 +43,7 @@ Sets the device screen to a specific brightness level
 To apply a brightness change that automatically reverts once the user navigates to a new page:
 
 <CodeGroup>
-  ```bash bash
+  ```javascript JavaScript
   median.screen.setBrightness({'brightness':'0.8', 'restoreOnNavigation': true});
   ```
 </CodeGroup>
@@ -61,6 +65,3 @@ To clear any brightness override and return control to the device's system setti
 [Keep Screen On](/docs/keep-screen-on)
 
 Copy Page
-
-* * [Why Use Screen Brightness](#why-use-screen-brightness)
-  * * [JavaScript Bridge Implementation](#javascript-bridge-implementation)
