@@ -93,7 +93,7 @@ Here are examples for each platform:
 ### Add the login button
 
 <CodeGroup>
-  ```html bash
+  ```html Google
   <button class="google-login native-only" 
     onclick="median.socialLogin.google.login({ 
       'redirectUri' : 'https://your-domain.com/auth/google/callback', // Your API endpoint
@@ -103,7 +103,7 @@ Here are examples for each platform:
   </button>
   ```
 
-  ```bash bash
+  ```bash Facebook
   median.socialLogin.facebook.login({ 
     'redirectUri' : 'https://your-domain.com/auth/facebook/callback',
     'scope' : 'public_profile,email', // Request profile and email access
@@ -111,7 +111,7 @@ Here are examples for each platform:
   });
   ```
 
-  ```bash bash
+  ```bash Apple
   median.socialLogin.apple.login({ 
     'redirectUri' : 'https://your-domain.com/auth/apple/callback',
     'scope' : 'name email', // Request name and email
@@ -120,29 +120,6 @@ Here are examples for each platform:
   ```
 </CodeGroup>
 
-***
-
 ### Configure your backend
 
 Your backend server must be configured to accept the authentication token, parse it as a JWT to access the user details, and create a login session for the user.
-
-***
-
-[Website Configuration](/docs/social-login-website-configuration)
-
-[JavaScript Callbacks](/docs/social-login-javascript-callbacks)
-
-Copy Page
-
-* * [Overview](#overview)
-
-  * [Understanding the parameters](#understanding-the-parameters)
-
-  * [What you'll receive](#what-youll-receive)
-
-  * [Platform-specific requirements](#platform-specific-requirements)
-
-  * [Implementation](#implementation)
-
-  * * [Add the login button](#add-the-login-button)
-    * [Configure your backend](#configure-your-backend)
