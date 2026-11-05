@@ -1,17 +1,19 @@
 ---
 title: "Salesforce LWC Component Deployment and Reference"
-description: "Median Lightning Web Components for Salesforce Experience Cloud"
+description: "Deploy Median's open-source Lightning Web Components to your Salesforce Experience Cloud org and add push notifications, biometrics, QR scanning and PDFs to your app."
 ---
 
 import { MedianLogo } from "/snippets/median-logo.jsx";
+
+## Overview
 
 This guide covers deploying the open-source `median-salesforce-components` library into your Salesforce org and provides a full API reference for each component. It also includes the recommended patterns for building your own custom components that call the Median JavaScript bridge.
 
 This is part four of a four-part series:
 
-1. [Getting Started with Salesforce Experience Cloud](https://docs.median.co/docs/getting-started-with-salesforce-experience-cloud)
-2. [Lightning Web Components and the Median JavaScript Bridge](https://docs.median.co/docs/salesforce-lwc-median)
-3. [Deep Linking for Salesforce Experience Cloud](https://docs.median.co/docs/salesforce-deep-linking)
+1. [Getting Started with Salesforce Experience Cloud](/docs/getting-started-with-salesforce-experience-cloud)
+2. [Lightning Web Components and the Median JavaScript Bridge](/docs/salesforce-lwc-median)
+3. [Deep Linking for Salesforce Experience Cloud](/docs/salesforce-deep-linking)
 4. **Component Deployment and Reference** (this page)
 
 ## Step 8: Deploy the Open-Source Component Library
@@ -52,7 +54,7 @@ After deployment, open Experience Builder and drag the component from the compon
 
 ## Building a Custom Component
 
-If you are building your own LWC that calls the Median bridge, follow these conventions for production-ready code. The patterns below are consistent with the open-source library and ensure correct behaviour across Lightning Web Security, multiple Median SDK versions, and both in-app and out-of-app contexts.
+If you are building your own LWC that calls the Median bridge, follow these conventions for production-ready code. The patterns below are consistent with the open-source library and ensure correct behavior across Lightning Web Security, multiple Median SDK versions, and both in-app and out-of-app contexts.
 
 <CodeGroup>
   ```javascript JavaScript
@@ -60,7 +62,7 @@ If you are building your own LWC that calls the Median bridge, follow these conv
   
   export default class MyMedianComponent extends LightningElement {
   
-      // Normalise both casing conventions across Median SDK injection methods (NPM or app-injected)
+      // Normalize both casing conventions across Median SDK injection methods (NPM or app-injected)
       get _median() {
           return window.median || window.Median || null;
       }
@@ -98,7 +100,7 @@ If you are building your own LWC that calls the Median bridge, follow these conv
 
 Integrates the Median OneSignal plugin to manage push notification subscriptions. Provides the ability to retrieve device subscription info, associate a device with a Salesforce user via an external ID, and remove that association on logout.
 
-**Relevant for:** customer communities where personalised push notifications are sent based on CRM data, such as case status updates, appointment reminders, or order confirmations.
+**Relevant for:** customer communities where personalized push notifications are sent based on CRM data, such as case status updates, appointment reminders, or order confirmations.
 
 **Features:**
 
@@ -123,7 +125,7 @@ Integrates the Median OneSignal plugin to manage push notification subscriptions
 **Usage note:** The external user ID is typically a Salesforce Contact ID, email address, or another identifier that your push notification service can use to target a specific user. Logout removes the external ID association but does not unsubscribe the device from push notifications entirely.
 
 <Info>
-  This component only implements a subset of all JavaScript Bridge methods available. Please review our [OneSignal documentation](https://docs.median.co/docs/onesignal) for a full JavaScript Bridge Reference.
+  This component only implements a subset of all JavaScript Bridge methods available. Please review our [OneSignal documentation](/docs/onesignal) for a full JavaScript Bridge Reference.
 </Info>
 
 ### biometricAuth: Biometric Authentication
@@ -158,8 +160,6 @@ Saves and retrieves credentials using the device's native biometric hardware (Fa
 </CodeGroup>
 
 **Usage note:** `minimumAndroidBiometric` is set to `'strong'` by default, which requires Class 3 (hardware-backed) biometrics on Android. Change this value in `biometricAuth.js` if your target device fleet uses Class 2 biometrics. Secrets are encoded as a JSON string in the format `{ "username": "...", "password": "..." }`. Modify the `saveSecret()` method if you need to store a different data shape.
-
-***
 
 ### qrScannerNative: QR Code and Barcode Scanning
 
@@ -251,7 +251,7 @@ The URL must be publicly accessible, or must be a URL that the Median webview se
   ```
 </CodeGroup>
 
-**Button behaviour by context:**
+**Button behavior by context:**
 
 | Button          | Inside Median app       | Desktop browser                  |
 | --------------- | ----------------------- | -------------------------------- |
