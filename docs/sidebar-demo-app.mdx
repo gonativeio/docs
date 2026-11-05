@@ -1,14 +1,17 @@
 ---
 title: "Sidebar Demo App"
+description: "Try the Median sidebar navigation menu in live iOS and Android demo apps, with a sample menu configuration and a JavaScript Bridge example."
 ---
 
 import { AppetizeEmbed } from "/snippets/appetize-embed.jsx";
+import { MedianLogo } from "/snippets/median-logo.jsx";
 
 <AppetizeEmbed iosEmbedCode="zpdex7hyxmto47hj6qkw4h5jwu" androidEmbedCode="g5agscwho2yaqwlvciiwbydz44" />
 
+<MedianLogo />
+
 <CodeGroup>
-  ```bash Sidebar Navigation Menu Configuration
-  /* Sidebar Navigation Menu Configuration */
+  ```json Sidebar Navigation Menu Configuration
   [
     {
       "subLinks": [],
@@ -23,15 +26,14 @@ import { AppetizeEmbed } from "/snippets/appetize-embed.jsx";
   ]
   ```
 
-  ```bash Set Sidebar Menu Items
-  /* Set Sidebar Menu Items */
+  ```javascript Set Sidebar Menu Items
   var items = [{
     label: "Google",
     url: "https://google.com",
     icon: "fab fa-google"
   }, {
     label: "Sample Grouping",
-    isGrouping: true, 
+    isGrouping: true,
     subLinks: [{
       label: "Apple",
       url: "https://apple.com",
@@ -39,7 +41,7 @@ import { AppetizeEmbed } from "/snippets/appetize-embed.jsx";
     }, {
       label: "Google",
       url: "https://google.com",
-      icon: "fab fa-google" //optional
+      icon: "fab fa-google" // optional
     }]
   }, {
     label: "Sample Javascript",
