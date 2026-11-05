@@ -18,7 +18,7 @@ Use the following JavaScript command:
 > Run the following Median JavaScript Bridge command to share the screen content
 
 <CodeGroup>
-  ```bash bash
+  ```javascript JavaScript
   const { isInstalled } = await median.socialShare.snapchat.isInstalled();
   ```
 </CodeGroup>
@@ -28,7 +28,7 @@ Use the following JavaScript command:
 Snapchat media sharing only supports media in a `Blob` object. You can save a remote image as a `Blob` using the following code snippet.
 
 <CodeGroup>
-  ```bash bash
+  ```javascript JavaScript
     fetch("url-to-image")
     .then(function(response) {
       return response.blob();
@@ -40,18 +40,3 @@ Snapchat media sharing only supports media in a `Blob` object. You can save a re
 </CodeGroup>
 
 Other plugins from Median (such as the [Web Screenshot Plugin](https://median.co/docs/web-screenshot)) also export images as Blobs which can then be used with this plugin.
-
-***
-
-### Next Steps
-
-* [Web Screenshot](/docs/web-screenshot)
-
-Copy Page
-
-* * [Overview](#overview)
-
-  * [Implementation Guide](#implementation-guide)
-
-  * * [Checking for availability](#checking-for-availability)
-    * [Sharing media](#sharing-media)
