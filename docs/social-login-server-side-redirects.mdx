@@ -15,8 +15,6 @@ You'll need:
 * Your server configured to create login sessions for authenticated users
 * Your social login providers are already configured ([Facebook](https://docs.median.co/docs/facebook-login-configuration#/), [Google](https://docs.median.co/docs/google-sign-in-configuration#/), and/or [Apple](https://docs.median.co/docs/sign-in-with-apple-configuration#/))
 
-***
-
 ## Understanding the parameters
 
 Each social login method accepts these parameters:
@@ -32,7 +30,7 @@ state (optional) - An optional string you supply to verify the request came from
 Here's the basic syntax for each provider:
 
 <CodeGroup>
-  ```bash bash
+  ```javascript JavaScript
   median.socialLogin.facebook.login({ 
     'redirectUri' : '<endpoint>', 
     'scope' : '<text>', 
@@ -50,8 +48,6 @@ Here's the basic syntax for each provider:
   ```
 </CodeGroup>
 
-***
-
 ## What you'll receive
 
 When login succeeds, your `redirectUri` receives the authentication tokens as URL parameters. If the user cancels the login process, the `error` parameter will contain an error message.
@@ -66,8 +62,6 @@ When login succeeds, your `redirectUri` receives the authentication tokens as UR
 | Google Sign-in     | Error   | `error=STRING``type=google`                                                                      | `https://yoursite.com/auth/google/redirect?error=error&type=google`                                                          |
 | Sign in with Apple | Success | `idToken=STRING``code=STRING``firstName=STRING``1``lastName=STRING``1``type=apple``state=STRING` | `https://yoursite.com/auth/apple/redirect?idToken=example&code=example&firstName=John&lastName=Doe&type=apple&state=example` |
 | Sign in with Apple | Error   | `error=STRING``type=apple`                                                                       | `https://yoursite.com/auth/apple/redirect?error=error&type=apple`                                                            |
-
-***
 
 ## Platform-specific requirements
 
@@ -90,8 +84,6 @@ What changes:
 * The `accessToken` becomes a JWT instead of a standard access token
 * You can't use this JWT for downstream **Graph API** calls
 
-***
-
 ## Implementation
 
 Use the Median JavaScript Bridge methods to trigger native login from your website. When a user clicks the button, the native login flow starts. After they authenticate, the webview redirects to your endpoint with the authentication token as a URL parameter.
@@ -101,7 +93,7 @@ Here are examples for each platform:
 ### Add the login button
 
 <CodeGroup>
-  ```bash bash
+  ```html bash
   <button class="google-login native-only" 
     onclick="median.socialLogin.google.login({ 
       'redirectUri' : 'https://your-domain.com/auth/google/callback', // Your API endpoint
