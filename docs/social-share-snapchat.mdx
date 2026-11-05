@@ -1,7 +1,9 @@
 ---
 title: "Snapchat"
-description: "Enable sharing of media directly to the Snapchat mobile app"
+description: "Share images and text from your iOS and Android app directly to Snapchat with the Median JavaScript Bridge."
 ---
+
+import { MedianLogo } from "/snippets/median-logo.jsx";
 
 ## Overview
 
@@ -11,14 +13,14 @@ This plugin allows you to share text and media directly to the Snapchat mobile a
 
 ### Checking for availability
 
-Before attempting to share content, check whether **Snapchat is installed on the user’s device** to prevent errors and improves the user experience.
+Before attempting to share content, check whether **Snapchat is installed on the user’s device** to prevent errors and improve the user experience.
 
-Use the following JavaScript command:
+Use the following JavaScript Bridge command:
 
-> Run the following Median JavaScript Bridge command to share the screen content
+<MedianLogo />
 
 <CodeGroup>
-  ```bash bash
+  ```javascript JavaScript
   const { isInstalled } = await median.socialShare.snapchat.isInstalled();
   ```
 </CodeGroup>
@@ -28,7 +30,7 @@ Use the following JavaScript command:
 Snapchat media sharing only supports media in a `Blob` object. You can save a remote image as a `Blob` using the following code snippet.
 
 <CodeGroup>
-  ```bash bash
+  ```javascript JavaScript
     fetch("url-to-image")
     .then(function(response) {
       return response.blob();
@@ -39,19 +41,4 @@ Snapchat media sharing only supports media in a `Blob` object. You can save a re
   ```
 </CodeGroup>
 
-Other plugins from Median (such as the [Web Screenshot Plugin](https://median.co/docs/web-screenshot)) also export images as Blobs which can then be used with this plugin.
-
-***
-
-### Next Steps
-
-* [Web Screenshot](/docs/web-screenshot)
-
-Copy Page
-
-* * [Overview](#overview)
-
-  * [Implementation Guide](#implementation-guide)
-
-  * * [Checking for availability](#checking-for-availability)
-    * [Sharing media](#sharing-media)
+Other plugins from Median (such as the [Web Screenshot Plugin](/docs/web-screenshot)) also export images as Blobs which can then be used with this plugin.

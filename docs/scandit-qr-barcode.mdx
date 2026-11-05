@@ -3,6 +3,10 @@ title: "Scandit QR / Barcode"
 description: "Equip your app with QR and Barcode scanning by leveraging the Scandit native SDKs."
 ---
 
+import MedianLogo from '/snippets/median-logo.jsx';
+
+## Overview
+
 The Scandit QR Code and Barcode Scanner plugin enables barcode scanning directly within your application using the device camera. This plugin extends the functionality of our basic version of [Barcode Scanner](https://median.co/docs/qr-barcode-scanner) with additional capabilities provided by the Scandit iOS and Android SDKs.
 
 In order to use this plugin an **active Scandit license is required**.
@@ -31,8 +35,10 @@ Insert the license key into the plugin configuration using Advanced Mode:
 
 To initiate a barcode scan, define a JavaScript function to handle the scanned data. For example:
 
+<MedianLogo />
+
 <CodeGroup>
-  ```bash bash
+  ```javascript JavaScript
   function scandit_result(data) { 
       console.log('Scanned barcode ' + data.code + ' of type ' + data.type); 
   }
@@ -43,10 +49,10 @@ To initiate a barcode scan, define a JavaScript function to handle the scanned d
 
 Use the following command to start a barcode scan via the Median JavaScript Bridge:
 
-> To initiate a scan, open the URL:
+<MedianLogo />
 
 <CodeGroup>
-  ```bash bash
+  ```javascript JavaScript
   // returns promise
   median.scanditBarcode.scan({'callback': scandit_result});
   ```
@@ -75,8 +81,10 @@ To restrict the scanner to specific barcode types, provide a comma-separated lis
 
 For example, to scan only QR codes and PDF417 barcodes:
 
+<MedianLogo />
+
 <CodeGroup>
-  ```bash bash
+  ```javascript JavaScript
   // returns promise
   median.scanditBarcode.scan({'callback': scandit_result, 'symbologies': 'qr, pdf417'});
   ```
@@ -88,22 +96,11 @@ Certain symbologies, such as Code 128, require a parser to correctly interpret t
 
 For example, to scan QR codes and Code 128 barcodes with the `dlid` parser:
 
+<MedianLogo />
+
 <CodeGroup>
-  ```bash bash
+  ```javascript JavaScript
   // returns promise
   median.scanditBarcode.scan({'callback': scandit_result, 'symbologies': 'qr, code128', 'parser': 'dlid'}); 
   ```
 </CodeGroup>
-
-***
-
-[QR / Barcode Scanner](/docs/qr-barcode-scanner)
-
-[Convert AI-Built Apps to Mobile with Median.co](/docs/ai-app-builder-overview)
-
-Copy Page
-
-* * [Implementation Guide](#implementation-guide)
-
-  * * [Plugin Configuration](#plugin-configuration)
-    * [JavaScript Bridge Methods](#javascript-bridge-methods)

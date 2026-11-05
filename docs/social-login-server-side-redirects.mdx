@@ -2,6 +2,8 @@
 title: "Server-side Redirects"
 ---
 
+import { MedianLogo } from "/snippets/median-logo.jsx";
+
 ## Overview
 
 This guide walks through implementing social login using server-side redirects with the Median JavaScript Bridge. This approach is ideal when you want to handle authentication through your backend API, keeping token validation and session management secure on your server.
@@ -13,26 +15,25 @@ You'll need:
 * A backend API endpoint that can receive GET requests with tokens and session details as URL parameters
 * The ability to parse JWT tokens on your server to extract user details
 * Your server configured to create login sessions for authenticated users
-* Your social login providers are already configured ([Facebook](https://docs.median.co/docs/facebook-login-configuration#/), [Google](https://docs.median.co/docs/google-sign-in-configuration#/), and/or [Apple](https://docs.median.co/docs/sign-in-with-apple-configuration#/))
-
-***
+* Your social login providers are already configured ([Facebook](/docs/facebook-login-configuration), [Google](/docs/google-sign-in-configuration), and/or [Apple](/docs/sign-in-with-apple-configuration))
 
 ## Understanding the parameters
 
 Each social login method accepts these parameters:
 
-* **redirectUri** (required) - Your backend API endpoint URL. After login completes, the webview redirects here with the authentication token added as a URL parameter.
-* **scope** (optional) - Defines what user data your app can access. Each provider has different scope options:
-* [Facebook scope documentation](https://developers.facebook.com/docs/permissions/reference)
-* [Google scope documentation](https://developers.google.com/identity/protocols/oauth2/scopes)
-* [Apple scope documentation](https://developer.apple.com/documentation/sign_in_with_apple/clientconfigi/3230955-scope)
-
-state (optional) - An optional string you supply to verify the request came from your app. We'll pass this back to you unchanged. Use it to prevent CSRF attacks.
+* **redirectUri** (required): Your backend API endpoint URL. After login completes, the webview redirects here with the authentication token added as a URL parameter.
+* **scope** (optional): Defines what user data your app can access. Each provider has different scope options:
+  * [Facebook scope documentation <Icon icon="arrow-up-right-from-square" size={12} />](https://developers.facebook.com/documentation/development/permissions)
+  * [Google scope documentation <Icon icon="arrow-up-right-from-square" size={12} />](https://developers.google.com/identity/protocols/oauth2/scopes)
+  * [Apple scope documentation <Icon icon="arrow-up-right-from-square" size={12} />](https://developer.apple.com/documentation/signinwithapplejs/clientconfigi/scope)
+* **state** (optional): An optional string you supply to verify the request came from your app. We'll pass this back to you unchanged. Use it to prevent CSRF attacks.
 
 Here's the basic syntax for each provider:
 
+<MedianLogo />
+
 <CodeGroup>
-  ```bash bash
+  ```javascript JavaScript
   median.socialLogin.facebook.login({ 
     'redirectUri' : '<endpoint>', 
     'scope' : '<text>', 
@@ -50,47 +51,46 @@ Here's the basic syntax for each provider:
   ```
 </CodeGroup>
 
-***
-
 ## What you'll receive
 
 When login succeeds, your `redirectUri` receives the authentication tokens as URL parameters. If the user cancels the login process, the `error` parameter will contain an error message.
 
 **Redirect URL API endpoint parameters**
 
-| Identity Provider  | Status  | Parameters                                                                                       | Example                                                                                                                      |
-| ------------------ | ------- | ------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------- |
-| Facebook Login     | Success | `accessToken=STRING``2``type=facebook``state=STRING`                                             | `https://yoursite.com/auth/facebook/redirect?accessToken=example&type=facebook&userId=1234567890&state=example`              |
-| Facebook Login     | Error   | `error=STRING``type=facebook`                                                                    | `https://yoursite.com/auth/facebook/redirect?error=error&type=facebook`                                                      |
-| Google Sign-in     | Success | `idToken=STRING``type=google``state=STRING`                                                      | `https://yoursite.com/auth/google/redirct?idToken=example&type=google&state=example`                                         |
-| Google Sign-in     | Error   | `error=STRING``type=google`                                                                      | `https://yoursite.com/auth/google/redirect?error=error&type=google`                                                          |
-| Sign in with Apple | Success | `idToken=STRING``code=STRING``firstName=STRING``1``lastName=STRING``1``type=apple``state=STRING` | `https://yoursite.com/auth/apple/redirect?idToken=example&code=example&firstName=John&lastName=Doe&type=apple&state=example` |
-| Sign in with Apple | Error   | `error=STRING``type=apple`                                                                       | `https://yoursite.com/auth/apple/redirect?error=error&type=apple`                                                            |
+| Identity Provider  | Status  | Parameters | Example |
+| ------------------ | ------- | ---------- | ------- |
+| Facebook Login     | Success | `accessToken`, `userId`, `type=facebook`, `state` | `https://yoursite.com/auth/facebook/redirect?accessToken=example&type=facebook&userId=1234567890&state=example` |
+| Facebook Login     | Error   | `error`, `type=facebook` | `https://yoursite.com/auth/facebook/redirect?error=error&type=facebook` |
+| Google Sign-in     | Success | `idToken`, `type=google`, `state` | `https://yoursite.com/auth/google/redirect?idToken=example&type=google&state=example` |
+| Google Sign-in     | Error   | `error`, `type=google` | `https://yoursite.com/auth/google/redirect?error=error&type=google` |
+| Sign in with Apple | Success | `idToken`, `code`, `firstName`, `lastName`, `type=apple`, `state` | `https://yoursite.com/auth/apple/redirect?idToken=example&code=example&firstName=John&lastName=Doe&type=apple&state=example` |
+| Sign in with Apple | Error   | `error`, `type=apple` | `https://yoursite.com/auth/apple/redirect?error=error&type=apple` |
 
-***
+Apple only includes `firstName` and `lastName` on the user's first login. See [Platform-specific requirements](#platform-specific-requirements).
 
 ## Platform-specific requirements
 
-Apple Sign InFacebook on iOS
+<Tabs>
+  <Tab title="Apple Sign In">
+    Apple only sends complete user profile data (`firstName`, `lastName`, `email`) on the *first* login. After that, you only get a JWT token and a user identifier.
 
-Apple only sends complete user profile data (`firstName`, `lastName`, `email`) on the *first* login. After that, you only get a JWT token and a user identifier.
+    Here's what to do:
 
-Here's what to do:
+    * Save the full user profile to your database during the first authentication
+    * On subsequent logins, retrieve the stored profile using the user identifier from the JWT
+    * Parse the JWT for additional fields like email and email\_verified
 
-* Save the full user profile to your database during the first authentication
-* On subsequent logins, retrieve the stored profile using the user identifier from the JWT
-* Parse the JWT for additional fields like email and email\_verified
+    [Read Apple's documentation on retrieving user information <Icon icon="arrow-up-right-from-square" size={12} />](https://developer.apple.com/documentation/sign_in_with_apple/sign_in_with_apple_rest_api/authenticating_users_with_sign_in_with_apple#:~:text=Retrieve%20the%20user%E2%80%99s%20information%20from%20Apple%20ID%20servers)
+  </Tab>
+  <Tab title="Facebook on iOS">
+    When users decline **App Tracking Transparency (ATT)**, or tracking **isn't enabled**, Facebook uses **Limited Login** mode.
 
-[Read Apple's documentation on retrieving user information](https://developer.apple.com/documentation/sign_in_with_apple/sign_in_with_apple_rest_api/authenticating_users_with_sign_in_with_apple#:~:text=Retrieve%20the%20user%E2%80%99s%20information%20from%20Apple%20ID%20servers)
+    What changes:
 
-When users decline **App Tracking Transparency (ATT)**, or tracking **isn't enabled**, Facebook uses **Limited Login** mode.
-
-What changes:
-
-* The `accessToken` becomes a JWT instead of a standard access token
-* You can't use this JWT for downstream **Graph API** calls
-
-***
+    * The `accessToken` becomes a JWT instead of a standard access token
+    * You can't use this JWT for downstream **Graph API** calls
+  </Tab>
+</Tabs>
 
 ## Implementation
 
@@ -100,18 +100,20 @@ Here are examples for each platform:
 
 ### Add the login button
 
+<MedianLogo />
+
 <CodeGroup>
-  ```bash bash
+  ```html Google
   <button class="google-login native-only" 
     onclick="median.socialLogin.google.login({ 
-      'redirectUri' : 'https://your-domain.com/auth/google/callback', // Your API endpoint
-      'state' : 'xyz123' // Optional security token
+      'redirectUri' : 'https://your-domain.com/auth/google/callback', /* Your API endpoint */
+      'state' : 'xyz123' /* Optional security token */
     });">
   	Log in with Google
   </button>
   ```
 
-  ```bash bash
+  ```javascript Facebook
   median.socialLogin.facebook.login({ 
     'redirectUri' : 'https://your-domain.com/auth/facebook/callback',
     'scope' : 'public_profile,email', // Request profile and email access
@@ -119,7 +121,7 @@ Here are examples for each platform:
   });
   ```
 
-  ```bash bash
+  ```javascript Apple
   median.socialLogin.apple.login({ 
     'redirectUri' : 'https://your-domain.com/auth/apple/callback',
     'scope' : 'name email', // Request name and email
@@ -128,29 +130,12 @@ Here are examples for each platform:
   ```
 </CodeGroup>
 
-***
-
 ### Configure your backend
 
 Your backend server must be configured to accept the authentication token, parse it as a JWT to access the user details, and create a login session for the user.
 
-***
+Always verify the token on your server before trusting it. Each provider documents how:
 
-[Website Configuration](/docs/social-login-website-configuration)
-
-[JavaScript Callbacks](/docs/social-login-javascript-callbacks)
-
-Copy Page
-
-* * [Overview](#overview)
-
-  * [Understanding the parameters](#understanding-the-parameters)
-
-  * [What you'll receive](#what-youll-receive)
-
-  * [Platform-specific requirements](#platform-specific-requirements)
-
-  * [Implementation](#implementation)
-
-  * * [Add the login button](#add-the-login-button)
-    * [Configure your backend](#configure-your-backend)
+* **Google:** [Verify the Google ID token on your server side <Icon icon="arrow-up-right-from-square" size={12} />](https://developers.google.com/identity/gsi/web/guides/verify-google-id-token)
+* **Apple:** [Authenticating users with Sign in with Apple <Icon icon="arrow-up-right-from-square" size={12} />](https://developer.apple.com/documentation/signinwithapple/authenticating-users-with-sign-in-with-apple)
+* **Facebook:** [Inspect an access token with debug_token <Icon icon="arrow-up-right-from-square" size={12} />](https://developers.facebook.com/docs/graph-api/reference/debug_token), or [validate a Limited Login token <Icon icon="arrow-up-right-from-square" size={12} />](https://developers.facebook.com/documentation/facebook-login/ios/limited-login/token/validating)

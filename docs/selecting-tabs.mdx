@@ -3,6 +3,10 @@ title: "Selecting Tabs"
 description: "Select Bottom Tab Bar Items Programmatically"
 ---
 
+import { MedianLogo } from "/snippets/median-logo.jsx";
+
+## Overview
+
 Use tab selection to control which bottom tab bar item appears active in your Median app. Tabs are automatically selected when users tap them, but you can also update the active tab programmatically with the Median JavaScript Bridge or by matching page URLs with tab selection rules.
 
 This is useful when:
@@ -28,21 +32,25 @@ For advanced navigation flows, you can control the selected tab in two ways:
 
 Use the Median JavaScript Bridge to select a bottom tab bar item from your website code.
 
-> Select a tab:
+<MedianLogo />
 
 <CodeGroup>
-  ```bash bash
-      median.tabNavigation.selectTab(1);
+  ```javascript JavaScript
+  median.tabNavigation.selectTab(1);
   ```
 </CodeGroup>
 
-> Note: The tabs are 0-indexed, i.e. `median.tabNavigation.selectTab(1)` will select the second tab
->
-> Deselect all tabs:
+<Note>
+  Tabs are 0-indexed, so `median.tabNavigation.selectTab(1)` selects the second tab.
+</Note>
+
+#### Deselect all tabs
+
+<MedianLogo />
 
 <CodeGroup>
-  ```bash bash
-      median.tabNavigation.deselect();
+  ```javascript JavaScript
+  median.tabNavigation.deselect();
   ```
 </CodeGroup>
 
@@ -53,8 +61,7 @@ A given page that corresponds to a tab bar button may be opened through other me
 In the below example we show the "My Account" tab button as active whenever a page under `/account` is displayed within the app.
 
 <CodeGroup>
-  ```bash bash
-  /* Regex Tab Selection Example */
+  ```json JSON
   {
     "tabSelectionConfig": [
       {
@@ -71,7 +78,7 @@ In the below example we show the "My Account" tab button as active whenever a pa
             "label": "My Account",
             "icon": "fas fa-user",
             "url": "https://domain.com/account",
-            "regex": "https://domain\\.domain/account.*"
+            "regex": "https://domain\\.com/account.*"
           }
         ]
       }
@@ -83,29 +90,8 @@ In the below example we show the "My Account" tab button as active whenever a pa
 
 ## Best practices
 
-Use JavaScript Bridge tab selection when your website controls the navigation state directly.
-
-Use URL rules when the active tab should be determined automatically from the current page URL.
-
-Use specific regex patterns for each tab to avoid conflicting active states.
-
-Test tab selection on both iOS and Android after updating your tab configuration.
-
-For single-page apps, update tab selection when the route changes if the app does not perform a full page load.
-
-***
-
-[Bottom Tab Bar](/docs/bottom-tab-bar)
-
-[Bottom Tab Bar Visual Editor](/docs/tab-configuration)
-
-Copy Page
-
-* * [How tab selection works](#how-tab-selection-works)
-
-  * [Implementation Guide](#implementation-guide)
-
-  * * [Select tab via JavaScript Bridge](#select-tab-via-javascript-bridge)
-    * [Select tabs using URL rules](#select-tabs-using-url-rules)
-
-  * [Best practices](#best-practices)
+- Use JavaScript Bridge tab selection when your website controls the navigation state directly.
+- Use URL rules when the active tab should be determined automatically from the current page URL.
+- Use specific regex patterns for each tab to avoid conflicting active states.
+- Test tab selection on both iOS and Android after updating your tab configuration.
+- For single-page apps, update tab selection when the route changes if the app does not perform a full page load.

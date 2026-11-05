@@ -3,29 +3,23 @@ title: "Search Form"
 description: "Add a native search form to your top navigation bar"
 ---
 
-<Info>
-  Search terms will be appended to the URL entered, e.g. Google would be entered as [https://www.google.com/?q=](https://www.google.com/?q=)
-</Info>
+## Overview
 
 Configure a native search button with embedded search form in the top native toolbar to add native capabilities to your existing web-based search.
 
-![](/images/docs/20e3b9b-native_search_ios.png)
+<Info>
+  Search terms will be appended to the URL entered, e.g. Google would be entered as `https://www.google.com/?q=`
+</Info>
 
-### iOS Native Search Form
+<Columns cols={2}>
+  <Frame caption="iOS – Native Search Form">
+    <img src="/images/docs/20e3b9b-native_search_ios.png" alt="iOS app with the native search field open in the navigation bar, a search term entered and the keyboard showing" />
+  </Frame>
+  <Frame caption="Android – Native Search Form">
+    <img src="/images/docs/45290b6-native_search_android.png" alt="Android app with the native search field open in the action bar, a search term entered and the keyboard showing" />
+  </Frame>
+</Columns>
 
-![](/images/docs/45290b6-native_search_android.png)
-
-### Android Native Search Form
-
-Supporting native search will add a magnifying glass button in the Top Navigation Bar (Android ActionBar and iOS NavigationBar). Upon clicking the search icon, users will be able to enter `[search terms]`. These `[search terms]` will simply be appended to the Template Search URL specified.
+Supporting native search will add a magnifying glass button in the [Top Navigation Bar](/docs/top-navigation-bar) (Android ActionBar and iOS NavigationBar). Upon clicking the search icon, users will be able to enter `[search terms]`. These `[search terms]` will simply be appended to the Template Search URL specified.
 
 For example, all Google.com searches can be represented using the URL syntax `https://www.google.com/#q=[search terms]`.
-
-***
-
-### Next Steps
-
-* [Refresh Button](/docs/refresh-button)
-* [Share Button](/docs/share-button)
-* [Custom Buttons](/docs/add-custom-buttons)
-* [Top Nav Bar Demo App](/docs/top-nav-bar-demo-app)

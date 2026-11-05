@@ -1,7 +1,11 @@
 ---
 title: "Sidebar Visual Editor"
-description: "After entering an Initial URL, we will automatically crawl your site and attempt to pull out various navigation menu options. Please select from one of the pre-populated options, or click \"Start from scratch\"."
+description: "Build your app's sidebar navigation menu in the App Studio Visual Editor, with labels, URLs, icons, menu groups and JavaScript actions."
 ---
+
+## Overview
+
+After entering an Initial URL, we will automatically crawl your site and attempt to pull out various navigation menu options. Please select from one of the pre-populated options, or click **Start from scratch**.
 
 Next, enter labels and absolute URLs for each menu option. You may also re-order links, add groupings, and specify icons as demonstrated in the grouping section below.
 
@@ -9,29 +13,31 @@ Next, enter labels and absolute URLs for each menu option. You may also re-order
 
 You may add a sidebar menu group by clicking the circular plus button ⨁ between menu items and selecting **Menu Group**. This adds a category group that can be expanded and collapsed within the sidebar menu.
 
-![](/images/docs/5daf92a-sidebar-menu-grouping.png)
+<Frame caption="Sidebar Visual Editor – Add a menu group">
+  <img src="/images/docs/5daf92a-sidebar-menu-grouping.png" alt="Sidebar Visual Editor with menu items and the plus button between items showing the Menu Item and Menu Group options" />
+</Frame>
 
 ## Trigger JavaScript Commands from Sidebar Menu Options
 
-If you'd prefer your links to trigger various JavaScript commands, you may wish to specify URLs in the Visual Editor with the following syntax (Option 1). Alternatively, you can set the URL with the JavaScript command directly in the JSON (Option 2).
+If you'd prefer your links to trigger various JavaScript commands, you may wish to specify URLs in the Visual Editor with the following syntax (Option 1). Alternatively, you can set the `url` to the JavaScript command directly in the JSON (Option 2).
 
 <CodeGroup>
-  ```bash bash
+  ```javascript Option 1 – Visual Editor
   javascript:alert('test');
   ```
 
-  ```bash bash
+  ```json Option 2 – JSON
   [
     {
       "subLinks": [],
-      "url": "javascript:alert('test')", // specify javascript commands like this
+      "url": "javascript:alert('test')",
       "label": "Home",
       "icon": "fas fa-home"
     }
   ]
   ```
 
-  ```bash bash
+  ```json Complex JSON Example
   [
       {
         "icon": null,
@@ -147,14 +153,3 @@ If you'd prefer your links to trigger various JavaScript commands, you may wish 
   ]
   ```
 </CodeGroup>
-
-***
-
-### Next Steps
-
-* [Dynamic Menu Items](/docs/dynamic-menu-items)
-
-Copy Page
-
-* * [Grouping Menu Items](#grouping-menu-items)
-  * [Trigger JavaScript Commands from Sidebar Menu Options](#trigger-javascript-commands-from-sidebar-menu-options)
