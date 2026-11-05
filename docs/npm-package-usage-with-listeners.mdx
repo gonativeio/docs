@@ -1,23 +1,23 @@
 ---
 title: "Using Listeners"
-description: "Manage listener functions to respond to native events"
+description: "Use median-js-bridge listeners to respond to native app events such as app resume, push notification taps, share intents and device shake."
 ---
 
 import { MedianLogo } from "/snippets/median-logo.jsx";
 
-# Overview
+## Overview
 
 The median-js-bridge NPM package allows you to register listener functions that respond to native events triggered within your app. These listeners function similarly to standard JavaScript callbacks but offer a more streamlined and reliable integration with native mobile features.
 
-Listeners are event-driven functions that execute when a native event is triggered. Even if an event occurs _before_ the listener is registered, the event will be queued and delivered once the listener initializes - ensuring reliable event capture.
+Listeners are event-driven functions that execute when a native event is triggered. Even if an event occurs _before_ the listener is registered, the event will be queued and delivered once the listener initializes, ensuring reliable event capture.
 
 ## Listener Implementation
 
 ### Registering Event Listeners
 
-Listeners are added using the .addListener() method available on specific plugin interfaces. Each listener returns an listenerId, which can be used later to remove the listener.
+Listeners are added using the `.addListener()` method available on specific plugin interfaces. Each listener returns a `listenerId`, which can be used later to remove the listener.
 
-#### Example: App Resumed Event
+### Example: App Resumed Event
 
 <MedianLogo />
 
@@ -117,7 +117,7 @@ Median.deviceShake.removeListener(listenerId);
 
 </CodeGroup>
 
-# Best Practices for Listener Management
+## Best Practices for Listener Management
 
 * Always store the listenerId if you intend to remove the listener later.
 * Register listeners early, ideally within a component’s useEffect or lifecycle hook.

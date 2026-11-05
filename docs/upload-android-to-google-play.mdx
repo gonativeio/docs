@@ -1,6 +1,28 @@
 ---
 title: "Upload Android to Google Play"
-description: "Build Android APK and Android App Bundle (AAB) binaries for your app directly in the App Studio. Android APKs are convenient for testing your app on your own Android devices. For APK installation assistance, watch our video guide in the  article."
+description: "Build an Android App Bundle (AAB) in Median App Studio and upload it to the Google Play Console for testing and release on Google Play."
 ---
 
-You can also build Android source code for your app directly from the App Studio. To build your app locally, follow the steps in our [Build Android from Source](https://median.co/docs/build-android-from-source) guide. The Android SDK is required which is available as part of the [Android Studio IDE](https://developer.android.com/studio#android-studio-downloads) or for [stand-alone installation](https://developer.android.com/studio#command-line-tools-only).
+## Overview
+
+Google Play requires new apps and updates to be uploaded as an [Android App Bundle (AAB)](/docs/android-app-bundle). You can build a signed AAB directly in Median App Studio and upload it to the Google Play Console, with no Android Studio or local build tools required.
+
+## Upload Workflow
+
+1. Create a [Google Play Developer account <Icon icon="arrow-up-right-from-square" size={12} />](https://play.google.com/console/signup) if you don't already have one.
+2. In Median App Studio, open **Build & Deploy**. In the **App Identifiers** section, set your Android Package Name or copy the existing one.
+3. Build and download your Android `.aab` file.
+4. In the [Google Play Console <Icon icon="arrow-up-right-from-square" size={12} />](https://play.google.com/console), click **Create app** and enter the app name, default language, app or game, and free or paid.
+5. Under **Set up your app**, complete the required tasks, such as privacy policy, app access, ads, content rating, target audience and data safety.
+6. Go to **Testing → Internal testing**, create a release and upload your `.aab` file. Add testers and start the rollout.
+7. When testing is complete, create a release under **Production** with the same or a newer `.aab`, and send it for review.
+
+<Tip>
+  Your package name appears in your Google Play URL and cannot be changed after you publish.
+</Tip>
+
+For the full set of store listing, testing and review steps, follow the Google section of our [Publishing Guide](/docs/publishing-guide) or see [Google Play Store](/docs/google-play-store).
+
+## Building Locally (Optional)
+
+You can also download Android source code from App Studio and build the app yourself. Follow [Build Android from Source](/docs/build-android-from-source). The Android SDK is required, which is available as part of the [Android Studio IDE <Icon icon="arrow-up-right-from-square" size={12} />](https://developer.android.com/studio#android-studio-downloads) or as a [stand-alone installation <Icon icon="arrow-up-right-from-square" size={12} />](https://developer.android.com/studio#command-line-tools-only).

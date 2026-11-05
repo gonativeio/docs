@@ -1,6 +1,6 @@
 ---
 title: "WebRTC Audio & Video"
-description: "Support real-time audio and video features with WebRTC"
+description: "Enable WebRTC voice and video calling in your iOS and Android app. Median automatically handles camera and microphone permission prompts for your web content."
 ---
 
 ## Overview
@@ -13,14 +13,16 @@ Similar to how permissions work in desktop and mobile browsers, your Median app 
 
 ### Supported WebRTC Permissions
 
-- **Microphone Access** - Required for voice calls or audio streams
-- **Camera Access** - Required for video calls or media recording
+- **Microphone Access**: required for voice calls or audio streams
+- **Camera Access**: required for video calls or media recording
 
 When a WebRTC session is triggered in your app, users will be prompted by the system to grant access. This prompt behavior is native and consistent with platform expectations on both Android and iOS.
 
 <Info>
   Median automatically handles WebRTC permission prompts using its secure WebView implementation. You don't need to write native code to enable camera or microphone access.
 </Info>
+
+To customize the text shown in the iOS permission prompts, see [Permission Prompt Localization](/docs/permission-prompt-localization).
 
 ## Developer Tips for WebRTC in Median Apps
 
@@ -39,7 +41,7 @@ You can test WebRTC features in your Median app using official tools and demos:
 
 Median's embedded App Studio simulator has limited audio support:
 
-- **Audio playback** is not supported in the embedded simulator
+- **Audio playback** is not supported in the embedded simulator.
 - **Microphone input** is not supported in the embedded simulator, so mic access for WebRTC voice/video calls can't be tested in the embedded simulator at all.
 
 Camera and video permissions can still be tested in the embedded simulator. For full audio and microphone testing of your WebRTC features, install a build on a physical device.
