@@ -3,6 +3,8 @@ title: "Scanning"
 description: "Give your users the power to scan QR codes, barcodes, and documents."
 ---
 
+import { PluginCard, PluginCardGroup } from "/snippets/plugin-cards.jsx";
+
 ## Overview
 
 Turn your mobile device camera into a powerful scanning tool that captures barcodes, QR codes, documents, NFC tags, and proximity beacons. Scanning plugins eliminate manual data entry, reduce errors, and streamline workflows across retail, logistics, healthcare, finance, and more. Whether you're tracking inventory in a warehouse, scanning receipts for expense reports, or enabling contactless check-ins with NFC tags, these native scanning capabilities transform how users interact with physical objects and spaces.
@@ -42,53 +44,43 @@ Turn your mobile device camera into a powerful scanning tool that captures barco
 * **Document Scanner**: Auto-enhance receipts and forms with edge detection and perspective correction.
 * **NFC Tag Scanner**: Read contactless tags for payments, asset tracking, and interactive experiences.
 
-<CardGroup cols={3}>
-  <Card
+<PluginCardGroup>
+  <PluginCard
     title="QR / Barcode Scanner"
     icon="/images/docs/bcf67e09593514777531cd8dd22b75196650d81fbb0ba50772d148ff5d820d69-white-plugin_qr-barcode-scanner.svg"
     href="/docs/qr-barcode-scanner"
-    cta="Learn more"
-    arrow="true"
   >
     Scan QR codes and barcodes via device camera. Used for in-store retail shopping, warehouse management, data center ops, and more.
-  </Card>
-  <Card
+  </PluginCard>
+  <PluginCard
     title="Document Scanner"
     icon="/images/docs/a5c5120454001fdc1b462ef82374df1593f2ff86a888c4c2f3c66db33fccfd47-white-plugin_doc-scanner.svg"
     href="/docs/document-scanner"
-    cta="Learn more"
-    arrow="true"
   >
     Simplify document uploads while reducing errors. Users scan documents via camera with automatic image processing and enhancement.
-  </Card>
-  <Card
+  </PluginCard>
+  <PluginCard
     title="Scandit QR / Barcode"
     icon="/images/docs/c4f63f291eb613e8a3f1fa183373a3c39357755072bc1e8d59ec3939859608c3-plugin_scandit.svg"
     href="/docs/scandit-qr-barcode"
-    cta="Learn more"
-    arrow="true"
   >
     Scan QR codes and barcodes with added functionality provided by Scandit. An active Scandit license is required.
-  </Card>
-  <Card
+  </PluginCard>
+  <PluginCard
     title="NFC Tag Scanner"
     icon="/images/docs/0a5ddd347f8a5a03f77fad419576d853c09b50339bf7b34f96197aa702b092a7-plugin_nfc-tag-scanner.svg"
     href="/docs/nfc-tag-scanner"
-    cta="Learn more"
-    arrow="true"
   >
     Scan data from Near Field Communication (NFC) tags for in-store shopping, warehouse tracking, and digital+physical experiences.
-  </Card>
-  <Card
+  </PluginCard>
+  <PluginCard
     title="iBeacon"
     icon="/images/docs/4eb614ae43e74df7a27fc29fee2a6602cfa346056b78ccad5fa2c564c4e0463e-plugin_ibeacon.svg"
     href="/docs/ibeacon"
-    cta="Learn more"
-    arrow="true"
   >
     Add indoor location awareness and mapping capabilities to your iOS app through iBeacons and proximity scanning.
-  </Card>
-</CardGroup>
+  </PluginCard>
+</PluginCardGroup>
 
 ## Can't find your Vendor?
 
