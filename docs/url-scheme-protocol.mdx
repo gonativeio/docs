@@ -1,0 +1,67 @@
+---
+title: "Custom URL Schemes"
+description: "Open pages in your app from links that use your own URL scheme"
+---
+
+A custom URL scheme is a link format unique to your app, such as `youruniquestring.https://example.com/path`. When a user taps one of these links on a device that has your app installed, the link opens the page in your app instead of a web browser.
+
+Custom URL schemes are most useful for:
+
+- **Authentication redirects**, such as returning users to your app after they sign in with a third-party provider.
+- **Advanced in-app navigation**, such as linking from another app or a QR code directly to a page in your app.
+
+<Note>
+  Custom URL schemes only work on iOS and Android devices with your app
+  installed. They don't work in desktop browsers. We recommend this option for
+  experienced developers.
+</Note>
+
+<Tip>
+  For links that you share publicly, such as in emails, text messages, or on
+  your website, use [Deep Linking](/docs/deep-linking) (Universal Links and App
+  Links) instead. Those links open your website in a browser when the app isn't
+  installed, while a custom scheme link does nothing.
+</Tip>
+
+## How it works
+
+<Steps>
+  <Step title="Choose a unique scheme">
+    Pick a scheme that no other app uses, for example `youruniquestring`. Standard links start with `http://` or `https://`, and your custom scheme replaces that prefix.
+  </Step>
+  <Step title="Build your links">
+    Add your scheme and a dot in front of the full URL of the page you want to open:
+
+    ```text
+    youruniquestring.https://example.com/path
+    ```
+
+  </Step>
+  <Step title="The user taps the link">
+    If your app is installed, the device opens your app and loads `https://example.com/path` inside it.
+  </Step>
+</Steps>
+
+<Warning>
+  **Use only lowercase letters in your scheme**
+
+Uppercase letters and numbers can cause links to behave differently on iOS and Android.
+
+</Warning>
+
+## Examples
+
+With `youruniquestring` as your scheme:
+
+| Link                                             | Opens in your app               |
+| ------------------------------------------------ | ------------------------------- |
+| `youruniquestring.https://example.com/login`     | `https://example.com/login`     |
+| `youruniquestring.https://example.com/dashboard` | `https://example.com/dashboard` |
+| `youruniquestring.http://example.com/login`      | `http://example.com/login`      |
+
+## Learn more
+
+These platform guides explain how custom URL schemes work on each operating system:
+
+- [Defining a custom URL scheme for your app](https://developer.apple.com/documentation/xcode/defining-a-custom-url-scheme-for-your-app) (Apple Developer)
+- [Create deep links to app content](https://developer.android.com/training/app-links/deep-linking) (Android Developers)

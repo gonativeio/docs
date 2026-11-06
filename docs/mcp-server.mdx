@@ -1,0 +1,158 @@
+---
+title: "Median MCP Server"
+description: "Connect AI assistants like Claude, Cursor, and Lovable to your Median App Studio account."
+---
+
+The Median MCP server connects AI assistants to the [Median App Studio](https://median.co/app) using the [Model Context Protocol](https://modelcontextprotocol.io) (MCP). Once connected, you can manage your apps by asking your assistant in plain language. For example:
+
+- "List my apps"
+- "Create a new app called MyShop from `https://myshop.com`"
+- "Add a bottom tab bar with Home, Products, and Cart tabs"
+- "Enable Firebase Analytics on my app"
+- "Build my app for iOS and Android and tell me when it's done"
+
+<Warning>
+  **Your assistant has full access to your Median account**
+
+The assistant can view and change every app you have access to, including apps in your organizations. Its changes are saved the same way as edits you make in App Studio, so review what it plans to do before you approve changes or builds.
+
+</Warning>
+
+## Server details
+
+```text Server URL
+https://mcp.median.co/mcp
+```
+
+|                    |                                                                                 |
+| ------------------ | ------------------------------------------------------------------------------- |
+| **Transport**      | Streamable HTTP                                                                 |
+| **Authentication** | OAuth. You sign in to your Median account in the browser. No API key is needed. |
+
+## Add the server to your client
+
+<Tabs>
+  <Tab title="Claude Code">
+    1. Add the server:
+
+       ```shell Terminal
+       claude mcp add --transport http median https://mcp.median.co/mcp
+       ```
+
+    2. Start Claude Code and run `/mcp`.
+    3. Select **median**, then choose **Authenticate** and sign in to Median.
+
+  </Tab>
+
+  <Tab title="Claude (web & desktop)">
+    1. Open **Settings → Connectors**.
+    2. Click **Add custom connector**.
+    3. Enter `Median` as the name and `https://mcp.median.co/mcp` as the URL.
+    4. Click **Add**, then **Connect**, and sign in to Median.
+
+    Connectors you add on claude.ai are also available in the Claude desktop app.
+
+  </Tab>
+
+  <Tab title="Cursor">
+    1. Add the server to `~/.cursor/mcp.json`, or to `.cursor/mcp.json` in your project:
+
+       ```json mcp.json
+       {
+         "mcpServers": {
+           "median": {
+             "url": "https://mcp.median.co/mcp"
+           }
+         }
+       }
+       ```
+
+    2. Open **Cursor Settings → MCP**.
+    3. Click **Connect** next to **median** and sign in to Median.
+
+  </Tab>
+
+  <Tab title="Lovable">
+    1. In Lovable, go to **Connectors**, click **+**, and select **MCP server**.
+    2. Enter `Median App Studio` as the server name and `https://mcp.median.co/mcp` as the server URL.
+    3. Keep **OAuth (default)** selected and click **Add & authorize**.
+
+    You can then ask Lovable to create a Median app for your project, configure native features, and start builds from the Lovable chat.
+
+    For the full walkthrough, see [Connecting Lovable to the Median MCP server](/docs/lovable#connecting-lovable-to-the-median-mcp-server). For more about custom connectors, see [Lovable's documentation](https://docs.lovable.dev/integrations/custom-mcp).
+
+  </Tab>
+
+  <Tab title="VS Code">
+    1. Add the server to `.vscode/mcp.json` in your workspace:
+
+       ```json .vscode/mcp.json
+       {
+         "servers": {
+           "median": {
+             "type": "http",
+             "url": "https://mcp.median.co/mcp"
+           }
+         }
+       }
+       ```
+
+    2. Click **Start** above the server entry and sign in to Median.
+
+    The tools are available in Copilot Chat agent mode.
+
+  </Tab>
+
+  <Tab title="Windsurf">
+    1. Add the server to `~/.codeium/windsurf/mcp_config.json`:
+
+       ```json mcp_config.json
+       {
+         "mcpServers": {
+           "median": {
+             "serverUrl": "https://mcp.median.co/mcp"
+           }
+         }
+       }
+       ```
+
+    2. Refresh the MCP servers list in Cascade and sign in to Median.
+
+  </Tab>
+
+  <Tab title="Other clients">
+    Any MCP client that supports remote servers over Streamable HTTP with OAuth can connect. Add a remote server with the URL `https://mcp.median.co/mcp` and sign in to Median when prompted.
+  </Tab>
+</Tabs>
+
+## Test the connection
+
+Start a new chat and send this prompt to your assistant:
+
+<Prompt description="Check that your assistant can reach your Median account.">
+  List my Median apps.
+</Prompt>
+
+If the assistant returns your apps, the server is connected. If it can't find the Median tools:
+
+- Check that the server is enabled in your client.
+- Check that you completed the Median sign-in.
+- Start a new chat. Some clients only load new tools in new conversations.
+
+## Available tools
+
+| Area          | What the assistant can do                                                                   |
+| ------------- | ------------------------------------------------------------------------------------------- |
+| Account       | Look up your user and organizations                                                         |
+| Apps          | List, view, create, and clone apps                                                          |
+| Navigation    | Read and update the top navigation bar, tab bar, and sidebar menu                           |
+| Branding      | Read and update colors, icons, splash screen, and status bar                                |
+| Link handling | Read and update link rules, deep links, and URL schemes                                     |
+| Plugins       | Browse the plugin catalog and enable or disable plugins on an app                           |
+| Builds        | Start iOS and Android builds, check build status, and get a link to the build in App Studio |
+
+<Note>
+  You can't upload files, such as icons, or download builds through the
+  assistant. Do these in App Studio. The assistant gives you a link to the right
+  page.
+</Note>

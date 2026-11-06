@@ -1,0 +1,72 @@
+---
+title: "System Navigation Bar (Android)"
+description: "Control the color and style of the Android system navigation bar"
+---
+
+import { MedianLogo } from "/snippets/median-logo.jsx";
+
+The [system navigation bar](https://developer.android.com/design/ui/mobile/guides/foundations/system-bars#navigation-bar) is the area at the bottom of an Android screen that users navigate with. Depending on the device settings, it shows three buttons, two buttons, or a gesture handle that users swipe.
+
+|                               3-button navigation                                |                               2-button navigation                                |                               Gesture navigation                                |
+| :------------------------------------------------------------------------------: | :------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------: |
+| ![Android 3-button navigation bar](/images/docs/docs/system-nav-bar/3button.png) | ![Android 2-button navigation bar](/images/docs/docs/system-nav-bar/2button.png) | ![Android gesture navigation bar](/images/docs/docs/system-nav-bar/gesture.png) |
+
+You can set the navigation bar's color and icon style at runtime from your website using the Median JavaScript Bridge.
+
+<Note>
+  The system navigation bar is an Android feature. These settings have no effect
+  on iOS.
+</Note>
+
+## Configuration options
+
+| Parameter | Values                                        | Description                                                                                                                                              |
+| --------- | --------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `style`   | `'light'`, `'dark'`, or `'auto'`              | Sets the color of the navigation bar icons. `light` shows dark icons, `dark` shows white icons, and `auto` follows the device's Light/Dark mode setting. |
+| `color`   | Hex value, for example `RRGGBB` or `AARRGGBB` | Sets the navigation bar background to a solid color. Use `00000000` for a fully transparent navigation bar.                                              |
+
+## Setting the navigation bar at runtime
+
+### Option 1: Match the navigation bar to your page background
+
+To have Median detect your webpage's background color and apply it to the navigation bar, call the built-in helper function when the library loads.
+
+<MedianLogo />
+
+<CodeGroup>
+
+```javascript JavaScript
+function median_library_ready() {
+  median_match_system_navbar_to_body_background_color();
+}
+```
+
+</CodeGroup>
+
+### Option 2: Set a custom navigation bar style
+
+For full control, call `median.systemNavBar.set()` with your own values. The example below creates a red navigation bar with 50% transparency and white icons.
+
+<MedianLogo />
+
+<CodeGroup>
+
+```javascript JavaScript
+// Trigger on demand, e.g. from a button or route change
+if (navigator.userAgent.indexOf("median") > -1) {
+  median.systemNavBar.set({
+    style: "dark", // white icons
+    color: "80ff0000", // 50% alpha red
+  });
+}
+
+// Or apply on page load
+function median_library_ready() {
+  median.systemNavBar.set({
+    style: "dark",
+    color: "80ff0000",
+  });
+}
+```
+
+</CodeGroup>

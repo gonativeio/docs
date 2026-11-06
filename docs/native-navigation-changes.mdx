@@ -1,0 +1,88 @@
+---
+title: "What Changed in Native Navigation"
+description: "How native navigation and link rules changed, and how the settings of existing apps were updated."
+---
+
+Native navigation changed in two ways:
+
+- **Instances replace per-component tabs.** All navigation components are now set up together, in groups called instances. Each instance decides which components show, what they contain, and which pages it applies to.
+- **URL patterns replace regular expressions.** Rules that choose pages, for both navigation and link handling, now use simple wildcard patterns.
+
+This page explains what moved where and how existing apps were converted. To learn how navigation works now, see [Native Navigation](/docs/native-navigation-overview).
+
+## Where your settings are now
+
+Previously, App Studio had a separate tab for each component: Top Navigation Bar, Sidebar Navigation, Bottom Tab Bar, and Contextual Navigation Toolbar. Each tab held that component's items, its styling, and its own rules for changing it on certain pages.
+
+Now everything is under **Native Navigation**:
+
+| Before                                                                                                                                 | Now                                                  |
+| -------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------- |
+| A component's items and on/off setting, on its own tab                                                                                 | The **Default** instance, which applies to all pages |
+| Page-specific variations, such as a different bottom tab menu, different top bar buttons, or showing the top bar only on certain pages | A separate instance for each page rule               |
+| Colors, fonts, and images on each tab                                                                                                  | **Global Theme**, shared by all instances            |
+
+## How existing apps were converted
+
+Your app was converted automatically the first time it was opened in App Studio after the change:
+
+1. The settings from each component's tab became the **Default** instance.
+2. Each page rule became its own instance, in the same order as before. The app uses the first instance that matches a page, so page-specific instances are listed before Default.
+3. Rules whose regular expression has no URL-pattern equivalent were **not converted**.
+
+<Warning>
+  **Check your navigation after the conversion**
+
+Open **Native Navigation**, compare it with how your app behaved before, and create an instance for any rule that's missing. See [Matching pages](/docs/native-navigation-overview#matching-pages) for the pattern syntax.
+
+</Warning>
+
+<AccordionGroup>
+  <Accordion title="Haven't opened your app since the change?" icon="clock">
+    Open it in App Studio once before your next build, so the conversion runs.
+  </Accordion>
+  <Accordion
+    title="Restoring a backup from before the change?"
+    icon="clock-rotate-left"
+  >
+    Backups are converted the same way when you restore them. Check your
+    navigation afterward, as described above.
+  </Accordion>
+</AccordionGroup>
+
+## Settings that behave differently
+
+Most settings convert one-to-one. These three don't.
+
+### Contextual toolbar on certain pages
+
+Before, you could choose which pages showed the iOS contextual toolbar. Now the toolbar shows on every page of any instance that has **Contextual Navbar** turned on.
+
+To hide it on some pages, create an instance for those pages and turn **Contextual Navbar** off.
+
+### Sidebar menus
+
+Each instance has its own sidebar items, so you can show a different menu on different pages by creating an instance for them.
+
+The sidebar can no longer change automatically based on whether a user is logged in. To show a different menu after login, set it from your site with [`median.sidebar.setItems()`](/docs/sidebar-navigation-menu).
+
+### Page titles
+
+Titles you set for specific pages still appear in your app, but App Studio no longer shows them, so you can't edit them there.
+
+To change the title on those pages, create an instance for them and set the title in its **Top Navbar**.
+
+## Link handling rules
+
+[Link handling rules](/docs/internal-vs-external-links) now use URL patterns too. They were converted at the same time as navigation, with the same limitation: rules with no URL-pattern equivalent were dropped.
+
+Check your rules under **Link Handling** and recreate any that are missing.
+
+<Note>
+  Rules you set from your site at runtime with `median.internalExternal.set()`
+  still use regular expressions. Only rules configured in App Studio changed.
+</Note>
+
+## JavaScript Bridge
+
+Bridge methods that change navigation at runtime, such as `median.sidebar.setItems()` and `median.tabNavigation.setTabs()`, now change the items of the matching instance. See [Change navigation at runtime](/docs/native-navigation-overview#change-navigation-at-runtime) for how long those changes last.

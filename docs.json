@@ -26,7 +26,6 @@
                 "group": "Security & Privacy",
                 "root": "docs/security",
                 "pages": [
-                  "docs/security",
                   "docs/report"
                 ]
               },
@@ -61,7 +60,6 @@
                 "group": "Device Screen Control",
                 "root": "docs/device-screen-control",
                 "pages": [
-                  "docs/device-screen-control",
                   "docs/screen-brightness",
                   "docs/keep-screen-on",
                   "docs/full-screen",
@@ -77,7 +75,6 @@
                 "group": "Offline Page",
                 "root": "docs/offline-page",
                 "pages": [
-                  "docs/offline-page",
                   "docs/service-workers",
                   "docs/native-datastore-offline"
                 ]
@@ -89,7 +86,6 @@
           },
           {
             "group": "Link Handling",
-            "root": "docs/link-handling-overview",
             "pages": [
               "docs/link-handling-overview",
               "docs/internal-vs-external-links",
@@ -97,7 +93,6 @@
                 "group": "Deep Linking",
                 "root": "docs/deep-linking",
                 "pages": [
-                  "docs/deep-linking",
                   "docs/deep-linking-validator"
                 ]
               }
@@ -110,7 +105,6 @@
                 "group": "Permissions Overview",
                 "root": "docs/permissions-overview",
                 "pages": [
-                  "docs/permissions-overview",
                   "docs/permission-prompt-localization"
                 ]
               },
@@ -123,7 +117,6 @@
           },
           {
             "group": "Web Overrides",
-            "root": "docs/website-overrides-overview",
             "pages": [
               "docs/website-overrides-overview",
               "docs/custom-user-agent",
@@ -135,13 +128,14 @@
           },
           {
             "group": "Native Navigation",
-            "root": "docs/native-navigation-overview",
             "pages": [
               "docs/native-navigation-overview",
+              "docs/navigation-instances",
+              "docs/native-navigation-changes",
               {
                 "group": "Top Navigation Bar",
+                "root": "docs/top-navigation-bar",
                 "pages": [
-                  "docs/top-navigation-bar",
                   "docs/dynamic-titles",
                   "docs/auto-new-windows",
                   "docs/search-bar-form",
@@ -153,8 +147,8 @@
               },
               {
                 "group": "Sidebar Navigation",
+                "root": "docs/sidebar-navigation-menu",
                 "pages": [
-                  "docs/sidebar-navigation-menu",
                   "docs/sidebar-configuration",
                   "docs/dynamic-menu-items",
                   "docs/sidebar-demo-app"
@@ -162,8 +156,8 @@
               },
               {
                 "group": "Bottom Tab Bar",
+                "root": "docs/bottom-tab-bar",
                 "pages": [
-                  "docs/bottom-tab-bar",
                   "docs/selecting-tabs",
                   "docs/tab-configuration",
                   "docs/dynamic-tab-menu",
@@ -182,7 +176,6 @@
                 "group": "Push Notifications Overview",
                 "root": "docs/push-notifications-overview",
                 "pages": [
-                  "docs/push-notifications-overview",
                   "docs/push-notification-migration"
                 ]
               },
@@ -190,14 +183,12 @@
                 "group": "OneSignal",
                 "root": "docs/onesignal",
                 "pages": [
-                  "docs/onesignal",
                   "docs/user-consent-management",
                   "docs/identifying-targeting-users",
                   {
                     "group": "Sending Push Notifications",
                     "root": "docs/onesignal-notifications",
                     "pages": [
-                      "docs/onesignal-notifications",
                       "docs/programmatic-notifications",
                       "docs/foreground-notifications"
                     ]
@@ -211,7 +202,14 @@
               "docs/braze",
               "docs/bloomreach",
               "docs/cordial",
-              "docs/firebase-cloud-messaging",
+              {
+                "group": "Firebase Cloud Messaging (FCM)",
+                "root": "docs/firebase-cloud-messaging",
+                "pages": [
+                  "docs/firebase-cloud-messaging",
+                  "docs/fcm-identifying-targeting-users"
+                ]
+              },
               "docs/intercom",
               "docs/iterable",
               "docs/klaviyo",
@@ -232,7 +230,6 @@
                 "group": "NPM Package",
                 "root": "docs/npm-package",
                 "pages": [
-                  "docs/npm-package",
                   "docs/basic-usage",
                   "docs/npm-package-usage-with-listeners",
                   "docs/npm-package-spa-navigation"
@@ -250,7 +247,6 @@
                 "group": "Google Tag Manager",
                 "root": "docs/google-tag-manager",
                 "pages": [
-                  "docs/google-tag-manager",
                   "docs/install-median-gtm-template"
                 ]
               }
@@ -264,7 +260,6 @@
                 "group": "Analytics",
                 "root": "docs/analytics",
                 "pages": [
-                  "docs/analytics",
                   "docs/adjust",
                   "docs/appsflyer",
                   "docs/branch-io",
@@ -277,14 +272,12 @@
                 "group": "Authentication",
                 "root": "docs/authentication",
                 "pages": [
-                  "docs/authentication",
                   "docs/auth0",
                   "docs/clerk",
                   {
                     "group": "Biometric Authentication",
                     "root": "docs/auth",
                     "pages": [
-                      "docs/auth",
                       "docs/apple-face-id-touch-id",
                       "docs/android-biometric-auth"
                     ]
@@ -294,7 +287,6 @@
                     "group": "Social Login",
                     "root": "docs/social-login",
                     "pages": [
-                      "docs/social-login",
                       "docs/facebook-login-configuration",
                       "docs/google-sign-in-configuration",
                       "docs/sign-in-with-apple-configuration",
@@ -309,7 +301,6 @@
                 "group": "Enterprise",
                 "root": "docs/enterprise",
                 "pages": [
-                  "docs/enterprise",
                   "docs/enterprise-plugin",
                   "docs/jailbreak-root-detection",
                   "docs/microsoft-intune"
@@ -319,7 +310,6 @@
                 "group": "Integrations",
                 "root": "docs/integrations",
                 "pages": [
-                  "docs/integrations",
                   "docs/admob-native-ads",
                   "docs/bubble-plugin",
                   "docs/card-io",
@@ -329,7 +319,6 @@
                     "group": "Social Share",
                     "root": "docs/social-share",
                     "pages": [
-                      "docs/social-share",
                       "docs/social-share-instagram",
                       "docs/social-share-snapchat"
                     ]
@@ -340,7 +329,6 @@
                 "group": "Media",
                 "root": "docs/media",
                 "pages": [
-                  "docs/media",
                   "docs/background-audio",
                   "docs/jwplayer",
                   "docs/kaltura-media-player",
@@ -354,7 +342,6 @@
                 "group": "Native Functionality",
                 "root": "docs/native-functionality",
                 "pages": [
-                  "docs/native-functionality",
                   "docs/age-safety",
                   "docs/app-review",
                   "docs/background-location",
@@ -365,7 +352,6 @@
                     "group": "In-App Purchases",
                     "root": "docs/iap",
                     "pages": [
-                      "docs/iap",
                       "docs/apple-iap",
                       "docs/google-iap",
                       "docs/google-iap-legacy"
@@ -383,7 +369,6 @@
                 "group": "Scanning",
                 "root": "docs/scanning",
                 "pages": [
-                  "docs/scanning",
                   "docs/document-scanner",
                   "docs/ibeacon",
                   "docs/nfc-tag-scanner",
@@ -401,7 +386,6 @@
                 "group": "Base44",
                 "root": "docs/base44",
                 "pages": [
-                  "docs/base44",
                   "docs/getting-started-with-base44",
                   "docs/add-push-notifications-to-a-base44-app",
                   "docs/adding-haptic-feedback-to-your-base44-app"
@@ -411,7 +395,6 @@
                 "group": "Lovable",
                 "root": "docs/lovable",
                 "pages": [
-                  "docs/lovable",
                   "docs/getting-started-with-lovable",
                   "docs/add-push-notifications-to-your-lovable-app",
                   "docs/add-haptic-feedback-to-your-lovable-app",
@@ -422,7 +405,6 @@
                 "group": "Replit",
                 "root": "docs/replit",
                 "pages": [
-                  "docs/replit",
                   "docs/getting-started-with-replit",
                   "docs/add-push-notifications-to-a-replit-app",
                   "docs/add-haptic-feedback-to-your-replit-app"
@@ -432,7 +414,6 @@
                 "group": "Salesforce Experience Cloud",
                 "root": "docs/salesforce",
                 "pages": [
-                  "docs/salesforce",
                   "docs/getting-started-with-salesforce-experience-cloud",
                   "docs/salesforce-lwc-median",
                   "docs/salesforce-deep-linking",
@@ -452,7 +433,6 @@
                 "group": "Debug Tools",
                 "root": "docs/debug-tools",
                 "pages": [
-                  "docs/debug-tools",
                   "docs/ios-debugging",
                   "docs/android-debugging"
                 ]
@@ -461,11 +441,10 @@
                 "group": "iOS Build & Deployment",
                 "root": "docs/ios-build-deployment",
                 "pages": [
-                  "docs/ios-build-deployment",
                   {
                     "group": "Building an iOS Binary (IPA)",
+                    "root": "docs/build-ios-binary",
                     "pages": [
-                      "docs/build-ios-binary",
                       "docs/connecting-median-appstore-connect",
                       "docs/registering-testing-devices",
                       "docs/configure-signing-for-your-app",
@@ -483,7 +462,6 @@
                 "group": "Android Build & Deployment",
                 "root": "docs/android-build-deployment",
                 "pages": [
-                  "docs/android-build-deployment",
                   "docs/install-android-apk",
                   "docs/build-android-from-source",
                   "docs/android-studio-with-localhost-website",
@@ -495,7 +473,6 @@
                 "group": "App Configuration & Management",
                 "root": "docs/app-configuration-management",
                 "pages": [
-                  "docs/app-configuration-management",
                   "docs/app-identifiers",
                   "docs/app-configuration-appconfigjson",
                   "docs/google-services",
@@ -509,7 +486,6 @@
           },
           {
             "group": "Publishing",
-            "root": "docs/publishing-overview",
             "pages": [
               "docs/publishing-overview",
               "docs/publishing-guide",
