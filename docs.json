@@ -11,6 +11,20 @@
     "light": "/images/median/median-logo-light.png",
     "dark": "/images/median/median-logo-dark.png"
   },
+  "metadata": {
+    "timestamp": true
+  },
+  "seo": {
+    "indexing": "all",
+    "metatags": {
+      "og:site_name": "Median.co Docs",
+      "og:type": "website",
+      "twitter:card": "summary_large_image"
+    }
+  },
+  "search": {
+    "prompt": "Search the Median docs..."
+  },
   "navigation": {
     "tabs": [
       {
