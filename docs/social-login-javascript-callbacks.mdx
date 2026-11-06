@@ -1,6 +1,7 @@
 ---
 title: "JavaScript Callbacks"
 ---
+import { MedianLogo } from "/snippets/median-logo.jsx";
 
 This guide shows you how to implement social login using JavaScript callbacks with the Median JavaScript Bridge. This approach keeps everything in the browser and works well for single-page apps and client-side authentication flows.
 
@@ -10,18 +11,18 @@ JavaScript callbacks let you access authentication tokens directly in your webpa
 
 Here's the flow:
 
-* A user clicks your login button, triggering the Median JavaScript Bridge
-* The native social login UI appears (Facebook, Google, or Apple)
-* After the user authenticates (or cancels), your JavaScript callback function runs
-* The callback receives an object with the authentication token and user details
-* You can immediately process this data client-side or send it to your backend
+- A user clicks your login button, triggering the Median JavaScript Bridge
+- The native social login UI appears (Facebook, Google, or Apple)
+- After the user authenticates (or cancels), your JavaScript callback function runs
+- The callback receives an object with the authentication token and user details
+- You can immediately process this data client-side or send it to your backend
 
 ## Before you start
 
 You'll need:
 
-* The ability to process authentication tokens through JavaScript
-* Your social login providers already configured ([Facebook](https://docs.median.co/docs/facebook-login-configuration#/), [Google](https://docs.median.co/docs/google-sign-in-configuration#/), or [Apple](https://docs.median.co/docs/sign-in-with-apple-configuration#/))
+- The ability to process authentication tokens through JavaScript
+- Your social login providers already configured ([Facebook](https://docs.median.co/docs/facebook-login-configuration#/), [Google](https://docs.median.co/docs/google-sign-in-configuration#/), or [Apple](https://docs.median.co/docs/sign-in-with-apple-configuration#/))
 
 ## Understanding the parameters
 
@@ -31,23 +32,22 @@ Each social login method accepts these parameters:
 
 **scope** (optional) — Defines what user data your app can access. Each provider has different scope options:
 
-* [Facebook scope documentation](https://developers.facebook.com/docs/permissions/reference)
-* [Google scope documentation](https://developers.google.com/identity/protocols/oauth2/scopes)
-* [Apple scope documentation](https://developer.apple.com/documentation/sign_in_with_apple/clientconfigi/3230955-scope)
+- [Facebook scope documentation](https://developers.facebook.com/docs/permissions/reference)
+- [Google scope documentation](https://developers.google.com/identity/protocols/oauth2/scopes)
+- [Apple scope documentation](https://developer.apple.com/documentation/sign_in_with_apple/clientconfigi/3230955-scope)
 
 **forceLimitedLogin** (Facebook only) — Set to true to use Limited Login mode even when App Tracking Transparency is enabled.
 
 **nonce** (Facebook only) — A string value used to verify the authenticity of the login when using Limited Login mode.
 
+<MedianLogo />
 <CodeGroup>
-  ```bash bash
+  ```JavaScript JavaScript
   median.socialLogin.facebook.login({ 'callback' : <function>, 'scope' : '<text>', forceLimitedLogin: true | false, nonce: '<text>' });
   median.socialLogin.google.login({ 'callback' : <function> });
   median.socialLogin.apple.login({ 'callback' : <function>, 'scope' : '<text>' });
   ```
 </CodeGroup>
-
-***
 
 ## Provider-specific implementation
 
@@ -62,7 +62,7 @@ Here's what your callback function receives for Facebook.
 #### Success response
 
 <CodeGroup>
-  ```bash bash
+  ```JSON JSON
   {
       "accessToken": "token string",
       "userId": "1234567890",
@@ -92,7 +92,7 @@ Here's what your callback function receives for Facebook.
 #### **Error response**
 
 <CodeGroup>
-  ```bash bash
+  ```JSON JOSN
   {
       "error": "error description",
       "type": "facebook"
@@ -108,10 +108,10 @@ When users decline App Tracking Transparency (ATT), or tracking isn't enabled, F
 
 What changes in Limited Login mode:
 
-* The accessToken won't be returned
-* You'll get an authToken (a JWT) instead — this can't be used for Graph API calls
-* A nonce value is available to verify login authenticity
-* The limitedLogin key will be set to true
+- The accessToken won't be returned
+- You'll get an authToken (a JWT) instead — this can't be used for Graph API calls
+- A nonce value is available to verify login authenticity
+- The limitedLogin key will be set to true
 
 [Read Facebook's documentation on validating Limited Login tokens](https://developers.facebook.com/docs/facebook-login/limited-login/token/validating)
 
@@ -121,16 +121,19 @@ Use the Median JavaScript Bridge method to trigger native login from your websit
 
 Here's an example:
 
+<MedianLogo />
 <CodeGroup>
-  ```bash bash
+  ```HTML HTML
   <button class="facebook-login browser-only" onclick="facebookLogin()">
       Log In With Facebook
   </button>
 
-  <button class="facebook-login native-only" 
-    onclick="median.socialLogin.facebook.login({ 'callback' : facebookLoginCallback, 'scope' : 'public_profile, email' });">
-      Log in With Facebook
-  </button>
+<button
+  class="facebook-login native-only"
+  onclick="median.socialLogin.facebook.login({ 'callback' : facebookLoginCallback, 'scope' : 'public_profile, email' });"
+>
+  Log in With Facebook
+</button>
 
   <script>
       const isMedian = navigator.userAgent.indexOf("median") >= 0;
@@ -212,8 +215,14 @@ Here's an example:
       };
   </script>
 
-  <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
-  ```
+<script
+  async
+  defer
+  crossorigin="anonymous"
+  src="https://connect.facebook.net/en_US/sdk.js"
+></script>
+
+```
 </CodeGroup>
 
 In this example, clicking the button activates the Median JavaScript Bridge and launches Facebook's native login. After the user authenticates, `facebookLoginCallback()` runs with an object containing the user's token. If they cancel, you'll get an error message instead.
@@ -227,18 +236,19 @@ Here's what your callback function receives for Google.
 #### Success response
 
 <CodeGroup>
-  ```bash bash
-  {
-      "idToken": "token string",
-      "type": "google"
-  }
-  ```
+```JSON JSON
+{
+    "idToken": "token string",
+    "type": "google"
+}
+````
+
 </CodeGroup>
 
 #### Error response
 
 <CodeGroup>
-  ```bash bash
+  ```JSON JSON
   {
       "error": "error description",
       "type": "google"
@@ -252,8 +262,9 @@ Use the Median JavaScript Bridge method to trigger native login from your websit
 
 Here's an example:
 
+<MedianLogo />
 <CodeGroup>
-  ```bash bash
+  ```HTML HTML
   <div class="browser-only">
       <div id="g_id_onload"
           data-client_id="1038895183581-fdapcj78i25hdmvnes300nuf17top0uf.apps.googleusercontent.com"
@@ -268,11 +279,15 @@ Here's an example:
           data-shape="rectangular"
           data-logo_alignment="left">
       </div>
+
   </div>
 
-  <button class="google-login native-only" onclick="median.socialLogin.google.login({ 'callback' : googleLoginCallback });">
-      Log in With Google
-  </button>
+<button
+  class="google-login native-only"
+  onclick="median.socialLogin.google.login({ 'callback' : googleLoginCallback });"
+>
+  Log in With Google
+</button>
 
   <script>
       const isMedian = navigator.userAgent.indexOf("median") >= 0;
@@ -335,9 +350,10 @@ Here's an example:
       }
   </script>
 
-  <script src="https://accounts.google.com/gsi/client" async defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jsrsasign/8.0.20/jsrsasign-all-min.js"></script>
-  ```
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jsrsasign/8.0.20/jsrsasign-all-min.js"></script>
+```
 </CodeGroup>
 
 After the user logs in, `googleLoginCallback()` runs with an object containing the user's ID token. If they cancel, you'll get an error message.
@@ -351,15 +367,16 @@ Here's what your callback function receives for Apple.
 #### Success response
 
 <CodeGroup>
-  ```JSON JSON
-  {
-      "idToken": "token string",
-      "code": "code string",
-      "firstName": "first name",
-      "lastName": "last name",
-      "type": "apple"
-  }
-  ```
+```JSON JSON
+{
+    "idToken": "token string",
+    "code": "code string",
+    "firstName": "first name",
+    "lastName": "last name",
+    "type": "apple"
+}
+````
+
 </CodeGroup>
 
 **Note:** firstName and lastName only appear on the first authentication.
@@ -379,13 +396,13 @@ Here's what your callback function receives for Apple.
 
 #### Apple Sign In
 
-Apple only sends complete user profile data (`firstName` and `lastName`) on the *first* login. After that, you only get a JWT token and a user identifier.
+Apple only sends complete user profile data (`firstName` and `lastName`) on the _first_ login. After that, you only get a JWT token and a user identifier.
 
 Here's what to do:
 
-* Save the full user profile to your database during the first authentication
-* On subsequent logins, retrieve the stored profile using the user identifier from the JWT
-* Parse the JWT for additional fields like email and email\_verified
+- Save the full user profile to your database during the first authentication
+- On subsequent logins, retrieve the stored profile using the user identifier from the JWT
+- Parse the JWT for additional fields like email and email_verified
 
 [Read Apple's documentation on retrieving user information](https://developer.apple.com/documentation/sign_in_with_apple/sign_in_with_apple_rest_api/authenticating_users_with_sign_in_with_apple#:~:text=Retrieve%20the%20user%E2%80%99s%20information%20from%20Apple%20ID%20servers)
 
@@ -395,6 +412,7 @@ Use the Median JavaScript Bridge method to trigger native login from your websit
 
 Here's an example:
 
+<MedianLogo />
 <CodeGroup>
   ```HTML HTML
   <head>
@@ -404,6 +422,7 @@ Here's an example:
       <meta name="appleid-signin-scope" content="name email">
       <meta name="appleid-signin-redirect-uri" content="https://median-social-logins-demo.web.app/auth/apple/redirect">
       <meta name="appleid-signin-use-popup" content="true">
+
   </head>
 
   <body>
@@ -411,9 +430,12 @@ Here's an example:
       <div id="appleid-signin" data-color="black" data-border="true" data-type="sign in"></div>
   </div>
 
-  <button class="apple-login native-only" onclick="median.socialLogin.apple.login({ 'callback' : appleLoginCallback, 'scope': 'full_name, email' });">
-      Log in With Apple
-  </button>
+<button
+  class="apple-login native-only"
+  onclick="median.socialLogin.apple.login({ 'callback' : appleLoginCallback, 'scope': 'full_name, email' });"
+>
+  Log in With Apple
+</button>
 
   <script>
       function appleLoginCallback(response) {
@@ -480,6 +502,7 @@ Here's an example:
       document.addEventListener("AppleIDSignInOnSuccess", appleLoginCallback);
       document.addEventListener("AppleIDSignInOnFailure", appleLoginCallback);
   </script>
+
   </body>
   ```
 </CodeGroup>
@@ -493,8 +516,6 @@ Remember, the user's name can only be retrieved the first time they authorize yo
 ## Frequently Asked Questions
 
 ### Why does my Google Sign-In fail with a nonce/ID token mismatch (Supabase)?
-
-**Why does my Google Sign-In fail with a nonce/ID token mismatch (Supabase)?⎘ Copy link
 
 **Symptom** Native Google Sign-In completes successfully (the account picker opens and Google returns a valid ID token) but the sign-in fails on the backend with a nonce or ID token verification error.
 

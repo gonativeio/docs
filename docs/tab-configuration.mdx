@@ -7,14 +7,14 @@ title: "Bottom Tab Bar Visual Editor"
 If you'd prefer your links to trigger various JavaScript commands, you may wish to specify URLs in the Visual Editor with the following syntax (Option 1). Alternatively, you can set the URL with the JavaScript command directly in the JSON (Option 2).
 
 <CodeGroup>
-  ```bash bash
+  ```JavaScript JavaScript
   /* Option 1 - Visual Editor */
   javascript: alert("test");
   ```
 </CodeGroup>
 
 <CodeGroup>
-  ```bash bash
+  ```JSON JSON
   /* Option 2 - JSON */
   {
     "tabSelectionConfig": [
@@ -50,7 +50,7 @@ If you'd prefer your links to trigger various JavaScript commands, you may wish 
 A more complicated example is to click an element when it exists, otherwise load a new URL.
 
 <CodeGroup>
-  ```bash bash
+  ```JavaScript JavaScript
   /* Option 1 - Visual Editor */
   javascript: if (
     typeof jQuery === "undefined" ||
@@ -62,7 +62,7 @@ A more complicated example is to click an element when it exists, otherwise load
 </CodeGroup>
 
 <CodeGroup>
-  ```bash bash
+  ```JSON JSON
   /* Option 2 - JSON */
   {
     "tabSelectionConfig": [
@@ -99,14 +99,3 @@ A more complicated example is to click an element when it exists, otherwise load
 
 * [​iOS Tab Bar Visual & Documentation](https://developer.apple.com/ios/human-interface-guidelines/ui-bars/tab-bars/)
 * [Android Tabs Visual & Documentation](http://developer.android.com/design/building-blocks/tabs.html)
-
-***
-
-### Next Steps
-
-* [Dynamic Tab Menu](/docs/dynamic-tab-menu)
-
-Copy Page
-
-* * [Trigger JavaScript Commands from Tab Menu Options](#trigger-javascript-commands-from-tab-menu-options)
-  * [Learn more](#learn-more)
