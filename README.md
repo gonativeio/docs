@@ -17,7 +17,6 @@ Median turns websites and web apps into native iOS and Android apps. These docs 
 | `docs.json` | Site configuration: navigation, navbar, footer, and redirects                                                  |
 | `snippets/` | Reusable components, such as `MedianLogo` and `AppetizeEmbed`                                                  |
 | `images/`   | Images used in the docs                                                                                        |
-| `styles/`   | Vale configuration and accepted vocabulary                                                                     |
 | `AGENTS.md` | Writing standards, component patterns, and rules for contributors and AI tools                                 |
 
 `docs/changelog.mdx` and `docs/changelog-archive.mdx` are generated automatically every day. Don't edit them in this repository, because changes are overwritten on the next sync.
@@ -58,8 +57,6 @@ Run these before opening a pull request:
 mint validate       # MDX errors and content checks
 mint broken-links   # broken internal links
 ```
-
-Vale also checks spelling and style on pull requests. Add product names and technical terms it doesn't recognize to `styles/config/vocabularies/Mintlify/accept.txt`, one per line.
 
 ### Troubleshooting
 

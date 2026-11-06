@@ -22,23 +22,32 @@ Setting up Social Login involves the following four steps:
 
 Configure each provider in their respective developer portals:
 
-[](https://docs.median.co/docs/facebook-login-configuration)
-
-[Configure Facebook Login](https://docs.median.co/docs/facebook-login-configuration)
-
-[Set up your Facebook App and add iOS/Android platforms. _Requires: Bundle ID, Package Name, Key Hash_](https://docs.median.co/docs/facebook-login-configuration)
-
-[](https://docs.median.co/docs/google-sign-in-configuration)
-
-[Configure Google Sign-In](https://docs.median.co/docs/google-sign-in-configuration)
-
-[Create OAuth clients for all platforms in Google Cloud. _Requires: Bundle ID, Package Name, SHA-1 Certificate_](https://docs.median.co/docs/google-sign-in-configuration)
-
-[](https://docs.median.co/docs/sign-in-with-apple-configuration/)
-
-[Configure Sign In with Apple](https://docs.median.co/docs/sign-in-with-apple-configuration/)
-
-[Register Service ID and set up web authentication. _Requires: Bundle ID, website domains, redirect URLs_](https://docs.median.co/docs/sign-in-with-apple-configuration/)
+<Columns cols={1}>
+  <Card
+    title="Configure Facebook Login"
+    icon="facebook"
+    href="https://docs.median.co/docs/facebook-login-configuration"
+  >
+    Set up your Facebook App and add iOS/Android platforms. _Requires: Bundle
+    ID, Package Name, Key Hash_
+  </Card>
+  <Card
+    title="Configure Google Sign-In"
+    icon="google"
+    href="https://docs.median.co/docs/google-sign-in-configuration"
+  >
+    Create OAuth clients for all platforms in Google Cloud. _Requires: Bundle
+    ID, Package Name, SHA-1 Certificate_
+  </Card>
+  <Card
+    title="Configure Sign In with Apple"
+    icon="apple"
+    href="https://docs.median.co/docs/sign-in-with-apple-configuration"
+  >
+    Register Service ID and set up web authentication. _Requires: Bundle ID,
+    website domains, redirect URLs_
+  </Card>
+</Columns>
 
 ### 2. Add credentials to the Median App Studio
 
@@ -62,7 +71,9 @@ Integrate the Median JavaScript Bridge so your website can trigger native login 
 
 The Social Login plugin includes a set of images you may use as buttons to trigger the JavaScript Bridge functions that launch each of the native SDKs. (SVG and high resolution @2x, @3x PNG formats available). [Website Integration Guide →](/docs/social-login-website-configuration)
 
-![](/images/docs/f8fb0ba-gonative-sign-in-logo-pack.png)
+<Frame caption="Social Login Example Logos">
+  <img src="/images/docs/f8fb0ba-gonative-sign-in-logo-pack.png" />
+</Frame>
 
 ### Step 4: Rebuild your app & test
 
@@ -76,20 +87,29 @@ This demo page includes test buttons for all three providers so you can verify y
 
 Update your website and server configuration to integrate with the Social Login Native Plugin:
 
-[](https://docs.median.co/docs/social-login-website-configuration)
-
-[Website Configuration](https://docs.median.co/docs/social-login-website-configuration)
-
-[Implement JavaScript Bridge functions in your website to trigger native authentication flows from your mobile app.](https://docs.median.co/docs/social-login-website-configuration)
-
-[](https://docs.median.co/docs/social-login-server-side-redirects)
-
-[Server-Side Redirects](https://docs.median.co/docs/social-login-server-side-redirects)
-
-[Configure server-side redirect handling to properly manage authentication callbacks and token exchanges.](https://docs.median.co/docs/social-login-server-side-redirects)
-
-[](https://docs.median.co/docs/social-login-javascript-callbacks)
-
-[JavaScript Callbacks](https://docs.median.co/docs/social-login-javascript-callbacks)
-
-[Handle authentication responses and user data returned from native SDKs through JavaScript callback functions.](https://docs.median.co/docs/social-login-javascript-callbacks)
+<Columns cols={3}>
+  <Card
+    title="Website Configuration"
+    icon="code"
+    href="https://docs.median.co/docs/social-login-website-configuration"
+  >
+    Implement JavaScript Bridge functions in your website to trigger native
+    authentication flows from your mobile app.
+  </Card>
+  <Card
+    title="Server-Side Redirects"
+    icon="server"
+    href="https://docs.median.co/docs/social-login-server-side-redirects"
+  >
+    Configure server-side redirect handling to properly manage authentication
+    callbacks and token exchanges.
+  </Card>
+  <Card
+    title="JavaScript Callbacks"
+    icon="external-link"
+    href="https://docs.median.co/docs/social-login-javascript-callbacks"
+  >
+    Handle authentication responses and user data returned from native SDKs
+    through JavaScript callback functions.
+  </Card>
+</Columns>
