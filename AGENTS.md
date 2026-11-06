@@ -4,35 +4,53 @@
 
 ## About this project
 
-- This is the documentation for [Median.co](https://median.co), published at `docs.median.co` and built on [Mintlify](https://mintlify.com).
+- This is the documentation for [Median](https://median.co), published at `docs.median.co` and built on [Mintlify](https://mintlify.com).
 - Pages are MDX files with YAML frontmatter in `docs/`. Each page's URL is its path, for example `docs/status-bar.mdx` is served at `/docs/status-bar`.
-- Navigation, navbar, footer, and redirects live in `docs.json`.
+- Navigation, navbar, footer, colors, fonts, and redirects live in `docs.json`.
 - Reusable components live in `snippets/`. Images live in `images/`.
 - The docs were migrated from ReadMe. Page paths were kept the same so existing links keep working. Don't rename a page without adding a redirect.
 - This repository is **public**. Anything committed here, including hidden pages and Git history, is readable on GitHub.
 - Use the Mintlify MCP server, `https://mcp.mintlify.com`, to edit content and settings via MCP.
 - Use the Mintlify docs MCP server, `https://www.mintlify.com/docs/mcp`, to look up how Mintlify works.
+- The writing and visual rules below follow the Median Brand Guidelines (version 1.0, December 2023). When this file and the brand guidelines disagree, ask the user instead of guessing.
 
 ## Files you must not edit by hand
 
 - `docs/changelog.mdx` and `docs/changelog-archive.mdx` are generated daily from a Google Sheet by a GitHub Action in a separate private repository. Manual edits are overwritten on the next sync. Change the sync script's template instead.
 - `changelog-tags.js` and `changelog-tags.css` style the changelog tags. Keep the tag list in `changelog-tags.js` in sync with the release types and products in the sync script.
 
+## Voice
+
+Median's brand voice has five principles. This is how each one applies to documentation.
+
+1. **We're the experts.** State facts clearly and confidently, then back them up with evidence: working code, exact settings, and links to official platform docs. Don't hedge ("should probably work") and don't make claims you can't show.
+2. **We get to the point.** Lead with what the reader can do and what they need. Keep word count low. Use short paragraphs, bullets, tables, and bold UI labels so readers can scan.
+3. **We're refreshingly honest.** Say up front when something costs money, needs a specific plan or plugin, works on only one platform, or has a known limitation. Put it in the introduction or a callout, not at the bottom. If Median isn't the right tool for a use case, say so.
+4. **We're human.** Be friendly, calm, and professional. Use contractions ("you'll", "don't") and address the reader as "you". An occasional rhetorical question or exclamation point is fine. Never use one in a warning or error message.
+5. **We don't just speak in `</code>`.** Explain the concept in plain language before the technical detail, and define jargon on first use. Then go as deep as advanced readers need.
+
 ## Terminology
 
-| Use                                                            | Not                                      |
-| -------------------------------------------------------------- | ---------------------------------------- |
-| Median, Median.co                                              | GoNative, gonative                       |
-| App Studio                                                     | dashboard, Median dashboard, app builder |
-| JavaScript Bridge, or Median JavaScript Bridge                 | JS bridge, Javascript Bridge             |
-| Native Plugins (the App Studio section), plugin (a single one) | add-on, extension                        |
-| App Publishing Service                                         | publishing team service                  |
-| Median for Enterprise                                          | enterprise plan                          |
-| instance (native navigation)                                   | navigation profile                       |
-| Global Theme                                                   | theme settings                           |
-| URL pattern                                                    | regex (for App Studio rules)             |
-| sign in, sign out                                              | log in, login (as a verb)                |
+Use **Median** for the company and product in prose. `Median.co` is the domain and an alternate logo, so use it only in URLs, legal text, or where the brand guidelines' `median.co` lockup is shown.
 
+| Use                                                                                       | Not                                             |
+| ----------------------------------------------------------------------------------------- | ----------------------------------------------- |
+| Median                                                                                    | Median.co (in prose), GoNative, gonative        |
+| Median App Studio on first mention, then App Studio                                       | dashboard, Median dashboard, app builder        |
+| Median JavaScript Bridge on first mention, then JavaScript Bridge                         | JS Bridge, JS bridge, Javascript Bridge         |
+| native plugins (in prose), Native Plugins (the App Studio section), plugin (a single one) | add-on, extension                               |
+| Median's Publishing Service on first mention, then Publishing Service                     | App Publishing Service, publishing team service |
+| Median's Mobile Device Simulators on first mention, then simulator                        | emulator (for Median's browser simulators)      |
+| Support & Updates Plan                                                                    | support plan, maintenance plan                  |
+| Median for Enterprise                                                                     | enterprise plan                                 |
+| Apple App Store on first mention, then App Store; Google Play Store, then Google Play     | iTunes, Play Market                             |
+| instance (native navigation)                                                              | navigation profile                              |
+| Global Theme                                                                              | theme settings                                  |
+| URL pattern                                                                               | regex (for App Studio rules)                    |
+| sign in, sign out                                                                         | log in, login (as a verb)                       |
+
+- "Dashboard" is fine for third-party products, such as the OneSignal dashboard. Median's own interface is always App Studio.
+- Service names keep the capitalization the brand uses: Self-Service, Assisted App Development, Concierge App Development, Full-Service, and Enterprise. Only mention a service if an existing page or the user confirms it's current.
 - `median.*` methods come from the library injected into the app. `Median.*` methods come from the `median-js-bridge` npm package. Don't mix them in one example.
 - Keep official third-party names as written: Firebase Cloud Messaging, OneSignal, App Store Connect, Google Play Console, Microsoft Entra ID, Microsoft Dynamics 365.
 
@@ -40,13 +58,14 @@
 
 - US English: "behavior", "color", "practices".
 - Active voice and second person ("you").
-- Short sentences, one idea per sentence. No em dashes. Split the sentence or use a colon instead.
-- Serial comma: "iOS, Android, and the web".
-- Sentence case for headings and card titles. Product and feature names keep their capitalization.
+- Short sentences, one idea per sentence. Prefer a colon or a new sentence to an em dash, and use at most one em dash per sentence.
+- Oxford comma, always: "iOS, Android, and the web".
+- **Sentence case for page titles, sidebar titles, headings, and card titles.** Capitalize only proper nouns: Median product names (App Studio, JavaScript Bridge, Publishing Service), third-party brands (OneSignal, Google Sign-In), and platform names. Generic features are lowercase: "Share button", "Getting started with Replit", "Pull-to-refresh".
 - Use imperative headings for tasks: "Create an instance", "Send to a topic".
-- Bold for UI elements, with arrows for paths: **Native Plugins → OneSignal**.
+- Bold for UI elements, with arrows for paths: **Native Plugins → OneSignal**. Write UI labels exactly as App Studio shows them, even when they're title case.
 - Code formatting for file names, paths, method names, parameters, and values.
-- No marketing language: avoid "powerful", "seamlessly", "leading", "at precisely the right moment".
+- No marketing language in docs: avoid "powerful", "seamlessly", "leading", "unbelievably", and "at precisely the right moment". The brand principle is "show, not tell", so show the result instead.
+- No emoji in docs pages, headings, or callouts. The brand reserves emoji for social media.
 - Use descriptive link text. Never "here" or "click here".
 - Don't repeat the same explanation in several sections. Explain once and link to it.
 
@@ -54,14 +73,15 @@
 
 Every page needs a `title` and a `description`:
 
-````mdx
+```mdx
 ---
-title: "Status Bar"
+title: "Status bar"
 description: "Control the color and style of the device status bar in your app."
 ---
-````
+```
 
-- The description is a full sentence ending with a period, about 150 to 160 characters at most. It's used as the subtitle and as the meta description for search engines.
+- The title is in sentence case (see [Style](#style)). It's also the sidebar label, unless you set a shorter `sidebarTitle`.
+- The description is a full sentence ending with a period, about 150 to 160 characters at most. It's used as the subtitle and as the meta description for search engines, so say what the reader can do on the page.
 - Don't repeat the title as an H1 in the page body. Mintlify renders the title as the H1, so the page starts at H2.
 - Hidden pages (not in `docs.json` navigation) get `noindex: true`.
 - Deprecated pages get `deprecated: true` and a `<Warning>` at the top that links to the replacement page.
@@ -70,7 +90,7 @@ description: "Control the color and style of the device status bar in your app."
 
 Plugin and feature pages follow this order. Leave out sections that don't apply.
 
-1. Introduction: what the feature does and when to use it, in one or two short paragraphs.
+1. Introduction: what the feature does and when to use it, in one or two short paragraphs. State costs, plan or plugin requirements, and platform limits here.
 2. Developer Demo callout (see below), if a demo page exists.
 3. Prerequisites.
 4. Configuration: App Studio settings as a table with **Setting**, **Description**, and, where helpful, **Recommendation** columns.
@@ -113,7 +133,7 @@ median.statusbar.set({ style: "dark", color: "80ff0000" });
 </CodeGroup>
 ````
 
-- Use lowercase language tags (`javascript`, `json`, `bash`) with a title after them.
+- Use lowercase language tags (`javascript`, `json`, `bash`) with a title after them. Use `text` for AI prompts and plain output.
 - Put related variants (for example Set / Get, or Subscribe / Unsubscribe) as tabs in one `CodeGroup`.
 - Examples must be valid code readers can copy. Don't use pseudo-syntax like `stop(true | false)`. Show real values and explain the options in a table.
 - Guard calls that only work in the app: `if (typeof median !== 'undefined')` for the injected library, or `Median.isNativeApp()` for the npm package. Prefer `median_library_ready()` for code that runs on page load.
@@ -121,10 +141,10 @@ median.statusbar.set({ style: "dark", color: "80ff0000" });
 
 ### Cards
 
-- Use `CardGroup` and `Card`. Icons are Font Awesome names without the `fa-` prefix (`icon="puzzle-piece"`), or an image path for partner logos.
+- Use `CardGroup` and `Card`. Icons are Font Awesome names without the `fa-` prefix (`icon="puzzle-piece"`), or an image path for partner logos. See [Icons](#icons) for which icons fit the brand.
 - Columns: `cols={1}` for workflow lists, `cols={2}` for related documentation, `cols={3}` for landing pages with short descriptions.
 - A card links once, through `href`. Don't add "Learn more" links inside cards.
-- Card descriptions are one sentence and don't repeat the title.
+- Card titles are in sentence case. Card descriptions are one sentence and don't repeat the title.
 
 ### Other components
 
@@ -139,33 +159,82 @@ median.statusbar.set({ style: "dark", color: "80ff0000" });
 ### Diagrams
 
 - Use Mermaid in a ` ```mermaid ` code block.
-- Prefer `flowchart LR` to keep diagrams short. Use short node labels.
+- Prefer `flowchart LR` to keep diagrams short. Use short node labels in sentence case.
 - Keep code and JSON out of diagram nodes. Show them in a code block below the diagram.
 - Don't hide a diagram that explains core behavior inside an accordion.
+- To use brand colors, start the diagram with this line, and check the result in both light and dark mode in the preview:
+
+```text
+%%{init: {"theme": "base", "themeVariables": {"primaryColor": "#B5DAFF", "primaryTextColor": "#1A100B", "primaryBorderColor": "#1174D3", "secondaryColor": "#FEB9FF", "tertiaryColor": "#FFEFB4", "lineColor": "#7D7A77", "fontFamily": "DM Sans"}}}%%
+```
 
 ### Tables
 
 - Use Markdown tables, not HTML. Use an HTML table only when cells need vertical alignment.
 - Split very wide tables. Prefer languages or items as rows and a few columns over many columns.
 
-## Links
+## Brand and visual identity
 
-- Internal links are relative and include `/docs/`: `[Status Bar](/docs/status-bar)`. Never use `https://docs.median.co/...`.
-- Never link to `median.readme.io`, `gonative.readme.io`, or `docs.median.co/discuss`.
-- External links are regular Markdown links. Link to official docs (Apple, Google, Firebase) instead of copying details that change often, such as fees, regional rules, or device lists.
+These rules apply to images, snippets, custom CSS, and anything else that shows the Median brand.
 
-## Images
+### Logo
+
+- Use only the official logo files from the Median Brand Kit. Never recreate, recolor, rotate, stretch, outline, or add shadows, gradients, or other effects to the logo.
+- Use the classic logo (dark text) on light backgrounds and the dark-background version (light text) on dark backgrounds. In `docs.json`, these are the `light` and `dark` logo and favicon entries.
+- On a colored background or a photo, use the monochrome logo, or place the logo in a contained light or black box. Never put the full-color logo directly on a photo.
+- The logo is never shorter than 24px on screen. Keep clear space around it at least as wide as one unit of the logomark grid.
+- Use the logomark on its own only where space is square and small, such as the favicon or an app icon.
+- For partner lockups, use the format `Median × Partner`, match the visual weight of both logos, and use each partner's official logo unchanged.
+
+### Colors
+
+Use only the brand palette. Don't introduce other colors, such as Tailwind's default greens, reds, or grays, in custom CSS, snippets, or inline styles.
+
+| Name         | Base      | Darker                                                   | Lighter   |
+| ------------ | --------- | -------------------------------------------------------- | --------- |
+| Blue         | `#4299ED` | `#1174D3`                                                | `#B5DAFF` |
+| Pink         | `#F567F0` | `#E93EE3`                                                | `#FEB9FF` |
+| Yellow       | `#F7C406` | `#EFAC00`                                                | `#FFEFB4` |
+| Median Black | `#1A100B` | `#0E0D08`                                                | `#181817` |
+| Median White | `#F2F0EE` | Light gray `#E2DFDD`, medium `#B5B3B1`, darker `#7D7A77` |           |
+
+Extra colors, for illustrations only: purple `#3F3EDF` and orange `#ED4F06`.
+
+- Colored text on a white background uses **Darker Blue** (`#1174D3`). It's the only Base or Darker color that meets the WCAG AA contrast minimum for normal text on white (4.7:1). Don't use pink or yellow for text on light backgrounds.
+- Colored text on a dark background uses the **Base** colors.
+- For tinted backgrounds, such as badges or highlighted boxes, use the **Lighter** colors with Median Black text in light mode, and the **Base** colors with Median Black text in dark mode.
+- Dark surfaces use Darker Black (`#0E0D08`) with Median White text.
+- Keep at least one brand color in otherwise black-and-white compositions.
+
+### Typography
+
+- `docs.json` sets Questrial for headings and DM Sans for body text. Don't set fonts in MDX, snippets, or inline styles.
+- Code uses Mintlify's monospace font.
+
+### Icons
+
+- The brand's icon system is IBM Carbon, which Mintlify can't load as a library. Use Font Awesome in the default `regular` (outline) style, which is closest to Carbon. Don't use the `solid`, `duotone`, or `sharp` styles for interface icons.
+- Partner logos in cards are images, not icons.
+
+### Images and screenshots
 
 - Store images under `images/docs/docs/<feature>/`, for example `images/docs/docs/system-nav-bar/3button.png`, and reference them as `/images/docs/docs/<feature>/<file>`.
 - Never reference `files.readme.io` or other ReadMe-hosted images. Download them into the repo.
 - Every image needs descriptive `alt` text.
 - Check that logos and screenshots are readable in both light and dark mode.
 
+## Links
+
+- Internal links are relative and include `/docs/`: `[Status bar](/docs/status-bar)`. Never use `https://docs.median.co/...` or `https://median.co/docs/...`.
+- Never link to `median.readme.io`, `gonative.readme.io`, or `docs.median.co/discuss`.
+- External links are regular Markdown links. Link to official docs (Apple, Google, Firebase) instead of copying details that change often, such as fees, regional rules, or device lists.
+
 ## `docs.json` navigation
 
 - Top-level groups in a tab are section headings. **Never add `root` to a top-level group.** It makes the section collapse.
 - Nested groups set `root` to their overview page, so clicking the group name opens it. **Don't also list the root page in `pages`**, or it appears twice.
 - Each page appears in the navigation once.
+- Group names are in sentence case, except for product and brand names.
 - Hidden pages are left out of `navigation` (or placed in a group with `"hidden": true`). They're still built and reachable by URL.
 - When renaming, merging, or removing a page, add a redirect to the `redirects` array.
 - Use relative paths for internal links in `docs.json` (navbar, logo, redirects).
@@ -188,12 +257,15 @@ Before committing:
 ```bash
 npx mint validate      # MDX parse errors and content checks
 npx mint broken-links  # internal links
-grep -rnE '^\s+</(Warning|Info|Note|Tip|Check)>' docs/  # indented closing tags
 ```
+
+`mint validate` catches closing tags that break the build. To find closing tags indented directly under a list item, check the lines just before them rather than every indented tag, because tags indented inside components such as `<Steps>` are valid.
 
 ## Content boundaries
 
 - Don't commit secrets, API keys, customer names or data, discount codes, or review incentives. The repository and its history are public, even for hidden pages.
 - Don't invent App Studio menu paths, setting names, default values, or plugin behavior. If something isn't confirmed by an existing page or the user, add it as an open question for the user instead of guessing.
+- Don't invent prices, plan names, guarantees, or service terms. Link to the pricing page instead of copying prices.
 - Don't document internal tools or the private release notes sync repository.
+- Don't change the logo, brand colors, or fonts. Those come from the Median Brand Kit.
 - When a change affects behavior described on other pages (for example a parameter like `persist`), find and update those pages in the same change.

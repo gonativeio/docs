@@ -20,19 +20,21 @@ We don't accept:
 - Documentation for features that don't exist in Median, or that you'd like Median to build
 - Promotional content, such as links to your own products or services
 - Changes to the site's design, navigation, or configuration (`docs.json`, `snippets/`)
+- Changes to the Median logo, brand colors, or fonts. These come from the Median Brand Kit.
 - Edits to `docs/changelog.mdx` or `docs/changelog-archive.mdx`. These pages are generated automatically, so changes are overwritten.
 
 These are general guidelines. If you're not sure whether your change fits, open an issue to discuss it with us first.
 
 ## Writing style
 
-Follow the writing standards in [`AGENTS.md`](AGENTS.md). In short:
+Follow the writing standards in [`AGENTS.md`](AGENTS.md). They're based on the Median brand voice. In short:
 
-- **Clarity and simplicity:** Our documentation must be easy to read for people and AI tools.
-- **Active voice and second person:** Address the reader as "you" and use active voice wherever possible.
-- **Meaning over grammar:** Clear meaning is more important than following every grammar rule.
-- **Inclusive and accessible language:** Our docs are read by people around the world. Avoid slang, jargon, and idioms. Don't assume ability level or prior context.
-- **Median terminology:** Use the terms in `AGENTS.md`, such as "App Studio" and "JavaScript Bridge."
+- **Be the expert:** State facts clearly, and back them up with working code, exact settings, or links to official platform docs.
+- **Get to the point:** Lead with what the reader can do. Keep it short, and use lists, tables, and bold UI labels so pages are easy to scan.
+- **Be honest:** Mention costs, plan or plugin requirements, platform differences, and known limitations up front.
+- **Be human:** Write in a friendly, calm, professional tone. Use active voice, contractions, and "you". Don't use emoji.
+- **Make the complex simple:** Explain the idea in plain language before the technical detail. Define jargon on first use, and avoid slang and idioms, because our docs are read by people around the world.
+- **Follow Median style:** Use sentence case for titles and headings, the Oxford comma, and the terms in `AGENTS.md`, such as "App Studio" and "JavaScript Bridge".
 
 ## Issues
 
@@ -67,6 +69,7 @@ You can use AI tools to help you write issues and pull requests. AI tools such a
 You're responsible for everything you submit, whether or not you used AI:
 
 - Check that steps, App Studio paths, and code samples are correct, ideally by testing them in a Median app.
+- Remove personal data, account emails, and keys from screenshots before submitting.
 - Review AI-generated text before submitting. Pull requests with obvious errors or invented features will be closed.
 - Don't submit large numbers of automated changes at once. Keep the same focus as any other pull request.
 

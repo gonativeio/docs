@@ -1,8 +1,8 @@
 # Median documentation
 
-Source for the [Median.co documentation](https://docs.median.co), built with [Mintlify](https://mintlify.com).
+Source for the [Median documentation](https://docs.median.co), built with [Mintlify](https://mintlify.com).
 
-Median turns websites and web apps into native iOS and Android apps. These docs cover building, configuring, and publishing apps with the Median App Studio, the JavaScript Bridge, and Native Plugins.
+Median helps you build, publish, and maintain native iOS and Android apps powered by your web content. These docs cover building, configuring, and publishing apps with Median App Studio, the Median JavaScript Bridge, and native plugins.
 
 ## Found a problem?
 
@@ -17,13 +17,13 @@ Median turns websites and web apps into native iOS and Android apps. These docs 
 | `docs.json` | Site configuration: navigation, navbar, footer, and redirects                                                  |
 | `snippets/` | Reusable components, such as `MedianLogo` and `AppetizeEmbed`                                                  |
 | `images/`   | Images used in the docs                                                                                        |
-| `AGENTS.md` | Writing standards, component patterns, and rules for contributors and AI tools                                 |
+| `AGENTS.md` | Writing standards, brand rules, component patterns, and rules for contributors and AI tools                    |
 
 `docs/changelog.mdx` and `docs/changelog-archive.mdx` are generated automatically every day. Don't edit them in this repository, because changes are overwritten on the next sync.
 
 ## Writing guidelines
 
-Read [`AGENTS.md`](AGENTS.md) before contributing. It covers terminology, style, page structure, components, `docs.json` navigation rules, and common MDX errors that break the build.
+Read [`AGENTS.md`](AGENTS.md) before contributing. It covers the Median brand voice, terminology, style, page structure, components, logo and color rules, `docs.json` navigation rules, and common MDX errors that break the build.
 
 ### AI-assisted writing
 
@@ -68,11 +68,15 @@ mint broken-links   # broken internal links
 
 Changes merged into `main` are deployed to [docs.median.co](https://docs.median.co) by Mintlify. Open a pull request to get a preview deployment before merging.
 
+## Brand
+
+The site's colors, fonts, and logos follow the Median Brand Guidelines. They're set in `docs.json`, `changelog-tags.css`, and `images/median/`. Don't change them in a pull request. The logo files come from the Median Brand Kit, and AGENTS.md lists the palette for anything custom.
+
 ## License
 
 The documentation content, including text, images, and the Median name and logo, is GoNative.io LLC dba Median.co. All rights reserved. Code samples in the documentation are available under the MIT License, so you can use them in your own apps. See [`LICENSE`](LICENSE) for details.
 
 ## Resources
 
-- [Median.co](https://median.co)
+- [Median](https://median.co)
 - [Mintlify documentation](https://mintlify.com/docs)
