@@ -131,6 +131,7 @@
             "pages": [
               "docs/native-navigation-overview",
               "docs/navigation-instances",
+              "docs/native-navigation-changes",
               {
                 "group": "Top Navigation Bar",
                 "root": "docs/top-navigation-bar",
