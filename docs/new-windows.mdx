@@ -1,0 +1,68 @@
+---
+title: "New Windows"
+description: "Control whether pages open in new webview windows, and open or close windows with the JavaScript Bridge"
+---
+
+import { MedianLogo } from "/snippets/median-logo.jsx";
+
+Your app can show pages in multiple webview windows that are stacked on top of each other. Opening a page in a new window keeps the previous page in its current state underneath, so when the user closes the new window, they return to exactly where they were. This is useful for detail pages, checkout flows, or any page the user opens from a list and then leaves.
+
+<Check>
+  **Developer Demo**
+
+Display our demo page in your app to test during development [https://median.dev/windows/](https://median.dev/windows/)
+
+</Check>
+
+## Configure new windows
+
+By default, when your website calls the standard JavaScript `window.open()` function, the URL opens in a new window in your app, similar to how a browser opens a new tab. You can change this in the App Studio under **Link Handling → New Windows**:
+
+| Setting                 | Behavior                                                     |
+| ----------------------- | ------------------------------------------------------------ |
+| **Permitted** (default) | `window.open()` opens the URL in a new window in your app.   |
+| **Blocked**             | `window.open()` opens the URL in the current window instead. |
+
+Choose **Blocked** if your website uses `window.open()` for links that should stay in the same window, or if you want to keep users in a single window. Rebuild your app after changing this setting.
+
+## Open a new window with the JavaScript Bridge
+
+To open a new window from your website, call `median.window.open()`.
+
+<MedianLogo />
+
+<CodeGroup>
+
+```javascript JavaScript
+median.window.open({ url: "https://yoursite.com/page" });
+```
+
+</CodeGroup>
+
+To open a URL in the current window, the device browser, or the in-app browser instead, see [Internal vs. external links](/docs/internal-vs-external-links#javascript-bridge-open-modes).
+
+## Close the current window
+
+Close the window the code runs in and return the user to the window underneath.
+
+<MedianLogo />
+
+<CodeGroup>
+
+```javascript JavaScript
+median.window.close();
+```
+
+</CodeGroup>
+
+<Note>
+  The main window of your app can't be closed. Calling `median.window.close()`
+  from the main window has no effect, so only call it from pages opened in a new
+  window.
+</Note>
+
+## Things to know
+
+- **Each window has its own navigation history.** A new window starts with only the page it opened, so swipe gestures and back navigation inside it stop at that first page.
+- **Open windows use memory.** Many open windows can slow down your app, especially on older devices. Use [Maximum Windows](/docs/maximum-windows) to limit how many windows can be open at once.
+- **Use rules to open windows automatically.** To open certain pages in a new window without writing JavaScript, set up [Auto New Windows](/docs/auto-new-windows).
