@@ -1,19 +1,19 @@
 ---
 title: "Salesforce Marketing Cloud"
-description: "Add Salesforce Marketing Cloud MobilePush to your app."
+description: "Add Salesforce Marketing Cloud MobilePush push notifications to your app, and manage contact keys, attributes, and tags with the JavaScript Bridge."
 keywords: ["Salesforce Marketing Cloud", "MobilePush", "push notifications", "contact key", "attributes"]
 searchable: true
 ---
 
 import { MedianLogo } from "/snippets/median-logo.jsx";
 
-Integrate Salesforce Marketing Cloud MobilePush into your app to manage push notifications, user contact keys, custom attributes, and tags. Median's Salesforce Marketing Cloud Native Plugin wraps the [iOS SDK <Icon icon="arrow-up-right-from-square" size={12} />](https://salesforce-marketingcloud.github.io/MarketingCloudSDK-iOS/) and [Android SDK <Icon icon="arrow-up-right-from-square" size={12} />](https://salesforce-marketingcloud.github.io/MarketingCloudSDK-Android/) to provide native push notification support with device registration and audience targeting.
+Integrate Salesforce Marketing Cloud MobilePush into your app to manage push notifications, user contact keys, custom attributes, and tags. Median's Salesforce Marketing Cloud plugin wraps the [iOS SDK <Icon icon="arrow-up-right-from-square" size={12} />](https://salesforce-marketingcloud.github.io/MarketingCloudSDK-iOS/) and [Android SDK <Icon icon="arrow-up-right-from-square" size={12} />](https://salesforce-marketingcloud.github.io/MarketingCloudSDK-Android/) to provide native push notification support with device registration and audience targeting.
 
 The plugin enables you to prompt for push notification permissions, set and retrieve contact keys for user identification, manage custom attributes and tags for audience segmentation, and retrieve device registration information.
 
 ## App configuration
 
-The Salesforce Marketing Cloud plugin requires your MobilePush app credentials. Configure them in the App Studio, on the Native Plugins tab under "Advanced Mode":
+The Salesforce Marketing Cloud plugin requires your MobilePush app credentials. Configure them in App Studio, on the **Native Plugins** tab under **Advanced Mode**:
 
 <CodeGroup>
   ```json JSON
@@ -42,7 +42,7 @@ The Salesforce Marketing Cloud plugin requires your MobilePush app credentials. 
 | delayRegistrationUntilContactKeyIsSet | `boolean` | **Optional**. If `true`, delays SDK registration until a contact key is set. Default: `false`.          |
 
 <Info>
-  **SDK Initialization**
+  **SDK initialization**
 
   The Salesforce Marketing Cloud SDK is automatically initialized at app launch using the credentials from the server configuration. On iOS, if `requiresUserPrivacyConsent` is `false`, the plugin also automatically prompts for notification permissions on first launch.
 </Info>
@@ -234,7 +234,7 @@ Add tags to the device for audience segmentation.
 | tags      | `string[]` | **Optional**. An array of tags to add (Android only). |
 
 <Info>
-  **Platform Differences**
+  **Platform differences**
 
   On iOS, only the `tag` parameter is supported (single tag at a time). On Android, both `tag` and `tags` are supported. Passing an empty `tags` array on Android will clear all existing tags.
 </Info>

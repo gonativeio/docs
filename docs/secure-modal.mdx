@@ -1,6 +1,6 @@
 ---
-title: "Secure Modal"
-description: "Run Apple Pay and other secure scripts in a modal."
+title: "Secure modal"
+description: "Open Apple Pay on the web and other secure third-party scripts in a secure modal window, and get a callback when the modal closes."
 keywords: ["Secure Modal", "Apple Pay", "secure window", "payments", "third-party scripts"]
 searchable: true
 ---
@@ -21,7 +21,7 @@ Display our demo page in your app to test during development [https://median.dev
 <Check>
 **Apple Pay on iOS 16+**
 
-Note that on iOS 16+ Apple permits the use of Apple Pay directly in an app webview. To optionally show Apple Pay directly in your app for supported devices use the [device info function](/docs/device-info) to check the iOS version.
+On iOS 16+, Apple permits Apple Pay directly in an app webview. To show Apple Pay directly in your app on supported devices, use the [device info function](/docs/device-info) to check the iOS version.
 
 </Check>
 
@@ -46,9 +46,9 @@ To launch the modal window, use the function `median.modal.launch()`.
   
   function modal_closed(data) {
     if (data.closeMethod == 'closeButton') {
-      alert('modal closed via button at: ' + data.url);
+      console.log('modal closed via button at: ' + data.url);
     } else if (data.closeMethod == 'autoClosePath') {
-      alert('modal closed automatically');
+      console.log('modal closed automatically');
     }
   }
   
@@ -58,9 +58,9 @@ To launch the modal window, use the function `median.modal.launch()`.
     'autoClosePath': '/payment-complete' // optional
   }).then(function (data) {
     if (data.closeMethod == 'closeButton') {
-      alert('modal closed via button at: ' + data.url);
+      console.log('modal closed via button at: ' + data.url);
     } else if (data.closeMethod == 'autoClosePath') {
-      alert('modal closed automatically');
+      console.log('modal closed automatically');
     }
   });
   

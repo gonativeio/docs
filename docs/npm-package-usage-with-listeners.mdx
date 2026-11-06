@@ -1,6 +1,6 @@
 ---
-title: "Using Listeners"
-description: "Respond to native app events with listeners."
+title: "Using listeners"
+description: "Register and remove listeners with the median-js-bridge npm package to respond to native app events such as app resume and push notification taps."
 keywords: ["median-js-bridge", "listeners", "events", "npm package", "app resumed"]
 searchable: true
 ---
@@ -119,6 +119,6 @@ Median.deviceShake.removeListener(listenerId);
 
 ## Best practices for listener management
 
-* Always store the listenerId if you intend to remove the listener later.
-* Register listeners early, ideally within a component’s useEffect or lifecycle hook.
+* Always store the `listenerId` if you intend to remove the listener later.
+* Register listeners early, ideally within a component’s `useEffect` or lifecycle hook.
 * Remove listeners on unmount to avoid memory leaks in Single-Page Applications (SPAs).

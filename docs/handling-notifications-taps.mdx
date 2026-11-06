@@ -1,12 +1,13 @@
 ---
-title: "Handling Notifications Taps"
-description: "Route users and pass data on notification taps."
+title: "Handling notification taps"
+description: "Route users to a page with targetUrl, pass custom data to your JavaScript handler, or do both when users tap a OneSignal notification."
 keywords: ["notification taps", "deep linking", "push notifications", "OneSignal", "custom data"]
 searchable: true
 ---
+
 import { MedianLogo } from "/snippets/median-logo.jsx";
 
-When a user taps a notification you can route them to a specific page, pass custom data to trigger JavaScript logic, or combine both. This guide covers the two main patterns and the key distinction that trips most developers up.
+When a user taps a notification, you can route them to a specific page, pass custom data to trigger JavaScript logic, or combine both. This guide covers the two main patterns and the key distinction that trips most developers up.
 
 ## How it works
 
@@ -14,7 +15,7 @@ Notifications can include additional data. If you've included a `targetUrl` in t
 
 You configure both of these in the **Additional Data** section of any notification, whether you're sending from the OneSignal dashboard or the REST API.
 
-### Diagram: Notification tap decision flow
+### Notification tap decision flow
 
 ```mermaid
 %%{init: {'flowchart': {'defaultRenderer': 'elk'}}}%%
@@ -34,19 +35,17 @@ flowchart LR
 To deep-link a user to a specific page when they tap a notification, add `targetUrl` to the **Additional Data** section of your notification:
 
 <CodeGroup>
-```JSON JSON
-{
-  Key: targetUrl,
-  Value: https://yourapp.com/inbox/thread/482
-}
+```text Additional Data
+Key: targetUrl
+Value: https://yourapp.com/inbox/thread/482
 ```
 </CodeGroup>
 
 <Frame caption="Add Additional Data to send to your app">
-  <img src="/images/docs/b4afc2a-additional-data.png" />
+  <img alt="Additional Data section of the OneSignal notification composer with a targetUrl key" src="/images/docs/b4afc2a-additional-data.png" />
 </Frame>
 
-Note: `targetUrl` is a reserved key. As soon as Median sees it in the payload, it navigates the app to that URL automatically.
+**Note:** `targetUrl` is a reserved key. As soon as Median sees it in the payload, it navigates the app to that URL automatically.
 
 ### targetUrl vs. launch URL
 
@@ -61,14 +60,14 @@ OneSignal has two different URL fields, and they behave very differently:
 
 ## Sending custom data to JavaScript
 
-Separately from navigation, you can attach any custom key-value pairs to Additional Data and read them in JavaScript once the notification is tapped and the app opens. This is the mechanism to use when the tap needs to trigger app logic rather than (or in addition to) a page change — for example, updating app state, firing an analytics event, or pre-filling a search based on the notification content.
+Separately from navigation, you can attach any custom key-value pairs to Additional Data and read them in JavaScript once the notification is tapped and the app opens. This is the mechanism to use when the tap needs to trigger app logic rather than (or in addition to) a page change. For example, updating app state, firing an analytics event, or pre-filling a search based on the notification content.
 
 Define a handler function on your page. Median calls it automatically when a notification is opened:
 
 <MedianLogo />
 <CodeGroup>
-```JavaScript JavaScript
-  // Define this function on your page — Median calls it automatically when the app >opens from a tap
+```javascript JavaScript
+  // Define this function on your page. Median calls it automatically when the app opens from a tap
   function median_onesignal_push_opened(data) {
     console.log(JSON.stringify(data));
   }
@@ -84,10 +83,10 @@ Define a handler function on your page. Median calls it automatically when a not
 
 ## Combining navigation and data
 
-A single notification tap can both navigate and trigger your handler. Include targetUrl alongside your custom keys in Additional Data:
+A single notification tap can both navigate and trigger your handler. Include `targetUrl` alongside your custom keys in Additional Data:
 
 <CodeGroup>
-```
+```text Additional Data
   targetUrl: https://yourapp.com/inbox/thread/482
   airport: sfo
   direction: outbound
@@ -101,7 +100,7 @@ Median navigates to `targetUrl` first, then calls `median_onesignal_push_opened`
 <AccordionGroup>
 <Accordion title="Do I need to write code to make targetUrl work?" id="do-i-need-to-write-code-to-make-targeturl-work">
 
-No - `targetUrl` is handled natively by Median and the app navigates automatically.
+No. `targetUrl` is handled natively by Median and the app navigates automatically.
 
 </Accordion>
 <Accordion title="Can I use targetUrl and custom data in the same notification?" id="can-i-use-targeturl-and-custom-data-in-the-same-notification">
@@ -116,7 +115,7 @@ Median navigates to `targetUrl` and then calls `median_onesignal_push_opened` wi
 </Accordion>
 <Accordion title="What happens if I use `targetUrl` in Additional Data?" id="what-happens-if-i-use">
 
-`targetUrl`is a reserved key in Additional Data; including it automatically triggers in-app URL navigation when the notification is tapped. If you want to conditionally navigate to a URL based on your own JavaScript logic instead, use a different key name (e.g.,`openUrl`, `deepLink`) and handle the navigation yourself inside `median_onesignal_push_opened`.
+`targetUrl` is a reserved key in Additional Data. Including it automatically triggers in-app URL navigation when the notification is tapped. If you want to conditionally navigate to a URL based on your own JavaScript logic instead, use a different key name (for example, `openUrl` or `deepLink`) and handle the navigation yourself inside `median_onesignal_push_opened`.
 
 </Accordion>
 </AccordionGroup>

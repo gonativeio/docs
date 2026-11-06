@@ -1,6 +1,6 @@
 ---
-title: "NFC Tag Scanner"
-description: "Read NFC tags on iOS and Android."
+title: "NFC tag scanner"
+description: "Read NFC tags from your website on iOS and Android with the NFC Tag Scanner plugin."
 keywords:
   ["NFC", "tag scanner", "NFC reader", "scanning", "background tag reading"]
 searchable: true
@@ -9,17 +9,17 @@ searchable: true
 import { MedianLogo } from "/snippets/median-logo.jsx";
 
 <Columns cols={2}>
-<Frame caption="iOS Default UI">
-  <img src="/images/docs/0d00017-nfc-ios.png" />
+<Frame caption="iOS default UI">
+  <img src="/images/docs/0d00017-nfc-ios.png" alt="iOS default NFC scan prompt" />
 </Frame>
 
-<Frame caption="Android Custom UI">
-  <img src="/images/docs/9ab0dee-nfc-android.png" />
+<Frame caption="Android custom UI">
+  <img src="/images/docs/9ab0dee-nfc-android.png" alt="Android custom NFC scan prompt" />
 </Frame>
 </Columns>
 
 <Warning>
-  **iOS Near-field Communications Capability**
+  **iOS Near Field Communication capability**
 
 Enable the NFC Tag Scanner plugin in App Studio before rebuilding your app. If you build from downloaded iOS source or manually manage Apple signing assets, confirm the Near Field Communication Tag Reading capability is enabled in Xcode and in your Apple Developer account.
 
@@ -31,7 +31,7 @@ Enable the NFC Tag Scanner plugin in App Studio before rebuilding your app. If y
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   // Promise method
   median.nfc.status().then(function (data) {
   // process the data here. In this example, we are just logging it 
@@ -50,7 +50,7 @@ median.nfc.status({'callback': nfcStatusCallback});
 
 <MedianLogo />
 <CodeGroup>
-```JavaScript JavaScript
+```javascript JavaScript
 // Promise method
 median.nfc.readTag({
   'message': STRING, // Android only, shown in the prompt when scanning for tags
@@ -78,7 +78,7 @@ median.nfc.readTag({
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   median.nfc.readTag({
     'message': 'Hold your device near the storage bin'
   }).then(function (data) {
@@ -97,7 +97,7 @@ median.nfc.readTag({
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   median.nfc.readTag({
     'openUrl': true,
     'message': 'Hold your device near the exhibit sign'

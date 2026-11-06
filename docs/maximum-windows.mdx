@@ -1,20 +1,20 @@
 ---
-title: "Maximum Windows"
-description: "Limit open webview windows to improve performance."
+title: "Maximum windows"
+description: "Limit the number of open WebView windows and auto-close windows to keep your app responsive on devices with limited memory."
 keywords: ["maximum windows", "windows", "performance", "webview", "memory"]
 searchable: true
 ---
-Opening many webview windows within your app can result in performance issues, particularly on older devices with limited memory/system resources.
+Opening many WebView windows within your app can result in performance issues, particularly on older devices with limited memory/system resources.
 
 To improve performance for resource-intensive apps you may set a maximum number of windows that are open simultaneously. The number to select will depend on the resource requirements of the pages within your app.
 
-The main webview window of your app will always remain open. Once the maximum number of windows has been exceeded, additional windows will be automatically closed starting with the window that was open first.
+The main WebView window of your app will always remain open. Once the maximum number of windows has been exceeded, additional windows will be automatically closed starting with the window that was open first.
 
 Enable **Auto Close** so that when your primary website URL (your app home screen page) is opened from any window, all other previously opened windows will be automatically closed. This functionality can be used to ensure no open windows become stranded over the lifecycle of your app.
 
 <Check>
 **Developer Demo**
 
-Display our demo page in your app to test during development [https://median.dev/max-windows/](https://median.dev/max-windows/)
+Display our demo page in your app to test during development [https://median.dev/max-windows/ <Icon icon="arrow-up-right-from-square" size={12} />](https://median.dev/max-windows/)
 
 </Check>

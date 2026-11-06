@@ -1,5 +1,5 @@
 ---
-title: "Detecting App Usage"
+title: "Detecting app usage"
 description: "Detect whether your site runs in the app."
 keywords:
   [
@@ -17,7 +17,7 @@ import { MedianLogo } from "/snippets/median-logo.jsx";
 When your website runs inside a Median-built native app, it behaves differently than it does in a standard browser. Detecting whether a user is on the native app or a browser lets you:
 
 - Enable JavaScript Bridge commands (which are only available inside the app)
-- Customize your UI and UX (e.g. hiding a website nav bar in favour of a native navigation menu, or hiding a footer to create a cleaner app interface)
+- Customize your UI and UX (for example, hiding a website nav bar in favor of a native navigation menu, or hiding a footer to create a cleaner app interface)
 - Track analytics separately for app vs. browser sessions
 - Restrict which pages or features are accessible within the app
 
@@ -33,18 +33,18 @@ Every HTTP request made by your Median app appends a custom string to the device
 
 | Platform    | User agent string          | Legacy user agent string       |
 | ----------- | -------------------------- | ------------------------------ |
-| iOS App     | `MedianIOS/1.0 median`     | `GoNativeIOS/1.0 gonative`     |
-| Android App | `MedianAndroid/1.0 median` | `GoNativeAndroid/1.0 gonative` |
+| iOS app     | `MedianIOS/1.0 median`     | `GoNativeIOS/1.0 gonative`     |
+| Android app | `MedianAndroid/1.0 median` | `GoNativeAndroid/1.0 gonative` |
 
-You can change this string in the Website Overrides tab. See [Custom User Agent](/docs/custom-user-agent) for details and confirm the configured user agent using the [Device-Info](/docs/device-info) function in your live app.
+You can change this string in the **Web Overrides** tab. See [Custom user agent](/docs/custom-user-agent) for details, and confirm the configured user agent using the [device info](/docs/device-info) function in your live app.
 
 **Detecting the user agent: frontend (JavaScript)**
 
-Use `navigator.userAgent` to check for the median string on the client side.
+Use `navigator.userAgent` to check for the `median` string on the client side.
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   if (navigator.userAgent.indexOf('median') > -1) {
       // Running inside the Median app
 
@@ -60,12 +60,12 @@ Use `navigator.userAgent` to check for the median string on the client side.
 ```
 </CodeGroup>
 
-**Detecting the user agent: backend (eg Node.js)**
+**Detecting the user agent: backend (for example, Node.js)**
 
 You can read the `User-Agent` header on the server to serve different content or responses based on context.
 
 <CodeGroup>
-```JavaScript JavaScript
+```javascript JavaScript
 app.get('/', (req, res) => {
     if (req.header('User-Agent').indexOf('median') > -1) {
         res.send('App version of the website');
@@ -77,17 +77,17 @@ app.get('/', (req, res) => {
 
 </CodeGroup>
 
-This pattern works in any server-side language. Look for the median string in the User-Agent HTTP header.
+This pattern works in any server-side language. Look for the `median` string in the `User-Agent` HTTP header.
 
 #### JavaScript helper functions
 
-We recommend creating helper functions to simplify complex integrations and to reduce the code that needs to be added throughout your web environment. In the examples below you would simply need to call `logAnalyticsEvent()` and the event would be transmitted as either a web analytics event or app analytics event by way of the helper function.
+We recommend creating helper functions to simplify complex integrations and to reduce the code that needs to be added throughout your web environment. In the examples below, you call `logAnalyticsEvent()` and the event would be transmitted as either a web analytics event or app analytics event by way of the helper function.
 
-Analytics using [Google Firebase Analytics Native Plugin](/docs/firebase-analytics) for true native app analytics
+Analytics using the [Google Firebase Analytics plugin](/docs/firebase-analytics) for native app analytics:
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   function logAnalyticsEvent(eventName, eventProperties){
     if (navigator.userAgent.indexOf('median') > -1) { // web content is being displayed in app
         // send event using Firebase Google Analytics Native Plugin
@@ -104,10 +104,10 @@ Analytics using [Google Firebase Analytics Native Plugin](/docs/firebase-analyti
   ```
 </CodeGroup>
 
-Analytics using only web-based Google Analytics with additional parameter added to filter web versus app events
+Analytics using only web-based Google Analytics, with an additional parameter to filter web versus app events:
 
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   function logAnalyticsEvent(eventName, eventProperties){
     if (navigator.userAgent.indexOf('MedianIOS') > -1) { // iOS app
         eventProperties.analyticsSource = 'ios';
@@ -126,16 +126,16 @@ Analytics using only web-based Google Analytics with additional parameter added 
 
 ### Strategy 2: Set custom HTTP headers
 
-Instead of (or in addition to) user-agent detection, you can configure your app to send a custom HTTP header with every request. This can be a cleaner signal than parsing the user-agent string, especially on the backend.Configure custom headers in App Studio under Web Overrides → Custom Headers.
+Instead of (or in addition to) user-agent detection, you can configure your app to send a custom HTTP header with every request. This can be a cleaner signal than parsing the user-agent string, especially on the backend. Configure custom headers in App Studio under **Web Overrides → Custom Headers**.
 
 <Frame caption="Web Overrides → Custom Headers">
-  <img src="/images/docs/7e3863c22fa65460f75c3c179e7281b6dda3a261c3375f834da217e5706995a8-Screenshot_2026-06-08_at_08.45.53.png" />
+  <img src="/images/docs/7e3863c22fa65460f75c3c179e7281b6dda3a261c3375f834da217e5706995a8-Screenshot_2026-06-08_at_08.45.53.png" alt="Custom Headers settings under Web Overrides in App Studio" />
 </Frame>
 
 Example: adding an `X-App-Platform: median-ios` header on the iOS app, then reading it server-side:
 
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   // Node.js / Express
   app.get('/', (req, res) => {
       const platform = req.header('X-App-Platform');
@@ -148,7 +148,7 @@ Example: adding an `X-App-Platform: median-ios` header on the iOS app, then read
   ```
 </CodeGroup>
 
-See [Custom HTTP Headers](/docs/custom-headers) for full configuration details.
+See [Custom headers](/docs/custom-headers) for full configuration details.
 
 ### Strategy 3: Use a dedicated app URL
 
@@ -164,7 +164,7 @@ This strategy works well when the app and browser experiences differ significant
 
 | Strategy                      | Best for                                   | Complexity |
 | ----------------------------- | ------------------------------------------ | ---------- |
-| User-agent detection (JS)     | Frontend UI changes, gating Bridge calls   | Low        |
+| User-agent detection (JS)     | Frontend UI changes, gating JavaScript Bridge calls | Low        |
 | User-agent detection (server) | Serving different HTML, API responses      | Low        |
 | Custom HTTP headers           | Clean server-side detection, backend APIs  | Low–Medium |
 | Dedicated app URL             | Fully separate app vs. browser experiences | Medium     |

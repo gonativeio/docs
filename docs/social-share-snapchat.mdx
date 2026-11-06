@@ -1,13 +1,13 @@
 ---
 title: "Snapchat"
-description: "Share images and text to Snapchat."
+description: "Check whether Snapchat is installed and share images and text directly to the Snapchat app with the JavaScript Bridge."
 keywords: ["Snapchat", "social share", "sharing"]
 searchable: true
 ---
 
 import { MedianLogo } from "/snippets/median-logo.jsx";
 
-This plugin allows you to share text and media directly to the Snapchat mobile app.
+Share text and media directly to the Snapchat mobile app.
 
 ## Implementation guide
 
@@ -20,8 +20,8 @@ Use the following JavaScript Bridge command:
 <MedianLogo />
 
 <CodeGroup>
-  ```javascript JavaScript 
-  const {isInstalled} = await median.socialShare.snapchat.isInstalled(); 
+  ```javascript JavaScript
+  const {isInstalled} = await median.socialShare.snapchat.isInstalled();
   ```
 </CodeGroup>
 
@@ -41,4 +41,4 @@ Snapchat media sharing only supports media in a `Blob` object. You can save a re
   ```
 </CodeGroup>
 
-Other plugins from Median (such as the [Web Screenshot Plugin](/docs/web-screenshot)) also export images as Blobs which can then be used with this plugin.
+Other plugins from Median (such as the [Web Screenshot plugin](/docs/web-screenshot)) also export images as Blobs which can then be used with this plugin.

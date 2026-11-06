@@ -1,20 +1,20 @@
 ---
 title: "iBeacon"
-description: "Detect nearby iBeacons for proximity features."
+description: "Scan for nearby iBeacons from your web app with the JavaScript Bridge and get each beacon's UUID, major, minor, signal strength, and proximity."
 keywords: ["iBeacon", "beacons", "proximity", "indoor location", "Bluetooth"]
 searchable: true
 ---
 
 import { MedianLogo } from "/snippets/median-logo.jsx";
 
-This module enables your app to detect nearby beacons that follow the iBeacon specification, allowing you to retrieve detailed beacon data such as UUID, major, minor identifiers, signal strength, and proximity. Perfect for location-based services, this feature enhances your app’s functionality by enabling precise proximity detection.
+This module lets your app detect nearby beacons that follow the iBeacon specification and retrieve beacon data such as UUID, major and minor identifiers, signal strength, and proximity. Use it for location-based features that depend on proximity detection.
 
 ## How iBeacons work
 
 iBeacons continuously broadcast three unique identifiers:
 
 - **UUID** (Universally Unique Identifier): A random identifier customized for each deployment.
-- **Major**: An integer used to group beacons (e.g., store locations).
+- **Major**: An integer used to group beacons (for example, store locations).
 - **Minor**: An integer that identifies each individual beacon within a group.
 
 For example, a retailer may use a single UUID for all retail locations and separate major values for each store, while assigning a unique minor identifier for each individual beacon. Additionally, iBeacons broadcast signal strength, which allows apps to estimate the distance from each beacon.
@@ -34,11 +34,11 @@ On iOS, you must specify the UUID you want to scan for, as Apple does not allow 
 Define a callback function that will handle the beacon data once the scan is complete. For example:
 
 <CodeGroup>
-  ```JavaScript JavaScript
-  // define this function, but do not call it yourself!
+  ```javascript JavaScript
+  // Define this function, but don't call it yourself
   function callback(data) {
     if (data.success) {
-      alert('I found ' + data.beacons.length + ' beacons');
+      console.log('I found ' + data.beacons.length + ' beacons');
     }
   }
   ```
@@ -50,7 +50,7 @@ To start the beacon scan, use the following Median JavaScript Bridge function. T
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   median.beacon.scan({'callback': callback, 'uuid': 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'});
   ```
 </CodeGroup>
@@ -74,7 +74,7 @@ Within seconds, the **callback** function will return a data object. If the scan
 Example of successful scan data:
 
 <CodeGroup>
-  ```JSON JSON
+  ```json JSON
   {
     "success": true,
     "beacons": [
@@ -104,12 +104,12 @@ Example of successful scan data:
 If the scan fails, the data object will include the following:
 
 - `success`: set to false
-- `error`: A string describing the reason for failure (e.g., "Bluetooth LE not supported")
+- `error`: A string describing the reason for failure (for example, "Bluetooth LE not supported")
 
 Example of failed scan data:
 
 <CodeGroup>
-  ```JSON JSON
+  ```json JSON
   {
     "success": false,
     "error": "This device does not support Bluetooth LE"

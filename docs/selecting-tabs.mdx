@@ -1,6 +1,6 @@
 ---
-title: "Selecting Tabs"
-description: "Select bottom tab bar items programmatically."
+title: "Selecting tabs"
+description: "Select or deselect bottom tab bar items from your website with the JavaScript Bridge, or automatically with URL rules."
 keywords: ["bottom tab bar", "select tab", "tabs", "JavaScript Bridge"]
 searchable: true
 ---
@@ -56,7 +56,7 @@ Use the Median JavaScript Bridge to select a bottom tab bar item from your websi
 
 ### Select tabs using URL rules
 
-A given page that corresponds to a tab bar button may be opened through other means, for example a link on another page. In this case you will want to show that tab bar button as active when the page is displayed even though there was not a click event. To achieve this functionality you may specify a URL rule as a "regex" field for each tab link defined in your JSON. This will ensure that tab button will be active whenever a page matching the rule is displayed.
+A given page that corresponds to a tab bar button may be opened through other means, for example a link on another page. In this case, you'll want to show that tab bar button as active when the page is displayed, even though there was no click event. To do this, specify a URL pattern in the `regex` field for each tab link defined in your JSON. The tab button is then active whenever a page matching the rule is displayed.
 
 In the below example we show the "My Account" tab button as active whenever a page under `/account` is displayed within the app.
 
@@ -92,6 +92,6 @@ In the below example we show the "My Account" tab button as active whenever a pa
 
 - Use JavaScript Bridge tab selection when your website controls the navigation state directly.
 - Use URL rules when the active tab should be determined automatically from the current page URL.
-- Use specific regex patterns for each tab to avoid conflicting active states.
+- Use specific URL patterns for each tab to avoid conflicting active states.
 - Test tab selection on both iOS and Android after updating your tab configuration.
 - For single-page apps, update tab selection when the route changes if the app does not perform a full page load.

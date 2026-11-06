@@ -39,9 +39,9 @@ Display our demo page in your app to test during development [https://median.dev
 
 ## Implementation guide
 
-### Bloomreach engagement setup
+### Bloomreach Engagement setup
 
-Bloomreach Engagement issues one set of SDK credentials per project: a project token, an API key (public key), and a base URL. Median uses these same three values to initialize the native iOS and Android SDKs on your behalf. A manual SDK integration or initizliation is not required.
+Bloomreach Engagement issues one set of SDK credentials per project: a project token, an API key (public key), and a base URL. Median uses these same three values to initialize the native iOS and Android SDKs on your behalf. A manual SDK integration or initialization is not required.
 
 Retrieve your credentials from the Bloomreach Engagement web app under [Project settings > Access management > API](https://documentation.bloomreach.com/engagement/docs/mobile-sdks-api-access-management). For background on how these credentials map to SDK initialization, see the official Configuration for iOS SDK and Configuration for Android SDK references.
 
@@ -51,13 +51,13 @@ Retrieve your credentials from the Bloomreach Engagement web app under [Project 
 2. Find the Bloomreach plugin in your list of 'Added plugins' and activate it as shown below.
 3. Rebuild your app to apply the new configuration.
 
-<Frame caption="Bloomreach Plugin Activation">
-  <img src="/images/docs/2f7777a1538f4a4c1d9d9077798d89bb924d37d2e089e6d3d4156e13bbe30273-Screenshot_2026-09-16_at_08.41.34.png" />
+<Frame caption="Bloomreach plugin activation">
+  <img src="/images/docs/2f7777a1538f4a4c1d9d9077798d89bb924d37d2e089e6d3d4156e13bbe30273-Screenshot_2026-09-16_at_08.41.34.png" alt="Bloomreach plugin activated in the Native Plugins tab of App Studio" />
 </Frame>
 
 #### Plugin configuration options
 
-After activating the plugin thare are different configuration options available for your team. Below you can find a configuration reference and example.
+After you activate the plugin, configure it with the following settings. A reference table and an example follow.
 
 | Setting          | Required | Description                                                                                                                                                                                                          |
 | ---------------- | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -71,7 +71,7 @@ After activating the plugin thare are different configuration options available 
 #### Example configuration (JSON)
 
 <CodeGroup>
-  ```JSON JSON
+  ```json JSON
   {
     "active": true,
     "autoRegister": false,
@@ -85,16 +85,16 @@ After activating the plugin thare are different configuration options available 
 
 Replace each value with the credentials from your Bloomreach Engagement project and your app's own domains.
 
-<Frame caption="Bloomreach Plugin Example Configuration">
-  <img src="/images/docs/83db600e390e9d056142e1327e829b285e4d6ff9f3793d4d7e2154d5193229f3-Screenshot_2026-09-16_at_08.24.58.png" />
+<Frame caption="Bloomreach plugin example configuration">
+  <img src="/images/docs/83db600e390e9d056142e1327e829b285e4d6ff9f3793d4d7e2154d5193229f3-Screenshot_2026-09-16_at_08.24.58.png" alt="Example Bloomreach plugin configuration in App Studio" />
 </Frame>
 
 #### Android push notifications
 
 Android devices receive Bloomreach Engagement push notifications through Firebase Cloud Messaging (FCM). Complete both of the following:
 
-1. **`google-services.json`** — In Median App Studio, open the **Build & Deploy** tab and upload your Firebase project's `google-services.json` file so it's embedded in the app binary.
-2. **Firebase Cloud Messaging integration in Bloomreach Engagement** — In the Bloomreach Engagement web app, add a Firebase Cloud Messaging integration under **Data & Assets > Integrations**, then enable it under **Project Settings > Channels > Push notifications**.
+1. **`google-services.json`**: In Median App Studio, open the **Build & Deploy** tab and upload your Firebase project's `google-services.json` file so it's embedded in the app binary.
+2. **Firebase Cloud Messaging integration in Bloomreach Engagement**: In the Bloomreach Engagement web app, add a Firebase Cloud Messaging integration under **Data & Assets > Integrations**, then enable it under **Project Settings > Channels > Push notifications**.
 
 For Bloomreach-side steps (projects, keys, and campaigns), use [Bloomreach’s documentation](https://documentation.bloomreach.com/).
 
@@ -102,13 +102,13 @@ For Bloomreach-side steps (projects, keys, and campaigns), use [Bloomreach’s d
 
 Deep links open URLs inside your app instead of the device browser when domains are allowlisted and platform association files are valid and reachable over HTTPS.
 
-1. **Plugin configuration** - Add every domain you want to open in-app to the `hosts` array. Do not include `https://` or `http://`; the plugin applies URL schemes as needed.
+1. **Plugin configuration**: Add every domain you want to open in-app to the `hosts` array. Do not include `https://` or `http://`; the plugin applies URL schemes as needed.
 
-2. **Hosted verification files** — On each domain (and subdomain you use), serve the standard association files over HTTPS:
-   - **Android** - `/.well-known/assetlinks.json` (format and examples: [Deep linking](/docs/deep-linking)). Example host file: [https://median.dev/.well-known/assetlinks.json](https://median.dev/.well-known/assetlinks.json).
-   - **iOS** - `/.well-known/apple-app-site-association` (or `/apple-app-site-association`). Example: [https://median.dev/.well-known/apple-app-site-association](https://median.dev/.well-known/apple-app-site-association).
+2. **Hosted verification files**: On each domain (and subdomain you use), serve the standard association files over HTTPS:
+   - **Android**: `/.well-known/assetlinks.json` (format and examples: [Deep linking](/docs/deep-linking)). Example host file: [https://median.dev/.well-known/assetlinks.json](https://median.dev/.well-known/assetlinks.json).
+   - **iOS**: `/.well-known/apple-app-site-association` (or `/apple-app-site-association`). Example: [https://median.dev/.well-known/apple-app-site-association](https://median.dev/.well-known/apple-app-site-association).
 
-Use Median.co's [Deep Linking Validator](/docs/deep-linking-validator) to check your domain configuration, and read [Deep linking](/docs/deep-linking) for background on Universal Links, App Links, and file requirements.
+Use Median's [Deep Linking Validator](/docs/deep-linking-validator) to check your domain configuration, and read [Deep linking](/docs/deep-linking) for background on Universal Links, App Links, and file requirements.
 
 **Note**: An incorrect deep link setup causes links to open in the mobile device browser instead of the app. Confirm your `hosts` list and hosted verification files before testing push-triggered links.
 
@@ -124,7 +124,7 @@ Provide a callback function or await the returned promise.
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   median.bloomreach.promptNotification({ callback: function })
   // Return value:
   {
@@ -145,7 +145,7 @@ Checks whether push permission is currently granted, without prompting the user.
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   median.bloomreach.notificationEnabled({'callback': function})
   // Return value:
   {
@@ -166,10 +166,10 @@ Identifies a customer by a hard identifier and value, so Bloomreach Engagement c
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   const params = {
     identifier: "registered",
-    value: "[email protected]",
+    value: "user@example.com",
   };
 
 const result = await median.bloomreach.identifyCustomer(params);
@@ -189,10 +189,10 @@ Optionally, include user properties:
 
 <MedianLogo />
 <CodeGroup>
-```JavaScript JavaScript
+```javascript JavaScript
 const params = {
   identifier: "registered",
-  value: "[email protected]",
+  value: "user@example.com",
   properties: {
     first_name: "John",
     last_name: "Doe",
@@ -208,7 +208,7 @@ Clears the current customer session, detaching subsequent tracking and push deli
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   median.bloomreach.logoutCustomer({callback: function})
   // Return value:
   {
@@ -229,7 +229,7 @@ Clears the current customer session, detaching subsequent tracking and push deli
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   async function ensureBloomreachPermission() {
     const status = await median.bloomreach.notificationEnabled();
     if (!status.granted) {
@@ -244,11 +244,11 @@ Clears the current customer session, detaching subsequent tracking and push deli
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   async function setAndClearCustomer() {
     await median.bloomreach.identifyCustomer({
       identifier: "registered",
-      value: "[email protected]",
+      value: "user@example.com",
       properties: {
         first_name: "John",
         last_name: "Doe",
@@ -267,18 +267,21 @@ Clears the current customer session, detaching subsequent tracking and push deli
 
 Use this checklist to validate your Bloomreach integration before release:
 
-**Basic Functionality**
+**Basic functionality**
+
 * [ ] Plugin is `active` and `apiKey`, `projectToken`, and `baseURL` are all set correctly.
 * [ ] `promptNotification` displays the native permission dialog and returns a result.
 * [ ] `notificationEnabled` accurately reflects the device's current permission state.
 * [ ] `identifyCustomer` is called with a valid `identifier`/`value` pair, and the profile appears in the Bloomreach Engagement customer list.
 * [ ] `logoutCustomer` clears the session and stops further tracking for that profile.
 
-**Configuration Testing**
+**Configuration testing**
+
 * [ ] Android build includes `google-services.json`.
 * [ ] Bloomreach Engagement's Firebase Cloud Messaging integration is configured with a valid service account private key.
 
-**Deep Linking**
+**Deep linking**
+
 * [ ] `hosts` includes every intended deep-link domain, without a scheme.
 * [ ] Association files (`assetlinks.json`, `apple-app-site-association`) are hosted and pass Median's [Deep Linking Validator](/docs/deep-linking-validator).
 * [ ] Tapping a push notification or campaign link opens the correct screen in-app, not the browser.
@@ -300,6 +303,5 @@ Verify `google-services.json` is embedded in the app and Bloomreach push configu
 <Info>
 **Still having trouble?**
 
-For issues related to Bloomreach's own configuration, permissions, or platform-specific behavior outside Median.co's, refer to [Bloomreach's integration documentation.](https://documentation.bloomreach.com/engagement/docs/documentation-overview)
+For issues related to Bloomreach's own configuration, permissions, or platform-specific behavior outside Median, refer to [Bloomreach's integration documentation](https://documentation.bloomreach.com/engagement/docs/documentation-overview).
 </Info>
-```

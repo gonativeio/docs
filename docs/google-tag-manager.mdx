@@ -1,11 +1,11 @@
 ---
 title: "Control your Median app with Google Tag Manager"
-description: "Run JavaScript Bridge commands from Google Tag Manager."
+description: "Use Median's Google Tag Manager template to inject the JavaScript Bridge into your website and run Bridge commands from GTM tags."
 keywords: ["Google Tag Manager", "GTM", "data layer", "tags", "JavaScript Bridge"]
 searchable: true
 ---
 
-[Google Tag Manager](https://support.google.com/tagmanager/answer/6102821?hl=en) (GTM) is a free platform by Google used to deploy and update code(tags) on your website instead of updating the website's code. Use Median's GTM Template, to connect your website to the Javascript Bridge and trigger Bridge commands using GTM tags. The template injects the Median JavaScript Bridge (`median.min.js`) into the website using a sandboxed environment. It provides robust error handling, debugging logs, and [`dataLayer`](https://developers.google.com/tag-platform/tag-manager/datalayer) pushes to track the status of the bridge injection.
+[Google Tag Manager](https://support.google.com/tagmanager/answer/6102821?hl=en) (GTM) is a free platform by Google used to deploy and update code (tags) on your website instead of updating the website's code. Use Median's GTM template to connect your website to the JavaScript Bridge and trigger Bridge commands using GTM tags. The template injects the Median JavaScript Bridge (`median.min.js`) into the website using a sandboxed environment. It provides error handling, debugging logs, and [`dataLayer`](https://developers.google.com/tag-platform/tag-manager/datalayer) pushes to track the status of the bridge injection.
 
 ```mermaid
 %%{init: {'flowchart': {'defaultRenderer': 'elk'}}}%%
@@ -13,52 +13,52 @@ flowchart LR
     GTM[/"Median's GTM Template"/]
     DL[["Update data layer<br><code>median_injected</code> event"]]
     Web(["Website"])
-    App(["Median App"])
+    App(["Median app"])
 
-    GTM -- "Inject JS Bridge<br>Logs debug info to console" --> Web
+    GTM -- "Inject JavaScript Bridge<br>Logs debug info to console" --> Web
     GTM --> DL
     DL --> Web
-    Web -- "Controls Median App using JS Bridge" --> App
+    Web -- "Controls Median app using JavaScript Bridge" --> App
 ```
 
 The template pushes this object to the data layer:
 
 <CodeGroup>
-```JSON JSON
-{
-  event: "median_injected",
-  median_injected: "yes",
-  device_info: "[Value from userAgentValue field]"
-}
-```
+  ```javascript JavaScript
+  {
+    event: "median_injected",
+    median_injected: "yes",
+    device_info: "[Value from userAgentValue field]"
+  }
+  ```
 </CodeGroup>
 
 ## Required permissions
 
 For security reasons, this template is sandboxed and utilizes the following permissions:
 
-- **Injects Scripts:** Allows the injection of scripts specifically from [https://unpkg.com/](https://unpkg.com/) where the javascript bridge is hosted
+- **Injects Scripts:** Allows the injection of scripts specifically from [https://unpkg.com/](https://unpkg.com/) where the JavaScript Bridge is hosted
 - **Accesses Global Variables:** Allows pushing data into the `dataLayer` array.
 - **Logs to Console:** Allows the template to print debugging and status messages to the browser console.
 
 ## Configuration fields (optional)
 
 - **Bridge Version (bridgeVersion)**
-  - Enter the [version number](https://www.npmjs.com/package/median-js-bridge?activeTab=versions) of the JavaScript bridge that will be injected.
-  - If left blank, defaults to the latest version
+  - Enter the [version number](https://www.npmjs.com/package/median-js-bridge?activeTab=versions) of the JavaScript Bridge that will be injected.
+  - If left blank, defaults to the latest version.
 
 - **User Agent Variable (userAgentValue)**
   - Enter the name of your [user-defined variable](https://support.google.com/tagmanager/answer/7683362?hl=en) that stores the [device user agent](/docs/custom-user-agent) string
-  - This value is included in console logs and passed into the `dataLayer` payload to provide the following device information: Browser, Operating, and Device type
+  - This value is included in console logs and passed into the `dataLayer` payload to provide the following device information: browser, operating system, and device type
 
 ## How it works
 
-1. **Debugging Initialization:** The template reads the `userAgentValue` field and logs the user agent to the GTM preview console to confirm the Median app was detected.
-2. **Dynamic URL Construction:** The template pulls the version number from the `bridgeVersion` field and constructs the CDN URL: `https://unpkg.com/median-js-bridge@[version]/dist/median.min.js`
-3. **Script Injection:** Using GTM's sandboxed `injectScript` API, it attempts to load the constructed URL into the document.
-4. **State Handling:** Depending on the outcome of the script injection, a specific event is pushed to the `dataLayer` and the tag successfully resolves or fails.
+1. **Debugging initialization:** The template reads the `userAgentValue` field and logs the user agent to the GTM preview console to confirm the Median app was detected.
+2. **Dynamic URL construction:** The template pulls the version number from the `bridgeVersion` field and constructs the CDN URL: `https://unpkg.com/median-js-bridge@[version]/dist/median.min.js`
+3. **Script injection:** Using GTM's sandboxed `injectScript` API, it attempts to load the constructed URL into the document.
+4. **State handling:** Depending on the outcome of the script injection, a specific event is pushed to the `dataLayer` and the tag successfully resolves or fails.
 
-## DataLayer events
+## Data layer events
 
 The template automatically pushes an event named `median_injected` to the `dataLayer` upon completion. You can use this event to trigger subsequent tags.
 
@@ -67,7 +67,7 @@ The template automatically pushes an event named `median_injected` to the `dataL
 If the script successfully loads from the CDN, the following payload is pushed:
 
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   {
     event: 'median_injected',
     median_injected: 'yes',
@@ -81,7 +81,7 @@ If the script successfully loads from the CDN, the following payload is pushed:
 If the script fails to load, the tag signals a failure to GTM and pushes the following payload:
 
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   {
     event: 'median_injected',
     median_injected: 'no',

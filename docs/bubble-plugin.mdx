@@ -1,5 +1,5 @@
 ---
-title: "Bubble Plugin"
+title: "Bubble plugin"
 description: "Call the JavaScript Bridge from your Bubble app."
 keywords: ["Bubble", "Bubble plugin", "JavaScript Bridge", "no-code", "workflows"]
 searchable: true
@@ -8,9 +8,9 @@ import { AppetizeEmbed } from "/snippets/appetize-embed.jsx";
 
 ## Setup
 
-To get started, install the Median Bubble Plugin in the Bubble app editor via Plugins -> Add Plugins -> Median Plugin.
+To get started, install the Median Bubble plugin in the Bubble app editor via **Plugins → Add Plugins → Median Plugin**.
 
-Drag the "**Median Plugin**" element from the "**Elements**" section and drop it on the page that requires access to Median JavaScript Bridge. The purpose of this element is to initialize the Median JavaScript Bridge Library so that commands can be executed on page load as shown in the following section.
+Drag the "**Median Plugin**" element from the "**Elements**" section and drop it on the page that requires access to the Median JavaScript Bridge. This element initializes the JavaScript Bridge library so that commands can be executed on page load as shown in the following section.
 
 [Median JavaScript Bridge Plugin on Bubble](https://bubble.io/plugin/gonative-javascript-bridge-1662164388589x419660551052853250)
 
@@ -25,64 +25,64 @@ Display our demo page in your app to test during development [Demo Bubble app](h
 
 To execute a Median JavaScript Bridge command on page load, click the "**Median Plugin**" element that you just dropped on the page and insert your desired JavaScript into the text input captioned "**Median Library Ready Custom Script**" as shown below:
 
-<Frame caption="Median On Page Load JavaScript">
-  <img src="/images/docs/359eb70-on-page-load.png" />
+<Frame caption="Median on page load JavaScript">
+  <img src="/images/docs/359eb70-on-page-load.png" alt="Median Library Ready Custom Script field on the Median Plugin element in Bubble" />
 </Frame>
 
 ## Execute command as a workflow/action
 
-Suppose we need to set brightness of the device to 80% when user clicks a button. To accomplish this, drag a button from the "**Elements**" section on your page and change its name to "Set Brightness" or as desired:
+Suppose you want to set the device brightness to 80% when a user taps a button. To accomplish this, drag a button from the "**Elements**" section on your page and change its name to "Set Brightness" or as desired:
 
-<Frame caption="Create a Button">
-  <img src="/images/docs/4c888bc-create-button.png" />
+<Frame caption="Create a button">
+  <img src="/images/docs/4c888bc-create-button.png" alt="Set Brightness button added to a page in the Bubble editor" />
 </Frame>
 
 Once the button is created, click "Start/Edit workflow" and you will see the following page:
 
-<Frame caption="Creating new Workflow">
-  <img src="/images/docs/bad5d2e-workflow.png" />
+<Frame caption="Create a new workflow">
+  <img src="/images/docs/bad5d2e-workflow.png" alt="New workflow for the button click event in Bubble" />
 </Frame>
 
-To assign a Median JavaScript Bridge command to the click event of this button, click on "**Click here to add an action**" to view the list of various actions. Select Plugins -> Median Screen Brightness as shown below:
+To assign a Median JavaScript Bridge command to the click event of this button, click on "**Click here to add an action**" to view the list of various actions. Select **Plugins → Median Screen Brightness** as shown below:
 
 <Frame caption="Select action">
-  <img src="/images/docs/835a59b-choose-action.png" />
+  <img src="/images/docs/835a59b-choose-action.png" alt="Median Screen Brightness action in the Bubble Plugins action list" />
 </Frame>
 
-The final step in configuring a workflow/action is to modify the action as required. In our case, we will set the Brightness value to 0.8 and set the "**Restore on navigation**" field to "**no**" as shown below:
+The final step in configuring a workflow/action is to modify the action as required. In this example, set the Brightness value to 0.8 and set the "**Restore on navigation**" field to "**no**" as shown below:
 
-<Frame caption="Set Brightness">
-  <img src="/images/docs/a091060-set-brightness.png" />
+<Frame caption="Set brightness">
+  <img src="/images/docs/a091060-set-brightness.png" alt="Median Screen Brightness action with Brightness set to 0.8" />
 </Frame>
 
-When a user clicks this button within your app, the Median Bubble plugin will run the corresponding Median JavaScript command and set the screen brightness to 80%.
+When a user taps this button within your app, the Median Bubble plugin runs the corresponding Median JavaScript command and set the screen brightness to 80%.
 
 ### Dynamic value
 
 You can also assign a dynamic value to the brightness field so that it takes the value of an element as its input.
 
-The dynamic value can be a text input, a slider, or any one of the elements from which a value can be read. For instance, to set the dynamic value as a slider value, drag and drop a **"Slider Input"** element from the **"Elements"** section to your page. Since the acceptable brightness values in Median apps is between 0 and 1, set the min and max values of the slider element to 0 and 1 respectively and set the "Step" to 0.1 as shown below:
+The dynamic value can be a text input, a slider, or any one of the elements from which a value can be read. For instance, to set the dynamic value as a slider value, drag and drop a **"Slider Input"** element from the **"Elements"** section to your page. Since the acceptable brightness values in Median apps are between 0 and 1, set the min and max values of the slider element to 0 and 1 respectively, and set the "Step" to 0.1 as shown below:
 
 <Frame caption="Slider config">
-  <img src="/images/docs/bec3d6b-slider-config.png" />
+  <img src="/images/docs/bec3d6b-slider-config.png" alt="Slider Input element with min 0, max 1, and step 0.1" />
 </Frame>
 
 Once the Slider Input element is configured, go to the **"Workflow"** section and create a new event to trigger when your slider's value is changed. Choose the "An input's value is changed" option and then select your slider element:
 
 <Frame caption="Slider value changed event">
-  <img src="/images/docs/82548af-slider-event.png" />
+  <img src="/images/docs/82548af-slider-event.png" alt="An input's value is changed event selected for the slider in Bubble" />
 </Frame>
 
-Now add an action to the slider and select Plugins -> Median Screen Brightness. If you click on the **"Brightness"** field, you will see the option **"Insert dynamic data"** as shown below:
+Now add an action to the slider and select **Plugins → Median Screen Brightness**. If you click on the **"Brightness"** field, you will see the option **"Insert dynamic data"** as shown below:
 
-<Frame caption="Slider Dynamic Data">
-  <img src="/images/docs/0342804-slider-dynamic-data.png" />
+<Frame caption="Slider dynamic data">
+  <img src="/images/docs/0342804-slider-dynamic-data.png" alt="Insert dynamic data option on the Brightness field" />
 </Frame>
 
 After clicking the option, you will see a list of all elements that you have in your page. Select your slider element and then choose **"This SliderInput's value"** to read the element's value.
 
-<Frame caption="Slider Action">
-  <img src="/images/docs/062fde7-slider-action.png" />
+<Frame caption="Slider action">
+  <img src="/images/docs/062fde7-slider-action.png" alt="Brightness field set to This SliderInput's value" />
 </Frame>
 
 Once this action is configured, your app will read the brightness value from the slider input when setting the brightness level.
@@ -91,10 +91,10 @@ Once this action is configured, your app will read the brightness value from the
 
 To access advanced Median JavaScript Bridge functions in a custom script, you can use any plugin that enables JavaScript execution. For instance, you can run any Median JavaScript commands via the “[Toolbox plugin](https://bubble.io/plugin/toolbox-1488796042609x768734193128308700)” which allows you to run JavaScript as a workflow.
 
-Once the plugin is installed, select an element and click **"Start/Edit workflow"**. Create an action and choose Plugins -> Run JavaScript and add your desired JavaScript to run as shown below:
+Once the plugin is installed, select an element and click **"Start/Edit workflow"**. Create an action, choose **Plugins → Run JavaScript**, and add your desired JavaScript to run as shown below:
 
 <Frame caption="Toolbox JavaScript">
-  <img src="/images/docs/d00c9bf-toolbox.png" />
+  <img src="/images/docs/d00c9bf-toolbox.png" alt="Run JavaScript action from the Toolbox plugin in a Bubble workflow" />
 </Frame>
 
 This plugin can also be used to run AJAX HTTP requests to send data returned from your app via the JavaScript Bridge to your servers or request data from your servers to pass it to your app via the JavaScript Bridge.
@@ -110,21 +110,21 @@ This plugin can also be used to run AJAX HTTP requests to send data returned fro
 </Info>
 
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   document.getElementById("contacts_output").value = JSON.stringify(data);
   ```
 </CodeGroup>
 
-Some Median JavaScript commands return data from the device. For example, the Native Contacts Plugin function to retrieve contacts from the user's address book: `median.contacts.getAll()`. This function returns a JSON object containing the user's contact list that you can send to your server via AJAX calls OR pass it to one of the Bubble's elements such as the "Multiline Input" as seen in the following example.
+Some Median JavaScript commands return data from the device. For example, the Native Contacts plugin function to retrieve contacts from the user's address book: `median.contacts.getAll()`. This function returns a JSON object containing the user's contact list that you can send to your server via AJAX calls or pass to one of Bubble's elements such as the "Multiline Input" as seen in the following example.
 
-First, you will need to enable the ID Attribute in your elements by going to Settings -> General and check the option "Expose the option to add an ID attribute to HTML elements". Now, drag the multiline input element to your page, double-click it and set its ID Attribute (at the very bottom) to a unique string (such as `contacts_output`).
+First, you will need to enable the ID Attribute in your elements by going to **Settings → General** and checking the option "Expose the option to add an ID attribute to HTML elements". Now, drag the multiline input element to your page, double-click it and set its ID Attribute (at the very bottom) to a unique string (such as `contacts_output`).
 
 Note: Since this ID Attribute will be used to identify a unique element in a given page, it has to be a unique string.
 
-Once complete, go to your Workflow section, then open the "Median Native Contacts" action you want to read the data from, and paste the custom callback script as shown below. Replace `contacts_output` with the ID Attribute of your multiline input element. This script will set the value of the element with the ID Attribute `contacts_output` (in our case, the Multiline Input) to the "stringified" JSON object that the Native Contacts Plugin returned.
+Once complete, go to your Workflow section, then open the "Median Native Contacts" action you want to read the data from, and paste the custom callback script as shown below. Replace `contacts_output` with the ID Attribute of your multiline input element. This script will set the value of the element with the ID Attribute `contacts_output` (in our case, the Multiline Input) to the "stringified" JSON object that the Native Contacts plugin returned.
 
-<Frame caption="Median Native Contacts - ID Attribute">
-  <img src="/images/docs/688548e-id-attribute.png" />
+<Frame caption="Median Native Contacts: ID Attribute">
+  <img src="/images/docs/688548e-id-attribute.png" alt="Custom callback script in the Median Native Contacts action" />
 </Frame>
 
 ## Supported commands

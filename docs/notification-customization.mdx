@@ -1,6 +1,6 @@
 ---
-title: "Customize Push Notifications"
-description: "Customize push notification icons, badges, and sounds."
+title: "Customize push notifications"
+description: "Customize the icons, sounds, and badge counts of the OneSignal push notifications your app receives on iOS and Android."
 keywords: ["push notifications", "notification icon", "badges", "sounds", "customization"]
 searchable: true
 ---
@@ -30,7 +30,7 @@ Android's notification system renders icons differently than the app launcher ic
 
 To set your Android notification icon, go to **App Studio > Native Plugins > OneSignal** and upload your icon file.
 
-📖 Learn more in the [OneSignal Notification Sounds](https://documentation.onesignal.com/docs/en/notification-sounds#notification-sounds) and [Android notification categories](https://documentation.onesignal.com/docs/en/android-notification-categories).
+Learn more in the OneSignal guides to [notification sounds](https://documentation.onesignal.com/docs/en/notification-sounds#notification-sounds) and [Android notification categories](https://documentation.onesignal.com/docs/en/android-notification-categories).
 
 ## Notification sounds
 
@@ -43,8 +43,8 @@ Upload your audio files in [App Studio](https://median.co/login) under **Native 
 * First file → `custom_sound_1`
 * Second file → `custom_sound_2`
 
-<Frame caption="App Studio - Upload custom Notification Sounds">
-  <img src="/images/docs/854a0aebff7fd2d607aeba66ba4134731c5ecf15f4a945679dbfc850fc55bbc0-Screenshot_2025-10-31_at_10.05.42.png" />
+<Frame caption="App Studio: upload custom notification sounds">
+  <img src="/images/docs/854a0aebff7fd2d607aeba66ba4134731c5ecf15f4a945679dbfc850fc55bbc0-Screenshot_2025-10-31_at_10.05.42.png" alt="Custom notification sound upload in the OneSignal plugin settings in App Studio" />
 </Frame>
 
 Median handles format conversion automatically; you don't need to prepare separate files per platform.
@@ -61,19 +61,19 @@ Median handles format conversion automatically; you don't need to prepare separa
 **From the OneSignal dashboard:** When composing a notification, look for the **Sound** option in the notification settings and select your uploaded sound.
 
 <Columns cols={2}>
-<Frame caption="iOS Example">
-  <img src="/images/docs/f85329969ff3c4a3937c252b96cf926c72943210b8aec2a0aedd361fc3c916a8-Screenshot_2025-10-31_at_09.54.01.png" />
+<Frame caption="iOS example">
+  <img src="/images/docs/f85329969ff3c4a3937c252b96cf926c72943210b8aec2a0aedd361fc3c916a8-Screenshot_2025-10-31_at_09.54.01.png" alt="Sound option in the OneSignal notification composer for iOS" />
 </Frame>
 
-<Frame caption="Android Example">
-  <img src="/images/docs/7e9d8abd2bea252922fc8335b549eceb62589347ffaecdf1e7b902be601036f2-Screenshot_2025-10-31_at_09.13.29.png" />
+<Frame caption="Android example">
+  <img src="/images/docs/7e9d8abd2bea252922fc8335b549eceb62589347ffaecdf1e7b902be601036f2-Screenshot_2025-10-31_at_09.13.29.png" alt="Sound option in the OneSignal notification composer for Android" />
 </Frame>
 </Columns>
 
 **From the REST API:**
 
 <CodeGroup>
-  ```JSON JSON
+  ```json JSON
   {
     "app_id": "{{YOUR_ONESIGNAL_APP_ID}}",
     "target_channel": "push",
@@ -105,7 +105,7 @@ Use the Median JavaScript Bridge to set or clear badge counts from your web app:
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   // Set the badge count to a specific number
   median.onesignal.badgeCount.set(5);
 
@@ -124,14 +124,14 @@ For OneSignal to automatically reset badge counts when a user opens a notificati
 
 For App Studio builds using Median iOS signing, confirm your build includes the OneSignal Notification Service Extension provisioning profile. If you manually manage Apple identifiers/provisioning profiles or build from downloaded source, configure App Groups in Xcode:
 
-**Main App Target:**
+**Main app target:**
 
 1. In Xcode, select your main app target.
 2. Go to **Signing & Capabilities > + Capability**.
 3. Add **App Groups**.
 4. Create a group with the identifier: `group.YOUR_BUNDLE_IDENTIFIER.onesignal`.
 
-**OneSignalNotificationServiceExtension Target:**
+**OneSignalNotificationServiceExtension target:**
 
 1. Select the extension target in Xcode.
 2. Repeat the same steps and use the **same App Group identifier**.

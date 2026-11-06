@@ -1,6 +1,6 @@
 ---
 title: "Meta App Events"
-description: "Track Meta App Events for analytics and ads."
+description: "Track Meta App Events in your app with the native iOS and Android Meta SDKs, including auto-logged, custom, and purchase events."
 keywords: ["Meta App Events", "Facebook SDK", "analytics", "Meta Ads", "attribution"]
 searchable: true
 ---
@@ -16,7 +16,7 @@ Display our demo page in your app to test during development [https://median.dev
 
 </Check>
 
-## Why use Meta app events?
+## Why use Meta App Events?
 
 - **Auto events**: Enable auto logging for standard events such as App Install and App Launch.
 - **Custom events**: Send custom events (e.g. level achieved, purchases) via the JavaScript Bridge.
@@ -25,7 +25,7 @@ Display our demo page in your app to test during development [https://median.dev
 
 ## Prerequisites
 
-- [ ] A Median.co app with JavaScript Bridge enabled
+- [ ] A Median app with the JavaScript Bridge enabled
 - [ ] A Facebook Application created in the [Facebook Developer Account](https://developer.facebook.com/) (for Android, add your app's release key hash from Median App Studio under **Facebook App Events**)
 - [ ] Facebook Application ID and Facebook Display Name from your Facebook Developer Account
 
@@ -36,7 +36,7 @@ Display our demo page in your app to test during development [https://median.dev
 1. **Create a Facebook Application** within your [Facebook Developer Account](https://developer.facebook.com/). For Android, add your app's release key hash (found in Median App Studio under **Facebook App Events**).
 2. **Configure in Median App Studio**: Add your Facebook Application ID and Facebook Display Name from your Facebook Developer Account to your Median app's configuration.
 
-The published Median doc page does not ship static screenshot assets in its HTML export; follow the steps above in the Facebook Developer console and in **Native Plugins → Facebook App Events** in App Studio.
+Follow the steps above in the Facebook Developer console and in **Native Plugins → Facebook App Events** in App Studio.
 
 #### Configuration options
 
@@ -54,8 +54,8 @@ Enable or disable auto logging for standard events (e.g. App Install, App Launch
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript 
-  median.facebook.setAutoLogging(true | false); 
+  ```javascript JavaScript 
+  median.facebook.setAutoLogging(true);
   ```
 </CodeGroup>
 
@@ -77,7 +77,7 @@ Send a custom event to Facebook. Create a JavaScript object with:
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   var data = {
     event: "fb_mobile_level_achieved",
     parameters: { fb_level: "1" },
@@ -102,7 +102,7 @@ Send a purchase event. Facebook's SDK sends purchase events more immediately tha
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   var data = {
     purchaseAmount: 2.56,
     currency: "USD",
@@ -122,35 +122,35 @@ Send a purchase event. Facebook's SDK sends purchase events more immediately tha
 
 Use this checklist to verify Meta App Events is working correctly before going to production:
 
-**Basic Functionality**
+**Basic functionality**
 
 - [ ] Facebook Application created in the [Facebook Developer Account](https://developer.facebook.com/)
 - [ ] Facebook Application ID and Display Name added in Median App Studio
 - [ ] For Android: app release key hash added to the Facebook Developer Account under your app's Android settings
 - [ ] Plugin is enabled in Median App Studio and a new app build has been generated
 
-**Platform Testing**
+**Platform testing**
 
 - [ ] `setAutoLogging(true)` executes without JavaScript errors
 - [ ] App Install event appears in Meta Events Manager after a fresh install
 - [ ] App Launch event appears in Meta Events Manager after opening the app
 - [ ] `setAutoLogging(false)` disables auto logging as expected
 
-**Configuration Testing**
+**Configuration testing**
 
 - [ ] `median.facebook.events.send()` runs without errors and events appear with correct names
 - [ ] `median.facebook.events.sendPurchase()` records `purchaseAmount` as a **number** and `currency` as a valid ISO code
 
-**User Experience**
+**User experience**
 
 - [ ] All functions are called after `deviceready`
 - [ ] JavaScript Bridge is enabled on both iOS and Android test builds
 
 ## Troubleshooting
 
-### Meta app events functions are undefined or not working
+### Meta App Events functions are undefined or not working
 
-Ensure the **JavaScript Bridge is enabled** in your Median dashboard. All `median.facebook.*` functions must be called after the `deviceready` event fires — calling them earlier will result in undefined errors.
+Ensure the **JavaScript Bridge is enabled** in App Studio. Call all `median.facebook.*` functions after the `deviceready` event fires. Calling them earlier results in undefined errors.
 
 Also confirm:
 
@@ -188,7 +188,7 @@ Ensure the `purchaseAmount` field is passed as a **number** (not a string) and t
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   var data = {
     purchaseAmount: 2.56, // number, not "2.56"
     currency: "USD", // ISO 4217 currency code
@@ -200,6 +200,6 @@ Ensure the `purchaseAmount` field is passed as a **number** (not a string) and t
 <Info>
   **Still having trouble?**
 
-For Meta SDK and App Events behavior outside Median’s bridge, refer to [Meta App Events documentation.](https://developers.facebook.com/docs/app-events)
+For Meta SDK and App Events behavior outside Median’s bridge, refer to the [Meta App Events documentation](https://developers.facebook.com/docs/app-events).
 
 </Info>

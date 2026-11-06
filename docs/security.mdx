@@ -1,12 +1,12 @@
 ---
-title: "Security & Privacy"
-description: "How Median handles security and data privacy."
+title: "Security & privacy"
+description: "Learn how Median handles security and data privacy, where App Studio data is stored, and how to keep your app secure."
 keywords: ["security", "privacy", "SOC 2", "GDPR", "data storage"]
 searchable: true
 ---
 ## Security statement
 
-Median.co is dedicated to securing and protecting your data through state-of-the-art technical and organizational security controls, numerous regulatory and compliance resources, and a growing collection of third-party attestations and certifications.
+Median is dedicated to securing and protecting your data through technical and organizational security controls, numerous regulatory and compliance resources, and a growing collection of third-party attestations and certifications.
 
 <Card
   title="SOC 2 Type II certified"
@@ -39,9 +39,9 @@ Median is designed to keep data ownership and processing under your control. Our
 
 Because Median does not process or persist mobile app user data, your organization retains complete responsibility for data governance. This model helps reduce complexity when addressing privacy regulations such as GDPR, CCPA, and other global frameworks:
 
-* **Data Controller**: You remain the data controller, since Median does not process end-user data within your mobile apps.
-* **Data Residency and Transfers**: Any user data collected through your app is stored and processed exclusively by your own infrastructure, in accordance with your chosen data residency and compliance requirements.
-* **Transparency and Control**: Since Median does not add an additional data processor, you maintain full transparency and control over how end-user data is collected, processed, and retained.
+* **Data controller**: You remain the data controller, since Median does not process end-user data within your mobile apps.
+* **Data residency and transfers**: Any user data collected through your app is stored and processed exclusively by your own infrastructure, in accordance with your chosen data residency and compliance requirements.
+* **Transparency and control**: Since Median does not add an additional data processor, you maintain full transparency and control over how end-user data is collected, processed, and retained.
 
 For additional details, see our [Privacy Policy <Icon icon="arrow-up-right-from-square" size={12} />](https://median.co/privacy).
 
@@ -49,7 +49,7 @@ For additional details, see our [Privacy Policy <Icon icon="arrow-up-right-from-
 
 ### Security best practices
 
-When **developing** apps in our App Studio, we strongly advise against embedding private data, such as non-public tokens or passwords, in your app configuration (e.g., custom JavaScript or analytics configuration). Any data embedded in your app can potentially be extracted from the compiled binary or other app files.
+When **developing** apps in App Studio, we strongly advise against embedding private data, such as non-public tokens or passwords, in your app configuration (e.g., custom JavaScript or analytics configuration). Any data embedded in your app can potentially be extracted from the compiled binary or other app files.
 
 When **testing** apps using our browser-based simulators, you can safely enter login credentials as these simulators are secure and have been SOC 2 Type II certified by an independent third-party auditor. These simulators provide the same security level as your website when accessed through a standard web browser. However, keep in mind that to obtain app store approval, you must provide sample login credentials to the app store reviewer. We recommend using a demo or sandbox account that excludes sensitive information and does not grant elevated access. Contact us for a SOC 2 report for the browser-based simulators.
 

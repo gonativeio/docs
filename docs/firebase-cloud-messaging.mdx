@@ -1,6 +1,6 @@
 ---
 title: "Firebase Cloud Messaging"
-description: "Send push notifications with Firebase Cloud Messaging."
+description: "Send native push notifications with Firebase Cloud Messaging and manage permissions, tokens, topics, channels, and badges from your web app."
 keywords: ["Firebase Cloud Messaging", "FCM", "push notifications", "Firebase", "topics"]
 searchable: true
 ---
@@ -18,13 +18,13 @@ This guide covers Firebase project setup, Median App Studio configuration, and t
 
 Display our demo page in your app to test during development: [https://median.dev/firebase-messaging](https://median.dev/firebase-messaging)
 
-The demo also links to a standalone [Test Sender.](https://median.dev/firebase-messaging/sender.html) Run it on your browser (not inside the app) to send real test pushes to a device or topic using a Firebase service-account key. It supports presets for plain, deep-link, big picture/text, custom channel, badge, and silent notifications, and shows the raw FCM payload it sends.
+The demo also links to a standalone [Test Sender](https://median.dev/firebase-messaging/sender.html). Run it in your browser (not inside the app) to send real test pushes to a device or topic using a Firebase service-account key. It supports presets for plain, deep-link, big picture/text, custom channel, badge, and silent notifications, and shows the raw FCM payload it sends.
 
 </Check>
 
 ## Why use Firebase Cloud Messaging
 
-- **Direct-to-device push, no middleman**: Send native push notifications straight from your own Firebase project to iOS and Android devices inside the Median shell giving you end-to-end control over the messaging pipeline.
+- **Direct-to-device push, no middleman**: Send native push notifications straight from your own Firebase project to iOS and Android devices inside the Median shell, giving you end-to-end control over the messaging pipeline.
 - **Bridge-first control**: Manage permissions, registration tokens, topic subscriptions, notification channels, and badge counts directly from JavaScript without writing native code.
 - **Topic-based targeting**: Subscribe and unsubscribe devices from FCM topics to broadcast messages to segments of users without maintaining a token list yourself.
 - **Notification channel management (Android)**: Create, update, and delete notification channels directly from your web app.
@@ -33,7 +33,7 @@ The demo also links to a standalone [Test Sender.](https://median.dev/firebase-m
 
 ## Prerequisites
 
-- A Median.co app with the [JavaScript Bridge](/docs/javascript-bridge) enabled.
+- A Median app with the [JavaScript Bridge](/docs/javascript-bridge) enabled.
 - A Firebase project with Cloud Messaging enabled.
 - `google-services.json` uploaded in your Median app configuration (required for push delivery on Android).
 - `GoogleService-Info.plist` uploaded in your Median app configuration, plus an APNs authentication key or certificate configured in the Firebase console (required for push delivery on iOS).
@@ -55,16 +55,16 @@ Create (or reuse) a Firebase project and register your Android and iOS apps to i
 2. Navigate to **Build & Deploy**.
 3. Upload `google-services.json` (Android) and `GoogleService-Info.plist` (iOS) in **Google Services** configuration.
 
-<Frame caption="App Studio - Google Services">
-  <img src="/images/docs/e16132209cfe5298ccd9c00fa4ed7895fd3aa96cd31d32cfb6298a930e3f2eb0-Screenshot_2026-08-26_at_11.29.36.png" />
+<Frame caption="App Studio Google Services configuration">
+  <img alt="Google Services section in Build & Deploy with upload fields for google-services.json and GoogleService-Info.plist" src="/images/docs/e16132209cfe5298ccd9c00fa4ed7895fd3aa96cd31d32cfb6298a930e3f2eb0-Screenshot_2026-08-26_at_11.29.36.png" />
 </Frame>
 
 4. Enable the **Firebase Cloud Messaging** native plugin.
-5. Configure plugin settings
+5. Configure plugin settings.
 6. Rebuild your app to include the Firebase Cloud Messaging SDKs and your settings.
 
-<Frame caption="App Studio - Firebase Cloud Messaging Configuration">
-  <img src="/images/docs/fffe6acce36437b899ed317316a4f8ee2b313fb09b2f390467d0af42f54ae7f1-Screenshot_2026-08-26_at_11.28.21.png" />
+<Frame caption="App Studio Firebase Cloud Messaging configuration">
+  <img alt="Firebase Cloud Messaging plugin settings in App Studio" src="/images/docs/fffe6acce36437b899ed317316a4f8ee2b313fb09b2f390467d0af42f54ae7f1-Screenshot_2026-08-26_at_11.28.21.png" />
 </Frame>
 
 #### Plugin configuration options
@@ -75,7 +75,7 @@ Create (or reuse) a Firebase project and register your Android and iOS apps to i
 | Show Foreground Notifications | No       | By default, push notifications are suppressed when your app is open and in focus. This is useful for sensitive and urgent notifications such as chat messages and delivery notifications. |
 
 <Info>
-  **Rebuild after Configuration**
+  **Rebuild after configuration**
 
 Plugin settings take effect only in new builds. After changing credentials or uploading new Firebase configuration files, rebuild your app and test on a real device or simulator before releasing.
 
@@ -98,13 +98,13 @@ All methods are available on the `median.firebaseMessaging` namespace and must b
 
 **Request permission**
 
-Triggers the native OS permission prompt. Maps to the demo's **Request Permission** button. For best results, defer this call to a point in the user journey where the value of notifications is clear — contextual prompts have significantly higher opt-in rates.
+Triggers the native OS permission prompt. Maps to the demo's **Request Permission** button. For best results, defer this call to a point in the user journey where the value of notifications is clear. Contextual prompts have significantly higher opt-in rates.
 
 On **Android 12 and below**, notification permission may be granted automatically depending on device OS version and policy.
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   median.firebaseMessaging.requestPermission({
     callback: function (result) {
       console.log("Permission granted status:", result.granted); // true or false
@@ -119,7 +119,7 @@ Returns whether the user has currently granted or denied notification permission
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   median.firebaseMessaging.checkPermission({
     callback: function (result) {
       console.log("Are notifications enabled?", result.granted); // true or false
@@ -136,7 +136,7 @@ Registers the device with FCM if no token exists yet.
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   median.firebaseMessaging.register({
     callback: function (result) {
       console.log("Registered, token:", result.token);
@@ -151,7 +151,7 @@ Returns the current FCM registration token for the device, if one has been gener
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   median.firebaseMessaging.getToken({
     callback: function (result) {
       console.log("FCM token:", result.token);
@@ -169,11 +169,11 @@ Returns the current FCM registration token for the device, if one has been gener
 
 **Delete token**
 
-Deletes the current FCM registration token, e.g. on logout, to stop notifications from being delivered to a device that is no longer associated with the signed-in user.
+Deletes the current FCM registration token, for example on sign-out, to stop notifications from being delivered to a device that is no longer associated with the signed-in user.
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   median.firebaseMessaging.deleteToken({
     callback: function (result) {
       console.log("Token deleted:", result.success);
@@ -190,7 +190,7 @@ Subscribe or unsubscribe a device from FCM topics to target groups of users with
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   median.firebaseMessaging.subscribeToTopic({
     topic: "breaking_news",
     callback: function (result) {
@@ -204,7 +204,7 @@ Subscribe or unsubscribe a device from FCM topics to target groups of users with
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   median.firebaseMessaging.unsubscribeFromTopic({
     topic: "breaking_news",
     callback: function (result) {
@@ -218,7 +218,7 @@ Subscribe or unsubscribe a device from FCM topics to target groups of users with
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   median.firebaseMessaging.getSubscribedTopics({
     callback: function (result) {
       console.log("Subscribed topics:", result.topics); // e.g. ["breaking_news"]
@@ -235,7 +235,7 @@ Android groups notifications into channels that control importance, sound, and v
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   median.firebaseMessaging.createChannel({
     channelId: "order_updates",
     channelName: "Order Updates",
@@ -251,7 +251,7 @@ Android groups notifications into channels that control importance, sound, and v
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   median.firebaseMessaging.deleteChannel({
     channelId: "order_updates",
     callback: function (result) {
@@ -265,7 +265,7 @@ Android groups notifications into channels that control importance, sound, and v
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   median.firebaseMessaging.getChannels({
     callback: function (result) {
       console.log("Channels:", result.channels);
@@ -282,7 +282,7 @@ Sets the app icon badge count. This is best-effort: it works on launchers that s
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   median.firebaseMessaging.setBadge({
     count: 4,
     callback: function (result) {
@@ -296,7 +296,7 @@ Sets the app icon badge count. This is best-effort: it works on launchers that s
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   median.firebaseMessaging.clearBadge({
     callback: function (result) {
       console.log("Badge cleared:", result.success);
@@ -311,13 +311,13 @@ Controls whether an incoming push shows a visible banner while the app is in the
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   // Show a native banner for pushes received while the app is open
   median.firebaseMessaging.enableForegroundBanners();
 
   // Suppress the native banner; the notificationReceived listener still fires
   median.firebaseMessaging.disableForegroundBanners();
-```
+  ```
 </CodeGroup>
 
 #### Listeners
@@ -326,7 +326,7 @@ Register listeners to respond when notifications are received in the foreground 
 
 <MedianLogo />
 <CodeGroup>
-```JavaScript JavaScript
+```javascript JavaScript
 // Triggers when a push notification is delivered while the app is active
 const receivedListenerId = median.firebaseMessaging.notificationReceived.addListener((data) => {
   console.log("Notification received:", data);
@@ -360,7 +360,7 @@ Use this checklist, together with the [demo page](https://median.dev/firebase-me
 
 ### App Studio reports missing Google services configuration files
 
-You will need to configure Google Services in order to user FCM. Please follow the steps in our [Google Services Guide](/docs/google-services).
+You need to configure Google Services to use FCM. Follow the steps in our [Google Services guide](/docs/google-services).
 
 ### Deep links open in the browser instead of the app
 
@@ -368,7 +368,7 @@ Configure Median [deep linking](/docs/deep-linking) (URL scheme, Universal Links
 
 ### Test push from the sender isn't arriving
 
-Confirm the Firebase project ID in the Test Sender matches the project tied to your app's `google-services.json`/`GoogleService-Info.plist`, that the service account key belongs to the same project, and that the destination token/topic is current (tokens can rotate — re-copy the token from the demo page if it's been a while).
+Confirm the Firebase project ID in the Test Sender matches the project tied to your app's `google-services.json`/`GoogleService-Info.plist`, that the service account key belongs to the same project, and that the destination token or topic is current. Tokens can rotate, so re-copy the token from the demo page if it's been a while.
 
 ### Badge count isn't showing
 

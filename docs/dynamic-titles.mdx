@@ -1,23 +1,23 @@
 ---
-title: "Dynamic Titles"
-description: "Set the top navigation bar title."
+title: "Dynamic titles"
+description: "Set the text or image in your app's top navigation bar per URL, at build time in App Studio or at runtime with the JavaScript Bridge."
 keywords: ["dynamic titles", "top navigation bar", "page title", "JavaScript Bridge"]
 searchable: true
 ---
 
 import { MedianLogo } from "/snippets/median-logo.jsx";
 
-Configure the text that shows in the Top Navigation Bar either at build time through your app configuration or at run time through the JavaScript Bridge.
+Configure the text that shows in the top navigation bar, either at build time through your app configuration or at run time through the JavaScript Bridge.
 
-<Frame caption="iOS NavigationBar example">
-  <img src="/images/docs/assets/-MHABc_2IZgrLlHqPfUS/-MHC8SFE1rWpxISQhUwb/-MHCAGZu9i7szcxvXZAX/Screen-Shot-2020-09-14-at-8.12.54-AM.png" />
+<Frame caption="iOS navigation bar example">
+  <img alt="iOS top navigation bar showing a page title" src="/images/docs/assets/-MHABc_2IZgrLlHqPfUS/-MHC8SFE1rWpxISQhUwb/-MHCAGZu9i7szcxvXZAX/Screen-Shot-2020-09-14-at-8.12.54-AM.png" />
 </Frame>
 
 ## Implementation guide
 
 ### App configuration
 
-You may specify text titles or set image display for different URLs in the Dynamic Titles options within the Native Top Navigation Bar section of the App Studio interface.
+You may specify text titles or set image display for different URLs in the **Dynamic Titles** options within the **Native Top Navigation Bar** section of App Studio.
 
 For a given URL rule, if "Text" is selected the text provided will be displayed. Otherwise, if "Image" is selected the top nav bar image will be displayed.
 
@@ -26,7 +26,7 @@ Rules are prioritized from top to bottom. If no match is found, your app name wi
 An example JSON formatting for BooyaFitness.com is provided below:
 
 <CodeGroup>
-  ```JSON JSON
+  ```json JSON
   [
       {
           "regex": "https://www.booyafitness.com/",
@@ -64,11 +64,11 @@ A default navigation title can be defined in the app configuration that is then 
 
 ### JavaScript Bridge
 
-Create your navigation title structure, and then run the `median.navigationTitles.set()` Javascript Bridge function to set the values. To set the example navigation title run the following:
+Create your navigation title structure, and then run the `median.navigationTitles.set()` JavaScript Bridge function to set the values. To set the example navigation title run the following:
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   var menuItems = {
       active: true,
       titles: [{
@@ -85,13 +85,13 @@ Create your navigation title structure, and then run the `median.navigationTitle
   ```
 </CodeGroup>
 
-Setting `persist=true` will save the navigation titles for use the next time the app is launched, otherwise, it will only take effect for the current session.
+Setting `persist: true` saves the navigation titles for the next time the app launches. Otherwise, they only take effect for the current session.
 
 To revert the navigation titles to the configuration set at build time, run the following command:
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   if (navigator.userAgent.indexOf('median') > -1) {
       median.navigationTitles.set({'persist':true});
   }
@@ -102,13 +102,13 @@ For a one-off setting of the current page's title, URL encode the desired title 
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   if (navigator.userAgent.indexOf('median') > -1) {
       median.navigationTitles.setCurrent({'title':'Hello%20World'})
   }
   ```
 
-```HTML HTML
+```html HTML
 <a onclick="gonative.navigationTitles.setCurrent({'title':'Hello%20World'})">Set Current Page's Title</a>
 ```
 </CodeGroup>

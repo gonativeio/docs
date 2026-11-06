@@ -1,5 +1,5 @@
 ---
-title: "Deep Linking Overview"
+title: "Deep linking overview"
 description: "Set up Universal Links and App Links."
 keywords: ["deep linking", "Universal Links", "App Links", "apple-app-site-association", "assetlinks.json"]
 searchable: true
@@ -14,7 +14,7 @@ Enable Universal Links, App Links, and optional URL schemes in Median App Studio
 
 Display our demo page in your app to test during development [https://median.dev/deep-linking/](https://median.dev/deep-linking/)
 
-After setup, validate your implementation using the [Deep Linking Validator.](/docs/deep-linking-validator)
+After setup, validate your implementation using the [Deep Linking Validator](/docs/deep-linking-validator).
 
 </Check>
 
@@ -45,7 +45,7 @@ Host `assetlinks.json` correctly **before** you publish; otherwise verification 
 #### Example: `assetlinks.json`
 
 <CodeGroup>
-  ```JSON JSON
+  ```json JSON
   /* Example - Android assetlinks.json */
   [
     {
@@ -81,7 +81,7 @@ Requirements:
 #### Example: `apple-app-site-association`
 
 <CodeGroup>
-  ```JSON JSON
+  ```json JSON
   /* Example - /apple-app-site-association */
   {
     "applinks": {
@@ -107,7 +107,7 @@ Requirements:
 
 ## URL scheme protocol
 
-Custom URL schemes are an **advanced** option: app-specific link formats (for example `youruniquestring://example.com/path`) that open content in your mobile app instead of a browser. They are commonly used for **mobile authentication redirects** and advanced in-app navigation.
+Custom URL schemes are an **advanced** option: app-specific link formats (for example, `youruniquestring://example.com/path`) that open content in your mobile app instead of a browser. They are commonly used for **mobile authentication redirects** and advanced in-app navigation.
 
 <Warning>
   **Note**
@@ -146,5 +146,5 @@ On supported mobile devices, these open the corresponding experience inside your
 
 ### Platform-specific implementation guides
 
-- [Define a Custom URL Scheme for Your iOS App (Apple Developer)](https://developer.apple.com/documentation/xcode/allowing_apps_and_websites_to_link_to_your_content/defining_a_custom_url_scheme_for_your_app)
-- [Create Deep Links in Your Android App (Android Developers)](https://developer.android.com/training/app-links/deep-linking)
+- [Define a custom URL scheme for your iOS app (Apple Developer)](https://developer.apple.com/documentation/xcode/allowing_apps_and_websites_to_link_to_your_content/defining_a_custom_url_scheme_for_your_app)
+- [Create deep links in your Android app (Android Developers)](https://developer.android.com/training/app-links/deep-linking)

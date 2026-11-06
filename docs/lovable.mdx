@@ -11,12 +11,12 @@ Lovable is an AI-powered app builder that lets you create web applications using
 
 ## Key features
 
-- **AI-Powered Development:** Build and modify your app using simple, conversational text prompts.
-- **Rapid UI experimentation:** Lovable's focus is on the user interface, allowing you to experiment and iterate on your app's design in real-time.
+- **AI-powered development:** Build and modify your app using simple, conversational text prompts.
+- **Rapid UI experimentation:** Lovable's focus is on the user interface, allowing you to experiment and iterate on your app's design in real time.
 - **Supabase backend:** Lovable integrates with Supabase to handle backend needs like databases and user authentication.
-- **npm Package Support:** You can ask the Lovable AI to install npm packages, which is how you'll add the Median JavaScript Bridge.
+- **npm package support:** You can ask the Lovable AI to install npm packages, which is how you'll add the Median JavaScript Bridge.
 
-## How Median.co works
+## How Median works
 
 Median converts your Lovable web app into iOS and Android apps using a WebView approach. Your web app, built with Lovable, runs inside a native "shell" that Median provides. This shell connects your web code to device features like push notifications, haptics, and biometric authentication.
 
@@ -33,9 +33,9 @@ When you are ready to launch on iOS, you can:
 
 You do not need to rewrite your Lovable app in Swift, build it in Xcode, or upload with Apple Transporter for the standard publishing workflow.
 
-| Capability                                     | Median Native App | Lovable Web App |
+| Capability                                     | Median native app | Lovable web app |
 | ---------------------------------------------- | ----------------- | --------------- |
-| Runs in Native iOS and Android mobile apps     | Yes               | No              |
+| Runs in native iOS and Android mobile apps     | Yes               | No              |
 | Publish on the Apple App Store and Google Play | Yes               | No              |
 | Native features such as Face ID / Touch ID     | Yes               | No              |
 
@@ -47,9 +47,9 @@ This guide will walk you through converting your Lovable app to native mobile ap
 
 This guide is structured in 3 parts:
 
-- **Part 1: Tutorial** - Build a fitness tracker app with Lovable and convert it to a mobile app with Median
-- **Part 2: Push Notifications** - Set up OneSignal and implement advanced notification features
-- **Part 3: Haptic Feedback** - Add tactile feedback to improve user experience
+- **Part 1: Tutorial**: Build a fitness tracker app with Lovable and convert it to a mobile app with Median
+- **Part 2: Push notifications**: Set up OneSignal and implement advanced notification features
+- **Part 3: Haptic feedback**: Add tactile feedback to improve user experience
 
 ### App optimization best practices
 
@@ -66,7 +66,7 @@ You'll get ready-to-use AI prompts for:
 
 - Adding the Median JavaScript Bridge to your project
 - Adding haptic feedback to a button
-- Adding a native QR/Barcode scanner
+- Adding a native QR/barcode scanner
 - Making your app mobile-responsive
 
 ### Prompt best practices (Median-specific)
@@ -74,14 +74,14 @@ You'll get ready-to-use AI prompts for:
 You'll learn how to:
 
 - Structure your prompts for the Lovable AI
-- How to avoid AI "hallucinations" by providing documentation
+- Avoid AI "hallucinations" by providing documentation
 - Test and validate the code your AI agent generates
 
 ## Frequently asked questions
 
 ### How do I turn my Lovable web app into a native app?
 
-Paste the public URL of your Lovable app into the Website URL field in the Median App Studio. Next, go to the Build and Deploy section and click Rebuild all. You can use the app on a simulator or build it on a mobile device.
+Paste the public URL of your Lovable app into the **Website URL** field in App Studio. Next, go to the **Build and Deploy** section and click **Rebuild all**. You can use the app on a simulator or build it on a mobile device.
 
 ### Can I publish my app to the Apple App Store and Google Play?
 
@@ -89,7 +89,7 @@ Yes. Start with [Prepare your Lovable app for publishing](/docs/prepare-your-lov
 
 ### Does Median work with .lovable.app URLs?
 
-Yes. Median accepts .lovable.app URLs and custom domain URLs. Paste the public URL of your Lovable app into the Website URL field in the Median App Studio. See [this guide](https://lovable.dev/guides/how-to-publish-a-web-app) to learn how to publish your Lovable app and find your app's public URL.
+Yes. Median accepts .lovable.app URLs and custom domain URLs. Paste the public URL of your Lovable app into the **Website URL** field in App Studio. To publish your Lovable app and find its public URL, see Lovable's guide [How to publish a web app](https://lovable.dev/guides/how-to-publish-a-web-app).
 
 ### Do I need to rebuild my Lovable app in React Native?
 
@@ -103,7 +103,7 @@ Median wraps your Lovable web app in a native mobile app. This gives your app ac
 
 ### Can I add push notifications to a Lovable web app?
 
-Yes. First, add the Median JavaScript Bridge in your Lovable project. Then, connect OneSignal to your app. Use OneSignal to register users and to send push notifications. See [Add Push Notifications To Your Lovable App](/docs/add-push-notifications-to-your-lovable-app) for step-by-step instructions.
+Yes. First, add the Median JavaScript Bridge in your Lovable project. Then, connect OneSignal to your app. Use OneSignal to register users and to send push notifications. See [Add push notifications to your Lovable app](/docs/add-push-notifications-to-your-lovable-app) for step-by-step instructions.
 
 ### Why does my social login fail?
 

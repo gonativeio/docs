@@ -1,22 +1,22 @@
 ---
-title: "Native Datastore Offline"
-description: "Store scanned data offline with Native Datastore."
+title: "Native datastore offline"
+description: "Build a custom offline page that scans QR codes and stores the result on the device with the Native Datastore plugin until the app is back online."
 keywords: ["Native Datastore", "offline", "offline page", "QR scanner", "local storage"]
 searchable: true
 ---
 
-This guide demonstrates how to create a custom offline page that launches the , and stores the scanned result using the . This is useful for scenarios where users scan QR codes while offline and sync the data once the device is back online.
+This guide demonstrates how to create a custom offline page that launches the [QR / barcode scanner](/docs/qr-barcode-scanner) and stores the scanned result using the [Native Datastore](/docs/native-datastore) plugin. This is useful for scenarios where users scan QR codes while offline and sync the data once the device is back online.
 
-The Barcode Scanner is one of several [Native Plugins](/docs/native-plugins-overview) that work without a continuous internet connection. Any plugin that processes data locally on the device and does not rely on third-party services can function offline.
+The barcode scanner is one of several [native plugins](/docs/native-plugins-overview) that work without a continuous internet connection. Any plugin that processes data locally on the device and does not rely on third-party services can function offline.
 
 <Info>
-  **Proof of Concept**
+  **Proof of concept**
 
 This documentation provides a proof of concept. We advise reviewing the implementation with your security and product teams, as you may need to handle advanced use cases like storing multiple key-value pairs.
 
 </Info>
 
-Please refer to [Offline Page](/docs/offline-page) as a general reference on how to set up a custom offline page.
+See [Offline page](/docs/offline-page) for general guidance on setting up a custom offline page.
 
 ## Example implementation
 
@@ -29,7 +29,7 @@ Below is a sample offline.html page with buttons to:
 ### Offline.html
 
 <CodeGroup>
-  ```HTML Offline.html
+  ```html Offline.html
   <!DOCTYPE html>
   <html lang="en">
   <head>
@@ -166,8 +166,8 @@ Below is a sample offline.html page with buttons to:
 
 Use the QR code below to test your offline implementation. It encodes the URL: `https://median.co/`.
 
-<Frame caption="Sample QR Code for the URL https://median.co">
-  <img src="/images/docs/33933077aa2a3906b9b57fd9af88baebc92a1d4aa171416230086f5c10577ca4-Untitled_design.png" />
+<Frame caption="Sample QR code for the URL https://median.co">
+  <img src="/images/docs/33933077aa2a3906b9b57fd9af88baebc92a1d4aa171416230086f5c10577ca4-Untitled_design.png" alt="QR code that encodes the URL https://median.co/" />
 </Frame>
 
 ### Demo recording
@@ -178,6 +178,6 @@ After saving the value, the user clicks the "Go Online" button, which redirects 
 
 While the video demonstration was recorded on an Android device, the same workflow is fully compatible with iOS.
 
-<Frame caption="Demo Recording">
-  <img src="/images/docs/8f4baf7dadfe047b0397e9702620c0f9f4e6319fa1acd2bcdaf7207a47520c02-native-offline.gif" />
+<Frame caption="Demo recording">
+  <img src="/images/docs/8f4baf7dadfe047b0397e9702620c0f9f4e6319fa1acd2bcdaf7207a47520c02-native-offline.gif" alt="Android app scanning a QR code on the offline page, saving the value, and showing it on the online demo page" />
 </Frame>

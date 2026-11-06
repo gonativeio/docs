@@ -1,6 +1,6 @@
 ---
-title: "Permission Prompt Localization"
-description: "Localize iOS and Android permission prompts."
+title: "Permission prompt localization"
+description: "Localize the text of iOS permission prompts in Xcode with InfoPlist.strings, and learn how Android handles permission prompt languages."
 keywords: ["permission prompts", "localization", "InfoPlist.strings", "translation", "permissions"]
 searchable: true
 ---
@@ -13,7 +13,7 @@ Permission prompts for Android are served by the system and as of writing, Andro
 
 ## iOS
 
-Localization of permission prompts is not available in the App Studio today, but the prompt to request permissions can be localized by adjusting the iOS source code and building the iOS app from the source.
+Localization of permission prompts is not available in App Studio today, but the prompt to request permissions can be localized by adjusting the iOS source code and building the iOS app from the source.
 
 Follow [Build iOS from source](/docs/build-ios-from-source) to obtain the source code of your app and open it in Xcode.
 
@@ -24,7 +24,7 @@ Add your supported languages by selecting the checkboxes in the InfoPlist.string
 Once you select a supported language Xcode will create InfoPlist files for all languages selected.
 
 <Frame caption="InfoPlist.strings">
-  <img src="/images/docs/540a595-image.png" />
+  <img src="/images/docs/540a595-image.png" alt="Localization languages selected for InfoPlist.strings in Xcode" />
 </Frame>
 
 ### Locate the key you want to customize
@@ -34,15 +34,15 @@ Permission prompt texts are stored in the MedianIOS-Info.plist file. To customiz
 In the example below, you will find that the raw key for 'Privacy - Contacts Usage Description' is 'NSContactsUsageDescription'.
 
 <Frame caption="MedianIOS-Info.plist">
-  <img src="/images/docs/8e9dbda-image.png" />
+  <img src="/images/docs/8e9dbda-image.png" alt="Privacy - Contacts Usage Description key shown as NSContactsUsageDescription in MedianIOS-Info.plist" />
 </Frame>
 
 ### Customize the prompt
 
 Using the raw key 'NSContactsUsageDescription' you can now set a custom permission description, which is shown for devices using the German language.
 
-<Frame caption="German Permission Prompt">
-  <img src="/images/docs/3ea8b45-image.png" />
+<Frame caption="German permission prompt">
+  <img src="/images/docs/3ea8b45-image.png" alt="Custom NSContactsUsageDescription text in the German InfoPlist.strings file" />
 </Frame>
 
 ## Frequently asked questions

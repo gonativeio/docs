@@ -13,18 +13,18 @@ The Cordial plugin integrates mobile push notifications with Cordial, with suppo
 
 - **Push permission management**: Request and check notification permission directly from your web UI without leaving the app.
 - **Contact registration**: Register or update a Cordial contact using a primary key such as email on user sign-in.
-- **Seamless logout**: Unset the active contact on logout to ensure clean session handling.
+- **Contact sign-out**: Unset the active contact when the user signs out to ensure clean session handling.
 - **In-app deep linking**: Configure notification links to open inside the app rather than the system browser.
 
 ## Prerequisites
 
-- [ ] A Median.co app with JavaScript Bridge enabled
+- [ ] A Median app with the JavaScript Bridge enabled
 - [ ] Cordial account with mobile push configured
 - [ ] Deep linking enabled in your Median app settings
 
 ## When to use this plugin
 
-Cordial is essential for apps that need to:
+Use Cordial if your app needs to:
 
 | Use case                           | Example                                                                              |
 | ---------------------------------- | ------------------------------------------------------------------------------------ |
@@ -38,16 +38,16 @@ Cordial is essential for apps that need to:
 
 Use this section as a fast navigation map into the full setup and implementation details:
 
-1. **Enable the plugin**: Go to [Plugin setup](#plugin-setup) and enable Cordial in your Median dashboard.
+1. **Enable the plugin**: Go to [Plugin setup](#plugin-setup) and enable Cordial in Median App Studio.
 2. **Configure deep linking**: Ensure deep linking is set up so notification links open in-app.
-3. **Implement bridge functions**: Implement the required methods in [JavaScript bridge functions](#javascript-bridge-functions).
+3. **Implement bridge functions**: Implement the required methods in [JavaScript Bridge functions](#javascript-bridge-functions).
 4. **Verify your setup**: Complete the [Testing checklist](#testing-checklist) and review [Troubleshooting](#troubleshooting) notes.
 
 ## Plugin setup
 
 ### Enable the plugin
 
-1. **Navigate to Plugins**: In your Median dashboard, go to **Native Plugins → Push Notifications**.
+1. **Navigate to Plugins**: In App Studio, go to **Native Plugins → Push Notifications**.
 2. **Enable Cordial**: Toggle Cordial to enabled status.
 3. **Configure deep linking**: Ensure your app's deep link domains include the URLs used in Cordial notification campaigns so links open inside the app.
 
@@ -59,7 +59,7 @@ Requests push notification permission. Provide a callback function or otherwise 
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   median.cordial.requestPermission({'callback': function});
   ```
 </CodeGroup>
@@ -76,7 +76,7 @@ Checks the current push notification permission status. Provide a callback funct
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   median.cordial.permissionStatus({'callback': function});
   ```
 </CodeGroup>
@@ -93,9 +93,9 @@ Registers a new user or updates an existing user in Cordial.
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   median.cordial.setContact({
-    primaryKey: "[email protected]",
+    primaryKey: "user@example.com",
   });
   ```
 </CodeGroup>
@@ -110,12 +110,12 @@ Registers a new user or updates an existing user in Cordial.
 
 ### Unset contact
 
-Logs out the current user, clearing the active Cordial contact context.
+Signs out the current user, clearing the active Cordial contact context.
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript 
-  median.cordial.unsetContact(); 
+  ```javascript JavaScript
+  median.cordial.unsetContact();
   ```
 </CodeGroup>
 
@@ -151,27 +151,27 @@ Use this checklist to ensure Cordial is working correctly in your app:
 
 ### Cordial bridge functions are undefined or not working
 
-Ensure the JavaScript Bridge is enabled in Median App Studio and that you are calling bridge functions after the page has fully loaded. Also verify that the Cordial plugin is enabled in your app's plugin configuration in the Median dashboard.
+Ensure the JavaScript Bridge is enabled in Median App Studio and that you are calling bridge functions after the page has fully loaded. Also verify that the Cordial plugin is enabled in your app's plugin configuration in App Studio.
 
 ### Push permission prompt is not appearing
 
 Check that `requestPermission` is being called from a user-initiated action such as a button tap. On iOS, the system permission prompt can only be shown once per app install — if the user has already denied permission, they must enable notifications manually in iOS Settings. Use `permissionStatus` first to check the current state before calling `requestPermission`.
 
-### setContact is not registering the user in Cordial
+### `setContact` is not registering the user in Cordial
 
 Verify that the `primaryKey` value matches the format expected by your Cordial account (typically an email address). Confirm that the Cordial SDK is initialized in your app before the bridge function is called. Check the Cordial dashboard to confirm whether contact records are being created or updated.
 
 ### Notification links are opening in the system browser instead of in-app
 
-Deep linking must be configured in your Median app settings for notification URLs to open inside the app. Go to **Link Handling → Deep Linking** in the Median dashboard and add the domains used in your Cordial notification campaigns to the allowed deep link domains list.
+Deep linking must be configured in your Median app settings for notification URLs to open inside the app. Go to **Link Handling → Deep Linking** in App Studio and add the domains used in your Cordial notification campaigns to the allowed deep link domains list.
 
-### permissionStatus returns an unexpected value
+### `permissionStatus` returns an unexpected value
 
 On iOS, permission states include `notDetermined`, `denied`, `authorized`, `provisional`, and `ephemeral`. If the status is `denied`, the user must re-enable notifications in iOS Settings — `requestPermission` will not show the prompt again. On Android 13+, ensure the `POST_NOTIFICATIONS` permission is declared in the app manifest.
 
 <Info>
   **Still having trouble?**
 
-For issues related to Cordial's own SDK configuration, audience segmentation, or campaign setup outside of Median.co, refer to [Cordial's integration documentation.](https://support.cordial.com/hc/en-us/categories/360000246631-Get-started-with-Cordial)
+For issues related to Cordial's own SDK configuration, audience segmentation, or campaign setup outside of Median, refer to [Cordial's integration documentation](https://support.cordial.com/hc/en-us/categories/360000246631-Get-started-with-Cordial).
 
 </Info>

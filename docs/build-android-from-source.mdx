@@ -1,5 +1,5 @@
 ---
-title: "Build Android from Source"
+title: "Build Android from source"
 description: "Build a signed APK or AAB in Android Studio."
 keywords: ["Android Studio", "build from source", "APK", "AAB", "signing", "Gradle"]
 searchable: true
@@ -9,9 +9,9 @@ searchable: true
 
 Before building your Median Android app, install Android Studio and configure your local development environment.
 
-Download latest Android Studio at [https://developer.android.com/studio#downloads](https://developer.android.com/studio#downloads).
+Download the latest version of [Android Studio](https://developer.android.com/studio#downloads).
 
-Follow the steps in the Android documentation making note to follow the Setup Wizard and install all recommended SDK packages: [https://developer.android.com/studio/install](https://developer.android.com/studio/install).
+Follow the steps in the [Android Studio installation guide](https://developer.android.com/studio/install). Make sure to follow the Setup Wizard and install all recommended SDK packages.
 
 <Info>
   **Tip**
@@ -22,23 +22,23 @@ During setup, be sure to install the **Android SDK Platform** and all required c
 
 ## Step 2: Download the Android source code
 
-Download the Android Source code from your app's private management page by opening the "**Build & Deploy**" tab and clicking the "**Download**" button in to the Android SOURCE CODE category.
+Download the Android source code from your app's private management page by opening the "**Build & Deploy**" tab and clicking the "**Download**" button in the Android SOURCE CODE category.
 
-<Frame caption="Median App Studio - Download Android Source">
-  <img src="/images/docs/b453a508d9dc9e9d40de313c03b6692def1de8d4a24c5cd6d2c98ee6ce4281c2-Screenshot_2025-07-04_at_14.09.57.png" />
+<Frame caption="Download the Android source in App Studio">
+  <img src="/images/docs/b453a508d9dc9e9d40de313c03b6692def1de8d4a24c5cd6d2c98ee6ce4281c2-Screenshot_2025-07-04_at_14.09.57.png" alt="Download button for the Android source code on the Build & Deploy tab in App Studio" />
 </Frame>
 
 ## Step 3: Extract the source archive
 
 Extract the downloaded `android_source.tar.gz` file and open your app using one of the following methods.
 
-1. Double click the `android_source.tar.gz` file within Windows Explorer or the MacOS Finder application.
-2. Open command prompt or terminal session and run the command `tar -xzvf android_source.tar.gz`
+1. Double-click the `android_source.tar.gz` file in Windows Explorer or the macOS Finder.
+2. Open a command prompt or terminal session and run the command `tar -xzvf android_source.tar.gz`
 
 <Warning>
   **Using tar command**
 
-The `tar` command in method #2 requires Windows 10 (or MacOS). It will extract the files to a subdirectory named “android”. If there is an existing directory with the same name it will be overwritten.
+The `tar` command in method #2 requires Windows 10 or macOS. It extracts the files to a subdirectory named “android”. If a directory with the same name exists, it's overwritten.
 
 You can change this behavior by defining a different output directory `tar -xzvf android_source.tar.gz -C /target/directory`
 
@@ -46,88 +46,88 @@ You can change this behavior by defining a different output directory `tar -xzvf
 
 Once extracted, open the extracted directory and you will see files similar to Figure 2:
 
-<Frame caption="Figure 2 - Source Archive Content">
-  <img src="/images/docs/f62c2d0a456777a470a486978c9cac5bf4f03079fd52043508d184eb5ddc283d-Screenshot_2025-07-04_at_14.14.16.png" />
+<Frame caption="Figure 2: Source archive content">
+  <img src="/images/docs/f62c2d0a456777a470a486978c9cac5bf4f03079fd52043508d184eb5ddc283d-Screenshot_2025-07-04_at_14.14.16.png" alt="Files in the extracted Android source directory" />
 </Frame>
 
 ## Step 4: Open the project in Android Studio
 
 Open Android Studio and click the "**Open**" button as seen in Figure 3 to open your app.
 
-<Frame caption="Figure 3 - Open a new Android Project">
-  <img src="/images/docs/6366ac4-3_Android_Source_OpenProject.png" />
+<Frame caption="Figure 3: Open a new Android project">
+  <img src="/images/docs/6366ac4-3_Android_Source_OpenProject.png" alt="Open button on the Android Studio welcome screen" />
 </Frame>
 
 Now, navigate and select the extracted directory and click “**Open**”.
 
-<Frame caption="Figure 4 - Open the Android source directory">
-  <img src="/images/docs/c780d3e-4_Android_Source_SelectProject.png" />
+<Frame caption="Figure 4: Open the Android source directory">
+  <img src="/images/docs/c780d3e-4_Android_Source_SelectProject.png" alt="Extracted Android source directory selected in the Android Studio file dialog" />
 </Frame>
 
 Next, Android Studio will ask you whether to open your project in Safe mode or to trust the project. To build/run/debug your app without [restrictions](https://www.jetbrains.com/help/idea/project-security.html#projects_security), select “**Trust Project**”.
 
-<Frame caption="Figure 5 - Trust and Open Project">
-  <img src="/images/docs/b86e141-5_Android_Source_TrustProject.png" />
+<Frame caption="Figure 5: Trust and open project">
+  <img src="/images/docs/b86e141-5_Android_Source_TrustProject.png" alt="Android Studio dialog with the Trust Project option" />
 </Frame>
 
 ## Step 5: Run or debug your app
 
 Wait for Android Studio to initialize the project, and once finished you will see `BUILD SUCCESSFUL` in the Build Output panel as seen in Figure 6:
 
-<Frame caption="Figure 6 - Android Studio Debug and Console">
-  <img src="/images/docs/b46b7c1-6_Android_Source_RunOrDebugProject.png" />
+<Frame caption="Figure 6: Android Studio debug and console">
+  <img src="/images/docs/b46b7c1-6_Android_Source_RunOrDebugProject.png" alt="Android Studio Build Output panel showing BUILD SUCCESSFUL, with device selector and run and debug icons" />
 </Frame>
 
-Now, as seen in Figure 6, select a simulator device or connect a physical Android device to your computer and select your device in the drop down menu.
+Now, as seen in Figure 6, select an emulator or connect a physical Android device to your computer, and select your device in the drop-down menu.
 
-To run your application, click the run icon and the Android Studio will build, install and run your application in the selected simulator/device.
+To run your application, click the run icon. Android Studio builds, installs, and runs your application on the selected emulator or device.
 
 To debug your application, click the debug icon.
 
 ## Step 6: Generate a signed APK or app bundle
 
-To create a signed bundle or apk for publishing to Play Store, you will need a keystore file, generally named `release.keystore`, that you will use to sign your bundle or apk.
+To create a signed bundle or apk for publishing to Google Play, you need a keystore file, generally named `release.keystore`, that you will use to sign your bundle or apk.
 
 If you would like to use the same keystore that we use for build through our website, please first purchase a license and then contact us.
 
 Once you have your keystore, in Android Studio, select **Build → Generate Signed Bundle / APK**.
 
-<Frame caption="Figure 7 - Build Menu">
-  <img src="/images/docs/353938d-7_Android_Source_SelectGenerateSignedApkOrAab.png" />
+<Frame caption="Figure 7: Build menu">
+  <img src="/images/docs/353938d-7_Android_Source_SelectGenerateSignedApkOrAab.png" alt="Generate Signed Bundle / APK option in the Android Studio Build menu" />
 </Frame>
 
 Select Android App Bundle or APK and click “**Next**”.
 
-<Frame caption="Figure 8 - Signed Bundle or APK dialogue">
-  <img src="/images/docs/690ccad-8_Android_Source_GenerateApkOrAabDialog.png" />
+<Frame caption="Figure 8: Signed bundle or APK dialog">
+  <img src="/images/docs/690ccad-8_Android_Source_GenerateApkOrAabDialog.png" alt="Generate Signed Bundle or APK dialog with Android App Bundle and APK options" />
 </Frame>
 
 As seen in Figure 9, you will be asked to provide the path of your keystore file and the credentials attached to it.
 
-If you are using Median provided keystore, use the below credentials:
+If you're using the Median-provided keystore, use these credentials:
 
 **Keystore password:** `password` **Key alias:** `release` **Key password:** `password`
 
-<Frame caption="Figure 9 - Keystore configuration">
-  <img src="/images/docs/40bd206-9_Android_Source_SelectKeystoreApk.png" />
+<Frame caption="Figure 9: Keystore configuration">
+  <img src="/images/docs/40bd206-9_Android_Source_SelectKeystoreApk.png" alt="Keystore path, password, and key alias fields in Android Studio" />
 </Frame>
 
 Once you have entered the keystore parameters, click “**Next**”.
 
 As shown in Figure 10, provide the destination path of your generated Bundle / APK, select `normalRelease` and click “**Create**”.
 
-<Frame caption="Figure 10 - Release configuration">
-  <img src="/images/docs/691d68b-10_Android_Source_GenerateReleaseApk.png" />
+<Frame caption="Figure 10: Release configuration">
+  <img src="/images/docs/691d68b-10_Android_Source_GenerateReleaseApk.png" alt="Destination folder and normalRelease build variant selected in Android Studio" />
 </Frame>
 
-Once Android Studio has finished building the requested file, you will see a success notification at the bottom right corner of Android Studio with a `locate` button, as seen in Figure 11, this link will directly open the directory containing your generated file as shown in Figure 12.
+Once Android Studio has finished building the requested file, you will see a success notification at the bottom right corner of Android Studio with a `locate` button, as seen in Figure 11. The `locate` link opens the directory containing your generated file, as shown in Figure 12.
 
 Alternatively, navigate to the `/normal/release` directory to see your generated file.
 
-<Frame caption="Figure 11 - APK generation progress">
-  <img src="/images/docs/0ad0ecf-11_Android_Source_LocateReleaseApk.png" />
+<Frame caption="Figure 11: APK generation progress">
+  <img src="/images/docs/0ad0ecf-11_Android_Source_LocateReleaseApk.png" alt="Android Studio notification with a locate link after the build finishes" />
 </Frame>
 
-<Frame caption="Figure 12 - Generated APK file">
-  <img src="/images/docs/f003bb7-12_Android_Source_ReleaseApk.png" />
+<Frame caption="Figure 12: Generated APK file">
+  <img src="/images/docs/f003bb7-12_Android_Source_ReleaseApk.png" alt="Generated release APK file in the output directory" />
 </Frame>

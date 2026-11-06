@@ -1,18 +1,18 @@
 ---
-title: "App Architecture"
-description: "How Median turns your website into a native app."
+title: "App architecture"
+description: "Learn how Median turns your website into a native app: the web, native, and platform layers, the JavaScript Bridge, and native UI."
 keywords: ["architecture", "webview", "native UI", "JavaScript Bridge", "how Median works"]
 searchable: true
 ---
 
-Apps built using Median.co are much more than your regular web view app. While the apps still rely on embedded browser engines to render your web content within a native applications, they also can be enhanced by advanced native functionality and features.
+Apps built using Median are much more than your regular web view app. While the apps still rely on embedded browser engines to render your web content within a native application, they also can be enhanced by advanced native functionality and features.
 
-The native shell is where Median shines wrapping your web content with native UI, device integrations, and plugin capabilities that a plain WebView wrapper can't provide.
+The native shell wraps your web content with native UI, device integrations, and plugin capabilities that a plain WebView wrapper can't provide.
 
 The diagram below shows the three layers of every Median app and how they relate to each other.
 
-<Frame caption="Median.co App Architecture">
-  ![](/images/docs/5a1b084da3d64920a46434654cc2eae35e14f0b2c75b0dd6536f4658551f3c4c-3.png)
+<Frame caption="Median app architecture">
+  ![Diagram of the three layers of a Median app: your web application, the native app, and the iOS and Android platform](/images/docs/5a1b084da3d64920a46434654cc2eae35e14f0b2c75b0dd6536f4658551f3c4c-3.png)
 </Frame>
 
 ## The three layers of your mobile app
@@ -25,7 +25,7 @@ Your existing website or web app, served from your own domain. Median makes no c
 
 ### The native app (Median's layer)
 
-This is what Median builds and maintains. It contains two core sub-components; a WebView rendering engine and the Median JavaScript Bridge plus any plugins you've enabled. See the sub-sections below for a detailed breakdown of each.
+This is what Median builds and maintains. It contains two core sub-components: a WebView rendering engine and the Median JavaScript Bridge plus any plugins you've enabled. See the sub-sections below for a detailed breakdown of each.
 
 ### iOS & Android platform
 
@@ -39,7 +39,6 @@ Within the native app, a WebView component hosts your web content. Median's WebV
   <Card
     title="Rendering engine"
     icon="microchip"
-    color="blue-500"
   >
 On iOS, Median uses Apple's WKWebView. On Android, it uses the Android System WebView (Chromium-based). Both are the same engines that power Mobile Safari and Chrome, so your web content renders identically to a mobile browser.
 
@@ -47,11 +46,10 @@ For apps with specific rendering requirements, Median can embed GeckoView (Firef
 
   </Card>
   <Card
-    title="Median JavaScript bridge"
+    title="Median JavaScript Bridge"
     icon="code"
-    color="blue-500"
   >
-A bidirectional communication layer between your JavaScript and the native app. Your web code calls `median.*` methods to invoke native features; the native app fires callbacks back to your page. This is what separates Median from a basic WebView wrapper — your web app gains access to device hardware, native SDKs, and OS APIs through a single JavaScript interface.
+A bidirectional communication layer between your JavaScript and the native app. Your web code calls `median.*` methods to invoke native features; the native app fires callbacks back to your page. This is what separates Median from a basic WebView wrapper: your web app gains access to device hardware, native SDKs, and OS APIs through a single JavaScript interface.
 
   </Card>
 </Columns>
@@ -62,15 +60,15 @@ WKWebView and Android System WebView do not support every browser API. Compatibi
 
 ## Native UI
 
-The native app wraps the WebView with platform-standard UI elements. These are built from iOS and Android native components (not HTML) and are fully configurable in the App Studio without touching your web code.
+The native app wraps the WebView with platform-standard UI elements. These are built from iOS and Android native components (not HTML) and are fully configurable in App Studio without touching your web code.
 
-- Status bar - controlled by native OS; color configurable via Median
-- Top navigation bar - title, back button, custom action buttons; optional side bar, fully native
-- WebView component - your web app renders here
-- Bottom tab bar - native tab navigation; dynamic, localizable
+- **Status bar**: controlled by native OS; color configurable via Median
+- **Top navigation bar**: title, back button, custom action buttons; optional side bar, fully native
+- **WebView component**: your web app renders here
+- **Bottom tab bar**: native tab navigation; dynamic, localizable
 
-<Frame caption="Native UI Example">
-  ![](/images/docs/d7269edac4c0aed4753751ea32eeabb8b7d5220c50998f338847f6091313b8c7-nativeui.png)
+<Frame caption="Native UI example">
+  ![App screen showing the status bar, top navigation bar, WebView content, and bottom tab bar](/images/docs/d7269edac4c0aed4753751ea32eeabb8b7d5220c50998f338847f6091313b8c7-nativeui.png)
 </Frame>
 
 Native navigation elements load instantly and respond instantly regardless of your web app's performance, because they're rendered by the OS. They also automatically adapt to platform conventions (e.g. iOS swipe-back gestures, Android back button behavior).
@@ -83,17 +81,15 @@ Beyond the base WebView, Median exposes three categories of native functionality
   <Card
     title="Native navigation"
     icon="mobile"
-    color="blue-500"
     href="/docs/native-navigation-overview"
   >
-    Top navigation bars, sidebar menus, and bottom tab bars — all built from
+    Top navigation bars, sidebar menus, and bottom tab bars, all built from
     native components. Dynamic menu items, custom icons, localization, and
     deep-link support included.
   </Card>
   <Card
     title="Push notifications"
     icon="bell"
-    color="blue-500"
     href="/docs/push-notifications-overview"
   >
     Deep integrations with OneSignal, Braze, Klaviyo, Iterable, Salesforce
@@ -103,7 +99,6 @@ Beyond the base WebView, Median exposes three categories of native functionality
   <Card
     title="Native plugins"
     icon="plug"
-    color="blue-500"
     href="/docs/native-plugins-overview"
   >
     Biometric auth (Face ID, Touch ID, Android Biometric), in-app purchases,
@@ -126,7 +121,7 @@ If your app requires isolated rendering, consistent behavior across all Android 
 
 ### Checking specific API support
 
-Not every browser API is available in WKWebView or Android System WebView. For detailed compatibility by OS version, consult [MDN Web Docs](https://developer.mozilla.org/en-US/). For open rendering bugs, see the [WebKit issue tracker](https://bugs.webkit.org/buglist.cgi?component=JavaScriptCore&product=WebKit&resolution=---)and [Chromium Blink tracker](https://www.chromium.org/developers/technical-discussion-groups/).
+Not every browser API is available in WKWebView or Android System WebView. For detailed compatibility by OS version, consult [MDN Web Docs](https://developer.mozilla.org/en-US/). For open rendering bugs, see the [WebKit issue tracker](https://bugs.webkit.org/buglist.cgi?component=JavaScriptCore&product=WebKit&resolution=---) and [Chromium Blink tracker](https://www.chromium.org/developers/technical-discussion-groups/).
 
 ## Performance considerations
 
@@ -136,7 +131,6 @@ App performance is directly tied to web performance. Since your web app runs in 
   <Card
     title="Web-side factors"
     icon="globe"
-    color="grey-500"
   >
 JavaScript bundle size, unoptimized images, render-blocking resources, and slow API responses all affect app performance directly. Profile and optimize your web app and the WebView will benefit immediately.
 
@@ -144,14 +138,12 @@ JavaScript bundle size, unoptimized images, render-blocking resources, and slow 
   <Card
     title="Native-side gains"
     icon="mobile"
-    color="grey-500"
   >
 Native navigation bars render at 60fps from the OS, not from your JavaScript thread. Switching to native tab menus and top bars removes the most common cause of perceived jank in web-based navigation.
   </Card>
     <Card
     title="SDK optimizations"
     icon="plug"
-    color="grey-500"
   >
 Native SDKs (analytics, media, auth) are purpose-built for mobile and often outperform their JavaScript equivalents in battery efficiency, background behavior, and startup time.
 
@@ -159,7 +151,6 @@ Native SDKs (analytics, media, auth) are purpose-built for mobile and often outp
     <Card
     title="Caching strategy"
     icon="database"
-    color="grey-500"
   >
 The WebView caches assets like a browser. Use Cache-Control headers and content-hashed filenames to control freshness. Properly cached apps load significantly faster on repeat opens.
 
@@ -176,7 +167,6 @@ For teams planning a complex integration or migrating an existing native app, Me
   <Card
     title="Developer onboarding"
     icon="user-check"
-    color="grey-500"
   >
 Live 1-on-1 sessions with a Solutions Architect, customized training for your app's feature set, and proof-of-concept walkthroughs covering deep linking, native navigation, and plugin integration.
 
@@ -184,7 +174,6 @@ Live 1-on-1 sessions with a Solutions Architect, customized training for your ap
   <Card
     title="Virtual Onsite"
     icon="clipboard-list-check"
-    color="grey-500"
   >
 A technical review of your app's configuration aligned to your product goals, resulting in an actionable report with specific recommendations and next steps.
   </Card>
@@ -197,22 +186,22 @@ To book ad hoc architecture services, open the Services tab when viewing your ap
 <AccordionGroup>
 <Accordion title="Will this work with my existing website?" id="will-this-work-with-my-existing-website">
 
-Yes. Median works with any website or web app — WordPress, Webflow, Salesforce Lightning, Bubble, React, Next.js, .NET, or anything else. If it renders correctly in a mobile browser, it renders correctly in your Median app. No changes to your web codebase are required to get started.
+Yes. Median works with any website or web app: WordPress, Webflow, Salesforce Lightning, Bubble, React, Next.js, .NET, or anything else. If it renders correctly in a mobile browser, it renders correctly in your Median app. No changes to your web codebase are required to get started.
 
 </Accordion>
 <Accordion title="What makes this different from a basic WebView wrapper?" id="what-makes-this-different-from-a-basic-webview-wrapper">
 
-A basic wrapper just displays your website in a fullscreen WebView. Median adds a production-grade native shell: the JavaScript Bridge gives your web code access to native device APIs; native navigation components provide platform-standard menus and tab bars; native plugins integrate iOS and Android SDKs for push notifications, biometric auth, in-app purchases, analytics, and more. The App Studio also handles rebuilding your app for every new iOS and Android release, so you don't maintain native code yourself.
+A basic wrapper just displays your website in a fullscreen WebView. Median adds a production-grade native shell: the JavaScript Bridge gives your web code access to native device APIs; native navigation components provide platform-standard menus and tab bars; native plugins integrate iOS and Android SDKs for push notifications, biometric auth, in-app purchases, analytics, and more. App Studio also handles rebuilding your app for every new iOS and Android release, so you don't maintain native code yourself.
 
 </Accordion>
-<Accordion title="How do I keep users logged in after closing the app?" id="how-do-i-keep-users-logged-in-after-closing-the-app">
+<Accordion title="How do I keep users signed in after closing the app?" id="how-do-i-keep-users-logged-in-after-closing-the-app">
 
-Login behavior mirrors your website. Use a persistent cookie (not a session cookie) to keep users authenticated across app restarts and device reboots. Session cookies expire when the app is closed. Any server-side cookie invalidation or timeout will still apply as normal.
+Sign-in behavior mirrors your website. Use a persistent cookie (not a session cookie) to keep users authenticated across app restarts and device reboots. Session cookies expire when the app is closed. Any server-side cookie invalidation or timeout will still apply as normal.
 
 </Accordion>
 <Accordion title="Can I modify the app source code?" id="can-i-modify-the-app-source-code">
 
-Yes. Full iOS (Xcode) and Android (Android Studio) source code is available for download, and your license clarifies modification. After making changes, Median's engineering team can create a custom plugin based on your modifications so that you continue receiving app updates through the App Studio. See [Build iOS from source](/docs/build-ios-from-source) and [Build Android from source](/docs/build-android-from-source).
+Yes. Full iOS (Xcode) and Android (Android Studio) source code is available for download, and your license clarifies modification. After making changes, Median's engineering team can create a custom plugin based on your modifications so that you continue receiving app updates through App Studio. See [Build iOS from source](/docs/build-ios-from-source) and [Build Android from source](/docs/build-android-from-source).
 
 </Accordion>
 <Accordion title="Can I use GeckoView instead of Android System WebView?" id="can-i-use-geckoview-instead-of-android-system-webview">
@@ -222,7 +211,7 @@ Yes. Median's engineering team can embed GeckoView (Mozilla's rendering engine) 
 </Accordion>
 <Accordion title="How do I fix blank pages or SSL errors?" id="how-do-i-fix-blank-pages-or-ssl-errors">
 
-Blank pages or SSL errors are almost always caused by an SSL misconfiguration on your server or a third-party resource your page loads. Check your certificate chain at [https://www.ssllabs.com/ssltest/](https://www.ssllabs.com/ssltest/). Common issues include expired certificates, incomplete chains, and SHA-1 signed intermediates. Also inspect your browser's JavaScript console for mixed-content warnings from other domains.
+Blank pages or SSL errors are almost always caused by an SSL misconfiguration on your server or a third-party resource your page loads. Check your certificate chain with the [SSL Labs SSL Server Test](https://www.ssllabs.com/ssltest/). Common issues include expired certificates, incomplete chains, and SHA-1 signed intermediates. Also inspect your browser's JavaScript console for mixed-content warnings from other domains.
 
 </Accordion>
 <Accordion title="How do I optimize caching?" id="how-do-i-optimize-caching">
@@ -232,10 +221,10 @@ The WebView caches assets like a browser. You can use Cache-Control response hea
 </Accordion>
 <Accordion title="How do I disable unencrypted HTTP traffic?" id="how-do-i-disable-unencrypted-http-traffic">
 
-Set "allowInsecure": false in the security.network object of your appConfig.json. This restricts all network traffic to HTTPS only. If the security object is missing in your appConfig.json, you can create it as shown in the example below:
+Set `"allowInsecure": false` in the `security.network` object of your appConfig.json. This restricts all network traffic to HTTPS only. If the security object is missing in your appConfig.json, you can create it as shown in the example below:
 
 <CodeGroup>
-  ```JSON JSON
+  ```json JSON
   "security": {
       "network": {
           "allowInsecure": false

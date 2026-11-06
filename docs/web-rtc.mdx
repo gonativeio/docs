@@ -1,6 +1,6 @@
 ---
-title: "WebRTC Audio & Video"
-description: "Enable WebRTC audio and video calls."
+title: "WebRTC audio & video"
+description: "Use WebRTC audio and video calls in your app. Median requests camera and microphone permissions automatically when your web app starts media capture."
 keywords: ["WebRTC", "video calls", "audio calls", "camera", "microphone permissions"]
 searchable: true
 ---
@@ -13,18 +13,20 @@ Similar to how permissions work in desktop and mobile browsers, your Median app 
 
 ### Supported WebRTC permissions
 
-- **Microphone Access**: required for voice calls or audio streams
-- **Camera Access**: required for video calls or media recording
+- **Microphone access**: required for voice calls or audio streams
+- **Camera access**: required for video calls or media recording
 
 When a WebRTC session is triggered in your app, users will be prompted by the system to grant access. This prompt behavior is native and consistent with platform expectations on both Android and iOS.
 
 <Info>
+  **No native code needed**
+
   Median automatically handles WebRTC permission prompts using its secure
   WebView implementation. You don't need to write native code to enable camera
   or microphone access.
 </Info>
 
-To customize the text shown in the iOS permission prompts, see [Permission Prompt Localization](/docs/permission-prompt-localization).
+To customize the text shown in the iOS permission prompts, see [permission prompt localization](/docs/permission-prompt-localization).
 
 ## Developer tips for WebRTC in Median apps
 
@@ -36,8 +38,8 @@ To customize the text shown in the iOS permission prompts, see [Permission Promp
 
 You can test WebRTC features in your Median app using official tools and demos:
 
-- [WebRTC Official Documentation <Icon icon="arrow-up-right-from-square" size={12} />](https://webrtc.org/)
-- [WebRTC Sample Applications <Icon icon="arrow-up-right-from-square" size={12} />](https://webrtc.github.io/samples/)
+- [WebRTC official documentation <Icon icon="arrow-up-right-from-square" size={12} />](https://webrtc.org/)
+- [WebRTC sample applications <Icon icon="arrow-up-right-from-square" size={12} />](https://webrtc.github.io/samples/)
 
 ### Testing audio & microphone in the embedded simulator
 

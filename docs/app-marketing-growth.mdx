@@ -1,6 +1,6 @@
 ---
-title: "App Marketing & Growth"
-description: "Launch, market, and grow your published app."
+title: "App marketing and growth"
+description: "Plan your app launch, optimize your store listing, track key metrics, and drive user adoption and reviews after you publish."
 keywords: ["app marketing", "growth", "app store optimization", "ASO", "user acquisition", "retention"]
 searchable: true
 ---
@@ -8,11 +8,9 @@ import { MedianLogo } from "/snippets/median-logo.jsx";
 
 Publishing your app is only the beginning. Sustainable growth requires a deliberate strategy across launch, discoverability, user acquisition, and retention.
 
-## Step-by-step app launch, marketing and measurement
+## Step-by-step app launch, marketing, and measurement
 
 ### Step 1: Pre-launch
-
-Publishing your app is only the beginning. Sustainable growth requires a deliberate strategy across launch, discoverability, user acquisition, and retention.
 
 #### App Store optimization (ASO)
 
@@ -57,15 +55,15 @@ Measuring the right metrics tells you whether your app is growing healthily and 
 
 Track metrics that reflect real usage and value:
 
-| Metric                           | What It Measures                                 | Healthy Benchmark                         |
+| Metric                           | What it measures                                 | Healthy benchmark                         |
 | -------------------------------- | ------------------------------------------------ | ----------------------------------------- |
-| Day 1 / Day 7 / Day 30 Retention | % of users still active after 1, 7, 30 days      | D1: 25–40%, D7: 10–20%, D30: 5–10%        |
-| Conversion Rate (Free → Paid)    | % of users who purchase a subscription           | 2–5% for freemium apps                    |
-| Average Revenue Per User (ARPU)  | Total revenue ÷ total active users               | Varies by category; track trend over time |
-| Monthly Recurring Revenue (MRR)  | Predictable monthly subscription revenue         | Track month-over-month growth rate        |
-| Churn Rate                       | % of subscribers who cancel each month           | \< 5% monthly is healthy                  |
-| Install-to-Registration Rate     | % of installs that complete sign-up              | > 60% is a strong target                  |
-| App Store Rating                 | Visible on your product page; impacts conversion | Maintain ≥ 4.5 stars                      |
+| Day 1 / Day 7 / Day 30 retention | % of users still active after 1, 7, and 30 days  | D1: 25–40%, D7: 10–20%, D30: 5–10%        |
+| Conversion rate (free → paid)    | % of users who purchase a subscription           | 2–5% for freemium apps                    |
+| Average revenue per user (ARPU)  | Total revenue ÷ total active users               | Varies by category; track trend over time |
+| Monthly recurring revenue (MRR)  | Predictable monthly subscription revenue         | Track month-over-month growth rate        |
+| Churn rate                       | % of subscribers who cancel each month           | \< 5% monthly is healthy                  |
+| Install-to-registration rate     | % of installs that complete sign-up              | > 60% is a strong target                  |
+| App store rating                 | Visible on your product page; impacts conversion | Maintain ≥ 4.5 stars                      |
 
 Use [Google Firebase Analytics](/docs/firebase-analytics), [AppsFlyer](/docs/appsflyer), or [Adjust](/docs/adjust) to track in-app events. RevenueCat's dashboard handles subscription revenue metrics automatically.
 
@@ -75,7 +73,7 @@ Getting installs is step one; getting users to experience the core value of your
 
 **Optimize onboarding**: Users who experience your app's core value within the first session retain at dramatically higher rates. Map out the shortest path from install to the moment that makes your app worth keeping, and remove every friction point along the way.
 
-**Use push notifications strategically**: With Median's OneSignal integration, you can send targeted push notifications to re-engage users who haven't returned. Keep notifications relevant and valuable — aggressive notification strategies increase uninstalls. Effective notification types include: progress updates, new content available, reminders the user opted into, and limited-time offers.
+**Use push notifications strategically**: With Median's OneSignal integration, you can send targeted push notifications to re-engage users who haven't returned. Keep notifications relevant and valuable. Aggressive notification strategies increase uninstalls. Effective notification types include: progress updates, new content available, reminders the user opted into, and limited-time offers.
 
 **In-app messages**: Use OneSignal in-app messages or Intercom to guide new users through key features at the right moment, without requiring them to read a tutorial.
 
@@ -85,11 +83,11 @@ Getting installs is step one; getting users to experience the core value of your
 
 App reviews are one of the highest-leverage activities you can focus on. A higher rating increases your app store conversion rate (more installs from the same traffic) and improves algorithmic ranking.
 
-Use the Native App Review prompt: [Median's App Review plugin](/docs/app-review) lets you trigger the native iOS and Android review dialog from JavaScript
+Use the native app review prompt: [Median's App Review plugin](/docs/app-review) lets you trigger the native iOS and Android review dialog from JavaScript.
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   // Trigger the native app review prompt at the right moment
   median.appReview.requestReview();
   ```

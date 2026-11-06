@@ -1,6 +1,6 @@
 ---
-title: "Add Haptic Feedback To Your Replit App"
-description: "Add haptic feedback to your Replit app with AI prompts."
+title: "Add haptic feedback to your Replit app"
+description: "Add haptic feedback to your Replit app with AI prompts and the Median JavaScript Bridge, then test it on a real device."
 keywords: ["Replit", "haptic feedback", "haptics", "vibration", "AI prompts"]
 searchable: true
 ---
@@ -20,7 +20,7 @@ Haptic feedback, those subtle vibrations you feel when tapping buttons on your p
 - [ ] Install the Median JavaScript Bridge in your Replit app
 - [ ] Have Replit Agent ready to go
 
-Haven't installed the JavaScript Bridge yet? Follow our [Getting Started with Replit](/docs/getting-started-with-replit) guide first. The bridge connects your web app to native phone features like haptics.
+Haven't installed the JavaScript Bridge yet? Follow our [Getting started with Replit](/docs/getting-started-with-replit) guide first. The bridge connects your web app to native phone features like haptics.
 
 ## What is haptic feedback?
 
@@ -39,18 +39,16 @@ It's the gentle vibration you feel when you interact with your phone. You typica
 
 ## How haptics work with Median
 
-When you convert your Replit app to mobile using Median.co, the JavaScript Bridge gives you access to the phone's vibration motor. Here's the flow:
+When you convert your Replit app to mobile using Median, the JavaScript Bridge gives you access to the phone's vibration motor. Here's the flow:
 
 - Your Replit app is the web application you built.
-- Median.co converts your app into a full-feature native app.
+- Median converts your app into a full-feature native app.
 - The JavaScript Bridge lets your app trigger vibrations.
-- You tell Replit Agent where you want haptics — it handles the code.
+- You tell Replit Agent where you want haptics, and it handles the code.
 
 ## Step 1: Choose your haptic type
 
-Median.co offers several types. Each one feels different and communicates something specific.
-
-Impact haptics (for interactions)Notification haptics (for outcomes)Special haptics
+Median offers several types. Each one feels different and communicates something specific.
 
 ### Impact haptics (for interactions)
 
@@ -84,10 +82,10 @@ For specific interactions:
 
 ### Quick decision guide
 
-- Button press? - Use impactLight
-- Success? - Use notificationSuccess
-- Error? - Use notificationError
-- Deleting something? - Use impactMedium or impactHeavy
+- Button press? Use `impactLight`.
+- Success? Use `notificationSuccess`.
+- Error? Use `notificationError`.
+- Deleting something? Use `impactMedium` or `impactHeavy`.
 
 ## Step 2: Add haptics with a prompt
 
@@ -97,7 +95,7 @@ Here are ready-to-use prompts for common scenarios.
 
 Let's say you want haptic feedback when users create a task. Prompt Replit Agent with this:
 
-```
+```text
 When creating a new task, add haptic feedback using the Median JavaScript Bridge. Only trigger this for mobile app users — reference the detecting app usage page in the Median documentation. Use the notificationSuccess haptic style to give positive feedback when the task is successfully created.
 ```
 
@@ -121,7 +119,7 @@ Here are more prompts for common use cases. Just customize them to your project 
 
 **Add haptics to a button**
 
-```
+```text
 Add haptic feedback to the [BUTTON_NAME] button. When users tap it, trigger an impactLight haptic using Median's JavaScript Bridge. This should only work for mobile app users. Use Median.isNativeApp() to detect if they're in the native app.
 ```
 
@@ -129,7 +127,7 @@ Customize: replace `[BUTTON_NAME]` with your button (like "Submit" or "Save"). C
 
 **Add haptics to form submission**
 
-```
+```text
 Add haptic feedback to the [FORM_NAME] form submission:
 1. If the form submits successfully, trigger a notificationSuccess haptic
 2. If there are validation errors, trigger a notificationError haptic
@@ -141,7 +139,7 @@ Customize: replace `[FORM_NAME]` with your form name (like "login form" or "chec
 
 **Add haptics to swipe actions**
 
-```
+```text
 Add haptic feedback when users swipe to delete an item in the [LIST_NAME]. Trigger an impactMedium haptic when the swipe action starts. Use Median's JavaScript Bridge and only trigger for mobile app users.
 ```
 
@@ -149,7 +147,7 @@ Customize: replace `[LIST_NAME]` with your list (like "task list" or "inbox"). C
 
 **Add haptics to toggle switches**
 
-```
+```text
 Add haptic feedback to all toggle switches. When users toggle a switch on or off, trigger an impactLight haptic using Median's JavaScript Bridge. Only trigger haptics for mobile app users.
 ```
 
@@ -161,13 +159,13 @@ Add haptic feedback to all toggle switches. When users toggle a switch on or off
 
 1. Prompt Replit Agent to add haptics (using the examples above).
 2. Deploy your changes in Replit, so your live URL is updated.
-3. Customize your mobile app in the Median App Studio.
+3. Customize your mobile app in App Studio.
 4. Install the app on your phone (iOS or Android).
-5. Test the features you enhanced — make sure your phone's vibration is on, feel the difference between haptic types, verify haptics only trigger in the mobile app.
+5. Test the features you enhanced: make sure your phone's vibration is on, feel the difference between haptic types, verify haptics only trigger in the mobile app.
 
 **Not working? Check these:**
 
-- Are haptics enabled in the Median App Studio's plugin settings?
+- Are haptics enabled in the App Studio plugin settings?
 - Is your phone's vibration turned on?
 - Was the JavaScript Bridge installed correctly?
 - Any errors in the console?

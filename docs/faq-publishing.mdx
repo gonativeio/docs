@@ -1,19 +1,19 @@
 ---
 title: "Publishing FAQ"
-description: "Answers to common app store publishing questions."
+description: "Find answers to common questions about publishing your Median app to the Apple App Store and Google Play, from review times to payments."
 keywords: ["publishing FAQ", "App Store", "Google Play", "app review", "publishing"]
 searchable: true
 ---
 
 ## Will I be able to publish my app to the Apple App Store and Google Play?
 
-Yes! You can either publish your app yourself or you can leverage our experienced team to complete the publishing end-to-end and make the process as seamless as possible.
+Yes! You can publish your app yourself, or have our team complete the publishing end to end with Median's Publishing Service.
 
-Both the Apple App Store and Google Play Store require specific criteria for all apps that are submitted. Our [Publishing Guide](/docs/publishing-guide) includes all of the information you will need to self-publish your app.
+Both the Apple App Store and Google Play Store require specific criteria for all apps that are submitted. Our [publishing guide](/docs/publishing-guide) includes all of the information you will need to self-publish your app.
 
-If you choose to have the Median team manage the publishing process on your behalf we provide a 100% guarantee of app store acceptance. For future publishing of app updates after we've published an initial release we charge a 50% reduced fee for our services.
+If you choose to have the Median team manage the publishing process on your behalf, we provide a 100% guarantee of app store acceptance. For future publishing of app updates after we've published an initial release we charge a 50% reduced fee for our services.
 
-Whether you choose to self-publish or have our team publish on your behalf you will need an Apple Developer Account and a Google Play Developer Account. You can apply for both accounts using the links below.
+Whether you self-publish or have our team publish on your behalf, you need an Apple Developer Account and a Google Play Developer Account. You can apply for both accounts using the links below.
 
 - Apple Developer Account: [https://developer.apple.com/programs/enroll](https://developer.apple.com/programs/enroll)
 - Google Play Developer Account: [https://play.google.com/apps/publish/signup](https://play.google.com/apps/publish/signup)
@@ -22,7 +22,7 @@ Whether you choose to self-publish or have our team publish on your behalf you w
 
 No. For standard self-service publishing with Median, you can follow these steps:
 
-1. Open your app in the Median App Studio and go to **Build & Deploy**.
+1. Open your app in Median App Studio and go to **Build & Deploy**.
 
 2. Click **Configure** in the iOS IPA section.
 
@@ -31,11 +31,11 @@ No. For standard self-service publishing with Median, you can follow these steps
 4. In **Bundle ID & App Store Connect App**:
    - Register the **Bundle ID** for your app.
    - Create the **App Store Connect app record** in App Store Connect using that Bundle ID.
-   - Verify the **App Store Connect app record** in Median App Studio.
+   - Verify the **App Store Connect app record** in App Studio.
 
 5. In **Signing & Upload Settings**, select **Distribution Profile** and set **Upload to App Store Connect** to **Automatic**.
 
-6. Build your iOS IPA in the Median App Studio (if Automatic Upload is not selected you can manually click "Upload" after the build is complete).
+6. Build your iOS IPA in App Studio. If automatic upload isn't selected, click **Upload** after the build is complete.
 
 7. Wait for Apple to process the uploaded build in App Store Connect.
 
@@ -62,15 +62,15 @@ You still use App Store Connect to:
 
 ## How long will it take to publish my app?
 
-Apple's review and approval process is typically completed within 3-5 days while the Google Play Store approval process is usually complete within a day.
+Apple's review and approval process is typically completed within 3–5 days, while the Google Play approval process is usually complete within a day.
 
-However, it is important to be very attentive to detail when self-publishing as both App Stores have specific criteria for approval. Check out our [Publishing Guide](/docs/publishing-guide) for complete details.
+However, it is important to be very attentive to detail when self-publishing as both App Stores have specific criteria for approval. See our [publishing guide](/docs/publishing-guide) for complete details.
 
-Median also offers an App Store Publishing Service that can publish your app to both the Apple App Store and the Google Play Store. Find out more information [App Store Publishing Service](/docs/publishing-service).
+Median also offers a Publishing Service that can publish your app to both the App Store and Google Play. Learn more about the [Publishing Service](/docs/publishing-service).
 
 ## How do I publish an internal employee-only app?
 
-The Apple App Store and Google Play Store are intended for public apps that can be downloaded and used by anyone. Apps that provide public content and also include a logged-in area for employees are typically acceptable. As are apps that are intended to be used by a wide variety of external partners and contractors. However, strictly internal corporate apps such as scheduling, timesheet, or employee portal/intranet type apps may need to be published to a private app store or distributed via an MDM solution. [Contact our team](https://median.co/contact?topic=sales-inquiry) to discuss your specific requirements.
+The Apple App Store and Google Play Store are intended for public apps that can be downloaded and used by anyone. Apps that provide public content and also include a signed-in area for employees are typically acceptable. As are apps that are intended to be used by a wide variety of external partners and contractors. However, strictly internal corporate apps such as scheduling, timesheet, or employee portal/intranet type apps may need to be published to a private app store or distributed via an MDM solution. [Contact our team](https://median.co/contact?topic=sales-inquiry) to discuss your specific requirements.
 
 ## How do I improve search results for my app?
 
@@ -84,9 +84,9 @@ Apple and Google provide suggestions for optimizing your App Store and Play Stor
 
 Any payment or checkout functionality that you build into your website will continue to work within your Median apps.
 
-For Android apps, you may continue to use your web-based payments flow in your apps without any issues. You may optionally add our In-App Purchases Native Plugin to streamline the payment process and provide support for premium features and subscriptions. Review the [Google Play Billing Overview](https://play.google.com/console/about/in-appproductssetup/), [Google Play Billing Technical Details](https://developer.android.com/google/play/billing) and review our [Google IAP Native Plugin Documentation](/docs/google-iap).
+For Android apps, you may continue to use your web-based payments flow in your apps without any issues. You may optionally add our In-App Purchases plugin to streamline the payment process and provide support for premium features and subscriptions. Review the [Google Play Billing Overview](https://play.google.com/console/about/in-appproductssetup/), [Google Play Billing Technical Details](https://developer.android.com/google/play/billing) and review our [Google In-App Purchases plugin documentation](/docs/google-iap).
 
-Apple makes a distinction between "physical" and "digital" goods sold within your app, and requires use of their in-app purchase ("IAP") APIs for selling "digital" goods. Learn more about [Apple's Payment Guidelines](https://developer.apple.com/app-store/review/guidelines/#payments). The advantage of using Apple IAP is ease of use for end users who can purchase via their Apple iTunes account with a quick tap. However, Apple will charge a processing fee, typically 15% for the first $1 million in revenue and 30% thereafter. Review the [Apple Small Business Program](https://developer.apple.com/app-store/small-business-program/) and consult with Apple for the current fees in your region.
+Apple makes a distinction between "physical" and "digital" goods sold within your app, and requires use of their in-app purchase ("IAP") APIs for selling "digital" goods. Learn more about [Apple's Payment Guidelines](https://developer.apple.com/app-store/review/guidelines/#payments). The advantage of using Apple IAP is ease of use for end users who can purchase via their Apple Account with a quick tap. However, Apple charges a processing fee. Review the [Apple Small Business Program](https://developer.apple.com/app-store/small-business-program/) and consult Apple for the current fees in your region.
 
 A "physical" good is something delivered or consumed outside of your app. For example, the Amazon.com app sells physical goods and thus does not need to use Apple's in-app purchase APIs. These purchases can go through standard web checkout flow like Stripe, PayPal, etc.
 
@@ -94,9 +94,9 @@ A "digital" good is something like a new weapon in a game, or a workout video de
 
 There are two main strategies to manage this requirement:
 
-1. Remove the ability for people to make digital purchases within your app. Users can use your app in the same way as your website but simply cannot make digital purchases within it. Many widely-used apps such as Audible employ this approach. To configure your website to remove these payment links please see our guide on [Detecting App Usage](/docs/detecting-app-usage) and review [Apple's Payment Guidelines](https://developer.apple.com/app-store/review/guidelines/#other-purchase-methods).
+1. Remove the ability for people to make digital purchases within your app. Users can use your app in the same way as your website but simply cannot make digital purchases within it. Many widely-used apps such as Audible employ this approach. To configure your website to remove these payment links see our guide on [detecting app usage](/docs/detecting-app-usage) and review [Apple's Payment Guidelines](https://developer.apple.com/app-store/review/guidelines/#other-purchase-methods).
 
-2. Purchase our In-App Purchases native plugin and integrate within your website following our documentation. Learn more about [Apple In-App Purchases](https://developer.apple.com/in-app-purchase/) and review our [Apple IAP Native Plugin Documentation](/docs/apple-iap).
+2. Purchase our In-App Purchases plugin and integrate within your website following our documentation. Learn more about [Apple In-App Purchases](https://developer.apple.com/in-app-purchase/) and review our [Apple In-App Purchases plugin documentation](/docs/apple-iap).
 
 ## Why isn't my app in the App Store?
 
@@ -130,14 +130,14 @@ Median also offers a Publishing Service, where our team publishes your Android a
 
 ## Can I reset my app's ratings and reviews?
 
-Whether you migrate an existing app to a new platform or release a new feature that may impact the user experience for your users you may want to reset the ratings and reviews of your existing app. This is possible in the Apple App Store but not in the Google Play Store. Please find details below.
+Whether you migrate an existing app to a new platform or release a new feature that may impact the user experience for your users you may want to reset the ratings and reviews of your existing app. This is possible in the App Store but not in Google Play.
 
 ### Reset ratings on the Apple App Store
 
 Apple allows you to reset the ratings of your existing app when a new version is published.
 
-<Frame caption="Apple App Store - Rating Reset">
-  <img src="/images/docs/726b0c2cacdabfd4b1cb64814c9f3aa4bd2ee2b9bd2a10a8eb28a385a718aa4e-image.png" />
+<Frame caption="App Store rating reset">
+  <img alt="Option in App Store Connect to reset the app's summary rating when releasing a new version" src="/images/docs/726b0c2cacdabfd4b1cb64814c9f3aa4bd2ee2b9bd2a10a8eb28a385a718aa4e-image.png" />
 </Frame>
 
 ### Reset ratings on Google Play

@@ -1,6 +1,6 @@
 ---
-title: "Native Page Transitions"
-description: "Fade between pages during navigation."
+title: "Native page transitions"
+description: "Fade between pages during full page loads, and troubleshoot slow transitions caused by blocking JavaScript on your website."
 keywords: ["page transitions", "fade", "navigation", "native transitions", "page loads"]
 searchable: true
 ---
@@ -10,7 +10,7 @@ Native page transitions make navigating your app feel more like a native app. In
 <Check>
   **Developer Demo**
 
-Display our demo page in your app to test during development [https://median.dev/native-page-transitions](https://median.dev/native-page-transitions)
+Display our demo page in your app to test during development [https://median.dev/native-page-transitions <Icon icon="arrow-up-right-from-square" size={12} />](https://median.dev/native-page-transitions)
 
 </Check>
 
@@ -28,7 +28,7 @@ If your app feels slower than your mobile website, your pages may be taking a lo
 
 ### Check whether transitions are the cause
 
-1. Turn off native page transitions in the App Studio.
+1. Turn off native page transitions in App Studio.
 2. Rebuild your app and compare the speed.
 
 If pages appear faster with transitions turned off, your website is likely running long, blocking JavaScript while the page loads.
@@ -40,7 +40,7 @@ Scripts that run while the browser parses the HTML, such as `<script>` tags with
 - Add `defer` or `async` to `<script>` tags that load non-critical code.
 - Move non-critical code into a `DOMContentLoaded` handler, or jQuery's `$(document).ready()`, so it runs after the page is displayed.
 
-```html
+```html HTML
 <!-- Blocks parsing until the script downloads and runs -->
 <script src="/analytics.js"></script>
 

@@ -1,17 +1,17 @@
 ---
-title: "QR / Barcode Scanner"
-description: "Scan QR codes and barcodes with the camera."
+title: "QR / barcode scanner"
+description: "Scan QR codes and barcodes with the device camera from your website, using the JavaScript Bridge and open-source scanning libraries."
 keywords: ["QR code scanner", "barcode scanner", "scanning", "camera"]
 searchable: true
 ---
 import { MedianLogo } from "/snippets/median-logo.jsx";
 
-Easily integrate QR code and barcode scanning into your mobile app using the device camera. Ideal for use cases such as:
+Add QR code and barcode scanning to your mobile app using the device camera. Ideal for use cases such as:
 - In-store retail shopping
 - Warehouse and inventory management
 - Data center asset tracking
 
-The Median QR/Barcode Scanner Native Plugin is built on top of customized, open-source libraries and offers full functionality without licensing fees or usage limits.
+The Median QR/Barcode Scanner plugin is built on top of customized, open-source libraries and offers full functionality without licensing fees or usage limits.
 
 <Check>
 **Developer Demo**
@@ -22,19 +22,19 @@ Display our demo page in your app to test during development [https://median.dev
 
 ## Underlying open-source technologies
 
-**Android**: Zebra Crossing library at [https://github.com/zxing/zxing](https://github.com/zxing/zxing)
+**Android**: [ZXing (Zebra Crossing) library](https://github.com/zxing/zxing)
 
-**iOS**: hyperoslo library at [https://github.com/hyperoslo/BarcodeScanner](https://github.com/hyperoslo/BarcodeScanner)
+**iOS**: [hyperoslo BarcodeScanner library](https://github.com/hyperoslo/BarcodeScanner)
 
 ## UI example
 
 |                  iOS                   |                  Android                   |
 | :------------------------------------: | :----------------------------------------: |
-| ![](/images/docs/5649c1d-Apple-QR.png) | ![](/images/docs/7bb3e13-Android-QR_1.png) |
+| ![QR code scanner on iOS](/images/docs/5649c1d-Apple-QR.png) | ![QR code scanner on Android](/images/docs/7bb3e13-Android-QR_1.png) |
 
 ## Implementation guide
 
-_Once the QR/Barcode Scanner Native Plugin has been added to your app, you may use the following Median JavaScript Bridge commands to access its functionality._
+_Once the QR/Barcode Scanner plugin has been added to your app, you may use the following Median JavaScript Bridge commands to access its functionality._
 
 ### Start a QR/barcode scan
 
@@ -43,7 +43,7 @@ The method supports both callback and Promise-based approaches:
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   // Callback example
   median.barcode.scan({
     formats: ['QR_CODE', 'EAN_13'],
@@ -52,21 +52,21 @@ The method supports both callback and Promise-based approaches:
 
   function process_barcode(data) {
     if (data.success) {
-      alert('Got barcode: ' + data.code);
+      console.log('Got barcode: ' + data.code);
     }
   }
 
   // Promise example
   median.barcode.scan({ formats: ['QR_CODE'] }).then(function (data) {
     if (data.success) {
-      alert('Got barcode: ' + data.code);
+      console.log('Got barcode: ' + data.code);
     }
   });
 
   // Scan all supported formats (default)
   median.barcode.scan().then(function (data) {
     if (data.success) {
-      alert('Got barcode: ' + data.code);
+      console.log('Got barcode: ' + data.code);
     }
   });
 ```
@@ -75,7 +75,7 @@ The method supports both callback and Promise-based approaches:
 The native scanner UI will launch within your app. Upon scan completion, focus will return to the webview where an object in the format below will be returned.
 
 <CodeGroup>
-```JSON JSON
+```json JSON
 {
   success: true,      // boolean — true if a code was scanned
   type: "STRING",     // Symbology (e.g. 'qr', 'code128')
@@ -98,13 +98,13 @@ You can customize the message shown to users during scanning by setting a prompt
 
 ![QR / Barcode Scanner - Custom Prompt Message](/images/docs/73d82f57ef12af3723c6a0c713248a84b733aa8ff6ee93bd417cf4516633284a-Screenshot_2025-07-04_at_14.29.42.png)
 
-### Set custom prompt message on runtime
+### Set custom prompt message at runtime
 
 You can also dynamically set the prompt message in-app using the `setPrompt()` method:
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript 
+  ```javascript JavaScript 
   median.barcode.setPrompt('Align the QR code or barcode within the frame to scan automatically'); 
   ```
 </CodeGroup>

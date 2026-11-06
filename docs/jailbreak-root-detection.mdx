@@ -1,36 +1,36 @@
 ---
-title: "Jailbreak/Root Detection"
-description: "Detect jailbroken iOS and rooted Android devices."
+title: "Jailbreak/root detection"
+description: "Detect jailbroken iOS and rooted Android devices through URL query parameters, and redirect compromised devices with the JavaScript Bridge."
 keywords: ["jailbreak detection", "root detection", "security", "rooted devices", "enterprise"]
 searchable: true
 ---
 
-Security is paramount for enterprise and financial applications. To protect your apps integrity, Median.co provides built-in Jailbreak (iOS) and Root (Android) detection. When a compromised device is detected, Median appends specific query parameters to your URL, allowing you to intercept the session and redirect the user to a secure landing page.
+Security is paramount for enterprise and financial applications. To protect your app's integrity, Median provides built-in jailbreak (iOS) and root (Android) detection. When a compromised device is detected, Median appends specific query parameters to your URL, allowing you to intercept the session and redirect the user to a secure landing page.
 
 ## Why use jailbreak/root detection?
 
-The Jailbreak/Root Detection plugin helps identifying compromised devices using a variety of detection methods, such as the presence of suspicious binaries, unauthorized apps, and supported URL protocols.
+The Jailbreak/Root Detection plugin helps identify compromised devices using a variety of detection methods, such as the presence of suspicious binaries, unauthorized apps, and supported URL protocols.
 
 ## Use cases
 
 Jailbreak/Root Detection is essential for apps that need to:
 
-| Use Case                    | Example                                                                                     |
+| Use case                    | Example                                                                                     |
 | --------------------------- | ------------------------------------------------------------------------------------------- |
-| **Enterprise Applications** | Corporate apps that handle sensitive business data and need to ensure device integrity      |
-| **Financial Applications**  | Banking and payment apps that require secure environments to protect financial transactions |
-| **Security-Critical Apps**  | Apps that disable specific functionalities when compromised devices are detected            |
-| **Compliance Requirements** | Applications that must meet regulatory standards requiring device security validation       |
+| **Enterprise applications** | Corporate apps that handle sensitive business data and need to ensure device integrity      |
+| **Financial applications**  | Banking and payment apps that require secure environments to protect financial transactions |
+| **Security-critical apps**  | Apps that disable specific functionalities when compromised devices are detected            |
+| **Compliance requirements** | Applications that must meet regulatory standards requiring device security validation       |
 
 ## Before you start
 
-- [ ] A Median.co app with JavaScript Bridge enabled
+- [ ] A Median app with the JavaScript Bridge enabled
 - [ ] A secure landing page for compromised device redirects
 
 <Warning>
-  **Limitations of Device Detection**
+  **Limitations of device detection**
 
-While this plugin provides robust detection capabilities, it's important to note that jailbreaking and rooting a device inherently grants elevated access, which could be used to bypass detection methods. Thus, no detection system can guarantee 100% effectiveness.
+Jailbreaking and rooting a device inherently grants elevated access, which could be used to bypass detection methods. Thus, no detection system can guarantee 100% effectiveness.
 
 This plugin is designed to offer a reasonable level of detection, which can be used to alert users or disable specific app functionalities if a compromised device is detected.
 
@@ -43,9 +43,9 @@ When the native app detects that a device has been tampered with, it appends `ro
 - `rootDetected=true`
 - `isRooted=true`
 
-For example, instead of loading `https://example.com/`, the app will load `https://example.com/?rootDetected=true`. Be sure to check for both query parameter values list above to identify compromised devices.
+For example, instead of loading `https://example.com/`, the app will load `https://example.com/?rootDetected=true`. Be sure to check for both query parameter values listed above to identify compromised devices.
 
-### Summary table: Detection parameters
+### Summary table: detection parameters
 
 | Parameter      | Platform      | Description                                         |
 | -------------- | ------------- | --------------------------------------------------- |
@@ -54,20 +54,20 @@ For example, instead of loading `https://example.com/`, the app will load `https
 
 ### Libraries used for detection
 
-**iOS Jailbreak Detection**: For iOS, we utilize the [DTTJailbreakDetection](https://github.com/thii/DTTJailbreakDetection) library, alongside other detection techniques.
+**iOS jailbreak detection**: For iOS, we utilize the [DTTJailbreakDetection](https://github.com/thii/DTTJailbreakDetection) library, alongside other detection techniques.
 
-**Android Root Detection**: For Android, we rely on the [Rootbeer](https://github.com/scottyab/rootbeer) library, as well as additional methods.
+**Android root detection**: For Android, we rely on the [Rootbeer](https://github.com/scottyab/rootbeer) library, as well as additional methods.
 
 ## Integration guide
 
 ### Website configuration (JavaScript Bridge)
 
-**Note**: The code snipped below is just one of the many ways you can use to identify and process the parameters attached to the URL.
+**Note**: The code snippet below is just one of the many ways you can use to identify and process the parameters attached to the URL.
 
 Place the following script within the `<head>` of your index page or your global JavaScript file.
 
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```html HTML
   <script>
     /**
      * Evaluates device security status and redirects compromised devices.
@@ -89,7 +89,7 @@ Place the following script within the `<head>` of your index page or your global
 
     /**
      * Median Library Ready Callback
-     * Triggered automatically once the Median JS Bridge is fully initialized.
+     * Triggered automatically once the Median JavaScript Bridge is fully initialized.
      */
     function median_library_ready() {
       handleCompromisedDevice();
@@ -97,7 +97,7 @@ Place the following script within the `<head>` of your index page or your global
 
     /**
      * Initialization Fallback
-     * Ensures the check runs even if the script loads after the Median Bridge.
+     * Ensures the check runs even if the script loads after the JavaScript Bridge.
      */
     if (window.median) {
       handleCompromisedDevice();
@@ -109,18 +109,18 @@ Place the following script within the `<head>` of your index page or your global
 
 ## Technical best practices
 
-#### Use `location.replace()` over `location.href`
+### Use `location.replace()` over `location.href`
 
 Using `window.location.replace()` is a critical security step. It replaces the current document in the browser history, preventing users from clicking a "Back" button or using a swipe gesture to return to the restricted area of your app.
 
-#### Standardize parameter handling
+### Standardize parameter handling
 
 Median supports multiple flags depending on the platform version. Checking for both `rootDetected` and `isRooted` ensures maximum compatibility across older and newer app builds.
 
-#### Early execution
+### Early execution
 
-By wrapping this logic in` median_library_ready()`, you ensure the check occurs at the earliest possible moment in the app lifecycle, minimizing the "flash" of content before the redirect occurs.
+By wrapping this logic in `median_library_ready()`, you ensure the check occurs at the earliest possible moment in the app lifecycle, minimizing the "flash" of content before the redirect occurs.
 
-#### Lightweight redirect
+### Lightweight redirect
 
-Ensure your /compromised-device.html page is lightweight and does not require further authentication, as a rooted device may fail secondary security checks.
+Ensure your `/compromised-device.html` page is lightweight and does not require further authentication, as a rooted device may fail secondary security checks.

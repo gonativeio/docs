@@ -1,6 +1,6 @@
 ---
 title: "Lightning Web Components and the Median JavaScript Bridge"
-description: "Use the JavaScript Bridge inside Lightning Web Components."
+description: "Access the JavaScript Bridge from Lightning Web Components under Lightning Web Security, set a mobile-aware user agent, and choose a runtime."
 keywords: ["Salesforce", "Lightning Web Components", "LWC", "Lightning Web Security", "JavaScript Bridge"]
 searchable: true
 ---
@@ -10,10 +10,10 @@ Lightning Web Components (LWC) run inside a sandboxed JavaScript environment tha
 
 This is part two of a four-part series:
 
-1. [Getting Started with Salesforce Experience Cloud](/docs/getting-started-with-salesforce-experience-cloud)
+1. [Getting started with Salesforce Experience Cloud](/docs/getting-started-with-salesforce-experience-cloud)
 2. **Lightning Web Components and the JavaScript Bridge** (this page)
-3. [Deep Linking for Salesforce Experience Cloud](/docs/salesforce-deep-linking)
-4. [Salesforce LWC Component Deployment and Reference](/docs/salesforce-lwc-components)
+3. [Deep linking for Salesforce Experience Cloud](/docs/salesforce-deep-linking)
+4. [Salesforce LWC component deployment and reference](/docs/salesforce-lwc-components)
 
 ## Step 4: Resolve Lightning Web Security sandbox constraints
 
@@ -27,7 +27,7 @@ Always access the bridge through the top-level window reference rather than the 
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   get _median() {
       return window.median || window.Median || null;
   }
@@ -46,7 +46,7 @@ Always guard bridge calls with a presence check before invoking any native featu
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   get isInMedianApp() {
       return !!this._median;
   }
@@ -62,7 +62,7 @@ Use this getter to disable bridge-dependent UI controls and display an informati
 If the bridge is not reachable after applying the pattern above, verify the following:
 
 1. LWS is enabled in **Setup > Session Settings**.
-2. The CSP is set to Relaxed in **Experience Builder > Settings > Security and Privacy** (see [Getting Started with Salesforce Experience Cloud](/docs/getting-started-with-salesforce-experience-cloud)).
+2. The CSP is set to Relaxed in **Experience Builder > Settings > Security and Privacy** (see [Getting started with Salesforce Experience Cloud](/docs/getting-started-with-salesforce-experience-cloud)).
 3. You are accessing the bridge via `window.median` using the `get _median()` accessor pattern, not a local `window` reference.
 4. You are testing on a physical device inside the Median app, not in Experience Builder preview, which does not inject the bridge.
 
@@ -75,8 +75,8 @@ Salesforce detects the browser type from the User Agent string to determine whic
 1. In your app settings, navigate to **Web Overrides > User Agent**.
 2. Append a custom identifier such as `median` to the existing User Agent string. Do not replace the full User Agent string, as Salesforce uses parts of it to identify the browser engine.
 
-<Frame caption="App Studio - User Agent Configuration">
-  <img src="/images/docs/c42f46feeee78879673f6e45d1c5454a8a83d601e2e818d17178dae08b925ef4-Screenshot_2026-07-21_at_07.02.49.png" />
+<Frame caption="App Studio: user agent configuration">
+  <img src="/images/docs/c42f46feeee78879673f6e45d1c5454a8a83d601e2e818d17178dae08b925ef4-Screenshot_2026-07-21_at_07.02.49.png" alt="User Agent settings under Web Overrides in App Studio with a custom median identifier appended" />
 </Frame>
 
 **To apply mobile-specific overrides in Salesforce based on the User Agent:**
@@ -85,7 +85,7 @@ Once the custom string is in place, you can target it with Custom CSS in Median 
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   // Detect the Median app from the User Agent in JavaScript
   const isMedianApp = navigator.userAgent.includes('median');
   ```
@@ -93,9 +93,9 @@ Once the custom string is in place, you can target it with Custom CSS in Median 
 
 This technique is useful for hiding elements that are not relevant on mobile, adjusting layout, or showing mobile-specific calls to action.
 
-### Troubleshooting: The site loads in desktop layout inside the app
+### Troubleshooting: the site loads in desktop layout inside the app
 
-If your site renders the desktop layout inside the Median app, the User Agent string is not being recognised as a mobile browser. Append a mobile identifier to the User Agent in Median App Studio as described above, and verify that your Experience Cloud site has responsive templates or mobile-specific page variants configured.
+If your site renders the desktop layout inside the Median app, the User Agent string is not being recognized as a mobile browser. Append a mobile identifier to the User Agent in Median App Studio as described above, and verify that your Experience Cloud site has responsive templates or mobile-specific page variants configured.
 
 ## Step 6: Choose your Experience Cloud runtime
 
@@ -103,4 +103,4 @@ When building or migrating your Experience Cloud site, prefer **LWR (Lightning W
 
 LWR is built on web standards and delivers significantly faster page load times inside a mobile WebView. Faster initial load is particularly important for native app experiences because users have a higher expectation of performance compared to a mobile browser tab.
 
-If your site currently runs on Aura and a full migration is not feasible, Median works with both runtimes. However, initial load performance and JavaScript execution behaviour differ between them, so test thoroughly on physical devices rather than relying solely on desktop browser previews.
+If your site currently runs on Aura and a full migration is not feasible, Median works with both runtimes. However, initial load performance and JavaScript execution behavior differ between them, so test thoroughly on physical devices rather than relying solely on desktop browser previews.

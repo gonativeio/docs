@@ -5,22 +5,22 @@ keywords: ["custom CSS", "styling", "hide elements", "web overrides", "webview"]
 searchable: true
 ---
 
-Custom CSS lets you modify the appearance of your website when it renders inside your Median app's webview. Common uses include hiding elements that don't make sense in a native app context like footer menus, chat widgets, and cookie banners or adapting styling for smaller mobile screens.
+Custom CSS lets you modify the appearance of your website when it renders inside your Median app's webview. Common uses include hiding elements that don't make sense in a native app context, like footer menus, chat widgets, and cookie banners, or adapting styling for smaller mobile screens.
 
 CSS rules you configure can be applied globally across both iOS and Android, or distinct for each platform.
 
 ## Scope and limitations
 
-Custom CSS only affects content rendered inside the webview. It cannot restyle Median's native UI elements, such as the Top Navigation Bar, Bottom Tab Bar, or Status Bar as those are native elements configured separately in App Studio, not part of your website's markup.
+Custom CSS only affects content rendered inside the webview. It cannot restyle Median's native UI elements, such as the top navigation bar, bottom tab bar, or status bar, as those are native elements configured separately in App Studio, not part of your website's markup.
 
 ## Custom CSS in Median apps
 
 ### Apply global CSS rules
 
-In App Studio, open the Web Overrides > Custom CSS field and paste your rules. For example, the snippet below restyles the navigation and footer on every page:
+In App Studio, open the **Web Overrides → Custom CSS** field and paste your rules. For example, the snippet below restyles the navigation and footer on every page:
 
 <CodeGroup>
-  ```CSS CSS
+  ```css CSS
   .nav
   { 
     margin-top: 5px !important;
@@ -38,7 +38,7 @@ margin-bottom: 0px !important;
 <Warning>
 **Use `!important` to prevent flicker**
 
-We recommend using the `!important` flag as shown in the above examples to prevent flicker. `!important` ensures your app's custom CSS rules always takes priority and override any other CSS rules on your website or external files which may load and be processed subsequently.
+We recommend using the `!important` flag as shown in the above examples to prevent flicker. `!important` ensures your app's custom CSS rules always take priority and override any other CSS rules on your website or external files which may load and be processed subsequently.
 </Warning>
 
 ### Apply conditional CSS using JavaScript
@@ -46,7 +46,7 @@ We recommend using the `!important` flag as shown in the above examples to preve
 As an alternative to hardcoded CSS overrides, you can apply CSS dynamically using JavaScript. This is especially useful if your design changes frequently or you need conditional logic. Here’s how to do it:
 
 <CodeGroup>
-```JavaScript JavaScript
+```html HTML
 <script>
   if (navigator.userAgent.indexOf('median') > -1) {
 
@@ -76,7 +76,7 @@ As an alternative to hardcoded CSS overrides, you can apply CSS dynamically usin
 
 For full control and scalable styling changes without republishing your app, serve alternate CSS files from your backend based on whether the request originates from your mobile app. This approach works well if you already have server-side rendering or a backend that can branch on request headers.
 
-Learn how to detect Median app requests using a [Custom User Agent](/docs/custom-user-agent).
+Learn how to detect Median app requests using a [custom user agent](/docs/custom-user-agent).
 
 ## Maintainability and risks
 
@@ -86,15 +86,15 @@ To change or remove a Custom CSS rule after your app is live, you need to update
 
 This has a few practical consequences worth planning around:
 
-- **Selector drift breaks silently** - If your website's markup changes later (e.g.: a class gets renamed, a widget gets swapped out) your Custom CSS rules can stop matching anything, or worse, start matching the wrong elements.
-- **Rollout isn't instant** - Even after you republish, users only get the updated CSS once they update the app, and Apple/Google's review process adds delay before that's even possible.
-- **It scales poorly for frequently changing UI** - If your website's layout changes often, every one of those changes potentially requires a new app submission just to keep the CSS override correct.
+- **Selector drift breaks silently**: If your website's markup changes later (for example, a class gets renamed or a widget gets swapped out), your Custom CSS rules can stop matching anything, or worse, start matching the wrong elements.
+- **Rollout isn't instant**: Even after you republish, users only get the updated CSS once they update the app, and Apple/Google's review process adds delay before that's even possible.
+- **It scales poorly for frequently changing UI**: If your website's layout changes often, every one of those changes potentially requires a new app submission just to keep the CSS override correct.
 
 ## Troubleshooting
 
 ### My CSS isn't applying at all
 
-Confirm the rules were saved under **Web Overrides > Custom CSS** in App Studio. During development, use App Studio's preview/simulator to check changes but remember that once your app is live, any edit to Custom CSS requires a full republish before real users see it (see [Maintainability and Risks](#maintainability-and-risks)). Also check the browser console for CSS syntax errors, which will silently fail to apply.
+Confirm the rules were saved under **Web Overrides → Custom CSS** in App Studio. During development, use App Studio's preview/simulator to check changes, but remember that once your app is live, any edit to Custom CSS requires a full republish before real users see it (see [Maintainability and risks](#maintainability-and-risks)). Also check the browser console for CSS syntax errors, which will silently fail to apply.
 
 ### My CSS applies, then gets overridden a moment later (flicker)
 
@@ -102,5 +102,5 @@ This is almost always a missing `!important` flag. Since your website's own styl
 
 ## Additional resources
 
-- [W3Schools CSS Reference](https://www.w3schools.com/cssref/default.asp)
-- [W3Schools CSS Selectors Reference](https://www.w3schools.com/cssref/css_selectors.asp)
+- [W3Schools CSS reference](https://www.w3schools.com/cssref/default.asp)
+- [W3Schools CSS selectors reference](https://www.w3schools.com/cssref/css_selectors.asp)

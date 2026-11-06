@@ -1,31 +1,31 @@
 ---
 title: "Accessing callbacks in an iframe"
-description: "Access JavaScript Bridge callbacks inside an iframe."
+description: "Pass JavaScript Bridge callback data, such as device info, from your parent page into an iframe with postMessage."
 keywords: ["iframe", "callbacks", "JavaScript Bridge", "postMessage"]
 searchable: true
 ---
 
 import { AppetizeEmbed } from "/snippets/appetize-embed.jsx";
 
-This documentation provides instructions and sample code for accessing median callback data within an iframe. For clarity, all styling classes and attributes have been omitted.
+This documentation provides instructions and sample code for accessing Median callback data within an iframe. For clarity, all styling classes and attributes have been omitted.
 
 <Warning>
   **Disclaimer**
 
-This documentation provides a proof of concept for accessing median callback data within an iframe. We advise reviewing the implementation with your security team, as your parent page, along with the callback function that sends data to the iframe, may be publicly accessible. It is strongly recommended to follow best practices to prevent any potential data leaks.
+This documentation provides a proof of concept for accessing Median callback data within an iframe. We advise reviewing the implementation with your security team, as your parent page, along with the callback function that sends data to the iframe, may be publicly accessible. It is strongly recommended to follow best practices to prevent any potential data leaks.
 
 </Warning>
 
 ## Parent page setup
 
-In order to support callbacks you will need to define a `deviceInfoCallback` function which is invoked by the iframe and sends the data to the iframe.
+To support callbacks, you need to define a `deviceInfoCallback` function which is invoked by the iframe and sends the data to the iframe.
 
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```html HTML
   <body>
       <div>
-          // Define the inline frame to host an iframe
-          // IFRAME_URL is a placeholder for the URL of your iframe
+          <!-- Define the inline frame to host an iframe -->
+          <!-- IFRAME_URL is a placeholder for the URL of your iframe -->
           <iframe src="IFRAME_URL" id="iframe"></iframe>
       </div>
       <script>
@@ -48,7 +48,7 @@ In order to support callbacks you will need to define a `deviceInfoCallback` fun
 The iframe must implement a command using a custom URL protocol and be configured to listen for messages from the parent window.
 
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```html HTML
   <body>
       <div>
           <h1>Iframe Page</h1>

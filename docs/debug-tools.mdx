@@ -1,11 +1,11 @@
 ---
-title: "Debug Tools"
+title: "Debug tools"
 description: "Debug webview logs with debug tools and Appetize."
 keywords: ["debugging", "debug logs", "Appetize", "webview", "console logs"]
 searchable: true
 ---
 
-Accessing weblogs in a WebView-based mobile app presents unique challenges. Since WebViews function as embedded browsers within an app, they lack built-in developer tools, making it difficult to inspect network activity. Additionally, mobile environments impose restrictions on logging and debugging, further complicating the process.
+Accessing web logs in a WebView-based mobile app presents unique challenges. Since WebViews function as embedded browsers within an app, they lack built-in developer tools, making it difficult to inspect network activity. Additionally, mobile environments impose restrictions on logging and debugging, further complicating the process.
 
 To overcome these limitations, developers can inspect network logs using Appetize.io simulators by enabling debug logs and accessing the console output in the Appetize environment.
 
@@ -24,8 +24,8 @@ To debug JavaScript in WebView content using our browser-based simulators, follo
 2. Open the simulator panel.
 3. Toggle **Debug Mode** and click **Appetize** to enable logging.
 
-<Frame caption="App Studio - Development Tools">
-  <img src="/images/docs/4f96cfbf3cf5756f08db3a3392dddfba3d6d8cc9bc402bb590ec4e83f25e2d42-Screenshot_2025-07-03_at_18.02.33.png" />
+<Frame caption="App Studio: Development Tools">
+  <img src="/images/docs/4f96cfbf3cf5756f08db3a3392dddfba3d6d8cc9bc402bb590ec4e83f25e2d42-Screenshot_2025-07-03_at_18.02.33.png" alt="Debug Mode toggle and Appetize button in the App Studio simulator panel" />
 </Frame>
 
 ## Connecting local builds to a browser
@@ -37,11 +37,11 @@ When debugging JavaScript functions, objects, or web console messages, you may w
 The **Debug Logs** tab in Appetize displays both native app logs and web console logs. This tool provides insights into network requests, JavaScript errors, and other debugging information. However, note the following:
 
 - This feature requires an unsigned debug build and must be disabled before generating a signed APK/AAB for the Google Play Store.
-- Console output includes `console.log()`, `console.warn()`, `console.error()`, and `console.debug()`, each prefixed accordingly (e.g., `[console.log]` or `[console.debug]`).
+- Console output includes `console.log()`, `console.warn()`, `console.error()`, and `console.debug()`, each prefixed accordingly (for example, `[console.log]` or `[console.debug]`).
 - Native app logs will also be displayed, so filtering by prefix is recommended.
 
 <Frame caption="Viewing JavaScript console via Appetize">
-  <img src="/images/docs/2a2f0a6096c21bde4203934502f29453e72def21dcd7e074b6924a311590db5a-Screenshot_2025-03-31_at_09.11.47.png" />
+  <img src="/images/docs/2a2f0a6096c21bde4203934502f29453e72def21dcd7e074b6924a311590db5a-Screenshot_2025-03-31_at_09.11.47.png" alt="Debug Logs tab in Appetize showing prefixed web console output" />
 </Frame>
 
 ## Frequently asked questions

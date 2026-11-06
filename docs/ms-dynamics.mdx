@@ -1,32 +1,32 @@
 ---
 title: "Microsoft Dynamics"
-description: "Add Microsoft Dynamics 365 push notifications."
+description: "Send Microsoft Dynamics 365 Customer Insights push notifications to your app, and manage permissions and device registration with the JavaScript Bridge."
 keywords: ["Microsoft Dynamics 365", "Customer Insights", "push notifications", "enterprise"]
 searchable: true
 ---
 import { MedianLogo } from "/snippets/median-logo.jsx";
 
 <Info>
-  **Enterprise Plugin**
+  **Enterprise plugin**
 
-  The Microsoft Dynamics integration is available on Median's [**Business** and **Enterprise** plans.](https://median.co/pricing#business) These plans include expert app development, advanced native plugin access, dedicated technical support, and guaranteed App Store publishing.
+  The Microsoft Dynamics integration is available on Median's [Business and Enterprise plans](https://median.co/pricing#business). These plans include expert app development, advanced native plugin access, dedicated technical support, and guaranteed App Store publishing.
 </Info>
 
-The Microsoft Dynamics plugin connects your Median app to Dynamics 365 Customer Insights – Journeys (formerly Dynamics 365 Marketing), giving you bridge-level control over push permission flows, device registration, and APNS/FCM token management. Use this plugin when your organization runs customer journey orchestration in Dynamics and needs to reach users with native push notifications.
+The Microsoft Dynamics plugin connects your Median app to Dynamics 365 Customer Insights – Journeys (formerly Dynamics 365 Marketing), giving you JavaScript Bridge control over push permission flows, device registration, and APNS/FCM token management. Use this plugin when your organization runs customer journey orchestration in Dynamics and needs to reach users with native push notifications.
 
 The plugin exposes a lightweight [Median JavaScript Bridge](/docs/javascript-bridge) surface that covers the full push lifecycle: prompting for permission, querying permission state, registering a device-user binding with Dynamics, and retrieving the registration metadata your Dynamics environment expects for targeting and troubleshooting.
 
 ## Why use Microsoft Dynamics
 
-* **Unified push in your Dynamics ecosystem**: Extend real-time customer journeys into mobile without a separate push provider — push notifications are orchestrated directly from Dynamics 365 Customer Insights – Journeys alongside your email, SMS, and in-app channels.
+* **Unified push in your Dynamics ecosystem**: Extend real-time customer journeys into mobile without a separate push provider. Push notifications are orchestrated directly from Dynamics 365 Customer Insights – Journeys alongside your email, SMS, and in-app channels.
 * **Bridge-first permission control**: Request and check push notification permission entirely from JavaScript, giving you full control over the timing and context of the permission prompt without writing native code.
-* **Precise user-device binding**: Register a specific `userId` against the device token so Dynamics campaigns target the right profile — essential for enterprises with strict user-identity requirements.
+* **Precise user-device binding**: Register a specific `userId` against the device token so Dynamics campaigns target the right profile. This is essential for enterprises with strict user-identity requirements.
 * **Token and metadata transparency**: Retrieve APNS and FCM tokens plus rich device metadata (`installationId`, `os`, `model`, `timeZone`) for registration audits, support workflows, and cross-channel attribution.
 
 
 ## Prerequisites
 
-* A Median.co app with the [JavaScript Bridge](/docs/javascript-bridge) enabled
+* A Median app with the [JavaScript Bridge](/docs/javascript-bridge) enabled
 * A licensed Dynamics 365 Customer Insights – Journeys environment with mobile push configured
 * Push channel setup completed in Dynamics 365 Marketing (iOS APNS certificate or token + Android FCM server key)
 * Alphanumeric user identifiers (UUIDs) available at the point of registration in your web application
@@ -43,12 +43,12 @@ The following terms are specific to the Microsoft Dynamics push integration and 
 
 **FCM token**: The Firebase Cloud Messaging registration token issued to an Android device. Returned by `registrationInfo` and required by Dynamics to deliver push to that device.
 
-**Installation ID**: A Dynamics-side identifier that uniquely tracks a device-user pair within your mobile app channel. Returned in `registrationInfo` — useful for support lookups and registration audits.
+**Installation ID**: A Dynamics-side identifier that uniquely tracks a device-user pair within your mobile app channel. Returned in `registrationInfo` and useful for support lookups and registration audits.
 
 **Important considerations**
 
 * On **Android 13 (API 33) and above**, the system displays a push permission dialog when you call `promptNotificationPermission`. On Android 12 and below, permission is granted automatically without a user dialog.
-* On **iOS**, the system prompt is shown once per app install. If a user has previously denied permission, you cannot re-prompt — direct users to **Settings** instead.
+* On **iOS**, the system prompt is shown once per app install. If a user has previously denied permission, you can't re-prompt. Direct users to **Settings** instead.
 * The `userId` passed to `registerDevice` should be a stable, alphanumeric UUID that matches the contact identifier in your Dynamics environment. Mismatched identifiers cause targeting failures in journeys.
 
 ## Integration guide
@@ -64,19 +64,19 @@ The following terms are specific to the Microsoft Dynamics push integration and 
 | Setting                    | Description                                                               | Default  | Recommended                                                                  |
 | -------------------------- | ------------------------------------------------------------------------- | -------- | ---------------------------------------------------------------------------- |
 | **Push provider**          | Selects Microsoft Dynamics as the push integration for this build         | None     | Set to Microsoft Dynamics                                                    |
-| **Automatic registration** | Controls whether push permission is requested automatically at app launch | Disabled | Disabled — use `promptNotificationPermission` for a controlled prompt moment |
+| **Automatic registration** | Controls whether push permission is requested automatically at app launch | Disabled | Disabled. Use `promptNotificationPermission` to choose when to prompt.        |
 
 <Info>
   **Note**
 
-  Unlike consumer-focused push integrations, the Microsoft Dynamics plugin does not require an SDK key to be entered in the Median dashboard. Authentication between the app and Dynamics is handled via the device registration flow using `registerDevice` and the tokens returned by `registrationInfo`, which your backend or Dynamics environment processes directly.
+  Unlike consumer-focused push integrations, the Microsoft Dynamics plugin does not require an SDK key to be entered in App Studio. Authentication between the app and Dynamics is handled via the device registration flow using `registerDevice` and the tokens returned by `registrationInfo`, which your backend or Dynamics environment processes directly.
 </Info>
 
 ## JavaScript Bridge functions
 
-[Median’s Microsoft Dynamics reference](/docs/ms-dynamics) defines the method names and return payloads below. It explicitly says **optional callback or returned promise** only for `promptNotificationPermission` and `areNotificationsEnabled`. For `registerDevice`, the page shows a single options object (no separate callback argument). **Callback shape** on this bridge is normally **`callback` inside that same object** , not a second function parameter.
+Only `promptNotificationPermission` and `areNotificationsEnabled` are documented with an **optional callback or returned promise**. On the JavaScript Bridge, a callback is normally passed as a **`callback` property inside the options object**, not as a second function parameter.
 
-If `await` on `registerDevice` or `registrationInfo` does not behave as expected in your build, call them without `await` and use a `callback` property or `.then()` only after confirming what your bridge returns.
+If `await` on `registerDevice` or `registrationInfo` does not behave as expected in your build, call them without `await` and use a `callback` property or `.then()` only after confirming what the JavaScript Bridge returns.
 
 ### Prompt for push notification permission
 
@@ -86,7 +86,7 @@ Provide a callback or use the returned promise.
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   // Using promises (recommended)
   const result = await median.msdynamics.promptNotificationPermission();
   console.log("Permission granted:", result.granted);
@@ -110,7 +110,7 @@ Provide a callback or use the returned promise.
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```typescript TypeScript
   interface PermissionResult {
     granted: boolean; // true if push permission is granted, false otherwise
   }
@@ -123,7 +123,7 @@ Checks the current push notification permission status without prompting the use
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   // Using promises (recommended)
   const result = await median.msdynamics.areNotificationsEnabled();
   if (result.granted) {
@@ -149,9 +149,9 @@ Checks the current push notification permission status without prompting the use
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```typescript TypeScript
   interface PermissionResult {
-    granted: boolean; // true if notifications arse currently enabled, false otherwise
+    granted: boolean; // true if notifications are currently enabled, false otherwise
   }
   ```
 </CodeGroup>
@@ -162,7 +162,7 @@ Registers a new user-device pair with Microsoft Dynamics or updates an existing 
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   // Using promises (recommended)
   const result = await median.msdynamics.registerDevice({
     userId: "abc123-user-uuid",
@@ -191,7 +191,7 @@ Registers a new user-device pair with Microsoft Dynamics or updates an existing 
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```typescript TypeScript
   interface RegisterDeviceResult {
     success: boolean; // true if registration succeeded, false otherwise
   }
@@ -204,7 +204,7 @@ Returns the full registration and device metadata for the current app installati
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   // Using promises (recommended)
   const info = await median.msdynamics.registrationInfo();
   console.log("Platform:", info.platform);
@@ -221,7 +221,7 @@ None.
 **Return value:**
 
 <CodeGroup>
-  ```JSON JSON
+  ```typescript TypeScript
   interface RegistrationInfo {
     apnsToken?: string; // iOS only — Apple Push Notification Service device token
     fcmToken?: string; // Android only — Firebase Cloud Messaging registration token
@@ -246,7 +246,7 @@ None.
 
 Use this checklist to ensure Microsoft Dynamics is working correctly in your app:
 
-**Basic Functionality**
+**Basic functionality**
 
 * [ ] `promptNotificationPermission` displays the system dialog on Android 13+ and iOS
 * [ ] `promptNotificationPermission` returns `{ granted: true }` after user accepts
@@ -255,21 +255,21 @@ Use this checklist to ensure Microsoft Dynamics is working correctly in your app
 * [ ] `registerDevice` returns `{ success: true }` with a valid `userId`
 * [ ] `registrationInfo` returns a populated object with all expected fields
 
-**Platform Testing**
+**Platform testing**
 
 * [ ] APNS token is present in `registrationInfo` on an iOS device
 * [ ] FCM token is present in `registrationInfo` on an Android device
 * [ ] `isFirstLaunch` is `true` on first app launch and `false` on subsequent launches
 * [ ] `promptNotificationPermission` on Android 12 and below returns `granted: true` without a dialog
 
-**Dynamics End-to-End**
+**Dynamics end-to-end**
 
 * [ ] Device registration is reflected in the Dynamics 365 Customer Insights – Journeys mobile app channel
 * [ ] A test push notification sent from Dynamics is received on an iOS test device
 * [ ] A test push notification sent from Dynamics is received on an Android test device
 * [ ] Tapping a notification opens the correct URL or in-app destination
 
-**Edge Cases**
+**Edge cases**
 
 * [ ] Calling `registerDevice` before push permission is granted does not cause a crash
 * [ ] Calling `registrationInfo` before `registerDevice` returns a populated object (no null reference)
@@ -278,32 +278,32 @@ Use this checklist to ensure Microsoft Dynamics is working correctly in your app
 
 ## Troubleshooting
 
-### Microsoft Dynamics bridge functions are undefined or not working
+### Microsoft Dynamics JavaScript Bridge functions are undefined or not working
 
-Ensure the JavaScript Bridge is enabled in Median App Studio and that you are calling bridge functions after the page has fully loaded. Also verify that the Microsoft Dynamics plugin is enabled under **Native Plugins** in the Median dashboard and that a new build has been generated after enabling it.
+Ensure the JavaScript Bridge is enabled in App Studio and that you are calling JavaScript Bridge functions after the page has fully loaded. Also verify that the Microsoft Dynamics plugin is enabled under **Native Plugins** in App Studio and that a new build has been generated after enabling it.
 
 ### Push permission dialog is not appearing on Android
 
-On **Android 12 and below**, permission is granted automatically — no system dialog is shown. The dialog only appears on **Android 13 (API 33) and above**. If you expect a dialog on Android 12, this is expected behavior. Verify the OS version of the test device and adjust your UX flow to handle the silent-grant path gracefully.
+On **Android 12 and below**, permission is granted automatically and no system dialog is shown. The dialog only appears on **Android 13 (API 33) and above**. If you expect a dialog on Android 12, this is expected behavior. Verify the OS version of the test device and adjust your UX flow to handle the silent-grant path gracefully.
 
-### \`registerDevice\` returns \`\{ success: false }\` or fails silently
+### `registerDevice` returns `{ success: false }` or fails silently
 
 Check the following: push notification permission has been granted before calling `registerDevice` (use `areNotificationsEnabled` first); the `userId` passed is a stable alphanumeric UUID that matches your Dynamics contact identifiers; and your Dynamics 365 mobile app channel has APNS (iOS) and/or FCM (Android) credentials correctly configured. Mismatched or missing credentials on the Dynamics side will cause registration to fail.
 
 ### Device registration is not appearing in Dynamics 365
 
-Confirm that your Dynamics 365 Customer Insights – Journeys environment has the mobile app channel configured with the correct APNS and FCM credentials. Verify that the `userId` passed to `registerDevice` matches an existing contact record identifier in Dynamics. If registration completes with `{ success: true }` but the device does not appear in Dynamics, the issue is likely on the Dynamics configuration side — check the mobile app channel settings and consult Dynamics push setup documentation.
+Confirm that your Dynamics 365 Customer Insights – Journeys environment has the mobile app channel configured with the correct APNS and FCM credentials. Verify that the `userId` passed to `registerDevice` matches an existing contact record identifier in Dynamics. If registration completes with `{ success: true }` but the device does not appear in Dynamics, the issue is likely on the Dynamics configuration side. Check the mobile app channel settings and consult Dynamics push setup documentation.
 
 ### Push notifications are not being delivered to the device
 
-Verify that `registrationInfo` returns populated `apnsToken` (iOS) or `fcmToken` (Android) fields — a missing token means the device is not registered for push. Confirm push permission is granted with `areNotificationsEnabled`. On the Dynamics side, ensure the journey or message is targeting the correct segment and that the mobile app channel is active. For Android, check that `google-services.json` is uploaded in **App Studio → Build & Deploy**.
+Verify that `registrationInfo` returns populated `apnsToken` (iOS) or `fcmToken` (Android) fields. A missing token means the device is not registered for push. Confirm push permission is granted with `areNotificationsEnabled`. On the Dynamics side, ensure the journey or message is targeting the correct segment and that the mobile app channel is active. For Android, check that `google-services.json` is uploaded in **App Studio → Build & Deploy**.
 
-### \`registrationInfo\` returns empty or null token fields
+### `registrationInfo` returns empty or null token fields
 
-Token fields (`apnsToken`, `fcmToken`) are only populated after `registerDevice` has been called successfully and push permission has been granted. Call `promptNotificationPermission` and confirm permission is granted, then call `registerDevice` with a valid `userId` before querying `registrationInfo`. If tokens remain empty after a successful registration, rebuild the app in Median App Studio to ensure the latest plugin configuration is included.
+Token fields (`apnsToken`, `fcmToken`) are only populated after `registerDevice` has been called successfully and push permission has been granted. Call `promptNotificationPermission` and confirm permission is granted, then call `registerDevice` with a valid `userId` before querying `registrationInfo`. If tokens remain empty after a successful registration, rebuild the app in App Studio to ensure the latest plugin configuration is included.
 
 <Info>
   **Still having trouble?**
 
-  For issues related to Microsoft Dynamics' own configuration, permissions, or platform-specific behavior outside of Median.co, refer to [Microsoft Dynamics' integration documentation.](https://learn.microsoft.com/en-us/dynamics365/customer-insights/journeys/push-notifications-setup)
+  For issues related to Microsoft Dynamics' own configuration, permissions, or platform-specific behavior outside of Median, refer to [Microsoft Dynamics' integration documentation](https://learn.microsoft.com/en-us/dynamics365/customer-insights/journeys/push-notifications-setup).
 </Info>

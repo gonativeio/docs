@@ -1,15 +1,15 @@
 ---
-title: "Enterprise Security"
-description: "Enforce enterprise security controls in your app."
+title: "Enterprise security"
+description: "Enforce enterprise security controls in your app: copy/paste and screen capture prevention, HTTPS-only networking, preview masking, and root detection."
 keywords: ["enterprise security", "screen capture prevention", "copy paste prevention", "ATS", "Median for Enterprise"]
 searchable: true
 ---
 
 import { MedianLogo } from "/snippets/median-logo.jsx";
 
-Organizations using an **Enterprise License** can unlock the full potential of the Enterprise Security Plugin, designed to enforce robust security controls across iOS and Android mobile applications. All features can be independently enabled or disabled via the **Native Plugins** tab in your dashboard.
+Organizations using an **Enterprise License** can use the Enterprise Security plugin to enforce security controls across iOS and Android apps. You can enable or disable each feature independently in the **Native Plugins** tab in Median App Studio.
 
-Need help with deployment? [Contact our team](https://median.co/contact?topic=sales-inquiry)
+Need help with deployment? [Contact our team](https://median.co/contact?topic=sales-inquiry).
 
 ## Copy/paste prevention
 
@@ -24,8 +24,8 @@ Block unauthorized screen captures to protect user data. You can enable this sec
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
-  median.secureScreen.set({secure: true | false});
+  ```javascript JavaScript
+  median.secureScreen.set({secure: true});
   ```
 </CodeGroup>
 
@@ -55,8 +55,8 @@ Enhance threat detection by identifying compromised devices at runtime. If a jai
   - `?rootDetected=true`
   - `?isRooted=true`
 
-Please check for both query parameter values. For example, instead of loading `https://example.com/`, the app will load `https://example.com/?rootDetected=true`.
+Check for both query parameter values. For example, instead of loading `https://example.com/`, the app will load `https://example.com/?rootDetected=true`.
 
-For iOS we make use of the DTTJailbreakDetection library at [https://github.com/thii/DTTJailbreakDetection](https://github.com/thii/DTTJailbreakDetection) amongst additional proprietary techniques are also applied to enhance reliability.
+On iOS, Median uses the [DTTJailbreakDetection library](https://github.com/thii/DTTJailbreakDetection) along with additional proprietary techniques to improve reliability.
 
-For Android, we are using rootbeer library at [https://github.com/scottyab/rootbeer](https://github.com/scottyab/rootbeer) amongst additional proprietary techniques are also applied to enhance reliability.
+On Android, Median uses the [RootBeer library](https://github.com/scottyab/rootbeer) along with additional proprietary techniques to improve reliability.

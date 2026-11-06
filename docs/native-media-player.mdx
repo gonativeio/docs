@@ -1,13 +1,13 @@
 ---
-title: "Native Media Player"
-description: "Play background audio with lock screen controls."
+title: "Native media player"
+description: "Play audio tracks and playlists in the background with native lock screen and notification controls using the Native Media Player plugin."
 keywords: ["Native Media Player", "background audio", "lock screen controls", "audio player", "video player"]
 searchable: true
 ---
 import { MedianLogo } from "/snippets/median-logo.jsx";
 import { AppetizeEmbed } from "/snippets/appetize-embed.jsx";
 
-The Native Media Player plugin enables background audio playback in your Median-powered app by adding a native media player UI to the lock screen and notification area on iOS and Android. This allows users to continue listening while the app is backgrounded or the device is locked.
+The Native Media Player plugin enables background audio playback in your Median app by adding a native media player UI to the lock screen and notification area on iOS and Android. This allows users to continue listening while the app is backgrounded or the device is locked.
 
 Example use cases include:
 
@@ -18,12 +18,12 @@ Example use cases include:
 - News and media apps
 - Corporate training tools
 
-The player supports play, pause, previous, and next controls and can display metadata such as the track title, artist, album and artwork.
+The player supports play, pause, previous, and next controls and can display metadata such as the track title, artist, album, and artwork.
 
 <Check>
 **Developer Demo**
 
-Display our demo page in your app to test during development [https://median.dev/native-media-player/](https://median.dev/native-media-player/)
+Display our demo page in your app to test during development [https://median.dev/native-media-player/ <Icon icon="arrow-up-right-from-square" size={12} />](https://median.dev/native-media-player/)
 
 </Check>
 
@@ -31,7 +31,7 @@ Display our demo page in your app to test during development [https://median.dev
 
 |                                         iOS                                          |                                           Android                                            |
 | :----------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------: |
-| ![](/images/docs/docs/native-media-player/ios/MediaPlayer_Playlist_FullSize_IOS.png) | ![](/images/docs/docs/native-media-player/android/MediaPlayer_Playlist_FullSize_Android.png) |
+| ![Native media player on the iOS lock screen](/images/docs/docs/native-media-player/ios/MediaPlayer_Playlist_FullSize_IOS.png) | ![Native media player in the Android notification area](/images/docs/docs/native-media-player/android/MediaPlayer_Playlist_FullSize_Android.png) |
 
 ## Implementation guide
 
@@ -41,7 +41,7 @@ Create an object with the URL of the track:
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   var track = {
         "url": "https://Your_Audio_URL"
   }
@@ -53,7 +53,7 @@ Create an object with the URL of the track and custom metadata (if your audio do
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   // track with metadata
   var track = {
        "url": "https://Your_Audio_Url",
@@ -69,7 +69,7 @@ Call `playTrack` function with the `track` object
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   // Optional: show a spinner
 
   // Start the player
@@ -87,16 +87,16 @@ HTML (with `track` defined as global variable):
 
 <MedianLogo />
 <CodeGroup>
-```JavaScript JavaScript
+```html HTML
 <button type="button" onclick="median.backgroundMedia.playTrack(track)">Play Track</button>
 ```
 </CodeGroup>
 
 The player UI will display Play/Pause and Close controls for a single track.
 
-| iOS - Single Track                                                     | Android - Single Track                                                         |
+| iOS: single track                                                      | Android: single track                                                          |
 | :--------------------------------------------------------------------: | :----------------------------------------------------------------------------: |
-| ![](/images/docs/docs/native-media-player/ios/MediaPlayer_Mp3_IOS.png) | ![](/images/docs/docs/native-media-player/android/MediaPlayer_Mp3_Android.png) |
+| ![iOS media player with Play/Pause and Close controls for a single track](/images/docs/docs/native-media-player/ios/MediaPlayer_Mp3_IOS.png) | ![Android media player with Play/Pause and Close controls for a single track](/images/docs/docs/native-media-player/android/MediaPlayer_Mp3_Android.png) |
 
 
 ### Media controls
@@ -105,7 +105,7 @@ The player UI will display Play/Pause and Close controls for a single track.
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```html HTML
   <button onclick="median.backgroundMedia.pause()">Pause</button>
   ```
 </CodeGroup>
@@ -114,7 +114,7 @@ The player UI will display Play/Pause and Close controls for a single track.
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```html HTML
   <button onclick="median.backgroundMedia.stop()">Stop</button>
   ```
 </CodeGroup>
@@ -123,13 +123,13 @@ The player UI will display Play/Pause and Close controls for a single track.
 
 ### Get player status
 
-Retrieve player status including current track time, 'isPaused' status, album, artist, title, artwork and track URL.
+Retrieve player status including current track time, `isPaused` status, album, artist, title, artwork, and track URL.
 
 #### Option 1: Using a callback
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```html HTML
   <button onclick="median.backgroundMedia.getPlayerStatus({ callback: playerStatusCallback })">Get Player Status</button>
 
   <script>
@@ -145,7 +145,7 @@ Retrieve player status including current track time, 'isPaused' status, album, a
 
 <MedianLogo />
 <CodeGroup>
-```JavaScript JavaScript
+```html HTML
 <button onclick="getInfo()">Get Player Status</button>
 
 <script>
@@ -162,15 +162,15 @@ async function getInfo() {
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   {
-    "currentTime": <time in ms>,
-    "isPaused": <boolean>,
-    "album": <string>,
-    "artist": <string>,
-    "title": <string>,
-    "artwork": <string - URL>,
-    "url": <string - URL>
+    "currentTime": 50000, // time in ms
+    "isPaused": false,
+    "album": "Example Album",
+    "artist": "Example Artist",
+    "title": "Example Title",
+    "artwork": "https://example.com/artwork.jpg",
+    "url": "https://example.com/audio.mp3"
   }
   ```
 </CodeGroup>
@@ -183,7 +183,7 @@ To seek to a particular position of the currently playing media, pass any float 
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```html HTML
   <button onclick="median.backgroundMedia.playTrack(50)">Seek to 50s</button>
   ```
 </CodeGroup>
@@ -196,7 +196,7 @@ Create an object with the URL of the track and desired initial seek position:
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   var track = {
         "url": "https://Your_Audio_URL",
         "time": 50 // Start at 50 seconds
@@ -206,7 +206,7 @@ Create an object with the URL of the track and desired initial seek position:
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```html HTML
   <button onclick="median.backgroundMedia.playTrack(track)">
     Start Track from 50s
   </button>
@@ -221,7 +221,7 @@ Create an object with any number of audio tracks to send to the device as one pl
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   var playlist = {
        "currentTrackNumber": 0,
        "tracks": [
@@ -249,7 +249,7 @@ Create an object with any number of audio tracks to send to the device as one pl
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```html HTML
   <button
     type="button"
     onclick="median.backgroundMedia.streamPlaylist(playlist)"
@@ -263,9 +263,9 @@ Create an object with any number of audio tracks to send to the device as one pl
 
 When the currently playing track finishes playing, the player will automatically switch to the next track in the playlist. The user can also step through the playlist using the Next and Previous buttons.
 
-| iOS - Playlist                                                              | Android - Playlist                                                                  |
+| iOS: playlist                                                               | Android: playlist                                                                   |
 | :-------------------------------------------------------------------------: | :---------------------------------------------------------------------------------: |
-| ![](/images/docs/docs/native-media-player/ios/MediaPlayer_Playlist_IOS.png) | ![](/images/docs/docs/native-media-player/android/MediaPlayer_Playlist_Android.png) |
+| ![iOS media player with Previous and Next controls for a playlist](/images/docs/docs/native-media-player/ios/MediaPlayer_Playlist_IOS.png) | ![Android media player with Previous and Next controls for a playlist](/images/docs/docs/native-media-player/android/MediaPlayer_Playlist_Android.png) |
 
 ### Metadata display
 
@@ -273,40 +273,41 @@ The player will display the embedded metadata of the playing track, including th
 
 If no metadata is available, the metadata will be set as: **Title**: Playing Media **Album**: APP_NAME **Artist**: APP_NAME
 
-| iOS - Default Metadata                                                             | Android - Default Metadata                                                                 |
+| iOS: default metadata                                                              | Android: default metadata                                                                  |
 | :-------------------------------------------------------------------------: | :---------------------------------------------------------------------------------: |
-| ![](/images/docs/docs/native-media-player/ios/MediaPlayer_DefaultMetadata_IOS.png) | ![](/images/docs/docs/native-media-player/android/MediaPlayer_DefaultMetadata_Android.png) |
+| ![iOS media player showing the default metadata](/images/docs/docs/native-media-player/ios/MediaPlayer_DefaultMetadata_IOS.png) | ![Android media player showing the default metadata](/images/docs/docs/native-media-player/android/MediaPlayer_DefaultMetadata_Android.png) |
 
-Audio icons can only be retrieved directly from the Audio URL. So, if none is available, the MediaPlayer will set the app icon as the audio icon. Examples of the Audio icon can be found below.
+Audio icons can only be retrieved directly from the audio URL. If none is available, the media player uses the app icon as the audio icon. Examples of the default audio icon are shown below.
 
-| iOS - Default Audio Icon                                                       | Android - Default Audio Icon                                                           |
+| iOS: default audio icon                                                        | Android: default audio icon                                                            |
 | :-------------------------------------------------------------------------: | :---------------------------------------------------------------------------------: |
-| ![](/images/docs/docs/native-media-player/ios/MediaPlayer_DefaultIcon_IOS.png) | ![](/images/docs/docs/native-media-player/android/MediaPlayer_DefaultIcon_Android.png) |
+| ![iOS media player using the app icon as the audio icon](/images/docs/docs/native-media-player/ios/MediaPlayer_DefaultIcon_IOS.png) | ![Android media player using the app icon as the audio icon](/images/docs/docs/native-media-player/android/MediaPlayer_DefaultIcon_Android.png) |
 
 ### Background mode
 
 <Info>
-  **Use this mode to sync the native media player with your in-app web player**
-  (e.g., when resuming or pausing).
+  **Background mode**
+
+  Use this mode to sync the native media player with your in-app web player, for example when resuming or pausing.
 </Info>
 
 <Check>
 **Developer Demo**
 
-Display our demo page in your app to test during development [https://median.dev/native-media-player-switch/](https://median.dev/native-media-player-switch/)
+Display our demo page in your app to test during development [https://median.dev/native-media-player-switch/ <Icon icon="arrow-up-right-from-square" size={12} />](https://median.dev/native-media-player-switch/)
 
 </Check>
 
 Define these functions in your web app:
 
-- `getPlayerStatus()` - Gets the current status of the web player to pass to the native media player. (Called when the app is paused/backgrounded).
-- `updatePlayerStatus(mediaPlayerStatus)` - Passes the native media player status to the web player when the app is resumed. (Called when the app is resumed/foregrounded).
+- `getPlayerStatus()`: Gets the current status of the web player to pass to the native media player. (Called when the app is paused/backgrounded).
+- `updatePlayerStatus(mediaPlayerStatus)`: Passes the native media player status to the web player when the app is resumed. (Called when the app is resumed/foregrounded).
 
 #### Example implementation
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   // Called when the app is paused
   function getPlayerStatus() {
     return {
@@ -322,19 +323,17 @@ Define these functions in your web app:
 
   // Called when app is resumed
   function updatePlayerStatus(mediaPlayerStatus) {
-  if (mediaPlayerStatus.currentTime) {
-  webPlayer.currentTime = mediaPlayerStatus.currentTime / 1000;
+    if (mediaPlayerStatus.currentTime) {
+      webPlayer.currentTime = mediaPlayerStatus.currentTime / 1000;
+    }
+
+    if (mediaPlayerStatus.isPaused && !webPlayer.paused) {
+      webPlayer.pause();
+    } else if (!mediaPlayerStatus.isPaused && webPlayer.paused) {
+      webPlayer.play();
+    }
   }
-
-      if (mediaPlayerStatus.isPaused && !webPlayer.paused) {
-        webPlayer.pause();
-      } else if (!mediaPlayerStatus.isPaused && webPlayer.paused) {
-        webPlayer.play();
-      }
-
-  }
-
-```
+  ```
 </CodeGroup>
 
 ## Demo apps
@@ -348,13 +347,13 @@ Define these functions in your web app:
 
 ### Native media player background
 
-**Demo Instructions**
+**Demo instructions**
 
 1. Start playing an audio or video file.
-2. Press the Home button - playback will continue in the background.
+2. Press the Home button. Playback continues in the background.
 3. To confirm background playback, swipe down the notification overlay on iOS or Android.
 
-The demo also includes metadata (e.g., branding) to show possible customization options as highlighted above. When you return to the app, playback resumes smoothly.
+The demo also includes metadata (for example, branding) to show possible customization options as highlighted above. When you return to the app, playback resumes smoothly.
 
 *Note: The demo temporarily pauses playback to show debug info about the media state*.
 

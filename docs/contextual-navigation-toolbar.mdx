@@ -1,5 +1,5 @@
 ---
-title: "iOS Contextual Navigation Toolbar"
+title: "iOS contextual navigation toolbar"
 description: "Add back and forward controls on iOS."
 keywords: ["iOS", "contextual navigation toolbar", "back button", "forward button", "toolbar"]
 searchable: true
@@ -10,7 +10,7 @@ import { MedianLogo } from "/snippets/median-logo.jsx";
 <Warning>
   **iOS-only feature**
 
-The iOS Contextual Navigation Toolbar is an iOS-specific feature and is **not supported on Android**
+The iOS Contextual Navigation Toolbar is an iOS-specific feature and is **not supported on Android**.
 
 </Warning>
 
@@ -18,19 +18,19 @@ Unlike Android devices, iPhones and iPads do not have a built-in back button, wh
 
 ## Key features
 
-- **Back Button**: Returns to the previous page.
-- **Forward Button (Optional)**: Moves forward in browsing history.
-- **Refresh Button (Optional)**: Reloads the current page.
-- **Customizable Visibility (Optional)**: Configure when and where the toolbar appears.
+- **Back button**: Returns to the previous page.
+- **Forward button (optional)**: Moves forward in browsing history.
+- **Refresh button (optional)**: Reloads the current page.
+- **Customizable visibility (optional)**: Configure when and where the toolbar appears.
 
-By default, the toolbar appears whenever a page exists in the webview history. This ensures a seamless user experience similar to website navigation.
+By default, the toolbar appears whenever a page exists in the webview history. This matches the back navigation users expect from a website.
 
 ## Visual toolbar example
 
 |                                       |                                                       |
 | ------------------------------------- | ----------------------------------------------------- |
-| ![](/images/docs/532413a-back-ss.png) | ![](/images/docs/e0e6c71-back-refresh-forward-ss.png) |
-| Back Button                           | Back, Refresh, and Forward buttons                    |
+| ![iOS toolbar with a Back button](/images/docs/532413a-back-ss.png) | ![iOS toolbar with Back, Refresh, and Forward buttons](/images/docs/e0e6c71-back-refresh-forward-ss.png) |
+| Back button                           | Back, Refresh, and Forward buttons                    |
 
 ## Configuration
 
@@ -40,19 +40,19 @@ By default, the toolbar includes a Back button with a text label (\< Back). You 
 
 ### Configuration options
 
-- Add Buttons:
+- Add buttons:
   - Add a Forward button
   - Add a Refresh button
 
-- Change Toolbar Visibility:
+- Change toolbar visibility:
   - Show only when there is a page in history (Default): `"visibilityByBackButton": "backButtonActive"`
   - Always show regardless of history: `"visibilityByBackButton": "always"`
 
-- Set Page-Specific Visibility:
+- Set page-specific visibility:
   - Show on all pages: `"visibilityByPages": "allPages"`
-  - Show only on specific pages (using regex rules): `"visibilityByPages": "specificPages"`
+  - Show only on specific pages (using URL patterns): `"visibilityByPages": "specificPages"`
 
-- Customize Button Labels and Appearance:
+- Customize button labels and appearance:
   - Hide text labels for Back and Forward buttons
   - Use custom text labels
 
@@ -60,7 +60,7 @@ By default, the toolbar includes a Back button with a text label (\< Back). You 
 
 The iOS Contextual Navigation Toolbar can be dynamically enabled or disabled using the Median JavaScript Bridge.
 
-Conditions for Toolbar Display:
+Conditions for toolbar display:
 
 - `enabled: true`: The toolbar appears if any of the following conditions are met:
   - The webview has back history.
@@ -71,7 +71,7 @@ Conditions for Toolbar Display:
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   // Show the contextual navigation toolbar, if conditions are met
   median.ios.contextualNavToolbar.set({"enabled":true});
   // Hide the contextual navigation toolbar
@@ -82,8 +82,8 @@ Conditions for Toolbar Display:
 ## Implementation examples
 
 <CodeGroup>
-  ```JSON Default Toolbar
-  /* Default Toolbar */
+  ```json Default toolbar
+  /* Default toolbar */
   "toolbarNavigation": {
     "enabled": true,
     "visibilityByPages": "allPages",
@@ -118,8 +118,8 @@ Conditions for Toolbar Display:
   }
   ```
 
-```JSON All Options
-/* All Options */
+```json All options
+/* All options */
 "toolbarNavigation": {
   "enabled": true,
   "visibilityByPages": "allPages" | "specificPages",
@@ -171,8 +171,8 @@ Conditions for Toolbar Display:
 }
 ```
 
-```JSON Custom Text Labels
-/* Example: Custom Text Labels */
+```json Custom text labels
+/* Example: Custom text labels */
 "toolbarNavigation": {
   "enabled": true,
   "visibilityByPages": "allPages",
@@ -224,8 +224,8 @@ Conditions for Toolbar Display:
 }
 ```
 
-```JSON Visible Specific Pages
-/* Example: Visible Specific Pages */
+```json Visible on specific pages
+/* Example: Visible on specific pages */
 /* Visibility based on the first matched regex */
 /* Example: For the URLs matching the first regex (FAQ page),
 	 the toolbar will be hidden (because "enabled": false), while for the URLs

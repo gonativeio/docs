@@ -7,7 +7,7 @@ searchable: true
 
 import { MedianLogo } from "/snippets/median-logo.jsx";
 
-The Braze Plugin integrates mobile push notifications and in-app event tracking to boost user engagement and strengthen data analytics. It also supports audience segmentation and targeted messaging by leveraging the [Braze iOS SDK](https://www.braze.com/docs/developer_guide/sdk_integration/?sdktab=swift) and [Braze Android SDK](https://www.braze.com/docs/developer_guide/sdk_integration?sdktab=android).
+The Braze plugin integrates mobile push notifications and in-app event tracking to boost user engagement and strengthen data analytics. It also supports audience segmentation and targeted messaging using the [Braze iOS SDK](https://www.braze.com/docs/developer_guide/sdk_integration/?sdktab=swift) and [Braze Android SDK](https://www.braze.com/docs/developer_guide/sdk_integration?sdktab=android).
 
 <Check>
 **Developer Demo**
@@ -25,7 +25,7 @@ Display our demo page in your app to test during development [https://median.dev
 
 ## Prerequisites
 
-- Access to the Braze plugin settings in the Median App Dashboard (Native Plugins tab).
+- Access to the Braze plugin settings in Median App Studio (Native Plugins tab).
 
 - Braze credentials and endpoints for your platforms:
   - `iosApiKey`
@@ -46,29 +46,29 @@ Enable push notifications through Braze In-App Messaging as documented in the [B
 
 ### App configuration
 
-Enable the Braze Plugin in the Native Plugins tab as shown below. The plugin does not require the configuration of the following parameters.
+Enable the Braze plugin in the **Native Plugins** tab as shown below. The plugin does not require the configuration of the following parameters.
 
-- autoRegister - Determines whether the app should automatically ask for push permissions at app launch
-- API Keys and Endpoints - as configured in your Braze dashboard (Settings > APIs and Identifiers > API Keys)
-- firebaseSenderId - Firebase Cloud Messaging Sender ID
+- `autoRegister`: Determines whether the app should automatically ask for push permissions at app launch
+- API keys and endpoints: As configured in your Braze dashboard (Settings > APIs and Identifiers > API Keys)
+- `firebaseSenderId`: Firebase Cloud Messaging Sender ID
 
-<Frame caption="Braze Plugin Enablement and Configuration">
-  <img src="/images/docs/f08acbe933a9a0fafe54a08fba8281dc9bb7353b98ca4c392b25a3c7bc0f17d1-Screenshot_2026-06-22_at_08.09.02.png" />
+<Frame caption="Braze plugin enablement and configuration">
+  <img src="/images/docs/f08acbe933a9a0fafe54a08fba8281dc9bb7353b98ca4c392b25a3c7bc0f17d1-Screenshot_2026-06-22_at_08.09.02.png" alt="Braze plugin enabled and configured in the Native Plugins tab of App Studio" />
 </Frame>
 
 ### Deep linking
 
-Set up [Deep Linking](/docs/deep-linking) within your app, and notification links will automatically open directly into your app.
+Set up [deep linking](/docs/deep-linking) within your app, and notification links will automatically open directly into your app.
 
 ### JavaScript Bridge functions
 
 #### Change user
 
-Logs in an existing user or registers a new user in Braze context.
+Signs in an existing user or registers a new user in Braze context.
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   median.braze.changeUser({ userId: "user_123" });
   ```
 </CodeGroup>
@@ -85,7 +85,7 @@ Prompts users to enable push notifications.
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   median.braze.promptNotification({'callback': function})
   // Return value:
   {
@@ -106,7 +106,7 @@ Checks if push notification permission has been granted.
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   median.braze.notificationEnabled({'callback': function})
   // Return value:
   {
@@ -125,11 +125,11 @@ Checks if push notification permission has been granted.
 
 Sends a custom event to Braze.
 
-**Note:** Custom Events must be added in the [Braze Dashboard](https://www.braze.com/docs/user_guide/data/activation/events/custom_events/).
+**Note:** Custom events must be added in the [Braze Dashboard](https://www.braze.com/docs/user_guide/data/activation/events/custom_events/).
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   median.braze.logCustomEvent("YOUR-EVENT-NAME", {
     "key1": value1,
     "key2": value2,

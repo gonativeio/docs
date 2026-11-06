@@ -1,19 +1,19 @@
 ---
 title: "Upload an iOS app to TestFlight"
-description: "Upload your iOS app to TestFlight for testing."
+description: "Upload your iOS app to TestFlight from App Studio automatically, or manually with Xcode, and invite internal testers in App Store Connect."
 keywords: ["TestFlight", "iOS testing", "App Store Connect", "upload", "beta testing"]
 searchable: true
 ---
 
-The recommended way to upload your iOS app to TestFlight with Median is directly from the **Median App Studio**.
+The recommended way to upload your iOS app to TestFlight with Median is directly from **Median App Studio**.
 
-With the App Store Connect API configured and **Upload to App Store Connect** set to **Automatic**, Median will build a signed distribution IPA in the cloud and upload it directly to App Store Connect. Before uploading, your **App Store Connect app record must already exist** with the same Bundle ID configured in the Median App Studio. After Apple finishes processing the build, you can add it to TestFlight for internal or external testing.
+With the App Store Connect API configured and **Upload to App Store Connect** set to **Automatic**, Median builds a signed distribution IPA in the cloud and uploads it directly to App Store Connect. Before uploading, your **App Store Connect app record must already exist** with the same Bundle ID configured in App Studio. After Apple finishes processing the build, you can add it to TestFlight for internal or external testing.
 
 You do not need a Mac, Xcode, or Apple Transporter for this standard workflow.
 
 ## Recommended workflow
 
-1. Open your app in the Median App Studio and go to **Build & Deploy**.
+1. Open your app in App Studio and go to **Build & Deploy**.
 
 2. Click **Configure** in the iOS IPA section.
 
@@ -22,11 +22,11 @@ You do not need a Mac, Xcode, or Apple Transporter for this standard workflow.
 4. In **Bundle ID & App Store Connect App**:
    - Register the **Bundle ID** for your app.
    - Create the **App Store Connect app record** in App Store Connect using that Bundle ID.
-   - Verify the **App Store Connect app record** in Median App Studio.
+   - Verify the **App Store Connect app record** in App Studio.
 
 5. In **Signing & Upload Settings**, select **Distribution Profile** and set **Upload to App Store Connect** to **Automatic**.
 
-6. Build your iOS IPA in the Median App Studio (if Automatic Upload is not selected you can manually click "Upload" after the build is complete).
+6. Build your iOS IPA in App Studio. If **Upload to App Store Connect** isn't set to **Automatic**, you can click **Upload** after the build is complete.
 
 7. Wait for Apple to process the uploaded build in App Store Connect.
 
@@ -36,7 +36,7 @@ You do not need a Mac, Xcode, or Apple Transporter for this standard workflow.
 
 Use this workflow only if you intentionally choose to build your iOS app locally from downloaded source in Xcode.
 
-Most Median self-publishing workflows do **not** require Xcode. For most developers, building in Median App Studio and uploading automatically to App Store Connect is the recommended approach.
+Most Median self-publishing workflows do **not** require Xcode. For most developers, building in App Studio and uploading automatically to App Store Connect is the recommended approach.
 
 ### 1. Register app to App Store Connect
 
@@ -133,7 +133,7 @@ If you are seeing "**Missing Compliance**" such as above, click "**Manage**", ch
   />
 </Frame>
 
-Now, you will see that your app is ready to be Tested as seen in Figure 10:
+Now, you'll see that your app is ready to be tested, as seen in Figure 10:
 
 <Frame caption="Figure 10: App Store Connect – Build ready to test">
   <img
@@ -144,7 +144,7 @@ Now, you will see that your app is ready to be Tested as seen in Figure 10:
 
 ### 7. Add internal testers
 
-Now, if you don't already have an internal testers group, click the "**+**" icon besides the "**Internal Testing**" label (see Figure 10) to create a new Internal Testers group as seen below in Figure 11:
+Now, if you don't already have an internal testers group, click the "**+**" icon beside the "**Internal Testing**" label (see Figure 10) to create a new Internal Testers group as seen below in Figure 11:
 
 <Frame caption="Figure 11: App Store Connect – Create new internal testing group">
   <img
@@ -162,7 +162,7 @@ Once the group is created, it will appear directly below the "**Internal Testers
   />
 </Frame>
 
-Click the "**+**" icon besides the "**Testers (0)**" label and add testers from the list of users in your organization. Once added, you will see the list of invited testers as seen in Figure 13 below:
+Click the "**+**" icon beside the "**Testers (0)**" label and add testers from the list of users in your organization. Once added, you will see the list of invited testers as seen in Figure 13 below:
 
 <Frame caption="Figure 13: App Store Connect – Added testers">
   <img

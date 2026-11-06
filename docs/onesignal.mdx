@@ -1,20 +1,20 @@
 ---
-title: "OneSignal Overview"
-description: "Add OneSignal push notifications and in-app messages."
+title: "OneSignal overview"
+description: "Set up OneSignal push notifications and in-app messages for your iOS and Android app, from platform credentials to testing."
 keywords: ["OneSignal", "push notifications", "in-app messages", "engagement"]
 searchable: true
 ---
 
-OneSignal is a powerful push notification platform that scales from early-stage startups to enterprises. Median.co's integration connects it directly to your iOS and Android apps via the [Median JavaScript Bridge](/docs/javascript-bridge). This guide walks you through everything you need to get set up: what to prepare, how to configure each platform, and where to go next.
+OneSignal is a push notification platform that scales from early-stage startups to enterprises. Median's integration connects it directly to your iOS and Android apps via the [Median JavaScript Bridge](/docs/javascript-bridge). This guide walks you through everything you need to get set up: what to prepare, how to configure each platform, and where to go next.
 
-Median connects your web app to OneSignal's native iOS and Android SDKs through the JavaScript Bridge. This means you can trigger and manage push notifications, in-app messages, user targeting, and consent flows entirely from your website's JavaScript. The integration runs on **OneSignal SDK v5+** by default, which uses a user-centric data model. If your app was built before Median.co adopted v5, see [Legacy Mode](/docs/onesignal-legacy-mode) before proceeding.
+Median connects your web app to OneSignal's native iOS and Android SDKs through the JavaScript Bridge. This means you can trigger and manage push notifications, in-app messages, user targeting, and consent flows entirely from your website's JavaScript. The integration runs on **OneSignal SDK v5+** by default, which uses a user-centric data model. If your app was built before Median adopted v5, see [Legacy Mode](/docs/onesignal-legacy-mode) before proceeding.
 
-https\://onesignal.com/integrations/median-co
+See the [Median integration on OneSignal](https://onesignal.com/integrations/median-co).
 
-## Why use OneSignal with Median.co
+## Why use OneSignal with Median
 
 - **Web-first control**: Drive push, in-app messaging, user identity, segments, and consent from your site's JavaScript through the [JavaScript Bridge](/docs/javascript-bridge).
-- **Consistent cross-platform setup**: One Median.co plugin surface for iOS and Android after you complete each platform's credential steps (APNs and FCM).
+- **Consistent cross-platform setup**: One Median plugin surface for iOS and Android after you complete each platform's credential steps (APNs and FCM).
 - **Full OneSignal toolkit**: Use dashboard campaigns, [programmatic delivery](/docs/programmatic-notifications), [user targeting](/docs/identifying-targeting-users), and [in-app messages](/docs/in-app-messages) from the same integration.
 - **Modern SDK defaults**: Runs on **OneSignal SDK v5+** with a user-centric model; older apps should confirm behavior against [Legacy Mode](/docs/onesignal-legacy-mode).
 
@@ -24,7 +24,7 @@ Make sure you have the following before starting. Missing any one of these will 
 
 **All apps**
 
-- [x] A Median.co app with JavaScript Bridge enabled
+- [x] A Median app with JavaScript Bridge enabled
 - [x] A [OneSignal account](https://onesignal.com) — free to create
 - [x] Your OneSignal **App ID** (found in your OneSignal dashboard under **Settings > Keys & IDs**)
 
@@ -40,7 +40,7 @@ Make sure you have the following before starting. Missing any one of these will 
 - [x] A Firebase Service Account JSON credentials file — downloaded from your Firebase project settings
 
 <Info>
-  **Already have a OneSignal account connected to Median.co?**
+  **Already have a OneSignal account connected to Median?**
 
 Head straight to [Managing Permissions & Consent](/docs/user-consent-management) to control how and when users are prompted.
 
@@ -54,7 +54,7 @@ Median's OneSignal integration is especially useful when you need to:
 | ---------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Transactional and lifecycle messages** | Send order updates, booking reminders, or account alerts as push notifications.                                                                                                                         |
 | **Re-engagement**                        | Re-engage users with new content, limited-time offers, or abandoned-journey follow-ups.                                                                                                                 |
-| **Segmented or identified audiences**    | Target logged-in users, tags, or segments defined in OneSignal from the dashboard or API.                                                                                                               |
+| **Segmented or identified audiences**    | Target signed-in users, tags, or segments defined in OneSignal from the dashboard or API.                                                                                                               |
 | **In-app messaging**                     | Show prompts, or announcements inside the app, including flows that don't require push permission first.                                                                                                |
 | **Consent and timing**                   | Control _when_ the OS permission dialog appears or wait until privacy consent before initializing OneSignal. See [Managing Permissions & Consent](/docs/user-consent-management). |
 | **Server-triggered push**                | Send notifications from your backend using [OneSignal's REST API](https://documentation.onesignal.com/reference/rest-api-overview)                                                                      |
@@ -64,14 +64,14 @@ Median's OneSignal integration is especially useful when you need to:
 Use this section as a fast navigation map into the full setup path:
 
 1. **Gather credentials**: Complete the items in [Prerequisites](#prerequisites), including your **OneSignal App ID**, REST **API Key**, and **platform credentials**.
-2. **Configure iOS** (if applicable): Follow the [iOS setup](#android-and-ios-configuration) to generate your **APNs credential** and confirm the required iOS capabilities.
-3. **Configure Android** (if applicable): Follow the [Android setup](#android-and-ios-configuration) to create a **Firebase project** and upload **FCM credentials** to OneSignal.
+2. **Configure iOS** (if applicable): Follow the [iOS setup](#ios-setup) to generate your **APNs credential** and confirm the required iOS capabilities.
+3. **Configure Android** (if applicable): Follow the [Android setup](#android-setup) to create a **Firebase project** and upload **FCM credentials** to OneSignal.
 4. **Enable the plugin in Median**: Go to [Plugin setup](#plugin-setup) and connect OneSignal to your app in Median App Studio.
 5. **Verify delivery**: Complete the [Testing checklist](#testing-checklist) and review [Troubleshooting](#troubleshooting) if a test notification doesn't arrive.
 
 ## Android and iOS configuration
 
-AndroidiOS
+Complete the setup for each platform your app supports: [Android setup](#android-setup) and [iOS setup](#ios-setup).
 
 ## Android setup
 
@@ -126,8 +126,8 @@ For App Studio builds using the App Store Connect API workflow, Median can regis
 
 4. Click **+ Capability** again and add **Background Modes**, then enable **Remote notifications**.
 
-<Frame caption="Push Notifications Capability.png">
-  <img src="/images/docs/bed5c9a-Push_Notifications_Capability.png" />
+<Frame caption="Push Notifications capability in Xcode">
+  <img src="/images/docs/bed5c9a-Push_Notifications_Capability.png" alt="Push Notifications capability added under Signing and Capabilities in Xcode" />
 </Frame>
 
 Median's build process requires both capabilities to be present. Without them, push notifications won't be delivered on iOS — even if your OneSignal configuration is otherwise correct.
@@ -136,12 +136,12 @@ Median's build process requires both capabilities to be present. Without them, p
 
 App Groups are required to support badge counts, rich notification images, and OneSignal's confirmed delivery analytics. App Studio signing includes a OneSignal Notification Service Extension provisioning profile when the plugin requires it. If you manually manage Apple identifiers/provisioning profiles or build from downloaded source, add App Groups to two targets.
 
-**Main App Target:**
+**Main app target:**
 
 1. In **Signing & Capabilities**, click **+ Capability** and add **App Groups**
 2. Add a group with the identifier: `group.YOUR_BUNDLE_IDENTIFIER.onesignal`
 
-**OneSignalNotificationServiceExtension Target:**
+**OneSignalNotificationServiceExtension target:**
 
 1. Select the extension target in Xcode.
 2. Repeat the same steps and use the same App Group identifier.
@@ -169,7 +169,7 @@ Your app will now initialize OneSignal on launch and — by default — prompt u
 
 You'll need these for both the App Studio setup and any server-side or programmatic notifications.
 
-1. Log in to your [OneSignal dashboard](https://app.onesignal.com).
+1. Sign in to your [OneSignal dashboard](https://app.onesignal.com).
 2. Select your app.
 3. Go to **Settings > Keys & IDs**.
 
@@ -178,26 +178,26 @@ You'll need these for both the App Studio setup and any server-side or programma
 | App ID       | App Studio setup, REST API calls       |
 | REST API Key | Server-side programmatic notifications |
 
-Keep your REST API Key private, it authorizes notification delivery on your behalf.
+Keep your REST API Key private. It authorizes notification delivery on your behalf.
 
 ## Testing checklist
 
 Use this checklist to verify OneSignal is working correctly in your app:
 
-**Basic Functionality**
+**Basic functionality**
 
-- [ ] The App installs and launches on a physical device (push notifications don't work on most simulators)
-- [ ] The Push permission prompt appears and can be accepted on first launch
+- [ ] The app installs and launches on a physical device (push notifications don't work on most simulators)
+- [ ] The push permission prompt appears and can be accepted on first launch
 - [ ] Push notifications sent from OneSignal are delivered to the device
 - [ ] There are no JavaScript errors in the console
 
-**Platform Testing**
+**Platform testing**
 
 - [ ] Push notifications are delivered to Android devices
 - [ ] Push notifications are delivered to iOS devices
 - [ ] Users who denied the push permission prompt do not receive push notifications
 
-**Configuration Testing**
+**Configuration testing**
 
 - [ ] In App Studio, the OneSignal App ID is entered in **Native Plugins > OneSignal**
 - [ ] In the OneSignal dashboard, the iOS APNs credential (.p8 key or .p12 certificate) is uploaded under **Settings > Push & In-App > Apple iOS (APNs)**
@@ -205,7 +205,7 @@ Use this checklist to verify OneSignal is working correctly in your app:
 - [ ] The iOS Push Notifications and Background Modes (Remote notifications) capabilities are included in your App Studio signing setup, or enabled on the main app target if building from source
 - [ ] (iOS, if using badges/rich media/confirmed delivery) App Groups capability with `group.YOUR_BUNDLE_IDENTIFIER.onesignal` is included in your App Studio signing setup, or enabled on both the main app and OneSignalNotificationServiceExtension targets if building from source
 
-**User Experience**
+**User experience**
 
 - [ ] Permission prompt appears at the appropriate time (or is deferred using [Managing Permissions & Consent](/docs/user-consent-management))
 - [ ] Notifications display on the device as expected
@@ -245,8 +245,8 @@ Median's integration runs on **OneSignal SDK v5+** by default and uses a user-ce
 <Info>
   **Still having trouble?**
 
-For issues related to OneSignal's own configuration, permissions, or platform-specific behaviour, refer to [OneSignal's integration documentation.](https://documentation.onesignal.com/docs)
+For issues related to OneSignal's own configuration, permissions, or platform-specific behavior, refer to [OneSignal's integration documentation](https://documentation.onesignal.com/docs).
 
-For issues related to the App Studio, please get in touch with the [Median Support Team](/docs/support)
+For issues related to App Studio, get in touch with the [Median Support Team](/docs/support).
 
 </Info>

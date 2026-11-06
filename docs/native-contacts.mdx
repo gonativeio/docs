@@ -1,6 +1,6 @@
 ---
-title: "Native Contacts"
-description: "Access device contacts from your app."
+title: "Native contacts"
+description: "Check contact permissions, retrieve all device contacts, or show the native contact picker with the Native Contacts plugin and the JavaScript Bridge."
 keywords: ["contacts", "native contacts", "address book", "permissions", "JavaScript Bridge"]
 searchable: true
 ---
@@ -15,7 +15,7 @@ Common use cases include CRM data entry, field service lookups, social connectio
 <Check>
 **Developer Demo**
 
-Display our demo page in your app to test during development [https://median.dev/native-contacts/](https://median.dev/native-contacts/)
+Display our demo page in your app to test during development [https://median.dev/native-contacts/ <Icon icon="arrow-up-right-from-square" size={12} />](https://median.dev/native-contacts/)
 
 </Check>
 
@@ -32,13 +32,13 @@ Display our demo page in your app to test during development [https://median.dev
 1. **Navigate to Native Plugins**: In Median App Studio, go to the Native Plugins section.
 2. **Enable Native Contacts**: Toggle the plugin to enabled status.
 
-<Frame caption="Native Contacts Plugin Enablement">
-  <img src="/images/docs/74bb8e295d6cfd1f24cbda7448b1d64b0a8c1426aa173aff51416d1874627031-Screenshot_2026-06-29_at_09.08.05.png" />
+<Frame caption="Native Contacts plugin enablement">
+  <img src="/images/docs/74bb8e295d6cfd1f24cbda7448b1d64b0a8c1426aa173aff51416d1874627031-Screenshot_2026-06-29_at_09.08.05.png" alt="Native Contacts plugin toggled on in the Native Plugins section of App Studio" />
 </Frame>
 
 ### JavaScript Bridge implementation
 
-All contact functionality is accessed through the [Median JavaScript Bridge](/docs/javascript-bridge). Each method accepts either a callback function or returns a Promise. See Using Promises with the JavaScript Bridge for async/await patterns.
+All contact functionality is accessed through the [Median JavaScript Bridge](/docs/javascript-bridge). Each method accepts either a callback function or returns a Promise. See [Promises](/docs/javascript-bridge#promises) for `async`/`await` patterns.
 
 #### Check contact permission status
 
@@ -46,19 +46,14 @@ Before accessing contacts, check whether the user has already granted permission
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   // Callback style
   median.contacts.getPermissionStatus({ callback: myCallback });
 
   // Promise style
   const result = await median.contacts.getPermissionStatus({});
-
-  // Return value
-  {
-    "status": "STRING"
-  }
-
-```
+  console.log(result.status); // for example, "granted"
+  ```
 </CodeGroup>
 
 #### Permission status values
@@ -87,7 +82,7 @@ Fetch the complete contacts list stored on the device.
 
 <MedianLogo />
 <CodeGroup>
-```JavaScript JavaScript
+```javascript JavaScript
 // Callback style
 median.contacts.getAll({ callback: myCallback });
 
@@ -96,7 +91,7 @@ const result = await median.contacts.getAll({});
 ```
 </CodeGroup>
 
-**Note**: On iOS the `note` field is not returned by `getAll()` by default. Accessing it requires the `com.apple.developer.contacts.notes entitlement`, which requires approval by Apple.
+**Note**: On iOS the `note` field is not returned by `getAll()` by default. Accessing it requires the `com.apple.developer.contacts.notes` entitlement, which requires approval by Apple.
 
 #### Present a native contact picker
 
@@ -104,11 +99,11 @@ Display the device's native contact selection UI, allowing the user to choose on
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   // Callback style
   median.contacts.pickContact({
     callback: myCallback,
-    multiple: BOOL  // true = allow multi-select; false = single contact only
+    multiple: true  // true = allow multi-select; false = single contact only
   });
 
   // Promise style
@@ -123,10 +118,10 @@ Display the device's native contact selection UI, allowing the user to choose on
 When permission is granted, all contact methods return an object in the following shape:
 
 <CodeGroup>
-```JSON JSON
+```javascript JavaScript
 {
   success: true,
-  contacts: [...]
+  contacts: [] // array of contact objects
 }
 ```
 </CodeGroup>
@@ -153,7 +148,7 @@ When permission is granted, all contact methods return an object in the followin
 | `organizationName`   | String                                  |
 | `departmentName`     | String                                  |
 | `jobTitle`           | String                                  |
-| `note`               | String `pickContact()` only; see above) |
+| `note`               | String (`pickContact()` only; see above) |
 | `phoneNumbers`       | Array                                   |
 | `emailAddresses`     | Array                                   |
 | `postalAddresses`    | Array                                   |
@@ -176,10 +171,10 @@ When permission is granted, all contact methods return an object in the followin
 
 `phoneNumbers`, `emailAddresses`, and `postalAddresses` are arrays of objects. All other fields are strings.
 
-**Phone Numbers**
+**Phone numbers**
 
 <CodeGroup>
-  ```JSON JSON
+  ```json JSON
   {
     "label": "STRING",
     "phoneNumber": "STRING"
@@ -187,10 +182,10 @@ When permission is granted, all contact methods return an object in the followin
   ```
 </CodeGroup>
 
-**Email Addresses**
+**Email addresses**
 
 <CodeGroup>
-  ```JSON JSON
+  ```json JSON
   {
     "label": "STRING",
     "emailAddress": "STRING"
@@ -198,10 +193,10 @@ When permission is granted, all contact methods return an object in the followin
   ```
 </CodeGroup>
 
-**Postal Addresses**
+**Postal addresses**
 
 <CodeGroup>
-  ```JSON JSON
+  ```jsonc JSON
   {
     "label": "STRING",
     "street": "STRING",

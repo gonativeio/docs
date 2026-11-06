@@ -1,6 +1,6 @@
 ---
-title: "SPA Navigation"
-description: "Handle SPA navigation with the npm package."
+title: "SPA navigation"
+description: "Use the jsNavigation listener from the npm package to soft load pages in your single-page app when the native app navigates."
 keywords: ["SPA", "single-page application", "navigation", "median-js-bridge", "React", "listeners"]
 searchable: true
 ---
@@ -38,12 +38,12 @@ By adding this listener, your SPA will handle navigation events using your exist
 
 ### Example SPA navigation flow
 
-1. **Open Deep Link**: The app is closed, and the user clicks a deep link in an email (e.g., `https://median.app/abc/123`).
-2. **Cold Start App Launch**: The app launches from a cold start, loads the deep link URL directly, and the SPA is loaded as part of this initial hard page load.
-3. **Internal Navigation**: The user clicks various links and navigates through the SPA, which asynchronously loads and displays new content without any hard page loads.
-4. **Background App and Open Deep Link**: The user backgrounds the app, switches back to their email client, and clicks the deep link from step #1 again.
-5. **Warm Start and App Resume**: The app launches from a warm start, and the `jsNavigation` listener is called with the deep link URL as the parameter.
-6. **Seamless Soft Navigation**: The SPA seamlessly navigates to the content without requiring a full page load.
+1. **Open deep link**: The app is closed, and the user clicks a deep link in an email (e.g., `https://median.app/abc/123`).
+2. **Cold start app launch**: The app launches from a cold start, loads the deep link URL directly, and the SPA is loaded as part of this initial hard page load.
+3. **Internal navigation**: The user clicks various links and navigates through the SPA, which asynchronously loads and displays new content without any hard page loads.
+4. **Background app and open deep link**: The user backgrounds the app, switches back to their email client, and clicks the deep link from step #1 again.
+5. **Warm start and app resume**: The app launches from a warm start, and the `jsNavigation` listener is called with the deep link URL as the parameter.
+6. **Soft navigation**: The SPA navigates to the content without requiring a full page load.
 
 Without the listener in step #6 the app would perform a costly full page load, causing delays. In some scenarios the app might not perform a hard load at all if it incorrectly determines that the requested URL is already displayed based on the initial load in step #2.
 

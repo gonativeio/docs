@@ -1,6 +1,6 @@
 ---
 title: "Optimizely"
-description: "Add Optimizely push notifications to your app."
+description: "Initialize the Optimizely SDK, identify users, and manage push notification permissions and registration from your website with the JavaScript Bridge."
 keywords:
   ["Optimizely", "push notifications", "user identification", "engagement"]
 searchable: true
@@ -18,11 +18,11 @@ The Optimizely plugin lets you initialize the SDK and manage push-related action
 
 ## Prerequisites
 
-- A Median.co app with JavaScript Bridge enabled
+- A Median app with JavaScript Bridge enabled
 - Optimizely API key
 - Deep linking setup if you want notification links to open directly in-app
 
-Optimizely is essential for apps that need to:
+Use Optimizely when your app needs to:
 
 | Use case                                 | Example                                                                              |
 | ---------------------------------------- | ------------------------------------------------------------------------------------ |
@@ -38,7 +38,7 @@ Use this section as a fast navigation map into the full setup and implementation
 
 1. **Enable the plugin config**: Go to [Plugin setup](#plugin-setup) and complete [Enable the plugin](#enable-the-plugin).
 2. **Confirm runtime behavior**: Review [Configuration options](#configuration-options) for the `active` toggle behavior.
-3. **Implement bridge calls**: Add core methods from [JavaScript bridge functions](#javascript-bridge-functions).
+3. **Implement bridge calls**: Add core methods from [JavaScript Bridge functions](#javascript-bridge-functions).
 4. **Validate integration flow**: Run the scenarios in [Code examples](#code-examples).
 5. **Verify edge cases**: Complete [Testing checklist](#testing-checklist) and use [Troubleshooting](#troubleshooting).
 
@@ -64,7 +64,7 @@ Initialize Optimizely with an API key when not auto-configured in App Studio. Fo
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   // Using promises (recommended)
   const result = await median.optimizely.initialize({
     apiKey: "YOUR_OPTIMIZELY_API_KEY",
@@ -96,7 +96,7 @@ console.error("Optimizely error (callback)", err);
 
 <MedianLogo />
 <CodeGroup>
-```JavaScript JavaScript
+```javascript JavaScript
 interface OptimizelyInitializeResponse {
   success: boolean;
 }
@@ -110,7 +110,7 @@ Check whether the Optimizely SDK is already initialized. For this function, prov
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   median.optimizely.isInitialized({'callback': function});
   ```
 </CodeGroup>
@@ -125,7 +125,7 @@ Check whether the Optimizely SDK is already initialized. For this function, prov
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   interface OptimizelyIsInitializedResponse {
     initialized: boolean;
     apiKey?: string;
@@ -139,8 +139,8 @@ Identify the user by email address in Optimizely. Call `registerPush` after this
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
-  median.optimizely.setEmail({'email': '[email protected]', 'callback': function});
+  ```javascript JavaScript
+  median.optimizely.setEmail({'email': 'user@example.com', 'callback': function});
   ```
 </CodeGroup>
 
@@ -155,7 +155,7 @@ Identify the user by email address in Optimizely. Call `registerPush` after this
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   interface OptimizelySetIdentityResponse {
     success: boolean;
   }
@@ -168,7 +168,7 @@ Identify the user by a custom ID in Optimizely. Call `registerPush` after this t
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   median.optimizely.setUserId({'userId': 'user-123', 'callback': function});
   ```
 </CodeGroup>
@@ -184,7 +184,7 @@ Identify the user by a custom ID in Optimizely. Call `registerPush` after this t
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   interface OptimizelySetIdentityResponse {
     success: boolean;
   }
@@ -197,7 +197,7 @@ Register the current user for push and generate a new push token. Call this afte
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   median.optimizely.registerPush({'callback': function});
   ```
 </CodeGroup>
@@ -212,7 +212,7 @@ Register the current user for push and generate a new push token. Call this afte
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   interface OptimizelyRegisterPushResponse {
     success: boolean;
   }
@@ -225,7 +225,7 @@ Prompt the user to grant notification permission. For this function, provide a c
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   median.optimizely.requestPermission({'callback': function});
   ```
 </CodeGroup>
@@ -240,7 +240,7 @@ Prompt the user to grant notification permission. For this function, provide a c
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   interface OptimizelyPermissionResponse {
     granted: boolean;
   }
@@ -253,7 +253,7 @@ Check the current notification permission state without prompting the user. For 
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   median.optimizely.permissionStatus({'callback': function});
   ```
 </CodeGroup>
@@ -268,7 +268,7 @@ Check the current notification permission state without prompting the user. For 
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   interface OptimizelyPermissionResponse {
     granted: boolean;
   }
@@ -279,7 +279,7 @@ Check the current notification permission state without prompting the user. For 
 
 Use this checklist to ensure Optimizely is working correctly in your app:
 
-**Basic Functionality**
+**Basic functionality**
 
 - [ ] `initialize` returns `{ success: true }`.
 - [ ] `isInitialized` reflects the expected state after initialization.
@@ -287,27 +287,27 @@ Use this checklist to ensure Optimizely is working correctly in your app:
 - [ ] `registerPush` succeeds after user identity is set.
 - [ ] Plugin loads without JavaScript errors.
 
-**Platform Testing**
+**Platform testing**
 
 - [ ] Permission request flow works on iOS.
 - [ ] Android 13+ shows the system permission dialog.
 - [ ] Android 12 and below grants permission without a dialog prompt.
 - [ ] Plugin gracefully handles platform differences.
 
-**Error Scenarios**
+**Error scenarios**
 
 - [ ] Invalid or missing API key is handled in the UI flow.
 - [ ] An initialization guard prevents duplicate `initialize` calls.
 - [ ] Permission-denied path is handled gracefully.
 - [ ] Network errors during push registration are caught and logged.
 
-**Edge Cases**
+**Edge cases**
 
 - [ ] Push registration is re-run after identity updates.
 - [ ] Deep link notification opens the correct route in-app when configured.
 - [ ] Both promise and callback invocation styles work in your integration.
 
-**User Experience**
+**User experience**
 
 - [ ] Users receive a clear prompt when notification permission is requested.
 - [ ] App provides a fallback experience when push permission is denied.
@@ -320,25 +320,25 @@ Use this checklist to ensure Optimizely is working correctly in your app:
 
 Confirm the JavaScript Bridge is enabled in Median App Studio and that the plugin is active. Also verify you are calling bridge functions after the page and bridge have fully loaded.
 
-### \`isInitialized\` remains false after calling \`initialize\`?
+### `isInitialized` remains false after calling `initialize`
 
 Ensure you passed a valid `apiKey` to `initialize` and that the call returned `{ success: true }`. If initialization failed silently, check for network issues or an incorrect API key, then retry.
 
-### Push notifications are not arriving after login?
+### Push notifications are not arriving after sign-in
 
 After setting user identity with `setEmail` or `setUserId`, you must call `registerPush` to generate a new token associated with that user. Skipping this step means the push token is not linked to the newly identified user.
 
-### Notification links do not open inside the app?
+### Notification links do not open inside the app
 
 Deep Linking must be configured in your app for notification links to open directly in-app. Without Deep Linking, tapping a notification will open the device's default browser instead.
 
-### Permission dialog does not appear on Android?
+### Permission dialog does not appear on Android
 
 On Android 12 and below, push permission is granted automatically without a dialog. On Android 13+, the system permission dialog is required. Verify you are calling `requestPermission` and testing on a device or emulator running Android 13 or higher to see the dialog.
 
 <Info>
   **Still having trouble?**
 
-For issues related to Optimizely's own configuration, permissions, or platform-specific behavior outside Median.co, refer to [Optimizely's integration documentation](https://docs.developers.optimizely.com/).
+For issues related to Optimizely's own configuration, permissions, or platform-specific behavior outside Median, refer to [Optimizely's integration documentation](https://docs.developers.optimizely.com/).
 
 </Info>

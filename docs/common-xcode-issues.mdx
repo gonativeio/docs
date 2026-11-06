@@ -1,5 +1,5 @@
 ---
-title: "Common Xcode Issues"
+title: "Common Xcode issues"
 description: "Fix common Xcode build errors."
 keywords: ["Xcode", "build errors", "troubleshooting", "PhaseScriptExecution", "iOS"]
 searchable: true
@@ -17,16 +17,18 @@ You can manually remove derived data to reset your build environment.
 
 Run the following command in Terminal:
 
-e.g. `rm -rf ~/Library/Developer/Xcode/DerivedData`
+```bash Terminal
+rm -rf ~/Library/Developer/Xcode/DerivedData
+```
 
 ### Reset simulator (if using a simulator)
 
 - Open Simulator.
-- Select Device > Erase All Content and Settings.
+- Select **Device → Erase All Content and Settings**.
 
 ### Uninstall and reinstall Xcode
 
-If the issue persists after following the above steps uninstall and reinstall Xcode to ensure a fresh installation of the entire environment.
+If the issue persists after following the above steps, uninstall and reinstall Xcode to ensure a fresh installation of the entire environment.
 
 ## Error: Command PhaseScriptExecution failed with a nonzero exit code
 
@@ -40,23 +42,27 @@ Ensure you are running the latest non-beta versions of Xcode and macOS.
 
 ### Downgrade Xcode if necessary
 
-If the latest Xcode is not working and all other steps here are not successful then we recommend downgrading the the most recent minor version release. These Xcode installers are available under **Additional tools** on the Xcode [Resources page](https://developer.apple.com/xcode/resources/).
+If the latest Xcode is not working and all other steps here aren't successful, we recommend downgrading to the most recent minor version release. These Xcode installers are available under **Additional tools** on the Xcode [Resources page](https://developer.apple.com/xcode/resources/).
 
 ### Clean Xcode build folder
 
-Select **Product** from top menu -> click **Clean Build Folder**.
+Select **Product → Clean Build Folder** from the top menu.
 
 ### Delete Xcode derived data and rebuild
 
 You can manually remove derived data to reset your build environment. Run the following command in Terminal:
 
-e.g. `rm -rf ~/Library/Developer/Xcode/DerivedData`
+```bash Terminal
+rm -rf ~/Library/Developer/Xcode/DerivedData
+```
 
 ### Update CocoaPods
 
-Outdated CocoaPods may cause compatibility issues. To update CocoaPods, use the following command:
+Outdated CocoaPods may cause compatibility issues. To update CocoaPods, run the following command:
 
-e.g. `sudo gem install cocoapods`
+```bash Terminal
+sudo gem install cocoapods
+```
 
 ### Re-download and extract your iOS source code
 
@@ -66,9 +72,9 @@ If the issue persists after following the above steps, rebuild your app on the M
 2. Open the `.xcworkspace` file and do not open the `.xcodeproj` file.
 
 <Warning>
-  **Open .xcworkspace not .xcodeproj**
+  **Open .xcworkspace, not .xcodeproj**
 
-Median uses Cocoapods (or "pods") as a dependency manager. To ensure all dependencies are correctly integrated always open the workspace file `<yourapp>.xcworkspace` and _not_ the project file `<yourapp>.xcodeproj`.
+Median uses CocoaPods (or "pods") as a dependency manager. To ensure all dependencies are correctly integrated, always open the workspace file `<yourapp>.xcworkspace` and _not_ the project file `<yourapp>.xcodeproj`.
 
 </Warning>
 
@@ -76,6 +82,6 @@ Median uses Cocoapods (or "pods") as a dependency manager. To ensure all depende
 
 Ensure you are using the latest version of Xcode or at least the latest major version, which is currently Xcode 16.
 
-If you're using an M1 Mac, try running the app on a Rosetta-based simulator. To do this, navigate to Product → Destination → Show All Run Destinations and select an iPhone simulator with "(Rosetta)" in its name. Additionally, you can try running the app on a physical device.
+If you're using an M1 Mac, try running the app on a Rosetta-based simulator. To do this, navigate to **Product → Destination → Show All Run Destinations** and select an iPhone simulator with "(Rosetta)" in its name. Additionally, you can try running the app on a physical device.
 
-If you extracted the source code from a ZIP file in a Windows environment, be aware that Windows may remove .h files, which can cause issues.
+If you extracted the source code from a ZIP file in a Windows environment, be aware that Windows may remove `.h` files, which can cause issues.

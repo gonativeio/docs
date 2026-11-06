@@ -1,6 +1,6 @@
 ---
-title: "System Navigation Bar (Android)"
-description: "Set the Android system navigation bar color and style."
+title: "System navigation bar (Android)"
+description: "Set the color and icon style of the Android system navigation bar at runtime with the Median JavaScript Bridge."
 keywords: ["system navigation bar", "Android", "color", "gesture navigation", "JavaScript Bridge"]
 searchable: true
 ---
@@ -16,6 +16,8 @@ The [system navigation bar](https://developer.android.com/design/ui/mobile/guide
 You can set the navigation bar's color and icon style at runtime from your website using the Median JavaScript Bridge.
 
 <Note>
+  **Android only**
+
   The system navigation bar is an Android feature. These settings have no effect
   on iOS.
 </Note>
@@ -24,7 +26,7 @@ You can set the navigation bar's color and icon style at runtime from your websi
 
 | Parameter | Values                                        | Description                                                                                                                                              |
 | --------- | --------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `style`   | `'light'`, `'dark'`, or `'auto'`              | Sets the color of the navigation bar icons. `light` shows dark icons, `dark` shows white icons, and `auto` follows the device's Light/Dark mode setting. |
+| `style`   | `'light'`, `'dark'`, or `'auto'`              | Sets the color of the navigation bar icons. `light` shows dark icons, `dark` shows white icons, and `auto` follows the device's light or dark mode setting. |
 | `color`   | Hex value, for example `RRGGBB` or `AARRGGBB` | Sets the navigation bar background to a solid color. Use `00000000` for a fully transparent navigation bar.                                              |
 
 ## Setting the navigation bar at runtime

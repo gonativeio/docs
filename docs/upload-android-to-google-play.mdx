@@ -1,6 +1,6 @@
 ---
 title: "Upload Android to Google Play"
-description: "Build an AAB and upload it to Google Play."
+description: "Build a signed Android App Bundle in App Studio and upload it to the Google Play Console for testing and production release."
 keywords: ["Google Play Console", "upload", "AAB", "Android release", "testing"]
 searchable: true
 ---
@@ -10,20 +10,22 @@ Google Play requires new apps and updates to be uploaded as an [Android App Bund
 ## Upload workflow
 
 1. Create a [Google Play Developer account <Icon icon="arrow-up-right-from-square" size={12} />](https://play.google.com/console/signup) if you don't already have one.
-2. In Median App Studio, open **Build & Deploy**. In the **App Identifiers** section, set your Android Package Name or copy the existing one.
+2. In App Studio, open **Build & Deploy**. In the **App Identifiers** section, set your Android Package Name or copy the existing one.
 3. Build and download your Android `.aab` file.
 4. In the [Google Play Console <Icon icon="arrow-up-right-from-square" size={12} />](https://play.google.com/console), click **Create app** and enter the app name, default language, app or game, and free or paid.
-5. Under **Set up your app**, complete the required tasks, such as privacy policy, app access, ads, content rating, target audience and data safety.
-6. Go to **Testing → Internal testing**, create a release and upload your `.aab` file. Add testers and start the rollout.
+5. Under **Set up your app**, complete the required tasks, such as privacy policy, app access, ads, content rating, target audience, and data safety.
+6. Go to **Testing → Internal testing**, create a release, and upload your `.aab` file. Add testers and start the rollout.
 7. When testing is complete, create a release under **Production** with the same or a newer `.aab`, and send it for review.
 
 <Tip>
-  Your package name appears in your Google Play URL and cannot be changed after
+  **Choose your package name carefully**
+
+  Your package name appears in your Google Play URL and can't be changed after
   you publish.
 </Tip>
 
-For the full set of store listing, testing and review steps, follow the Google section of our [Publishing Guide](/docs/publishing-guide) or see [Google Play Store](/docs/google-play-store).
+For the full set of store listing, testing, and review steps, follow the Google section of our [publishing guide](/docs/publishing-guide) or see [Google Play Store](/docs/google-play-store).
 
 ## Building locally (optional)
 
-You can also download Android source code from App Studio and build the app yourself. Follow [Build Android from Source](/docs/build-android-from-source). The Android SDK is required, which is available as part of the [Android Studio IDE <Icon icon="arrow-up-right-from-square" size={12} />](https://developer.android.com/studio#android-studio-downloads) or as a [stand-alone installation <Icon icon="arrow-up-right-from-square" size={12} />](https://developer.android.com/studio#command-line-tools-only).
+You can also download Android source code from App Studio and build the app yourself. Follow [Build Android from source](/docs/build-android-from-source). The Android SDK is required, which is available as part of the [Android Studio IDE <Icon icon="arrow-up-right-from-square" size={12} />](https://developer.android.com/studio#android-studio-downloads) or as a [stand-alone installation <Icon icon="arrow-up-right-from-square" size={12} />](https://developer.android.com/studio#command-line-tools-only).

@@ -1,6 +1,6 @@
 ---
-title: "Top Nav Bar Demo App"
-description: "Try the top navigation bar in live demo apps."
+title: "Top navigation bar demo app"
+description: "Try the native top navigation bar in live iOS and Android demo apps, with dynamic titles and custom icons, and see the code behind them."
 keywords: ["top navigation bar", "demo app", "Appetize", "dynamic titles", "simulator"]
 searchable: true
 ---
@@ -13,7 +13,7 @@ import { MedianLogo } from "/snippets/median-logo.jsx";
 <MedianLogo />
 
 <CodeGroup>
-  ```json Dynamic Title Configuration
+  ```json Dynamic title configuration
   [
     {
       "regex": "https://median.dev/advanced-navigation/index.html",
@@ -30,7 +30,7 @@ import { MedianLogo } from "/snippets/median-logo.jsx";
   ]
   ```
 
-  ```javascript Set Dynamic Title
+  ```javascript Set dynamic title
   median.navigationTitles.set({
     active: true,
     titles: [{
@@ -47,7 +47,7 @@ import { MedianLogo } from "/snippets/median-logo.jsx";
   });
   ```
 
-  ```javascript Set Current Page Title
+  ```javascript Set current page title
   if (navigator.userAgent.indexOf('median') > -1) {
     median.navigationTitles.setCurrent({
       title: 'Hello World'
@@ -55,7 +55,7 @@ import { MedianLogo } from "/snippets/median-logo.jsx";
   }
   ```
 
-  ```javascript Revert Dynamic Titles
+  ```javascript Revert dynamic titles
   if (navigator.userAgent.indexOf('median') > -1) {
     median.navigationTitles.set({
       persist: true
@@ -63,7 +63,7 @@ import { MedianLogo } from "/snippets/median-logo.jsx";
   }
   ```
 
-  ```json Custom Icon Configuration
+  ```json Custom icon configuration
   "navigation": {
       "actionConfig": {
         "actionSelection": [{
@@ -72,7 +72,7 @@ import { MedianLogo } from "/snippets/median-logo.jsx";
         }],
         "actions": [{
           "items": [{
-            "url": "javascript:alert('shopping cart clicked');",
+            "url": "javascript:console.log('shopping cart clicked');",
             "icon": "fas fa-shopping-cart",
             "label": "Shopping Cart"
           }],

@@ -1,6 +1,6 @@
 ---
 title: "Instagram"
-description: "Share text and media to Instagram."
+description: "Check whether Instagram is installed and share images directly to the Instagram Feed, Stories, or Reels with the JavaScript Bridge."
 keywords: ["Instagram", "social share", "Reels", "Feed", "sharing"]
 searchable: true
 ---
@@ -14,11 +14,9 @@ You can share text and media directly to Instagram as an Instagram Reel or direc
 
 Before sharing content, check whether Instagram is installed on the user’s device. Use the following JavaScript Bridge method:
 
-Run the following Median JavaScript Bridge command to share the screen content
-
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   const { isInstalled } = await median.socialShare.instagram.isInstalled();
   ```
 </CodeGroup>
@@ -28,7 +26,7 @@ Run the following Median JavaScript Bridge command to share the screen content
 This plugin only supports media sharing as a `Blob` object. You can save a remote image as a `Blob` using the following code snippet.
 
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
     fetch("url-to-image")
     .then(function(response) {
       return response.blob();
@@ -39,36 +37,34 @@ This plugin only supports media sharing as a `Blob` object. You can save a remot
   ```
 </CodeGroup>
 
-Other plugins from Median (such as the [Web Screenshot Plugin](/docs/web-screenshot)) also export images as Blobs which can then be used with this plugin.
+Other plugins from Median (such as the [Web Screenshot plugin](/docs/web-screenshot)) also export images as Blobs which can then be used with this plugin.
 
 ### Sharing to feed
 
-Use the following JavaScript command to share an image directly to the Instagram Feed:
-
-Run the following Median JavaScript Bridge command to share the screen content
+Use the following JavaScript Bridge command to share an image directly to the Instagram Feed:
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   median.socialShare.instagram.shareToFeed(blob);
   ```
 </CodeGroup>
 
 <Warning>
-  **Info**
+  **Direct feed sharing isn't available on iOS**
 
-  for iOS, Instagram no longer supports direct sharing to feed and will rather present the OS share dialog
+  On iOS, Instagram no longer supports direct sharing to the feed and presents the OS share dialog instead.
 </Warning>
 
 ### Sharing to story or reels
 
-Enhance your content by sharing images directly to Instagram Stories or Reels. This method supports optional sticker attachments and captions.
+Share images directly to Instagram Stories or Reels. This method supports optional sticker attachments and captions.
 
-Run the following Median JavaScript Bridge command to share the screen content
+Run the following Median JavaScript Bridge command:
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   median.socialShare.snapchat.share(blob, { attachment: stickerBlob, captionText: 'Caption for Snapchat' });
   ```
 </CodeGroup>

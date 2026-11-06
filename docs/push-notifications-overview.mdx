@@ -1,17 +1,17 @@
 ---
-title: "Push Notifications Overview"
-description: "Compare push notification plugins for your app."
+title: "Push notifications overview"
+description: "Learn the types of push notifications, compare Median's push notification plugins, and set up push permissions on iOS and Android."
 keywords: ["push notifications", "plugins", "OneSignal", "Firebase Cloud Messaging", "engagement"]
 searchable: true
 ---
 
-Push notifications are a powerful tool to drive user engagement and increase customer satisfaction with your app and/or service. You can learn more about push notifications in our [blog](https://median.co/blog/how-to-write-push-notification-copy-that-engages-and-converts-a-guide). Median.co's Push Notification plugins connect to leading marketing automation platforms like OneSignal, Braze, and Klaviyo, enabling you to send personalized messages triggered by user behavior, lifecycle stages, and real-time events.
+Push notifications help you drive user engagement and increase customer satisfaction with your app and/or service. You can learn more about push notifications in our [blog](https://median.co/blog/how-to-write-push-notification-copy-that-engages-and-converts-a-guide). Median's push notification plugins connect to marketing automation platforms like OneSignal, Braze, and Klaviyo, enabling you to send personalized messages triggered by user behavior, lifecycle stages, and real-time events.
 
 Generally, you want to think about the following three categories of push notifications:
 
-- **Marketing Push Notifications:** Broadcast push notifications that target your whole user base or large segments of users. Examples include a push notification for all Android or iOS users.
-- **Personalized Push Notifications:** Push notifications that are typically driven by a user action and target a specific user based on their notification preferences.
-- **Transactional Push Notifications:** Push notifications that are typically event-driven and target a small subset (often a single) of users. Examples include push notifications for shipping updates
+- **Marketing push notifications:** Broadcast push notifications that target your whole user base or large segments of users. Examples include a push notification for all Android or iOS users.
+- **Personalized push notifications:** Push notifications that are typically driven by a user action and target a specific user based on their notification preferences.
+- **Transactional push notifications:** Push notifications that are typically event-driven and target a small subset (often a single) of users. Examples include push notifications for shipping updates.
 
 ## Why use push notifications plugins?
 
@@ -35,22 +35,22 @@ Generally, you want to think about the following three categories of push notifi
 
 2. **Review documentation:** Read the plugin's documentation to understand setup requirements, user consent flows, segmentation capabilities, and campaign automation features for your chosen platform.
 
-3. **Enable in app studio:** Navigate to **Native Plugins** in your Median App Studio, click the **+** button next to your chosen plugin, and enter your platform credentials (App ID, API keys, SDK tokens).
+3. **Enable in App Studio:** Navigate to **Native Plugins** in Median App Studio, click the **+** button next to your chosen plugin, and enter your platform credentials (App ID, API keys, SDK tokens).
 
-4. **Implement with JavaScript bridge:** Add JavaScript Bridge commands to manage user subscriptions and retrieve device information. For example:
+4. **Implement with the JavaScript Bridge:** Add JavaScript Bridge commands to manage user subscriptions and retrieve device information. For example:
    - `median.onesignal.login()` to associate users with external identifiers
    - `median.onesignal.info()` to retrieve OneSignal user and device data
    - Configure notification permissions and consent flows through your platform's dashboard
 
 ## Key terms
 
-The following terms will help you implement Push Notifications effectively:
+The following terms will help you implement push notifications effectively:
 
 **APNs (Apple Push Notification service)**: Apple's service for delivering push notifications to iOS devices. Requires a .p8 token key (recommended) or .p12 certificate generated from your Apple Developer account and uploaded to OneSignal under **Settings > Push & In-App > Apple iOS (APNs)**.
 
 **FCM (Firebase Cloud Messaging)**: Google's service for delivering push notifications to Android devices. Requires a Firebase project and a Service Account JSON credentials file uploaded to OneSignal under **Settings > Push & In-App > Google Android (FCM)**.
 
-**App ID and REST API Key**: The App ID identifies your app to the Push Provider's SDK; the REST API Key authorizes server-side notification delivery on your behalf.
+**App ID and REST API Key**: The App ID identifies your app to the push provider's SDK; the REST API Key authorizes server-side notification delivery on your behalf.
 
 **Legacy Mode**: A compatibility mode for apps built before Median adopted OneSignal SDK v5+. Uses a device-centric data model. See [Legacy Mode](/docs/onesignal-legacy-mode) for details.
 
@@ -198,9 +198,9 @@ The following terms will help you implement Push Notifications effectively:
 
 ### General
 
-To receive push notification you will need to collect the consent of your users to receive push permissions. Each of the plugins will have a method to request the permissions or check whether the permissions were granted by a user.
+To receive push notifications, you will need to collect the consent of your users to receive push permissions. Each of the plugins will have a method to request the permissions or check whether the permissions were granted by a user.
 
-Additionally, you can learn more about user-granted permissions in our [Permission Overview](/docs/permissions-overview) article.
+Additionally, you can learn more about user-granted permissions in our [Permissions overview](/docs/permissions-overview) article.
 
 ### iOS
 
@@ -211,7 +211,7 @@ Receiving push notifications on iOS will require enabling 'Push Notifications' c
 
 ### Android
 
-There are not additional steps required other than obtaining the users consent to receive push permissions.
+No additional steps are required other than obtaining the user's consent to receive push notifications.
 
 ## Frequently asked questions
 

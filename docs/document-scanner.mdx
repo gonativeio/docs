@@ -1,13 +1,13 @@
 ---
-title: "Document Scanner"
-description: "Scan documents with auto crop and enhancement."
+title: "Document scanner"
+description: "Scan documents with the device camera, with automatic edge detection, cropping, and enhancement, and get the result as a base64 JPEG."
 keywords: ["document scanner", "scanning", "auto crop", "camera", "image enhancement"]
 searchable: true
 ---
 
 import { MedianLogo } from "/snippets/median-logo.jsx";
 
-Easily scan documents using the device camera with automatic image enhancement and cropping. The Median Document Scanner Plugin enables document uploads and improves scan quality by leveraging native image processing.
+Scan documents using the device camera with automatic image enhancement and cropping. The Median Document Scanner plugin enables document uploads and improves scan quality by using native image processing.
 
 ## Key features
 
@@ -17,7 +17,7 @@ Easily scan documents using the device camera with automatic image enhancement a
 - Crops and exports the document as a clean final scan
 - Supports JPEG output in base64 format
 
-The scanned image is made available as a base64 jpeg file through the Median JavaScript Bridge where it can be attached to a form or uploaded to your server asynchronously.
+The scanned image is made available as a base64 JPEG file through the Median JavaScript Bridge where it can be attached to a form or uploaded to your server asynchronously.
 
 <Check>
 **Developer Demo**
@@ -30,13 +30,13 @@ Display our demo page in your app to test during development [https://median.dev
 
 |               iOS - Scan               |               iOS - Crop               |
 | :------------------------------------: | :------------------------------------: |
-| ![](/images/docs/0833226-iOSScan.jpeg) | ![](/images/docs/427d326-iOSCrop.jpeg) |
+| ![Document scanner detecting document edges on iOS](/images/docs/0833226-iOSScan.jpeg) | ![Document scanner crop screen on iOS](/images/docs/427d326-iOSCrop.jpeg) |
 
 ## Android scan and crop preview
 
 |              Android - Scan               |              Android - Crop               |
 | :---------------------------------------: | :---------------------------------------: |
-| ![](/images/docs/aae07ab-AndroidScan.png) | ![](/images/docs/8d21431-AndroidCrop.png) |
+| ![Document scanner detecting document edges on Android](/images/docs/aae07ab-AndroidScan.png) | ![Document scanner crop screen on Android](/images/docs/8d21431-AndroidCrop.png) |
 
 ## Implementation guide
 
@@ -44,7 +44,7 @@ Display our demo page in your app to test during development [https://median.dev
 
 <MedianLogo />
 <CodeGroup>
-  ```JSON JSON
+  ```javascript JavaScript
   median.documentScanner.scanPage({'callback':CALLBACKFUNCTION});
   ```
 </CodeGroup>
@@ -56,7 +56,7 @@ Display our demo page in your app to test during development [https://median.dev
 Your callback function will receive an object with the following structure:
 
 <CodeGroup>
-  ```JSON JSON
+  ```javascript JavaScript
   {
     image: "base64-encoded string", // Scanned JPEG image
     mimeType: "image/jpeg",
@@ -71,7 +71,7 @@ Here's a sample code snippet that displays the scanned image output.
 
 <MedianLogo />
 <CodeGroup>
-  ```HTML HTML
+  ```html HTML
   <html>
   <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">

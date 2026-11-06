@@ -1,6 +1,6 @@
 ---
 title: "MoEngage"
-description: "Add MoEngage push notifications and engagement events."
+description: "Add MoEngage push notifications to your app, and manage permissions, user identity, events, and the notification center with the JavaScript Bridge."
 keywords: ["MoEngage", "push notifications", "engagement", "events"]
 searchable: true
 ---
@@ -18,20 +18,20 @@ Median integrates MoEngage's native SDKs on iOS and Android, including APNS Auth
 <Check>
 **Developer Demo**
 
-Display our demo page in your app to test during development [https://median.dev/moengage/](https://median.dev/moengage/)
+Display our demo page in your app to test during development [https://median.dev/moengage/ <Icon icon="arrow-up-right-from-square" size={12} />](https://median.dev/moengage/)
 
 </Check>
 
 ## Prerequisites
 
-- A Median.co app with JavaScript Bridge enabled
+- A Median app with the JavaScript Bridge enabled
 - MoEngage FCM authentication configured in your MoEngage dashboard (Android)
 - MoEngage APNS authentication key configured in your MoEngage dashboard (iOS)
 - Median deep linking configured for your app (required for notification links to open in-app destinations)
 
 ## When to use this plugin
 
-MoEngage is essential for apps that need to:
+MoEngage is a good fit for apps that need to:
 
 | Use case                         | Example                                                                                 |
 | -------------------------------- | --------------------------------------------------------------------------------------- |
@@ -45,7 +45,7 @@ MoEngage is essential for apps that need to:
 
 - **FCM Authentication**: Firebase Cloud Messaging, the push authentication mechanism for Android delivery. Configured in your MoEngage dashboard.
 - **APNS Auth Key**: Apple Push Notification service authentication key for iOS delivery. Configured in your MoEngage dashboard.
-- **Deep Linking**: A Median.co feature that routes notification URLs directly into in-app destinations rather than opening a browser.
+- **Deep linking**: A Median feature that routes notification URLs directly into in-app destinations rather than opening a browser.
 
 <Info>
   **Important considerations**
@@ -70,16 +70,15 @@ Provide a callback function, or a promise is returned.
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   // Using a callback
   median.moengage.promptNotification({ callback: function () {} });
 
   // Using a promise
   median.moengage.promptNotification().then(function (result) {
-  console.log('Notification permission result:', result);
+    console.log('Notification permission result:', result);
   });
-
-```
+  ```
 </CodeGroup>
 
 **Parameters:**
@@ -96,7 +95,7 @@ Provide a callback function, or a promise is returned.
 
 <MedianLogo />
 <CodeGroup>
-```JavaScript JavaScript
+```javascript JavaScript
   // Using a callback
   median.moengage.notificationEnabled({ callback: function (result) {
     console.log('Notifications enabled:', result);
@@ -116,14 +115,14 @@ Provide a callback function, or a promise is returned.
 | ---------- | -------- | -------- | -------------------------------------------------------------------- |
 | `callback` | function | No       | Called with the permission status. Omit to use the returned promise. |
 
-#### Set UniqueID
+#### Set unique ID
 
 Sets a persistent user identifier across installs and platforms. Call after login to associate subsequent events and push tokens with the user.
 
 <MedianLogo />
 <CodeGroup>
-```JavaScript JavaScript 
-median.moengage.setUniqueId('uniqueid'); 
+```javascript JavaScript
+median.moengage.setUniqueId('uniqueid');
 ```
 </CodeGroup>
 
@@ -139,8 +138,8 @@ Updates the existing user unique ID with a new alias. Use when a user's identifi
 
 <MedianLogo />
 <CodeGroup>
-```JavaScript JavaScript 
-median.moengage.setAlias('alias'); 
+```javascript JavaScript
+median.moengage.setAlias('alias');
 ```
 </CodeGroup>
 
@@ -156,8 +155,8 @@ Resets unique ID and all data for the current user. Call on logout to disassocia
 
 <MedianLogo />
 <CodeGroup>
-```JavaScript JavaScript 
-median.moengage.resetUser(); 
+```javascript JavaScript
+median.moengage.resetUser();
 ```
 </CodeGroup>
 
@@ -167,9 +166,9 @@ Logs a named event with an optional key-value payload. Use for behavioral analyt
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   // Event with payload
-  median.moengage.trackEvent(eventName, { key_1: 'value_1', key_2: 'value_2' });
+  median.moengage.trackEvent('eventName', { key_1: 'value_1', key_2: 'value_2' });
 
   // Event without payload
   median.moengage.trackEvent('eventName');
@@ -189,17 +188,16 @@ Launches the MoEngage notification and subscription center.
 
 <MedianLogo />
 <CodeGroup>
-```JavaScript JavaScript
+```javascript JavaScript
   median.moengage.launchInbox();
 ```
 </CodeGroup>
-
 
 ## Testing checklist
 
 Use this checklist to ensure MoEngage is working correctly in your app:
 
-**Basic Functionality**
+**Basic functionality**
 
 - [ ] `median.moengage.promptNotification` shows the permission prompt on Android 13+ and grants silently on Android 12 and below.
 - [ ] `median.moengage.notificationEnabled` returns expected status after permission is granted or denied.
@@ -207,17 +205,17 @@ Use this checklist to ensure MoEngage is working correctly in your app:
 - [ ] `median.moengage.trackEvent` logs events with and without payloads.
 - [ ] `median.moengage.launchInbox` opens the notification/subscription center.
 
-**Platform Testing**
+**Platform testing**
 
 - [ ] Push notifications are delivered on Android with FCM authentication configured.
 - [ ] Push notifications are delivered on iOS with APNS authentication configured.
 
-**Deep Linking**
+**Deep linking**
 
 - [ ] Notification links open directly inside the app with Median deep linking configured.
 - [ ] Notification links fall back gracefully when deep linking is not configured.
 
-**User Experience**
+**User experience**
 
 - [ ] Users receive the push permission dialog at an appropriate point in the onboarding flow.
 - [ ] Inbox opens correctly from UI entry points in the app.
@@ -228,13 +226,13 @@ Use this checklist to ensure MoEngage is working correctly in your app:
 
 Set up Median deep linking in App Studio so notification URLs resolve to in-app destinations. Without deep linking configured, tapping notification links may open an external browser instead.
 
-### MoEngage bridge methods are undefined at runtime
+### MoEngage JavaScript Bridge methods are undefined at runtime
 
-Confirm the MoEngage native plugin is enabled in Median App Studio and that the JavaScript Bridge is active for your app. Call bridge methods after the page is fully loaded.
+Confirm the MoEngage plugin is enabled in App Studio and that the JavaScript Bridge is active for your app. Call JavaScript Bridge methods after the page is fully loaded.
 
 ### Push notifications not delivered on Android
 
-Verify FCM Authentication is configured correctly in your MoEngage dashboard. Confirm the Google Services configuration in Median App Studio matches your Firebase project.
+Verify FCM Authentication is configured correctly in your MoEngage dashboard. Confirm the Google Services configuration in App Studio matches your Firebase project.
 
 ### Push notifications not delivered on iOS
 
@@ -247,6 +245,6 @@ This is expected behavior. On Android 12 and below, push permission is always gr
 <Info>
   **Still having trouble?**
 
-For issues related to MoEngage's own configuration, permissions, or platform-specific behavior outside Median's bridge, refer to [MoEngage's integration documentation.](https://developers.moengage.com/hc/en-us)
+For issues related to MoEngage's own configuration, permissions, or platform-specific behavior outside of Median's JavaScript Bridge, refer to [MoEngage's integration documentation](https://developers.moengage.com/hc/en-us).
 
 </Info>

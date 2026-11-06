@@ -1,11 +1,11 @@
 ---
-title: "Passkey Authentication (WebAuthn)"
-description: "Add passwordless sign-in with passkeys."
+title: "Passkey authentication (WebAuthn)"
+description: "Let users sign in to your app with passkeys and Face ID, Touch ID, or fingerprint unlock, using the WebAuthn standard on iOS and Android."
 keywords: ["passkeys", "WebAuthn", "passwordless", "authentication", "biometrics"]
 searchable: true
 ---
 
-Median's Passkey Authentication plugin connects your website (running inside your native app) to the device's built-in biometrics. This allows your users to log into your app using native Face ID, Touch ID, or Android Fingerprint Unlock.
+Median's Passkey Authentication plugin connects your website (running inside your native app) to the device's built-in biometrics. This allows your users to sign in to your app using native Face ID, Touch ID, or Android Fingerprint Unlock.
 
 It's built on the FIDO/WebAuthn standard, offering a phishing-resistant, passwordless alternative that's simpler for users and more secure for your business.
 
@@ -21,14 +21,14 @@ You can explore a sample implementation on the [Passkey demo page](https://media
 ## Key features
 
 - **Boost security and stop phishing:** Passkeys are cryptographically secure and tied directly to your website. This technology makes it virtually impossible for users to be phished, as there's no password to steal.
-- **Improve user conversion:** Remove the friction of forgotten passwords. Users can log in instantly with their face or fingerprint, leading to a smoother, faster experience that reduces drop-off.
-- **Leverage native device power:** The plugin connects your web content directly to the device's secure hardware (like the Secure Enclave or Android Keystore).
+- **Improve user conversion:** Remove the friction of forgotten passwords. Users can sign in instantly with their face or fingerprint, for a smoother, faster experience that reduces drop-off.
+- **Use native device security hardware:** The plugin connects your web content directly to the device's secure hardware (like the Secure Enclave or Android Keystore).
 
 ### How it works
 
 At a high level, passkey authentication replaces traditional passwords. The user's device creates and stores a unique cryptographic key. This key is split into two parts: a **private key** that _never_ leaves the user's device and a **public key** that is sent to your server.
 
-1. A user taps the "Log In" button on your website _inside the app_.
+1. A user taps the "Sign in" button on your website _inside the app_.
 2. The website requests a challenge from your server.
 3. On Android, the plugin intercepts this call and triggers the native biometric prompt (e.g., "Sign in with Touch ID"). On iOS the native plugin is not required, but the Apple App Site Association (AASA) file needs to be configured and hosted.
 4. Once the user verifies, the device signs the challenge and passes it back to your website.
@@ -40,7 +40,7 @@ Median bridges the gap between your web-based login flow and the native biometri
 
 - **Secure e-commerce checkouts:** Allow customers to authenticate quickly to complete a purchase or access their order history.
 - **HIPAA/Financial app logins:** Provide a compliant and highly secure login method for users accessing sensitive health or financial data.
-- **Internal employee portals:** Let employees log into internal tools using the same biometrics they use to unlock their work phones.
+- **Internal employee portals:** Let employees sign in to internal tools using the same biometrics they use to unlock their work phones.
 
 ## Implementation
 
@@ -48,7 +48,7 @@ Follow these steps to integrate native passkey (WebAuthn) authentication into yo
 
 ## Before you start
 
-- **Median App Studio access:** You need access to your app build configuration on the Median platform to add the plugin.
+- **Median App Studio access:** You need access to your app's build configuration in App Studio to add the plugin.
 - **A WebAuthn-compliant server:** You must have a backend (Relying Party) capable of generating and verifying FIDO2/WebAuthn registration challenges and login assertions.
 - **Associated Domains / Asset Links:** You must have Apple Associated Domains (for iOS) and Android Digital Asset Links (for Android) configured for your website. This is a non-negotiable security requirement from Apple and Google for passkeys to function.
 - You have implemented `/passkey/register` and `/passkey/login` endpoints to handle challenge generation and verification.
@@ -63,9 +63,9 @@ This file allows Android devices to associate your domain with your app during p
 
 **Example:** [https://median.dev/.well-known/assetlinks.json](https://median.dev/.well-known/assetlinks.json)
 
-**Important - All Asset Links and Apple-App-Site-Association (AASA) files need to be publicly accessible**
+**Important: All Asset Links and Apple App Site Association (AASA) files need to be publicly accessible**
 
-For non-public development environments, you can publicly expose AASA and Asset Links files by using a whitelist reverse proxy, a public static bucket/CDN, an API gateway, an edge worker, or a dedicated micro-site while keeping the rest of the environment private. An example can be found in our blog [How to serve AASA and Digital Asset Links files with Cloudflare Workers](https://median.co/blog/how-to-serve-aasa-and-digital-asset-links-files-with-cloudflare-workers)
+For non-public development environments, you can publicly expose AASA and Asset Links files by using an allowlist reverse proxy, a public static bucket/CDN, an API gateway, an edge worker, or a dedicated micro-site while keeping the rest of the environment private. An example can be found in our blog [How to serve AASA and Digital Asset Links files with Cloudflare Workers](https://median.co/blog/how-to-serve-aasa-and-digital-asset-links-files-with-cloudflare-workers).
 
 #### 2. Configure the expected origin
 
@@ -73,13 +73,13 @@ Your server must verify the origin of each WebAuthn request (registration or aut
 
 The Android origin format is:
 
-`android:apk-key-hash:\<BASE64URL-encoded SHA-256 fingerprint of the APK's signing certificate>`
+`android:apk-key-hash:<BASE64URL-encoded SHA-256 fingerprint of the APK's signing certificate>`
 
 **Example:** `android:apk-key-hash:SLxaRtkJ-LAxf5rY4kusSv21KMenqeVKovFHMT-hPkI`
 
 **Generate the fingerprint:**
 
-Run this command in your terminal (replace `\<your-alias>, release.keystore` and `\<your-keystore-password>` with your actual values):
+Run this command in your terminal (replace `<your-alias>`, `release.keystore`, and `<your-keystore-password>` with your actual values):
 
 ```bash bash
 keytool -exportcert -alias <your-alias> -keystore release.keystore -storepass <your-keystore-password> | \
@@ -96,15 +96,15 @@ When creating WebAuthn registration options for passkey enrollment, you must inc
 
 **Configuration example:**
 
-```JSON JSON
+```json JSON
 "authenticatorSelection": {
-  "requireResidentKey": true | false, // Required for Android compatibility
+  "requireResidentKey": true,         // Required for Android compatibility
   "residentKey": "required",          // Modern WebAuthn field
   "userVerification": "preferred"
 }
 ```
 
-**Understanding requireResidentKey:**
+**Understanding `requireResidentKey`:**
 
 This field determines whether the passkey is stored on the device:
 
@@ -116,15 +116,15 @@ This field determines whether the passkey is stored on the device:
 After completing the website configuration steps above, configure the WebAuthn plugin in Median App Studio:
 
 1. In Median App Studio, navigate to **Native Plugins > WebAuthn (Android)**
-2. Configure the **allowedUrls** parameter with URL patterns (regex) that specify which domains can create passkey requests
+2. Configure the **allowedUrls** parameter with URL patterns that specify which domains can create passkey requests
 3. Save the configuration
 
 **Parameter details:**
 
-- **allowedUrls** - A list of URL patterns (regex) that are allowed to create passkey requests. This helps prevent unauthorized passkey creation from untrusted domains.
+- **allowedUrls** - A list of URL patterns that are allowed to create passkey requests. This helps prevent unauthorized passkey creation from untrusted domains.
 
-<Frame caption="App Studio - Passkey Plugin Configuration">
-  <img src="/images/docs/4ef7604b4a80b14f79da7dfab5241f3baa4ee6465d65f8a8060613070c2d1017-Screenshot_2026-02-05_at_10.47.42.png" />
+<Frame caption="App Studio: passkey plugin configuration">
+  <img src="/images/docs/4ef7604b4a80b14f79da7dfab5241f3baa4ee6465d65f8a8060613070c2d1017-Screenshot_2026-02-05_at_10.47.42.png" alt="WebAuthn (Android) plugin configuration with allowedUrls in App Studio" />
 </Frame>
 
 ### iOS setup
@@ -133,14 +133,14 @@ On iOS the native plugin is not required, but the Apple App Site Association (AA
 
 #### 1. Extend your Apple app site association (AASA)
 
-For iOS, you must host an `apple-app-site-association`file that includes a `webcredentials` object. This file tells iOS that your app is authorized to handle credentials and authentication for your domain.
+For iOS, you must host an `apple-app-site-association` file that includes a `webcredentials` object. This file tells iOS that your app is authorized to handle credentials and authentication for your domain.
 
 You can follow the steps in [iOS Universal Links Configuration](/docs/deep-linking#ios-universal-links-configuration) to obtain your AASA. Once you obtained your AASA you will need to add a webcredentials object as defined below.
 
 **Example AASA**
 
 <CodeGroup>
-  ```JSON JSON
+  ```json JSON
   /* Example - /apple-app-site-association */
   {
     "applinks": {
@@ -159,7 +159,7 @@ You can follow the steps in [iOS Universal Links Configuration](/docs/deep-linki
 **Example AASA including WebAuthn support**
 
 <CodeGroup>
-  ```JSON JSON
+  ```json JSON
   /* Example - /apple-app-site-association with Passkey Support */
   {
     "applinks": {

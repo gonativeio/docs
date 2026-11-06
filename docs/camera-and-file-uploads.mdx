@@ -1,5 +1,5 @@
 ---
-title: "Camera and File Uploads"
+title: "Camera and file uploads"
 description: "Enable camera access and file uploads in your app."
 keywords:
   ["camera", "file uploads", "photo upload", "file input", "permissions"]
@@ -9,7 +9,7 @@ searchable: true
 import { AppetizeEmbed } from "/snippets/appetize-embed.jsx";
 import { MedianLogo } from "/snippets/median-logo.jsx";
 
-Adding camera access and file upload capabilities to your mobile app enhances user experience, boosts engagement, and expands functionality. Common use cases include profile photo customization, document submission, in-app image capture, and media sharing which are critical features for social, e-commerce, and business applications.
+Camera access and file uploads let users add photos, documents, and other media from your app. Common use cases include profile photos, document submission, in-app image capture, and media sharing in social, e-commerce, and business apps.
 
 This guide covers everything you need to implement camera and file upload support in Median apps on both iOS and Android, including platform-specific configuration for Android camera capture quality and gallery storage.
 
@@ -18,8 +18,8 @@ This guide covers everything you need to implement camera and file upload suppor
 
 Test camera and file upload functionality during development using the live demo pages.
 
-- File and Camera Uploads: [https://median.dev/camera/](https://median.dev/camera/)
-- Android Camera Settings: [https://median.dev/camera-settings](https://median.dev/camera-settings)
+- File and camera uploads: [https://median.dev/camera/](https://median.dev/camera/)
+- Android camera settings: [https://median.dev/camera-settings](https://median.dev/camera-settings)
 
 </Check>
 
@@ -27,7 +27,7 @@ Test camera and file upload functionality during development using the live demo
 
 File and image uploads are natively supported in both iOS and Android WebViews, which power Median's native mobile apps. No additional plugins or configuration are required to enable basic upload functionality.
 
-To enable file or image selection in your web app, use the standard HTML `<input type="file">` element. The native WebView and system handles the presentation of the system file picker or camera options to the user automatically.
+To enable file or image selection in your web app, use the standard HTML `<input type="file">` element. The native WebView and operating system handle the presentation of the system file picker or camera options to the user automatically.
 
 For the full list of supported attributes and implementation best practices, refer to the [MDN documentation on Input File](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file).
 
@@ -59,7 +59,7 @@ For technical details on how these quality levels map to Android's media capture
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   // Set camera capture quality to low
   median.camera.setCaptureQuality("low")
 
@@ -78,7 +78,7 @@ This preference persists across sessions once set.
 
 <MedianLogo />
 <CodeGroup>
-```JavaScript JavaScript
+```javascript JavaScript
 // Prevent captured media from being saved to the gallery
 median.camera.saveToGallery(false)
 
@@ -90,9 +90,10 @@ median.camera.saveToGallery(true)
 ## Demo app
 
 <Warning>
-  Due to security policies, the camera functionality in our iOS virtual device
-  simulators is disabled. The Android sample app includes an example camera
-  capture.
+  **Camera unavailable in the iOS simulator**
+
+  Due to security policies, camera functionality is disabled in Median's iOS
+  simulator. The Android sample app includes an example camera capture.
 </Warning>
 
 <AppetizeEmbed

@@ -1,33 +1,33 @@
 ---
-title: "iOS Debugging"
-description: "Debug your iOS app with Xcode and Safari."
+title: "iOS debugging"
+description: "Debug your iOS app with Xcode and Safari Web Inspector on a simulator or physical device to inspect logs, network activity, and JavaScript errors."
 keywords: ["iOS debugging", "Safari Web Inspector", "Xcode", "remote debugging", "console logs"]
 searchable: true
 ---
 
-Learn how to debug with Xcode and Safari using a simulator or physical device. Enable console logging, inspect network activity, and troubleshoot JavaScript errors effectively.
+Learn how to debug with Xcode and Safari using a simulator or physical device. Enable console logging, inspect network activity, and troubleshoot JavaScript errors.
 
 ## Xcode & Safari (simulator)
 
-1. Follow the steps in [Build iOS from Source](/docs/build-ios-from-source) to build your iOS app.
+1. Follow the steps in [Build iOS from source](/docs/build-ios-from-source) to build your iOS app.
 
 2. Launch the app in the Xcode simulator (example: iPhone 17).
 
    <Frame caption="Xcode Simulator">
-     <img src="/images/docs/7e057f61bcb54cbf380a64cbb62ad1b657e97828db7b5ecdedafd71c64efa309-Screenshot_2025-10-08_at_12.39.35.png" />
+     <img src="/images/docs/7e057f61bcb54cbf380a64cbb62ad1b657e97828db7b5ecdedafd71c64efa309-Screenshot_2025-10-08_at_12.39.35.png" alt="Median app running in the Xcode Simulator on an iPhone 17" />
    </Frame>
 
 3. Open Safari, then go to **Develop > iPhone 17 (Simulator) > \[Website Name]** to open the Safari Developer Tools.
 
-   <Frame caption="Safari - Develop">
-     <img src="/images/docs/84deaa58b8afbabf982c617fb1cdff7e3b0938e70215a287e980c24b54291385-Screenshot_2025-10-08_at_12.46.07.png" />
+   <Frame caption="Safari: Develop menu">
+     <img src="/images/docs/84deaa58b8afbabf982c617fb1cdff7e3b0938e70215a287e980c24b54291385-Screenshot_2025-10-08_at_12.46.07.png" alt="Safari Develop menu listing the iPhone 17 simulator and the website loaded in the app" />
    </Frame>
 
 4. You can now use the Elements and Console panels to inspect and debug the website, with changes reflected in real time in the Xcode simulator.
 
 ## Safari remote debugging (physical device)
 
-1. Follow the steps in [Build iOS from Source](/docs/build-ios-from-source) to build your iOS app in Xcode.
+1. Follow the steps in [Build iOS from source](/docs/build-ios-from-source) to build your iOS app in Xcode.
 
 2. Trust the app on your device:
    - Go to **Settings > General**
@@ -53,8 +53,8 @@ Learn how to debug with Xcode and Safari using a simulator or physical device. E
 
 7. Hover over your device name and select your domain.
 
-<Frame caption="Safari- Develop">
-  <img src="/images/docs/52703846d7325c9050f679afe01fda745821c248d41e4315b799cf9433f112f6-image.png" />
+<Frame caption="Safari: Develop menu">
+  <img src="/images/docs/52703846d7325c9050f679afe01fda745821c248d41e4315b799cf9433f112f6-image.png" alt="Safari Develop menu listing a connected iOS device and the domain loaded in the app" />
 </Frame>
 
 ## What you can do while debugging

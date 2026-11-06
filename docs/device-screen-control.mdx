@@ -1,11 +1,11 @@
 ---
-title: "Device Screen Control"
-description: "Control screen brightness, timeout, and full screen."
+title: "Device screen control"
+description: "Control screen brightness, screen timeout, full screen, and orientation in your Median app from App Studio or the JavaScript Bridge."
 keywords: ["screen control", "brightness", "keep screen on", "full screen", "display"]
 searchable: true
 ---
 
-Device Screen Control features let you customize the device screen behavior of your Median app, including screen brightness, screen timeout behavior, and full-screen display. These settings can be configured as defaults in App Studio and, where supported, changed dynamically at runtime using the Median JavaScript Bridge.
+Device screen control features let you customize the device screen behavior of your Median app, including screen brightness, screen timeout behavior, and full-screen display. These settings can be configured as defaults in App Studio and, where supported, changed dynamically at runtime using the Median JavaScript Bridge.
 
 <Check>
 **Developer Demo**
@@ -18,35 +18,31 @@ Display our demo page in your app to test during development [https://median.dev
 
 <Columns cols={2}>
   <Card
-    title="Screen Brightness"
+    title="Screen brightness"
     icon="sun"
-    color="yellow-500"
     href="/docs/screen-brightness"
   >
     Dynamically adjust the device's screen brightness while users are inside
     your app.
   </Card>
   <Card
-    title="Keep Screen On"
+    title="Keep screen on"
     icon="lightbulb"
-    color="blue-500"
     href="/docs/keep-screen-on"
   >
     Prevent the device from automatically turning off or locking the screen
     while your app is in use.
   </Card>
   <Card
-    title="Full Screen"
+    title="Full screen"
     icon="expand"
-    color="pink-500"
     href="/docs/full-screen"
   >
     Allow your app to use the entire available display by hiding system UI.
   </Card>
   <Card
-    title="Screen Orientation"
+    title="Screen orientation"
     icon="mobile-screen"
-    color="orange-500"
     href="/docs/screen-orientation"
   >
     Manage how your app responds to device rotation.
@@ -55,6 +51,6 @@ Display our demo page in your app to test during development [https://median.dev
 
 ## Configure screen controls
 
-Many screen controls can be configured as default app behavior through App Studio → Interface. Runtime controls are available through the Median JavaScript Bridge where supported.
+Many screen controls can be configured as default app behavior through **App Studio → Interface**. Runtime controls are available through the Median JavaScript Bridge where supported.
 
 For implementation details, platform behavior, and JavaScript Bridge examples, see the individual guides above.

@@ -1,6 +1,6 @@
 ---
-title: "Offline Page"
-description: "Show an offline page when connection is lost."
+title: "Offline page"
+description: "Show a default or custom offline page when your app loses its connection, and set how long the app waits before showing it."
 keywords: ["offline page", "offline", "no connection", "timeout", "custom offline page"]
 searchable: true
 ---
@@ -9,8 +9,8 @@ import { MedianLogo } from "/snippets/median-logo.jsx";
 
 By default, the offline timeout is set to 10 seconds, but you can customize this value to suit your needs. However, increasing the timeout duration may degrade user experience, as it will delay visual feedback when the app is trying to establish a connection.
 
-<Frame caption="App Studio - Offline Page Configuration">
-  <img src="/images/docs/af097054b495c469d0faaf73d8895e42b44d453e97f6a0b725f0600ec51ae0c2-Screenshot_2025-07-04_at_11.44.50.png" />
+<Frame caption="App Studio: offline page configuration">
+  <img src="/images/docs/af097054b495c469d0faaf73d8895e42b44d453e97f6a0b725f0600ec51ae0c2-Screenshot_2025-07-04_at_11.44.50.png" alt="Offline page settings in App Studio" />
 </Frame>
 
 ## Offline page behavior
@@ -31,11 +31,11 @@ To use a custom offline page as the app's initial launch screen, please set the 
 
 ## Manual page reload
 
-You may also wish to include a button to manually attempt to reload the page, for instance after the user connects to WiFi or VPN. This can be implemented using the following JavaScript Bridge Commands:
+You may also wish to include a button to manually attempt to reload the page, for instance after the user connects to WiFi or VPN. This can be implemented using the following JavaScript Bridge command:
 
 <MedianLogo />
 <CodeGroup>
-```JavaScript JavaScript 
+```javascript JavaScript 
 median.webview.reload(); 
 ```
 </CodeGroup>
@@ -59,7 +59,7 @@ The following example outlines how to include PNG and SVG encoded images in the 
 
 <iframe
   src="https://codepen.io/gonative/embed/poWbXPN?default-tab=result"
-  title="Default offline page"
+  title="Custom offline page"
   height="450"
   loading="lazy"
   allowFullScreen
@@ -68,11 +68,11 @@ The following example outlines how to include PNG and SVG encoded images in the 
 
 ### Localized offline page example
 
-The following example translates the text and buttons of the Default Offline Page to French, Spanish, or Korean based on the device language. Any other languages will default to the English Offline Page.
+The following example translates the text and buttons of the default offline page to French, Spanish, or Korean based on the device language. Any other languages will default to the English offline page.
 
 <iframe
   src="https://codepen.io/gonative/embed/OPNNxbw?default-tab=result"
-  title="Default offline page"
+  title="Localized offline page"
   height="450"
   loading="lazy"
   allowFullScreen
@@ -96,7 +96,7 @@ The following example translates the text and buttons of the Default Offline Pag
     Cloud Storage isn't available offline.
   </Card>
   <Card
-    title="Offline Download Manager"
+    title="Offline download manager"
     icon="download"
     href="/docs/offline-download-manager"
   >

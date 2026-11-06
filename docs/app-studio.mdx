@@ -1,6 +1,6 @@
 ---
 title: "Median App Studio"
-description: "Configure, build, and download your app in App Studio."
+description: "Configure, build, and download your app in Median App Studio, and test it in the browser with built-in iOS and Android simulators."
 keywords:
   ["App Studio", "app build", "rebuild", "download", "virtual simulators"]
 searchable: true
@@ -8,9 +8,9 @@ searchable: true
 
 ## App build
 
-The Median App Studio enables you to configure and rebuild your app multiple times, provided you have an active Support & Updates plan. Each build integrates the latest Median.co core code, ensuring compatibility with new operating systems and devices. Many compatibility issues can be resolved by simply rebuilding your app.
+The Median App Studio enables you to configure and rebuild your app multiple times, provided you have an active Support & Updates Plan. Each build integrates the latest Median core code, ensuring compatibility with new operating systems and devices. Many compatibility issues can be resolved by simply rebuilding your app.
 
-For details on recent software and platform updates, refer to our [Release Notes](/docs/changelog).
+For details on recent software and platform updates, refer to our [release notes](/docs/changelog).
 
 ## Build, download, and deploy your app
 
@@ -20,7 +20,7 @@ Use the **Build & Deploy** tab to create iOS and Android builds, download binari
 
 Median App Studio can build signed IPAs in the cloud. For App Store and TestFlight workflows, connect your Apple Developer account with an App Store Connect API key, configure a distribution profile, set **Upload to App Store Connect** to **Automatic**, and build your iOS IPA. Median uploads the completed build to App Store Connect so you can test it in TestFlight and submit it for App Review.
 
-You can also download the iOS source code directly from App Studio. Xcode and macOS are required only if you choose to build locally from source. To use that optional workflow, follow [Build iOS from Source](/docs/build-ios-from-source).
+You can also download the iOS source code directly from App Studio. Xcode and macOS are required only if you choose to build locally from source. To use that optional workflow, follow [Build iOS from source](/docs/build-ios-from-source).
 
 #### Install the app on a device
 
@@ -30,7 +30,7 @@ Both workflows require an Apple Developer Program account and correctly configur
 
 ### Android
 
-Median provides access to your Android app's source code, available for direct download from App Studio. To build your app, follow the steps in our [Build Android from Source](/docs/build-android-from-source) guide.
+Median provides access to your Android app's source code, available for direct download from App Studio. To build your app, follow the steps in our [Build Android from source](/docs/build-android-from-source) guide.
 
 Alternatively, you may download the Android APK and Android App Bundle (AAB) binaries directly from your app's Private Management URL. Android APKs are convenient for testing your app on your own Android devices.
 
@@ -49,21 +49,21 @@ For Enterprise customers, we offer extended runtime and unlimited simulator sess
 ## Frequently asked questions
 
 <AccordionGroup>
-<Accordion title="I am looking to use the Virtual Simulators to test my web app. Which IP blocks do I have to whitelist?" id="i-am-looking-to-use-the-virtual-simulators-to-test-my-web-app-which-ip-blocks-do-i-have-to-whitelist">
+<Accordion title="I am looking to use the virtual simulators to test my web app. Which IP blocks do I have to whitelist?" id="i-am-looking-to-use-the-virtual-simulators-to-test-my-web-app-which-ip-blocks-do-i-have-to-whitelist">
 
 Median recommends whitelisting the following IP blocks to account for virtual simulators in different data centers.
 
-[http://median.co/ip-blocks](http://median.co/ip-blocks)
+[Median's list of IP blocks](http://median.co/ip-blocks)
 
 </Accordion>
-<Accordion title="What Android WebView Versions Are Installed on the Virtual Simulators?" id="what-android-webview-versions-are-installed-on-the-virtual-simulators">
+<Accordion title="What Android WebView versions are installed on the virtual simulators?" id="what-android-webview-versions-are-installed-on-the-virtual-simulators">
 
-Our virtual simulators are regularly updated, but in some cases, your web content - especially if it uses niche CSS or specific WebView features - may not be compatible with certain Android WebView versions. You can check the installed versions of Chrome and Android System WebView as follows:
+Our virtual simulators are regularly updated, but in some cases, your web content (especially if it uses niche CSS or specific WebView features) may not be compatible with certain Android WebView versions. You can check the installed versions of Chrome and Android System WebView as follows:
 
 - **Chrome**: _Chrome > Settings > About Chrome_
 - **Android System WebView**: _Settings > System > Developer Options > WebView Implementation_
 
-Whether Chrome and WebView Versions are tied together depends on the Android OS version:
+Whether Chrome and WebView versions are tied together depends on the Android OS version:
 
 - **Android 7.0 (Nougat) to Android 9.0 (Pie):** WebView functionality is provided directly by Chrome. In this case, updating Chrome also updates the WebView component.
 - **Android 10 and above:** WebView is handled as a standalone app, updated separately via the Google Play Store. It is no longer dependent on Chrome unless Chrome is manually selected as the WebView implementation in Developer Options.

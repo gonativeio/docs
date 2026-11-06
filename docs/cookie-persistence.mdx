@@ -1,5 +1,5 @@
 ---
-title: "Cookie Persistence"
+title: "Cookie persistence"
 description: "Keep users signed in across app sessions."
 keywords: ["cookies", "cookie persistence", "sessions", "sign in", "cookie expiration"]
 searchable: true
@@ -11,9 +11,9 @@ Median-powered apps automatically honor the cookie expiration settings defined b
 
 Cookies serve three primary functions in mobile web apps:
 
-- Session Management - Maintaining authenticated user sessions and login states across app launches.
-- User Preferences & Personalization - Persisting settings such as language selection, UI theme, or layout configuration.
-- Tracking & Analytics - Capturing behavioral data for usage insights and performance monitoring.
+- **Session management**: Maintaining authenticated user sessions and signed-in states across app launches.
+- **User preferences and personalization**: Persisting settings such as language selection, UI theme, or layout configuration.
+- **Tracking and analytics**: Capturing behavioral data for usage insights and performance monitoring.
 
 ## How cookie persistence works in Median
 
@@ -22,7 +22,7 @@ By default, Median apps respect the `Expires` and `Max-Age` attributes set by yo
 <Info>
   **Security recommendation**
 
-For critical session data or long-term authentication tokens, use secure storage via the [FaceID / TouchID and Android Biometric Plugin](/docs/auth)) rather than relying solely on cookies. Cookies are inherently subject to platform-level eviction policies.
+For critical session data or long-term authentication tokens, use secure storage via the [Face ID / Touch ID and Android biometric plugin](/docs/auth) rather than relying solely on cookies. Cookies are inherently subject to platform-level eviction policies.
 
 </Info>
 
@@ -33,12 +33,12 @@ If your server-defined cookie lifetimes do not meet your app's requirements — 
 To configure a custom cookie expiration policy:
 
 1. Open Median App Studio.
-2. Navigate to Web Overrides > Cookie Persistence.
+2. Navigate to **Web Overrides → Cookie Persistence**.
 3. Switch the setting from `Default` to `Custom Cookie Expiry`.
 4. Define your desired cookie lifetime duration.
 
-<Frame caption="App Configuration - Cookie Persistence">
-  <img src="/images/docs/3e946422f539436c39a0fe4027fd47cf19c4aa9e35550d8078219767418a464b-Screenshot_2026-06-19_at_09.03.56.png" />
+<Frame caption="App configuration: Cookie Persistence">
+  <img src="/images/docs/3e946422f539436c39a0fe4027fd47cf19c4aa9e35550d8078219767418a464b-Screenshot_2026-06-19_at_09.03.56.png" alt="Cookie Persistence setting set to Custom Cookie Expiry in App Studio" />
 </Frame>
 
 This override is useful in scenarios such as:
@@ -69,7 +69,7 @@ Known real-world limitations:
 | Maximum cookie lifetime | No hard cap, but restricted in practice                                 |
 | Persistence basis       | Cookies without explicit persistence may be cleared when the app closes |
 
-Real-World Limitation:
+Known real-world limitations:
 
 - Apple's Intelligent Tracking Prevention (ITP) may automatically purge cookies after 7 days if there has been no recent user interaction with the associated domain.
 - Cookies relying solely on Max-Age or Expires without active user engagement are especially vulnerable to ITP eviction.
@@ -82,18 +82,18 @@ Real-World Limitation:
 No. The cookie storage used by your Median app's WebView is completely isolated from the device's native browser (such as Safari on iOS or Chrome on Android). A user who signs in through your Median app will not be automatically signed in when they open the same website in their mobile browser, and vice versa. Each environment maintains its own independent cookie jar. This is a platform-level constraint that applies to all WebView-based apps, not specific to Median.
 
 </Accordion>
-<Accordion title="Why are my users being logged out on iOS even with a long cookie expiration set?" id="why-are-my-users-being-logged-out-on-ios-even-with-a-long-cookie-expiration-set">
+<Accordion title="Why are my users being signed out on iOS even with a long cookie expiration set?" id="why-are-my-users-being-logged-out-on-ios-even-with-a-long-cookie-expiration-set">
 
 This is most likely caused by Apple's Intelligent Tracking Prevention (ITP), which is built into iOS's WKWebView. ITP can automatically purge cookies associated with a domain after 7 days of inactivity, regardless of the cookie's Expires or Max-Age value.
 
-To reduce the impact of ITP, encourage regular user engagement with your app, or consider storing authentication tokens in secure storage using the FaceID / TouchID and Android Biometric Plugin as a more reliable alternative to cookies for long-term session persistence.
+To reduce the impact of ITP, encourage regular user engagement with your app, or consider storing authentication tokens in secure storage using the [Face ID / Touch ID and Android biometric plugin](/docs/auth) as a more reliable alternative to cookies for long-term session persistence.
 
 </Accordion>
 <Accordion title="Does clearing the app cache also delete cookies?" id="does-clearing-the-app-cache-also-delete-cookies">
 
 It depends on the platform and how the cache clear is triggered.
 
-On Android, using the Clear WebView Cache feature clears cached resources but does not necessarily remove cookies as these are stored separately in the WebView's cookie store. However, uninstalling the app or clearing app data via Android's system settings will delete all cookies.
+On Android, using the [Clear WebView cache](/docs/clear-webview-cache) feature clears cached resources but does not necessarily remove cookies as these are stored separately in the WebView's cookie store. However, uninstalling the app or clearing app data via Android's system settings will delete all cookies.
 
 On iOS, cookies managed by WKWebView are stored in shared process storage; clearing website data will remove them. If your app programmatically clears cookies, all stored session data will be lost regardless of the expiration policy set in App Studio.
 

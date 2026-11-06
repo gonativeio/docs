@@ -1,25 +1,27 @@
 ---
-title: "Search Form"
-description: "Add a native search form to the top bar."
+title: "Search form"
+description: "Add a native search button and search form to the top navigation bar that sends search terms to your website's search URL."
 keywords: ["search form", "search bar", "top navigation bar", "native search"]
 searchable: true
 ---
 
-Configure a native search button with embedded search form in the top native toolbar to add native capabilities to your existing web-based search.
+Add a native search button with an embedded search form to the top navigation bar. It sends what users type to your existing web-based search.
 
 <Info>
-  Search terms will be appended to the URL entered, e.g. Google would be entered as `https://www.google.com/?q=`
+  **Search URL format**
+
+  Search terms are appended to the URL you enter. For example, for Google you'd enter `https://www.google.com/?q=`.
 </Info>
 
 <Columns cols={2}>
-  <Frame caption="iOS – Native Search Form">
+  <Frame caption="iOS – native search form">
     <img src="/images/docs/20e3b9b-native_search_ios.png" alt="iOS app with the native search field open in the navigation bar, a search term entered and the keyboard showing" />
   </Frame>
-  <Frame caption="Android – Native Search Form">
+  <Frame caption="Android – native search form">
     <img src="/images/docs/45290b6-native_search_android.png" alt="Android app with the native search field open in the action bar, a search term entered and the keyboard showing" />
   </Frame>
 </Columns>
 
-Supporting native search will add a magnifying glass button in the [Top Navigation Bar](/docs/top-navigation-bar) (Android ActionBar and iOS NavigationBar). Upon clicking the search icon, users will be able to enter `[search terms]`. These `[search terms]` will simply be appended to the Template Search URL specified.
+Native search adds a magnifying glass button to the [top navigation bar](/docs/top-navigation-bar) (Android ActionBar and iOS NavigationBar). When users tap the search icon, they can enter `[search terms]`. The `[search terms]` are appended to the Template Search URL you specify.
 
 For example, all Google.com searches can be represented using the URL syntax `https://www.google.com/#q=[search terms]`.
