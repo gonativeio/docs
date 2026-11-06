@@ -2,8 +2,7 @@
 title: "Instagram"
 description: "Share text and media to Instagram as an Instagram Reel or directly to the user's Feed"
 ---
-
-## Overview
+import { MedianLogo } from "/snippets/median-logo.jsx";
 
 You can share text and media directly to Instagram as an Instagram Reel or directly to the user's Feed.
 
@@ -15,8 +14,9 @@ Before sharing content, check whether Instagram is installed on the user’s dev
 
 > Run the following Median JavaScript Bridge command to share the screen content
 
+<MedianLogo />
 <CodeGroup>
-  ```bash bash
+  ```JavaScript JavaScript
   const { isInstalled } = await median.socialShare.instagram.isInstalled();
   ```
 </CodeGroup>
@@ -26,7 +26,7 @@ Before sharing content, check whether Instagram is installed on the user’s dev
 This plugin only supports media sharing as a `Blob` object. You can save a remote image as a `Blob` using the following code snippet.
 
 <CodeGroup>
-  ```bash bash
+  ```JavaScript JavaScript
     fetch("url-to-image")
     .then(function(response) {
       return response.blob();
@@ -43,16 +43,17 @@ Other plugins from Median (such as the [Web Screenshot Plugin](https://median.co
 
 Use the following JavaScript command to share an image directly to the Instagram Feed:
 
-> Run the following Median JavaScript Bridge command to share the screen content
+Run the following Median JavaScript Bridge command to share the screen content
 
+<MedianLogo />
 <CodeGroup>
-  ```bash bash
+  ```JavaScript JavaScript
   median.socialShare.instagram.shareToFeed(blob);
   ```
 </CodeGroup>
 
 <Warning>
-  ### Info
+  **Info**
 
   for iOS, Instagram no longer supports direct sharing to feed and will rather present the OS share dialog
 </Warning>
@@ -61,27 +62,11 @@ Use the following JavaScript command to share an image directly to the Instagram
 
 Enhance your content by sharing images directly to Instagram Stories or Reels. This method supports optional sticker attachments and captions.
 
-> Run the following Median JavaScript Bridge command to share the screen content
+Run the following Median JavaScript Bridge command to share the screen content
 
+<MedianLogo />
 <CodeGroup>
-  ```bash bash
+  ```JavaScript JavaScript
   median.socialShare.snapchat.share(blob, { attachment: stickerBlob, captionText: 'Caption for Snapchat' });
   ```
 </CodeGroup>
-
-***
-
-### Next Steps
-
-* [Web Screenshot](/docs/web-screenshot)
-
-Copy Page
-
-* * [Overview](#overview)
-
-  * [Implementation Guide](#implementation-guide)
-
-  * * [Checking for availability](#checking-for-availability)
-    * [Sharing media](#sharing-media)
-    * [Sharing to feed](#sharing-to-feed)
-    * [Sharing to story or reels](#sharing-to-story-or-reels)

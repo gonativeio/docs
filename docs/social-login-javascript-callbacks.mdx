@@ -2,8 +2,6 @@
 title: "JavaScript Callbacks"
 ---
 
-## Overview
-
 This guide shows you how to implement social login using JavaScript callbacks with the Median JavaScript Bridge. This approach keeps everything in the browser and works well for single-page apps and client-side authentication flows.
 
 ## How it works
@@ -353,7 +351,7 @@ Here's what your callback function receives for Apple.
 #### Success response
 
 <CodeGroup>
-  ```bash bash
+  ```JSON JSON
   {
       "idToken": "token string",
       "code": "code string",
@@ -369,7 +367,7 @@ Here's what your callback function receives for Apple.
 #### **Error response**
 
 <CodeGroup>
-  ```bash bash
+  ```JSON JSON
   {
       "error": "error description",
       "type": "apple"
@@ -398,7 +396,7 @@ Use the Median JavaScript Bridge method to trigger native login from your websit
 Here's an example:
 
 <CodeGroup>
-  ```bash bash
+  ```HTML HTML
   <head>
       <!-- other head tags -->
 
@@ -505,18 +503,3 @@ Remember, the user's name can only be retrieved the first time they authorize yo
 **Fix** In your Supabase project, go to **Authentication → Providers → Google** and disable nonce verification (skip nonce checks) for ID token sign-in. This lets Supabase accept the ID token from Median's native flow without requiring a nonce match.
 
 > **Note for Lovable users:** If your project is on Lovable's managed Supabase instance, this setting isn't exposed in the Lovable UI. You'll need to transfer the project to your own Supabase account to access Authentication settings directly. See \[Using Median with Lovable] for details.
-
-***
-
-[Server-side Redirects](/docs/social-login-server-side-redirects)
-
-[Enterprise](/docs/enterprise)
-
-Copy Page
-
-* * [Overview](#overview)
-  * [How it works](#how-it-works)
-  * [Before you start](#before-you-start)
-  * [Understanding the parameters](#understanding-the-parameters)
-  * [Provider-specific implementation](#provider-specific-implementation)
-  * [Frequently Asked Questions](#frequently-asked-questions)
