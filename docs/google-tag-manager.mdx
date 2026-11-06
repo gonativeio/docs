@@ -33,7 +33,7 @@ The template pushes this object to the data layer:
 ```
 </CodeGroup>
 
-## Required Permissions
+## Required permissions
 
 For security reasons, this template is sandboxed and utilizes the following permissions:
 
@@ -41,7 +41,7 @@ For security reasons, this template is sandboxed and utilizes the following perm
 - **Accesses Global Variables:** Allows pushing data into the `dataLayer` array.
 - **Logs to Console:** Allows the template to print debugging and status messages to the browser console.
 
-## Configuration Fields (optional)
+## Configuration fields (optional)
 
 - **Bridge Version (bridgeVersion)**
   - Enter the [version number](https://www.npmjs.com/package/median-js-bridge?activeTab=versions) of the JavaScript bridge that will be injected.
@@ -51,18 +51,18 @@ For security reasons, this template is sandboxed and utilizes the following perm
   - Enter the name of your [user-defined variable](https://support.google.com/tagmanager/answer/7683362?hl=en) that stores the [device user agent](https://docs.median.co/docs/custom-user-agent) string
   - This value is included in console logs and passed into the `dataLayer` payload to provide the following device information: Browser, Operating, and Device type
 
-## How It Works
+## How it works
 
 1. **Debugging Initialization:** The template reads the `userAgentValue` field and logs the user agent to the GTM preview console to confirm the Median app was detected.
 2. **Dynamic URL Construction:** The template pulls the version number from the `bridgeVersion` field and constructs the CDN URL: `https://unpkg.com/median-js-bridge@[version]/dist/median.min.js`
 3. **Script Injection:** Using GTM's sandboxed `injectScript` API, it attempts to load the constructed URL into the document.
 4. **State Handling:** Depending on the outcome of the script injection, a specific event is pushed to the `dataLayer` and the tag successfully resolves or fails.
 
-## DataLayer Events
+## DataLayer events
 
 The template automatically pushes an event named `median_injected` to the `dataLayer` upon completion. You can use this event to trigger subsequent tags.
 
-### On Success
+### On success
 
 If the script successfully loads from the CDN, the following payload is pushed:
 
@@ -76,7 +76,7 @@ If the script successfully loads from the CDN, the following payload is pushed:
   ```
 </CodeGroup>
 
-### On Failure
+### On failure
 
 If the script fails to load, the tag signals a failure to GTM and pushes the following payload:
 

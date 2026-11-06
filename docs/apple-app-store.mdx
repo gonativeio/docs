@@ -9,13 +9,13 @@ Median supports self-service iOS publishing directly from App Studio. The recomm
 
 Developers who prefer a local native workflow can still download the complete iOS source code and publish with Apple development tools. Median also offers configuration, consulting, and publishing services. If you would like assistance with publishing, please [contact us](https://median.co/contact?topic=publishing).
 
-## Apple Developer Account
+## Apple Developer account
 
 To publish an app on the Apple App Store, you must have an active Apple Developer account.
 
 You can enroll in the Apple Developer Program here: [https://developer.apple.com/programs/enroll/](https://developer.apple.com/programs/enroll/).
 
-### Individual vs. Organization Apple Developer Accounts
+### Individual vs. organization Apple Developer accounts
 
 When enrolling in the Apple Developer Program, you must choose between an Individual account or an Organization account. The appropriate choice depends on how your app will be owned, managed, and published.
 
@@ -28,7 +28,7 @@ If you’d like to update your membership from an individual to an organization,
 
 </Info>
 
-#### Organization Account
+#### Organization account
 
 An Organization Apple Developer account is designed for companies, startups, and teams that want to distribute apps under a business name. With this account type, the organization’s name appears as the seller on the App Store instead of an individual developer's name.
 
@@ -42,7 +42,7 @@ Organization accounts support team-based development by allowing multiple users 
 
 Because the account represents a legal business entity, Apple requires additional verification during enrollment. Organizations must provide company information and a D-U-N-S® Number, which Apple uses to confirm the organization’s identity.
 
-#### Individual Account
+#### Individual account
 
 An Individual Apple Developer account is intended for a single developer who wants to publish apps under their personal identity. When you publish an app using this account type, your personal name appears as the seller on the App Store listing rather than a company name.
 
@@ -50,7 +50,7 @@ This account type is designed primarily for independent developers and personal 
 
 Individual accounts are generally faster to set up because Apple does not require business verification. This makes them a good option for developers who are experimenting with app development, building side projects, or publishing apps independently.
 
-#### Which Should You Choose?
+#### Which should you choose?
 
 For most business apps, an Organization account is recommended because it allows team management and displays your company name in the App Store.
 
@@ -68,7 +68,7 @@ For example, if your website is `example.com`, your recommended Bundle ID is `co
 
 Choose a Bundle ID that is unique and consistent with your organization's naming conventions.
 
-## Signing Certificates
+## Signing certificates
 
 After creating your Apple Developer account, your app must be signed with Apple certificates and provisioning profiles before it can be tested or submitted.
 
@@ -78,13 +78,13 @@ Manual certificate setup is only needed if you choose not to use the App Store C
 
 For detailed instructions, see Apple’s documentation: [Maintaining Your Signing Identities and Certificates](https://developer.apple.com/library/ios/documentation/IDEs/Conceptual/AppDistributionGuide/MaintainingCertificates/MaintainingCertificates.html).
 
-## App Store Connect App Store Listing
+## App Store Connect App Store listing
 
 Create your app store listing at [App Store Connect](https://appstoreconnect.apple.com). You need this app record before a build can appear in TestFlight or be submitted for review. You'll need to fill out several pieces of information including app name, description, search keywords, screenshots for the various devices sizes, content rating, contact person and a few more.
 
 Once your listing is complete, select the build you want to submit. If no build is available yet, follow the steps in the [Uploading Your Build](https://median.co/docs/apple-app-store#uploading-your-build) section below.
 
-## App Store Screenshot Requirements
+## App Store screenshot requirements
 
 Apple supports screenshots for several device sizes. With the introduction of Media Manager in App Store Connect, you can upload screenshots for the largest device sizes, and Apple will automatically scale them for smaller devices.
 
@@ -99,7 +99,7 @@ Browse and download the templates here: [App store screenshot templates](https:/
 
 </Check>
 
-### Screenshot File Requirements
+### Screenshot file requirements
 
 Screenshots must meet the following specifications:
 
@@ -123,9 +123,9 @@ By default, all Median apps are universal meaning they run on all iOS and iPadOS
 | --------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
 | **13-inch** iPad Pro (M4) iPad Pro (6th generation, 5th generation, 4th generation, 3rd generation, 1st generation) iPad Air (M2) | 2064 x 2752 pixels (portrait) 2752 x 2064 pixels (landscape) 2048 x 2732 pixels (portrait) 2732 x 2048 pixels (landscape) |
 
-## Uploading Your Build
+## Uploading your build
 
-### Recommended: App Store Connect Upload from Median App Studio
+### Recommended: App Store Connect upload from Median App Studio
 
 For most developers, the fastest path is to upload from Median App Studio through the App Store Connect API.
 
@@ -139,7 +139,7 @@ Each new distribution build is uploaded to App Store Connect automatically. Afte
 
 For setup details, see [Connecting Median with App Store Connect](/docs/connecting-median-appstore-connect) and [Upload iOS to TestFlight](/docs/upload-ios-to-testflight).
 
-### Manual Alternatives
+### Manual alternatives
 
 If you prefer to manage uploads yourself, leave **Upload to App Store Connect** set to **Manual** and press the **Upload** button after the build completes. You can also build a signed IPA in Median App Studio and upload it with Apple Transporter, or download the complete iOS source code from your Median app's manage page, open `<yourapp>.xcworkspace` in the latest non-beta version of Xcode, archive the app, and upload the archive from Xcode.
 

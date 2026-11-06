@@ -11,13 +11,13 @@ The median-js-bridge NPM package allows you to register listener functions that 
 
 Listeners are event-driven functions that execute when a native event is triggered. Even if an event occurs _before_ the listener is registered, the event will be queued and delivered once the listener initializes, ensuring reliable event capture.
 
-## Listener Implementation
+## Listener implementation
 
-### Registering Event Listeners
+### Registering event listeners
 
 Listeners are added using the `.addListener()` method available on specific plugin interfaces. Each listener returns a `listenerId`, which can be used later to remove the listener.
 
-### Example: App Resumed Event
+### Example: App resumed event
 
 <MedianLogo />
 
@@ -31,7 +31,7 @@ const listenerId = Median.appResumed.addListener(() => {
 
 </CodeGroup>
 
-### Example: OneSignal Push Notification
+### Example: OneSignal push notification
 
 Respond to push notifications sent via OneSignal.
 
@@ -49,7 +49,7 @@ const listenerId = Median.onesignal.pushOpened.addListener((data) => {
 
 </CodeGroup>
 
-### Example: Share Into App
+### Example: Share into app
 
 Handle data shared into your app using the share intent.
 
@@ -67,7 +67,7 @@ const listenerId = Median.shareIntoApp.shareResult.addListener((data) => {
 
 </CodeGroup>
 
-### Example: Device Shake (Haptics Plugin)
+### Example: Device shake (haptics plugin)
 
 Capture device shake gestures for enhanced interaction.
 
@@ -85,7 +85,7 @@ const listenerId = Median.deviceShake.addListener(() => {
 
 </CodeGroup>
 
-### Example: AppsFlyer Conversion Data
+### Example: AppsFlyer conversion data
 
 Receive install attribution and conversion data from AppsFlyer.
 
@@ -103,7 +103,7 @@ const listenerId = Median.appsflyer.conversionData.addListener((conversionDataMa
 
 </CodeGroup>
 
-## Removing Event Listeners
+## Removing event listeners
 
 To stop listening for a specific event, use the `.removeListener()` method with the stored `listenerId`.
 
@@ -117,7 +117,7 @@ Median.deviceShake.removeListener(listenerId);
 
 </CodeGroup>
 
-## Best Practices for Listener Management
+## Best practices for listener management
 
 * Always store the listenerId if you intend to remove the listener later.
 * Register listeners early, ideally within a component’s useEffect or lifecycle hook.

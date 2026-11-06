@@ -38,13 +38,13 @@ Display our demo page in your app to test during development [https://median.dev
 
 - If testing with the Median demo page, use `https://median.dev/braze/`.
 
-## Implementation Guide
+## Implementation guide
 
-### Braze Setup
+### Braze setup
 
 Enable push notifications through Braze In-App Messaging as documented in the [Braze push primer](https://www.braze.com/docs/user_guide/channels/push/best_practices/push_primer_messages/).
 
-### App Configuration
+### App configuration
 
 Enable the Braze Plugin in the Native Plugins tab as shown below. The plugin does not require the configuration of the following parameters.
 
@@ -60,9 +60,9 @@ Enable the Braze Plugin in the Native Plugins tab as shown below. The plugin doe
 
 Set up [Deep Linking](https://median.co/docs/deep-linking) within your app, and notification links will automatically open directly into your app.
 
-### JavaScript Bridge Functions
+### JavaScript Bridge functions
 
-#### Change User
+#### Change user
 
 Logs in an existing user or registers a new user in Braze context.
 
@@ -79,7 +79,7 @@ Logs in an existing user or registers a new user in Braze context.
 | --------- | -------- | -------- | ---------------------------------------------------- |
 | `userId`  | `string` | Yes      | User identifier to associate with the Braze profile. |
 
-#### Prompt for Push Notification Permission
+#### Prompt for push notification permission
 
 Prompts users to enable push notifications.
 
@@ -100,7 +100,7 @@ Prompts users to enable push notifications.
 | ---------- | ---------- | -------- | ---------------------------------------------------- |
 | `callback` | `function` | No       | Callback that receives `{ granted: true \| false }`. |
 
-#### Check Push Notification Permission
+#### Check push notification permission
 
 Checks if push notification permission has been granted.
 
@@ -121,7 +121,7 @@ Checks if push notification permission has been granted.
 | ---------- | ---------- | -------- | ---------------------------------------------------- |
 | `callback` | `function` | No       | Callback that receives `{ granted: true \| false }`. |
 
-#### Track Custom Events
+#### Track custom events
 
 Sends a custom event to Braze.
 
@@ -145,7 +145,7 @@ Sends a custom event to Braze.
 | `eventName`  | `string` | Yes      | Custom event name (must exist in Braze dashboard). |
 | `properties` | `object` | No       | Event key-value payload.                           |
 
-## Testing Checklist
+## Testing checklist
 
 Use this checklist to validate Braze integration:
 

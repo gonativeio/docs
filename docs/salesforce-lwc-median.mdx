@@ -15,13 +15,13 @@ This is part two of a four-part series:
 3. [Deep Linking for Salesforce Experience Cloud](https://docs.median.co/docs/salesforce-deep-linking)
 4. [Salesforce LWC Component Deployment and Reference](https://docs.median.co/docs/salesforce-lwc-components)
 
-## Step 4: Resolve Lightning Web Security Sandbox Constraints
+## Step 4: Resolve Lightning Web Security sandbox constraints
 
 Lightning Web Components run inside a sandboxed JavaScript environment called Lightning Web Security (LWS), or its predecessor Lightning Locker. This sandbox prevents components from accessing global variables outside their own namespace.
 
 The practical effect for Median integrations is that a naive call to `window.median` inside an LWC will return `undefined`, even when the bridge has been injected correctly by the native shell.
 
-### Recommended Pattern for Bridge Access
+### Recommended pattern for bridge access
 
 Always access the bridge through the top-level window reference rather than the component's local `window` reference:
 
@@ -36,11 +36,11 @@ Always access the bridge through the top-level window reference rather than the 
 
 Both `window.median` and `window.Median` are included to handle casing differences across Median SDK versions.
 
-### Checking for LWS vs Legacy Locker
+### Checking for LWS vs legacy locker
 
 LWS provides broader support for cross-window communication than the legacy Locker Service and is the preferred sandbox for new orgs. To confirm which sandbox your org is using, navigate to **Setup > Session Settings** and look for the **Lightning Web Security** toggle. Enable LWS if it is not already active and your org supports it.
 
-### Detecting Whether the Page is Running Inside the Median App
+### Detecting whether the page is running inside the Median app
 
 Always guard bridge calls with a presence check before invoking any native feature. This ensures the component degrades gracefully when loaded in a desktop browser, Experience Builder preview, or any context outside the Median native shell.
 
@@ -57,7 +57,7 @@ Use this getter to disable bridge-dependent UI controls and display an informati
 
 <GitHub.Repo repo="gonativeio/median-salesforce-components" variant="inset" />
 
-### Troubleshooting: `window.median` Is Undefined Inside an LWC
+### Troubleshooting: `window.median` is undefined inside an LWC
 
 If the bridge is not reachable after applying the pattern above, verify the following:
 
@@ -66,7 +66,7 @@ If the bridge is not reachable after applying the pattern above, verify the foll
 3. You are accessing the bridge via `window.median` using the `get _median()` accessor pattern, not a local `window` reference.
 4. You are testing on a physical device inside the Median app, not in Experience Builder preview, which does not inject the bridge.
 
-## Step 5: Configure a Mobile-Aware User Agent
+## Step 5: Configure a mobile-aware user agent
 
 Salesforce detects the browser type from the User Agent string to determine which resources to serve. If the Median app sends a generic WebView User Agent, Salesforce may serve the desktop layout of your Experience Cloud site, which produces a degraded mobile experience.
 
@@ -93,11 +93,11 @@ Once the custom string is in place, you can target it with Custom CSS in Median 
 
 This technique is useful for hiding elements that are not relevant on mobile, adjusting layout, or showing mobile-specific calls to action.
 
-### Troubleshooting: The Site Loads in Desktop Layout Inside the App
+### Troubleshooting: The site loads in desktop layout inside the app
 
 If your site renders the desktop layout inside the Median app, the User Agent string is not being recognised as a mobile browser. Append a mobile identifier to the User Agent in Median App Studio as described above, and verify that your Experience Cloud site has responsive templates or mobile-specific page variants configured.
 
-## Step 6: Choose Your Experience Cloud Runtime
+## Step 6: Choose your Experience Cloud runtime
 
 When building or migrating your Experience Cloud site, prefer **LWR (Lightning Web Runtime)** over the legacy **Aura** framework where possible.
 

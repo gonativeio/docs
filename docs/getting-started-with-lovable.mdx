@@ -89,7 +89,7 @@ You can preview your app in the App Studio simulators to see your customizations
 
 The Median Javascript Bridge is an API that connects your website (Lovable app) to your mobile app. In this guide, the Lovable app uses it to receive push notifications, retrieve health data from the device and trigger haptic feedback.
 
-### Update the JavaScript Frameworks and NPM setting
+### Update the JavaScript frameworks and NPM setting
 
 1. In App Studio, head over to **Web Overrides**.
 2. Under **JavaScript Frameworks and NPM**, select **Use NPM Package**.
@@ -194,7 +194,7 @@ Confirm you are testing on a **physical device**, not the App Studio virtual sim
 
 Make sure the Connect Health flow only runs when Median.isNativeApp() is true and calls `Median.healthBridge.requestPermissions(["steps", "heartRate", "activeEnergy"])` before `getData`. On iOS, the system may not report grant status from `requestPermissions`; the OS can prompt when data is first requested. If the user previously denied access, they must enable Health permissions in iOS **Settings → Health** / Android Health Connect settings.
 
-### Median JS Bridge functions are undefined or not working
+### Median JavaScript Bridge functions are undefined or not working
 
 Confirm the Lovable project installed `median-js-bridge`, and in App Studio go to **Web Overrides → JavaScript Frameworks and NPM** and set it to **Use NPM package**, then rebuild. Calling Health Bridge, OneSignal, or Haptics in a normal browser will fail; those APIs only work inside the Median app. For more information on the library, see [NPM Package](/docs/npm-package).
 

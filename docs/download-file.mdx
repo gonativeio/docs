@@ -9,7 +9,7 @@ import { MedianLogo } from "/snippets/median-logo.jsx";
 
 Your app can handle file downloads and inline viewing by following the header set by your server. This allows you to control whether files are displayed within the app's webview or downloaded to the user's device.
 
-## Supported Content-Disposition Headers
+## Supported content-disposition headers
 
 ### `Content-Disposition: inline`
 
@@ -25,7 +25,7 @@ Files with this header will be automatically downloaded to the user's device:
 - iOS: Triggers the native “Share” dialog, allowing the user to open the file in the Files app or compatible apps.
 - Android: Prompts the user with an “Open with” dialog after download.
 
-## Implementation Guide
+## Implementation guide
 
 If you are not able to set the `Content-Disposition` header you may use the JavaScript Bridge downloadFile function to download (and open) a file on a user's device. Should you chose to open the file, the user is presented with a the native iOS or Android 'Open with' dialog.
 
@@ -38,7 +38,7 @@ You can see the PDF viewer in action on our demo page [https://median.dev/pdf-do
 
 </Check>
 
-### Download File at Specified URL
+### Download file at specified URL
 
 Use the following command to download a file via the Median JavaScript Bridge:
 
@@ -65,7 +65,7 @@ On iOS, the file is downloaded and passed to the "open with" system dialog.
 
 You can learn more about the permissions in [Downloads Directory](https://median.co/docs/downloads-directory).
 
-### Save Image to Photos
+### Save image to photos
 
 To download and save an image to the user’s photo gallery (iOS Photos or Android Gallery), use:
 

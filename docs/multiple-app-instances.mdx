@@ -7,21 +7,21 @@ searchable: true
 
 This guide outlines common use cases and best practices for managing multiple app instances in Median, including pre-production environments, whitelabeled apps, and configuration synchronization.
 
-## Common Use Cases for Multiple App Instances
+## Common use cases for multiple app instances
 
-### Pre-Production Environments
+### Pre-production environments
 
 Some Median customers maintain distinct pre-production web environments and require corresponding live mobile apps for each environment. In addition to a production environment ("Prod"), common environments include development ("Dev"), staging ("Stg"), and quality assurance ("QA").
 
 Enterprise customers may have access to Median's Developer Toolkit, which includes non-production licenses specifically for apps intended for testing and development purposes, not for public app store distribution or other production releases.
 
-### Whitelabeled Apps for Clients
+### Whitelabeled apps for clients
 
 Some Median customers offer whitelabeled versions of their apps to their own end customers. Whitelabeling can serve as the primary method of software delivery or as a premium offering for select clients. Whitelabeled apps are typically built based on a common primary app with the exception of differences in branding, app identifiers, and parameters for features such as deep linking.
 
-## Best Practices for Managing Multiple App Versions
+## Best practices for managing multiple app versions
 
-### App Naming and Icons
+### App naming and icons
 
 For pre-production app instances we recommend choosing a unique app name and creating a labeled icon for each app. This ensures all team members are tracking which app is being used while testing, particularly when on a physical device and for example receiving push notifications.
 
@@ -37,7 +37,7 @@ e.g.
 
 ### App identifiers
 
-#### For Pre-Production Apps
+#### For pre-production apps
 
 We recommend selecting descriptive [App Identifiers](/docs/app-identifiers) (iOS Bundle ID and Android Package Name) to easily differentiate your app instances.
 
@@ -47,7 +47,7 @@ e.g.
 - `co.median.portal.stg`
 - `co.median.portal.qa`
 
-#### For Whitelabeled Apps
+#### For whitelabeled apps
 
 If you are providing a fully whitelabeled custom app for your customers you may choose to use identifiers that are whitelabeled as well.
 
@@ -61,7 +61,7 @@ e.g.
 
 [Deep Linking](/docs/deep-linking), as well as some third-party services and integrations, rely on app identifiers to verify the authenticity of an app. In the Android ecosystem, due to its open nature, a hash value of the signing key is commonly used to confirm that the app is an official version signed by the app publisher. To ensure the full functionality of all app features and integrations, it is essential to register the app identifiers and signing key details for each app instance as required for your app's setup.
 
-## Syncing Configuration Between App Instances
+## Syncing configuration between app instances
 
 The App Studio includes functionality to import app configuration settings between any two apps in your organization account. There are two ways to access this functionality:
 
@@ -80,7 +80,7 @@ Locate the app you wish to update, open the hamburger menu (☰) next to the app
   <img src="/images/docs/657d798c87da7848d361e4d7ec26fca85af41630ed8638194881f271543901e8-Screenshot_2025-07-04_at_13.07.58.png" />
 </Frame>
 
-### Steps to Import from Existing App
+### Steps to import from existing app
 
 <Frame caption="Step 1: Select the source app to import configuration from">
   <img src="/images/docs/a959fd972a64f3e09faf034d8dc3045b6b5711a7d00db01fd2566f60a88dae4e-Screenshot_2025-07-04_at_13.09.57.png" />
@@ -94,15 +94,15 @@ Locate the app you wish to update, open the hamburger menu (☰) next to the app
   <img src="/images/docs/d0f9c2519e207e1ffd29dd1fd1d406004c6becda1d9fea2f62074d369cdf3a24-Screenshot_2025-07-04_at_13.10.56.png" />
 </Frame>
 
-## Additional Development Tips
+## Additional development tips
 
-### Pre-Production Access Control
+### Pre-production access control
 
 If your pre-production environments have access control restrictions, you may need to add the [Median IP blocks](https://median.co/ip-blocks) to an allow list to access your environments from our browser-based simulators. As the IPs used by the Median platform can change over time, ensure that you regularly update the allow list or automate the update process to maintain access.
 
 For more advanced access control options, such as configuring a secure proxy server to handle network requests from our browser-based simulator devices, [get in touch with our team](https://median.co/contact?topic=Enterprise).
 
-### CI/CD Integration for Automated Builds
+### CI/CD integration for automated builds
 
 Enterprise customers can request API access to automatically fetch app sources and binaries to power their CI/CD workflows. This allows for seamless deployment of new builds in pre-production environments and whitelabel use cases, helping to facilitate efficient testing and release management.
 

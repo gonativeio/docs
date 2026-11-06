@@ -20,7 +20,7 @@ For apps that have been updated on Median.co you may use either `gonative` or `m
 
 </Check>
 
-## Related Documentation
+## Related documentation
 
 <Columns cols={2}>
   <Card
@@ -102,7 +102,7 @@ For apps that have been updated on Median.co you may use either `gonative` or `m
   </Card>
 </Columns>
 
-## JavaScript Bridge Library
+## JavaScript Bridge library
 
 The JavaScript Bridge Library is injected into your webpage DOM at runtime and is available on any page displayed in the app. You can call `median.module.function()` once the library is ready.
 
@@ -120,13 +120,13 @@ When using frameworks like React, Vue, or Angular, the `median` object may not b
 3. Use the Median Protocol (`median://`) which does not require the library
 
 <Check>
-  ### `Median` not `median` when using NPM package
+  **`Median` not `median` when using NPM package**
 
 When using the NPM Package make note to use capitalized `Median` to call functions rather than lowercase `median` which is reserved for the the injected JavaScript library. Your IDE should be configured to help with code hinting to help with completion and avoid semantic errors.
 
 </Check>
 
-### Calling Commands on Page Load
+### Calling commands on page load
 
 The library is not available until it initializes. For commands that must run on page load, define `median_library_ready()` on your page; it is called after initialization. Or use the Median Protocol so you are not dependent on the library.
 
@@ -157,13 +157,13 @@ Some bridge commands return JavaScript promises. Handle them with `async/await` 
   ```
 </CodeGroup>
 
-## Median Protocol
+## Median protocol
 
 You can call bridge commands via the `median://` protocol without the JavaScript Bridge Library. Use an HTML anchor `href` for simple commands, or set `window.location.href` in JavaScript for complex ones. Parameters with JSON or special characters must be encoded with `encodeURIComponent()`.
 
 To chain multiple commands, use `median://nativebridge/multi` with an array of URLs instead of making sequential calls (which can cause only the last command to run).
 
-## Restricting Bridge Access by URL
+## Restricting bridge access by URL
 
 By default, the Median JavaScript Bridge is available on every page loaded in your app. You can restrict Bridge access to specific URL paths in App Studio using the Allowed URLs field.
 

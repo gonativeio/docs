@@ -16,13 +16,13 @@ This is part four of a four-part series:
 3. [Deep Linking for Salesforce Experience Cloud](/docs/salesforce-deep-linking)
 4. **Component Deployment and Reference** (this page)
 
-## Step 8: Deploy the Open-Source Component Library
+## Step 8: Deploy the open-source component library
 
 The [median-salesforce-components <Icon icon="arrow-up-right-from-square" size={12} />](https://github.com/gonativeio/median-salesforce-components) repository provides ready-to-deploy reference LWC components covering common Median integration patterns for Salesforce. All components have been tested on physical iOS and Android devices inside a Median-wrapped Experience Cloud app.
 
 <GitHub.Repo repo="gonativeio/median-salesforce-components" variant="inset" />
 
-### Deploy All Components
+### Deploy all components
 
 <CodeGroup>
   ```bash Bash
@@ -33,7 +33,7 @@ The [median-salesforce-components <Icon icon="arrow-up-right-from-square" size={
   ```
 </CodeGroup>
 
-### Deploy a Single Component
+### Deploy a single component
 
 <CodeGroup>
   ```bash Bash
@@ -41,7 +41,7 @@ The [median-salesforce-components <Icon icon="arrow-up-right-from-square" size={
   ```
 </CodeGroup>
 
-### Add Components to an Experience Builder Page
+### Add components to an Experience Builder page
 
 After deployment, open Experience Builder and drag the component from the component panel onto your page. All four components support the following targets:
 
@@ -54,7 +54,7 @@ After deployment, open Experience Builder and drag the component from the compon
   <img src="/images/docs/a0059339083cbf1f9c4e838c1e0a7dc0bc3d3904012c7009f5291a150c234f27-experience-builder.png" alt="Experience Builder Components panel with the oneSignal custom component placed on a page" />
 </Frame>
 
-## Building a Custom Component
+## Building a custom component
 
 If you are building your own LWC that calls the Median bridge, follow these conventions for production-ready code. The patterns below are consistent with the open-source library and ensure correct behavior across Lightning Web Security, multiple Median SDK versions, and both in-app and out-of-app contexts.
 
@@ -91,9 +91,9 @@ If you are building your own LWC that calls the Median bridge, follow these conv
   ```
 </CodeGroup>
 
-## Component Reference
+## Component reference
 
-### oneSignal: Push Notifications
+### oneSignal: Push notifications
 
 | **Source** | `force-app/main/default/lwc/oneSignal` |
 | --- | --- |
@@ -130,7 +130,7 @@ Integrates the Median OneSignal plugin to manage push notification subscriptions
   This component only implements a subset of all JavaScript Bridge methods available. Please review our [OneSignal documentation](/docs/onesignal) for a full JavaScript Bridge Reference.
 </Info>
 
-### biometricAuth: Biometric Authentication
+### biometricAuth: Biometric authentication
 
 | **Source** | `force-app/main/default/lwc/biometricAuth` |
 | --- | --- |
@@ -163,7 +163,7 @@ Saves and retrieves credentials using the device's native biometric hardware (Fa
 
 **Usage note:** `minimumAndroidBiometric` is set to `'strong'` by default, which requires Class 3 (hardware-backed) biometrics on Android. Change this value in `biometricAuth.js` if your target device fleet uses Class 2 biometrics. Secrets are encoded as a JSON string in the format `{ "username": "...", "password": "..." }`. Modify the `saveSecret()` method if you need to store a different data shape.
 
-### qrScannerNative: QR Code and Barcode Scanning
+### qrScannerNative: QR code and barcode scanning
 
 | **Source** | `force-app/main/default/lwc/qrScannerNative` |
 | --- | --- |
@@ -210,7 +210,7 @@ Launches the device camera for QR code and barcode scanning. Returns the scanned
 
 On cancellation, the scanner returns `{ "success": false, "error": "cancelled" }`. This is handled gracefully with a status badge rather than an error state.
 
-### pdfViewer: Native PDF Handling
+### pdfViewer: Native PDF handling
 
 | **Source** | `force-app/main/default/lwc/pdfViewer` |
 | --- | --- |

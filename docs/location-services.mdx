@@ -15,9 +15,9 @@ Display our demo page in your app to test during development [https://median.dev
 
 </Check>
 
-## Implementation Guide
+## Implementation guide
 
-### iOS: Avoid Duplicate Geolocation Prompts
+### iOS: Avoid duplicate geolocation prompts
 
 On iOS, location permission is requested automatically at runtime. However, your app must delay geolocation API calls until native location services are fully initialized to prevent a double prompt from both the native app and the web view.
 
@@ -44,11 +44,11 @@ This function ensures the web-based geolocation API uses the native implementati
 ```
 </CodeGroup>
 
-## Android: Request Runtime Location Permission
+## Android: Request runtime location permission
 
 On Android, geolocation permission must be requested at runtime using the Median JavaScript Bridge.
 
-### Prompt for Location Permission
+### Prompt for location permission
 
 Ensure you have Location Services permission enabled in your app configuration, then prompt for permission at runtime by using the following Median JavaScript Bridge command.
 
@@ -62,7 +62,7 @@ Ensure you have Location Services permission enabled in your app configuration, 
 - If the user has already granted permission, this command has no effect.
 - If permission has not been granted, the app will display a native dialog.
 
-### Check Location Permission Status
+### Check location permission status
 
 You can verify whether location services are enabled using:
 
@@ -77,7 +77,7 @@ You can verify whether location services are enabled using:
   ```
 </CodeGroup>
 
-## Additional Resources
+## Additional resources
 
 - [Location Services Demo App](https://median.dev/location-services)
 - [Background Location Native Plugin](https://docs.median.co/docs/background-location)

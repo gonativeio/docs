@@ -15,7 +15,7 @@ The diagram below shows the three layers of every Median app and how they relate
   ![](/images/docs/5a1b084da3d64920a46434654cc2eae35e14f0b2c75b0dd6536f4658551f3c4c-3.png)
 </Frame>
 
-## The three layers of your Mobile App
+## The three layers of your mobile app
 
 Each layer has a distinct role. Understanding how they interact helps you make the right decisions when configuring your app, debugging issues, and choosing which native features to add.
 
@@ -31,7 +31,7 @@ This is what Median builds and maintains. It contains two core sub-components; a
 
 The host operating system. Median targets iOS 13+ and Android 8.1+, covering all devices that receive active Apple and Google security support. As Apple and Android release OS updates, Median releases app updates to maintain compatibility without the need to manage this yourself.
 
-## Inside the Webview
+## Inside the webview
 
 Within the native app, a WebView component hosts your web content. Median's WebView layer contains two distinct sub-components that work together to bridge your web app and the native OS.
 
@@ -75,7 +75,7 @@ The native app wraps the WebView with platform-standard UI elements. These are b
 
 Native navigation elements load instantly and respond instantly regardless of your web app's performance, because they're rendered by the OS. They also automatically adapt to platform conventions (e.g. iOS swipe-back gestures, Android back button behavior).
 
-## Native Enhancements
+## Native enhancements
 
 Beyond the base WebView, Median exposes three categories of native functionality that turn a simple WebView app into a production mobile experience.
 
@@ -168,7 +168,7 @@ The WebView caches assets like a browser. Use Cache-Control headers and content-
 
 For debugging performance issues across both layers, see the [Development & Test Deep Dive](https://docs.median.co/docs/development-test-deep-dive).
 
-## Solutions Architecture Services
+## Solutions architecture services
 
 For teams planning a complex integration or migrating an existing native app, Median offers guided architecture support.
 

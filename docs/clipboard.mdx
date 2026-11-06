@@ -25,9 +25,9 @@ The `median.clipboard` API exposes two methods:
 
 Both iOS and Android are supported. `clipboard.get()` supports two async patterns: Promises and named callback functions.
 
-## Implementation Guide
+## Implementation guide
 
-### Writing to the Clipboard
+### Writing to the clipboard
 
 Use `median.clipboard.set()` to copy a string to the system clipboard. This is the equivalent of a user pressing Ctrl+C / Cmd+C on their desktop browser.
 
@@ -55,13 +55,13 @@ Use `median.clipboard.set()` to copy a string to the system clipboard. This is t
   ```
 </CodeGroup>
 
-### Reading from the Clipboard
+### Reading from the clipboard
 
 Use `median.clipboard.get()` to retrieve the current clipboard contents. This method is asynchronous and returns a result object with either a data property (on success) or an error property (on failure).
 
 Choose the pattern that best fits your codebase: Promises or Callbacks.
 
-#### Option 1 - Promise (Recommended)
+#### Option 1: Promise (recommended)
 
 Promises integrate cleanly with async/await and modern JavaScript workflows.
 
@@ -91,7 +91,7 @@ Promises integrate cleanly with async/await and modern JavaScript workflows.
 ```
 </CodeGroup>
 
-#### Option 2 - Named Callback
+#### Option 2: Named callback
 
 Named callbacks are useful when integrating with legacy codebases or when you need the function to be callable from native app contexts.
 
@@ -123,7 +123,7 @@ Both clipboard.get() patterns return the same result object:
 
 Always check for result.data before using the value, and handle the result.error case gracefully.
 
-## Platform Behavior
+## Platform behavior
 
 - **iOS**: On iOS 14+, the system may display a notification banner informing the user that your app has accessed the clipboard. This is an OS-level behavior and cannot be suppressed.
 - **Android**: Clipboard read access may be restricted on Android 10+ when your app is not in the foreground. Ensure clipboard reads are triggered by an explicit user action.

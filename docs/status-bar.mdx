@@ -18,7 +18,7 @@ Display our demo page in your app to test during development [https://median.dev
 
 </Check>
 
-## Configuration Options
+## Configuration options
 
 Median supports four parameters for controlling status bar appearance:
 
@@ -38,11 +38,11 @@ With the Overlay setting enabled on Android the keyboard will overlay on top of 
 2. Make use of the [keyboard listener functions](/docs/keyboard-state-tracking) to disable/enable the Overlay setting via the JavaScript Bridge when the keyboard is active/inactive.
 </Warning>
 
-## Setting the Status Bar at Runtime
+## Setting the status bar at runtime
 
 Use the JavaScript Bridge to update the status bar dynamically, either in response to user actions or automatically on page load.
 
-### Option 1: Auto-Match the Status Bar to Your Page Background
+### Option 1: Auto-match the status bar to your page background
 
 To have Median automatically detect your webpage's background color and apply it to the status bar, call the built-in helper function when the library loads. If you use the median-js-bridge npm package, call `Median.statusbar.matchBodyBackgroundColor({ active: true })` instead.
 
@@ -58,7 +58,7 @@ function median_library_ready() {
 
 </CodeGroup>
 
-### Option 2: Set Custom Status Bar Styles
+### Option 2: Set custom status bar styles
 
 For full control, call `median.statusbar.set()` with your desired parameters. This is useful for apps that need different status bar treatments for different content types (for example, a red status bar over a video player).
 

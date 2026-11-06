@@ -7,7 +7,7 @@ searchable: true
 
 Median-powered apps automatically honor the cookie expiration settings defined by your web platform, ensuring consistent session behavior across both browser and native mobile environments. This guide explains how cookie persistence works, how to configure custom expiration policies, and what platform-level limitations apply on Android and iOS.
 
-## What Are Cookies Used For?
+## What are cookies used for?
 
 Cookies serve three primary functions in mobile web apps:
 
@@ -15,7 +15,7 @@ Cookies serve three primary functions in mobile web apps:
 - User Preferences & Personalization - Persisting settings such as language selection, UI theme, or layout configuration.
 - Tracking & Analytics - Capturing behavioral data for usage insights and performance monitoring.
 
-## How Cookie Persistence Works in Median
+## How cookie persistence works in Median
 
 By default, Median apps respect the `Expires` and `Max-Age` attributes set by your server when issuing cookies. No additional configuration is required if your server already defines appropriate cookie lifetimes.
 
@@ -26,7 +26,7 @@ For critical session data or long-term authentication tokens, use secure storage
 
 </Info>
 
-## Configuring Custom Cookie Expiration
+## Configuring custom cookie expiration
 
 If your server-defined cookie lifetimes do not meet your app's requirements — or if you lack access to modify server-side configurations — you can override cookie expiration behavior directly in Median App Studio.
 
@@ -46,7 +46,7 @@ This override is useful in scenarios such as:
 - Extending session duration beyond server-defined limits (for example, keeping users signed in for 30 or 90 days).
 - Standardizing cookie behavior across environments without modifying backend configuration.
 
-## Platform Limitations
+## Platform limitations
 
 Cookie persistence is subject to the constraints of each platform's native WebView component. The following limits apply on Android and iOS.
 

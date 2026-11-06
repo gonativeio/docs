@@ -18,7 +18,7 @@ Display our demo page in your app to test during development [https://median.dev
 
 </Check>
 
-## Why use Haptics
+## Why use haptics
 
 - **Cross-platform consistency**: Six haptic styles have been specifically designed to be comparable across iOS and Android devices, so your feedback patterns work uniformly regardless of platform.
 - **Rich haptic vocabulary**: Choose from impact and notification styles to match the intensity and meaning of each interaction in your app.
@@ -31,9 +31,9 @@ Display our demo page in your app to test during development [https://median.dev
 - [ ] The Haptics plugin enabled under Native Plugins in your App Dashboard
 - [ ] A physical iOS or Android device for testing (haptics do not deliver meaningful feedback in a virtual simulator environment)
 
-## Implementation Guide
+## Implementation guide
 
-### App Setup
+### App setup
 
 1. **Navigate to Native Plugins**: In the App Studio, go to Native Plugins.
 2. **Enable Haptics**: Toggle the Haptics plugin to enabled status. The plugin can also be trialed.
@@ -42,9 +42,9 @@ Display our demo page in your app to test during development [https://median.dev
   <img src="/images/docs/4af20a67444dbf148ebc34d28780ed05374e33e2160f7d34287a4f1c52ed40a1-Screenshot_2026-06-29_at_16.06.30.png" />
 </Frame>
 
-### JavaScript Bridge Implementation
+### JavaScript Bridge implementation
 
-#### Trigger Haptic Vibration Event
+#### Trigger haptic vibration event
 
 Triggers a haptic vibration effect on the user's device. Pass a `style` string to specify which effect to fire.
 
@@ -72,7 +72,7 @@ Android Only
 - `click`
 - `double_click`
 
-#### Respond to Shake Gesture
+#### Respond to shake gesture
 
 Add `median_device_shake()` JavaScript function to all pages that should provide a response to the shake gesture. This function can also be inserted using the [Custom JavaScript](/docs/custom-js) feature.
 
@@ -87,7 +87,7 @@ For example:
   ```
 </CodeGroup>
 
-## Testing Checklist
+## Testing checklist
 
 Use this checklist to ensure Haptics is working correctly in your app:
 

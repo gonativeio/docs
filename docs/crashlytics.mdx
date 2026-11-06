@@ -49,9 +49,9 @@ Firebase Crashlytics is essential for apps that need to:
 | **Per-user tracking**    | Set a custom user ID to track crash logs per user |
 | **Privacy compliance**   | Request user opt-in before collecting logs        |
 
-## Integration Guide
+## Integration guide
 
-### Enable the Plugin
+### Enable the plugin
 
 1. **Navigate to Native Plugins**: Open your app in **Median's App Studio** and go to the **Native Plugins section**.
 2. **Enable Firebase Crashlytics**: Select **Google Firebase Crashlytics** from your list of purchased plugins and enable it.
@@ -61,7 +61,7 @@ Firebase Crashlytics is essential for apps that need to:
   <img src="/images/docs/fff30c1-GoogleCrashlytics_Enable.png" />
 </Frame>
 
-### Configuration Options
+### Configuration options
 
 | Setting                   | Description                                      | Recommended                                                 |
 | ------------------------- | ------------------------------------------------ | ----------------------------------------------------------- |
@@ -75,7 +75,7 @@ Toggle the options as needed, then click Advanced Mode for further configuration
   <img src="/images/docs/0fce73d-GoogleCrashlytics_Config.png" />
 </Frame>
 
-### App Configuration
+### App configuration
 
 1. **Register your app** in the Firebase Console.
 
@@ -90,7 +90,7 @@ For full instructions, refer to the official Firebase setup guides:
 - [Android Setup](https://firebase.google.com/docs/android/setup)
 - [iOS Setup](https://firebase.google.com/docs/ios/setup)
 
-### Finalizing the App Build
+### Finalizing the app build
 
 Once the configuration files are uploaded, save the changes and rebuild your app.
 
@@ -98,11 +98,11 @@ Once the configuration files are uploaded, save the changes and rebuild your app
   <img src="/images/docs/673adab78087bd5a5039f6da1ecab94c9b409bde8d0b665e064586218b4a35ff-analytics.gif" />
 </Frame>
 
-### JavaScript Bridge Functions
+### JavaScript Bridge functions
 
 The Median JavaScript Bridge allows you to control Crashlytics at runtime.
 
-#### Enable/Disable logs collection
+#### Enable/disable logs collection
 
 Enable or disable Crashlytics log collection at runtime.
 
@@ -129,7 +129,7 @@ Enable or disable Crashlytics log collection at runtime.
 | --------- | --------- | -------- | ------------------------------------ |
 | `enabled` | `boolean` | Yes      | `true` to enable, `false` to disable |
 
-#### Set user id
+#### Set user ID
 
 Assign a custom user ID to track crash logs per user in Firebase. Persists between app launches; cleared on uninstall/reinstall.
 
@@ -144,7 +144,7 @@ median.firebaseCrashlytics.setUserId("user_123");
 | --------- | -------- | -------- | -------------------- |
 | User ID   | `string` | Yes      | Your user identifier |
 
-#### Unset user id
+#### Unset user ID
 
 Remove the previously set user ID.
 
@@ -167,25 +167,25 @@ To comply with privacy policies or regulations, you can ask users for permission
 
 Use this checklist to verify Crashlytics is configured and logging as expected:
 
-### Basic Functionality
+### Basic functionality
 
 - [ ] Firebase Crashlytics plugin is enabled in App Studio
 - [ ] `GoogleService-Info.plist` (iOS) and `google-services.json` (Android) are uploaded in **Build & Deploy > Google Services**
 - [ ] App is rebuilt after saving configuration changes
 - [ ] `median.firebaseCrashlytics.enable(true)` enables log collection at runtime
 
-### Platform Testing
+### Platform testing
 
 - [ ] `median.firebaseCrashlytics.webErrorLogsEnabled(true/false)` updates WebView error logging behavior
 - [ ] `median.firebaseCrashlytics.toastErrorLogsEnabled(true/false)` updates Android toast error logging behavior
 
-### Configuration Testing
+### Configuration testing
 
 - [ ] `median.firebaseCrashlytics.setUserId('user_123')` sets a user identifier for crash logs
 - [ ] `median.firebaseCrashlytics.unsetUserId()` removes the user identifier
 - [ ] If `requestOptIn` is enabled, the permission prompt appears on first app launch after install
 
-### User Experience
+### User experience
 
 - [ ] Open [https://median.dev/crashlytics](https://median.dev/crashlytics) inside your app and confirm logs/events are received in Firebase Crashlytics
 - [ ] Consent prompt (if used) appears at an appropriate time and copy matches your policy

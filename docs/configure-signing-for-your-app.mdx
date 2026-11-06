@@ -15,9 +15,9 @@ All iOS signing configuration lives in one place: the iOS IPA Build Configuratio
 
 The panel has a top-level Automatic (API) / Manual toggle. Automatic (API) is the recommended path for most apps and is covered first below; Manual is covered in Option 2.
 
-## Option 1 - Automatic Provisioning
+## Option 1: Automatic provisioning
 
-### Section 1: Apple Developer API Connection
+### Section 1: Apple Developer API connection
 
 If you completed [Connecting Median with App Store Connect](https://docs.median.co/docs/connecting-median-appstore-connect), this section already shows a Connected badge along with your Issuer ID, Key ID, and private key filename. If not, complete that article before continuing.
 
@@ -25,7 +25,7 @@ If you completed [Connecting Median with App Store Connect](https://docs.median.
   <img src="/images/docs/a3bec75cd84472ef9fffdaf750b06e138a3e8c9b3fb3f26e729d2eaf9ca74ac3-Screenshot_2026-07-06_at_11.42.02.png" />
 </Frame>
 
-### Section 2: Bundle ID & App Store Connect App
+### Section 2: Bundle ID & App Store Connect app
 
 This section ensures your app's Bundle ID is registered with Apple and that a matching app record exists in App Store Connect. Both are required before Median can generate a provisioning profile.
 
@@ -49,7 +49,7 @@ If you manually register your app, Median cannot create the app record on your b
 
 Sign in to App Store Connect, go to the Apps tab, click the + button, and fill in the required details, selecting the Bundle ID from Step 1 when prompted.
 
-### Section 3: Signing & Upload Settings
+### Section 3: Signing & upload settings
 
 This section helps you configure the right signing profile for your app.
 
@@ -62,7 +62,7 @@ This section helps you configure the right signing profile for your app.
   <img src="/images/docs/18ea181cac8c859f2b9dd7883c2e7da44c88a0ba4aa448348e2fe6d6df0c192f-Screenshot_2026-07-06_at_11.40.00.png" />
 </Frame>
 
-## Option 2 - Upload your own signing assets (Manual tab)
+## Option 2: Upload your own signing assets (manual tab)
 
 If you'd rather not connect an App Store Connect API key or are unable to due to organizational or security policy, switch the top-level toggle to Manual and provide your own signing assets directly.
 
@@ -88,6 +88,6 @@ If you encounter issues generating these assets, we encourage you to post your q
   <img src="/images/docs/61dd87fb904b0d929bd7430e55ee4c68ea0bea5b5a783f2bc8bd1fc24c98afbf-Screenshot_2026-07-06_at_11.49.43.png" />
 </Frame>
 
-## Next Step
+## Next step
 
 Return to the [Building an iOS Binary](https://docs.median.co/docs/build-ios-binary) overview to start your build, or continue on to [Install iOS IPA](https://docs.median.co/docs/install-ios-ipa) once your build finishes.

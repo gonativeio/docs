@@ -19,9 +19,9 @@ Display our demo page in your app to test during development [https://median.dev
 
 </Check>
 
-## Auth0 and App Configuration
+## Auth0 and app configuration
 
-### Auth0 Configuration
+### Auth0 configuration
 
 <Warning>
   **Configuration Disclaimer**
@@ -32,7 +32,7 @@ Additional information on the Auth0 Universal Login configuration for mobile app
 
 </Warning>
 
-#### Auth0 Application Type
+#### Auth0 application type
 
 Regardless of your existing Applications, Universal Login will require a new Native Application, as the Auth0 Quickstart Guide outlines.
 
@@ -40,7 +40,7 @@ Regardless of your existing Applications, Universal Login will require a new Nat
   <img src="/images/docs/a7fa5032b8b2f6df1ec5e2aef86f50ac8d2d81153bab2f155e8b7473f52aeeb1-Screenshot_2025-09-08_at_14.45.53.png" />
 </Frame>
 
-#### Auth0 Application URIs
+#### Auth0 application URIs
 
 As a next step after creating the application, you will need to configure the callback URIs for your Auth0 application. The configuration requires you to set up at minimum the Allowed Callback URLs and Allowed Logout URLs.
 
@@ -66,7 +66,7 @@ You can learn more about the application URLs for your target platform (iOS and/
   <img src="/images/docs/8c0dc2b5e753710e5f6edc559e2f56eeda6333cbfba2d0103b1d91ab0888047d-Screenshot_2025-09-08_at_15.02.49.png" />
 </Frame>
 
-#### Advanced Settings - Device Settings
+#### Advanced settings: Device settings
 
 Please populate your iOS bundle ID and Android Package name under Advanced Setting > Device Settings in the Auth0 Dashboard.
 
@@ -74,23 +74,23 @@ Please populate your iOS bundle ID and Android Package name under Advanced Setti
   <img src="/images/docs/d3a3a85e5ad7ef455d172e83c17944fcdb876f2cec226477623922271734992c-Screenshot_2025-09-08_at_15.05.23.png" />
 </Frame>
 
-### App Configuration
+### App configuration
 
-#### Link Handling
+#### Link handling
 
-##### Link Handling
+##### Link handling rules
 
 Verify the link Handling rules for links to your Auth0 Domain. You can learn more about Link Handling in our [Link Behavior](/docs/internal-vs-external-links) article.
 
-##### Universal Deep Links
+##### Universal deep links
 
 Verify that [Deep Linking](/docs/deep-linking) is configured properly for all domains listed under Universal Links / Deep Links.
 
-##### URL Scheme Protocol
+##### URL scheme protocol
 
 Verify a [URL Scheme Protocol](/docs/url-scheme-protocol) is specified for your app. The URL Scheme and all other values including Package Name and Bundle ID must match the parameters set in your Auth0 tenant.
 
-#### Auth0 Plugin Configuration
+#### Auth0 plugin configuration
 
 The Auth0 Native Plugin requires several parameters to be set in the App Studio, on the Native Plugins tab under "Advanced Mode". Sample parameters are as follows:
 
@@ -119,9 +119,9 @@ You can find an example configuration based on the parameters below.
 <img src="/images/docs/b1fa03c2730f06cce914894ff62885da839d74127f55694cf551fd2b914ed057-Screenshot_2025-09-29_at_12.54.18.png" />
 </Frame>
 
-## Implementation Guide
+## Implementation guide
 
-### Login using Universal Login
+### Sign in with Universal Login
 
 Launch Universal Login via the Median JavaScript Bridge `login` method. Upon completion of Universal Login flow focus is returned to the app webview and a promise/callback function is invoked with the Auth0 tokens as parameters.
 
@@ -151,7 +151,7 @@ const credentials = await median.auth0.login(
   <img src="/images/docs/3f6bdcc-image.png" />
 </Frame>
 
-### Logout
+### Sign out
 
 To logout:
 
@@ -164,7 +164,7 @@ To logout:
   ```
 </CodeGroup>
 
-### Support for Face ID / Touch ID / Android Biometrics
+### Support for Face ID / Touch ID / Android biometrics
 
 <MedianLogo />
 <CodeGroup>
@@ -234,29 +234,29 @@ To logout:
   ```
 </CodeGroup>
 
-## Implementation Checklist
+## Implementation checklist
 
-### Auth0 Platform Configuration
+### Auth0 platform configuration
 
 - [ ] Set up a new Native or Single Page Web Application Auth0 app using the [Auth0 Quickstart Guides](https://auth0.com/docs/quickstart/native).
 - [ ] Configure Allowed Callback URLs and Allowed Logout URLs based on your Auth0 tenant domain, iOS Bundle ID, and Android Package Name.
 - [ ] Configured the Advanced Settings > Device Settings by providing iOS Team ID, and App ID as well as Android App Package Name and Key Hashes
 
-### Median App and Plugin Configuration
+### Median app and plugin configuration
 
 - [ ] Configure link handling rules based on your Auth0 tenant domain.
 - [ ] Add Deep Linking configuration for your Auth0 tenant domain.
 - [ ] Verify or add URL Scheme Protocol configuration based on parameters set in your Auth0 tenant.
 - [ ] Verify the Auth0 Plugin configuration and add required parameters: "domain," "clientId," "scheme," and (optionally) "audience."
 
-### Website Implementation
+### Website implementation
 
 - [ ] Use `median.auth0.login` to launch the Auth0 plugin and initiate the authentication flow for app users.
 - [ ] Use `median.auth0.logout` to provide app users with a logout method.
 - [ ] Review JavaScript and Auth0 implementation to ensure the use of refresh tokens and enable biometrics.
 - [ ] Set up and publicly host `[yourdomain]/.well-known/assetlinks.json` and `[yourdomain]/.well-known/apple-app-site-association` files to enable deep linking.
 
-## Auth0 Plugin Demo
+## Auth0 plugin demo
 
 <Warning>
   **Sample App - Note**

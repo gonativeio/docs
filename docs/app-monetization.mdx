@@ -38,13 +38,13 @@ Median's Native In-App Purchases (IAP) Plugin provides full support for integrat
   </Card>
 </Columns>
 
-### Option 1 - RevenueCat (recommended)
+### Option 1: RevenueCat (recommended)
 
 Median's RevenueCat plugin sits on top of the native IAP layer and handles the complexity for you. RevenueCat is a subscription management platform that unifies iOS and Android purchases behind a single API, manages receipt validation, tracks subscription status across devices, and provides built-in revenue analytics. It also includes a no-code paywall builder.
 
 For most apps — especially those built on AI platforms — RevenueCat is the recommended starting point. It removes the need to manage platform-specific billing logic and significantly reduces the time from decision to first paid user.
 
-### Option 2 - In-App Purchases (direct)
+### Option 2: In-app purchases (direct)
 
 Median's In-App Purchases plugin gives you direct access to Apple StoreKit and Google Play Billing. You configure your products (subscriptions, one-time purchases, consumables) in App Store Connect and Google Play Console, then call them from your app using Median's JavaScript Bridge.
 
@@ -85,19 +85,19 @@ You can use any layer independently but starting with RevenueCat paywalls gives 
 
 Here is a condensed path to your first in-app purchase. The full RevenueCat guide covers each step in detail.
 
-### Step 1 - Connect your apps in RevenueCat
+### Step 1: Connect your apps in RevenueCat
 
 Sign in to RevenueCat and add both your iOS and Android apps under Apps & Providers. You'll need your iOS Bundle ID and Android Package Name. You can find your Bundle ID and Package Name in the App Studio. Please see our [App Identifiers](https://docs.median.co/docs/app-identifiers) article for this.
 
-### Step 2 - Retrieve your API key
+### Step 2: Retrieve your API key
 
 RevenueCat provides a public SDK API key for your project. You'll use this to initialise the plugin at runtime. A test key is available by default so you can validate the purchase flow before going live.
 
-### Step 3 - Configure your products
+### Step 3: Configure your products
 
 Set up your subscription products (monthly, annual, lifetime) in App Store Connect and Google Play Console, then import them into RevenueCat using their Product Configuration Guide.
 
-### Step 4 - Enable the plugin in Median App Studio
+### Step 4: Enable the plugin in Median App Studio
 
 In your app configuration, go to Native Plugins → RevenueCat and enable the plugin. No configuration is needed here. The SDK initialisation happens at runtime via the JavaScript Bridge as shown in Step 5.
 
@@ -105,7 +105,7 @@ In your app configuration, go to Native Plugins → RevenueCat and enable the pl
   <img src="/images/docs/ec6746920219187e2ad318dd49614e6e03cc2c9607db722b5dce120be4da3ac0-Screenshot_2025-12-10_at_14.59.56.png" />
 </Frame>
 
-### Step 5 - Initialize and call the Bridge
+### Step 5: Initialize and call the bridge
 
 Once your user is authenticated, initialize the SDK with your API key and the (optional) user ID, then use the JavaScript Bridge functions to fetch offerings, trigger purchases, and present your paywall.
 

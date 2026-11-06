@@ -9,7 +9,7 @@ import { MedianLogo } from "/snippets/median-logo.jsx";
 
 The Screen Brightness JavaScript Bridge method lets you set the device's screen brightness at runtime, overriding the user's system setting while they're inside your app. It's part of Median's [Device Screen Control](/docs/device-screen-control) feature set, alongside [Keep Screen On](/docs/keep-screen-on) and [Full Screen](/docs/full-screen).
 
-## Why Use Screen Brightness
+## Why use screen brightness
 
 * **Low-light and night reading modes**: Automatically dim the screen for reading, news, or ebook apps so brightness matches your app's own dark mode or a scheduled "night" experience.
 * **Camera-driven flows**: Boost brightness before opening a barcode, QR, or document scanning flow so the camera has enough light to focus and capture accurately.
@@ -24,9 +24,9 @@ The Screen Brightness JavaScript Bridge method lets you set the device's screen 
   Display our demo page in your app to test during development [https://median.dev/device-screen-controls/ <Icon icon="arrow-up-right-from-square" size={12} />](https://median.dev/device-screen-controls/)
 </Check>
 
-## JavaScript Bridge Implementation
+## JavaScript Bridge implementation
 
-### Set Screen Brightness
+### Set screen brightness
 
 Sets the device screen to a specific brightness level
 
@@ -38,7 +38,7 @@ Sets the device screen to a specific brightness level
   ```
 </CodeGroup>
 
-### Restore Brightness on Navigation
+### Restore brightness on navigation
 
 To apply a brightness change that automatically reverts once the user navigates to a new page:
 
@@ -50,7 +50,7 @@ To apply a brightness change that automatically reverts once the user navigates 
   ```
 </CodeGroup>
 
-### Reset to Default Brightness
+### Reset to default brightness
 
 To clear any brightness override and return control to the device's system setting:
 

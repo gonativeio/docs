@@ -14,7 +14,7 @@ Median handles native SDK setup, token lifecycle, notification channels, and bad
 This guide covers Firebase project setup, Median App Studio configuration, and the Median JavaScript Bridge APIs used to manage permissions, tokens, topics, notification channels, and incoming push events.
 
 <Check>
-  ### **Developer Demo**
+  **Developer Demo**
 
 Display our demo page in your app to test during development: [https://median.dev/firebase-messaging](https://median.dev/firebase-messaging)
 
@@ -38,9 +38,9 @@ The demo also links to a standalone [Test Sender.](https://median.dev/firebase-m
 - `google-services.json` uploaded in your Median app configuration (required for push delivery on Android).
 - `GoogleService-Info.plist` uploaded in your Median app configuration, plus an APNs authentication key or certificate configured in the Firebase console (required for push delivery on iOS).
 
-## Implementation Guide
+## Implementation guide
 
-### Firebase Project Setup
+### Firebase project setup
 
 Create (or reuse) a Firebase project and register your Android and iOS apps to it. Median handles native SDK initialization once those configuration files and credentials are in place.
 
@@ -49,7 +49,7 @@ Create (or reuse) a Firebase project and register your Android and iOS apps to i
 3. Add an iOS app to the project using your app's Bundle ID, then download the generated `GoogleService-Info.plist`.
 4. In **Project settings → Cloud Messaging → Apple app configuration**, upload an APNs authentication key (recommended) or certificate so Firebase can deliver to iOS devices.
 
-### App Configuration
+### App configuration
 
 1. Open Median App Studio for your app.
 2. Navigate to **Build & Deploy**.
@@ -67,7 +67,7 @@ Create (or reuse) a Firebase project and register your Android and iOS apps to i
   <img src="/images/docs/fffe6acce36437b899ed317316a4f8ee2b313fb09b2f390467d0af42f54ae7f1-Screenshot_2026-08-26_at_11.28.21.png" />
 </Frame>
 
-#### Plugin Configuration options
+#### Plugin configuration options
 
 | Setting                       | Required | Description                                                                                                                                                                               |
 | ----------------------------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -81,7 +81,7 @@ Plugin settings take effect only in new builds. After changing credentials or up
 
 </Info>
 
-#### Deep linking (Optional)
+#### Deep linking (optional)
 
 The Firebase Cloud Messaging plugin integrates with Median [deep linking](https://docs.median.co/docs/deep-linking). When deep links are configured, users who tap a push notification are routed to the correct screen inside the app rather than to the mobile browser. The Test Sender's **Deep link** preset lets you validate this by sending a push with a target URL.
 
@@ -90,11 +90,11 @@ To enable this:
 1. Configure URL schemes, Universal Links (iOS), and App Links (Android) in Median App Studio.
 2. Ensure the target URL sent in your FCM payload matches the routes handled inside your app.
 
-### JavaScript bridge functions
+### JavaScript Bridge functions
 
 All methods are available on the `median.firebaseMessaging` namespace and must be called after the Median JavaScript Bridge is fully initialized.
 
-#### Push Notification Permissions
+#### Push notification permissions
 
 **Request permission**
 
@@ -128,7 +128,7 @@ Returns whether the user has currently granted or denied notification permission
   ```
 </CodeGroup>
 
-#### Token Management
+#### Token management
 
 **Register**
 
@@ -227,7 +227,7 @@ Subscribe or unsubscribe a device from FCM topics to target groups of users with
   ```
 </CodeGroup>
 
-#### Notification Channels (Android)
+#### Notification channels (Android)
 
 Android groups notifications into channels that control importance, sound, and visual treatment. Once a channel is created, only its name and description can be changed. The channel ID and importance are fixed for the life of the channel.
 
@@ -274,7 +274,7 @@ Android groups notifications into channels that control importance, sound, and v
   ```
 </CodeGroup>
 
-#### Notification Badges
+#### Notification badges
 
 Sets the app icon badge count. This is best-effort: it works on launchers that support badges (e.g. Samsung, Xiaomi, and similar), and does nothing on stock Android launchers that don't support badge counts.
 
@@ -305,7 +305,7 @@ Sets the app icon badge count. This is best-effort: it works on launchers that s
   ```
 </CodeGroup>
 
-#### Foreground Notifications
+#### Foreground notifications
 
 Controls whether an incoming push shows a visible banner while the app is in the foreground. Turn banners off if you'd rather handle the incoming event yourself (e.g. show an in-app toast) without the OS notification also appearing.
 
@@ -358,7 +358,7 @@ Use this checklist, together with the [demo page](https://median.dev/firebase-me
 
 ## Troubleshooting
 
-### Firebase Cloud Messaging requires Google Services configuration files which can be added to your app on the Build tab. Your app may not function correctly until these are added
+### App Studio reports missing Google services configuration files
 
 You will need to configure Google Services in order to user FCM. Please follow the steps in our [Google Services Guide](https://docs.median.co/docs/google-services).
 

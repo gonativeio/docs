@@ -27,7 +27,7 @@ Display our demo page in your app with the Face ID / Touch ID Native Plugin acti
 
 </Check>
 
-## Implementation Guide
+## Implementation guide
 
 This guide assumes a working publicly-accessible website (or test site) with a username and password login system.
 
@@ -125,7 +125,7 @@ Once the `median_secret_callback` function is called with the previously saved s
   ```
 </CodeGroup>
 
-## Median JavaScript Bridge Reference
+## Median JavaScript Bridge reference
 
 ### Retrieving FaceID / Touch ID availability
 
@@ -144,7 +144,7 @@ Callback is required. The app will execute CALLBACK with an object parameter con
 - `biometryType`: ‘touchId’, ‘faceId’, or ‘none’. This field is populated on iOS only to differentiate between TouchID and FaceID.
 - `hasSecret`: `true` or `false`
 
-### Saving a Secret
+### Saving a secret
 
 Typically you will want to first check that Face ID / Touch ID is available via the status function above and then save the secret.
 
@@ -159,7 +159,7 @@ Run the JavaScript function:
 
 `callbackFunction` is optional and will be called after the save operation with a `success` parameter.
 
-### Retrieving a Secret
+### Retrieving a secret
 
 Run the JavaScript function:
 
@@ -176,7 +176,7 @@ Callback is required. Prompt is optional, and provides a message that can be dis
 - `error`: provided success is `false` (see error codes below)
 - `secret`: the previously stored secret Another optional query parameter is `callbackOnCancel`. If set to 1 and the user cancels the authentication, the callback will be run with `success=false`, `error=userCanceled`. If `callbackOnCancel` is not set (or set to 0), the callback will not be run.
 
-### Delete a Secret
+### Delete a secret
 
 Run the JavaScript function:
 
@@ -203,7 +203,7 @@ In general, you will only need to handle authenticationFailed in the "get secret
 - `userCanceled`: User canceled the auth prompt
 - `unimplemented`: Plugin not supported
 
-## Testing Face ID / Touch ID Integration
+## Testing Face ID / Touch ID integration
 
 We recommend testing on physical devices to confirm the flow is working as expected for devices with Face ID / Touch ID support, as well as older models or more restricted device configurations.
 
@@ -218,7 +218,7 @@ Additionally, you can also test the integration using the [Appetize Simulators](
   <img src="/images/docs/73aa071cf490c01b8b09ef08e329accfde1106c5ed38b6ef923aa25a552d7d4a-Screenshot_2025-07-15_at_11.38.26.png" />
 </Frame>
 
-## Whitelist Domains for Plugin Access
+## Whitelist domains for plugin access
 
 By default, any page loaded in your app will be able to use Median JavaScript Bridge to retrieve secrets. If you are allowing any domains you do not control to be loaded within your app (see [Link Handling](https://median.co/docs/link-handling-overview)), we strongly recommend whitelisting only certain domains.
 

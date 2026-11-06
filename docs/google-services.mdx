@@ -33,9 +33,9 @@ Google's Console UI changes from time to time. If any screen in this guide doesn
 - [Firebase for Apple platforms](https://firebase.google.com/docs/ios/setup)
 - [Firebase for Android](https://firebase.google.com/docs/android/setup)
 
-## Google Services Walkthrough
+## Google services walkthrough
 
-### Step 1: Create or Open a Firebase Project
+### Step 1: Create or open a Firebase project
 
 If you do not have an active Google Firebase project, you may need to create a new project after signing into your [Google Firebase Account](https://firebase.google.com/docs/android/setup).
 
@@ -45,7 +45,7 @@ Once your project is setup you can start the integration by choosing the iOS or 
   <img src="/images/docs/dc35b33c4875abc9bfedea9df79c72f711ee2976b9586a20e0536f11844942a4-Screenshot_2026-09-03_at_09.50.55.png" />
 </Frame>
 
-### Step 2: Register Your iOS App and Download the Config File
+### Step 2: Register your iOS app and download the config file
 
 You can register your app in Firebase by providing the Apple Bundle ID. The Apple Bundle ID of your app can be found and configured in the App Studio under the _Build & Deploy > App Identifiers_ section. You can learn more about your Bundle ID in the [App Identifiers](https://median.co/docs/app-identifiers) documentation.
 
@@ -61,7 +61,7 @@ Once registered, download your generated `GoogleService-Info.plist` file.
 
 That's it for iOS. You don't need to complete Firebase's SDK installation steps, since Median handles that natively once you upload this file (see Step 4).
 
-### Step 3: Register Your Android App and Download the Config File
+### Step 3: Register your Android app and download the config file
 
 You can register your app in Firebase by providing the Android Package Name. The Android Package Name of your app can be found and configured in the App Studio under the _Build & Deploy > App Identifiers_ section. You can learn more about your package name in the [App Identifiers](https://median.co/docs/app-identifiers) documentation.
 
@@ -77,7 +77,7 @@ Once your app is registered you can download your `google-services.json` file.
 
 Once you download the configuration file the Google Firebase setup for Android is complete.
 
-#### Android Debug Builds & Product Flavors
+#### Android debug builds & product flavors
 
 If your app uses multiple Android product flavors or a separate debug package (for example, `com.yourpackagename.dev`), generate a separate `google-services.json` for each package name and place it in the matching source folder. For example, a `dev` flavor build expects its file at:
 
@@ -85,7 +85,7 @@ If your app uses multiple Android product flavors or a separate debug package (f
 /app/src/dev/google-services.json
 ```
 
-### Step 4: Upload Both Files to Median App Studio
+### Step 4: Upload both files to Median App Studio
 
 In App Studio, go to _Build & Deploy > Google Services_ and upload both files:
 

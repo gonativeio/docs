@@ -18,9 +18,9 @@ Display our demo page in your app to test during development [https://median.dev
 
 </Check>
 
-## Implementation Guide
+## Implementation guide
 
-### How to Scan a Credit Card
+### How to scan a credit card
 
 Define a JavaScript callback function to handle the scan result:
 
@@ -45,7 +45,7 @@ To initiate a scan, open the URL:
   ```
 </CodeGroup>
 
-### Available Scanning Options
+### Available scanning options
 
 Customize the card scanning experience by passing optional parameters:
 
@@ -61,7 +61,7 @@ Customize the card scanning experience by passing optional parameters:
 | `hideCardIOLogo`        | `true`     | Hide all logos from the scan UI                    |
 | `instructions`          | _(string)_ | Display custom instructions on the scan screen     |
 
-#### Example: Scan with Postal Code Requirements
+#### Example: Scan with postal code requirements
 
 To collect the cardholder’s postal code and specify that it must be numeric:
 
@@ -76,7 +76,7 @@ To collect the cardholder’s postal code and specify that it must be numeric:
   ```
 </CodeGroup>
 
-### Scan Result Format
+### Scan result format
 
 After a successful scan, your callback function receives a JavaScript object with the extracted card data. Fields may include:
 

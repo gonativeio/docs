@@ -17,13 +17,13 @@ Display our demo page in your app to test during development [https://median.dev
 
 </Check>
 
-## What Is AdMob?
+## What is AdMob?
 
 Google AdMob enables mobile app developers to earn revenue by displaying native banner ads and interstitial ads. These ad formats offer a better user experience and higher monetization potential compared to traditional website-based ads.
 
 The AdMob Native Ads SDK, when integrated with your app via Median's Native JavaScript Bridge, unlocks full access to the platform’s features, including advanced ad rendering and user tracking consent management.
 
-## Supported Ad Formats
+## Supported ad formats
 
 AdMob supports two primary ad types:
 
@@ -34,7 +34,7 @@ AdMob supports two primary ad types:
 | :-------------------------------------------: | :-------------------------------------------------: |
 | ![](/images/docs/docs/admob/admob-banner.png) | ![](/images/docs/docs/admob/admob-interstitial.png) |
 
-## Implementation Guide
+## Implementation guide
 
 ### Enabling the module
 
@@ -58,7 +58,7 @@ Make sure to enable App Tracking Transparency (ATT) on the Permission tab to ens
 
 </Warning>
 
-### Show Interstitial Ads
+### Show interstitial ads
 
 Interstitial ads are not shown automatically. They are pre-loaded in the background and must be invoked at runtime.
 
@@ -82,7 +82,7 @@ To show an interstitial ad, run the JavaScript function
   ```
 </CodeGroup>
 
-### Control Banner Ad Display
+### Control banner ad display
 
 To enable/disable displaying banner ads, run the following commands. If AdMob Banner Ad Enabled is set to **Disable** you must run the enable command to begin showing the banner.
 
@@ -96,7 +96,7 @@ Enable or disable banner ads with these commands:
   ```
 </CodeGroup>
 
-### iOS 14+ Tracking Consent (IDFA)
+### iOS 14+ tracking consent (IDFA)
 
 iOS 14 requires user consent for applications to use the IDFA (Identifier for Advertisers). Given consent, AdMob will use IDFA, otherwise it will fall back to less targeted identifiers. In all cases App Tracking Transparency (ATT) must be enabled on the Permissions tab.
 
@@ -126,7 +126,7 @@ median.admob.request.tracking().then(function(result) {
 
 `callback` is an optional parameter to get the result of the user decision. It should be the name of a JavaScript function that will receive the result. The result will be an object with a status string, which can be "authorized", "denied", or "restricted" (denied by corporate policy or user is underage).
 
-### GDPR and User Consent
+### GDPR and user consent
 
 AdMob now requires certain disclosures to your users in the European Economic Area (EEA) along with the UK and obtain their consent to use cookies or other local storage, where legally required, and to use personal data (such as AdID) to serve ads.
 

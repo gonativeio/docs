@@ -12,7 +12,7 @@ Background Audio enables native, continuous microphone recording in your Median-
 
 The plugin supports start, stop, pause, and resume controls with real-time event callbacks for state changes and optional transcript delivery. Implement it using async JavaScript on top of the Median JavaScript Bridge.
 
-## Why use Background Audio
+## Why use background audio
 
 - **Background and lock screen recording**: Keep capturing audio when users leave the app or lock the device.
 - **Native platform UX**: Surface a persistent Android foreground service notification and iOS system recording indicators without custom native code.
@@ -53,13 +53,13 @@ The following terms will help you implement Background Audio effectively:
 - OS interruptions (for example, calls or Siri) can pause the session (`SESSION_INTERRUPTED`); handle `error` listener state and the error reference table.
 </Info>
 
-## Implementation Guide
+## Implementation guide
 
 ### Plugin setup
 
 Enable the Background Audio plugin in your Median App Studio configuration, then rebuild your app. Once you enable it, you can call `median.backgroundAudio.*` functions from the JavaScript Bridge at runtime.
 
-### JavaScript bridge functions
+### JavaScript Bridge functions
 
 Document each method available on `median.backgroundAudio`. Most functions return a promise; `getStatus` additionally supports a callback form.
 
@@ -159,7 +159,7 @@ interface StartRecordingResult {
 
 When `startRecording` succeeds, each platform surfaces native UI automatically. You do not need additional manifest or Info.plist changes beyond enabling the plugin and declaring standard microphone usage descriptions.
 
-##### Android - foreground service notification
+##### Android: Foreground service notification
 
 Android displays a persistent notification with:
 
@@ -167,7 +167,7 @@ Android displays a persistent notification with:
 - Status text: "audio recording in progress" or "paused"
 - Two action buttons: \_ **Launch App** — deep-links back into the app \_ **Stop Recording** — terminates the session and launches the app
 
-##### iOS - recording indicator and audio session
+##### iOS: Recording indicator and audio session
 
 iOS activates `AVAudioSession` with background mode and displays a system-level recording indicator while the session is active:
 
@@ -413,9 +413,9 @@ Use the listener `error` state and the `errorCode` it provides together with thi
 
 See the example implementation below for the basic recording flow
 
-### Basic Recording Flow
+### Basic recording flow
 
-### Step 1: Check Permissions
+### Step 1: Check permissions
 
 Before starting a recording session, check if the user has granted microphone permissions:
 
@@ -430,7 +430,7 @@ if (!permission.granted) {
 ```
 </CodeGroup>
 
-### Step 2: Request Permission (If Needed)
+### Step 2: Request permission (if needed)
 
 If permissions haven't been granted, prompt the user:
 
@@ -446,7 +446,7 @@ const result = await median.backgroundAudio.startRecording();
 ```
 </CodeGroup>
 
-### Step 3: Start Recording
+### Step 3: Start recording
 
 Start a background-aware recording session with optional configuration:
 
@@ -494,7 +494,7 @@ HTML Example:
 ```
 </CodeGroup>
 
-### Sequence Diagram
+### Sequence diagram
 
 High-level view: permission gate → start recording → success or failure.
 
@@ -524,11 +524,11 @@ Failed["Log error — session not started"]
     Success -->|"false"| Failed
 ```
 
-## Testing Checklist
+## Testing checklist
 
 Use this checklist to ensure Background Audio is working correctly in your app:
 
-### Basic Functionality
+### Basic functionality
 
 - [ ] `checkPermission` and `requestPermission` behave as expected before `startRecording`
 - [ ] Minimal `startRecording()` and full configuration calls succeed when permitted
@@ -536,20 +536,20 @@ Use this checklist to ensure Background Audio is working correctly in your app:
 - [ ] `stopRecording` returns `fileUri`, `durationSeconds`, and `transcript` when you enable transcription and the platform supports it
 - [ ] Plugin loads without JavaScript errors
 
-### Platform Testing
+### Platform testing
 
 - [ ] Android shows the foreground notification with correct status text and **Launch App** / **Stop Recording** actions
 - [ ] iOS shows the recording indicator during active recording and hides it when stopped
 - [ ] WAV records on iOS as documented; Android falls back to M4A when you request WAV
 - [ ] Recording continues when you background the app and lock the device
 
-### Status and Events
+### Status and events
 
 - [ ] `getStatus` returns `state` and `elapsedSeconds` via promise and via `callback` form
 - [ ] `addListener` receives transitions across `idle`, `recording`, `paused`, `stopped`, and `error`
 - [ ] `removeListener` stops further callbacks for that id
 
-### Error Scenarios
+### Error scenarios
 
 - [ ] Your app surfaces the errors in the reference table as documented (`PERMISSION_DENIED`, `ALREADY_RECORDING`, `NOT_RECORDING`, `STT_UNAVAILABLE`, `SESSION_INTERRUPTED`, `FILE_ERROR`)
 - [ ] Incoming calls or Siri trigger `SESSION_INTERRUPTED`, and your listener handles it

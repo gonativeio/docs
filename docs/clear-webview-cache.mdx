@@ -11,9 +11,9 @@ If updates to your website aren't appearing in your native app built with Median
 
 Median apps respect the same cache headers as modern browsers. This means your web server controls how long content is cached within the app. In most cases, updates will reflect after a few minutes or a page refresh. However, if you're still not seeing the latest changes, it’s likely due to aggressive cache headers or stale cached assets.
 
-## Implementation Guide
+## Implementation guide
 
-### Website Configuration
+### Website configuration
 
 To force the app to load the latest version of your assets (e.g., JavaScript or CSS files), you can use file versioning like:
 
@@ -26,7 +26,7 @@ To force the app to load the latest version of your assets (e.g., JavaScript or 
 
 Updating the filename ensures the browser and app will request a fresh version from the server.
 
-### JavaScript Bridge Method
+### JavaScript Bridge method
 
 Median provides a JavaScript command to programmatically clear the webview cache. This is especially useful during development or when troubleshooting cache-related display issues.
 
@@ -39,11 +39,11 @@ median.webview.clearCache();
 ```
 </CodeGroup>
 
-### Android-Only
+### Android-only
 
 Some configuration options in `appConfig.json` apply specifically to Android apps. These settings allow you to control WebView behavior, including caching.
 
-#### Automatically Clear Cache on Exit
+#### Automatically clear cache on exit
 
 Median includes a configuration option for Android apps to clear the WebView cache every time the app exits. To enable this, add the following in the [appConfig.json](https://median.co/docs/app-configuration-appconfigjson):
 
@@ -55,7 +55,7 @@ Median includes a configuration option for Android apps to clear the WebView cac
   ```
 </CodeGroup>
 
-#### Configure WebView Cache Mode
+#### Configure WebView cache mode
 
 You can also control how the Android WebView handles caching by setting the cacheMode option. Add the following under the general section in your [appConfig.json](https://median.co/docs/app-configuration-appconfigjson):
 

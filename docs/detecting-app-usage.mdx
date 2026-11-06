@@ -23,13 +23,13 @@ When your website runs inside a Median-built native app, it behaves differently 
 
 Median supports three detection strategies. Use whichever best suits your architecture, or combine them.
 
-## Detection Strategies
+## Detection strategies
 
-### Strategy 1: Detect the Custom User Agent
+### Strategy 1: Detect the custom user agent
 
 Every HTTP request made by your Median app appends a custom string to the device's default user agent. This is the most common detection method and works on both the frontend and backend.
 
-#### Default User-Agent Strings
+#### Default user-agent strings
 
 | Platform    | User agent string          | Legacy user agent string       |
 | ----------- | -------------------------- | ------------------------------ |
@@ -79,7 +79,7 @@ app.get('/', (req, res) => {
 
 This pattern works in any server-side language. Look for the median string in the User-Agent HTTP header.
 
-#### JavaScript Helper Functions
+#### JavaScript helper functions
 
 We recommend creating helper functions to simplify complex integrations and to reduce the code that needs to be added throughout your web environment. In the examples below you would simply need to call `logAnalyticsEvent()` and the event would be transmitted as either a web analytics event or app analytics event by way of the helper function.
 
@@ -124,7 +124,7 @@ Analytics using only web-based Google Analytics with additional parameter added 
   ```
 </CodeGroup>
 
-### Strategy 2: Set Custom HTTP Headers
+### Strategy 2: Set custom HTTP headers
 
 Instead of (or in addition to) user-agent detection, you can configure your app to send a custom HTTP header with every request. This can be a cleaner signal than parsing the user-agent string, especially on the backend.Configure custom headers in App Studio under Web Overrides → Custom Headers.
 
@@ -150,7 +150,7 @@ Example: adding an `X-App-Platform: median-ios` header on the iOS app, then read
 
 See [Custom HTTP Headers](https://median.co/docs/custom-headers) for full configuration details.
 
-### Strategy 3: Use a Dedicated App URL
+### Strategy 3: Use a dedicated app URL
 
 The simplest approach is to serve a completely separate version of your site at a dedicated subdomain configured as your app's URL:
 
@@ -160,7 +160,7 @@ Because only your Median app points to this URL, any request to it is by definit
 
 This strategy works well when the app and browser experiences differ significantly. It is recommended when the app version omits marketing pages, sign-up flows, or navigation elements that only make sense in a browser context.
 
-## Choosing a Strategy
+## Choosing a strategy
 
 | Strategy                      | Best for                                   | Complexity |
 | ----------------------------- | ------------------------------------------ | ---------- |

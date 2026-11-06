@@ -27,15 +27,15 @@ Display our demo page in your app to test during development [https://median.dev
 
 </Check>
 
-## Native Media Player UI
+## Native media player UI
 
 |                                         iOS                                          |                                           Android                                            |
 | :----------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------: |
 | ![](/images/docs/docs/native-media-player/ios/MediaPlayer_Playlist_FullSize_IOS.png) | ![](/images/docs/docs/native-media-player/android/MediaPlayer_Playlist_FullSize_Android.png) |
 
-## Implementation Guide
+## Implementation guide
 
-### Play a Single Track
+### Play a single track
 
 Create an object with the URL of the track:
 
@@ -99,9 +99,9 @@ The player UI will display Play/Pause and Close controls for a single track.
 | ![](/images/docs/docs/native-media-player/ios/MediaPlayer_Mp3_IOS.png) | ![](/images/docs/docs/native-media-player/android/MediaPlayer_Mp3_Android.png) |
 
 
-### Media Controls
+### Media controls
 
-#### Pause Playback
+#### Pause playback
 
 <MedianLogo />
 <CodeGroup>
@@ -110,7 +110,7 @@ The player UI will display Play/Pause and Close controls for a single track.
   ```
 </CodeGroup>
 
-#### Stop Playback
+#### Stop playback
 
 <MedianLogo />
 <CodeGroup>
@@ -121,11 +121,11 @@ The player UI will display Play/Pause and Close controls for a single track.
 
 **Note**: On Android, this stops playback and removes the notification. On iOS, it only pauses.
 
-### Get Player Status
+### Get player status
 
 Retrieve player status including current track time, 'isPaused' status, album, artist, title, artwork and track URL.
 
-#### Option 1: Using Callback
+#### Option 1: Using a callback
 
 <MedianLogo />
 <CodeGroup>
@@ -141,7 +141,7 @@ Retrieve player status including current track time, 'isPaused' status, album, a
 ```
 </CodeGroup>
 
-#### Method 2 (Using Promise):
+#### Option 2: Using a promise
 
 <MedianLogo />
 <CodeGroup>
@@ -158,7 +158,7 @@ async function getInfo() {
 ```
 </CodeGroup>
 
-#### Status Example
+#### Status example
 
 <MedianLogo />
 <CodeGroup>
@@ -175,9 +175,9 @@ async function getInfo() {
   ```
 </CodeGroup>
 
-### Seeking in a Track
+### Seeking in a track
 
-#### Seek to Specific Time
+#### Seek to specific time
 
 To seek to a particular position of the currently playing media, pass any float value (in seconds) as an argument for the method given below.
 
@@ -188,7 +188,7 @@ To seek to a particular position of the currently playing media, pass any float 
   ```
 </CodeGroup>
 
-#### Start Playback from Specific Position
+#### Start playback from specific position
 
 To start a track from a particular position, pass a parameter named "time" inside the track object with a float value (in seconds). For example, the track given below will directly start from 50 seconds.
 
@@ -213,9 +213,9 @@ Create an object with the URL of the track and desired initial seek position:
   ```
 </CodeGroup>
 
-### Streaming a Playlist
+### Streaming a playlist
 
-#### JavaScript Playlist Object
+#### JavaScript playlist object
 
 Create an object with any number of audio tracks to send to the device as one playlist along with the starting track number in **currentTrackNumber**. For example, to start the playlist with the 3rd song in the playlist, set the **currentTrackNumber: 2**.
 
@@ -245,7 +245,7 @@ Create an object with any number of audio tracks to send to the device as one pl
   ```
 </CodeGroup>
 
-#### Start Playlist
+#### Start playlist
 
 <MedianLogo />
 <CodeGroup>
@@ -267,7 +267,7 @@ When the currently playing track finishes playing, the player will automatically
 | :-------------------------------------------------------------------------: | :---------------------------------------------------------------------------------: |
 | ![](/images/docs/docs/native-media-player/ios/MediaPlayer_Playlist_IOS.png) | ![](/images/docs/docs/native-media-player/android/MediaPlayer_Playlist_Android.png) |
 
-### Metadata Display
+### Metadata display
 
 The player will display the embedded metadata of the playing track, including the audio icon image. If your audio file does not include any metadata, you can include the metadata in the **track** object, as shown in the examples above. **Note:** If metadata is embedded in the track but also provided manually, the manual metadata will be selected.
 
@@ -283,7 +283,7 @@ Audio icons can only be retrieved directly from the Audio URL. So, if none is av
 | :-------------------------------------------------------------------------: | :---------------------------------------------------------------------------------: |
 | ![](/images/docs/docs/native-media-player/ios/MediaPlayer_DefaultIcon_IOS.png) | ![](/images/docs/docs/native-media-player/android/MediaPlayer_DefaultIcon_Android.png) |
 
-### Background Mode
+### Background mode
 
 <Info>
   **Use this mode to sync the native media player with your in-app web player**
@@ -302,7 +302,7 @@ Define these functions in your web app:
 - `getPlayerStatus()` - Gets the current status of the web player to pass to the native media player. (Called when the app is paused/backgrounded).
 - `updatePlayerStatus(mediaPlayerStatus)` - Passes the native media player status to the web player when the app is resumed. (Called when the app is resumed/foregrounded).
 
-#### Example Implementation
+#### Example implementation
 
 <MedianLogo />
 <CodeGroup>
@@ -337,16 +337,16 @@ Define these functions in your web app:
 ```
 </CodeGroup>
 
-## Demo Apps
+## Demo apps
 
-### Native Media Player
+### Native media player
 
 <AppetizeEmbed
   iosEmbedCode="txbitfsxzcknbrooowhm3rmccy"
   androidEmbedCode="wgzr7a26ejsrphxkh4euitqauy"
 />
 
-### Native Media Player Background
+### Native media player background
 
 **Demo Instructions**
 

@@ -15,20 +15,20 @@ Display our demo page in your app to test during development [https://median.dev
 
 </Check>
 
-## Implementation Guide
+## Implementation guide
 
-### Swipe Navigation
+### Swipe navigation
 
 Enable swipe gestures to allow users to navigate backward and forward through their browsing history using simple horizontal swipes.
 
 <Info>
-  ### Android Behavior
+  **Android behavior**
 
 On Android devices, visual arrow indicators appear on the screen to provide feedback when a previous or next page is available in the history stack.
 
 </Info>
 
-#### Managing Swipe Gestures via JavaScript Bridge
+#### Managing swipe gestures via JavaScript Bridge
 
 You can toggle swipe gestures at runtime to dynamically enable or disable navigation based on your app’s current state or specific view requirements.
 
@@ -50,14 +50,14 @@ median.android.swipeGestures.disable();
 ```
 </CodeGroup>
 
-### Pinch-To-Zoom
+### Pinch-to-zoom
 
 The pinch-to-zoom feature allows users to use two fingers to interactively zoom in and out of content within your app.
 
 - **Default State**: This feature is disabled by default.
 - **Use Case**: Enable this if your content (such as product images, maps, or data-dense pages) requires fine-grained zooming control.
 
-### Pull-to-Refresh
+### Pull-to-refresh
 
 Pull-to-refresh provides a standard mobile gesture for reloading the current page by swiping down from the top of the screen.
 

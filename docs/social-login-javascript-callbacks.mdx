@@ -66,11 +66,11 @@ The following sections provide complete implementation details for each social l
 
 Facebook LoginGoogle Sign InApple Sign In
 
-### Response objects
+### Facebook response objects
 
 Here's what your callback function receives for Facebook.
 
-#### Success response
+#### Facebook success response
 
 <CodeGroup>
   ```JSON JSON
@@ -100,7 +100,7 @@ Here's what your callback function receives for Facebook.
 
 **Note:** Keys in userDetails may be unavailable or null based on the scope you requested.
 
-#### **Error response**
+#### Facebook error response
 
 <CodeGroup>
   ```JSON JOSN
@@ -111,7 +111,7 @@ Here's what your callback function receives for Facebook.
   ```
 </CodeGroup>
 
-### Platform-specific requirements
+### Facebook platform-specific requirements
 
 #### Facebook on iOS
 
@@ -126,7 +126,7 @@ What changes in Limited Login mode:
 
 [Read Facebook's documentation on validating Limited Login tokens](https://developers.facebook.com/docs/facebook-login/limited-login/token/validating)
 
-### Implementation
+### Facebook implementation
 
 Use the Median JavaScript Bridge method to trigger native login from your website. When a user clicks the button, the native login flow starts. After they authenticate, your callback function runs with the response object.
 
@@ -240,11 +240,11 @@ In this example, clicking the button activates the Median JavaScript Bridge and 
 
 Once you have the token, you can use it to fetch the user's Facebook profile. Then pass this data to your backend for processing.
 
-### Response objects
+### Google response objects
 
 Here's what your callback function receives for Google.
 
-#### Success response
+#### Google success response
 
 <CodeGroup>
 ```JSON JSON
@@ -256,7 +256,7 @@ Here's what your callback function receives for Google.
 
 </CodeGroup>
 
-#### Error response
+#### Google error response
 
 <CodeGroup>
   ```JSON JSON
@@ -267,7 +267,7 @@ Here's what your callback function receives for Google.
   ```
 </CodeGroup>
 
-### Implementation
+### Google implementation
 
 Use the Median JavaScript Bridge method to trigger native login from your website. When a user clicks the button, the native login flow starts. After they authenticate, your callback function runs with the response object.
 
@@ -372,11 +372,11 @@ After the user logs in, `googleLoginCallback()` runs with an object containing t
 
 Once you have the token, decode it using any JWT library. In this example, we're using jsrsasign to extract the email from the token. Then pass the decoded data to your backend for processing.
 
-### Response objects
+### Apple response objects
 
 Here's what your callback function receives for Apple.
 
-#### Success response
+#### Apple success response
 
 <CodeGroup>
 ```JSON JSON
@@ -393,7 +393,7 @@ Here's what your callback function receives for Apple.
 
 **Note:** firstName and lastName only appear on the first authentication.
 
-#### **Error response**
+#### Apple error response
 
 <CodeGroup>
   ```JSON JSON
@@ -404,9 +404,9 @@ Here's what your callback function receives for Apple.
   ```
 </CodeGroup>
 
-### Platform-specific requirements
+### Apple platform-specific requirements
 
-#### Apple Sign In
+#### Apple sign in
 
 Apple only sends complete user profile data (`firstName` and `lastName`) on the _first_ login. After that, you only get a JWT token and a user identifier.
 
@@ -418,7 +418,7 @@ Here's what to do:
 
 [Read Apple's documentation on retrieving user information](https://developer.apple.com/documentation/sign_in_with_apple/sign_in_with_apple_rest_api/authenticating_users_with_sign_in_with_apple#:~:text=Retrieve%20the%20user%E2%80%99s%20information%20from%20Apple%20ID%20servers)
 
-### **Implementation**
+### Apple implementation
 
 Use the Median JavaScript Bridge method to trigger native login from your website. When a user clicks the button, the native login flow starts. After they authenticate, your callback function runs with the response object.
 

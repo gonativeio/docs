@@ -40,7 +40,7 @@ Make sure you have the following before starting. Missing any one of these will 
 - [x] A Firebase Service Account JSON credentials file — downloaded from your Firebase project settings
 
 <Info>
-  ### Already have a OneSignal account connected to Median.co?
+  **Already have a OneSignal account connected to Median.co?**
 
 Head straight to [Managing Permissions & Consent](https://docs.median.co/docs/user-consent-management) to control how and when users are prompted.
 
@@ -83,14 +83,14 @@ If you don't already have one:
 2. Click **Add project** and follow the prompts.
 3. Register your Android app using your app's package name.
 
-### Step 2: Enable Cloud Messaging
+### Step 2: Enable cloud messaging
 
 In your Firebase project:
 
 1. Go to **Project Settings > Cloud Messaging**.
 2. Confirm that Firebase Cloud Messaging (FCM) API is enabled.
 
-### Step 3: Download your Service Account credentials
+### Step 3: Download your service account credentials
 
 1. Go to **Project Settings > Service accounts**.
 2. Click **Generate new private key**.
@@ -114,7 +114,7 @@ Apple requires an APNs credential to authorize push notifications for your app. 
 
 Upload the credential to your OneSignal dashboard under **Settings > Push & In-App > Apple iOS (APNs)**.
 
-### Step 2: Confirm Push Notifications and Background Modes
+### Step 2: Confirm push notifications and background modes
 
 For App Studio builds using the App Store Connect API workflow, Median can register the Bundle ID with the required capabilities and generate the provisioning profiles used by your build. If you manually manage Apple identifiers/provisioning profiles or build from downloaded source, confirm these capabilities in your Apple Developer account and Xcode project:
 
@@ -132,7 +132,7 @@ For App Studio builds using the App Store Connect API workflow, Median can regis
 
 Median's build process requires both capabilities to be present. Without them, push notifications won't be delivered on iOS — even if your OneSignal configuration is otherwise correct.
 
-### Step 3 (optional): Enable App Groups
+### Step 3 (optional): Enable app groups
 
 App Groups are required to support badge counts, rich notification images, and OneSignal's confirmed delivery analytics. App Studio signing includes a OneSignal Notification Service Extension provisioning profile when the plugin requires it. If you manually manage Apple identifiers/provisioning profiles or build from downloaded source, add App Groups to two targets.
 
@@ -165,7 +165,7 @@ Your app will now initialize OneSignal on launch and — by default — prompt u
 
 **Want to control when the permission prompt appears?** See [Managing Permissions & Consent](https://docs.median.co/docs/user-consent-management) to delay the prompt or require privacy consent before OneSignal initializes.
 
-### Find your OneSignal App ID and REST API Key
+### Find your OneSignal app ID and REST API key
 
 You'll need these for both the App Studio setup and any server-side or programmatic notifications.
 

@@ -11,7 +11,7 @@ Integrate Salesforce Marketing Cloud MobilePush into your app to manage push not
 
 The plugin enables you to prompt for push notification permissions, set and retrieve contact keys for user identification, manage custom attributes and tags for audience segmentation, and retrieve device registration information.
 
-## App Configuration
+## App configuration
 
 The Salesforce Marketing Cloud plugin requires your MobilePush app credentials. Configure them in the App Studio, on the Native Plugins tab under "Advanced Mode":
 
@@ -47,9 +47,9 @@ The Salesforce Marketing Cloud plugin requires your MobilePush app credentials. 
   The Salesforce Marketing Cloud SDK is automatically initialized at app launch using the credentials from the server configuration. On iOS, if `requiresUserPrivacyConsent` is `false`, the plugin also automatically prompts for notification permissions on first launch.
 </Info>
 
-## Implementation Guide
+## Implementation guide
 
-### Prompt for Push Notifications
+### Prompt for push notifications
 
 Request push notification permission from the user. On Android 13+ this triggers the system permission dialog. On older Android versions, notifications are enabled by default.
 
@@ -66,7 +66,7 @@ Request push notification permission from the user. On Android 13+ this triggers
   ```
 </CodeGroup>
 
-### Check Notification Status
+### Check notification status
 
 Check whether push notifications are currently enabled for the app.
 
@@ -83,7 +83,7 @@ Check whether push notifications are currently enabled for the app.
   ```
 </CodeGroup>
 
-### Get Device Info
+### Get device info
 
 Retrieve the device registration information from the Salesforce Marketing Cloud SDK.
 
@@ -103,7 +103,7 @@ Retrieve the device registration information from the Salesforce Marketing Cloud
   ```
 </CodeGroup>
 
-### Set Contact Key
+### Set contact key
 
 Set the contact key (profile ID) to identify the user in Salesforce Marketing Cloud.
 
@@ -123,13 +123,13 @@ Set the contact key (profile ID) to identify the user in Salesforce Marketing Cl
   ```
 </CodeGroup>
 
-#### Parameters
+#### Set contact key parameters
 
 | Parameter  | Type     | Description                                         |
 | ---------- | -------- | --------------------------------------------------- |
 | contactKey | `string` | **Required**. The contact key to identify the user. |
 
-### Get Contact Key
+### Get contact key
 
 Retrieve the currently set contact key.
 
@@ -148,7 +148,7 @@ Retrieve the currently set contact key.
   ```
 </CodeGroup>
 
-### Set Attributes
+### Set attributes
 
 Set custom profile attributes on the Salesforce contact for audience segmentation.
 
@@ -172,13 +172,13 @@ Set custom profile attributes on the Salesforce contact for audience segmentatio
   ```
 </CodeGroup>
 
-#### Parameters
+#### Set attributes parameters
 
 | Parameter  | Type     | Description                                                 |
 | ---------- | -------- | ----------------------------------------------------------- |
 | attributes | `object` | **Required**. Key-value pairs (all values must be strings). |
 
-### Get Attributes
+### Get attributes
 
 Retrieve all profile attributes currently set on the device.
 
@@ -200,7 +200,7 @@ Retrieve all profile attributes currently set on the device.
   ```
 </CodeGroup>
 
-### Set Tags
+### Set tags
 
 Add tags to the device for audience segmentation.
 
@@ -226,7 +226,7 @@ Add tags to the device for audience segmentation.
   ```
 </CodeGroup>
 
-#### Parameters
+#### Set tags parameters
 
 | Parameter | Type       | Description                                           |
 | --------- | ---------- | ----------------------------------------------------- |
@@ -239,7 +239,7 @@ Add tags to the device for audience segmentation.
   On iOS, only the `tag` parameter is supported (single tag at a time). On Android, both `tag` and `tags` are supported. Passing an empty `tags` array on Android will clear all existing tags.
 </Info>
 
-### Get Tags
+### Get tags
 
 Retrieve all tags currently set on the device.
 
@@ -257,7 +257,7 @@ Retrieve all tags currently set on the device.
   ```
 </CodeGroup>
 
-### Delete a Tag (iOS Only)
+### Delete a tag (iOS only)
 
 Remove a single tag from the device registration. This method is only available on iOS.
 
@@ -277,7 +277,7 @@ Remove a single tag from the device registration. This method is only available 
   ```
 </CodeGroup>
 
-#### Parameters
+#### Delete a tag parameters
 
 | Parameter | Type     | Description                      |
 | --------- | -------- | -------------------------------- |

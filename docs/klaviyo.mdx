@@ -44,9 +44,9 @@ Display our demo page in your app to test during development: [https://median.de
 - On **Android 13+**, users must explicitly grant notification permission; on older Android versions, behavior may differ. **iOS** always uses an explicit permission prompt when you request authorization.
 - Align **Bundle ID** (iOS) and **package name** (Android) between Klaviyo, your app identifiers in Median, and store listings to avoid token or delivery mismatches.
 
-## Implementation Guide
+## Implementation guide
 
-### Klaviyo Setup
+### Klaviyo setup
 
 Before configuring the plugin in Median, complete the following setup steps in your Klaviyo account:
 
@@ -64,7 +64,7 @@ In Klaviyo, you will need to add and configure both (iOS and Android) mobile app
   <img src="/images/docs/f6e43f6b104577dd6a7796ef06a3ad8ec49518ed5d795216981c205d5944a3d0-Screenshot_2025-11-25_at_14.44.43.png" />
 </Frame>
 
-#### Retrieve your Public API Key
+#### Retrieve your public API key
 
 1. In Klaviyo, go to **Settings → Account → API Keys**.
 2. Copy the **Public API Key** (not private keys). You will paste it into the Klaviyo plugin field in Median App Studio.
@@ -73,7 +73,7 @@ In Klaviyo, you will need to add and configure both (iOS and Android) mobile app
   <img src="/images/docs/89f851959e1a2b97504cdb2382c4d152964d0aa63e5ea86a3ce1b3383150c599-Screenshot_2025-11-25_at_14.45.04.png" />
 </Frame>
 
-### App Configuration
+### App configuration
 
 Klaviyo’s stack expects Firebase / Google Services files in the native mobile app build.
 
@@ -108,7 +108,7 @@ Without these files, the SDK may fail to initialize; see the Firebase error in [
 
 The Klaviyo plugin works with Median [deep linking](https://docs.median.co/docs/deep-linking). When deep links are configured, tapping a push can open the corresponding in-app destination instead of the mobile browser. Configure URL schemes, universal links, and app links in App Studio to match the URLs your Klaviyo campaigns use.
 
-### JavaScript bridge functions
+### JavaScript Bridge functions
 
 Call these after the `deviceready` event (or equivalent) with the JavaScript Bridge loaded. The official Median examples use **callbacks**; use the same shape in production unless your integration layer wraps them in promises.
 

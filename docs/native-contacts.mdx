@@ -19,15 +19,15 @@ Display our demo page in your app to test during development [https://median.dev
 
 </Check>
 
-## Why Use Native Contacts
+## Why use native contacts
 
 - **CRM integration**: Sync device contacts directly into your app's workflow, eliminating manual data entry for sales and support teams.
 - **Field service and operations**: Look up and act on contact data in real time for scheduling, dispatch, and on-site workflows.
 - **Social and eCommerce features**: Enable social networking platforms and eCommerce shipping solutions to access contact data natively for connection recommendations or address autofill.
 
-## Implementation Guide
+## Implementation guide
 
-### App Configuration
+### App configuration
 
 1. **Navigate to Native Plugins**: In Median App Studio, go to the Native Plugins section.
 2. **Enable Native Contacts**: Toggle the plugin to enabled status.
@@ -36,11 +36,11 @@ Display our demo page in your app to test during development [https://median.dev
   <img src="/images/docs/74bb8e295d6cfd1f24cbda7448b1d64b0a8c1426aa173aff51416d1874627031-Screenshot_2026-06-29_at_09.08.05.png" />
 </Frame>
 
-### JavaScript Bridge Implementation
+### JavaScript Bridge implementation
 
 All contact functionality is accessed through the [Median JavaScript Bridge](https://docs.median.co/docs/javascript-bridge). Each method accepts either a callback function or returns a Promise. See Using Promises with the JavaScript Bridge for async/await patterns.
 
-#### Check Contact Permission Status
+#### Check contact permission status
 
 Before accessing contacts, check whether the user has already granted permission. The app will automatically prompt for permission on first access, but this method lets you check current status without triggering a prompt.
 
@@ -61,7 +61,7 @@ Before accessing contacts, check whether the user has already granted permission
 ```
 </CodeGroup>
 
-#### Permission Status Values
+#### Permission status values
 
 Given the differences between both iOS and Android you can expect slightly different permission values based on the operating system.
 
@@ -81,7 +81,7 @@ Given the differences between both iOS and Android you can expect slightly diffe
 | `granted` | User has granted access                                      |
 | `denied`  | User has not yet been asked, or has explicitly denied access |
 
-#### Retrieve All Contacts
+#### Retrieve all contacts
 
 Fetch the complete contacts list stored on the device.
 
@@ -98,7 +98,7 @@ const result = await median.contacts.getAll({});
 
 **Note**: On iOS the `note` field is not returned by `getAll()` by default. Accessing it requires the `com.apple.developer.contacts.notes entitlement`, which requires approval by Apple.
 
-#### Present a Native Contact Picker
+#### Present a native contact picker
 
 Display the device's native contact selection UI, allowing the user to choose one or multiple contacts. This is the recommended approach when you need explicit user selection rather than bulk access.
 
@@ -118,7 +118,7 @@ Display the device's native contact selection UI, allowing the user to choose on
 
 **Note**: The `note` field is available when using `pickContact()` on iOS, without any additional entitlement.
 
-#### Response Format
+#### Response format
 
 When permission is granted, all contact methods return an object in the following shape:
 
@@ -133,7 +133,7 @@ When permission is granted, all contact methods return an object in the followin
 
 `contacts` is an array of contact objects. Available fields depend on the platform.
 
-#### Contact Fields
+#### Contact fields
 
 **iOS**
 
@@ -172,7 +172,7 @@ When permission is granted, all contact methods return an object in the followin
 | `emailAddresses`  | Array  |
 | `postalAddresses` | Array  |
 
-#### Array Field Schemas
+#### Array field schemas
 
 `phoneNumbers`, `emailAddresses`, and `postalAddresses` are arrays of objects. All other fields are strings.
 
@@ -217,7 +217,7 @@ When permission is granted, all contact methods return an object in the followin
   ```
 </CodeGroup>
 
-## Demo App
+## Demo app
 
 You can test the native contact features using our virtual demo app on iOS and Android simulators.
 
