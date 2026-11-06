@@ -1,0 +1,49 @@
+---
+title: "Native Page Transitions"
+description: "Fade between pages with a native transition when users navigate in your app"
+---
+
+Native page transitions make navigating your app feel more like a native app. Instead of the screen going blank while a new page loads, the current page fades out and the new page fades in as soon as it's ready to display.
+
+<Check>
+  **Developer Demo**
+
+Display our demo page in your app to test during development [https://median.dev/native-page-transitions](https://median.dev/native-page-transitions)
+
+</Check>
+
+## How it works
+
+1. A user taps a link or submits a form, and your app starts loading a new page.
+2. The current page fades out.
+3. When the new page's [`document.readyState`](https://developer.mozilla.org/en-US/docs/Web/API/Document/readyState) changes to `interactive`, the new page fades in. At this point the HTML has been parsed, but images and other resources may still be loading.
+
+Transitions only run on full page loads. Requests made with AJAX or `fetch`, including client-side route changes in single-page apps (SPAs) built with frameworks like React or Vue, don't trigger a transition.
+
+## Troubleshooting slow page loads
+
+If your app feels slower than your mobile website, your pages may be taking a long time to reach the `interactive` state. Because the new page only fades in at that point, anything that delays it also delays the transition.
+
+### Check whether transitions are the cause
+
+1. Turn off native page transitions in the App Studio.
+2. Rebuild your app and compare the speed.
+
+If pages appear faster with transitions turned off, your website is likely running long, blocking JavaScript while the page loads.
+
+### Fix blocking JavaScript
+
+Scripts that run while the browser parses the HTML, such as `<script>` tags without `async` or `defer`, delay the `interactive` state until they finish. To fix this, load scripts that aren't needed to display the page so they don't block parsing:
+
+- Add `defer` or `async` to `<script>` tags that load non-critical code.
+- Move non-critical code into a `DOMContentLoaded` handler, or jQuery's `$(document).ready()`, so it runs after the page is displayed.
+
+```html
+<!-- Blocks parsing until the script downloads and runs -->
+<script src="/analytics.js"></script>
+
+<!-- Runs after parsing, without delaying the page -->
+<script src="/analytics.js" defer></script>
+```
+
+After making changes, turn native page transitions back on and rebuild your app.
