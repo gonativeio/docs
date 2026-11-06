@@ -171,11 +171,7 @@ Use this checklist to ensure Clerk is working correctly in your app:
 
 ### `median.clerk` functions are undefined or not working
 
-Ensure the JavaScript Bridge is enabled in Median App Studio and that the Clerk plugin is enabled and configured. On iOS, verify that `median.clerk.initialize()` is called before any other method and that the call returns `success: true`.
-
-### `NOT_INITIALIZED` error on iOS
-
-On iOS, the Clerk SDK is not initialized automatically at startup — you must call `median.clerk.initialize({ publishableKey: 'pk_...' })` from JavaScript before calling `presentSignIn`, `signOut`, or `getAuthStatus`. On Android, this call is optional because the SDK initializes from the server configuration.
+Ensure the JavaScript Bridge is enabled in Median App Studio and that the Clerk plugin is enabled and configured.
 
 ### Sign-in completes but token is missing or `hasValidToken` is false
 
