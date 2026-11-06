@@ -1,7 +1,14 @@
 ---
 title: "Google Firebase Analytics"
 description: "Track user behavior in your app with Google Firebase Analytics: consent, user properties, custom events, screen views, and eCommerce events."
-keywords: ["Firebase Analytics", "Google Analytics", "events", "user behavior", "analytics"]
+keywords:
+  [
+    "Firebase Analytics",
+    "Google Analytics",
+    "events",
+    "user behavior",
+    "analytics",
+  ]
 searchable: true
 ---
 
@@ -41,7 +48,10 @@ If you do not have an active Google Firebase project, you may need to create a n
 Once your project is set up, you can start the integration by choosing either the iOS or Android logo in your Project Overview screen.
 
 <Frame caption="Google Firebase project overview">
-  <img alt="Firebase Project Overview screen with iOS and Android app options" src="/images/docs/46ef6fb8d46545a2932510d97dc46948e6842e4dd7116335c9e7b44aaf89956e-image.png" />
+  <img
+    alt="Firebase Project Overview screen with iOS and Android app options"
+    src="/images/docs/46ef6fb8d46545a2932510d97dc46948e6842e4dd7116335c9e7b44aaf89956e-image.png"
+  />
 </Frame>
 
 ### Register your Android app in Firebase
@@ -157,9 +167,9 @@ Set default event parameters logged alongside other information for log event.
 
 <MedianLogo />
 <CodeGroup>
-  ```javascript JavaScript 
-  median.firebaseAnalytics.event.defaultEventParameters(data);
-  //data is an object of key-value pairs converted into bundle params 
+  ```javascript JavaScript
+  median.firebaseAnalytics.event.defaultEventParameters(data); //data is an
+  object of key-value pairs converted into bundle params 
   ```
 </CodeGroup>
 
@@ -281,15 +291,9 @@ Log remove from cart events
 **Note:** `ProductItem` may include the following fields. All fields are optional though it is recommended to provide at least an `item_id` or `item_name`.
 
 <CodeGroup>
-  ```java ProductItem
-  String item_id 
-  String item_name 
-  String item_category 
-  String item_variant 
-  String item_brand 
-  String item_list_name 
-  String item_list_id
-  double price 
+  ```java ProductItem String item_id String item_name String item_category
+  String item_variant String item_brand String item_list_name String
+  item_list_id double price 
   ```
 </CodeGroup>
 
@@ -325,7 +329,7 @@ By default, Firebase Analytics automatically logs key events such as screen_view
 
 ### Firebase Analytics functions are undefined or not working
 
-Enable the JavaScript Bridge in App Studio, then call Firebase methods after the `deviceready` event. In App Studio (`Native Plugins > Google Firebase Analytics`), confirm the plugin is enabled and that `GoogleService-Info.plist` (iOS) and `google-services.json` (Android) are uploaded under `Build & Deploy > Google Services`. Save and rebuild after configuration changes.
+Enable the JavaScript Bridge in App Studio, then call Firebase methods after the `median_library_ready()` event. In App Studio (`Native Plugins > Google Firebase Analytics`), confirm the plugin is enabled and that `GoogleService-Info.plist` (iOS) and `google-services.json` (Android) are uploaded under `Build & Deploy > Google Services`. Save and rebuild after configuration changes.
 
 ### Custom events are not appearing in Firebase Analytics
 
@@ -347,4 +351,5 @@ Confirm your eCommerce payload includes valid `currency` (3-letter uppercase cod
   **Still having trouble?**
 
 For Firebase Analytics behavior outside Median’s bridge, refer to the [Google Firebase Analytics documentation](https://firebase.google.com/docs/analytics).
+
 </Info>

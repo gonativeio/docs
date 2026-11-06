@@ -51,7 +51,10 @@ Follow the official Customer.io guides to complete source creation:
 4. Rebuild your app to include the Customer.io SDKs including your settings.
 
 <Frame caption="Customer.io plugin configuration">
-  <img src="/images/docs/1ff3eebe0253d69b5bf4ea9e59b458a05ed6a0d555b99ac1524bab2ecde46a64-Screenshot_2026-06-23_at_10.44.46.png" alt="Customer.io plugin settings in the Native Plugins tab of App Studio" />
+  <img
+    src="/images/docs/1ff3eebe0253d69b5bf4ea9e59b458a05ed6a0d555b99ac1524bab2ecde46a64-Screenshot_2026-06-23_at_10.44.46.png"
+    alt="Customer.io plugin settings in the Native Plugins tab of App Studio"
+  />
 </Frame>
 
 #### Plugin configuration options
@@ -81,7 +84,7 @@ To enable this:
 
 ### JavaScript Bridge functions
 
-All methods are available on the `median.customerio` namespace and must be called after the Median JavaScript Bridge is fully initialized. Wrap calls in a `deviceready` listener or equivalent initialization check.
+All methods are available on the `median.customerio` namespace and must be called after the Median JavaScript Bridge is fully initialized. Wrap calls in a `median_library_ready()` listener or equivalent initialization check.
 
 #### Push notification permissions
 
@@ -129,12 +132,12 @@ Register listeners to respond when notifications are received in the foreground 
     console.log(JSON.stringify(data));
   });
 
-  // Triggers when a push notification is delivered while the app is active
-  median.customerio.push.received.addListener((data) => {
-    console.log(JSON.stringify(data));
-  });
+// Triggers when a push notification is delivered while the app is active
+median.customerio.push.received.addListener((data) => {
+console.log(JSON.stringify(data));
+});
 
-```
+````
 </CodeGroup>
 
 #### User identity
@@ -153,7 +156,8 @@ median.customerio.identify({
     plan: "pro"
   }
 });
-```
+````
+
 </CodeGroup>
 
 **Get the current user ID**
@@ -162,20 +166,14 @@ Returns the user ID currently associated with the session.
 
 <MedianLogo />
 <CodeGroup>
-  ```javascript JavaScript
-  median.customerio.getUserId();
-  ```
+  ```javascript JavaScript median.customerio.getUserId(); ```
 </CodeGroup>
 
 **Clear user identity**
 
 Clears the active session, detaches the device token from the user profile, and stops event tracking. Call this when the user signs out to prevent push notifications from being delivered to the wrong user if the device is shared.
 
-<CodeGroup>
-```javascript JavaScript
-median.customerio.reset();
-```
-</CodeGroup>
+<CodeGroup>```javascript JavaScript median.customerio.reset(); ```</CodeGroup>
 
 #### Profile and device attributes
 
@@ -213,9 +211,7 @@ Removes the device push token from Customer.io. Call this alongside `reset()` wh
 
 <MedianLogo />
 <CodeGroup>
-  ```javascript JavaScript
-  median.customerio.deleteDeviceToken();
-  ```
+  ```javascript JavaScript median.customerio.deleteDeviceToken(); ```
 </CodeGroup>
 
 #### Event tracking

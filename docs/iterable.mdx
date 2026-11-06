@@ -1,9 +1,11 @@
 ---
 title: "Iterable"
 description: "Add Iterable push notifications to your app, then initialize the SDK, request permission, and identify users with the JavaScript Bridge."
-keywords: ["Iterable", "push notifications", "engagement", "user identification"]
+keywords:
+  ["Iterable", "push notifications", "engagement", "user identification"]
 searchable: true
 ---
+
 import { MedianLogo } from "/snippets/median-logo.jsx";
 
 The Iterable plugin connects your app to Iterable’s iOS and Android SDKs ([Overview of Iterable's iOS and Android SDKs](https://support.iterable.com/hc/en-us/articles/360028925511-Overview-of-Iterable-s-iOS-and-Android-SDKs/)) for push delivery, audience targeting, and user identification.
@@ -237,7 +239,7 @@ Use this checklist to ensure Iterable is working correctly in your app:
 
 ### Why are Iterable JavaScript Bridge functions undefined or not working?
 
-Confirm the JavaScript Bridge is enabled in App Studio, call JavaScript Bridge APIs after the `deviceready` event, and verify Iterable is enabled under **Push Notifications** with `active` set appropriately.
+Confirm the JavaScript Bridge is enabled in App Studio, call JavaScript Bridge APIs after the `median_library_ready()` event, and verify Iterable is enabled under **Push Notifications** with `active` set appropriately.
 
 ### Why is isInitialized false, or why does initialize keep failing?
 

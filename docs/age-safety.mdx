@@ -79,13 +79,14 @@ Retrieve age and supervision signals from the platform.
   const resp = await median.ageSafety.getAgeSignals({ ageGates: [13, 17, 21] });
   console.log('Age signals:', resp);
 
-  // Using callback methods
-  median.ageSafety.getAgeSignals({ ageGates: [13, 17] }, function (resp) {
-  console.log('Age signals callback:', resp);
-  }, function (err) {
-  console.error('AgeSafety error (callback)', err);
-  });
-```
+// Using callback methods
+median.ageSafety.getAgeSignals({ ageGates: [13, 17] }, function (resp) {
+console.log('Age signals callback:', resp);
+}, function (err) {
+console.error('AgeSafety error (callback)', err);
+});
+
+````
 </CodeGroup>
 
 Return value (resolved Promise/success callback) is an AgeSignalsResponse.
@@ -119,7 +120,8 @@ median.ageSafety.requireMinimumAge(18, function (resp) {
 }, function (err) {
   console.error(err);
 });
-```
+````
+
 </CodeGroup>
 
 AgeRequirementResponse.allowed is computed as `ageLowerBound` >= `requiredAge` when age bounds are available. If bounds are missing, allowed may be false, and an app-level conservative policy should apply.
@@ -179,7 +181,7 @@ Use this checklist to confirm AgeSafety is working correctly in your app:
 
 ### AgeSafety functions are undefined or not working
 
-Ensure the JavaScript Bridge is enabled in Median App Studio and that you're calling the functions after the `deviceready` event. Also verify that the plugin is enabled in your app configuration.
+Ensure the JavaScript Bridge is enabled in Median App Studio and that you're calling the functions after the `median_library_ready()` event. Also verify that the plugin is enabled in your app configuration.
 
 ### getAgeSignals always throws an error on some Android devices
 

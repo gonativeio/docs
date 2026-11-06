@@ -1,7 +1,8 @@
 ---
 title: "Meta App Events"
 description: "Track Meta App Events in your app with the native iOS and Android Meta SDKs, including auto-logged, custom, and purchase events."
-keywords: ["Meta App Events", "Facebook SDK", "analytics", "Meta Ads", "attribution"]
+keywords:
+  ["Meta App Events", "Facebook SDK", "analytics", "Meta Ads", "attribution"]
 searchable: true
 ---
 
@@ -54,9 +55,7 @@ Enable or disable auto logging for standard events (e.g. App Install, App Launch
 
 <MedianLogo />
 <CodeGroup>
-  ```javascript JavaScript 
-  median.facebook.setAutoLogging(true);
-  ```
+  ```javascript JavaScript median.facebook.setAutoLogging(true); ```
 </CodeGroup>
 
 **Parameters:**
@@ -143,14 +142,14 @@ Use this checklist to verify Meta App Events is working correctly before going t
 
 **User experience**
 
-- [ ] All functions are called after `deviceready`
+- [ ] All functions are called after `median_library_ready()`
 - [ ] JavaScript Bridge is enabled on both iOS and Android test builds
 
 ## Troubleshooting
 
 ### Meta App Events functions are undefined or not working
 
-Ensure the **JavaScript Bridge is enabled** in App Studio. Call all `median.facebook.*` functions after the `deviceready` event fires. Calling them earlier results in undefined errors.
+Ensure the **JavaScript Bridge is enabled** in App Studio. Call all `median.facebook.*` functions after the `median_library_ready()` event fires. Calling them earlier results in undefined errors.
 
 Also confirm:
 
@@ -178,7 +177,7 @@ To fix this:
 
 ### Auto logging is enabled but app install / app launch events are missing
 
-Confirm that `setAutoLogging(true)` is being called after `deviceready` and before any navigation or lifecycle events you want to capture. App Install events in particular are only sent on the **first launch** after installation — reinstalling the app is required to trigger it again during testing.
+Confirm that `setAutoLogging(true)` is being called after `median_library_ready()` and before any navigation or lifecycle events you want to capture. App Install events in particular are only sent on the **first launch** after installation — reinstalling the app is required to trigger it again during testing.
 
 Also verify that auto logging hasn't been disabled elsewhere in your code with a `setAutoLogging(false)` call.
 
