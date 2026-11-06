@@ -104,13 +104,14 @@ Signs the current user out and invalidates their Clerk session. For this functio
 
 // result object
 {
-  success: true | false,
-  error: { // present on failure only
-    code: "NOT_INITIALIZED" | "SDK_ERROR",
-    message: "..."
-  }
+success: true | false,
+error: { // present on failure only
+code: "NOT_INITIALIZED" | "SDK_ERROR",
+message: "..."
 }
-```
+}
+
+````
 </CodeGroup>
 
 #### Get Auth Status

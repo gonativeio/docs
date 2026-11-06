@@ -4,6 +4,7 @@ description: "Play video with the native JW Player SDK."
 keywords: ["JW Player", "video player", "video playback", "media", "streaming"]
 searchable: true
 ---
+
 import { MedianLogo } from "/snippets/median-logo.jsx";
 
 JW Player is a powerful video platform for delivering high-quality playback experiences. Median's JW Player Native Plugin integrates the [JW Player iOS SDK](https://docs.jwplayer.com/players/docs/ios-overview) and [Android SDK](https://docs.jwplayer.com/players/docs/android-overview) into your app to provide native video playback with support for single videos, playlists, and adaptive streaming.
@@ -77,13 +78,13 @@ On iOS and Android, the JW Player plugin auto-initializes at runtime using the l
     licenseKey: 'YOUR_JW_PLAYER_LICENSE_KEY'
   });
 
-  // result object
-  {
-    success: true | false,
-    error: { // present on failure only
-    code: "NOT_INITIALIZED",
-    message: "Invalid license key"
-  }
+// result object
+{
+success: true | false,
+error: { // present on failure only
+code: "NOT_INITIALIZED",
+message: "Invalid license key"
+}
 }
 
 ````
@@ -122,7 +123,8 @@ To play a video:
   const result = await median.jwplayer.play({
     playlistUrl: 'https://cdn.jwplayer.com/v2/playlists/abc123'
   });
-```
+````
+
 </CodeGroup>
 
 <MedianLogo />

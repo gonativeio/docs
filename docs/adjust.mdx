@@ -1,7 +1,8 @@
 ---
 title: "Adjust"
 description: "Track installs, events, and attribution with Adjust."
-keywords: ["Adjust", "attribution", "analytics", "event tracking", "install tracking"]
+keywords:
+  ["Adjust", "attribution", "analytics", "event tracking", "install tracking"]
 searchable: true
 ---
 
@@ -92,7 +93,7 @@ Initialize the Adjust plugin manually. Takes an optional argument to enable or d
 // This parameter is only relevant for iOS and will be ignored for Android
 
 median.adjust.initialize(true | false);
-````
+```
 </CodeGroup>
 
 **Parameters:**
@@ -136,9 +137,9 @@ Retrieve attribution data for users who installed the app through an Adjust-trac
 <MedianLogo />
 
 <CodeGroup>
-```javascript javascript 
-median.adjust.attributionInfo(); 
-```
+  ```javascript javascript 
+  median.adjust.attributionInfo(); 
+  ```
 </CodeGroup>
 
 **Return value:** Attribution information stored by Adjust for the current user/install.
@@ -148,36 +149,44 @@ median.adjust.attributionInfo();
 Use this checklist to confirm Adjust is working in your app:
 
 ### Basic Functionality
+
 - [ ] **App Token** is set in App Studio (from Adjust **AppView →** your app **→ App information → App details**)
 - [ ] Plugin is enabled in **Native Plugins** and **Initialization** (automatic or manual) matches how you start the SDK in code
 - [ ] If using manual initialization, `median.adjust.initialize(true | false)` is called after the app and bridge are ready; SKAN boolean aligns with **StoreKit Ad Network Attribution** on iOS
 - [ ] **Environment** is set to **Production** before publishing
 
 ### Platform Testing
+
 - [ ] `median.adjust.trackEvent(adjustEvent)` runs without errors with a valid Adjust event token
 - [ ] Revenue events use the correct event token, amount, and currency code
 - [ ] Events appear in the Adjust dashboard for the correct app
 
 ### Configuration Testing
+
 - [ ] **App Token** and **Environment** match your Adjust app and release stage
 - [ ] **Initialization** choice (automatic vs manual) matches your code paths
 
 ### User Experience
+
 - [ ] `median.adjust.attributionInfo()` behavior matches expectations for organic vs campaign installs
 - [ ] Plugin does not interfere with app navigation or core web flows
 
 ## Troubleshooting
 
 ### Adjust functions are undefined or not working
+
 Ensure the JavaScript Bridge is enabled in your Median dashboard and that you're calling the functions after the `deviceready` event. Verify that the plugin is enabled in your app configuration. If you use manual initialization, call `median.adjust.initialize()` before other Adjust calls.
 
 ### Events or revenue not showing in the Adjust dashboard
+
 Confirm your event token (`'abc123'` in the examples) is replaced with a valid token from your Adjust dashboard. Check that the Adjust environment is set to production before publishing. Allow a short delay for events to appear in the dashboard.
 
 ### Attribution data is missing or always organic
+
 Attribution is populated when users install via an Adjust-tracked campaign or deep link. Organic installs (e.g. direct from the store) may return organic status or limited data. Ensure your campaign and deep link setup in Adjust is correct and that you're testing with a real install or re-engagement from a tracked link.
 
 ### Wrong or missing revenue on events
+
 Verify you're calling `adjustEvent.setRevenue(amount, currency)` with the correct numeric amount and 3-letter currency code (e.g. `'USD'`, `'EUR'`) before passing the event to `median.adjust.trackEvent(adjustEvent)`.
 
 <Info>

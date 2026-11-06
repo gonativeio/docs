@@ -1,7 +1,14 @@
 ---
 title: "Native Datastore"
 description: "Store key-value data on the device or cloud."
-keywords: ["Native Datastore", "key-value storage", "local storage", "iCloud", "data persistence"]
+keywords:
+  [
+    "Native Datastore",
+    "key-value storage",
+    "local storage",
+    "iCloud",
+    "data persistence",
+  ]
 searchable: true
 ---
 
@@ -69,12 +76,12 @@ To save a value, use the following JavaScript Bridge command. To get status of t
 
   // Optional callback for status
   function statcb(result) {
-  if (result.status) {
-    console.log(result.status);
+    if (result.status) {
+      console.log(result.status);
+    }
   }
-}
 
-````
+```
 </CodeGroup>
 
 | Parameter        | Type     | Required | Description                                       |
@@ -107,8 +114,7 @@ To retrieve the saved settings define a callback function and call the JavaScrip
       console.log(result.data);
       console.log(result.status);
   });
-````
-
+```
 </CodeGroup>
 
 | Parameter  | Type     | Required             | Description                                |
@@ -131,7 +137,7 @@ To delete a setting provide the KEY of the previously saved setting. The status 
   // Optional callback for status
   function statcb(result) {
     if (result.status) {
-    console.log(result.status);
+      console.log(result.status);
     }
   }
 ```
@@ -152,7 +158,6 @@ Removes all stored key-value pairs from device-local storage.
     console.log(result.status);
   }
 ```
-
 </CodeGroup>
 
 ### Cloud Storage
@@ -237,9 +242,9 @@ To delete a setting provide the KEY of the previously saved setting. The status 
   // Optional callback for status
   function statcb(result) {
     if (result.status) {
-    console.log(result.status);
+      console.log(result.status);
+    }
   }
-}
 ```
 </CodeGroup>
 

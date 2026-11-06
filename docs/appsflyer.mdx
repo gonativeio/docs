@@ -1,7 +1,8 @@
 ---
 title: "AppsFlyer"
 description: "Measure installs and campaign attribution with AppsFlyer."
-keywords: ["AppsFlyer", "attribution", "install tracking", "analytics", "deep linking"]
+keywords:
+  ["AppsFlyer", "attribution", "install tracking", "analytics", "deep linking"]
 searchable: true
 ---
 
@@ -169,7 +170,8 @@ try {
 } catch (err) {
   console.error(err.code, err.message);
 }
-```
+````
+
 </CodeGroup>
 
 📦 NPM Package
@@ -181,14 +183,15 @@ try {
 
 try {
 const { success } = await Median.appsflyer.logEvent("purchase", {
-  value: 99.99,
-  currency: "USD",
+value: 99.99,
+currency: "USD",
 });
 console.log(success ? "Event logged successfully" : "Failed to log event");
-  } catch (err) {
-    console.error(err.code, err.message);
-  }
-```
+} catch (err) {
+console.error(err.code, err.message);
+}
+
+````
 </CodeGroup>
 
 **Parameters**
@@ -214,7 +217,8 @@ const deepLink = await median.appsflyer.getDeepLinkResult();
 if (deepLink.data) {
   // Navigate using deepLink.data.deeplinkValue
 }
-```
+````
+
 </CodeGroup>
 
 **Sample response**
@@ -302,15 +306,16 @@ Register listeners using the `median-js-bridge` package. Each listener returns a
   ```JavaScript JavaScript
   import Median from "median-js-bridge";
 
-  const conversionListenerId = Median.appsflyer.conversionData.addListener(
-    (data) => {
-      console.log("Conversion data:", data);
-        if (data.af_status === "Non-organic") {
-        // Handle paid attribution
-        }
-    },
+const conversionListenerId = Median.appsflyer.conversionData.addListener(
+(data) => {
+console.log("Conversion data:", data);
+if (data.af_status === "Non-organic") {
+// Handle paid attribution
+}
+},
 );
-```
+
+````
 </CodeGroup>
 
 **Deep link result**
@@ -326,7 +331,8 @@ const deeplinkListenerId = Median.appsflyer.deeplinkResult.addListener(
     }
   },
 );
-```
+````
+
 </CodeGroup>
 
 **SDK start**
@@ -471,3 +477,4 @@ Confirm your deep link URL scheme and link format are configured correctly in Ap
 
 For SDK-level errors or attribution behavior, refer to [AppsFlyer SDK documentation.](https://dev.appsflyer.com/)
 </Info>
+```

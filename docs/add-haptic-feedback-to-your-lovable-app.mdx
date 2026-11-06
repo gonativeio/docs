@@ -171,7 +171,7 @@ Add haptic feedback to the [FORM_NAME] form submission:
 
 Use Median's JavaScript Bridge with Median.haptics.trigger({ style }). Only trigger haptics for mobile app users using Median.isNativeApp().
 
-````
+```
 
 Customize: replace `[FORM_NAME]` with your form (e.g., "contact form", "signup form").
 
@@ -186,8 +186,7 @@ When Lovable adds haptics to your app, it follows a specific pattern to ensure e
   if (isNativeApp && isReady) {
     // Trigger haptic feedback
   }
-````
-
+```
 </CodeGroup>
 
 Why this matters: `isNativeApp` checks if running in the Median mobile app (not the web browser), `Median.onReady` ensures the Median JavaScript Bridge has loaded completely, and the safety-first approach prevents errors when users view your app in a regular browser.

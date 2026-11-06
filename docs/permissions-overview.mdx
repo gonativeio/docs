@@ -1,9 +1,11 @@
 ---
 title: "Permissions Overview"
 description: "Manage device permissions in your app."
-keywords: ["permissions", "camera", "location", "contacts", "permission prompts"]
+keywords:
+  ["permissions", "camera", "location", "contacts", "permission prompts"]
 searchable: true
 ---
+
 import { MedianLogo } from "/snippets/median-logo.jsx";
 
 Mobile app permissions play a critical role in ensuring secure interaction between users and applications. They serve as a framework that enables apps to access specific features or data on a user's device, such as the camera, microphone, location, or contact list, and allow the user to retain complete control over their privacy and data security.
@@ -22,26 +24,51 @@ Display our demo page in your app to test during development [permissions demo p
 ## Related Documentation
 
 <CardGroup cols={2}>
-  <Card title="Permission prompt localization" icon="language" href="/docs/permission-prompt-localization">
-    Localize iOS usage descriptions and customize how permission prompts appear in each user's language.
+  <Card
+    title="Permission prompt localization"
+    icon="language"
+    href="/docs/permission-prompt-localization"
+  >
+    Localize iOS usage descriptions and customize how permission prompts appear
+    in each user's language.
   </Card>
-  <Card title="Apple App Tracking Transparency" icon="apple" href="/docs/apple-att">
-    Request user consent for tracking on iOS 14.5 and later. Required for attribution and some analytics.
+  <Card
+    title="Apple App Tracking Transparency"
+    icon="apple"
+    href="/docs/apple-att"
+  >
+    Request user consent for tracking on iOS 14.5 and later. Required for
+    attribution and some analytics.
   </Card>
   <Card title="Background audio" icon="volume-up" href="/docs/background-audio">
     Keep audio playing when your app is in the background.
   </Card>
-  <Card title="Camera and file uploads" icon="camera" href="/docs/camera-and-file-uploads">
-    Configure camera and file upload permissions, and control how users capture or select images and files.
+  <Card
+    title="Camera and file uploads"
+    icon="camera"
+    href="/docs/camera-and-file-uploads"
+  >
+    Configure camera and file upload permissions, and control how users capture
+    or select images and files.
   </Card>
-  <Card title="Downloads directory" icon="folder-open" href="/docs/downloads-directory">
+  <Card
+    title="Downloads directory"
+    icon="folder-open"
+    href="/docs/downloads-directory"
+  >
     Configure where downloaded files are stored and how your app accesses them.
   </Card>
-  <Card title="Location services" icon="location-dot" href="/docs/location-services">
-    Request when-in-use or always-on location access and configure location features.
+  <Card
+    title="Location services"
+    icon="location-dot"
+    href="/docs/location-services"
+  >
+    Request when-in-use or always-on location access and configure location
+    features.
   </Card>
   <Card title="WebRTC audio & video" icon="video" href="/docs/web-rtc">
-    Enable microphone and camera access for WebRTC features such as voice and video calls.
+    Enable microphone and camera access for WebRTC features such as voice and
+    video calls.
   </Card>
 </CardGroup>
 
@@ -64,10 +91,9 @@ Users can change the permissions granted to your app through their device settin
   // get status of all permissions
   const response = await median.permissions.status();
 
-// only get status of selected permissions
-const response = await median.permissions.status(["Contacts", "Camera"]);
-
-````
+  // only get status of selected permissions
+  const response = await median.permissions.status(["Contacts", "Camera"]);
+```
 </CodeGroup>
 
 The `response` object includes the current state for each requested permission:
@@ -78,7 +104,7 @@ The `response` object includes the current state for each requested permission:
   "Contacts": "undetermined",
   "Camera": "granted"
 }
-````
+```
 
 </CodeGroup>
 

@@ -1,9 +1,17 @@
 ---
 title: "Health Bridge"
 description: "Read health data from HealthKit and Health Connect."
-keywords: ["Health Bridge", "Apple HealthKit", "Health Connect", "health data", "fitness"]
+keywords:
+  [
+    "Health Bridge",
+    "Apple HealthKit",
+    "Health Connect",
+    "health data",
+    "fitness",
+  ]
 searchable: true
 ---
+
 import { MedianLogo } from "/snippets/median-logo.jsx";
 
 Health Bridge provides a unified interface to access and sync health data from users' devices using **Apple HealthKit** (iOS) and **Google Health Connect** (Android). The plugin enables you to fetch health metrics such as steps, heart rate, calories, and sleep data - allowing you to build powerful wellness and fitness features in your app.
@@ -48,54 +56,46 @@ The following concepts will help you implement Health Bridge:
 
 <AccordionGroup>
   <Accordion title="Activity features" icon="person-running">
-    | Data Type             | Description            | Unit                    |
-    | --------------------- | ---------------------- | ----------------------- |
-    | `steps`               | Number of steps taken  | count                   |
-    | `distance`            | Distance walked or run | meters (m)              |
-    | `activeEnergy`        | Active calories burned | kilocalories (kcal)     |
-    | `totalCaloriesBurned` | Total Calories Burned  | kilocalories (kcal)     |
-    | `exerciseTime`        | Time spent exercising  | minutes (min)           |
-    | `elevationGain`       | Elevation Gain         | meters (m)              |
-    | `speed`               | Speed                  | meters per second (m/s) |
+    | Data Type | Description | Unit | | --------------------- |
+    ---------------------- | ----------------------- | | `steps` | Number of
+    steps taken | count | | `distance` | Distance walked or run | meters (m) | |
+    `activeEnergy` | Active calories burned | kilocalories (kcal) | |
+    `totalCaloriesBurned` | Total Calories Burned | kilocalories (kcal) | |
+    `exerciseTime` | Time spent exercising | minutes (min) | | `elevationGain` |
+    Elevation Gain | meters (m) | | `speed` | Speed | meters per second (m/s) |
   </Accordion>
   <Accordion title="Body measurements" icon="weight-scale">
-    | Data Type         | Description      | Unit               |
-    | ----------------- | ---------------- | ------------------ |
-    | `height`          | User's height    | meters (m)         |
-    | `weight`          | User's weight    | kilograms (kg)     |
-    | `bmi`             | Body Mass Index  | unitless           |
-    | `bodyFat`         | Body Fat         | percent (%)        |
-    | `bodyTemperature` | Body Temperature | degree celsius (C) |
+    | Data Type | Description | Unit | | ----------------- | ---------------- |
+    ------------------ | | `height` | User's height | meters (m) | | `weight` |
+    User's weight | kilograms (kg) | | `bmi` | Body Mass Index | unitless | |
+    `bodyFat` | Body Fat | percent (%) | | `bodyTemperature` | Body Temperature
+    | degree celsius (C) |
   </Accordion>
   <Accordion title="Cycle tracking" icon="calendar-days">
-    | Data Type      | Description  | Unit |
-    | -------------- | ------------ | ---- |
-    | `menstruation` | Menstruation |      |
+    | Data Type | Description | Unit | | -------------- | ------------ | ---- |
+    | `menstruation` | Menstruation | |
   </Accordion>
   <Accordion title="Nutrition" icon="apple-whole">
-    | Data Type       | Description            | Unit                |
-    | --------------- | ---------------------- | ------------------- |
-    | `calorieIntake` | Dietary calorie intake | kilocalories (kcal) |
-    | `waterIntake`   | Water consumed         | milliliters (ml)    |
-    | `nutrition`     | Nutrition              |                     |
+    | Data Type | Description | Unit | | --------------- |
+    ---------------------- | ------------------- | | `calorieIntake` | Dietary
+    calorie intake | kilocalories (kcal) | | `waterIntake` | Water consumed |
+    milliliters (ml) | | `nutrition` | Nutrition | |
   </Accordion>
   <Accordion title="Sleep" icon="moon">
-    | Data Type | Description    | Unit          |
-    | --------- | -------------- | ------------- |
-    | `sleep`   | Sleep duration | minutes (min) |
+    | Data Type | Description | Unit | | --------- | -------------- |
+    ------------- | | `sleep` | Sleep duration | minutes (min) |
   </Accordion>
   <Accordion title="Vitals" icon="heart-pulse">
-    | Data Type              | Description            | Unit                                            |
-    | ---------------------- | ---------------------- | ----------------------------------------------- |
-    | `heartRate`            | Heart Rate             | beats per minute (bpm)                          |
-    | `restingHeartRate`     | Resting Heart Rate     | beats per minute (bpm)                          |
-    | `heartRateVariability` | Heart Rate Variability | milliseconds (ms)                               |
-    | `bloodPressure`        | Blood Pressure         | millimetres of mercury (mmHg)                   |
-    | `bloodGlucose`         | Blood Glucose          | millimoles per litre (mmol/L)                   |
-    | `oxygenSaturation`     | Oxygen Saturation      | percent (%)                                     |
-    | `bodyTemperature`      | Body Temperature       | degree celsius (C)                              |
-    | `respiratoryRate`      | Respiratory Rate       | breaths per minute                              |
-    | `vo2Max`               | VO2 Max                | milliliters per minute per kilogram (ml/kg/min) |
+    | Data Type | Description | Unit | | ---------------------- |
+    ---------------------- | ----------------------------------------------- | |
+    `heartRate` | Heart Rate | beats per minute (bpm) | | `restingHeartRate` |
+    Resting Heart Rate | beats per minute (bpm) | | `heartRateVariability` |
+    Heart Rate Variability | milliseconds (ms) | | `bloodPressure` | Blood
+    Pressure | millimetres of mercury (mmHg) | | `bloodGlucose` | Blood Glucose
+    | millimoles per litre (mmol/L) | | `oxygenSaturation` | Oxygen Saturation |
+    percent (%) | | `bodyTemperature` | Body Temperature | degree celsius (C) |
+    | `respiratoryRate` | Respiratory Rate | breaths per minute | | `vo2Max` |
+    VO2 Max | milliliters per minute per kilogram (ml/kg/min) |
   </Accordion>
 </AccordionGroup>
 
@@ -140,7 +140,8 @@ Although not required, we recommend calling `requestPermissions()` upfront as it
 <MedianLogo />
 <CodeGroup>
   ```JavaScript JavaScript 
-  await median.healthBridge.requestPermissions([ "steps", "sleep", "calorieIntake", ]); 
+  await median.healthBridge.requestPermissions([
+  "steps", "sleep", "calorieIntake", ]); 
   ```
 </CodeGroup>
 
@@ -197,7 +198,8 @@ After permissions are granted (or requested implicitly), use the `getData()` met
   // { timestamp: '2025-05-02T00:00:00Z', value: 7890 },
   // ...
   // ]
-````
+
+  ```
 </CodeGroup>
 
 Want to show a daily step chart for the past week? Just fetch steps with bucket: 'day' and map the values to your chart component.
@@ -232,8 +234,7 @@ Want to show a daily step chart for the past week? Just fetch steps with bucket:
     ]
   }
 }
-````
-
+```
 </CodeGroup>
 
 ## Integration testing
