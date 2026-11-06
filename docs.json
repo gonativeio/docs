@@ -526,7 +526,7 @@
         "icon": "clock-rotate-left",
         "groups": [
           {
-            "group": "Changelog",
+            "group": "App Studio, iOS & Android",
             "pages": [
               "docs/changelog"
             ]
