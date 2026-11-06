@@ -138,14 +138,14 @@ Associates your own customer user ID with AppsFlyer so you can cross-reference i
   ```JavaScript JavaScript
   import Median from "median-js-bridge";
 
-try {
-const { success } = await Median.appsflyer.setCustomerUserId("user123");
-console.log(success ? "User ID set successfully" : "Failed to set user ID");
-} catch (err) {
-console.error(err.code, err.message);
-}
+  try {
+    const { success } = await Median.appsflyer.setCustomerUserId("user123");
+    console.log(success ? "User ID set successfully" : "Failed to set user ID");
+  } catch (err) {
+    console.error(err.code, err.message);
+  }
 
-````
+```
 </CodeGroup>
 
 **Parameters**
@@ -170,8 +170,7 @@ try {
 } catch (err) {
   console.error(err.code, err.message);
 }
-````
-
+```
 </CodeGroup>
 
 📦 NPM Package
@@ -191,7 +190,7 @@ console.log(success ? "Event logged successfully" : "Failed to log event");
 console.error(err.code, err.message);
 }
 
-````
+```
 </CodeGroup>
 
 **Parameters**
@@ -217,7 +216,7 @@ const deepLink = await median.appsflyer.getDeepLinkResult();
 if (deepLink.data) {
   // Navigate using deepLink.data.deeplinkValue
 }
-````
+```
 
 </CodeGroup>
 
@@ -315,7 +314,7 @@ if (data.af_status === "Non-organic") {
 },
 );
 
-````
+```
 </CodeGroup>
 
 **Deep link result**
@@ -331,7 +330,7 @@ const deeplinkListenerId = Median.appsflyer.deeplinkResult.addListener(
     }
   },
 );
-````
+```
 
 </CodeGroup>
 
@@ -353,7 +352,8 @@ To remove a listener later, use its ID:
   ```JavaScript JavaScript
   Median.appsflyer.conversionData.removeListener(conversionListenerId);
   Median.appsflyer.deeplinkResult.removeListener(deeplinkListenerId);
-  Median.appsflyer.sdkStart.removeListener(sdkStartListenerId); ```
+  Median.appsflyer.sdkStart.removeListener(sdkStartListenerId); 
+  ```
 </CodeGroup>
 
 **Sample response – conversion data**

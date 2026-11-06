@@ -86,8 +86,7 @@ if (!permission.granted) {
 interface PermissionStatus {
   granted: boolean;
 }
-````
-
+```
 </CodeGroup>
 
 #### Request permissions
@@ -126,13 +125,13 @@ Starts a background-aware recording session. Optional configuration controls for
   // Minimal configuration
   const result = await median.backgroundAudio.startRecording();
 
-// Full configuration
-const result = await median.backgroundAudio.startRecording({
-format: "m4a",
-maxDuration: 3600,
-enableTranscription: true,
-sttLanguage: "en-US",
-});
+  // Full configuration
+  const result = await median.backgroundAudio.startRecording({
+    format: "m4a",
+    maxDuration: 3600,
+    enableTranscription: true,
+    sttLanguage: "en-US",
+    });
 ```
 </CodeGroup>
 
@@ -242,7 +241,7 @@ interface StopRecordingResult {
   durationSeconds: number;
   transcript?: string;
 }
-````
+```
 
 </CodeGroup>
 
@@ -253,7 +252,8 @@ Returns the current recording state and elapsed time. Pass a callback function t
 <MedianLogo />
 <CodeGroup>
   ```JavaScript JavaScript // Using promises (recommended) const status = await
-  median.backgroundAudio.getStatus(); console.log(JSON.stringify(status)); ```
+  median.backgroundAudio.getStatus(); console.log(JSON.stringify(status)); 
+  ```
 </CodeGroup>
 
 <MedianLogo />

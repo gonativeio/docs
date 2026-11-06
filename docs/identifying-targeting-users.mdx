@@ -45,7 +45,9 @@ Associate a user with your own identifier, using their email address, account ID
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript median.onesignal.login("[email protected]"); ```
+  ```JavaScript JavaScript 
+  median.onesignal.login("[email protected]"); 
+  ```
 </CodeGroup>
 
 OneSignal will link that identifier to the user's `oneSignalId` and maintain the association across reinstalls and devices. You can then target that user by their `externalId` from your server.
@@ -68,7 +70,11 @@ Additionally, External IDs have a maximum length of 128 characters.
 When a user logs out of your app, call `logout()` to disassociate them from their OneSignal user record:
 
 <MedianLogo />
-<CodeGroup>```JavaScript JavaScript median.onesignal.logout(); ```</CodeGroup>
+<CodeGroup>
+```JavaScript JavaScript 
+median.onesignal.logout(); 
+```
+</CodeGroup>
 
 After logout, notifications sent to that `externalId` won't reach the device until `login()` is called again. This prevents users from receiving each other's notifications on a shared device.
 
@@ -141,7 +147,7 @@ If you can't guarantee the callback function will be defined at page load, use t
 // Or with async/await:
 const data = await median.onesignal.onesignalInfo();
 
-````
+```
 </CodeGroup>
 
 This is the most flexible approach for modern single-page applications.
@@ -178,7 +184,7 @@ async function loginUserAndPostOSId() {
     contentType: "application/json"
   });
 }
-````
+```
 
 </CodeGroup>
 
@@ -217,7 +223,9 @@ OneSignal provides a native subscription preference screen — no custom HTML re
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript median.onesignal.showTagsUI(); ```
+  ```JavaScript JavaScript 
+  median.onesignal.showTagsUI(); 
+  ```
 </CodeGroup>
 
 The native UI renders as a system-style preference screen, grouped into the sections and items defined in your JSON file.
@@ -259,7 +267,7 @@ tags: onesignalTags.tags,
 callback: tagSetCallbackFunction
 });
 
-````
+```
 </CodeGroup>
 
 **Get tags**
@@ -275,7 +283,7 @@ callback: tagSetCallbackFunction
     console.log(tagResult);
   }
   median.onesignal.tags.getTags({ callback: tagGetCallbackFunction });
-````
+```
 
 </CodeGroup>
 

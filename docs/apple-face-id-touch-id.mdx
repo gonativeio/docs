@@ -69,8 +69,7 @@ password: password
       }
 
 }
-
-````
+```
 </CodeGroup>
 
 [Learn more about using promises and the Median JavaScript Bridge](https://median.co/docs/javascript-bridge#promises).
@@ -113,8 +112,7 @@ median.auth.status().then(function (result) {
        median.auth.get({'callbackFunction': median_secret_callback});
    }
 }
-````
-
+```
 </CodeGroup>
 
 Once the `median_secret_callback` function is called with the previously saved secret, it should perform a request to log in the user. If the credentials are incorrect, you should delete the secret and allow manual login by running the function:
