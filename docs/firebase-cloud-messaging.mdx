@@ -158,6 +158,13 @@ Returns the current FCM registration token for the device, if one has been gener
   ```
 </CodeGroup>
 
+  <Card
+    title="Looking to send pushes to individual users or segments?"
+    href="https://docs.median.co/docs/fcm-identifying-targeting-users"
+  >
+    Follow the guide below to identify and target individual users or segments.
+  </Card>
+
 **Delete token**
 
 Deletes the current FCM registration token, e.g. on logout, to stop notifications from being delivered to a device that is no longer associated with the signed-in user.
@@ -306,10 +313,9 @@ Controls whether an incoming push shows a visible banner while the app is in the
   // Show a native banner for pushes received while the app is open
   median.firebaseMessaging.enableForegroundBanners();
 
-// Suppress the native banner; the notificationReceived listener still fires
-median.firebaseMessaging.disableForegroundBanners();
-
-````
+  // Suppress the native banner; the notificationReceived listener still fires
+  median.firebaseMessaging.disableForegroundBanners();
+```
 </CodeGroup>
 
 #### Listeners
@@ -331,8 +337,7 @@ const clickedListenerId = median.firebaseMessaging.notificationClicked.addListen
 
 // Remove a listener when it's no longer needed
 median.firebaseMessaging.notificationReceived.removeListener(receivedListenerId);
-````
-
+```
 </CodeGroup>
 
 ## Testing checklist

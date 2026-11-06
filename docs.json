@@ -202,7 +202,14 @@
               "docs/braze",
               "docs/bloomreach",
               "docs/cordial",
-              "docs/firebase-cloud-messaging",
+              {
+                "group": "Firebase Cloud Messaging (FCM)",
+                "root": "docs/firebase-cloud-messaging",
+                "pages": [
+                  "docs/firebase-cloud-messaging",
+                  "docs/fcm-identifying-targeting-users"
+                ]
+              },
               "docs/intercom",
               "docs/iterable",
               "docs/klaviyo",
