@@ -44,24 +44,23 @@ javascriptFor example, you may embed this JavaScript into your post-login page:
   var username = 'andy'
   var password = 'password';
 
-median.auth.status({'callbackFunction': median_status_afterlogin}); // returns promise
+  median.auth.status({'callbackFunction': median_status_afterlogin}); // returns promise
 
-function median_status_afterlogin(data) {
-if (data && data.hasTouchId) {
-var secret = JSON.stringify({
-username: username,
-password: password
-});
+  function median_status_afterlogin(data) {
+  if (data && data.hasTouchId) {
+  var secret = JSON.stringify({
+  username: username,
+  password: password
+  });
 
-          median.auth.save({
-            'secret': secret,
-            'minimumAndroidBiometric': 'strong'
-          });
-      }
+            median.auth.save({
+              'secret': secret,
+              'minimumAndroidBiometric': 'strong'
+            });
+        }
 
-}
-
-````
+  }
+```
 </CodeGroup>
 
 **Tip: Some JS Bridge commands return promises. They are usually declared as such through a comment to help you identify them.[Learn More](https://median.co/docs/javascript-bridge#promises).**
@@ -96,8 +95,7 @@ function median_secret_callback(data) {
         // Allow manual entry
     }
 }
-````
-
+```
 </CodeGroup>
 
 Once the `median_secret_callback` function is called with the previously saved secret, it should perform a request to log in the user. If the credentials are incorrect, you should delete the secret and allow manual login by running the function:
@@ -216,7 +214,6 @@ Additionally, you can also test the integration using the Appetize Simulators.
 <Frame caption="Appetize - Fingerprint ID Button">
   <img src="/images/docs/7101a4a47217df84be067110782a1ef0df1addbd7f0a3c45375744283a9cd22a-Screenshot_2025-07-15_at_11.53.31.png" />
 </Frame>
-
 
 ## Whitelist Domains for Plugin Access
 
