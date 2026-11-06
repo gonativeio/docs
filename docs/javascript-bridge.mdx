@@ -116,7 +116,7 @@ Display our demo page in your app to test during development [https://median.dev
 When using frameworks like React, Vue, or Angular, the `median` object may not be in scope. Options:
 
 1. Expose callbacks globally: `window.callback_function = () => {}`
-2. Use the [NPM package](/docs/npm-package) and toggle off library injection in **App Studio → Website Overrides**
+2. Use the [NPM package](/docs/npm-package) and toggle off library injection in **App Studio → Web Overrides**
 3. Use the Median Protocol (`median://`) which does not require the library
 
 <Check>
@@ -184,7 +184,7 @@ When URLs are specified, only matching pages can execute JavaScript Bridge comma
 <AccordionGroup>
 <Accordion title="Why do I see 'median is not defined' in the console?" id="why-do-i-see-median-is-not-defined-in-the-console">
 
-The library is injected at runtime by the app and is not available in a desktop browser. Use the [NPM package](/docs/npm-package) if you need to develop or test outside the app, and disable library injection in **App Studio → Website Overrides** when using the package.
+The library is injected at runtime by the app and is not available in a desktop browser. Use the [NPM package](/docs/npm-package) if you need to develop or test outside the app, and disable library injection in **App Studio → Web Overrides** when using the package.
 
 </Accordion>
 </AccordionGroup>
