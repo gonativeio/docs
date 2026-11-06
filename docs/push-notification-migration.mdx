@@ -74,8 +74,8 @@ Consider to lock down older app versions and prompt users to update their apps i
 
 Use the migration checklist below to ensure a smooth migration between vendors.
 
-- [ ] Audit [App Identifiers](https://median.co/docs/app-identifiers): Ensure the Bundle ID (iOS) and Package Name (Android) match exactly across both providers.
+- [ ] Audit [App Identifiers](/docs/app-identifiers): Ensure the Bundle ID (iOS) and Package Name (Android) match exactly across both providers.
 - [ ] Update Certificates: Ensure your `.p8` (iOS) and `google-services.json` (Android) are correctly uploaded to the new provider.
 - [ ] Validate JavaScript: Update your website's JavaScript to call the Median JavaScript bridge methods for the new SDK.
-- [ ] Test [Deep Links](https://median.co/docs/deep-linking): Deep linking structures often change between SDKs. Verify that deep linking works on your new provider and that there are no differences in the setup.
+- [ ] Test [Deep Links](/docs/deep-linking): Deep linking structures often change between SDKs. Verify that deep linking works on your new provider and that there are no differences in the setup.
 - [ ] Monitor Analytics: Compare delivery and open rates between the two platforms during the overlap period.
