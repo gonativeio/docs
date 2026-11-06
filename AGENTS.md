@@ -54,12 +54,12 @@
 
 Every page needs a `title` and a `description`:
 
-```mdx
+````mdx
 ---
 title: "Status Bar"
 description: "Control the color and style of the device status bar in your app."
 ---
-```
+````
 
 - The description is a full sentence ending with a period, about 150 to 160 characters at most. It's used as the subtitle and as the meta description for search engines.
 - Don't repeat the title as an H1 in the page body. Mintlify renders the title as the H1, so the page starts at H2.
@@ -108,6 +108,7 @@ import { MedianLogo } from "/snippets/median-logo.jsx";
 
 ```javascript JavaScript
 median.statusbar.set({ style: "dark", color: "80ff0000" });
+```
 ```
 
 </CodeGroup>

@@ -1,6 +1,17 @@
 ---
 title: "JavaScript Callbacks"
+description: "Handle social login with JavaScript callbacks."
+keywords:
+  [
+    "social login",
+    "JavaScript callbacks",
+    "Facebook Login",
+    "Google Sign-In",
+    "Sign in with Apple",
+  ]
+searchable: true
 ---
+
 import { MedianLogo } from "/snippets/median-logo.jsx";
 
 This guide shows you how to implement social login using JavaScript callbacks with the Median JavaScript Bridge. This approach keeps everything in the browser and works well for single-page apps and client-side authentication flows.
@@ -222,7 +233,7 @@ Here's an example:
   src="https://connect.facebook.net/en_US/sdk.js"
 ></script>
 
-```
+````
 </CodeGroup>
 
 In this example, clicking the button activates the Median JavaScript Bridge and launches Facebook's native login. After the user authenticates, `facebookLoginCallback()` runs with an object containing the user's token. If they cancel, you'll get an error message instead.
@@ -353,7 +364,8 @@ Here's an example:
 <script src="https://accounts.google.com/gsi/client" async defer></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jsrsasign/8.0.20/jsrsasign-all-min.js"></script>
-```
+
+````
 </CodeGroup>
 
 After the user logs in, `googleLoginCallback()` runs with an object containing the user's ID token. If they cancel, you'll get an error message.

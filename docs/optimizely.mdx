@@ -1,7 +1,11 @@
 ---
 title: "Optimizely"
-description: "Engage your users by enabling Optimizely push notifications."
+description: "Add Optimizely push notifications to your app."
+keywords:
+  ["Optimizely", "push notifications", "user identification", "engagement"]
+searchable: true
 ---
+
 import { MedianLogo } from "/snippets/median-logo.jsx";
 
 The Optimizely plugin lets you initialize the SDK and manage push-related actions through the Median JavaScript Bridge. The plugin focuses on identifying users and controlling push registration and permission state from your web layer, giving you full control over the Optimizely SDK initialization without relying solely on App Studio auto-configuration.
@@ -67,17 +71,18 @@ Initialize Optimizely with an API key when not auto-configured in App Studio. Fo
   });
   console.log("initialize result:", result);
 
-  // Using callback
-  median.optimizely.initialize(
-    { apiKey: "YOUR_OPTIMIZELY_API_KEY" },
-    function (result) {
-      console.log("initialize callback:", result);
-    },
-    function (err) {
-      console.error("Optimizely error (callback)", err);
-    },
-  );
-```
+// Using callback
+median.optimizely.initialize(
+{ apiKey: "YOUR_OPTIMIZELY_API_KEY" },
+function (result) {
+console.log("initialize callback:", result);
+},
+function (err) {
+console.error("Optimizely error (callback)", err);
+},
+);
+
+````
 </CodeGroup>
 
 **Parameters:**
@@ -269,7 +274,6 @@ Check the current notification permission state without prompting the user. For 
   }
   ```
 </CodeGroup>
-
 
 ## Testing checklist
 

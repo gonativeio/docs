@@ -1,6 +1,15 @@
 ---
 title: "Detecting App Usage"
-description: "Master the Difference Between App and Browser Traffic"
+description: "Detect whether your site runs in the app."
+keywords:
+  [
+    "detect app",
+    "user agent",
+    "app vs browser",
+    "JavaScript Bridge",
+    "detection",
+  ]
+searchable: true
 ---
 
 import { MedianLogo } from "/snippets/median-logo.jsx";
@@ -45,8 +54,10 @@ Use `navigator.userAgent` to check for the median string on the client side.
       // Adjust UI for the native app experience
       document.querySelector('.webNav').style.display = 'none';
       document.querySelector('.appOnly').style.display = 'block';
+
 }
-```
+
+````
 </CodeGroup>
 
 **Detecting the user agent: backend (eg Node.js)**

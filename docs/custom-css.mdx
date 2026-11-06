@@ -1,6 +1,8 @@
 ---
 title: "Custom CSS"
-description: "Apply Custom CSS to alter pages you can not adjust server-side"
+description: "Change your website's styling inside the app."
+keywords: ["custom CSS", "styling", "hide elements", "web overrides", "webview"]
+searchable: true
 ---
 
 Custom CSS lets you modify the appearance of your website when it renders inside your Median app's webview. Common uses include hiding elements that don't make sense in a native app context like footer menus, chat widgets, and cookie banners or adapting styling for smaller mobile screens.
@@ -25,12 +27,11 @@ In App Studio, open the Web Overrides > Custom CSS field and paste your rules. F
     font-size: 14px !important;
   }
 
-  #header, #footer
-  {
-    background-color: #4c4c4c !important;
-    margin-bottom: 0px !important;
-  }
-
+#header, #footer
+{
+background-color: #4c4c4c !important;
+margin-bottom: 0px !important;
+}
 ```
 </CodeGroup>
 
@@ -66,8 +67,7 @@ As an alternative to hardcoded CSS overrides, you can apply CSS dynamically usin
     jQuery('#footer').hide();
   }
 </script>
-````
-
+```
 </CodeGroup>
 
 **Tip**: On WordPress, use a plugin like [Insert Headers and Footers](https://wordpress.org/plugins/insert-headers-and-footers/) to safely add this script to your site header.

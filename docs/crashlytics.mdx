@@ -1,6 +1,15 @@
 ---
 title: "Google Firebase Crashlytics"
-description: "Firebase Crashlytics is a real-time crash reporter that helps developers track, prioritize, and fix stability issues in their apps"
+description: "Track and fix app crashes with Firebase Crashlytics."
+keywords:
+  [
+    "Firebase Crashlytics",
+    "crash reporting",
+    "crashes",
+    "stability",
+    "Firebase",
+  ]
+searchable: true
 ---
 
 import { MedianLogo } from "/snippets/median-logo.jsx";
@@ -104,15 +113,14 @@ Enable or disable Crashlytics log collection at runtime.
   median.firebaseCrashlytics.enable(true);
   median.firebaseCrashlytics.enable(false);
 
-// WebView error logging
-median.firebaseCrashlytics.webErrorLogsEnabled(true);
-median.firebaseCrashlytics.webErrorLogsEnabled(false);
+  // WebView error logging
+  median.firebaseCrashlytics.webErrorLogsEnabled(true);
+  median.firebaseCrashlytics.webErrorLogsEnabled(false);
 
-// Toast error logging (Android only)
-median.firebaseCrashlytics.toastErrorLogsEnabled(true);
-median.firebaseCrashlytics.toastErrorLogsEnabled(false);
-
-````
+  // Toast error logging (Android only)
+  median.firebaseCrashlytics.toastErrorLogsEnabled(true);
+  median.firebaseCrashlytics.toastErrorLogsEnabled(false);
+```
 </CodeGroup>
 
 **Parameters:**
@@ -129,8 +137,7 @@ Assign a custom user ID to track crash logs per user in Firebase. Persists betwe
 <CodeGroup>
 ```JavaScript JavaScript
 median.firebaseCrashlytics.setUserId("user_123");
-````
-
+```
 </CodeGroup>
 
 | Parameter | Type     | Required | Description          |
@@ -143,7 +150,9 @@ Remove the previously set user ID.
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript median.firebaseCrashlytics.unsetUserId(); ```
+  ```JavaScript JavaScript 
+  median.firebaseCrashlytics.unsetUserId(); 
+  ```
 </CodeGroup>
 
 ## Optional: Request user consent for log collection

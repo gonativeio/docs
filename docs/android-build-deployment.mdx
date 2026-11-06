@@ -1,34 +1,57 @@
 ---
 title: "Android Build & Deployment"
-description: "Build, Test, and Deploy Android Apps"
+description: "Build, test, and distribute your Android app."
+keywords: ["Android", "build", "deployment", "APK", "AAB", "Android Studio"]
+searchable: true
 ---
-
-# Overview
 
 Building and deploying Android applications requires Android Studio and a structured approach to ensure optimal performance, smooth debugging, and a seamless QA and release process. Whether you're compiling your app from source, configuring localhost testing, managing Android App Bundles, or installing APKs, understanding the core steps in Android build and deployment is key.
 
-# Key Aspects of Android Build & Deployment
+## Build, test, and publish
 
-## Building Android from Source
+<Columns cols={3}>
+  <Card title="Install an APK" icon="mobile" href="/docs/install-android-apk">
+    Download an APK from App Studio and install it on an Android device for
+    testing or for distribution outside Google Play.
+  </Card>
+  <Card title="Android App Bundle" icon="box" href="/docs/android-app-bundle">
+    Build an Android App Bundle (AAB), the format Google Play requires for new
+    apps. App Bundles make downloads smaller for your users.
+  </Card>
+  <Card
+    title="Publish to Google Play"
+    icon="google-play"
+    href="/docs/upload-android-to-google-play"
+  >
+    Upload your App Bundle to Google Play Console, test it with testers, and
+    release it to the Play Store.
+  </Card>
+</Columns>
 
-Compiling an Android app from source involves setting up the development environment, configuring dependencies, and ensuring compatibility with Android SDKs. Following best practices can help prevent build failures and improve performance.
+<Tip>
+  Use APKs for testing on your own devices and App Bundles for publishing to
+  Google Play.
+</Tip>
 
-📖 Learn more: [Build Android from Source](https://median.co/docs/build-android-from-source)
+## Optional: build from source
 
-## Testing with Android Studio and Localhost
+Build from source only if you need to inspect or change the native Android code. This requires Android Studio on your computer.
 
-Developers often need to test their apps with a local backend before deployment. Configuring Android Studio to connect with a localhost website allows for real-time testing and debugging in a controlled environment.
-
-📖 Learn more: [Android Studio with Localhost Website](https://median.co/docs/android-studio-with-localhost-website)
-
-## Using Android App Bundles for Optimized Distribution
-
-Google Play requires Android App Bundles (AAB) instead of APKs for app distribution. App Bundles help reduce app size and improve installation efficiency, offering a better user experience while APKs are optimal for testing and debugging.
-
-📖 Learn more: [Android App Bundle](https://median.co/docs/android-app-bundle)
-
-## Installing and Distributing APKs
-
-For manual testing or distribution outside the Google Play Store, APK installation is necessary. Understanding how to generate, sign, and install APKs accelerates your testing and deployment processes.
-
-📖 Learn more: [Install Android APK](https://median.co/docs/install-android-apk)
+<Columns cols={2}>
+  <Card
+    title="Build Android from source"
+    icon="code"
+    href="/docs/build-android-from-source"
+  >
+    Set up Android Studio, configure dependencies and SDK versions, and build
+    your app locally.
+  </Card>
+  <Card
+    title="Test with a localhost website"
+    icon="laptop-code"
+    href="/docs/android-studio-with-localhost-website"
+  >
+    Connect your app in Android Studio to a website running on your computer, so
+    you can test changes before deploying them.
+  </Card>
+</Columns>

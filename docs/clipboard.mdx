@@ -1,6 +1,8 @@
 ---
 title: "Clipboard"
-description: "Manage the device clipboard contents"
+description: "Read and write the device clipboard."
+keywords: ["clipboard", "copy", "paste", "JavaScript Bridge"]
+searchable: true
 ---
 
 import { MedianLogo } from "/snippets/median-logo.jsx";
@@ -74,20 +76,19 @@ Promises integrate cleanly with async/await and modern JavaScript workflows.
     }
   });
 
-// Using async/await
+  // Using async/await
 
-async function readClipboard() {
-const result = await median.clipboard.get();
+  async function readClipboard() {
+  const result = await median.clipboard.get();
 
-    if (result.data) {
-      console.log("Clipboard contents:", result.data);
-    } else {
-      console.error("Clipboard error:", result.error);
-    }
+      if (result.data) {
+        console.log("Clipboard contents:", result.data);
+      } else {
+        console.error("Clipboard error:", result.error);
+      }
 
-}
-
-````
+  }
+```
 </CodeGroup>
 
 #### Option 2 - Named Callback

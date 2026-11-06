@@ -1,6 +1,8 @@
 ---
 title: "AdMob Native Ads"
-description: "Earn revenue from in-app ads"
+description: "Show Google AdMob ads in your app."
+keywords: ["AdMob", "ads", "monetization", "banner ads", "interstitial ads", "Google Mobile Ads"]
+searchable: true
 ---
 
 import { MedianLogo } from "/snippets/median-logo.jsx";
@@ -148,8 +150,7 @@ median.admob.request.consent().then(function(result) {
     alert('Thank you for enabling personalized ads');
   }
 });
-````
-
+```
 </CodeGroup>
 
 `callback` is an optional parameter to get the result of the user decision. It should be the name of a JavaScript function that will receive the result. The result will be an object with a `result` boolean.

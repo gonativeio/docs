@@ -1,6 +1,8 @@
 ---
 title: "Add Haptic Feedback To Your Lovable App"
-description: "Learn how to add haptic feedback to your Lovable app"
+description: "Add haptic feedback to your Lovable app with AI prompts."
+keywords: ["Lovable", "haptic feedback", "haptics", "vibration", "AI prompts"]
+searchable: true
 ---
 
 Haptic feedback, those subtle vibrations you feel when tapping buttons on your phone, makes apps feel more responsive and professional. This guide walks you through how to add haptic feedback to your Lovable app when it's converted to a native mobile app using Median.
@@ -169,7 +171,7 @@ Add haptic feedback to the [FORM_NAME] form submission:
 
 Use Median's JavaScript Bridge with Median.haptics.trigger({ style }). Only trigger haptics for mobile app users using Median.isNativeApp().
 
-````
+```
 
 Customize: replace `[FORM_NAME]` with your form (e.g., "contact form", "signup form").
 
@@ -184,8 +186,7 @@ When Lovable adds haptics to your app, it follows a specific pattern to ensure e
   if (isNativeApp && isReady) {
     // Trigger haptic feedback
   }
-````
-
+```
 </CodeGroup>
 
 Why this matters: `isNativeApp` checks if running in the Median mobile app (not the web browser), `Median.onReady` ensures the Median JavaScript Bridge has loaded completely, and the safety-first approach prevents errors when users view your app in a regular browser.

@@ -1,7 +1,18 @@
 ---
 title: "Identifying & Targeting Users"
-description: "Learn how to associate users with identifiers, retrieve user data, and segment users with data tags."
+description: "Identify OneSignal users and segment them with tags."
+keywords:
+  [
+    "OneSignal",
+    "external ID",
+    "data tags",
+    "segmentation",
+    "targeting",
+    "user identification",
+  ]
+searchable: true
 ---
+
 import { MedianLogo } from "/snippets/median-logo.jsx";
 
 With OneSignal's user-centric model, you have the flexibility to reach the right users on the right devices. This guide covers how to associate users with identifiers, retrieve the data you need for backend targeting, and segment users with data tags.
@@ -34,9 +45,7 @@ Associate a user with your own identifier, using their email address, account ID
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript 
-  median.onesignal.login("[email protected]"); 
-  ```
+  ```JavaScript JavaScript median.onesignal.login("[email protected]"); ```
 </CodeGroup>
 
 OneSignal will link that identifier to the user's `oneSignalId` and maintain the association across reinstalls and devices. You can then target that user by their `externalId` from your server.
@@ -59,11 +68,7 @@ Additionally, External IDs have a maximum length of 128 characters.
 When a user logs out of your app, call `logout()` to disassociate them from their OneSignal user record:
 
 <MedianLogo />
-<CodeGroup>
-```JavaScript JavaScript 
-median.onesignal.logout(); 
-```
-</CodeGroup>
+<CodeGroup>```JavaScript JavaScript median.onesignal.logout(); ```</CodeGroup>
 
 After logout, notifications sent to that `externalId` won't reach the device until `login()` is called again. This prevents users from receiving each other's notifications on a shared device.
 
@@ -133,9 +138,10 @@ If you can't guarantee the callback function will be defined at page load, use t
       console.log(data.subscription.id);
   });
 
-  // Or with async/await:
-  const data = await median.onesignal.onesignalInfo();
-  ```
+// Or with async/await:
+const data = await median.onesignal.onesignalInfo();
+
+````
 </CodeGroup>
 
 This is the most flexible approach for modern single-page applications.
@@ -153,25 +159,25 @@ If you send notifications from your own server or need to correlate OneSignal da
 <MedianLogo />
 <CodeGroup>
 ```JavaScript JavaScript
-  /* Login Page Sample Code */
+/* Login Page Sample Code */
 
-  async function loginUserAndPostOSId() {
-    await median.onesignal.login("[email protected]");
+async function loginUserAndPostOSId() {
+  await median.onesignal.login("[email protected]");
 
-    const osInfo = await median.onesignal.info();
+  const osInfo = await median.onesignal.info();
 
-    $.ajax({
-      url: updateUserRecord,
-      type: "POST",
-      data: {
-        yourAppUserId: userId,
-        oneSignalUserId: osInfo.oneSignalId, // user-specific and will change after login
-        oneSignalExternalId: osInfo.externalId, // will be the same as userId
-        oneSignalSubscriptionId: osInfo.subscription.id // device-specific will not change after login
-      },
-      contentType: "application/json"
-    });
-  }
+  $.ajax({
+    url: updateUserRecord,
+    type: "POST",
+    data: {
+      yourAppUserId: userId,
+      oneSignalUserId: osInfo.oneSignalId, // user-specific and will change after login
+      oneSignalExternalId: osInfo.externalId, // will be the same as userId
+      oneSignalSubscriptionId: osInfo.subscription.id // device-specific will not change after login
+    },
+    contentType: "application/json"
+  });
+}
 ````
 
 </CodeGroup>
@@ -211,9 +217,7 @@ OneSignal provides a native subscription preference screen — no custom HTML re
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript 
-  median.onesignal.showTagsUI(); 
-  ```
+  ```JavaScript JavaScript median.onesignal.showTagsUI(); ```
 </CodeGroup>
 
 The native UI renders as a system-style preference screen, grouped into the sections and items defined in your JSON file.
@@ -241,19 +245,20 @@ Build subscription controls in your **web** layer — anything you render in the
     }
   };
 
-  // Promise-based
-  median.onesignal.tags.setTags(onesignalTags).then(function (tagResult) {
-  console.log(tagResult); // { success: true }
-  });
+// Promise-based
+median.onesignal.tags.setTags(onesignalTags).then(function (tagResult) {
+console.log(tagResult); // { success: true }
+});
 
-  // Or with an optional callback
-  function tagSetCallbackFunction(tagResult) {
-    console.log(tagResult);
-  }
-  median.onesignal.tags.setTags({
-    tags: onesignalTags.tags,
-    callback: tagSetCallbackFunction
-  });
+// Or with an optional callback
+function tagSetCallbackFunction(tagResult) {
+console.log(tagResult);
+}
+median.onesignal.tags.setTags({
+tags: onesignalTags.tags,
+callback: tagSetCallbackFunction
+});
+
 ````
 </CodeGroup>
 
@@ -270,7 +275,8 @@ Build subscription controls in your **web** layer — anything you render in the
     console.log(tagResult);
   }
   median.onesignal.tags.getTags({ callback: tagGetCallbackFunction });
-```
+````
+
 </CodeGroup>
 
 **Delete tags**
@@ -283,10 +289,11 @@ Build subscription controls in your **web** layer — anything you render in the
     console.log(tagResult); // { success: true }
   });
 
-  // All tags (promise)
-  median.onesignal.tags.deleteTags().then(function (tagResult) {
-    console.log(tagResult); // { success: true }
-  });
+// All tags (promise)
+median.onesignal.tags.deleteTags().then(function (tagResult) {
+console.log(tagResult); // { success: true }
+});
+
 ```
 </CodeGroup>
 
@@ -310,3 +317,4 @@ Or you can surface individual tags in context, such as a single "Follow this Top
 | ---------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Native UI (`showTagsUI`)                                   | Fast deployment of a dedicated, platform-standard notification settings menu. Layout updates require editing only your hosted JSON configuration file.          |
 | Web UI + JavaScript (`setTags` / `getTags` / `deleteTags`) | Completely custom designs, inline contextual buttons (e.g., a "Follow this Topic" switch on an article page), or flows that need to match your web app's style. |
+```
