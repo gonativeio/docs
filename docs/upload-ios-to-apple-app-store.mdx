@@ -7,7 +7,7 @@ searchable: true
 
 Our recommended self-service workflow is to upload iOS builds directly from Median App Studio to App Store Connect. With the App Store Connect API integration and **Upload to App Store Connect** set to **Automatic**, Median can build a signed distribution IPA in the cloud and upload it for TestFlight and App Store submission. You do not need a Mac, Xcode, or Apple Transporter for this workflow.
 
-## Recommended Workflow
+## Recommended workflow
 
 1. Enroll in the [Apple Developer Program <Icon icon="arrow-up-right-from-square" size={12} />](https://developer.apple.com/programs/enroll/).
 2. Create an app record in [App Store Connect <Icon icon="arrow-up-right-from-square" size={12} />](https://appstoreconnect.apple.com) using your iOS Bundle ID.
@@ -18,7 +18,7 @@ Our recommended self-service workflow is to upload iOS builds directly from Medi
 
 After the build completes, Median uploads it to App Store Connect. Apple may take some time to process the build before it appears. Once it is available, you can add the build to TestFlight, invite internal testers, and select the same build for App Review when your listing is ready.
 
-## What You Still Do in App Store Connect
+## What you still do in App Store Connect
 
 The automatic upload setting handles the build upload, signing workflow, and delivery to App Store Connect. You still manage the app listing and review steps in App Store Connect:
 
@@ -27,7 +27,7 @@ The automatic upload setting handles the build upload, signing workflow, and del
 - answer export compliance and review questions
 - select the processed build and submit it for App Review
 
-## Manual Alternatives
+## Manual alternatives
 
 If you leave **Upload to App Store Connect** set to **Manual**, you can build a signed IPA in Median App Studio and press the **Upload** button after the build completes, or upload it yourself with Apple's [Transporter app <Icon icon="arrow-up-right-from-square" size={12} />](https://help.apple.com/itc/transporteruserguide/#/itc0d5b535bf). You can also download iOS source code from App Studio and build locally with Xcode by following [Build iOS from Source](/docs/build-ios-from-source).
 

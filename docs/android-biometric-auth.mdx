@@ -30,11 +30,11 @@ Display our demo page in your app with the Face ID / Touch ID Android Biometric 
 
 </Check>
 
-## Implementation Guide
+## Implementation guide
 
 This guide assumes a working publicly-accessible website (or test site) with a username and password login system.
 
-### Saving a Secret After Login
+### Saving a secret after login
 
 After a user successfully logs in to your website with their username and password, check to see the device has biometric capabilities available. If biometrics are available then seamlessly save a secret for future retrieval. The secret must be a single string, and can be a combination of the username and password or an authentication token. You may specify a minimum biometric level to support, either `strong` or `weak`.
 
@@ -69,7 +69,7 @@ javascriptFor example, you may embed this JavaScript into your post-login page:
 
 In this example, we have saved the username and password as the secret. You may choose to save an authentication token instead. We have specified the `minimumAndroidBiometric` as `strong` which is the default biometric level.
 
-### Checking for a Saved Secret on Login Page
+### Checking for a saved secret on login page
 
 javascriptOn the login page, you will need to know whether or not to prompt for biometric login. Start by getting the status:
 
@@ -110,9 +110,9 @@ Once the `median_secret_callback` function is called with the previously saved s
   ```
 </CodeGroup>
 
-## Median JavaScript Bridge Reference
+## Median JavaScript Bridge reference
 
-### Check Biometric Availability
+### Check biometric availability
 
 Run the JavaScript function:
 
@@ -131,7 +131,7 @@ javascriptThe app will return a promise, or if provided execute CALLBACK, with a
 javascript- `hasTouchId`: `true` or `false`. Set to `true` on Android devices with fingerprints enrolled.
 javascript- `hasSecret`: `true` or `false`
 
-### Save a Secret
+### Save a secret
 
 Typically you will want to first check that biometrics are available via the status function above and then save the secret.
 
@@ -150,7 +150,7 @@ Run the JavaScript function:
 
 javascriptThe app will return a promise, or if provided execute CALLBACK, with an object with a `success` field
 
-### Retrieving a Secret
+### Retrieving a secret
 
 javascriptRun the JavaScript function:
 
@@ -174,7 +174,7 @@ The app will return a promise, or if provided execute CALLBACK, with an object p
 - `secret`: the previously stored secret
 - `callbackOnCancel` is optional. If set to `1` and a `callbackFunction` has been provided, when the user cancels the authentication the callback function will be invoked with `success=false`, `error=userCanceled`. If `callbackOnCancel` is not set (or set to 0), the callback will not be run on cancel.
 
-### Delete a Secret
+### Delete a secret
 
 javascriptRun the JavaScript function:
 
@@ -202,7 +202,7 @@ In general, you will only need to handle authenticationFailed in the "get secret
 - `userCanceled`: User canceled the auth prompt
 - `unimplemented`: Plugin not supported
 
-## Testing Android Biometric Integration
+## Testing Android biometric integration
 
 We recommend testing on physical devices to confirm the flow is working as expected for devices with Android Biometric support, as well as older models or more restricted device configurations.
 
@@ -217,7 +217,7 @@ Additionally, you can also test the integration using the Appetize Simulators.
   <img src="/images/docs/7101a4a47217df84be067110782a1ef0df1addbd7f0a3c45375744283a9cd22a-Screenshot_2025-07-15_at_11.53.31.png" />
 </Frame>
 
-## Whitelist Domains for Plugin Access
+## Whitelist domains for plugin access
 
 By default, any page loaded in your app will be able to use Median JavaScript Bridge to retrieve secrets. If you are allowing any domains you do not control to be loaded within your app (see [Link Handling](https://median.co/docs/link-handling-overview)), we strongly recommend whitelisting only certain domains.
 

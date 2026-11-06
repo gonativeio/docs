@@ -23,18 +23,18 @@ Display our demo page in your app to test during development: [https://median.de
 - **Native push on both platforms**: Native push on both platforms: Send push notifications directly to iOS and Android devices using Customer.io's SDKs inside the Median shell.
 - **Bridge-first control**: Manage user authentication, update profile attributes, track custom behavioral events, and request permissions directly from JavaScript without writing native code.
 - **Rich Event Tracking**: Capture custom client-side conversions and activities to power dynamic segments and workflows in your workspace.
-- **Deep linking**: When [deep linking](https://docs.median.co/docs/deep-linking) is configured, notification taps can open the right screen in-app instead of the device browser.
+- **Deep linking**: When [deep linking](/docs/deep-linking) is configured, notification taps can open the right screen in-app instead of the device browser.
 
 ## Prerequisites
 
-- A Median.co app with the [JavaScript Bridge](https://docs.median.co/docs/javascript-bridge) enabled
+- A Median.co app with the [JavaScript Bridge](/docs/javascript-bridge) enabled
 - A Customer.io account with an active workspace.
 - Your Customer.io Site ID and CDP API Key for iOS and Android.
 - `google-services.json` uploaded in your Median app configuration (required for Firebase Cloud Messaging delivery on Android).
 
-## Implementation Guide
+## Implementation guide
 
-### Customer.io Setup
+### Customer.io setup
 
 Create platform-specific sources in Customer.io to obtain your CDP API Key and Site ID. Median handles the native SDK initialization once those credentials are configured.
 
@@ -43,7 +43,7 @@ Follow the official Customer.io guides to complete source creation:
 - iOS: [Set up a new iOS integration in Customer.io](https://docs.customer.io/integrations/sdk/ios/getting-started/auth/#set-up-a-new-source)
 - Android: [Get your Android API Key](https://docs.customer.io/integrations/sdk/android/getting-started/auth/#get-your-api-key)
 
-### App Configuration
+### App configuration
 
 1. Open Median App Studio for your app.
 2. Enable the Customer.io native plugin.
@@ -54,7 +54,7 @@ Follow the official Customer.io guides to complete source creation:
   <img src="/images/docs/1ff3eebe0253d69b5bf4ea9e59b458a05ed6a0d555b99ac1524bab2ecde46a64-Screenshot_2026-06-23_at_10.44.46.png" />
 </Frame>
 
-#### Plugin Configuration options
+#### Plugin configuration options
 
 | Setting         | Required         | Description                                                                                                                                                                                                                                         |
 | --------------- | ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -70,20 +70,20 @@ Plugin settings take effect only in new builds. After changing credentials or up
 
 </Info>
 
-#### Deep linking (Optional)
+#### Deep linking (optional)
 
-The Customer.io plugin integrates with Median [deep linking](https://docs.median.co/docs/deep-linking). When deep links are configured, users who tap a push notification are routed to the correct screen inside the app rather than to the mobile browser.
+The Customer.io plugin integrates with Median [deep linking](/docs/deep-linking). When deep links are configured, users who tap a push notification are routed to the correct screen inside the app rather than to the mobile browser.
 
 To enable this:
 
 1. Configure URL schemes, Universal Links (iOS), and App Links (Android) in Median App Studio.
 2. Ensure the URLs used in Customer.io campaigns match the routes handled inside your app.
 
-### JavaScript bridge functions
+### JavaScript Bridge functions
 
 All methods are available on the `median.customerio` namespace and must be called after the Median JavaScript Bridge is fully initialized. Wrap calls in a `deviceready` listener or equivalent initialization check.
 
-#### Push Notification Permissions
+#### Push notification permissions
 
 **Request permission**
 
@@ -137,7 +137,7 @@ Register listeners to respond when notifications are received in the foreground 
 ```
 </CodeGroup>
 
-#### User Identity
+#### User identity
 
 **Identify a user**
 
@@ -177,7 +177,7 @@ median.customerio.reset();
 ```
 </CodeGroup>
 
-#### Profile and Device Attributes
+#### Profile and device attributes
 
 **Set profile attributes**
 
@@ -266,4 +266,4 @@ On **iOS**, check that the user has not disabled notifications for the app in Se
 
 ### Deep links open in the browser instead of the app
 
-Configure Median [deep linking](https://docs.median.co/docs/deep-linking) (URL scheme, Universal Links, App Links) so the URL Customer.io uses matches routes handled inside the app.
+Configure Median [deep linking](/docs/deep-linking) (URL scheme, Universal Links, App Links) so the URL Customer.io uses matches routes handled inside the app.

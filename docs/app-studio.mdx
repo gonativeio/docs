@@ -5,13 +5,13 @@ keywords: ["App Studio", "app build", "rebuild", "download", "virtual simulators
 searchable: true
 ---
 
-## App Build
+## App build
 
 The Median App Studio enables you to configure and rebuild your app multiple times, provided you have an active Support & Updates plan. Each build integrates the latest Median.co core code, ensuring compatibility with new operating systems and devices. Many compatibility issues can be resolved by simply rebuilding your app.
 
 For details on recent software and platform updates, refer to our [Release Notes](https://median.co/docs/release-notes).
 
-## Build, Download, and Deploy Your App
+## Build, download, and deploy your app
 
 Use the **Build & Deploy** tab to create iOS and Android builds, download binaries or source code, configure signing, and upload iOS distribution builds to App Store Connect.
 
@@ -39,21 +39,23 @@ For installation assistance, watch our video guide in the [Install Android APK](
 
 To simplify installation on a physical device, Median generates a QR code, allowing you to download the app directly. This eliminates the need to transfer the binary via a desktop or laptop.
 
-## Virtual Simulators
+## Virtual simulators
 
 Test your app directly within your browser using App Studio’s built-in iOS and Android virtual simulators. These are free to use and receive regular updates to support newer devices and operating system versions.
 
 For Enterprise customers, we offer extended runtime and unlimited simulator sessions.
 
-## Frequently Asked Questions
+## Frequently asked questions
 
-### I am looking to use the Virtual Simulators to test my web app. Which IP blocks do I have to whitelist?
+<AccordionGroup>
+<Accordion title="I am looking to use the Virtual Simulators to test my web app. Which IP blocks do I have to whitelist?" id="i-am-looking-to-use-the-virtual-simulators-to-test-my-web-app-which-ip-blocks-do-i-have-to-whitelist">
 
 Median recommends whitelisting the following IP blocks to account for virtual simulators in different data centers.
 
 [http://median.co/ip-blocks](http://median.co/ip-blocks)
 
-### What Android WebView Versions Are Installed on the Virtual Simulators?
+</Accordion>
+<Accordion title="What Android WebView Versions Are Installed on the Virtual Simulators?" id="what-android-webview-versions-are-installed-on-the-virtual-simulators">
 
 Our virtual simulators are regularly updated, but in some cases, your web content - especially if it uses niche CSS or specific WebView features - may not be compatible with certain Android WebView versions. You can check the installed versions of Chrome and Android System WebView as follows:
 
@@ -64,3 +66,6 @@ Whether Chrome and WebView Versions are tied together depends on the Android OS 
 
 - **Android 7.0 (Nougat) to Android 9.0 (Pie):** WebView functionality is provided directly by Chrome. In this case, updating Chrome also updates the WebView component.
 - **Android 10 and above:** WebView is handled as a standalone app, updated separately via the Google Play Store. It is no longer dependent on Chrome unless Chrome is manually selected as the WebView implementation in Developer Options.
+
+</Accordion>
+</AccordionGroup>

@@ -30,11 +30,11 @@ Display our demo page in your app to test during development [https://median.dev
 
 </Check>
 
-## Implementation Guide
+## Implementation guide
 
 Use the tabs below to navigate Intercom Setup, App Configuration, and JavaScript Bridge Functions.
 
-### Intercom Setup
+### Intercom setup
 
 Follow the first step of Intercom's official Android and iOS mobile installation guides. Median.co automatically injects the required native SDK code, so you only need to complete the configuration steps in Intercom.
 
@@ -44,7 +44,7 @@ Before configuring the plugin in Median, complete the following steps in your In
 - [ ] Retrieve your Intercom **App ID**
 - [ ] Retrieve your Intercom **iOS API Key** and **Android API Key**
 
-#### Add Your iOS and Android Apps
+#### Add your iOS and Android apps
 
 Follow Step 1 of Intercom's official mobile installation guides. Median automatically injects the required native SDK code, so you only need to complete the configuration steps in Intercom.
 
@@ -63,19 +63,19 @@ As an example, please reference the screenshots below to setup your Android and 
   <img src="/images/docs/436f5cd1dbde4c673b3e232a662ac380061edf2efbb4a692cba18bdc7f0c7e59-Screenshot_2026-01-23_at_14.26.51.png" />
 </Frame>
 
-### App Configuration
+### App configuration
 
-#### Plugin Setup
+#### Plugin setup
 
 Once your app is set up in Intercom, configure the Intercom plugin in the **Median App Studio** and upload the required Google Services or iOS files.
 
-#### Enable the Plugin
+#### Enable the plugin
 
 1. **Navigate to Native Plugins**: In your Median dashboard, go to **Native Plugins > Intercom**.
 2. **Enable Intercom**: Toggle the plugin to enabled status.
 3. **Configure Settings**: Enter your Intercom App ID, iOS API Key, and Android API Key.
 
-#### Configuration Options
+#### Configuration options
 
 <Frame caption="Intercom Plugin Configuration">
   <img src="/images/docs/475928000ed59aa614c9e90247bdcfe39b0e89a9102afabd952cb2c5f1c1bee7-Screenshot_2026-02-05_at_10.09.12.png" />
@@ -87,7 +87,7 @@ Once your app is set up in Intercom, configure the Intercom plugin in the **Medi
 | **iOS API Key**     | iOS SDK API key from Intercom                | None    | Use your iOS-specific key     |
 | **Android API Key** | Android SDK API key from Intercom            | None    | Use your Android-specific key |
 
-#### Example Plugin Configuration
+#### Example plugin configuration
 
 You can reference this JSON snippet as an example, but you'll need to replace the parameters with your own Intercom App ID and API keys.
 
@@ -101,11 +101,11 @@ You can reference this JSON snippet as an example, but you'll need to replace th
   ```
 </CodeGroup>
 
-## Javascript Bridge Functions
+## JavaScript Bridge functions
 
-The Intercom Plugin exposes several methods via the [Median JavaScript Bridge](https://docs.median.co/docs/javascript-bridge), allowing you to interact with Intercom from your web code.
+The Intercom Plugin exposes several methods via the [Median JavaScript Bridge](/docs/javascript-bridge), allowing you to interact with Intercom from your web code.
 
-### Register Push
+### Register push
 
 Request push notification permission, which will show a dialog for users to confirm permission. For Android, the dialog is only shown on Android 13 and above. On Android 12 and below, permission will always be granted without user intervention.
 
@@ -126,7 +126,7 @@ Request push notification permission, which will show a dialog for users to conf
 | ---------- | ---------- | -------- | -------------------------------------- |
 | `callback` | `function` | No       | Callback function to handle the result |
 
-### Update User
+### Update user
 
 Creates or updates a user in Intercom using arbitrary key/value pairs such as `name`, `email`, or custom attributes.
 
@@ -147,7 +147,7 @@ Creates or updates a user in Intercom using arbitrary key/value pairs such as `n
 | ---------------- | -------- | -------- | ------------------------------------------- |
 | `userAttributes` | `object` | Yes      | Object containing user attributes to update |
 
-### Log Event
+### Log event
 
 Logs a custom event in Intercom for tracking user behavior.
 
@@ -167,7 +167,7 @@ Logs a custom event in Intercom for tracking user behavior.
 | ----------- | -------- | -------- | ------------------------ |
 | `eventName` | `string` | Yes      | Name of the event to log |
 
-#### Present Carousel
+#### Present carousel
 
 Displays an Intercom Mobile Carousel using its `carouselID` from your Intercom workspace.
 
@@ -187,7 +187,7 @@ Displays an Intercom Mobile Carousel using its `carouselID` from your Intercom w
 | ------------ | -------- | -------- | --------------------------------- |
 | `carouselID` | `string` | Yes      | The ID of the carousel to display |
 
-## Sending Push Notifications and Mobile Carousels
+## Sending push notifications and mobile carousels
 
 Intercom push notifications and mobile carousels are created and sent through the Intercom Dashboard.
 
@@ -202,13 +202,13 @@ For detailed guidance, refer to Intercom's official documentation:
 - [Intercom - Get started with Mobile Push](https://www.intercom.com/help/en/articles/3292847-get-started-with-mobile-push)
 - [Intercom - Design and build a Mobile Carousel](https://www.intercom.com/help/en/articles/4164612-design-and-build-a-mobile-carousel)
 
-### Programmatic Push Notifications
+### Programmatic push notifications
 
 Sending push notifications programmatically via the Intercom API is not supported. This limitation is confirmed in Intercom’s official documentation.
 
 [Intercom - Can I send push notifications through the API?](https://www.intercom.com/help/en/articles/5053702-can-i-send-push-notifications-through-intercom-s-api)
 
-## Testing Checklist
+## Testing checklist
 
 Use this checklist to ensure Intercom is working correctly in your app:
 

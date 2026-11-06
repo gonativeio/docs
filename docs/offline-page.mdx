@@ -13,23 +13,23 @@ By default, the offline timeout is set to 10 seconds, but you can customize this
   <img src="/images/docs/af097054b495c469d0faaf73d8895e42b44d453e97f6a0b725f0600ec51ae0c2-Screenshot_2025-07-04_at_11.44.50.png" />
 </Frame>
 
-## Offline Page Behavior
+## Offline page behavior
 
 - **Enabled (Default)**: After the timeout, an offline page is shown.
 - **Disabled**: The app displays the last cached version of the webpage. If no cached page exists (e.g., for new users), the app will show a default browser error (iOS WKWebView or Android WebView).
 
-## Custom Offline Pages
+## Custom offline pages
 
 Instead of using the default offline page, you can configure a custom offline page for both iOS and Android platforms. Since this page is shown without internet access, all assets must be self-contained:
 
 - Inline all CSS and JavaScript
 - Use Base64-encoded or SVG images
 
-## Custom Offline Page as Initial URL
+## Custom offline page as initial URL
 
 To use a custom offline page as the app's initial launch screen, please set the `initialURL` in the [App Configuration](https://median.co/docs/app-configuration-appconfigjson) to `file:///offline.html`.
 
-## Manual Page Reload
+## Manual page reload
 
 You may also wish to include a button to manually attempt to reload the page, for instance after the user connects to WiFi or VPN. This can be implemented using the following JavaScript Bridge Commands:
 
@@ -40,9 +40,9 @@ median.webview.reload();
 ```
 </CodeGroup>
 
-## Example Offline Pages
+## Example offline pages
 
-### Default Offline Page
+### Default offline page
 
 <iframe
   src="https://codepen.io/gonative/embed/LYrpOKz?default-tab=result"
@@ -53,7 +53,7 @@ median.webview.reload();
   style={{ width: "100%", border: 0, borderRadius: "8px" }}
 />
 
-### Custom Offline Page Example
+### Custom offline page example
 
 The following example outlines how to include PNG and SVG encoded images in the offline page.
 
@@ -66,7 +66,7 @@ The following example outlines how to include PNG and SVG encoded images in the 
   style={{ width: "100%", border: 0, borderRadius: "8px" }}
 />
 
-### Localized Offline Page Example
+### Localized offline page example
 
 The following example translates the text and buttons of the Default Offline Page to French, Spanish, or Korean based on the device language. Any other languages will default to the English Offline Page.
 
@@ -79,7 +79,7 @@ The following example translates the text and buttons of the Default Offline Pag
   style={{ width: "100%", border: 0, borderRadius: "8px" }}
 />
 
-## Advanced Strategies
+## Advanced strategies
 
 <CardGroup cols={1}>
   <Card title="Service workers" icon="gears" href="/docs/service-workers">

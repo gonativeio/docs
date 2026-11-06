@@ -16,7 +16,7 @@ Experience Cloud supports three core deployment patterns:
 
 Median makes each of these patterns available as a native mobile app on iOS and Android, with no changes required to your existing Experience Cloud configuration.
 
-## **How Median Works with Salesforce**
+## How Median works with Salesforce
 
 Your Experience Cloud site continues to serve as the primary application layer. Median wraps your web experience in a secure native container (“native shell”) that enables access to device capabilities not available in standard mobile browsers, including (but not limited to):
 
@@ -30,11 +30,11 @@ This architecture means your Salesforce developers continue working in Experienc
 
 <InstantPreviewCTAInline articleType="salesforce" />
 
-## Enterprise Considerations
+## Enterprise considerations
 
 Organizations running Salesforce at enterprise scale typically have requirements that go beyond feature parity. The sections below describe how Median addresses the concerns most commonly raised by enterprise architecture and security teams.
 
-### Security and Compliance
+### Security and compliance
 
 Median operates as a native container around your existing Salesforce authentication layer. End users authenticate through your standard Experience Cloud login flow, including SSO, MFA, and any identity provider configured in Salesforce. Median does not proxy, cache, or intercept authentication tokens.
 
@@ -44,21 +44,21 @@ Additional enterprise-grade controls available through Median.co include:
 * **Microsoft Intune support.** Enables mobile application management (MAM) policies for regulated industries.
 * **Enterprise Security plugin.** Provides certificate pinning, screenshot prevention, and additional hardening options.
 
-### Change Management
+### Change management
 
 Because the mobile app renders your existing Experience Cloud URL, any content or configuration change made in Experience Builder is reflected in the app immediately, without requiring an App Store update. This significantly reduces the operational overhead associated with native app maintenance and aligns mobile releases with your existing Salesforce release cadence.
 
-### Multi-Org and Multi-App Support
+### Multi-org and multi-app support
 
 Median supports multiple simultaneous app instances from a single Salesforce org, which is useful for organizations that operate separate communities for customers, partners, and employees and want each audience to have a distinct branded app.
 
-## What This Documentation Covers
+## What this documentation covers
 
 The Salesforce integration documentation is organized into four guides. Each guide is scoped to a single area of the integration so you can work through them in order or jump directly to the topic you need.
 
-### 1. Getting Started with Salesforce Experience Cloud
+### 1. Getting started with Salesforce Experience Cloud
 
-[Getting Started with Salesforce Experience Cloud](https://docs.median.co/docs/getting-started-with-salesforce-experience-cloud) covers the foundational steps required before any LWC development begins:
+[Getting Started with Salesforce Experience Cloud](/docs/getting-started-with-salesforce-experience-cloud) covers the foundational steps required before any LWC development begins:
 
 * Retrieving your Experience Cloud site URL
 * Creating your app in Median App Studio
@@ -66,31 +66,31 @@ The Salesforce integration documentation is organized into four guides. Each gui
 
 ### 2. Lightning Web Components and the JavaScript Bridge
 
-[Lightning Web Components and the Median JavaScript Bridge](https://docs.median.co/docs/salesforce-lwc-median) covers the JavaScript-specific integration work:
+[Lightning Web Components and the Median JavaScript Bridge](/docs/salesforce-lwc-median) covers the JavaScript-specific integration work:
 
 * Accessing `window.median` safely from within the Lightning Web Security (LWS) sandbox
 * Detecting whether the page is running inside the Median app versus a standard browser
 * Configuring a custom User Agent string for mobile-aware rendering
 * Choosing between the LWR and Aura runtimes
 
-### 3. Deep Linking
+### 3. Deep linking
 
-[Deep Linking for Salesforce Experience Cloud](https://docs.median.co/docs/salesforce-deep-linking) covers the Salesforce-specific challenge of hosting Apple App Site Association (AASA) and Android Asset Links verification files on a managed platform:
+[Deep Linking for Salesforce Experience Cloud](/docs/salesforce-deep-linking) covers the Salesforce-specific challenge of hosting Apple App Site Association (AASA) and Android Asset Links verification files on a managed platform:
 
 * Serving AASA and Asset Links JSON through Visualforce pages and Apex controllers
 * Mapping well-known paths via URL rewriting in Salesforce Setup
 * Verifying files are reachable before App Store submission
 * Troubleshooting the most common deep linking failure modes
 
-### 4. Component Deployment and Reference
+### 4. Component deployment and reference
 
-[Salesforce LWC Component Deployment and Reference](https://docs.median.co/docs/salesforce-lwc-components) covers deploying the open-source component library and building custom components:
+[Salesforce LWC Component Deployment and Reference](/docs/salesforce-lwc-components) covers deploying the open-source component library and building custom components:
 
 * Deploying components with the Salesforce CLI
 * Adding components to Experience Builder pages
 * Custom component architecture patterns for production use
 
-## Open-Source LWC Component Library
+## Open-source LWC component library
 
 The [median-salesforce-components](https://github.com/gonativeio/median-salesforce-components) repository on GitHub provides ready-to-deploy reference components covering common Median integration patterns for Salesforce:
 

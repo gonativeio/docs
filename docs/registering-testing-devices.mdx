@@ -16,7 +16,7 @@ Registering a new device does not retroactively update builds you've already pro
 
 </Warning>
 
-## Add iOS Testers and register their iOS devices
+## Add iOS testers and register their iOS devices
 
 Go to your **Median** organization page > **iOS Testers**, then click the **Add iOS Tester** button to add all testers including your own devices. If a user has multiple devices, e.g. iPhone and iPad, you will need to add each separately.
 
@@ -81,24 +81,31 @@ Use this option if you already know a device's UDID, or if you're registering yo
 
 The device now appears in your registered device list, ready to be included the next time you regenerate a provisioning profile.
 
-## Next Step
+## Next step
 
-[Configure Signing for Your App](https://docs.median.co/docs/configure-signing-for-your-app) →
+[Configure Signing for Your App](/docs/configure-signing-for-your-app) →
 
-## Frequently Asked Questions
+## Frequently asked questions
 
-### Do I need to physically plug my iPhone into a computer to get its UDID?
+<AccordionGroup>
+<Accordion title="Do I need to physically plug my iPhone into a computer to get its UDID?" id="do-i-need-to-physically-plug-my-iphone-into-a-computer-to-get-its-udid">
 
 No. Use the email invite flow (Option 1), or open Median's Get UDID page directly on the device (Option 2). A USB connection to a computer isn't required either way.
 
-### What happens if I add a new tester after I've already built my app?
+</Accordion>
+<Accordion title="What happens if I add a new tester after I've already built my app?" id="what-happens-if-i-add-a-new-tester-after-ive-already-built-my-app">
 
 The existing build won't recognize the new device. You need to regenerate the provisioning profile and create a new build; only devices included in the profile at build time can install that build.
 
-### Can one person register both an iPhone and an iPad?
+</Accordion>
+<Accordion title="Can one person register both an iPhone and an iPad?" id="can-one-person-register-both-an-iphone-and-an-ipad">
 
 Yes, but each device must be registered separately as there's no bulk or multi-device entry per person. Send a separate invite, or add each UDID individually.
 
-### Is there a limit to how many test devices I can register?
+</Accordion>
+<Accordion title="Is there a limit to how many test devices I can register?" id="is-there-a-limit-to-how-many-test-devices-i-can-register">
 
 Apple's Developer Program limits registered devices to 100 per device class (iPhone, iPad, etc.) per membership year. If you're approaching that limit, plan your test group accordingly, since removed devices can't always be swapped back in until Apple's annual reset.
+
+</Accordion>
+</AccordionGroup>

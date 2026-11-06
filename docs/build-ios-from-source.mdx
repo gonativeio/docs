@@ -47,7 +47,7 @@ Use the latest stable (non-beta) version of Xcode to ensure compatibility.
 
 Once installed, proceed with the steps below to download and build your Median app.
 
-## Download iOS Source Code
+## Download iOS source code
 
 Access your app’s private management page to download the iOS source code:
 
@@ -58,7 +58,7 @@ Access your app’s private management page to download the iOS source code:
   <img src="/images/docs/7e8a0d3c6be45fc944ea557c601eadfdf8c4974d4f8b784e093a80c6b0888c74-Screenshot_2025-07-04_at_14.18.56.png" />
 </Frame>
 
-## Extract and Open the Source Code
+## Extract and open the source code
 
 After downloading, extract the `ios_source.tar.gz` file using one of the following methods:
 
@@ -83,7 +83,7 @@ Always open `<yourapp>.xcworkspace`, not `<yourapp>.xcodeproj`, as Median App St
   <img src="/images/docs/4699982a73982cda0f969016776528f32f0b638aa95da60a8bf597954db07e12-Screenshot_2025-03-29_at_08.56.44.png" />
 </Frame>
 
-## Build and Run the App in the Simulator
+## Build and run the app in the simulator
 
 1. In Xcode, select a simulator or connected device from the dropdown menu.
 2. Click the "Run" play button.
@@ -93,7 +93,7 @@ Always open `<yourapp>.xcworkspace`, not `<yourapp>.xcodeproj`, as Median App St
   <img src="/images/docs/b2003ec1488c79aac33b66e23fb17b55ecc68bcb6385235c52a7a14224d1355c-Screenshot_2025-03-29_at_08.58.33.png" />
 </Frame>
 
-## Cocoapods Dependency Management
+## CocoaPods dependency management
 
 Median automatically installs all required dependencies when you download the source code. **You do not need to run pod install manually**. If you need to install additional pods not supplied by Median please [contact our team](https://median.co/contact) for assistance.
 
@@ -104,11 +104,11 @@ If you encounter missing file errors, clean your build folder and derived data: 
 
 </Info>
 
-## Adding Capabilities (e.g., Push Notifications)
+## Adding capabilities (e.g., push notifications)
 
 Certain features, such as push notifications, require manually enabling capabilities in Xcode:
 
-### How to Enable Push Notifications in Xcode
+### How to enable push notifications in Xcode
 
 1. Open Xcode and select your app in the left panel.
 2. Navigate to "Signing & Capabilities" in the right panel.
@@ -130,30 +130,32 @@ Certain features, such as push notifications, require manually enabling capabili
   <img src="/images/docs/91a134c4b946fcf4b1ffe4c953e6810b26ff412989c803e388de1e46d370b5e5-Screenshot_2025-03-29_at_09.08.10.png" />
 </Frame>
 
-### Plugin Capability Matrix
+### Plugin capability matrix
 
 Some plugins require specific capabilities or entitlements. These are automatically added when building your app in App Studio but may need to be added manually if you build from downloaded source code.
 
 | Plugin                                                                                   | Required Capabilities / Entitlements |
 | ---------------------------------------------------------------------------------------- | ------------------------------------ |
-| [All Push Notification Plugins](https://docs.median.co/docs/push-notifications-overview) | Push Notifications                   |
-| [AgeSafety](https://docs.median.co/docs/age-safety)                                      | Age Range                            |
-| [Health Bridge](https://docs.median.co/docs/health-bridge)                               | Health Kit                           |
-| [Intent Edge](https://docs.median.co/docs/intent-edge)                                   | Wi-Fi, Push Notifications            |
-| [In-App Purchases](https://docs.median.co/docs/iap)                                      | In-app Purchases                     |
-| [Reader Modal](https://docs.median.co/docs/reader-modal)                                 | External Link Account                |
-| [Revenue Cat](https://docs.median.co/docs/revenue-cat)                                   | In-app Purchases                     |
-| [Share Plugin](https://docs.median.co/docs/share-into-app)                               | App Groups                           |
+| [All Push Notification Plugins](/docs/push-notifications-overview) | Push Notifications                   |
+| [AgeSafety](/docs/age-safety)                                      | Age Range                            |
+| [Health Bridge](/docs/health-bridge)                               | Health Kit                           |
+| [Intent Edge](/docs/intent-edge)                                   | Wi-Fi, Push Notifications            |
+| [In-App Purchases](/docs/iap)                                      | In-app Purchases                     |
+| [Reader Modal](/docs/reader-modal)                                 | External Link Account                |
+| [Revenue Cat](/docs/revenue-cat)                                   | In-app Purchases                     |
+| [Share Plugin](/docs/share-into-app)                               | App Groups                           |
 
-## Frequently Asked Questions
+## Frequently asked questions
 
-### How do I fix the ITMS-90078: Missing Push Notification Entitlement error when submitting my app to App Store Connect?
+<AccordionGroup>
+<Accordion title="How do I fix the ITMS-90078: Missing Push Notification Entitlement error when submitting my app to App Store Connect?" id="how-do-i-fix-the-itms-90078-missing-push-notification-entitlement-error-when-submitting-my-app-to-app-store-connect">
 
 This warning indicates that your code includes methods for registering a push token, suggesting that the app intends to use push notifications. However, since the required entitlement is missing, push notification functionality will not work.
 
 If your app does not use push notifications, you can safely ignore this warning.
 
-### Can I turn off iPad support?
+</Accordion>
+<Accordion title="Can I turn off iPad support?" id="can-i-turn-off-ipad-support">
 
 Yes. Please note that iPhone only apps will run on an iPad in a phone-sized view. It is worth putting in some effort to make your app work on iPads in that mode even if you don't want to support iPads natively.
 
@@ -162,3 +164,6 @@ To disable iPad support you can exclude iPad as a destination in Xcode as shown 
 <Frame caption="Xcode - Disable iPad Support">
   <img src="/images/docs/9a271b8fe48ab13bf7ce9a37cfc28ab996f8ffa47e66e433d672f8177bb9d647-Screenshot_2026-06-17_at_10.45.28.png" />
 </Frame>
+
+</Accordion>
+</AccordionGroup>

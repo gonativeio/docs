@@ -20,23 +20,23 @@ Display our demo page in your app to test during development [https://median.dev
 
 </Check>
 
-## Underlying Open-Source Technologies
+## Underlying open-source technologies
 
 **Android**: Zebra Crossing library at [https://github.com/zxing/zxing](https://github.com/zxing/zxing)
 
 **iOS**: hyperoslo library at [https://github.com/hyperoslo/BarcodeScanner](https://github.com/hyperoslo/BarcodeScanner)
 
-## UI Example
+## UI example
 
 |                  iOS                   |                  Android                   |
 | :------------------------------------: | :----------------------------------------: |
 | ![](/images/docs/5649c1d-Apple-QR.png) | ![](/images/docs/7bb3e13-Android-QR_1.png) |
 
-## Implementation Guide
+## Implementation guide
 
 _Once the QR/Barcode Scanner Native Plugin has been added to your app, you may use the following Median JavaScript Bridge commands to access its functionality._
 
-### Start a QR/Barcode Scan
+### Start a QR/barcode scan
 
 Use `median.barcode.scan()` to trigger the native scanner. By default, all supported formats trigger a scan. You can pass a `formats` array to restrict which code types can trigger a scan. If `formats` is omitted or empty, all supported types are scanned.\
 The method supports both callback and Promise-based approaches:
@@ -92,7 +92,7 @@ The native scanner UI will launch within your app. Upon scan completion, focus w
 - **QR Codes (2D):** QR_CODE, DATA_MATRIX, AZTEC, PDF_417
 - **Barcodes (1D):** EAN_13, EAN_8, UPC_A, UPC_E, CODE_39, CODE_93, CODE_128, ITF, CODABAR
 
-### Customizing the Scanner Prompt
+### Customizing the scanner prompt
 
 You can customize the message shown to users during scanning by setting a prompt in the plugin settings. To do this, go to _Native Plugins > QR / Barcode Scanner_, as shown below.
 

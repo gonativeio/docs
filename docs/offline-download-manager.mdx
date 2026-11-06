@@ -17,7 +17,7 @@ Display our demo page in your app to test during development [https://median.dev
 
 </Check>
 
-## Why use Offline Download Manager
+## Why use offline download manager
 
 Offline access removes dependency on network connectivity for content-heavy apps. Instead of streaming or re-fetching files on every visit, downloaded content is available instantly, even in airplane mode.
 
@@ -26,9 +26,9 @@ Offline access removes dependency on network connectivity for content-heavy apps
 - **Training and education apps**: Allow learners to download course materials before a commute or travel.
 - **Content subscription apps**: Enable subscribers to save content locally for offline consumption.
 
-## Implementation Guide
+## Implementation guide
 
-### JavaScript bridge functions
+### JavaScript Bridge functions
 
 Use the following JavaScript bridge functions to initialize the download manager, start downloads, and display the file management UI.
 
@@ -64,7 +64,7 @@ Before starting any downloads, you will need to register your callback by runnin
   ```
 </CodeGroup>
 
-#### Starting Downloads
+#### Starting downloads
 
 To start a download, run the following command using the Median JavaScript Bridge:
 
@@ -92,7 +92,7 @@ Params "url" and "title" are required, all others are optional. Supported parame
 - details (optional): additional information to show below the title. A description of the download.
 - date (optional): a date in yyyy-mm-dd format to show below the details. Can be used to show a publish date for a podcast, for example.
 
-#### Following the Download progress
+#### Following the download progress
 
 After a download is started, the callback function will be called with a data object with the following fields:
 
@@ -126,7 +126,7 @@ median.downloads.showUI();
 ```
 </CodeGroup>
 
-### Offline Page
+### Offline page
 
 Typically your app will cache the pages for display offline. To ensure the download manager UI can still be opened when the app if offline for an extended period configure an offline.html page within your app. See [Offline Page](/docs/offline-page) and review the sample offline page below or on [CodePen](https://codepen.io/gonative/pen/PoJbEEN).
 
@@ -134,7 +134,7 @@ Typically your app will cache the pages for display offline. To ensure the downl
 
 ## Troubleshooting
 
-### Offline Download Manager functions are undefined or not working
+### Offline download manager functions are undefined or not working
 
 Ensure the JavaScript Bridge is enabled in Median App Studio. Define a `median_library_ready()` function on your page — Median calls it after the bridge has initialized. If the bridge may already be initialized before your function is defined, use the fallback check:
 
@@ -152,7 +152,7 @@ Ensure the JavaScript Bridge is enabled in Median App Studio. Define a `median_l
 ```
 </CodeGroup>
 
-Also verify that `median.downloads.init` is called before `median.downloads.downloadFile`. See the [JavaScript Bridge Overview](https://docs.median.co/docs/javascript-bridge) for details.
+Also verify that `median.downloads.init` is called before `median.downloads.downloadFile`. See the [JavaScript Bridge Overview](/docs/javascript-bridge) for details.
 
 ### Callback does not receive events after downloadFile is called
 
@@ -160,9 +160,9 @@ Confirm that `median.downloads.init` was called with a valid callback before `do
 
 ### Download manager UI is not accessible when offline
 
-Configure an `offline.html` page in your app to ensure the download manager remains accessible when there is no network connectivity. Without this configuration, the download manager UI may not load when the device is offline. See [Offline Page configuration](https://docs.median.co/docs/offline-page) for setup instructions — note that all CSS/JS must be inlined and images must be Base64 or SVG.
+Configure an `offline.html` page in your app to ensure the download manager remains accessible when there is no network connectivity. Without this configuration, the download manager UI may not load when the device is offline. See [Offline Page configuration](/docs/offline-page) for setup instructions — note that all CSS/JS must be inlined and images must be Base64 or SVG.
 
-## Offline Download Manager Demo App
+## Offline download manager demo app
 
 <Info>
 **Demo App - Note**

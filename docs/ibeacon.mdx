@@ -9,7 +9,7 @@ import { MedianLogo } from "/snippets/median-logo.jsx";
 
 This module enables your app to detect nearby beacons that follow the iBeacon specification, allowing you to retrieve detailed beacon data such as UUID, major, minor identifiers, signal strength, and proximity. Perfect for location-based services, this feature enhances your app’s functionality by enabling precise proximity detection.
 
-## How iBeacons Work
+## How iBeacons work
 
 iBeacons continuously broadcast three unique identifiers:
 
@@ -19,17 +19,17 @@ iBeacons continuously broadcast three unique identifiers:
 
 For example, a retailer may use a single UUID for all retail locations and separate major values for each store, while assigning a unique minor identifier for each individual beacon. Additionally, iBeacons broadcast signal strength, which allows apps to estimate the distance from each beacon.
 
-## Privacy Considerations
+## Privacy considerations
 
 Because Bluetooth beacons can identify a user's physical location, it is crucial to handle this functionality with privacy in mind. iOS requires the user to grant location permissions to scan for iBeacons. Similarly, Android devices also require permission starting from **Android 10**.
 
-## Implementation Guide
+## Implementation guide
 
-### Define Your UUID
+### Define your UUID
 
 On iOS, you must specify the UUID you want to scan for, as Apple does not allow iOS devices to scan for all UUIDs. On Android, UUID is optional.
 
-### Set Up the Callback Function
+### Set up the callback function
 
 Define a callback function that will handle the beacon data once the scan is complete. For example:
 
@@ -44,7 +44,7 @@ Define a callback function that will handle the beacon data once the scan is com
   ```
 </CodeGroup>
 
-### Initiate the Scan
+### Initiate the scan
 
 To start the beacon scan, use the following Median JavaScript Bridge function. The `uuid` is required for iOS and optional for Android:
 
@@ -55,7 +55,7 @@ To start the beacon scan, use the following Median JavaScript Bridge function. T
   ```
 </CodeGroup>
 
-### Handle Scan Results
+### Handle scan results
 
 Within seconds, the **callback** function will return a data object. If the scan is successful, the data will include:
 

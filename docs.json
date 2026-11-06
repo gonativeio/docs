@@ -536,7 +536,7 @@
   "logo": {
     "light": "/images/median/median-logo-light.png",
     "dark": "/images/median/median-logo-dark.png",
-    "href": "https://docs.median.co/docs"
+    "href": "/docs/overview"
   },
   "navbar": {
     "links": [

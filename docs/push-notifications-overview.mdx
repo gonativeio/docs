@@ -42,7 +42,7 @@ Generally, you want to think about the following three categories of push notifi
    - `median.onesignal.info()` to retrieve OneSignal user and device data
    - Configure notification permissions and consent flows through your platform's dashboard
 
-## Key Terms
+## Key terms
 
 The following terms will help you implement Push Notifications effectively:
 
@@ -52,9 +52,9 @@ The following terms will help you implement Push Notifications effectively:
 
 **App ID and REST API Key**: The App ID identifies your app to the Push Provider's SDK; the REST API Key authorizes server-side notification delivery on your behalf.
 
-**Legacy Mode**: A compatibility mode for apps built before Median adopted OneSignal SDK v5+. Uses a device-centric data model. See [Legacy Mode](https://docs.median.co/docs/onesignal-legacy-mode) for details.
+**Legacy Mode**: A compatibility mode for apps built before Median adopted OneSignal SDK v5+. Uses a device-centric data model. See [Legacy Mode](/docs/onesignal-legacy-mode) for details.
 
-## Featured Plugins
+## Featured plugins
 
 <CardGroup cols={1}>
   <Card
@@ -194,7 +194,7 @@ The following terms will help you implement Push Notifications effectively:
   </Card>
 </CardGroup>
 
-## Push Permissions
+## Push permissions
 
 ### General
 
@@ -213,12 +213,17 @@ Receiving push notifications on iOS will require enabling 'Push Notifications' c
 
 There are not additional steps required other than obtaining the users consent to receive push permissions.
 
-## Frequently Asked Questions
+## Frequently asked questions
 
-**Why choose native push over web push?**
+<AccordionGroup>
+<Accordion title="Why choose native push over web push?" id="why-choose-native-push-over-web-push">
 
 Native apps connect directly to Apple's APNs and Google's FCM (the same infrastructure every major App Store and Play Store app relies on) for more consistent delivery and full access to targeting, automation, and rich notification features. With Median, you get this native push experience without building separate iOS and Android codebases from scratch.
 
-**Do push notifications work as well on a PWA as they do in a native app?**
+</Accordion>
+<Accordion title="Do push notifications work as well on a PWA as they do in a native app?" id="do-push-notifications-work-as-well-on-a-pwa-as-they-do-in-a-native-app">
 
 Not quite. PWA push on iOS only works if a user manually adds your site to their Home Screen, and only on iOS 16.4 or above. Anyone who skips that step, or is on an older device, gets no push at all. Native apps have no such barrier: once installed, push works immediately across all supported iOS and Android versions, with full support for rich notifications (images, action buttons, grouping) that PWAs can't match.
+
+</Accordion>
+</AccordionGroup>

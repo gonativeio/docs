@@ -16,7 +16,7 @@ Display our demo page in your app to test during development [https://median.dev
 
 </Check>
 
-## Why use Meta App Events?
+## Why use Meta app events?
 
 - **Auto events**: Enable auto logging for standard events such as App Install and App Launch.
 - **Custom events**: Send custom events (e.g. level achieved, purchases) via the JavaScript Bridge.
@@ -29,7 +29,7 @@ Display our demo page in your app to test during development [https://median.dev
 - [ ] A Facebook Application created in the [Facebook Developer Account](https://developer.facebook.com/) (for Android, add your app's release key hash from Median App Studio under **Facebook App Events**)
 - [ ] Facebook Application ID and Facebook Display Name from your Facebook Developer Account
 
-## Integration Guide
+## Integration guide
 
 ### Plugin enablement
 
@@ -38,7 +38,7 @@ Display our demo page in your app to test during development [https://median.dev
 
 The published Median doc page does not ship static screenshot assets in its HTML export; follow the steps above in the Facebook Developer console and in **Native Plugins → Facebook App Events** in App Studio.
 
-#### Configuration Options
+#### Configuration options
 
 | Setting                     | Description                                                                               |
 | --------------------------- | ----------------------------------------------------------------------------------------- |
@@ -46,9 +46,9 @@ The published Median doc page does not ship static screenshot assets in its HTML
 | **Facebook Display Name**   | From your Facebook Developer Account                                                      |
 | **Auto logging**            | Enable in plugin settings, or set `services.facebook.autoLogging: true` in appConfig.json |
 
-### JavaScript Bridge Functions
+### JavaScript Bridge functions
 
-#### Auto Events
+#### Auto events
 
 Enable or disable auto logging for standard events (e.g. App Install, App Launch).
 
@@ -96,7 +96,7 @@ Send a custom event to Facebook. Create a JavaScript object with:
 
 Event name and parameter key constants can be found in the Facebook SDK source (Android: `AppEventsConstants.kt`; iOS: `FBSDKAppEvents.m`).
 
-#### Purchase Events
+#### Purchase events
 
 Send a purchase event. Facebook's SDK sends purchase events more immediately than regular events.
 
@@ -118,7 +118,7 @@ Send a purchase event. Facebook's SDK sends purchase events more immediately tha
 | `purchaseAmount` | `number` | Yes      | Purchase amount                       |
 | `currency`       | `string` | Yes      | ISO 4217 currency code (e.g. `'USD'`) |
 
-## Testing Checklist
+## Testing checklist
 
 Use this checklist to verify Meta App Events is working correctly before going to production:
 
@@ -148,7 +148,7 @@ Use this checklist to verify Meta App Events is working correctly before going t
 
 ## Troubleshooting
 
-### Meta App Events functions are undefined or not working
+### Meta app events functions are undefined or not working
 
 Ensure the **JavaScript Bridge is enabled** in your Median dashboard. All `median.facebook.*` functions must be called after the `deviceready` event fires — calling them earlier will result in undefined errors.
 
@@ -176,7 +176,7 @@ To fix this:
 2. In your [Facebook Developer Account](https://developer.facebook.com), go to your app → **Settings → Basic → Android** and add the key hash
 3. Generate a new app build after making this change
 
-### Auto logging is enabled but App Install / App Launch events are missing
+### Auto logging is enabled but app install / app launch events are missing
 
 Confirm that `setAutoLogging(true)` is being called after `deviceready` and before any navigation or lifecycle events you want to capture. App Install events in particular are only sent on the **first launch** after installation — reinstalling the app is required to trigger it again during testing.
 

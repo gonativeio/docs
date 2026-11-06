@@ -15,7 +15,7 @@ The plugin integrates the AppsFlyer SDK in your app and exposes a small JavaScri
 <Warning>
   **iOS 14.5+ App Tracking Transparency Requirement**
 
-Requesting user consent through the App Tracking Transparency (ATT) framework is required for iOS 14.5+. See [Apple App Tracking Transparency](https://docs.median.co/docs/apple-att) in the Median docs and [AppsFlyer – Enabling ATT support](https://dev.appsflyer.com/hc/docs/integrate-ios-sdk#enabling-app-tracking-transparency-att-support) for implementation details.
+Requesting user consent through the App Tracking Transparency (ATT) framework is required for iOS 14.5+. See [Apple App Tracking Transparency](/docs/apple-att) in the Median docs and [AppsFlyer – Enabling ATT support](https://dev.appsflyer.com/hc/docs/integrate-ios-sdk#enabling-app-tracking-transparency-att-support) for implementation details.
 
 </Warning>
 
@@ -64,7 +64,7 @@ AppsFlyer is essential for apps that need to:
 | **Deep link handling**           | React to deferred or direct deep links (e.g. open a specific screen from a push or ad) |
 | **ROI measurement**              | Evaluate user quality and campaign performance in the AppsFlyer dashboard              |
 
-## Implementation Guide
+## Implementation guide
 
 ### AppsFlyer configuration
 
@@ -85,7 +85,7 @@ You may need to configure additional options in AppsFlyer (e.g. re-engagement at
 
 ### App Studio configuration
 
-#### Enable the Plugin
+#### Enable the plugin
 
 1. **Open Native Plugins**: In [Median App Studio](https://median.co/login), open your app and go to **Native Plugins**.
 2. **Open AppsFlyer**: Select **AppsFlyer** and go to **Settings**.
@@ -113,9 +113,9 @@ The configuration above is a sample for the developer demo. AppsFlyer is highly 
 
 After the plugin is configured, use the [JavaScript Bridge functions](#javascript-bridge-functions) below to set a customer user ID, log custom events, and handle conversion or deep link data via callbacks.
 
-### JavaScript Bridge Functions
+### JavaScript Bridge functions
 
-#### Associate a User
+#### Associate a user
 
 Associates your own customer user ID with AppsFlyer so you can cross-reference it with AppsFlyer’s device IDs and your backend.
 
@@ -138,14 +138,14 @@ Associates your own customer user ID with AppsFlyer so you can cross-reference i
   ```JavaScript JavaScript
   import Median from "median-js-bridge";
 
-try {
-const { success } = await Median.appsflyer.setCustomerUserId("user123");
-console.log(success ? "User ID set successfully" : "Failed to set user ID");
-} catch (err) {
-console.error(err.code, err.message);
-}
+  try {
+    const { success } = await Median.appsflyer.setCustomerUserId("user123");
+    console.log(success ? "User ID set successfully" : "Failed to set user ID");
+  } catch (err) {
+    console.error(err.code, err.message);
+  }
 
-````
+```
 </CodeGroup>
 
 **Parameters**
@@ -154,7 +154,7 @@ console.error(err.code, err.message);
 | --------- | -------- | -------- | ---------------------------- |
 | `userId`  | `string` | Yes      | Your unique customer or user |
 
-#### Log a Custom In-App Event
+#### Log a custom in-app event
 
 Logs a custom in-app event with an optional object of values. Use it for signups, purchases, or any business event you want to measure in AppsFlyer.
 
@@ -170,8 +170,7 @@ try {
 } catch (err) {
   console.error(err.code, err.message);
 }
-````
-
+```
 </CodeGroup>
 
 📦 NPM Package
@@ -191,7 +190,7 @@ console.log(success ? "Event logged successfully" : "Failed to log event");
 console.error(err.code, err.message);
 }
 
-````
+```
 </CodeGroup>
 
 **Parameters**
@@ -217,7 +216,7 @@ const deepLink = await median.appsflyer.getDeepLinkResult();
 if (deepLink.data) {
   // Navigate using deepLink.data.deeplinkValue
 }
-````
+```
 
 </CodeGroup>
 
@@ -315,7 +314,7 @@ if (data.af_status === "Non-organic") {
 },
 );
 
-````
+```
 </CodeGroup>
 
 **Deep link result**
@@ -331,7 +330,7 @@ const deeplinkListenerId = Median.appsflyer.deeplinkResult.addListener(
     }
   },
 );
-````
+```
 
 </CodeGroup>
 
@@ -353,7 +352,8 @@ To remove a listener later, use its ID:
   ```JavaScript JavaScript
   Median.appsflyer.conversionData.removeListener(conversionListenerId);
   Median.appsflyer.deeplinkResult.removeListener(deeplinkListenerId);
-  Median.appsflyer.sdkStart.removeListener(sdkStartListenerId); ```
+  Median.appsflyer.sdkStart.removeListener(sdkStartListenerId); 
+  ```
 </CodeGroup>
 
 **Sample response – conversion data**
@@ -423,26 +423,26 @@ The payload differs by platform. Read `deeplinkValue` defensively rather than br
 ```
 </CodeGroup>
 
-## Testing Checklist
+## Testing checklist
 
 Use this checklist to confirm AppsFlyer is working in your app:
 
-### Basic Functionality
+### Basic functionality
 * [ ] Plugin is enabled and configured in **Native Plugins > AppsFlyer > Settings**
 * [ ] `median.appsflyer.setCustomerUserId(id)` runs without errors
 * [ ] `median.appsflyer.logEvent(name, values)` runs without errors
 * [ ] Conversion callback (`median_appsflyer_cd_success` or `median_appsflyer_cd`) is called on launch or when returning to the app
 
-### Platform Testing
+### Platform testing
 * [ ] Behavior verified on a **real Android device** (not only simulator)
 * [ ] Behavior verified on a **real iOS device** (not only simulator)
 * [ ] On iOS 14.5+, ATT prompt appears when configured and consent affects behavior as expected
 
-### Configuration Testing
+### Configuration testing
 * [ ] **Android Dev Key**, **Apple Dev Key**, and **Apple App ID** match the AppsFlyer dashboard
 * [ ] Global callback function names match exactly (`median_appsflyer_cd_success`, `median_appsflyer_cd`, `median_appsflyer_deeplink_result`)
 
-### User Experience
+### User experience
 * [ ] No JavaScript errors in the console from the plugin or callbacks
 * [ ] Callbacks do not block the UI; navigation or UI updates remain responsive
 
@@ -458,7 +458,7 @@ Conversion data is provided when the app is launched or brought to the foregroun
 
 ### ATT prompt does not appear on iOS
 
-Confirm [App Tracking Transparency](https://docs.median.co/docs/apple-att) is implemented in your app and that you have configured the ATT prompt (and optional delay) as required. The simulator may not show the system ATT dialog; test on a real device.
+Confirm [App Tracking Transparency](/docs/apple-att) is implemented in your app and that you have configured the ATT prompt (and optional delay) as required. The simulator may not show the system ATT dialog; test on a real device.
 
 ### Events or installs do not show in the AppsFlyer dashboard
 

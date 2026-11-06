@@ -10,7 +10,7 @@ Modern users expect instant, secure access without creating yet another password
 <Info>
 **Some identity providers block embedded webviews**
 
-Google, for example, rejects OAuth sign-in from embedded webviews. Use the [Social Login](https://docs.median.co/docs/social-login) plugin, which uses the provider's native SDK, instead of the web-based OAuth flow.
+Google, for example, rejects OAuth sign-in from embedded webviews. Use the [Social Login](/docs/social-login) plugin, which uses the provider's native SDK, instead of the web-based OAuth flow.
 
 </Info>
 
@@ -34,7 +34,7 @@ Google, for example, rejects OAuth sign-in from embedded webviews. Use the [Soci
   <Card
     title="Auth0"
     icon="/images/docs/7d45e09f6f375b4ee0d85816a36e8e440621d6b52263f4b5617351d6ef6bb5be-plugin_auth0.svg"
-    href="https://docs.median.co/docs/auth0"
+    href="/docs/auth0"
   >
     Integrate secure and scalable authentication and authorization into your
     app.
@@ -42,14 +42,14 @@ Google, for example, rejects OAuth sign-in from embedded webviews. Use the [Soci
   <Card
     title="Clerk"
     icon="/images/docs/3b6d4ee07b7ec43cdd690f5bd8e5196000e73993d0d2cdcd95d442033790f08e-plugin-clerk-1782256427537.svg"
-    href="https://docs.median.co/docs/clerk"
+    href="/docs/clerk"
   >
     Native authentication with Clerk hosted login .
   </Card>
   <Card
     title="Face ID / Touch ID"
     icon="/images/docs/c24ade2c98791842f8666aa2212a08e448214685a380817c43315d153eaabbf2-plugin_faceid-touchid-1.svg"
-    href="https://docs.median.co/docs/auth"
+    href="/docs/auth"
   >
     Enable biometric authentication using Face ID, Touch ID, and Android
     Biometrics.
@@ -57,7 +57,7 @@ Google, for example, rejects OAuth sign-in from embedded webviews. Use the [Soci
   <Card
     title="Passkey Authentication"
     icon="/images/docs/674eb9d7feaccde67fdb0a22a8e8832e9328e39df2b79f37249e9e47b1276b56-passkey_icon_2.png"
-    href="https://docs.median.co/docs/passkey-authentication"
+    href="/docs/passkey-authentication"
   >
     Enable passwordless, phishing-resistant login using native Face ID, Touch
     ID, or Android Fingerprint biometrics.
@@ -65,7 +65,7 @@ Google, for example, rejects OAuth sign-in from embedded webviews. Use the [Soci
   <Card
     title="Social Login"
     icon="/images/docs/f67219e51c2747bd44eacd5afa17acd8a781c0daa4d160ad517a2ae53af254b3-plugin_social-login.svg"
-    href="https://docs.median.co/docs/auth"
+    href="/docs/auth"
   >
     Enable native login with Facebook, Google, and Sign in with Apple.
   </Card>
@@ -79,9 +79,9 @@ As your needs evolve, Median can enhance your plugin implementation to include n
 
 Three aspects explain most authentication behavior in a hybrid app:
 
-1. **The session lives in the webview.** Your site's cookies and local storage are stored in the app's webview, and persist between launches like they do in a browser. See [Cookie Persistence](https://docs.median.co/docs/cookie-persistence).
+1. **The session lives in the webview.** Your site's cookies and local storage are stored in the app's webview, and persist between launches like they do in a browser. See [Cookie Persistence](/docs/cookie-persistence).
 2. **The webview does not share storage with the device browser.** A user who is signed in on Safari or Chrome is not signed in to your app, and the reverse is also true. The same applies to pages opened in an in-app browser tab.
-3. **Where a link opens decides where the session lands.** If a sign-in step finishes in the device browser instead of your app, the browser gets the session and the app does not. Control this with [Link Behavior](https://docs.median.co/docs/internal-vs-external-links) and [Deep Linking](https://docs.median.co/docs/deep-linking).
+3. **Where a link opens decides where the session lands.** If a sign-in step finishes in the device browser instead of your app, the browser gets the session and the app does not. Control this with [Link Behavior](/docs/internal-vs-external-links) and [Deep Linking](/docs/deep-linking).
 
 ### Two-factor and multi-factor authentication (2FA/MFA)
 
@@ -94,8 +94,8 @@ MFA is enforced by your server or identity provider, so it works in your app the
 | SMS or email one-time code         | The user reads the code in a notification or another app, then types it in. | Add `autocomplete="one-time-code"` and `inputmode="numeric"` to the input so the keyboard can suggest the code. |
 | Authenticator app (TOTP)           | The user leaves your app to copy a code, then returns.                      | Keep the challenge page intact when the app resumes. Do not reload or restart the flow.                         |
 | Push approval                      | The user approves in another app, then returns.                             | Poll for approval so the page advances on its own when the user comes back.                                     |
-| Passkey or security key (WebAuthn) | Handled by the operating system prompt.                                     | Use the [Passkey Authentication](https://docs.median.co/docs/passkey-authentication) plugin.                    |
-| Biometrics                         | Face ID, Touch ID, or Android Biometric prompt.                             | Use the [biometric plugin](https://docs.median.co/docs/auth) to unlock saved credentials.                       |
+| Passkey or security key (WebAuthn) | Handled by the operating system prompt.                                     | Use the [Passkey Authentication](/docs/passkey-authentication) plugin.                    |
+| Biometrics                         | Face ID, Touch ID, or Android Biometric prompt.                             | Use the [biometric plugin](/docs/auth) to unlock saved credentials.                       |
 
 ### Magic links
 
@@ -103,7 +103,7 @@ A magic link is a single-use sign-in URL sent by email or SMS. On the web, the u
 
 #### Set up magic links
 
-1. **Enable deep linking.** Configure Universal Links and App Links for the domain used in your magic link URLs. See [Deep Linking](https://docs.median.co/docs/deep-linking) and test with the [Deep Linking Validator](https://docs.median.co/docs/deep-linking-validator).
+1. **Enable deep linking.** Configure Universal Links and App Links for the domain used in your magic link URLs. See [Deep Linking](/docs/deep-linking) and test with the [Deep Linking Validator](/docs/deep-linking-validator).
 2. **Use the same domain in the email.** The link in the email must point directly to your deep link domain.
 3. **Turn off click tracking for sign-in emails.** Many email services rewrite links to pass through a tracking domain. A rewritten link is no longer recognized as belonging to your app and opens in the browser.
 4. **Complete sign-in on the linked page.** The page your link opens should validate the token and set the session cookie in the same webview, then redirect to the signed-in destination.

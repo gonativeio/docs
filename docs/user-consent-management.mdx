@@ -113,7 +113,7 @@ This initializes OneSignal and allows data to be transmitted. You can also revok
 <Info>
   **Important Note**
 
-Revoking consent stops data transmission to OneSignal, but it does **not** prevent push notifications from being delivered to a device that's already opted in. To stop a user from receiving notifications, use [Data Tags](https://docs.median.co/docs/data-tags) to manage their notification preferences, or call `median.onesignal.logout()` to disassociate them from their OneSignal user record. See [Identifying & Targeting Users](https://docs.median.co/docs/onesignal-user-management) for details.
+Revoking consent stops data transmission to OneSignal, but it does **not** prevent push notifications from being delivered to a device that's already opted in. To stop a user from receiving notifications, use [Data Tags](/docs/identifying-targeting-users#segmenting-with-data-tags) to manage their notification preferences, or call `median.onesignal.logout()` to disassociate them from their OneSignal user record. See [Identifying & Targeting Users](/docs/identifying-targeting-users) for details.
 
 </Info>
 
@@ -168,7 +168,7 @@ Avoid showing it on first launch before a user has experienced your app. They ha
 
 ### Building the soft prompt
 
-The soft prompt is an [In-App Message](https://docs.median.co/docs/in-app-messages) configured in **OneSignal's dashboard using their HTML Composer**, or via API. You control the design, copy, and button actions entirely.
+The soft prompt is an [In-App Message](/docs/in-app-messages) configured in **OneSignal's dashboard using their HTML Composer**, or via API. You control the design, copy, and button actions entirely.
 
 <Frame caption="Example in-app message message in OneSignal portal">
   <img src="/images/docs/baae1b5-image.png" />
@@ -179,7 +179,7 @@ The soft prompt is an [In-App Message](https://docs.median.co/docs/in-app-messag
 - **"Allow" button** — triggers `median.onesignal.register()` to show the native permission prompt
 - **"Maybe later" button** — closes the in-app message without triggering the native prompt
 
-You can use OneSignal's trigger system to control exactly when the soft prompt appears, such as after a delay, on a specific page, or after a user action. See the [In-App Messages guide](https://docs.median.co/docs/in-app-messages) for the full trigger API reference.
+You can use OneSignal's trigger system to control exactly when the soft prompt appears, such as after a delay, on a specific page, or after a user action. See the [In-App Messages guide](/docs/in-app-messages) for the full trigger API reference.
 
 <Info>
   **Android note:**

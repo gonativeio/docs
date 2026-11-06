@@ -32,9 +32,9 @@ Display our demo page in your app to test during development [https://median.dev
 
 </Check>
 
-## Implementation Guide
+## Implementation guide
 
-### Google Firebase Project Setup
+### Google Firebase project setup
 
 If you do not have an active Google Firebase project, you may need to create a new project after signing into your [Google Firebase Account](https://firebase.google.com/docs/android/setup).
 
@@ -46,7 +46,7 @@ Once your project is setup you can start the integration by choosing either the 
 
 Android SetupiOS Setup
 
-### Register your app in Firebase
+### Register your Android app in Firebase
 
 Provide the Android Package Name (found in Median App Studio under Build & Deploy > App Identifiers). See [App Identifiers](https://median.readme.io/docs/app-identifiers).
 
@@ -56,7 +56,7 @@ Once registered, download `google-services.json` for the App Configuration step.
 
 ![Download the google-services.json configuration file](/images/docs/d53334aad2a9b9e48dc0a5f626170b2fefe0107fb535c3d7a541c6b9b1fbe21c-image.png)
 
-### Register your app in Firebase
+### Register your iOS app in Firebase
 
 Provide the Apple Bundle ID (found in App Studio under Build & Deploy > App Identifiers). See [App Identifiers](https://median.readme.io/docs/app-identifiers).
 
@@ -66,21 +66,21 @@ Once registered, download `GoogleService-Info.plist` for the App Configuration s
 
 ![Download the GoogleService-Info.plist configuration file](/images/docs/febb23bbeaa07a30a5006d3eb6c44c8f76acf440b7de2e46ff14d720ddf4e136-image.png)
 
-### Enable the Plugin
+### Enable the plugin
 
 1. **Google Services Configuration**: Upload GoogleService-Info.plist (iOS) and google-services.json (Android) in Build & Deploy > Google Services in App Studio. You can upload files from Firebase or copy and paste their contents.
 2. **Consent Configuration**: In Plugin Settings, set your default consent value: **Follow EU Consent Policy** (deny for users in regions subject to the EU User Consent Policy), **Deny** (deny consent), or **Allow** (grant consent).
 3. **Plugin Activation**: Enable the plugin in App Studio via Native Plugins > Google Firebase Analytics > Settings.
 
-#### Finalizing the App Build
+#### Finalizing the app build
 
 Once you upload the configuration files, save the changes and rebuild your app.
 
 ![Upload your GoogleService-Info.plist and google-services.json configurations](/images/docs/673adab78087bd5a5039f6da1ecab94c9b409bde8d0b665e064586218b4a35ff-analytics.gif)
 
-### JavaScript Bridge Functions
+### JavaScript Bridge functions
 
-#### Consent Management
+#### Consent management
 
 Configure consent for ad storage, analytics storage, ad user data, and ad personalization at runtime.
 
@@ -102,7 +102,7 @@ Configure consent for ad storage, analytics storage, ad user data, and ad person
 | -------------- | -------- | -------- | -------------------------------------------------------------------------------- |
 | Consent object | `object` | Yes      | Boolean keys: `adStorage`, `analyticsStorage`, `adUserData`, `adPersonalization` |
 
-#### Analytics Management
+#### Analytics management
 
 Enable or disable all event logging (including automatic app events). Logging is enabled by default. Effect is persistent; once disabled, re-enable by calling again with `true`.
 
@@ -119,7 +119,7 @@ Enable or disable all event logging (including automatic app events). Logging is
 | --------- | --------- | -------- | ----------------------------- |
 | `enabled` | `boolean` | Yes      | Wrapped in `{ enabled: ... }` |
 
-#### User Management
+#### User management
 
 Set a custom user ID (e.g. after login when the user is no longer anonymous).
 
@@ -136,7 +136,7 @@ Set a custom user ID (e.g. after login when the user is no longer anonymous).
 | --------- | -------- | -------- | ------------------------------ |
 | `ID`      | `string` | Yes      | Passed as `'ID'` on the object |
 
-#### Set User Property
+#### Set user property
 
 Associate additional properties with the user.
 
@@ -153,7 +153,7 @@ Associate additional properties with the user.
 | --------------- | -------- | -------- | ----------------------- |
 | `key` / `value` | `string` | Yes      | Property name and value |
 
-#### Event Logging
+#### Event logging
 
 Set default event parameters logged alongside other information for log event.
 
@@ -171,7 +171,7 @@ Set default event parameters logged alongside other information for log event.
 | --------- | -------- | -------- | --------------- |
 | `data`    | `object` | Yes      | Key-value pairs |
 
-#### Log Event
+#### Log event
 
 Log a custom event. The `data` object is flexible.
 
@@ -189,7 +189,7 @@ Log a custom event. The `data` object is flexible.
 | `event`   | `string` | Yes      | Event name              |
 | `data`    | `object` | No       | Arbitrary event payload |
 
-#### Log Screen
+#### Log screen
 
 Log a customized screen view event (in addition to default logging).
 
@@ -206,7 +206,7 @@ Log a customized screen view event (in addition to default logging).
 | --------- | -------- | -------- | ----------- |
 | `screen`  | `string` | Yes      | Screen name |
 
-### eCommerce Events
+### eCommerce events
 
 Firebase offers a special command set that is tailored for ecommerce integrations. You can learn more about the commands in the [Firebase Measure ecommerce documentation](https://firebase.google.com/docs/analytics/measure-ecommerce).
 
@@ -295,11 +295,11 @@ Log remove from cart events
   ```
 </CodeGroup>
 
-## Default Event Logging
+## Default event logging
 
 By default, Firebase Analytics automatically logs key events such as screen_view, session_start, first_open_time. For a complete list of automatic events, see [Google Analytics documentation](https://firebase.google.com/docs/reference/kotlin/com/google/firebase/analytics/FirebaseAnalytics.Event).
 
-## Testing Checklist
+## Testing checklist
 
 **Basic Functionality**
 

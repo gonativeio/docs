@@ -309,7 +309,7 @@ export const PublishingGuide = () => {
             <li style={{ marginBottom: "4px" }}>Enter the UDID manually.</li>
           </ul>
           For more information on how the iOS Testers feature works, reference this{" "}
-          <ExtLink href="https://docs.median.co/docs/registering-testing-devices">
+          <ExtLink href="/docs/registering-testing-devices">
             article
           </ExtLink>
           .
@@ -352,7 +352,7 @@ export const PublishingGuide = () => {
               , open your app's TestFlight tab, create an Internal Testing
               group and add testers. Each tester receives an email invite and installs
               the build with the TestFlight app on a physical iPhone. Full walkthrough:{" "}
-              <ExtLink href="https://docs.median.co/docs/upload-ios-to-testflight">
+              <ExtLink href="/docs/upload-ios-to-testflight">
                 Upload iOS to TestFlight
               </ExtLink>
               .
@@ -360,7 +360,7 @@ export const PublishingGuide = () => {
             <li style={{ marginBottom: "4px" }}>
               <strong style={{ color: "#111827" }}>Local Xcode build (optional):</strong> If you have a Mac and want
               to run or archive the app locally, follow{" "}
-              <ExtLink href="https://docs.median.co/docs/build-ios-from-source">
+              <ExtLink href="/docs/build-ios-from-source">
                 Build iOS from Source
               </ExtLink>
               .
@@ -416,12 +416,12 @@ export const PublishingGuide = () => {
         </span>,
         <span key="list2">
           For listing and screenshot requirements, see{" "}
-          <ExtLink href="https://docs.median.co/docs/apple-app-store">
+          <ExtLink href="/docs/apple-app-store">
             Apple App Store
           </ExtLink>
           . For name, subtitle, keywords, description, and screenshot best practices,
           see{" "}
-          <ExtLink href="https://docs.median.co/docs/app-marketing-growth">
+          <ExtLink href="/docs/app-marketing-growth">
             App Marketing &amp; Growth
           </ExtLink>
           .
@@ -635,7 +635,7 @@ export const PublishingGuide = () => {
       tip: (
         <span>
           For testing locally outside of Play Console, please reference{" "}
-          <ExtLink href="https://docs.median.co/docs/android-build-deployment">
+          <ExtLink href="/docs/android-build-deployment">
             Android Build &amp; Deployment
           </ExtLink>
           .

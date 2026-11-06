@@ -26,14 +26,14 @@ Display our demo page in your app to test during development [https://median.dev
 
 </Check>
 
-## Why Use Native Datastore
+## Why use native datastore
 
 - **User preference persistence**: Save settings like theme, language, and notification preferences that survive app restarts and webview cache clears without relying on cookies.
 - **Authentication state**: Store session tokens and login flags locally so users stay authenticated between app launches, with cloud storage restoring state after a reinstall.
 - **Cross-device settings sync**: Use cloud storage to carry user preferences across devices without building a sync backend. When a user reinstalls or switches devices, their settings are restored automatically.
 - **Offline-first apps**: Cache lightweight values like a user's account ID or last-known app state so the app can render meaningful content without a network connection.
 
-## Storage Backends
+## Storage backends
 
 | Storage Type  | Android                                    | iOS                     |
 | ------------- | ------------------------------------------ | ----------------------- |
@@ -44,7 +44,7 @@ Display our demo page in your app to test during development [https://median.dev
 
 **Cloud Storage** syncs data with the **user's cloud account**, making it accessible across multiple devices and app re-installations. Use Cloud Storage for settings that need to follow the user across devices.
 
-## Storage Limits
+## Storage limits
 
 | Platform    | App Storage  | Cloud Storage |
 | ----------- | ------------ | ------------- |
@@ -53,15 +53,15 @@ Display our demo page in your app to test during development [https://median.dev
 
 Android cloud storage uses BackupManager, which schedules sync operations asynchronously. A precise sync time cannot be guaranteed as the system triggers a backup at some point after your app requests one. See [Google's BackupManager documentation](https://developer.android.com/reference/android/app/backup/BackupManager) for details.
 
-## Implementation Guide
+## Implementation guide
 
-### App Storage
+### App storage
 
 This option utilizes Android's SharedPreferences and iOS's UserDefaults to store the local app settings on the user's device. You will provide a key-value pair to save the app settings. You will then use the key to retrieve or delete the corresponding value.
 
 **Note**: On Android the location of the App Storage (SharedPreferences) database file is `DATA/data/APP_PACKAGE_NAME/shared_prefs/user_preferences.xml`
 
-#### Set Command
+#### Set command (app storage)
 
 To save a value, use the following JavaScript Bridge command. To get status of this write operation, define a callback function in JavaScript and pass as `statuscallback` (Optional).
 
@@ -90,7 +90,7 @@ To save a value, use the following JavaScript Bridge command. To get status of t
 | `value`          | String   | Yes      | The value to persist                              |
 | `statuscallback` | Function | No       | Receives a result object with a `status` property |
 
-#### Get Command
+#### Get command (app storage)
 
 To retrieve the saved settings define a callback function and call the JavaScript Bridge command below, providing the KEY of the saved setting and the callback that was defined. The status of the read operation is included as a parameter in the result variable as shown below.
 
@@ -122,7 +122,7 @@ To retrieve the saved settings define a callback function and call the JavaScrip
 | `key`      | String   | Yes                  | The key to retrieve                        |
 | `callback` | Function | Yes (callback style) | Receives `result.data` and `result.status` |
 
-#### Delete
+#### Delete command (app storage)
 
 To delete a setting provide the KEY of the previously saved setting. The status of the delete operation can be accessed through the function passed as `statuscallback` (Optional).
 
@@ -143,7 +143,7 @@ To delete a setting provide the KEY of the previously saved setting. The status 
 ```
 </CodeGroup>
 
-#### Delete All
+#### Delete all (app storage)
 
 Removes all stored key-value pairs from device-local storage.
 
@@ -160,13 +160,13 @@ Removes all stored key-value pairs from device-local storage.
 ```
 </CodeGroup>
 
-### Cloud Storage
+### Cloud storage
 
 This option utilizes Android SharedPreferences combined with the native Android Backup Service and Apple Keychain Services to store the local app settings on a device. You will provide a key-value pair to save the app settings. You will use the key to retrieve or delete the settings.
 
 Note: On Android, the location of the Cloud Storage (SharedPreferences) database file is `DATA/data/APP_PACKAGE_NAME/shared_prefs/user_preferences_backup.xml`
 
-#### Set Command
+#### Set command (cloud storage)
 
 To save a value, use the following JavaScript Bridge command. To get status of this write operation, define a callback function in JavaScript (Optional).
 
@@ -188,7 +188,7 @@ To save a value, use the following JavaScript Bridge command. To get status of t
 ```
 </CodeGroup>
 
-#### Get Command
+#### Get command (cloud storage)
 
 To retrieve the saved settings define a callback function and call the JavaScript Bridge command below, providing the KEY of the saved setting and the callback that was defined. The status of the read operation is included as a parameter in the result variable as shown below.
 
@@ -227,7 +227,7 @@ median.storage.cloud
 
 > [Learn more about using promises and the Media JavaScript Bridge](https://median.co/docs/javascript-bridge#promises).
 
-#### Delete Command
+#### Delete command (cloud storage)
 
 To delete a setting provide the KEY of the previously saved setting. The status of the delete operation can be accessed through the function passed as `statuscallback` (Optional).
 
@@ -248,7 +248,7 @@ To delete a setting provide the KEY of the previously saved setting. The status 
 ```
 </CodeGroup>
 
-#### Delete All
+#### Delete all (cloud storage)
 
 Delete all saved settings from the device:
 
@@ -265,7 +265,7 @@ function statcb(result) {
 ```
 </CodeGroup>
 
-### Callback Status Reference
+### Callback status reference
 
 All write and delete operations return status via `statuscallback`; `get` returns status via `callback`. Check `result.status` in your callback to confirm success or handle errors.
 
@@ -277,7 +277,7 @@ All write and delete operations return status via `statuscallback`; `get` return
 | `delete-error`         | The delete operation failed                 |
 | `preference-not-found` | The requested key does not exist in storage |
 
-## Demo App
+## Demo app
 
 Try out the plugin on iOS and Android with our interactive demo apps.
 
@@ -286,16 +286,22 @@ Try out the plugin on iOS and Android with our interactive demo apps.
   androidEmbedCode="xu7hr5p7ooi5d33e3wht73jb4m"
 />
 
-## Frequently Asked Questions
+## Frequently asked questions
 
-### Native Datastore functions are undefined or not working
+<AccordionGroup>
+<Accordion title="Native Datastore functions are undefined or not working" id="native-datastore-functions-are-undefined-or-not-working">
 
 Ensure the JavaScript Bridge is enabled in Median App Studio and that your page has fully loaded before calling bridge functions. Verify that the plugin is enabled in your app configuration.
 
-### `get` returns preference-not-found even though a value was set
+</Accordion>
+<Accordion title="`get` returns preference-not-found even though a value was set" id="get-returns-preference-not-found-even-though-a-value-was-set">
 
 Confirm that the `key` used in `get` exactly matches the `key` used in `set`. Keys are case-sensitive. Also verify that the value was successfully stored by checking the status returned to your `statuscallback`.
 
-### Cloud storage does not sync to another device
+</Accordion>
+<Accordion title="Cloud storage does not sync to another device" id="cloud-storage-does-not-sync-to-another-device">
 
 On Android, BackupManager schedules sync operations asynchronously and the timing is system-determined and cannot be forced. On iOS, Keychain sync depends on the user's iCloud Keychain settings. Verify that iCloud Keychain is enabled on both devices.
+
+</Accordion>
+</AccordionGroup>

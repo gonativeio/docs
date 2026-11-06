@@ -10,7 +10,7 @@ import { MedianLogo } from "/snippets/median-logo.jsx";
 
 Mobile app permissions play a critical role in ensuring secure interaction between users and applications. They serve as a framework that enables apps to access specific features or data on a user's device, such as the camera, microphone, location, or contact list, and allow the user to retain complete control over their privacy and data security.
 
-By granting these permissions, users allow apps to deliver tailored functionalities and enhance their overall experience. Some [Native Plugins](https://docs.median.co/docs/native-plugins-overview) may require certain device permissions to fulfill their use case.
+By granting these permissions, users allow apps to deliver tailored functionalities and enhance their overall experience. Some [Native Plugins](/docs/native-plugins-overview) may require certain device permissions to fulfill their use case.
 
 Apple and Google encourage developers to request permission thoughtfully. If a user has declined, you can suggest they enable the permission through the app's settings menu and include a button that launches the app settings screen using the JavaScript Bridge.
 
@@ -21,7 +21,7 @@ Display our demo page in your app to test during development [permissions demo p
 
 </Check>
 
-## Related Documentation
+## Related documentation
 
 <CardGroup cols={2}>
   <Card
@@ -72,16 +72,16 @@ Display our demo page in your app to test during development [permissions demo p
   </Card>
 </CardGroup>
 
-## Permission Prompts
+## Permission prompts
 
 When requesting permissions from your users, they will be asked to provide their consent. Those prompts are native app components with very limited customization.
 
-- **iOS**: iOS allows a customizable usage description for permission prompts, enabling developers to explain how the requested data will be used. You can follow [Permission Prompt Localization](https://docs.median.co/docs/permission-prompt-localization) to localize the usage description.
+- **iOS**: iOS allows a customizable usage description for permission prompts, enabling developers to explain how the requested data will be used. You can follow [Permission Prompt Localization](/docs/permission-prompt-localization) to localize the usage description.
 - **Android**: Android permission prompts are served from the system and are translated to the device language. No additional customization is supported.
 
-## JavaScript Bridge Functions
+## JavaScript Bridge functions
 
-### Permissions Status
+### Permissions status
 
 Users can change the permissions granted to your app through their device settings. You can programmatically check the status of permissions using the Median JavaScript Bridge:
 
@@ -125,7 +125,7 @@ Status can be fetched for the following permission types:
 - `Camera`
 - `Notifications`
 
-### App Settings
+### App settings
 
 <Check>
 **Developer Demo**
@@ -150,9 +150,10 @@ You can also review app permissions on device following the official guides:
 - **iOS**: [Control access to information in apps on iPhone](https://support.apple.com/en-ca/guide/iphone/iph251e92810/ios)
 - **Android**: [Change app permissions on your Android phone](https://support.google.com/android/answer/9431959?hl=en)
 
-## Frequently Asked Questions
+## Frequently asked questions
 
-### Can I request Bluetooth Access?
+<AccordionGroup>
+<Accordion title="Can I request Bluetooth Access?" id="can-i-request-bluetooth-access">
 
 As of now Bluetooth is an experimental feature not supported by iOS WebKit or Android WebView.
 
@@ -161,3 +162,6 @@ You can track compatibility here: [MDN - Web Bluetooth API](https://developer.mo
 We support a range of Bluetooth devices such as payment terminals, printers, sensor devices, etc through vendor provided SDKs and custom native plugins that implement the iOS Core Bluetooth and Android Bluetooth functionality.
 
 We implemented custom Bluetooth integrations in our iBeacon and Master Lock plugins.
+
+</Accordion>
+</AccordionGroup>

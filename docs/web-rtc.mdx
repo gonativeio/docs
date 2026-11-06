@@ -7,11 +7,11 @@ searchable: true
 
 WebRTC (Web Real-Time Communication) is a widely used framework that enables real-time audio, video, and data communication in web applications. Your app may include voice calls, video conferencing, or peer-to-peer data sharing via WebRTC.
 
-## How WebRTC Permissions Work in WebView Apps
+## How WebRTC permissions work in WebView apps
 
 Similar to how permissions work in desktop and mobile browsers, your Median app will automatically request microphone and camera access when your embedded WebRTC application initiates media capture.
 
-### Supported WebRTC Permissions
+### Supported WebRTC permissions
 
 - **Microphone Access**: required for voice calls or audio streams
 - **Camera Access**: required for video calls or media recording
@@ -26,20 +26,20 @@ When a WebRTC session is triggered in your app, users will be prompted by the sy
 
 To customize the text shown in the iOS permission prompts, see [Permission Prompt Localization](/docs/permission-prompt-localization).
 
-## Developer Tips for WebRTC in Median Apps
+## Developer tips for WebRTC in Median apps
 
 - Ensure your web app is served over **HTTPS**, as WebRTC permissions are restricted on insecure origins.
 - Use `navigator.mediaDevices.getUserMedia()` to trigger permission requests. Median's WebView will detect these calls and invoke the native permission dialog.
 - Always include graceful fallbacks and error handling in case users deny access to camera or microphone.
 
-## Test WebRTC Functionality
+## Test WebRTC functionality
 
 You can test WebRTC features in your Median app using official tools and demos:
 
 - [WebRTC Official Documentation <Icon icon="arrow-up-right-from-square" size={12} />](https://webrtc.org/)
 - [WebRTC Sample Applications <Icon icon="arrow-up-right-from-square" size={12} />](https://webrtc.github.io/samples/)
 
-### Testing Audio & Microphone in the Embedded Simulator
+### Testing audio & microphone in the embedded simulator
 
 Median's embedded App Studio simulator has limited audio support:
 

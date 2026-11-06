@@ -20,15 +20,15 @@ Display our demo page in your app to test during development [https://median.dev
 
 </Check>
 
-## Implementation Guide
+## Implementation guide
 
-### iOS App Store Configuration
+### iOS App Store configuration
 
 For the Apple App Store you will need to configure the plugin with your App Store ID, the numerical component in your app store listing URL idXXXXXXX.
 
 For example, the App Store ID for the YouTube app is **544007664** given the URL is [https://apps.apple.com/us/app/youtube-watch-listen-stream/id544007664](https://apps.apple.com/us/app/youtube-watch-listen-stream/id544007664)
 
-### JavaScript Bridge Command
+### JavaScript Bridge command
 
 Once the plugin is installed, trigger the in-app review modal using the following command via the Median JavaScript Bridge:
 
@@ -41,15 +41,15 @@ Once the plugin is installed, trigger the in-app review modal using the followin
 
 `callback` is an optional function to run once the app review modal has been closed.
 
-## Platform-Specific Display Considerations
+## Platform-specific display considerations
 
-### iOS: App Store Review Prompt Limitations
+### iOS: App Store review prompt limitations
 
 Apple controls when the review prompt is displayed to avoid spamming users. Even if your code requests a prompt, it may not appear in production. During development, prompts always display for testing, but they will not display when using TestFlight builds.
 
 **Testing Guide for In-App Reviews**: [Apple's Documentation](<https://developer.apple.com/documentation/storekit/appstore/requestreview(in:)-1q8qs/>)
 
-### Android: Google Play Review Quota
+### Android: Google Play review quota
 
 Google Play enforces a rate-limiting quota on in-app review prompts, restricting how often a user sees them. This quota is time-based and may change over time. Please reference the official Google guidelines below as they may change over time.
 

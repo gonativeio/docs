@@ -28,7 +28,7 @@ Use **Automatic** initialization unless you need to control exactly when Adjust 
 - [ ] **Adjust app token** — In the [Adjust dashboard](https://www.adjust.com/), open **AppView → All apps**, select your app, then go to **App information** and scroll to **App details**. Your **app token** is listed there with your app name and reporting currency. Adjust assigns this token when you add the app; you paste it into the Adjust plugin in Median App Studio. Official steps: [Get app token and choose reporting currency](https://help.adjust.com/en/article/app-token-and-reporting-currency) (Adjust Help Center).
 - [ ] Set the Adjust **environment** to **production** before publishing (see [Understanding the Adjust environment](#understanding-the-adjust-environment)).
 
-## Integration Guide
+## Integration guide
 
 ### Understanding the Adjust environment
 
@@ -55,9 +55,9 @@ The Adjust SDK runs in either a **non-production** (testing) or **production** (
 - Event tokens are created in the Adjust dashboard, not in the Median App Studio.
 </Info>
 
-### Plugin Setup
+### Plugin setup
 
-#### Enable the Plugin
+#### Enable the plugin
 
 1. **Navigate to Native Plugins**: In your Median dashboard, open your app in App Studio and go to the Native Plugins section.
 2. **Enable Adjust**: Select Adjust from your list of purchased plugins and enable it.
@@ -76,7 +76,7 @@ Configure the Adjust native plugin in **App Studio → Native Plugins → Adjust
 
 **JavaScript mapping:** `median.adjust.initialize(true | false)` applies when **Initialization** is **Manual** (call it to start the SDK). The optional boolean reflects **StoreKit Ad Network Attribution** on iOS. `median.adjust.trackEvent` and `median.adjust.attributionInfo` require a successfully configured SDK (**App Token** and **Environment**); see notes under each function below.
 
-#### Configuration Options
+#### Configuration options
 
 Use **Automatic** initialization unless you need to control exactly when Adjust starts (for example after consent or login). If you choose **Manual**, call `median.adjust.initialize(...)` before other Adjust bridge calls.
 
@@ -104,11 +104,11 @@ median.adjust.initialize(true | false);
 
 Use this only when **Initialization** is **Manual** in App Studio. If **Initialization** is **Automatic**, the SDK starts without this call.
 
-### Sending Events to Adjust
+### Sending events to Adjust
 
 Send a custom event to Adjust. Events can include revenue data and additional metadata as configured in the Adjust dashboard.
 
-#### Example: Track a Revenue Event
+#### Example: Track a revenue event
 
 <MedianLogo />
 <CodeGroup>
@@ -130,7 +130,7 @@ median.adjust.trackEvent(adjustEvent);
 
 **Median settings:** **App Token** (required in App Studio so the SDK is bound to your Adjust app). **Environment** (Development vs Production) determines how traffic is classified. Event tokens are defined in Adjust, not in Median.
 
-### Retrieving Attribution Data
+### Retrieving attribution data
 
 Retrieve attribution data for users who installed the app through an Adjust-tracked campaign or deep link.
 
@@ -144,29 +144,29 @@ Retrieve attribution data for users who installed the app through an Adjust-trac
 
 **Return value:** Attribution information stored by Adjust for the current user/install.
 
-## Testing Checklist
+## Testing checklist
 
 Use this checklist to confirm Adjust is working in your app:
 
-### Basic Functionality
+### Basic functionality
 
 - [ ] **App Token** is set in App Studio (from Adjust **AppView →** your app **→ App information → App details**)
 - [ ] Plugin is enabled in **Native Plugins** and **Initialization** (automatic or manual) matches how you start the SDK in code
 - [ ] If using manual initialization, `median.adjust.initialize(true | false)` is called after the app and bridge are ready; SKAN boolean aligns with **StoreKit Ad Network Attribution** on iOS
 - [ ] **Environment** is set to **Production** before publishing
 
-### Platform Testing
+### Platform testing
 
 - [ ] `median.adjust.trackEvent(adjustEvent)` runs without errors with a valid Adjust event token
 - [ ] Revenue events use the correct event token, amount, and currency code
 - [ ] Events appear in the Adjust dashboard for the correct app
 
-### Configuration Testing
+### Configuration testing
 
 - [ ] **App Token** and **Environment** match your Adjust app and release stage
 - [ ] **Initialization** choice (automatic vs manual) matches your code paths
 
-### User Experience
+### User experience
 
 - [ ] `median.adjust.attributionInfo()` behavior matches expectations for organic vs campaign installs
 - [ ] Plugin does not interfere with app navigation or core web flows

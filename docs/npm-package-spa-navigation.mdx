@@ -15,11 +15,11 @@ Median's NPM package provides functionality to implement the same "soft" page lo
 - Deep link app resume (e.g., opening a [deep link](/docs/deep-linking) from an email/SMS that launches your app from the background).
 - Push notification app resume (e.g., tapping a notification banner with an embedded [URL that opens in the app](/docs/onesignal-notifications#deep-linking-to-a-specific-page) from the background).
 
-## JavaScript Navigation Listener
+## JavaScript navigation listener
 
 To maintain a responsive user experience in your native app, you can use the `jsNavigation` listener from the Median JavaScript Bridge. This listener ensures that navigation triggered by the native app is handled efficiently using soft loads, avoiding unnecessary hard page loads.
 
-### Example: Implementing the jsNavigation Listener
+### Example: Implementing the jsNavigation listener
 
 <MedianLogo />
 <CodeGroup>
@@ -36,7 +36,7 @@ To maintain a responsive user experience in your native app, you can use the `js
 
 By adding this listener, your SPA will handle navigation events using your existing routing library. This prevents a full-page reload, optimizing performance and providing users with a smooth experience.
 
-### Example SPA Navigation Flow
+### Example SPA navigation flow
 
 1. **Open Deep Link**: The app is closed, and the user clicks a deep link in an email (e.g., `https://median.app/abc/123`).
 2. **Cold Start App Launch**: The app launches from a cold start, loads the deep link URL directly, and the SPA is loaded as part of this initial hard page load.

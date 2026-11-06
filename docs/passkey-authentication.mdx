@@ -18,13 +18,13 @@ You can explore a sample implementation on the [Passkey demo page](https://media
 
 </Check>
 
-## Key Features
+## Key features
 
 - **Boost security and stop phishing:** Passkeys are cryptographically secure and tied directly to your website. This technology makes it virtually impossible for users to be phished, as there's no password to steal.
 - **Improve user conversion:** Remove the friction of forgotten passwords. Users can log in instantly with their face or fingerprint, leading to a smoother, faster experience that reduces drop-off.
 - **Leverage native device power:** The plugin connects your web content directly to the device's secure hardware (like the Secure Enclave or Android Keystore).
 
-### How It Works
+### How it works
 
 At a high level, passkey authentication replaces traditional passwords. The user's device creates and stores a unique cryptographic key. This key is split into two parts: a **private key** that _never_ leaves the user's device and a **public key** that is sent to your server.
 
@@ -36,7 +36,7 @@ At a high level, passkey authentication replaces traditional passwords. The user
 
 Median bridges the gap between your web-based login flow and the native biometric hardware, making this high-security feature possible in your app.
 
-### Use Cases
+### Use cases
 
 - **Secure e-commerce checkouts:** Allow customers to authenticate quickly to complete a purchase or access their order history.
 - **HIPAA/Financial app logins:** Provide a compliant and highly secure login method for users accessing sensitive health or financial data.
@@ -46,16 +46,16 @@ Median bridges the gap between your web-based login flow and the native biometri
 
 Follow these steps to integrate native passkey (WebAuthn) authentication into your Median app.
 
-## Before You Start
+## Before you start
 
 - **Median App Studio access:** You need access to your app build configuration on the Median platform to add the plugin.
 - **A WebAuthn-compliant server:** You must have a backend (Relying Party) capable of generating and verifying FIDO2/WebAuthn registration challenges and login assertions.
 - **Associated Domains / Asset Links:** You must have Apple Associated Domains (for iOS) and Android Digital Asset Links (for Android) configured for your website. This is a non-negotiable security requirement from Apple and Google for passkeys to function.
 - You have implemented `/passkey/register` and `/passkey/login` endpoints to handle challenge generation and verification.
 
-### Android Setup
+### Android setup
 
-#### 1. Add the Digital Certificate
+#### 1. Add the digital certificate
 
 Host a file at `/.well-known/assetlinks.json` publicly on your website. This file must contain your digital certificate information and include the permission `delegate_permission/common.get_login_creds`.
 
@@ -67,7 +67,7 @@ This file allows Android devices to associate your domain with your app during p
 
 For non-public development environments, you can publicly expose AASA and Asset Links files by using a whitelist reverse proxy, a public static bucket/CDN, an API gateway, an edge worker, or a dedicated micro-site while keeping the rest of the environment private. An example can be found in our blog [How to serve AASA and Digital Asset Links files with Cloudflare Workers](https://median.co/blog/how-to-serve-aasa-and-digital-asset-links-files-with-cloudflare-workers)
 
-#### 2. Configure the Expected Origin
+#### 2. Configure the expected origin
 
 Your server must verify the origin of each WebAuthn request (registration or authentication). On Android, the origin format is different from standard web origins and includes your app's signing certificate fingerprint.
 
@@ -88,7 +88,7 @@ openssl base64 | \
 tr '+/' '-_' | tr -d '='
 ```
 
-#### 3. Configure Authenticator Selection
+#### 3. Configure authenticator selection
 
 When creating WebAuthn registration options for passkey enrollment, you must include both the legacy `requireResidentKey` field and the modern `residentKey` field in your `authenticatorSelection` object.
 
@@ -111,7 +111,7 @@ This field determines whether the passkey is stored on the device:
 - **true** - The passkey is saved on the device (discoverable credential). Users can authenticate without entering their username.
 - **false** - The passkey is not saved on the device. Only your server stores the credential reference, and users must provide their username to authenticate.
 
-#### 4. Configure Median App Studio Plugin
+#### 4. Configure Median App Studio plugin
 
 After completing the website configuration steps above, configure the WebAuthn plugin in Median App Studio:
 
@@ -127,15 +127,15 @@ After completing the website configuration steps above, configure the WebAuthn p
   <img src="/images/docs/4ef7604b4a80b14f79da7dfab5241f3baa4ee6465d65f8a8060613070c2d1017-Screenshot_2026-02-05_at_10.47.42.png" />
 </Frame>
 
-### iOS Setup
+### iOS setup
 
 On iOS the native plugin is not required, but the Apple App Site Association (AASA) file needs to be configured and hosted.
 
-#### 1. Extend your the Apple App Site Association (AASA)
+#### 1. Extend your Apple app site association (AASA)
 
 For iOS, you must host an `apple-app-site-association`file that includes a `webcredentials` object. This file tells iOS that your app is authorized to handle credentials and authentication for your domain.
 
-You can follow the steps in [iOS Universal Links Configuration](https://docs.median.co/docs/deep-linking#ios-universal-links-configuration) to obtain your AASA. Once you obtained your AASA you will need to add a webcredentials object as defined below.
+You can follow the steps in [iOS Universal Links Configuration](/docs/deep-linking#ios-universal-links-configuration) to obtain your AASA. Once you obtained your AASA you will need to add a webcredentials object as defined below.
 
 **Example AASA**
 

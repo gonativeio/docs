@@ -5,17 +5,17 @@ keywords: ["Android App Bundle", "AAB", "APK", "Google Play App Signing", "signi
 searchable: true
 ---
 
-## APKs vs. Android App Bundles
+## APKs vs. Android app bundles
 
-### APK Overview
+### APK overview
 
 The Android Package Kit (APK) is the traditional format for Android app distribution. APKs are ideal for testing as they can be downloaded and installed directly on devices. However, they include all assets for every device, which leads to larger app sizes.
 
-### Android App Bundle (AAB) Overview
+### Android App Bundle (AAB) overview
 
 To optimize app size, Google introduced Dynamic Delivery, which allows Google Play to generate device-specific APKs. To use Dynamic Delivery, developers must upload apps as Android App Bundles (AABs). These bundles are only used by Google Play and cannot be installed directly on devices.
 
-## Developer Signing vs Google Play App Signing
+## Developer signing vs Google Play app signing
 
 Android devices install apps packaged as APKs. APKs are signed by a release key to protect against unauthorized changes. When an app is updated, the device verifies that the new APK is signed by the same release key as the currently installed APK.
 
@@ -39,7 +39,7 @@ To summarize:
 | No reduction in download size via dynamic delivery    | Supports dynamic delivery  |
 | Supports developer or Google signing                  | Google signing only        |
 
-### Developer vs Google Play Signing
+### Developer vs Google Play signing
 
 | Developer Signing                 | Google Play App Signing                              |
 | --------------------------------- | ---------------------------------------------------- |
@@ -47,7 +47,7 @@ To summarize:
 | Developer manages release key     | Google manages release key, developer has upload key |
 | Lost release key requires new app | Lost upload key can be reset                         |
 
-## Transitioning to Google Play Signing
+## Transitioning to Google Play signing
 
 Note that you may have opted into Google signing when initially creating your app on Google Play. If so, you can immediately start using Android App Bundles.
 

@@ -49,7 +49,7 @@ Use this section as a fast navigation map into the full setup and implementation
 - For **Firebase Cloud Messaging (Android)**: FCM **service account key (HTTP v1)** (generate a new private key under **Project settings → Service accounts** in the Firebase console)
 - For Android push: `google-services.json` uploaded in Median App Studio (**Build & Deploy**), and the FCM service account key (HTTP v1) configured in the Sendbird dashboard (see setup steps below)
 
-### Key Concepts
+### Key concepts
 
 The following terms will help you implement Sendbird effectively:
 
@@ -68,13 +68,13 @@ The following terms will help you implement Sendbird effectively:
   - Android FCM requires `google-services.json` in the app **and** FCM configuration in the Sendbird dashboard (including the FCM service account key (HTTP v1)).
 </Info>
 
-## Integration Guide
+## Integration guide
 
-### Plugin Platform Setup
+### Plugin platform setup
 
 Configure Sendbird and push outside Median.co before or in parallel with the App Studio settings.
 
-#### Retrieve Your Sendbird Application ID
+#### Retrieve your Sendbird application ID
 
 Sendbird’s SDK requires the **Application ID** of your Sendbird application to initialize. You can find it in the dashboard of your Sendbird application.
 
@@ -100,7 +100,7 @@ To deliver Sendbird push notifications to an app, you need the following credent
 
 Please reach out to Median support for help with finding these values.
 
-#### Sendbird dashboard - Enable push and add credentials
+#### Sendbird dashboard: Enable push and add credentials
 
 In the dashboard of your Sendbird app:
 
@@ -112,9 +112,9 @@ In the dashboard of your Sendbird app:
   <img src="/images/docs/6f38aed3d9dd08ec859009e072fe1ca8a4577d7e51289efc34dae67b4be34e6f-Screenshot_2026-03-13_at_2.41.34_PM.png" alt="Sendbird Settings, Chat, Push notifications page with push turned on and Add credential buttons for APNs and FCM highlighted" />
 </Frame>
 
-### Median App Studio Configuration
+### Median App Studio configuration
 
-#### Enable the Plugin
+#### Enable the plugin
 
 1. In **App Studio**, open the **Native Plugins** tab and enable the **Sendbird** plugin.
 
@@ -122,7 +122,7 @@ In the dashboard of your Sendbird app:
   <img src="/images/docs/ee1bf8fd2155fe5ee7df642c17c613d067fc4721e41d53bebbdc7e84091b1834-Screenshot_2026-03-13_at_2.43.32_PM.png" alt="App Studio Native Plugins page with the Sendbird plugin enabled" />
 </Frame>
 
-#### Configuration Options
+#### Configuration options
 
 For advanced configuration, add the parameters below to the **Advanced Configuration** field (optional):
 
@@ -145,7 +145,7 @@ For advanced configuration, add the parameters below to the **Advanced Configura
 | **`autoRegister`** | `true` or `false` — if `true`, push permission is requested automatically. |
 | **`appId`** | Optional string — if defined, the Sendbird SDK is initialized automatically. |
 
-#### Android — `google-services.json`
+#### Android: `google-services.json`
 
 Firebase Cloud Messaging (FCM) requires embedding a `google-services.json` file in the app to send Android push notifications. Upload this file in the **Build & Deploy** tab of App Studio.
 
@@ -155,7 +155,7 @@ Firebase Cloud Messaging (FCM) requires embedding a `google-services.json` file 
 
 Push notifications must also be configured in your **Sendbird** dashboard by adding the FCM service account key (HTTP v1). Refer to the Sendbird push setup steps above.
 
-### Website Configuration (JavaScript Bridge)
+### Website configuration (JavaScript Bridge)
 
 Unless noted, you may provide a **callback** or use the **promise** returned by the call.
 
@@ -175,7 +175,7 @@ median.sendbird.initialize(STRING);
 
 **Parameters:** `appId` (string) — Sendbird Application ID.
 
-#### Verify SDK Initialization
+#### Verify SDK initialization
 
 <MedianLogo />
 
@@ -196,7 +196,7 @@ median.sendbird.isInitialized({callback: function})
 
 </CodeGroup>
 
-#### Request Push Notification Permission
+#### Request push notification permission
 Request push notification permission. On iOS and Android 13+, a system dialog is shown. On Android 12 and below, permission is granted without user input.
 
 <MedianLogo />
@@ -214,7 +214,7 @@ median.sendbird.promptNotification({'callback': function})
 
 </CodeGroup>
 
-#### Check Push Notification Permission Status
+#### Check push notification permission status
 Check whether push notification permission has been granted or denied.
 
 <MedianLogo />
@@ -232,7 +232,7 @@ median.sendbird.notificationEnabled({'callback':  function})
 
 </CodeGroup>
 
-#### Login/Register Users
+#### Sign in or register users
 Log in a user on the Sendbird application using `userId`. If the user is not logged out, they stay logged in on future app starts. If `userId` does not exist, a new user is registered.
 
 <MedianLogo />
@@ -247,7 +247,7 @@ median.sendbird.setUserId("USER_ID");
 
 **Parameters:** `userId` (string).
 
-#### Get User ID
+#### Get user ID
 Returns the `userId` of the logged-in user.
 
 <MedianLogo />
@@ -264,7 +264,7 @@ median.sendbird.getUserId({callback:  function})
 
 </CodeGroup>
 
-#### Check User Connection
+#### Check user connection
 Check whether the user is connected to the SendBird server after logging in.
 
 <MedianLogo />
@@ -281,7 +281,7 @@ median.sendbird.isConnected({callback:  function})
 
 </CodeGroup>
 
-#### Update User Profile
+#### Update user profile
 Update the nickname and profile image URL of the logged-in user.
 
 <MedianLogo />
@@ -304,7 +304,7 @@ median.sendbird.updateUserInfo({
 
 **Parameters:** `nickname` (optional string), `profileImageUrl` (optional string), `callback` (function).
 
-#### Logout User
+#### Sign out a user
 Log out the current user: disconnects from Sendbird, removes user details from the app, and unregisters push notifications.
 
 <MedianLogo />
@@ -322,7 +322,7 @@ median.sendbird.logout({callback:  function})
 
 </CodeGroup>
 
-#### Disconnect User Session
+#### Disconnect user session
 Disconnect the current session. The user remains logged in and details stay saved; the app continues to receive push notifications.
 
 <MedianLogo />
@@ -340,7 +340,7 @@ median.sendbird.disconnect({callback:  function})
 
 </CodeGroup>
 
-#### Create Group Channel
+#### Create group channel
 Creates a group channel. Returns success and the channel URL.
 
 <MedianLogo />
@@ -377,7 +377,7 @@ median.sendbird.createGroupChannel({
 | `customType` | Optional; for grouping channel types. |
 | `callback` | Optional if using promises. |
 
-#### Show Channels UI
+#### Show channels UI
 Displays Sendbird’s messaging UI with the user’s group channels. Users can enter channels, create channels, and leave the UI.
 
 <MedianLogo />
@@ -394,7 +394,7 @@ median.sendbird.showUI();
   <img src="/images/docs/aa2cf1bef7fce2e81593df7719056f0b74cdd8625efab8e8c3ba98a27fbba76e-Screenshot_2026-03-19_at_5.07.46_PM.png" alt="Sendbird channel list UI open in the app simulator" />
 </Frame>
 
-#### Show Channels UI and Enter Channel
+#### Show channels UI and enter channel
 Opens Sendbird’s UI and enters a channel by URL.
 
 <MedianLogo />
@@ -431,14 +431,14 @@ function median_sendbird_uiclosed() {
 
 Use this checklist to ensure Sendbird is working correctly in your app:
 
-### Basic Functionality
+### Basic functionality
 
 - [ ] Sendbird plugin is enabled in Median App Studio and a new build has been generated
 - [ ] `median.sendbird.initialize(appId)` completes and `isInitialized` returns `initialized: true` with the expected `appId`
 - [ ] `setUserId` logs in (or registers) the expected user; `getUserId` returns the same id
 - [ ] `showUI` opens Sendbird’s channel list UI without JavaScript errors
 
-### Push and Permissions
+### Push and permissions
 
 - [ ] `promptNotification` shows a permission dialog on iOS and Android 13+ where applicable
 - [ ] `notificationEnabled` reflects the system permission state after the user responds
@@ -451,7 +451,7 @@ Use this checklist to ensure Sendbird is working correctly in your app:
 - [ ] `showChannelUI` opens the intended channel using that `channelUrl`
 - [ ] Closing the Sendbird UI triggers `median_sendbird_uiclosed` when defined
 
-### Session Behavior
+### Session behavior
 
 - [ ] `isConnected` reflects connection after login
 - [ ] `logout` clears the session and unregister behavior matches expectations

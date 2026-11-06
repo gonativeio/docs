@@ -14,7 +14,7 @@ Instead of relying on a webview-based auth flow, the plugin presents Clerk's nat
 The plugin retrieves JWT session tokens for authenticating API requests and supports checking authentication status at any time, so your web app always has access to a fresh token without managing the Clerk SDK directly.
 
 <Check>
-  ### **Developer Demo**
+  **Developer Demo**
 
 Display our demo page in your app to test during development: [https://median.dev/clerk/](https://median.dev/clerk/)
 
@@ -34,13 +34,13 @@ Display our demo page in your app to test during development: [https://median.de
 - The Clerk plugin enabled in Median App Studio with the publishable key configured under Advanced Mode
 - Basic understanding of JWT authentication if you plan to use the session token for API requests
 
-## Implementation Guide
+## Implementation guide
 
-### Clerk Setup
+### Clerk setup
 
 Create a Clerk application in the [Clerk Dashboard](https://dashboard.clerk.com/sign-in) and obtain your **Publishable Key** (starts with `pk_test_` or `pk_live_`).
 
-### App Configuration
+### App configuration
 
 In the Native Plugins tab of the App Studio, enter your **Publishable Key**:
 
@@ -55,9 +55,9 @@ On iOS and Android, the Clerk SDK is automatically initialized at app startup us
 
 </Info>
 
-### JavaScript bridge functions
+### JavaScript Bridge functions
 
-#### Present Sign-In
+#### Present sign-in
 
 Presents Clerk's native sign-in UI. The interface supports both sign-in and sign-up flows. Once the user completes or dismisses the flow, the result returns the current authentication state. For this function, provide a callback function or otherwise, a promise is returned.
 
@@ -74,7 +74,7 @@ hasValidToken: true | false,
 token: "eyJ..." // present when hasValidToken is true
 }
 
-````
+```
 </CodeGroup>
 
 <MedianLogo />
@@ -89,11 +89,11 @@ median.clerk.presentSignIn({
     }
   }
 });
-````
+```
 
 </CodeGroup>
 
-#### Sign Out
+#### Sign out
 
 Signs the current user out and invalidates their Clerk session. For this function, a promise is returned.
 
@@ -111,10 +111,10 @@ message: "..."
 }
 }
 
-````
+```
 </CodeGroup>
 
-#### Get Auth Status
+#### Get auth status
 
 Retrieves the current authentication status, including the session token and user ID. Use this to check whether a user is still signed in or to obtain a fresh JWT token for API requests. For this function, a promise is returned.
 
@@ -130,7 +130,7 @@ const result = await median.clerk.getAuthStatus();
   hasValidToken: true | false,
   token: "eyJ..."                   // present when hasValidToken is true
 }
-````
+```
 
 </CodeGroup>
 
@@ -147,14 +147,14 @@ const result = await median.clerk.getAuthStatus();
   ```
 </CodeGroup>
 
-#### Error Codes
+#### Error codes
 
 | Code              | Description                                        |
 | ----------------- | -------------------------------------------------- |
 | `NOT_INITIALIZED` | Clerk SDK has not been initialized.                |
 | `SDK_ERROR`       | An unexpected error occurred within the Clerk SDK. |
 
-## Testing Checklist
+## Testing checklist
 
 Use this checklist to ensure Clerk is working correctly in your app:
 
@@ -169,7 +169,7 @@ Use this checklist to ensure Clerk is working correctly in your app:
 
 ## Troubleshooting
 
-### median.clerk functions are undefined or not working
+### `median.clerk` functions are undefined or not working
 
 Ensure the JavaScript Bridge is enabled in Median App Studio and that the Clerk native plugin is enabled and configured. On iOS, verify that `median.clerk.initialize()` is called before any other method and that the call returns `success: true`.
 

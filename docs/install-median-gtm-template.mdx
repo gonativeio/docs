@@ -9,7 +9,7 @@ Use Median's GTM Tag template to execute JavaScript Bridge commands directly fro
 
 ## Prerequisites
 
-1. A Median app using the [JavaScript Bridge NPM package](https://docs.median.co/docs/npm-package#app-configuration)
+1. A Median app using the [JavaScript Bridge NPM package](/docs/npm-package#app-configuration)
    1. [Create one here](https://median.co/app) if needed
 
 2. A GTM container ID. To create one:
@@ -18,7 +18,7 @@ Use Median's GTM Tag template to execute JavaScript Bridge commands directly fro
       1. Make sure you select **Web** for the container platform
    2. Copy your container ID
 
-### Key Concepts
+### Key concepts
 
 * **GTM Container ID**: Identifies your Google Tag Manager instance (Web Container). You can find it in the top-right area of your GTM container workspace.
 
@@ -28,7 +28,7 @@ Use Median's GTM Tag template to execute JavaScript Bridge commands directly fro
 
 * **GTM Trigger**: Rules that determine when a GTM tag is executed, such as a page view or button click.
 
-## Implementation Guide
+## Implementation guide
 
 ### Install your GTM container
 
@@ -64,7 +64,7 @@ Use Median's GTM Tag template to execute JavaScript Bridge commands directly fro
   <img src="/images/docs/a85816119d1d2f672c80f1fcc3c4c8f2d3aad3c066dde9e942506845df8ce304-image.png" />
 </Frame>
 
-### Import Median's Tag template in GTM
+### Import Median's tag template in GTM
 
 1. Download the template's `.tpl` file from [this GitHub repository](https://github.com/gonativeio/gtm-median-template/blob/main/template.tpl)
 
@@ -76,7 +76,7 @@ Use Median's GTM Tag template to execute JavaScript Bridge commands directly fro
   <img src="/images/docs/369d480bdd7511e147a1693d272b81fb580a9481c4ccb9cdfee3b187665e2585-image.png" />
 </Frame>
 
-c. Click the three-dot menu icon in the top right corner of the screen d. Click **Import** and upload the `.tpl` file e. (Optional) Add a bridge version and `userAgentValue` in the template's fields. See the [configuration fields](https://docs.median.co/docs/google-tag-manager#configuration-fields-optional) on the [Google Tag Manager](https://docs.median.co/docs/google-tag-manager) page for more information.
+c. Click the three-dot menu icon in the top right corner of the screen d. Click **Import** and upload the `.tpl` file e. (Optional) Add a bridge version and `userAgentValue` in the template's fields. See the [configuration fields](/docs/google-tag-manager#configuration-fields-optional) on the [Google Tag Manager](/docs/google-tag-manager) page for more information.
 
 <Frame caption="GTM Workspace- Import Template">
   <img src="/images/docs/8a80d591da7aaa5337ae2374606cc6d59010556bb2a1e39cf61e225b8e4da8f8-image.png" />
@@ -100,13 +100,13 @@ You can create additional tags and triggers to call Bridge commands. For example
 * [GTM Variables](https://support.google.com/tagmanager/answer/7683056?hl=en-US)
 * [Preview and Debug](https://support.google.com/tagmanager/answer/6107056?hl=en-US)
 
-## Setup Checklist
+## Setup checklist
 
 Use this checklist to ensure GTM is working correctly:
 
 **Basic setup**
 
-* [ ] The app is using the [JavaScript Bridge NPM package](https://docs.median.co/docs/npm-package#app-configuration)
+* [ ] The app is using the [JavaScript Bridge NPM package](/docs/npm-package#app-configuration)
 * [ ] The custom JavaScript snippet is pasted in the App Studio > Web Overrides with the correct GTM container ID
 * [ ] A new app build has been generated in the App Studio
 * [ ] Median's `.tpl` Tag template is successfully imported into the GTM workspace
@@ -129,7 +129,7 @@ Use this checklist to ensure GTM is working correctly:
 
 ## Troubleshooting
 
-### GTM Tags are not firing
+### GTM tags are not firing
 
 Verify that you replaced `ENTER-GTM-ID-HERE` with your actual GTM Container ID in the Custom JavaScript snippet under **Web Overrides**. Use [GTM's Preview mode](https://support.google.com/tagmanager/answer/6107056?hl=en-US) to ensure your triggers are configured correctly and firing on the expected events.
 

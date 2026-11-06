@@ -13,9 +13,9 @@ If your app collects data for advertising, analytics, or third-party services, y
 
 Fortunately, Median makes it easy for you to configure your app to utilize Apple's AppTrackingTransparency Framework to remain compliant.
 
-## Implementation Guide
+## Implementation guide
 
-### Enable ATT in Your App Configuration
+### Enable ATT in your app configuration
 
 - Open the Permissions tab in the App Studio.
 
@@ -31,7 +31,7 @@ You may provide your own description to explain why tracking is used, or use the
   <img src="/images/docs/21bece73783e8b29dd2fca2cdd95eac07ef9502b452337db9040dc7106b8d320-Screenshot_2025-07-04_at_11.49.56.png" />
 </Frame>
 
-### Prompt for User Consent at Runtime (Manual Method)
+### Prompt for user consent at runtime (manual method)
 
 If you prefer to trigger the ATT prompt at a specific moment in your app (e.g., after onboarding or before accessing personalized content), use the following JavaScript function:
 
@@ -54,7 +54,7 @@ If you prefer to trigger the ATT prompt at a specific moment in your app (e.g., 
 
 The `result` object will be `{ granted: true|false }` based on the user's response to the consent prompt. For iOS 14.4 and lower, `result` object will always be `{ granted: true}`
 
-### Check ATT Consent Status
+### Check ATT consent status
 
 You can check whether the user has already responded to the ATT prompt using the following function:
 
@@ -74,7 +74,7 @@ The `result` object will be `{ granted: true|false }` based on the user's respon
 
 This is useful for conditional logic. For example, adjusting third-party SDK behavior or disabling analytics for non-consenting users.
 
-## Additional Resources
+## Additional resources
 
 - 📘 [Apple’s AppTrackingTransparency Framework Documentation](https://developer.apple.com/documentation/apptrackingtransparency)
 - 📖 [Median Blog: What Is App Tracking Transparency for iOS?](https://median.co/blog/what-is-app-tracking-transparency-for-ios)

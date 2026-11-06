@@ -54,15 +54,15 @@ MoEngage is essential for apps that need to:
 - Deep linking must be configured separately in Median App Studio for in-app notification routing to work.
 </Info>
 
-## Integration Guide
+## Integration guide
 
 ### Enable the plugin
 
 Median uses MoEngage native iOS and Android SDK integrations. Refer to MoEngage's documentation for [FCM Authentication](https://developers.moengage.com/) and [APNS Authentication Key](https://developers.moengage.com/) setup steps in the MoEngage dashboard.
 
-### JavaScript bridge functions
+### JavaScript Bridge functions
 
-#### Prompt for Push Notification Permission
+#### Prompt for push notification permission
 
 Prompts the user for push notification permission. On Android 13 and above, a system dialog is shown. On Android 12 and below, permission is always granted without user intervention.
 
@@ -88,7 +88,7 @@ Provide a callback function, or a promise is returned.
 | ---------- | -------- | -------- | ------------------------------------------------------- |
 | `callback` | function | No       | Called on completion. Omit to use the returned promise. |
 
-#### Check Push Notification Permission Status
+#### Check push notification permission status
 
 Checks current push notification permission status.
 
@@ -133,7 +133,7 @@ median.moengage.setUniqueId('uniqueid');
 | ---------- | ------ | -------- | ---------------------------------------------- |
 | `uniqueid` | string | Yes      | Your system's stable identifier for this user. |
 
-#### Set Alias
+#### Set alias
 
 Updates the existing user unique ID with a new alias. Use when a user's identifier changes, for example after account merging.
 
@@ -150,7 +150,7 @@ median.moengage.setAlias('alias');
 | --------- | ------ | -------- | -------------------------------------------------- |
 | `alias`   | string | Yes      | New identifier to associate with the current user. |
 
-#### Reset User
+#### Reset user
 
 Resets unique ID and all data for the current user. Call on logout to disassociate the device from a user account.
 
@@ -161,7 +161,7 @@ median.moengage.resetUser();
 ```
 </CodeGroup>
 
-#### Log Event With or Without Data
+#### Log event with or without data
 
 Logs a named event with an optional key-value payload. Use for behavioral analytics and segmentation in MoEngage.
 
@@ -183,7 +183,7 @@ Logs a named event with an optional key-value payload. Use for behavioral analyt
 | `eventName` | string | Yes      | The event name as defined in your MoEngage schema.                    |
 | `payload`   | object | No       | Key-value pairs to attach to the event. Omit for events without data. |
 
-## Notification Center
+## Notification center
 
 Launches the MoEngage notification and subscription center.
 

@@ -23,7 +23,7 @@ Test camera and file upload functionality during development using the live demo
 
 </Check>
 
-## Implementation Guide
+## Implementation guide
 
 File and image uploads are natively supported in both iOS and Android WebViews, which power Median's native mobile apps. No additional plugins or configuration are required to enable basic upload functionality.
 
@@ -31,7 +31,7 @@ To enable file or image selection in your web app, use the standard HTML `<input
 
 For the full list of supported attributes and implementation best practices, refer to the [MDN documentation on Input File](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file).
 
-### Android Camera Capture Configuration
+### Android camera capture configuration
 
 <Warning>
   **Android only**
@@ -42,7 +42,7 @@ The camera capture configuration options below are Android-specific and are not 
 
 On Android, Median exposes additional controls for camera behavior via the Median JavaScript Bridge. These settings let you tune capture quality and control how captured media is stored on the device.
 
-#### Capture Quality
+#### Capture quality
 
 Android supports two capture quality presets:
 
@@ -68,7 +68,7 @@ median.camera.setCaptureQuality("high")
 ```
 </CodeGroup>
 
-#### Gallery Storage
+#### Gallery storage
 
 By default, photos and videos captured in the app are saved to the device's media gallery. You can disable this behavior if your app processes images server-side and local storage is unnecessary.
 
@@ -87,7 +87,7 @@ median.camera.saveToGallery(true)
 ```
 </CodeGroup>
 
-## Demo App
+## Demo app
 
 <Warning>
   Due to security policies, the camera functionality in our iOS virtual device

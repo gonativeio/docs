@@ -48,11 +48,11 @@ Create a JSON file that lists the product IDs you would like to offer for sale. 
 
 You must then host the JSON file on your website to be accessible by your app. We are using [https://median.dev/iap/productsGoogle.json](https://median.dev/iap/productsGoogle.json)
 
-## App Configuration
+## App configuration
 
 Now you are ready to enable and configure the plugin within the Native Plugins tab of the App Studio. You will need to enter:`productsUrl` - The `productsUrl` should point to the JSON file on your website. When your app launches, it will make an HTTP GET request to your `productsUrl`.
 
-## IAP Products and Status
+## IAP products and status
 
 The app will verify the list of products with Google Play and retrieve each product's information. Then it will execute a JavaScript function on your website defined as `median_info_ready` with a single object parameter. Alternatively you can use the Median JavaScript Bridge to obtain this data at runtime by calling the method `median.iap.info()`.
 
@@ -281,7 +281,8 @@ Or you may return the purchases at runtime via a promise (in async function)
 <CodeGroup>
   ```JavaScript JavaScript 
   var purchasesData = await median.iap.purchases();
-  console.log(purchasesData); ```
+  console.log(purchasesData); 
+  ```
 </CodeGroup>
 
 In both cases `purchasesData` will be of the form:
@@ -324,7 +325,7 @@ Each purchase item in the `allPurchases` array may have these fields:
 
 The `allPurchases` array will list all current subscriptions. Any expired subscriptions will not longer appear.
 
-## Subscription Management
+## Subscription management
 
 You may wish to provide links for your users to manage their subscriptions.
 
@@ -379,7 +380,7 @@ Note that you may also differentiate the version of your app being used by addin
 
 Once your website code has been updated to support Version 6, you must generate a new build of your Android app with `legacyMode` disabled. From your app management page, go to the Native Plugins tab and in Settings for In-App Purchases disable `legacyMode`. Rebuild your app, complete testing (see below), and then release through Google Play.
 
-## Google Play Billing References
+## Google Play Billing references
 
 [Google Play's billing system](https://developer.android.com/google/play/billing/billing_overview)
 

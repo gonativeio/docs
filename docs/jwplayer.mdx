@@ -16,7 +16,7 @@ Display our demo page in your app to test during development: [https://median.de
 
 </Check>
 
-## Why Use JW Player?
+## Why use JW Player?
 
 - **Native SDK playback**: The plugin uses JW Player's native iOS and Android SDKs to deliver smooth, high-quality video playback.
 - **Flexible input formats**: Play a single video file, an array of video files as a playlist, or load a playlist directly from a JW Player playlist URL.
@@ -31,9 +31,9 @@ Before you begin, ensure you have the following:
 - A valid JW Player license key (`licenseKey` is a required configuration field).
 - Access to **App Studio** to configure the plugin in the **Native Plugins** section.
 
-## Implementation Guide
+## Implementation guide
 
-### App Configuration
+### App configuration
 
 1. Open **App Studio** and navigate to the **Native Plugins** section.
 2. Locate the JW Player plugin and enable it.
@@ -45,7 +45,7 @@ Before you begin, ensure you have the following:
   <img src="/images/docs/e57fa87ad7ee523bbc5d214f8a9deaa293bd18b41341d2d87036b1d67f6262ba-Screenshot_2026-06-17_at_10.15.48.png" />
 </Frame>
 
-#### Plugin Configuration options
+#### Plugin configuration options
 
 | Setting                  | Description                                                                                                                                                                                                                                                                                                                               | Required                 |
 | ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------ |
@@ -60,7 +60,7 @@ Plugin settings take effect only in new builds. After changing credentials or up
 
 </Info>
 
-### JavaScript bridge functions
+### JavaScript Bridge functions
 
 #### Initialize the JW Player SDK
 
@@ -87,7 +87,7 @@ message: "Invalid license key"
 }
 }
 
-````
+```
 </CodeGroup>
 
 ##### Parameters
@@ -96,7 +96,7 @@ message: "Invalid license key"
 | ---------- | -------- | ----------------------------------------- |
 | licenseKey | `string` | **Required**. Your JW Player license key. |
 
-#### Play a Video
+#### Play a video
 
 Present a full-screen native player and begin video playback. You can provide a single video file, an array of video files (playlist), or a JW Player playlist URL.
 
@@ -123,7 +123,7 @@ To play a video:
   const result = await median.jwplayer.play({
     playlistUrl: 'https://cdn.jwplayer.com/v2/playlists/abc123'
   });
-````
+```
 
 </CodeGroup>
 
@@ -142,7 +142,7 @@ To play a video:
   ```
 </CodeGroup>
 
-##### Optional Parameters
+##### Optional parameters
 
 | Parameter   | Type       | Description                                              |
 | ----------- | ---------- | -------------------------------------------------------- |
@@ -153,7 +153,7 @@ To play a video:
 
 **At least one of `file`, `files`, or `playlistUrl` must be provided**
 
-##### Return Values
+##### Return values
 
 The callback data differs between platforms:
 
@@ -184,7 +184,7 @@ The callback data differs between platforms:
   ```
 </CodeGroup>
 
-##### Error Response
+##### Error response
 
 <CodeGroup>
   ```JSON JSON
@@ -198,13 +198,13 @@ The callback data differs between platforms:
   ```
 </CodeGroup>
 
-#### Chromecast Support (iOS)
+#### Chromecast support (iOS)
 
 On iOS, Chromecast support is automatically initialized at app launch when the `appId` is configured in the server configuration. No additional JavaScript calls are required.
 
 To enable Chromecast, add your Google Cast application ID to the JW Player configuration in the App Studio as shown in the [App Configuration](#app-configuration) section above.
 
-## Testing Checklist
+## Testing checklist
 
 Use this checklist to ensure JW Player is working correctly in your iOS or Android app:
 
@@ -220,6 +220,6 @@ Use this checklist to ensure JW Player is working correctly in your iOS or Andro
 
 Ensure the JavaScript Bridge is enabled in Median App Studio. Manually initialize the sdk or enter license keys in the plugin configuration of the App Studio\`.
 
-### initialize() returns NOT_INITIALIZED or INTERNAL_ERROR?
+### `initialize()` returns `NOT_INITIALIZED` or `INTERNAL_ERROR`
 
 Check that the `licenseKey` value in your plugin configuration is valid and matches the key from JW Player.

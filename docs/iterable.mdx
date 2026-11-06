@@ -31,7 +31,7 @@ Display our demo page in your app to test during development [https://median.dev
 - [ ] An Iterable API key and (if applicable) a data region such as `EU`
 - [ ] Deep linking enabled in the app if notification URLs should open in-app
 
-## Integration Guide
+## Integration guide
 
 ### Plugin setup
 
@@ -65,7 +65,7 @@ Display our demo page in your app to test during development [https://median.dev
 
 **Note**: If you omit `apiKey` from dashboard config, call `median.iterable.initialize()` from your web layer with the same key and optional `dataRegion` before relying on other bridge methods.
 
-### JavaScript bridge functions
+### JavaScript Bridge functions
 
 #### Initialize
 
@@ -94,7 +94,7 @@ Manually initializes the Iterable SDK when you are not relying on automatic init
 | `dataRegion` | `string`   | No       | Region string when using a regional endpoint (for example `EU`) |
 | `callback`   | `function` | No       | Optional callback; omit to use the returned promise             |
 
-#### Check Permission Status
+#### Check permission status
 
 Returns whether the Iterable SDK has been initialized and, when initialized, echoes the active `apiKey` and `dataRegion`.
 

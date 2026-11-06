@@ -5,15 +5,15 @@ keywords: ["Scandit", "barcode scanner", "QR code scanner", "scanning"]
 searchable: true
 ---
 
-import MedianLogo from '/snippets/median-logo.jsx';
+import { MedianLogo } from "/snippets/median-logo.jsx";
 
 The Scandit QR Code and Barcode Scanner plugin enables barcode scanning directly within your application using the device camera. This plugin extends the functionality of our basic version of [Barcode Scanner](https://median.co/docs/qr-barcode-scanner) with additional capabilities provided by the Scandit iOS and Android SDKs.
 
 In order to use this plugin an **active Scandit license is required**.
 
-## Implementation Guide
+## Implementation guide
 
-### Plugin Configuration
+### Plugin configuration
 
 Before implementing this feature, ensure that the premium module is integrated into your application. Additionally, you will need to add your license key to the plugin configuration as it is required to use the native iOS and Android SDKs of Scandit.
 
@@ -29,9 +29,9 @@ Insert the license key into the plugin configuration using Advanced Mode:
   <img src="/images/docs/74d82a1d8b5acf5bde594d414b76b5266c6f4fbf7bf0074949e913cf4bd67a42-Screenshot_2025-07-04_at_11.07.17.png" />
 </Frame>
 
-### JavaScript Bridge Methods
+### JavaScript Bridge methods
 
-#### Define a Scan Callback
+#### Define a scan callback
 
 To initiate a barcode scan, define a JavaScript function to handle the scanned data. For example:
 
@@ -45,7 +45,7 @@ To initiate a barcode scan, define a JavaScript function to handle the scanned d
   ```
 </CodeGroup>
 
-#### Start a Scan
+#### Start a scan
 
 Use the following command to start a barcode scan via the Median JavaScript Bridge:
 
@@ -60,7 +60,7 @@ Use the following command to start a barcode scan via the Median JavaScript Brid
 
 **Tip: Some JavaScript Bridge commands return promises. These are indicated in comments for easy identification.[Learn More](https://median.co/docs/javascript-bridge#promises).**
 
-#### Supported Barcode Symbologies
+#### Supported barcode symbologies
 
 By default, the scanner supports the following barcode symbologies:
 
@@ -75,7 +75,7 @@ By default, the scanner supports the following barcode symbologies:
 * datamatrix
 * pdf417
 
-#### Restricting to Specific Symbologies
+#### Restricting to specific symbologies
 
 To restrict the scanner to specific barcode types, provide a comma-separated list of desired symbologies in the `symbologies` parameter.
 
@@ -90,7 +90,7 @@ For example, to scan only QR codes and PDF417 barcodes:
   ```
 </CodeGroup>
 
-#### Using a Parser for Specialized Data
+#### Using a parser for specialized data
 
 Certain symbologies, such as Code 128, require a parser to correctly interpret the scanned data. Add the `parser` parameter when calling median.scanditBarcode.scan.
 

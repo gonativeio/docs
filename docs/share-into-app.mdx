@@ -18,15 +18,15 @@ Once configured, your app appears as a target option when a user shares a URL on
   Display our demo page in your app to test during development <br />[https://median.dev/share-into-app/ ](https://median.dev/share-into-app/)<Icon icon="arrow-up-right-from-square" size={12} />
 </Check>
 
-## Why use Share into App
+## Why use share into app
 
 - **Native system integration**: Your app appears directly in the iOS Share Sheet and Android Share Menu, so users can share into your app from any browser or native app.
 - **Deep linking shared content**: Shared URLs launch your app and deliver the URL and page title to a JavaScript callback you control, enabling any downstream action.
 - **Broad app compatibility**: Ideal for social apps, bookmarking tools, productivity platforms, and any app that benefits from capturing web content users discover outside your app.
 
-## Implementation Guide
+## Implementation guide
 
-### App Configuration
+### App configuration
 
 1. **Navigate to Native Plugins**: In Median App Studio, go to the Native Plugins section.
 2. **Enable Share into App**: Toggle the plugin to enabled status.
@@ -35,7 +35,7 @@ Once configured, your app appears as a target option when a user shares a URL on
   <img src="/images/docs/4482d06f894e754a1c57c7542a2423c2c01dc15e29c629309324ebed9b28f7f0-Screenshot_2026-06-25_at_10.06.36.png" alt="App Studio Native Plugins page with the Share into app plugin added and enabled" />
 </Frame>
 
-#### iOS Configuration
+#### iOS configuration
 
 Add an **App Group** identifier to the Share into app plugin configuration. Enter the bare iOS Bundle ID of your app (for example `com.example.app`), **not** the prefixed identifier — the platform derives the App Group as `group.<bundleId>` internally.
 
@@ -47,7 +47,7 @@ Add an **App Group** identifier to the Share into app plugin configuration. Ente
 
 You will also need to set up the URL scheme protocol. You can find this setting in the **Link Handling** section in App Studio.
 
-### JavaScript Bridge Functions
+### JavaScript Bridge functions
 
 Define a JavaScript function named `median_share_to_app(data)` on your website. When a user selects your app from the system share sheet with a webpage URL, your app launches and calls this function, so you can capture and use the shared data, such as the URL and page title or shared text.
 
@@ -73,7 +73,7 @@ function median_share_to_app(data) {
   </Frame>
 </Columns>
 
-## Demo App
+## Demo app
 
 You can test the full share flow using our virtual demo app on iOS and Android simulators.
 
@@ -88,7 +88,7 @@ You can test the full share flow using our virtual demo app on iOS and Android s
 
 <AppetizeEmbed iosEmbedCode="737mg6d5xfirj6x6vsageoin6y" androidEmbedCode="acfjrmtur3qqx7skca5brpukpy" />
 
-## Testing Checklist
+## Testing checklist
 
 Use this checklist to ensure Share into App is working correctly in your app:
 
@@ -96,7 +96,7 @@ Use this checklist to ensure Share into App is working correctly in your app:
 - [ ] Selecting your app from the share sheet launches the app correctly
 - [ ] Sharing a URL triggers the `median_share_to_app(data)` callback
 
-## Frequently Asked Questions
+## Frequently asked questions
 
 <AccordionGroup>
   <Accordion title="Share into App functions don't load or don't run">

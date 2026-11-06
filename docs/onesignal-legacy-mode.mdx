@@ -9,11 +9,11 @@ import { MedianLogo } from "/snippets/median-logo.jsx";
 <Info>
   **Important note**
 
-**This guide applies only to apps using the legacy OneSignal integration (iOS v3 SDK or Android v4 SDK).** If your app was set up recently through Median.co, it's already on the current SDK (v5+) with a user-centric data model — this page doesn't apply to you. For new integrations, start with [Get started with OneSignal](https://docs.median.co/docs/onesignal).
+**This guide applies only to apps using the legacy OneSignal integration (iOS v3 SDK or Android v4 SDK).** If your app was set up recently through Median.co, it's already on the current SDK (v5+) with a user-centric data model — this page doesn't apply to you. For new integrations, start with [Get started with OneSignal](/docs/onesignal).
 
 </Info>
 
-## What Legacy Mode is
+## What legacy mode is
 
 By default, Median.co apps integrate with the latest OneSignal iOS and Android SDKs (v5+) and the user-centric data model. With Legacy Mode enabled, your app falls back to OneSignal's previous iOS v3 and Android v4 SDKs, which use a **device-centric** data model where each device has a unique Player ID.
 
@@ -24,7 +24,7 @@ Display our demo page in your app to test during development [https://median.dev
 
 </Check>
 
-## Sending personalized notifications in Legacy Mode
+## Sending personalized notifications in legacy mode
 
 There are many use cases for sending push notifications to specific users, either individually or as part of a group:
 
@@ -74,7 +74,7 @@ Add JavaScript to a login success page to retrieve the `oneSignalInfo` object. T
 ```
 </CodeGroup>
 
-For more JavaScript examples, see [OneSignal Info](https://docs.median.co/docs/onesignal-info).
+For more JavaScript examples, see [OneSignal Info](/docs/identifying-targeting-users).
 
 #### Option 1b: POST directly from the native app
 
@@ -111,13 +111,13 @@ median.onesignal.externalUserId.remove();
 | **Multi-account support**   | Yes                                   | Limited                                  |
 | **Inactive device removal** | Yes                                   | No                                       |
 
-## Migrating away from Legacy Mode
+## Migrating away from legacy mode
 
 To migrate to OneSignal's user-centric model, review [OneSignal's User Model Migration Guide](https://documentation.onesignal.com/docs/user-model-migration-guide) before disabling Legacy Mode.
 
 The primary areas to update are:
 
-1. **User and device association:** How your app associates users with devices. See [Identifying & targeting users](https://docs.median.co/docs/identifying-targeting-users).
-2. **Programmatic notifications:** Transactional notification delivery. See [Programmatic notifications](https://docs.median.co/docs/programmatic-notifications).
+1. **User and device association:** How your app associates users with devices. See [Identifying & targeting users](/docs/identifying-targeting-users).
+2. **Programmatic notifications:** Transactional notification delivery. See [Programmatic notifications](/docs/programmatic-notifications).
 
 Once you've updated both areas, disable Legacy Mode and rebuild your app.

@@ -185,9 +185,10 @@ Now that your Google Cloud OAuth clients are configured, add these credentials t
   <img src="/images/docs/45689f3ce342af1f29e6918e51f477bb412c85e0e4506b5b3010c95ed81afe0e-Screenshot_2026-07-13_at_10.24.50.png" />
 </Frame>
 
-## Frequently Asked Questions
+## Frequently asked questions
 
-### Android App doesn't display the prompt to select the account.
+<AccordionGroup>
+<Accordion title="Android App doesn't display the prompt to select the account." id="android-app-doesnt-display-the-prompt-to-select-the-account">
 
 If your Google Sign-In button is not launching the overlay to select your google account it typically manifests as a `No credentials available` issue in the debug console. The full stack trace typically shows as follows:
 
@@ -221,8 +222,12 @@ To resolve the issue, please follow the three troubleshooting steps below to con
 
 3. If you observe the issue occasionally in your simulators only, it could be that you are using a simulator with an API level below 35. Please update the API level of your simulators in Android Studio.
 
-### How to find your Android package name and iOS Bundle ID?
+</Accordion>
+<Accordion title="How to find your Android package name and iOS Bundle ID?" id="how-to-find-your-android-package-name-and-ios-bundle-id">
 
 For applications in **development**, the required parameters can be found in the [App Identifiers](https://median.co/docs/app-identifiers) section of the App Studio.
 
 For **live or published apps**, use the [deviceInfo() ](https://median.co/docs/device-info)JavaScript bridge command to retrieve the corresponding value, which is stored under the `appId` key.
+
+</Accordion>
+</AccordionGroup>

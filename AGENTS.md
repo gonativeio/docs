@@ -109,7 +109,6 @@ import { MedianLogo } from "/snippets/median-logo.jsx";
 ```javascript JavaScript
 median.statusbar.set({ style: "dark", color: "80ff0000" });
 ```
-```
 
 </CodeGroup>
 ````

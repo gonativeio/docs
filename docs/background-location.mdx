@@ -22,7 +22,7 @@ By default, Median apps have access to the HTML5 geolocation APIs to retrieve th
 
 The Median JavaScript Bridge commands described below allow JavaScript to receive missing location updates when the app is temporarily backgrounded. They also support uploading location updates to a server for intelligent background processing, or performing any other task on an ongoing basis.
 
-## Why use Background Location
+## Why use background location
 
 - **Fitness apps**: Track distance biked, run, or walked while the app is launched but running in the background.
 - **Delivery / dispatch apps**: Track drivers' real-time locations and trigger automated dispatch notifications to the closest driver.
@@ -39,7 +39,7 @@ The Background Location Native Plugin requires the iOS location permission `auth
 
 If you only require the background process to run while your app is open on the device you can add an additional parameter to your `appConfig.json` as follows: `foregroundOnly: true`.On iOS this configuration uses the location permission `authorizedWhenInUse` rather than `authorizedAlways`.On Android the permission `ACCESS_BACKGROUND_LOCATION` is not required, only `ACCESS_FINE_LOCATION` and `ACCESS_COARSE_LOCATION` are requested.
 
-## Implementation Guide
+## Implementation guide
 
 ### App configuration
 
@@ -51,7 +51,7 @@ If you only require the background process to run while your app is open on the 
   <img src="/images/docs/fc3d541d38b9c7b8ffbca741c837ce88872dc08579831cdd326a0caa445fd9ac-Screenshot_2026-09-17_at_11.58.31.png" />
 </Frame>
 
-#### Manual Build Process
+#### Manual build process
 
 If you build from downloaded iOS source or manually manage Apple signing assets, open the Capabilities tab in Xcode, expand Background Modes, and enable Location updates as shown below. This step is not required if you're using the IPA or our publishing services deployment.
 
@@ -59,7 +59,7 @@ If you build from downloaded iOS source or manually manage Apple signing assets,
   <img src="/images/docs/5026fb172e5d02d6a55c7c002639b75f8fe30830d61b860a6897f6a685df7df7-Screenshot_2026-09-17_at_12.03.02.png" />
 </Frame>
 
-### JavaScript Bridge Implementation
+### JavaScript Bridge implementation
 
 #### Start background location service
 
@@ -106,7 +106,7 @@ The `locationRequest` object accepts the following fields. At least one of `call
 
 Location updates are also sent to the `callback` function and/or `postUrl` while the app is in the foreground. When the app is in the background, updates to `postUrl` continue but the JavaScript `callback` function is paused. When the app is resumed, any location updates that the `callback` function missed are sent in a large batch.
 
-#### Data Format
+#### Data format
 
 Location updates are delivered as an object containing a `locations` array. Each item in the array is a location object with the following fields. Fields are not all guaranteed to be populated; values may be null or undefined.
 
@@ -163,7 +163,7 @@ median.backgroundLocation.stop();
 ```
 </CodeGroup>
 
-## Testing Checklist
+## Testing checklist
 
 **Basic functionality**
 

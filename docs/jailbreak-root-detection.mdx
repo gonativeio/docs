@@ -7,7 +7,7 @@ searchable: true
 
 Security is paramount for enterprise and financial applications. To protect your apps integrity, Median.co provides built-in Jailbreak (iOS) and Root (Android) detection. When a compromised device is detected, Median appends specific query parameters to your URL, allowing you to intercept the session and redirect the user to a secure landing page.
 
-## Why use Jailbreak/Root Detection?
+## Why use jailbreak/root detection?
 
 The Jailbreak/Root Detection plugin helps identifying compromised devices using a variety of detection methods, such as the presence of suspicious binaries, unauthorized apps, and supported URL protocols.
 
@@ -58,9 +58,9 @@ For example, instead of loading `https://example.com/`, the app will load `https
 
 **Android Root Detection**: For Android, we rely on the [Rootbeer](https://github.com/scottyab/rootbeer) library, as well as additional methods.
 
-## Integration Guide
+## Integration guide
 
-### Website Configuration (JavaScript Bridge)
+### Website configuration (JavaScript Bridge)
 
 **Note**: The code snipped below is just one of the many ways you can use to identify and process the parameters attached to the URL.
 
@@ -107,17 +107,17 @@ Place the following script within the `<head>` of your index page or your global
   ```
 </CodeGroup>
 
-## Technical Best Practises
+## Technical best practices
 
-#### Use `location.replace()` Over `location.href`
+#### Use `location.replace()` over `location.href`
 
 Using `window.location.replace()` is a critical security step. It replaces the current document in the browser history, preventing users from clicking a "Back" button or using a swipe gesture to return to the restricted area of your app.
 
-#### Standardize Parameter Handling
+#### Standardize parameter handling
 
 Median supports multiple flags depending on the platform version. Checking for both `rootDetected` and `isRooted` ensures maximum compatibility across older and newer app builds.
 
-#### Early Execution
+#### Early execution
 
 By wrapping this logic in` median_library_ready()`, you ensure the check occurs at the earliest possible moment in the app lifecycle, minimizing the "flash" of content before the redirect occurs.
 

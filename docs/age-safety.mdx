@@ -60,7 +60,7 @@ The following terms will help you implement AgeSafety:
 
 ## Implementation guide
 
-### App Setup
+### App setup
 
 Enable the AgeSafety plugin in your Median dashboard before calling any JavaScript bridge functions. Navigate to your app's plugin settings and toggle AgeSafety on.
 
@@ -68,7 +68,7 @@ Enable the AgeSafety plugin in your Median dashboard before calling any JavaScri
 
 #### Core methods
 
-##### **getAgeSignals**
+##### `getAgeSignals`
 
 Retrieve age and supervision signals from the platform.
 
@@ -90,7 +90,7 @@ Retrieve age and supervision signals from the platform.
 
 Return value (resolved Promise/success callback) is an AgeSignalsResponse.
 
-##### **requireMinimumAge**
+##### `requireMinimumAge`
 
 A convenience helper that checks whether the user meets a numeric minimum age.
 
@@ -124,7 +124,7 @@ median.ageSafety.requireMinimumAge(18, function (resp) {
 
 AgeRequirementResponse.allowed is computed as `ageLowerBound` >= `requiredAge` when age bounds are available. If bounds are missing, allowed may be false, and an app-level conservative policy should apply.
 
-### Implementation example - Gate a purchase flow
+### Implementation example: Gate a purchase flow
 
 This example verifies a user's age before allowing a purchase, routes supervised accounts to a parental-approval flow, and falls back conservatively when signals are unavailable.
 
@@ -149,7 +149,7 @@ This example verifies a user's age before allowing a purchase, routes supervised
   ```
 </CodeGroup>
 
-For more on JavaScript Bridge fundamentals used above, see [Basic Usage](https://docs.median.co/docs/basic-usage) and [Using Listeners](https://docs.median.co/docs/npm-package-usage-with-listeners).
+For more on JavaScript Bridge fundamentals used above, see [Basic Usage](/docs/basic-usage) and [Using Listeners](/docs/npm-package-usage-with-listeners).
 
 ### Error handling
 
@@ -160,7 +160,7 @@ For more on JavaScript Bridge fundamentals used above, see [Basic Usage](https:/
 | `USER_DENIED`   | User denied permission or signal is unavailable                   | iOS system prompt declined                             | Design your UI to apply a conservative default when verification is not available |
 | `UNKNOWN`       | Platform returned signals, but age bounds could not be determined | Age signal exists but is inconclusive                  | Treat identically to a missing signal — apply your conservative default           |
 
-## Testing Checklist
+## Testing checklist
 
 Use this checklist to confirm AgeSafety is working correctly in your app:
 
