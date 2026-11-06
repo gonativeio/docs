@@ -5,18 +5,18 @@ keywords: ["OneSignal", "push notifications", "in-app messages", "engagement"]
 searchable: true
 ---
 
-OneSignal is a powerful push notification platform that scales from early-stage startups to enterprises. Median.co's integration connects it directly to your iOS and Android apps via the [Median JavaScript Bridge](https://docs.median.co/docs/javascript-bridge). This guide walks you through everything you need to get set up: what to prepare, how to configure each platform, and where to go next.
+OneSignal is a powerful push notification platform that scales from early-stage startups to enterprises. Median.co's integration connects it directly to your iOS and Android apps via the [Median JavaScript Bridge](/docs/javascript-bridge). This guide walks you through everything you need to get set up: what to prepare, how to configure each platform, and where to go next.
 
-Median connects your web app to OneSignal's native iOS and Android SDKs through the JavaScript Bridge. This means you can trigger and manage push notifications, in-app messages, user targeting, and consent flows entirely from your website's JavaScript. The integration runs on **OneSignal SDK v5+** by default, which uses a user-centric data model. If your app was built before Median.co adopted v5, see [Legacy Mode](https://docs.median.co/docs/onesignal-legacy-mode) before proceeding.
+Median connects your web app to OneSignal's native iOS and Android SDKs through the JavaScript Bridge. This means you can trigger and manage push notifications, in-app messages, user targeting, and consent flows entirely from your website's JavaScript. The integration runs on **OneSignal SDK v5+** by default, which uses a user-centric data model. If your app was built before Median.co adopted v5, see [Legacy Mode](/docs/onesignal-legacy-mode) before proceeding.
 
 https\://onesignal.com/integrations/median-co
 
 ## Why use OneSignal with Median.co
 
-- **Web-first control**: Drive push, in-app messaging, user identity, segments, and consent from your site's JavaScript through the [JavaScript Bridge](https://docs.median.co/docs/javascript-bridge).
+- **Web-first control**: Drive push, in-app messaging, user identity, segments, and consent from your site's JavaScript through the [JavaScript Bridge](/docs/javascript-bridge).
 - **Consistent cross-platform setup**: One Median.co plugin surface for iOS and Android after you complete each platform's credential steps (APNs and FCM).
-- **Full OneSignal toolkit**: Use dashboard campaigns, [programmatic delivery](https://docs.median.co/docs/programmatic-notifications), [user targeting](https://docs.median.co/docs/onesignal-user-management), and [in-app messages](https://docs.median.co/docs/in-app-messages) from the same integration.
-- **Modern SDK defaults**: Runs on **OneSignal SDK v5+** with a user-centric model; older apps should confirm behavior against [Legacy Mode](https://docs.median.co/docs/onesignal-legacy-mode).
+- **Full OneSignal toolkit**: Use dashboard campaigns, [programmatic delivery](/docs/programmatic-notifications), [user targeting](/docs/identifying-targeting-users), and [in-app messages](/docs/in-app-messages) from the same integration.
+- **Modern SDK defaults**: Runs on **OneSignal SDK v5+** with a user-centric model; older apps should confirm behavior against [Legacy Mode](/docs/onesignal-legacy-mode).
 
 ## Prerequisites
 
@@ -42,7 +42,7 @@ Make sure you have the following before starting. Missing any one of these will 
 <Info>
   **Already have a OneSignal account connected to Median.co?**
 
-Head straight to [Managing Permissions & Consent](https://docs.median.co/docs/user-consent-management) to control how and when users are prompted.
+Head straight to [Managing Permissions & Consent](/docs/user-consent-management) to control how and when users are prompted.
 
 </Info>
 
@@ -56,7 +56,7 @@ Median's OneSignal integration is especially useful when you need to:
 | **Re-engagement**                        | Re-engage users with new content, limited-time offers, or abandoned-journey follow-ups.                                                                                                                 |
 | **Segmented or identified audiences**    | Target logged-in users, tags, or segments defined in OneSignal from the dashboard or API.                                                                                                               |
 | **In-app messaging**                     | Show prompts, or announcements inside the app, including flows that don't require push permission first.                                                                                                |
-| **Consent and timing**                   | Control _when_ the OS permission dialog appears or wait until privacy consent before initializing OneSignal. See [Managing Permissions & Consent](https://docs.median.co/docs/user-consent-management). |
+| **Consent and timing**                   | Control _when_ the OS permission dialog appears or wait until privacy consent before initializing OneSignal. See [Managing Permissions & Consent](/docs/user-consent-management). |
 | **Server-triggered push**                | Send notifications from your backend using [OneSignal's REST API](https://documentation.onesignal.com/reference/rest-api-overview)                                                                      |
 
 ## What you'll do
@@ -163,7 +163,7 @@ With your platform credentials in place, connect OneSignal to your app in **Medi
 
 Your app will now initialize OneSignal on launch and — by default — prompt users for push notification permission on first open.
 
-**Want to control when the permission prompt appears?** See [Managing Permissions & Consent](https://docs.median.co/docs/user-consent-management) to delay the prompt or require privacy consent before OneSignal initializes.
+**Want to control when the permission prompt appears?** See [Managing Permissions & Consent](/docs/user-consent-management) to delay the prompt or require privacy consent before OneSignal initializes.
 
 ### Find your OneSignal app ID and REST API key
 
@@ -207,7 +207,7 @@ Use this checklist to verify OneSignal is working correctly in your app:
 
 **User Experience**
 
-- [ ] Permission prompt appears at the appropriate time (or is deferred using [Managing Permissions & Consent](https://docs.median.co/docs/user-consent-management))
+- [ ] Permission prompt appears at the appropriate time (or is deferred using [Managing Permissions & Consent](/docs/user-consent-management))
 - [ ] Notifications display on the device as expected
 
 ## Troubleshooting
@@ -240,13 +240,13 @@ Enable the App Groups capability on both your main app target and the OneSignalN
 
 ### App was built before Median adopted OneSignal SDK v5
 
-Median's integration runs on **OneSignal SDK v5+** by default and uses a user-centric data model. Apps built before Median adopted v5 should confirm behavior against [Legacy Mode](https://docs.median.co/docs/onesignal-legacy-mode) before proceeding.
+Median's integration runs on **OneSignal SDK v5+** by default and uses a user-centric data model. Apps built before Median adopted v5 should confirm behavior against [Legacy Mode](/docs/onesignal-legacy-mode) before proceeding.
 
 <Info>
   **Still having trouble?**
 
 For issues related to OneSignal's own configuration, permissions, or platform-specific behaviour, refer to [OneSignal's integration documentation.](https://documentation.onesignal.com/docs)
 
-For issues related to the App Studio, please get in touch with the [Median Support Team](https://docs.median.co/docs/support)
+For issues related to the App Studio, please get in touch with the [Median Support Team](/docs/support)
 
 </Info>

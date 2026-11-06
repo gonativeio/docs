@@ -7,21 +7,21 @@ searchable: true
 
 import { MedianLogo } from "/snippets/median-logo.jsx";
 
-The Klaviyo plugin enables mobile push notifications to increase engagement and audience insight. It integrates the official [Klaviyo Swift SDK](https://github.com/klaviyo/klaviyo-swift-sdk) on iOS and the [Klaviyo Kotlin SDK](https://github.com/klaviyo/klaviyo-android-sdk) on Android. This guide covers Klaviyo account setup, Median App Studio configuration, and [Median JavaScript Bridge](https://docs.median.co/docs/javascript-bridge) APIs for permissions and profiles.
+The Klaviyo plugin enables mobile push notifications to increase engagement and audience insight. It integrates the official [Klaviyo Swift SDK](https://github.com/klaviyo/klaviyo-swift-sdk) on iOS and the [Klaviyo Kotlin SDK](https://github.com/klaviyo/klaviyo-android-sdk) on Android. This guide covers Klaviyo account setup, Median App Studio configuration, and [Median JavaScript Bridge](/docs/javascript-bridge) APIs for permissions and profiles.
 
 ## Why use Klaviyo
 
 - **Native push on both platforms**: Reach users with iOS and Android push using Klaviyo’s SDKs inside the Median shell.
 - **Segmentation and profiles**: Tie `externalId`, email, and phone to Klaviyo profiles for targeting and personalization.
-- **Deep linking**: When [deep linking](https://docs.median.co/docs/deep-linking) is configured, notification taps can open the right screen in-app instead of the device browser.
+- **Deep linking**: When [deep linking](/docs/deep-linking) is configured, notification taps can open the right screen in-app instead of the device browser.
 
 ## Prerequisites
 
-- A Median.co app with the [JavaScript Bridge](https://docs.median.co/docs/javascript-bridge) enabled
+- A Median.co app with the [JavaScript Bridge](/docs/javascript-bridge) enabled
 - Klaviyo account with iOS and Android mobile apps configured for push
 - **Klaviyo Public API Key** (mobile SDK initialization)
-- `GoogleService-Info.plist` and `google-services.json` uploaded in your Median app configuration (required for Firebase-backed delivery on Android and proper SDK initialization—see [Google Services](https://docs.median.co/docs/google-services))
-- Familiarity with Klaviyo push setup and, as needed, your [App Identifiers](https://docs.median.co/docs/app-identifiers), Apple Developer account, and Google Cloud / Firebase project
+- `GoogleService-Info.plist` and `google-services.json` uploaded in your Median app configuration (required for Firebase-backed delivery on Android and proper SDK initialization—see [Google Services](/docs/google-services))
+- Familiarity with Klaviyo push setup and, as needed, your [App Identifiers](/docs/app-identifiers), Apple Developer account, and Google Cloud / Firebase project
 
 <Check>
   **Developer Demo**
@@ -77,7 +77,7 @@ In Klaviyo, you will need to add and configure both (iOS and Android) mobile app
 
 Klaviyo’s stack expects Firebase / Google Services files in the native mobile app build.
 
-1. Follow Median’s [Google Services](https://docs.median.co/docs/google-services) guide to obtain `GoogleService-Info.plist` (iOS) and `google-services.json` (Android).
+1. Follow Median’s [Google Services](/docs/google-services) guide to obtain `GoogleService-Info.plist` (iOS) and `google-services.json` (Android).
 2. Upload both files in your Median **app configuration** / build settings as documented for your project so they ship inside the binary.
 
 Without these files, the SDK may fail to initialize; see the Firebase error in [Troubleshooting](#troubleshooting).
@@ -106,7 +106,7 @@ Without these files, the SDK may fail to initialize; see the Firebase error in [
 
 #### Deep linking
 
-The Klaviyo plugin works with Median [deep linking](https://docs.median.co/docs/deep-linking). When deep links are configured, tapping a push can open the corresponding in-app destination instead of the mobile browser. Configure URL schemes, universal links, and app links in App Studio to match the URLs your Klaviyo campaigns use.
+The Klaviyo plugin works with Median [deep linking](/docs/deep-linking). When deep links are configured, tapping a push can open the corresponding in-app destination instead of the mobile browser. Configure URL schemes, universal links, and app links in App Studio to match the URLs your Klaviyo campaigns use.
 
 ### JavaScript Bridge functions
 
@@ -221,7 +221,7 @@ Use this checklist to ensure Klaviyo is working correctly in your app:
 
 **Configuration and Delivery**
 
-* [ ] `GoogleService-Info.plist` and `google-services.json` are present in the shipped build (per Median [Google Services](https://docs.median.co/docs/google-services)).
+* [ ] `GoogleService-Info.plist` and `google-services.json` are present in the shipped build (per Median [Google Services](/docs/google-services)).
 * [ ] Klaviyo app entries use the same bundle ID / package name as the Median build.
 * [ ] Test sends from Klaviyo reach the device when profiles and consent allow.
 
@@ -238,14 +238,14 @@ Ensure the **JavaScript Bridge** is enabled, the **Klaviyo** plugin is enabled, 
 
 ### IllegalStateException: Default FirebaseApp is not initialized in this process
 
-Upload **`GoogleService-Info.plist`** and **`google-services.json`** through your Median app configuration following [Google Services](https://docs.median.co/docs/google-services). Rebuild and reinstall; Klaviyo requires Firebase initialization for notification delivery on Android and for a valid native setup.
+Upload **`GoogleService-Info.plist`** and **`google-services.json`** through your Median app configuration following [Google Services](/docs/google-services). Rebuild and reinstall; Klaviyo requires Firebase initialization for notification delivery on Android and for a valid native setup.
 
 ### Push permission returns denied even though I expect it to work
 
 On **iOS**, check that the user has not disabled notifications for the app in Settings. On **Android 13+**, ensure you triggered a runtime permission request (`promptNotification` or startup flow). If **Automatic Registration** is **Disabled**, you must prompt explicitly before expecting tokens.
 
 ### Deep links open in the browser instead of the app
-Configure Median [deep linking](https://docs.median.co/docs/deep-linking) (URL scheme, Universal Links, App Links) so the URL Klaviyo uses matches routes handled inside the app. Test with Klaviyo’s open action set to that URL.
+Configure Median [deep linking](/docs/deep-linking) (URL scheme, Universal Links, App Links) so the URL Klaviyo uses matches routes handled inside the app. Test with Klaviyo’s open action set to that URL.
 
 ### Profile or campaign data looks wrong in Klaviyo
 

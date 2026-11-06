@@ -61,15 +61,15 @@ Median can return two platform-specific advertising identifiers as part of the `
 
 `gaid` and `idfa` are **not returned by default**. Median surfaces these values through a supported advertising or attribution SDK, so one of the following plugins must be configured in your app:
 
-- [Adjust](https://docs.median.co/docs/adjust)
-- [AppsFlyer](https://docs.median.co/docs/appsflyer)
-- [Meta App Events](https://docs.median.co/docs/facebook) (iOS-only)
+- [Adjust](/docs/adjust)
+- [AppsFlyer](/docs/appsflyer)
+- [Meta App Events](/docs/facebook) (iOS-only)
 
 If none of these plugins is configured, `gaid` and `idfa` are omitted from the `deviceInfo` payload.
 
 ### IDFA (iOS)
 
-The IDFA is only available after the user grants App Tracking Transparency (ATT) permission. Configure the ATT prompt using [Apple App Tracking Transparency](https://docs.median.co/docs/apple-att).
+The IDFA is only available after the user grants App Tracking Transparency (ATT) permission. Configure the ATT prompt using [Apple App Tracking Transparency](/docs/apple-att).
 
 Until ATT permission is granted, `idfa` returns the zeroed placeholder value:
 

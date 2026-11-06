@@ -14,7 +14,7 @@ import { MedianLogo } from "/snippets/median-logo.jsx";
 
 The Microsoft Dynamics plugin connects your Median app to Dynamics 365 Customer Insights – Journeys (formerly Dynamics 365 Marketing), giving you bridge-level control over push permission flows, device registration, and APNS/FCM token management. Use this plugin when your organization runs customer journey orchestration in Dynamics and needs to reach users with native push notifications.
 
-The plugin exposes a lightweight [Median JavaScript Bridge](https://docs.median.co/docs/javascript-bridge) surface that covers the full push lifecycle: prompting for permission, querying permission state, registering a device-user binding with Dynamics, and retrieving the registration metadata your Dynamics environment expects for targeting and troubleshooting.
+The plugin exposes a lightweight [Median JavaScript Bridge](/docs/javascript-bridge) surface that covers the full push lifecycle: prompting for permission, querying permission state, registering a device-user binding with Dynamics, and retrieving the registration metadata your Dynamics environment expects for targeting and troubleshooting.
 
 ## Why use Microsoft Dynamics
 
@@ -26,7 +26,7 @@ The plugin exposes a lightweight [Median JavaScript Bridge](https://docs.median.
 
 ## Prerequisites
 
-* A Median.co app with the [JavaScript Bridge](https://docs.median.co/docs/javascript-bridge) enabled
+* A Median.co app with the [JavaScript Bridge](/docs/javascript-bridge) enabled
 * A licensed Dynamics 365 Customer Insights – Journeys environment with mobile push configured
 * Push channel setup completed in Dynamics 365 Marketing (iOS APNS certificate or token + Android FCM server key)
 * Alphanumeric user identifiers (UUIDs) available at the point of registration in your web application
@@ -74,7 +74,7 @@ The following terms are specific to the Microsoft Dynamics push integration and 
 
 ## JavaScript Bridge functions
 
-[Median’s Microsoft Dynamics reference](https://docs.median.co/docs/ms-dynamics) defines the method names and return payloads below. It explicitly says **optional callback or returned promise** only for `promptNotificationPermission` and `areNotificationsEnabled`. For `registerDevice`, the page shows a single options object (no separate callback argument). **Callback shape** on this bridge is normally **`callback` inside that same object** , not a second function parameter.
+[Median’s Microsoft Dynamics reference](/docs/ms-dynamics) defines the method names and return payloads below. It explicitly says **optional callback or returned promise** only for `promptNotificationPermission` and `areNotificationsEnabled`. For `registerDevice`, the page shows a single options object (no separate callback argument). **Callback shape** on this bridge is normally **`callback` inside that same object** , not a second function parameter.
 
 If `await` on `registerDevice` or `registrationInfo` does not behave as expected in your build, call them without `await` and use a `callback` property or `.then()` only after confirming what your bridge returns.
 

@@ -23,11 +23,11 @@ Display our demo page in your app to test during development: [https://median.de
 - **Native push on both platforms**: Native push on both platforms: Send push notifications directly to iOS and Android devices using Customer.io's SDKs inside the Median shell.
 - **Bridge-first control**: Manage user authentication, update profile attributes, track custom behavioral events, and request permissions directly from JavaScript without writing native code.
 - **Rich Event Tracking**: Capture custom client-side conversions and activities to power dynamic segments and workflows in your workspace.
-- **Deep linking**: When [deep linking](https://docs.median.co/docs/deep-linking) is configured, notification taps can open the right screen in-app instead of the device browser.
+- **Deep linking**: When [deep linking](/docs/deep-linking) is configured, notification taps can open the right screen in-app instead of the device browser.
 
 ## Prerequisites
 
-- A Median.co app with the [JavaScript Bridge](https://docs.median.co/docs/javascript-bridge) enabled
+- A Median.co app with the [JavaScript Bridge](/docs/javascript-bridge) enabled
 - A Customer.io account with an active workspace.
 - Your Customer.io Site ID and CDP API Key for iOS and Android.
 - `google-services.json` uploaded in your Median app configuration (required for Firebase Cloud Messaging delivery on Android).
@@ -72,7 +72,7 @@ Plugin settings take effect only in new builds. After changing credentials or up
 
 #### Deep linking (optional)
 
-The Customer.io plugin integrates with Median [deep linking](https://docs.median.co/docs/deep-linking). When deep links are configured, users who tap a push notification are routed to the correct screen inside the app rather than to the mobile browser.
+The Customer.io plugin integrates with Median [deep linking](/docs/deep-linking). When deep links are configured, users who tap a push notification are routed to the correct screen inside the app rather than to the mobile browser.
 
 To enable this:
 
@@ -266,4 +266,4 @@ On **iOS**, check that the user has not disabled notifications for the app in Se
 
 ### Deep links open in the browser instead of the app
 
-Configure Median [deep linking](https://docs.median.co/docs/deep-linking) (URL scheme, Universal Links, App Links) so the URL Customer.io uses matches routes handled inside the app.
+Configure Median [deep linking](/docs/deep-linking) (URL scheme, Universal Links, App Links) so the URL Customer.io uses matches routes handled inside the app.

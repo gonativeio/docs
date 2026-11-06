@@ -29,11 +29,11 @@ The demo also links to a standalone [Test Sender.](https://median.dev/firebase-m
 - **Topic-based targeting**: Subscribe and unsubscribe devices from FCM topics to broadcast messages to segments of users without maintaining a token list yourself.
 - **Notification channel management (Android)**: Create, update, and delete notification channels directly from your web app.
 - **Foreground notification control**: Choose whether incoming pushes show a banner while the app is open, or are delivered silently to your JavaScript listeners instead.
-- **Deep linking**: When [deep linking](https://docs.median.co/docs/deep-linking) is configured, notification taps can open the right screen in-app instead of the device browser.
+- **Deep linking**: When [deep linking](/docs/deep-linking) is configured, notification taps can open the right screen in-app instead of the device browser.
 
 ## Prerequisites
 
-- A Median.co app with the [JavaScript Bridge](https://docs.median.co/docs/javascript-bridge) enabled.
+- A Median.co app with the [JavaScript Bridge](/docs/javascript-bridge) enabled.
 - A Firebase project with Cloud Messaging enabled.
 - `google-services.json` uploaded in your Median app configuration (required for push delivery on Android).
 - `GoogleService-Info.plist` uploaded in your Median app configuration, plus an APNs authentication key or certificate configured in the Firebase console (required for push delivery on iOS).
@@ -83,7 +83,7 @@ Plugin settings take effect only in new builds. After changing credentials or up
 
 #### Deep linking (optional)
 
-The Firebase Cloud Messaging plugin integrates with Median [deep linking](https://docs.median.co/docs/deep-linking). When deep links are configured, users who tap a push notification are routed to the correct screen inside the app rather than to the mobile browser. The Test Sender's **Deep link** preset lets you validate this by sending a push with a target URL.
+The Firebase Cloud Messaging plugin integrates with Median [deep linking](/docs/deep-linking). When deep links are configured, users who tap a push notification are routed to the correct screen inside the app rather than to the mobile browser. The Test Sender's **Deep link** preset lets you validate this by sending a push with a target URL.
 
 To enable this:
 
@@ -162,7 +162,7 @@ Returns the current FCM registration token for the device, if one has been gener
 
   <Card
     title="Looking to send pushes to individual users or segments?"
-    href="https://docs.median.co/docs/fcm-identifying-targeting-users"
+    href="/docs/fcm-identifying-targeting-users"
   >
     Follow the guide below to identify and target individual users or segments.
   </Card>
@@ -360,11 +360,11 @@ Use this checklist, together with the [demo page](https://median.dev/firebase-me
 
 ### App Studio reports missing Google services configuration files
 
-You will need to configure Google Services in order to user FCM. Please follow the steps in our [Google Services Guide](https://docs.median.co/docs/google-services).
+You will need to configure Google Services in order to user FCM. Please follow the steps in our [Google Services Guide](/docs/google-services).
 
 ### Deep links open in the browser instead of the app
 
-Configure Median [deep linking](https://docs.median.co/docs/deep-linking) (URL scheme, Universal Links, App Links) so the target URL used in your FCM payload matches routes handled inside the app.
+Configure Median [deep linking](/docs/deep-linking) (URL scheme, Universal Links, App Links) so the target URL used in your FCM payload matches routes handled inside the app.
 
 ### Test push from the sender isn't arriving
 

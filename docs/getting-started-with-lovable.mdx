@@ -40,18 +40,18 @@ If not running inside Median, show: "App Only: Open this page inside your Median
 
 Profile: Show name/email, a push notification opt-in/opt-out toggle, and a sign-out button.
 
-Use the Median JavaScript Bridge NPM package per https://docs.median.co/docs/npm-package.
+Use the Median JavaScript Bridge NPM package per /docs/npm-package.
 
 Detect the native environment with Median.isNativeApp() ONLY. Never use the user agent.
 
-Only when .isNativeApp() is true, on Connect Health / Refresh follow https://docs.median.co/docs/health-bridge: 1. Call Median.healthBridge.requestPermissions(["steps", "heartRate", "activeEnergy"]) 2. Call Median.healthBridge.getData for those types from the start of the user's local today through now, with bucket "day" 3. Map only today's local day into the three cards 4. Add today's steps for the signed-in user in Supabase
+Only when .isNativeApp() is true, on Connect Health / Refresh follow /docs/health-bridge: 1. Call Median.healthBridge.requestPermissions(["steps", "heartRate", "activeEnergy"]) 2. Call Median.healthBridge.getData for those types from the start of the user's local today through now, with bucket "day" 3. Map only today's local day into the three cards 4. Add today's steps for the signed-in user in Supabase
 Never call Health Bridge in the browser.
 
-On first login in the Median app, show an informative prompt to request push notification permission. Wire the Profile toggle to opt in / opt out using Median + OneSignal consent patterns from https://docs.median.co/docs/user-consent-management.
+On first login in the Median app, show an informative prompt to request push notification permission. Wire the Profile toggle to opt in / opt out using Median + OneSignal consent patterns from /docs/user-consent-management.
 
 When health data is successfully rendered after Connect Health / Refresh, trigger haptic feedback:
 Median.haptics.trigger(\{ style: "notificationSuccess" \})
-See https://docs.median.co/docs/haptics
+See /docs/haptics
 </Prompt>
 
 4. Review the agent’s plan, suggest any changes if needed, then approve it.

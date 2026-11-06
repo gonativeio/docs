@@ -10,10 +10,10 @@ Lightning Web Components (LWC) run inside a sandboxed JavaScript environment tha
 
 This is part two of a four-part series:
 
-1. [Getting Started with Salesforce Experience Cloud](https://docs.median.co/docs/getting-started-with-salesforce-experience-cloud)
+1. [Getting Started with Salesforce Experience Cloud](/docs/getting-started-with-salesforce-experience-cloud)
 2. **Lightning Web Components and the JavaScript Bridge** (this page)
-3. [Deep Linking for Salesforce Experience Cloud](https://docs.median.co/docs/salesforce-deep-linking)
-4. [Salesforce LWC Component Deployment and Reference](https://docs.median.co/docs/salesforce-lwc-components)
+3. [Deep Linking for Salesforce Experience Cloud](/docs/salesforce-deep-linking)
+4. [Salesforce LWC Component Deployment and Reference](/docs/salesforce-lwc-components)
 
 ## Step 4: Resolve Lightning Web Security sandbox constraints
 
@@ -62,7 +62,7 @@ Use this getter to disable bridge-dependent UI controls and display an informati
 If the bridge is not reachable after applying the pattern above, verify the following:
 
 1. LWS is enabled in **Setup > Session Settings**.
-2. The CSP is set to Relaxed in **Experience Builder > Settings > Security and Privacy** (see [Getting Started with Salesforce Experience Cloud](https://docs.median.co/docs/getting-started-with-salesforce-experience-cloud)).
+2. The CSP is set to Relaxed in **Experience Builder > Settings > Security and Privacy** (see [Getting Started with Salesforce Experience Cloud](/docs/getting-started-with-salesforce-experience-cloud)).
 3. You are accessing the bridge via `window.median` using the `get _median()` accessor pattern, not a local `window` reference.
 4. You are testing on a physical device inside the Median app, not in Experience Builder preview, which does not inject the bridge.
 

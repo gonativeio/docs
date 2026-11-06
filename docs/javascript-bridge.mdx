@@ -9,7 +9,7 @@ import { MedianLogo } from "/snippets/median-logo.jsx";
 
 The Median JavaScript Bridge is an API embedded in your app that lets your website control and configure the app and access native device functionality and hardware. Your web code can call the bridge to trigger native actions, read device info, manage navigation, and integrate with native plugins.
 
-There are two ways to use the JavaScript Bridge: the [JavaScript Bridge Library](https://docs.median.co/docs/javascript-bridge#javascript-bridge-library), which provides helper functions and an abstraction layer, or the [Median Protocol](https://docs.median.co/docs/javascript-bridge#median-protocol) (`median://`) for direct, lower-level access without the library.
+There are two ways to use the JavaScript Bridge: the [JavaScript Bridge Library](/docs/javascript-bridge#javascript-bridge-library), which provides helper functions and an abstraction layer, or the [Median Protocol](/docs/javascript-bridge#median-protocol) (`median://`) for direct, lower-level access without the library.
 
 <Check>
   **Legacy GoNative Namespace**
@@ -26,7 +26,7 @@ For apps that have been updated on Median.co you may use either `gonative` or `m
   <Card
     title="Detecting App Usage"
     icon="mobile-alt"
-    href="https://docs.median.co/docs/detecting-app-usage"
+    href="/docs/detecting-app-usage"
   >
     Detect when your website is running inside the Median app so you can adapt
     UI, analytics, or behavior for the in-app experience.
@@ -34,7 +34,7 @@ For apps that have been updated on Median.co you may use either `gonative` or `m
   <Card
     title="NPM Package"
     icon="npm"
-    href="https://docs.median.co/docs/npm-package"
+    href="/docs/npm-package"
   >
     Use the median-js-bridge NPM package in React, Vue, or other frameworks.
     Basic usage, listeners, and SPA navigation support.
@@ -42,7 +42,7 @@ For apps that have been updated on Median.co you may use either `gonative` or `m
   <Card
     title="Device Info"
     icon="info-circle"
-    href="https://docs.median.co/docs/device-info"
+    href="/docs/device-info"
   >
     Retrieve device information such as platform, OS version, and app version
     from the JavaScript Bridge.
@@ -50,21 +50,21 @@ For apps that have been updated on Median.co you may use either `gonative` or `m
   <Card
     title="Clipboard"
     icon="clipboard"
-    href="https://docs.median.co/docs/clipboard"
+    href="/docs/clipboard"
   >
     Read from and write to the device clipboard via the JavaScript Bridge.
   </Card>
   <Card
     title="Prompt Share Dialogue"
     icon="share-alt"
-    href="https://docs.median.co/docs/prompt-share-dialogue"
+    href="/docs/prompt-share-dialogue"
   >
     Trigger the native share sheet to share URLs or content from your web app.
   </Card>
   <Card
     title="App Resumed Callback"
     icon="play-circle"
-    href="https://docs.median.co/docs/app-resumed-callback"
+    href="/docs/app-resumed-callback"
   >
     Run code when the user returns to your app from the background. Handle app
     resume events from your web code.
@@ -72,7 +72,7 @@ For apps that have been updated on Median.co you may use either `gonative` or `m
   <Card
     title="Keyboard State Tracking"
     icon="keyboard"
-    href="https://docs.median.co/docs/keyboard-state-tracking"
+    href="/docs/keyboard-state-tracking"
   >
     Track when the device keyboard is shown or hidden and respond to keyboard
     state changes.
@@ -80,7 +80,7 @@ For apps that have been updated on Median.co you may use either `gonative` or `m
   <Card
     title="Download File"
     icon="download"
-    href="https://docs.median.co/docs/download-file"
+    href="/docs/download-file"
   >
     Download files from your web app to the device using the native download
     manager.
@@ -88,14 +88,14 @@ For apps that have been updated on Median.co you may use either `gonative` or `m
   <Card
     title="Clear Webview Cache"
     icon="broom"
-    href="https://docs.median.co/docs/clear-webview-cache"
+    href="/docs/clear-webview-cache"
   >
     TrClear the app webview cache programmatically from your web code.
   </Card>
   <Card
     title="Accessing callbacks in an iframe"
     icon="code"
-    href="https://docs.median.co/docs/iframe-callbacks"
+    href="/docs/iframe-callbacks"
   >
     Use JavaScript Bridge callbacks when your content runs inside an iframe.
     Expose functions and handle cross-frame communication.
@@ -116,7 +116,7 @@ Display our demo page in your app to test during development [https://median.dev
 When using frameworks like React, Vue, or Angular, the `median` object may not be in scope. Options:
 
 1. Expose callbacks globally: `window.callback_function = () => {}`
-2. Use the [NPM Package](https://docs.median.co/docs/npm-package) and toggle off library injection in App Studio → Website Overrides
+2. Use the [NPM Package](/docs/npm-package) and toggle off library injection in App Studio → Website Overrides
 3. Use the Median Protocol (`median://`) which does not require the library
 
 <Check>
@@ -184,7 +184,7 @@ Important Considerations
 <AccordionGroup>
 <Accordion title="Why do I see 'median is not defined' in the console?" id="why-do-i-see-median-is-not-defined-in-the-console">
 
-The library is injected at runtime by the app and is not available in a desktop browser. Use the [NPM Package](https://docs.median.co/docs/npm-package) if you need to develop or test outside the app, and disable library injection in App Studio → Website Overrides when using the package.
+The library is injected at runtime by the app and is not available in a desktop browser. Use the [NPM Package](/docs/npm-package) if you need to develop or test outside the app, and disable library injection in App Studio → Website Overrides when using the package.
 
 </Accordion>
 </AccordionGroup>

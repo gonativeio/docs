@@ -105,10 +105,10 @@ Deep links open URLs inside your app instead of the device browser when domains 
 1. **Plugin configuration** - Add every domain you want to open in-app to the `hosts` array. Do not include `https://` or `http://`; the plugin applies URL schemes as needed.
 
 2. **Hosted verification files** — On each domain (and subdomain you use), serve the standard association files over HTTPS:
-   - **Android** - `/.well-known/assetlinks.json` (format and examples: [Deep linking](https://docs.median.co/docs/deep-linking)). Example host file: [https://median.dev/.well-known/assetlinks.json](https://median.dev/.well-known/assetlinks.json).
+   - **Android** - `/.well-known/assetlinks.json` (format and examples: [Deep linking](/docs/deep-linking)). Example host file: [https://median.dev/.well-known/assetlinks.json](https://median.dev/.well-known/assetlinks.json).
    - **iOS** - `/.well-known/apple-app-site-association` (or `/apple-app-site-association`). Example: [https://median.dev/.well-known/apple-app-site-association](https://median.dev/.well-known/apple-app-site-association).
 
-Use Median.co's [Deep Linking Validator](https://docs.median.co/docs/deep-linking-validator) to check your domain configuration, and read [Deep linking](https://docs.median.co/docs/deep-linking) for background on Universal Links, App Links, and file requirements.
+Use Median.co's [Deep Linking Validator](/docs/deep-linking-validator) to check your domain configuration, and read [Deep linking](/docs/deep-linking) for background on Universal Links, App Links, and file requirements.
 
 **Note**: An incorrect deep link setup causes links to open in the mobile device browser instead of the app. Confirm your `hosts` list and hosted verification files before testing push-triggered links.
 
@@ -280,7 +280,7 @@ Use this checklist to validate your Bloomreach integration before release:
 
 **Deep Linking**
 * [ ] `hosts` includes every intended deep-link domain, without a scheme.
-* [ ] Association files (`assetlinks.json`, `apple-app-site-association`) are hosted and pass Median's [Deep Linking Validator](https://docs.median.co/docs/deep-linking-validator).
+* [ ] Association files (`assetlinks.json`, `apple-app-site-association`) are hosted and pass Median's [Deep Linking Validator](/docs/deep-linking-validator).
 * [ ] Tapping a push notification or campaign link opens the correct screen in-app, not the browser.
 
 ## Troubleshooting

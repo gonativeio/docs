@@ -12,7 +12,7 @@ Effective link handling keeps navigation predictable. Users stay in your WebView
 | Problem                | What it controls                                                                                          | Typical tools                                                                                                                                                                                  |
 | ---------------------- | --------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Inside the WebView** | Same-origin navigation, outbound links, in-app browser, and the long-press menu on links                  | Link handling **rules**, `median.window.open`, `median.contextMenu`                                                                                                                            |
-| **Inbound app links**  | Links in SMS, email, and other apps opening **your** Median app instead of Safari/Chrome for your domains | Universal Links (iOS), App Links (Android), `apple-app-site-association`, `assetlinks.json`, optional **[custom URL schemes](https://docs.median.co/docs/deep-linking-1#url-scheme-protocol)** |
+| **Inbound app links**  | Links in SMS, email, and other apps opening **your** Median app instead of Safari/Chrome for your domains | Universal Links (iOS), App Links (Android), `apple-app-site-association`, `assetlinks.json`, optional **[custom URL schemes](/docs/deep-linking#url-scheme-protocol)** |
 
 Your website still controls ordinary `<a href>` markup and client-side routing. Median settings govern how the **native shell** routes those navigations and how the OS associates web URLs with your app.
 
@@ -31,7 +31,7 @@ Use these guides to configure the behavior you need.
   <Card
     title="Deep linking"
     icon="external-link-alt"
-    href="https://docs.median.co/docs/deep-linking"
+    href="/docs/deep-linking"
   >
     Set up Universal Links and App Links, validate association files, test
     behavior, and use custom URL schemes for advanced flows.
@@ -39,7 +39,7 @@ Use these guides to configure the behavior you need.
   <Card
     title="Link behavior"
     icon="link"
-    href="https://docs.median.co/docs/internal-vs-external-links"
+    href="/docs/internal-vs-external-links"
   >
     Control whether links open in the WebView, in-app browser, or externally;
     configure rule order and regex; apply runtime rules; and customize
