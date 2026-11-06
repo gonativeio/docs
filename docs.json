@@ -130,6 +130,7 @@
             "group": "Native Navigation",
             "pages": [
               "docs/native-navigation-overview",
+              "docs/navigation-instances",
               {
                 "group": "Top Navigation Bar",
                 "root": "docs/top-navigation-bar",
