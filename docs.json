@@ -1,15 +1,27 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "aspen",
-  "name": "Welcome to Median.co",
+  "name": "Median Docs",
   "colors": {
-    "primary": "#4299ed",
-    "light": "#4299ed",
-    "dark": "#4299ed"
+    "primary": "#1174D3",
+    "light": "#4299ED",
+    "dark": "#1174D3"
+  },
+  "fonts": {
+    "family": "DM Sans",
+    "heading": {
+      "family": "Questrial"
+    }
+  },
+  "background": {
+    "color": {
+      "light": "#FFFFFF",
+      "dark": "#0E0D08"
+    }
   },
   "favicon": {
-    "light": "/images/median/median-logo-light.png",
-    "dark": "/images/median/median-logo-dark.png"
+    "light": "/images/median/median-logomark-light.png",
+    "dark": "/images/median/median-logomark-dark.png"
   },
   "metadata": {
     "timestamp": true
@@ -17,7 +29,7 @@
   "seo": {
     "indexing": "all",
     "metatags": {
-      "og:site_name": "Median.co Docs",
+      "og:site_name": "Median Docs",
       "og:type": "website",
       "twitter:card": "summary_large_image"
     }

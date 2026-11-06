@@ -1,10 +1,15 @@
 /*
  * Changelog tag badges (see changelog-tags.js)
  *
- * Release types: filled badges, one colour each.
- * Platforms: outlined badges in Median blue.
- * Shape differs as well as colour, so the two kinds stay distinguishable
- * without relying on colour alone.
+ * Colors follow the Median Brand Guidelines (section 3.1):
+ * - Release types are filled badges in the three Base colors:
+ *   New feature = Blue, Bug fix = Pink, Maintenance = Yellow.
+ *   Light mode uses the Lighter tints and dark mode the Base colors,
+ *   both with Median Black text (all pairings pass WCAG AA).
+ * - Platforms are outlined badges, following the brand's "strokes"
+ *   principle: Median Black outline in light mode, Median White in dark.
+ * Shape differs as well as color, so the two kinds stay distinguishable
+ * without relying on color alone.
  */
 
 /* ---------- Badges on each entry ---------- */
@@ -16,50 +21,44 @@
   border-radius: 9999px;
   font-size: 0.75rem;
   line-height: 1.25rem;
-  font-weight: 600;
+  font-weight: 500;
+  color: #1a100b;
   border: 1px solid transparent;
 }
 
 /* Release types (filled) */
 [data-component-part="update-tag"][data-tag="new-feature"] {
-  background: #dcfce7;
-  color: #166534;
+  background: #b5daff;
 }
 [data-component-part="update-tag"][data-tag="bug-fix"] {
-  background: #ffe4e6;
-  color: #9f1239;
+  background: #feb9ff;
 }
 [data-component-part="update-tag"][data-tag="maintenance"] {
-  background: #fef3c7;
-  color: #92400e;
+  background: #ffefb4;
 }
 
 /* Platforms (outlined) */
 [data-component-part="update-tag"][data-tag-kind="platform"] {
   background: transparent;
-  color: #1d6fc4;
-  border-color: rgba(66, 153, 237, 0.55);
+  border-color: #1a100b;
 }
 
 /* Dark mode */
 .dark [data-component-part="update-tag"][data-tag="new-feature"] {
-  background: rgba(34, 197, 94, 0.16);
-  color: #86efac;
+  background: #4299ed;
 }
 .dark [data-component-part="update-tag"][data-tag="bug-fix"] {
-  background: rgba(244, 63, 94, 0.16);
-  color: #fda4af;
+  background: #f567f0;
 }
 .dark [data-component-part="update-tag"][data-tag="maintenance"] {
-  background: rgba(245, 158, 11, 0.16);
-  color: #fcd34d;
+  background: #f7c406;
 }
 .dark [data-component-part="update-tag"][data-tag-kind="platform"] {
-  color: #8cc4f7;
-  border-color: rgba(66, 153, 237, 0.5);
+  color: #f2f0ee;
+  border-color: #f2f0ee;
 }
 
-/* ---------- Filter panel: a matching colour dot before each tag name ---------- */
+/* ---------- Filter panel: a matching color dot before each tag name ---------- */
 
 #changelog-filters [data-tag-kind]::before {
   content: "";
@@ -71,17 +70,20 @@
   vertical-align: middle;
 }
 #changelog-filters [data-tag="new-feature"]::before {
-  background: #22c55e;
+  background: #4299ed;
 }
 #changelog-filters [data-tag="bug-fix"]::before {
-  background: #f43f5e;
+  background: #f567f0;
 }
 #changelog-filters [data-tag="maintenance"]::before {
-  background: #f59e0b;
+  background: #f7c406;
 }
 #changelog-filters [data-tag-kind="platform"]::before {
   background: transparent;
-  box-shadow: inset 0 0 0 1.5px #4299ed;
+  box-shadow: inset 0 0 0 1.5px #1a100b;
+}
+.dark #changelog-filters [data-tag-kind="platform"]::before {
+  box-shadow: inset 0 0 0 1.5px #f2f0ee;
 }
 
 /* ---------- Changelog page layout: no left sidebar ---------- */
