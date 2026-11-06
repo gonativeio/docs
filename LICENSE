@@ -1,21 +1,37 @@
-MIT License
+Copyright (c) 2026 GoNative.io LLC dba Median.co. All rights reserved.
 
-Copyright (c) 2026 Mintlify
+DOCUMENTATION
+The documentation in this repository, including all text, images,
+screenshots, and videos, and the Median name and logo, is the property of
+GoNative.io LLC dba Median.co. You may view the documentation and link to it.
+You may not copy, modify, republish, or distribute it without prior written
+permission, except as described under CONTRIBUTIONS.
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+CODE SAMPLES
+Code samples in the documentation, including code blocks in .mdx files, are
+licensed under the MIT License:
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+Permission is hereby granted, free of charge, to any person obtaining a
+copy of the code samples, to deal in them without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies, subject to the condition that
+this permission notice is included in all copies or substantial portions.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+THE CODE SAMPLES ARE PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY ARISING FROM THE USE OF
+THE CODE SAMPLES.
+
+THIRD-PARTY TRADEMARKS
+Third-party names and logos, such as Apple, Google, Firebase, and OneSignal,
+are trademarks of their respective owners and are not covered by this
+license.
+
+CONTRIBUTIONS
+By submitting a contribution to this repository, such as a pull request or
+suggested edit, you grant GoNative.io LLC dba Median.co a perpetual, worldwide,
+royalty-free license to use, modify, and publish it as part of the
+documentation.
+
+Use of Median's products and services is governed by the terms at
+https://median.co/terms.
