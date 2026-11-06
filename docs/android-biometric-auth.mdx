@@ -128,8 +128,8 @@ Run the JavaScript function:
 
 javascriptThe app will return a promise, or if provided execute CALLBACK, with an object parameter containing the fields:
 
-> javascript- `hasTouchId`: `true` or `false`. Set to `true` on Android devices with fingerprints enrolled.
-> javascript- `hasSecret`: `true` or `false`
+javascript- `hasTouchId`: `true` or `false`. Set to `true` on Android devices with fingerprints enrolled.
+javascript- `hasSecret`: `true` or `false`
 
 ### Save a Secret
 
@@ -166,13 +166,13 @@ javascriptRun the JavaScript function:
   ```
 </CodeGroup>
 
-javascript**Prompt is only available for iOS and it has been included above to ensure cross-platform compatibility.** The app will return a promise, or if provided execute CALLBACK, with an object parameter containing the fields:
+**Prompt is only available for iOS and it has been included above to ensure cross-platform compatibility.** 
 
-> javascript- `success`: true or false
-> javascript- `error`: provided success is false (see error codes below)
-> javascript- `secret`: the previously stored secret
->
-> javascript`callbackOnCancel` is optional. If set to `1` and a `callbackFunction` has been provided, when the user cancels the authentication the callback function will be invoked with `success=false`, `error=userCanceled`. If `callbackOnCancel` is not set (or set to 0), the callback will not be run on cancel.
+The app will return a promise, or if provided execute CALLBACK, with an object parameter containing the fields:
+- `success`: true or false
+- `error`: provided success is false (see error codes below)
+- `secret`: the previously stored secret
+- `callbackOnCancel` is optional. If set to `1` and a `callbackFunction` has been provided, when the user cancels the authentication the callback function will be invoked with `success=false`, `error=userCanceled`. If `callbackOnCancel` is not set (or set to 0), the callback will not be run on cancel.
 
 ### Delete a Secret
 
@@ -187,10 +187,9 @@ javascriptRun the JavaScript function:
   ```
 </CodeGroup>
 
-javascriptThe app will return a promise, or if provided execute CALLBACK, with an object parameter containing the fields:
-
-> javascript- `success`: true or false
-> javascript- `error`: provided if success is false
+The app will return a promise, or if provided execute CALLBACK, with an object parameter containing the fields:
+- `success`: true or false
+- `error`: provided if success is false
 
 ### Possible error values
 
