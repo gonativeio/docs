@@ -46,7 +46,8 @@
               "docs/licenses",
               "docs/app-updates",
               "docs/app-studio-accounts",
-              "docs/support"
+              "docs/support",
+              "docs/mcp-server"
             ]
           },
           {
@@ -63,7 +64,8 @@
               "docs/app-icon",
               "docs/splash-screen",
               "docs/theme-colors",
-              "docs/status-bar"
+              "docs/status-bar",
+              "docs/system-nav-bar"
             ]
           },
           {
@@ -84,6 +86,7 @@
               "docs/swipe-gestures",
               "docs/font-scaling",
               "docs/webview-zoom",
+              "docs/new-windows",
               "docs/maximum-windows",
               {
                 "group": "Offline Page",
@@ -107,7 +110,8 @@
                 "group": "Deep Linking",
                 "root": "docs/deep-linking",
                 "pages": [
-                  "docs/deep-linking-validator"
+                  "docs/deep-linking-validator",
+                  "docs/url-scheme-protocol"
                 ]
               }
             ]
@@ -146,6 +150,7 @@
               "docs/native-navigation-overview",
               "docs/navigation-instances",
               "docs/native-navigation-changes",
+              "docs/native-page-transitions",
               {
                 "group": "Top Navigation Bar",
                 "root": "docs/top-navigation-bar",
@@ -279,7 +284,8 @@
                   "docs/branch-io",
                   "docs/firebase-analytics",
                   "docs/crashlytics",
-                  "docs/facebook"
+                  "docs/facebook",
+                  "docs/intent-edge"
                 ]
               },
               {
@@ -506,6 +512,7 @@
               "docs/publishing-service",
               "docs/apple-app-store",
               "docs/google-play-store",
+              "docs/app-store-screenshots",
               "docs/faq-publishing"
             ]
           }
@@ -579,6 +586,86 @@
     {
       "source": "/discuss",
       "destination": "/docs/support"
+    },
+    {
+      "source": "/docs/release-notes",
+      "destination": "/docs/changelog"
+    },
+    {
+      "source": "/docs/release-notes-app-studio",
+      "destination": "/docs/changelog"
+    },
+    {
+      "source": "/docs/release-notes-ios",
+      "destination": "/docs/changelog"
+    },
+    {
+      "source": "/docs/release-notes-android",
+      "destination": "/docs/changelog"
+    },
+    {
+      "source": "/docs/release-notes-app-studio-archive",
+      "destination": "/docs/changelog-archive"
+    },
+    {
+      "source": "/docs/release-notes-ios-archive",
+      "destination": "/docs/changelog-archive"
+    },
+    {
+      "source": "/docs/release-notes-android-archive",
+      "destination": "/docs/changelog-archive"
+    },
+    {
+      "source": "/docs/onesignal-info",
+      "destination": "/docs/onesignal"
+    },
+    {
+      "source": "/docs/onesignal-user-management",
+      "destination": "/docs/identifying-targeting-users"
+    },
+    {
+      "source": "/docs/data-tags",
+      "destination": "/docs/identifying-targeting-users"
+    },
+    {
+      "source": "/docs/open-url-from-notification",
+      "destination": "/docs/handling-notifications-taps"
+    },
+    {
+      "source": "/docs/context-menu",
+      "destination": "/docs/internal-vs-external-links#context-menu"
+    },
+    {
+      "source": "/docs/contextual-nav-toolbar-dynamic-visibility",
+      "destination": "/docs/contextual-navigation-toolbar"
+    },
+    {
+      "source": "/docs/pull-to-refresh",
+      "destination": "/docs/swipe-gestures#pull-to-refresh"
+    },
+    {
+      "source": "/docs/deep-linking-1",
+      "destination": "/docs/deep-linking"
+    },
+    {
+      "source": "/docs/free-splash-screen",
+      "destination": "/docs/splash-screen"
+    },
+    {
+      "source": "/docs/animated-splash-screen",
+      "destination": "/docs/splash-screen"
+    },
+    {
+      "source": "/docs/geckoview",
+      "destination": "/docs/architecture#can-i-use-geckoview-instead-of-android-system-webview"
+    },
+    {
+      "source": "/docs/camera-capture-quality",
+      "destination": "/docs/camera-and-file-uploads#capture-quality"
+    },
+    {
+      "source": "/docs/revenuecat",
+      "destination": "/docs/revenue-cat"
     }
   ]
 }
