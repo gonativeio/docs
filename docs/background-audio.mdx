@@ -412,8 +412,6 @@ switch (error.code) {
 Use the listener `error` state and the `errorCode` it provides together with this reference table when presenting in-app guidance. Combine it with `getStatus` checks before issuing `pause`, `resume`, or `stop` commands to avoid `NOT_RECORDING` and `ALREADY_RECORDING` race conditions.
 </Info>
 
-***
-
 ## Example implementation
 
 See the example implementation below for the basic recording flow
@@ -558,8 +556,6 @@ Use this checklist to ensure Background Audio is working correctly in your app:
 * [ ] Your app surfaces the errors in the reference table as documented (`PERMISSION_DENIED`, `ALREADY_RECORDING`, `NOT_RECORDING`, `STT_UNAVAILABLE`, `SESSION_INTERRUPTED`, `FILE_ERROR`)
 * [ ] Incoming calls or Siri trigger `SESSION_INTERRUPTED`, and your listener handles it
 * [ ] Denying microphone permission returns `PERMISSION_DENIED` and surfaces a clear user-facing path to Settings
-
-***
 
 ## Troubleshooting
 

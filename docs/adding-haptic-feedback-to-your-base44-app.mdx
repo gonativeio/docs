@@ -24,8 +24,6 @@ Haptic feedback, those subtle vibrations you feel when tapping buttons on your p
 
 **Note:** If you haven't installed the Median JavaScript Bridge yet, do that first by following our [Getting Started with Base44](https://docs.median.co/docs/getting-started-with-base44) guide. The JavaScript Bridge is what allows your Base44 app to access native phone features like haptic feedback.
 
-***
-
 ## What is haptic feedback?
 
 Haptic feedback is the gentle vibration you feel when you interact with your phone. You experience it when:
@@ -51,8 +49,6 @@ When you convert your Base44 app to mobile using Median.co, the JavaScript Bridg
 * The JavaScript Bridge lets your app "talk" to the phone's vibration motor.
 
 You simply tell Base44's AI where you want haptics, and it will add the necessary code using the JavaScript Bridge.
-
-***
 
 ## Step 1: Choose your haptic type
 
@@ -92,14 +88,10 @@ For specific interactions:
 
 ### Quick decision guide
 
-**Quick decision guide⎘ Copy link
-
 * Button press? - Use impactLight
 * Success? - Use notificationSuccess
 * Error? - Use notificationError
 * Deleting something? - Use impactMedium or impactHeavy
-
-***
 
 ## Step 2: Add haptics using AI prompts
 
@@ -156,8 +148,6 @@ Here's what Base44's AI will add to your app (you don't need to write this — i
 * Handles errors — shows issues using `alert()` instead of `console.log`.
 * Works after publishing — Base44 requires publishing for changes to take effect.
 
-***
-
 ## Step 3: More prompt examples
 
 Here are additional prompts you can customize for your specific needs.
@@ -193,8 +183,6 @@ Use Discussion mode to brainstorm: I want to add haptic feedback to multiple par
 
 Don't implement yet, just help me plan the approach.
 ```
-
-***
 
 ## Understanding what Base44 implements
 
@@ -236,8 +224,6 @@ What happens: calls the Median JavaScript Bridge API, sends the haptic style you
 
 Why this matters: if something goes wrong, your app continues working, errors are shown using `alert()` (visible in mobile apps), Base44 users can see debugging information, and haptics are treated as an enhancement, not a requirement.
 
-***
-
 ## Step 4: Test your haptics
 
 <Warning>
@@ -262,20 +248,3 @@ Why this matters: if something goes wrong, your app continues working, errors ar
    2. **Android:** Settings → Sound → Vibration (must be ON).
 
 6. **Test each interaction:** Tap buttons that should have haptics, submit forms (both success and error cases), verify the vibration matches your intention.
-
-***
-
-[Add Push Notifications to a Base44 App](/docs/add-push-notifications-to-a-base44-app)
-
-[Lovable](/docs/lovable)
-
-Copy Page
-
-* * [What is haptic feedback?](#what-is-haptic-feedback)
-  * [How haptics work in Median.co](#how-haptics-work-in-medianco)
-  * [Step 1: Choose your haptic type](#step-1-choose-your-haptic-type)
-  * [Step 2: Add haptics using AI prompts](#step-2-add-haptics-using-ai-prompts)
-  * * [Example: Adding haptics to task creation](#example-adding-haptics-to-task-creation)
-  * [Step 3: More prompt examples](#step-3-more-prompt-examples)
-  * [Understanding what Base44 implements](#understanding-what-base44-implements)
-  * [Step 4: Test your haptics](#step-4-test-your-haptics)

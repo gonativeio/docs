@@ -5,8 +5,6 @@ description: "Add native Zoom Video to provide your users seamless and integrate
 
 import { MedianLogo } from "/snippets/median-logo.jsx";
 
-## Overview
-
 The Zoom Plugin allows you to add [embedded video experiences](https://developers.zoom.us/docs/video-sdk/) leveraging Zoom's core technology such as in-app video calling. Provide advanced video features and ensure a cohesive and integrated experience for your users.
 
 <Check>
@@ -29,7 +27,7 @@ Run the following JS Bridge method with the JWT token, meeting number, and an op
 <MedianLogo />
 
 <CodeGroup>
-  ```javascript JavaScript
+  ```JavaScript JavaScript
   // If passed to the `join` method as a callback this will be called upon conclusion of the call
   function zoom_callback(data) {
       if (data.error) {
@@ -51,9 +49,9 @@ Run the following JS Bridge method with the JWT token, meeting number, and an op
   ```
 </CodeGroup>
 
-> Details of the query parameters:
->
-> * `token`: JWT Token retrieved using the guide above
-> * `sessionName`: Name of the video call room
-> * `userIdentity`: The name that will be shown on the video call room for the user joining the room.
-> * `password`: Password for the session being joined
+Details of the query parameters:
+
+- `token`: JWT Token retrieved using the guide above
+- `sessionName`: Name of the video call room
+- `userIdentity`: The name that will be shown on the video call room for the user joining the room.
+- `password`: Password for the session being joined

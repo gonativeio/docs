@@ -44,24 +44,23 @@ javascriptFor example, you may embed this JavaScript into your post-login page:
   var username = 'andy'
   var password = 'password';
 
-median.auth.status({'callbackFunction': median_status_afterlogin}); // returns promise
+  median.auth.status({'callbackFunction': median_status_afterlogin}); // returns promise
 
-function median_status_afterlogin(data) {
-if (data && data.hasTouchId) {
-var secret = JSON.stringify({
-username: username,
-password: password
-});
+  function median_status_afterlogin(data) {
+  if (data && data.hasTouchId) {
+  var secret = JSON.stringify({
+  username: username,
+  password: password
+  });
 
-          median.auth.save({
-            'secret': secret,
-            'minimumAndroidBiometric': 'strong'
-          });
-      }
+            median.auth.save({
+              'secret': secret,
+              'minimumAndroidBiometric': 'strong'
+            });
+        }
 
-}
-
-````
+  }
+```
 </CodeGroup>
 
 **Tip: Some JS Bridge commands return promises. They are usually declared as such through a comment to help you identify them.[Learn More](https://median.co/docs/javascript-bridge#promises).**
@@ -96,8 +95,7 @@ function median_secret_callback(data) {
         // Allow manual entry
     }
 }
-````
-
+```
 </CodeGroup>
 
 Once the `median_secret_callback` function is called with the previously saved secret, it should perform a request to log in the user. If the credentials are incorrect, you should delete the secret and allow manual login by running the function:
@@ -128,8 +126,8 @@ Run the JavaScript function:
 
 javascriptThe app will return a promise, or if provided execute CALLBACK, with an object parameter containing the fields:
 
-> javascript- `hasTouchId`: `true` or `false`. Set to `true` on Android devices with fingerprints enrolled.
-> javascript- `hasSecret`: `true` or `false`
+javascript- `hasTouchId`: `true` or `false`. Set to `true` on Android devices with fingerprints enrolled.
+javascript- `hasSecret`: `true` or `false`
 
 ### Save a Secret
 
@@ -166,13 +164,13 @@ javascriptRun the JavaScript function:
   ```
 </CodeGroup>
 
-javascript**Prompt is only available for iOS and it has been included above to ensure cross-platform compatibility.** The app will return a promise, or if provided execute CALLBACK, with an object parameter containing the fields:
+**Prompt is only available for iOS and it has been included above to ensure cross-platform compatibility.** 
 
-> javascript- `success`: true or false
-> javascript- `error`: provided success is false (see error codes below)
-> javascript- `secret`: the previously stored secret
->
-> javascript`callbackOnCancel` is optional. If set to `1` and a `callbackFunction` has been provided, when the user cancels the authentication the callback function will be invoked with `success=false`, `error=userCanceled`. If `callbackOnCancel` is not set (or set to 0), the callback will not be run on cancel.
+The app will return a promise, or if provided execute CALLBACK, with an object parameter containing the fields:
+- `success`: true or false
+- `error`: provided success is false (see error codes below)
+- `secret`: the previously stored secret
+- `callbackOnCancel` is optional. If set to `1` and a `callbackFunction` has been provided, when the user cancels the authentication the callback function will be invoked with `success=false`, `error=userCanceled`. If `callbackOnCancel` is not set (or set to 0), the callback will not be run on cancel.
 
 ### Delete a Secret
 
@@ -187,10 +185,9 @@ javascriptRun the JavaScript function:
   ```
 </CodeGroup>
 
-javascriptThe app will return a promise, or if provided execute CALLBACK, with an object parameter containing the fields:
-
-> javascript- `success`: true or false
-> javascript- `error`: provided if success is false
+The app will return a promise, or if provided execute CALLBACK, with an object parameter containing the fields:
+- `success`: true or false
+- `error`: provided if success is false
 
 ### Possible error values
 
@@ -214,7 +211,9 @@ Additionally, you can also test the integration using the Appetize Simulators.
 3. Log in with credentials
 4. Return to the demo page and use the Login with Biometrics button without having to provide username and password again
 
-![Appetize - Fingerprint ID Button](/images/docs/7101a4a47217df84be067110782a1ef0df1addbd7f0a3c45375744283a9cd22a-Screenshot_2025-07-15_at_11.53.31.png)
+<Frame caption="Appetize - Fingerprint ID Button">
+  <img src="/images/docs/7101a4a47217df84be067110782a1ef0df1addbd7f0a3c45375744283a9cd22a-Screenshot_2025-07-15_at_11.53.31.png" />
+</Frame>
 
 ## Whitelist Domains for Plugin Access
 
@@ -224,4 +223,6 @@ To do so, go to the Native Plugins tab in the Median App Studio, click Settings 
 
 Regular expressions are supported to allow wildcards in the URL.
 
-![Whitelisting URLs for Access](/images/docs/74b826bc4c59b1258b41570a969ce3b082e27cff0497220d47b6fef189721477-Screenshot_2025-07-15_at_11.32.35.png)
+<Frame caption="Whitelisting URLs for Access">
+  <img src="/images/docs/6ac6443f60d854e11d699edae7fa95c860c78b958e13862a4ce17e14151161c2-Screenshot_2025-07-15_at_11.32.35.png" />
+</Frame>

@@ -5,8 +5,6 @@ description: "Control your app's device status bar"
 
 import { MedianLogo } from "/snippets/median-logo.jsx";
 
-## Overview
-
 Set default styling options and Light/Dark mode for the device status bar while your app is open. When the status bar is in Light mode it will display with black text, in Dark mode white text, in Auto mode it will follow the device Light/Dark mode setting.
 
 You may also customize and dynamically set the status bar visibility and style during runtime from your website using the Median JavaScript Bridge.
@@ -14,28 +12,29 @@ You may also customize and dynamically set the status bar visibility and style d
 <Check>
   **Developer Demo**
 
-  Display our demo page in your app to test during development [https://median.dev/status-bar/ <Icon icon="arrow-up-right-from-square" size={12} />](https://median.dev/status-bar/)
+Display our demo page in your app to test during development [https://median.dev/status-bar/ <Icon icon="arrow-up-right-from-square" size={12} />](https://median.dev/status-bar/)
+
 </Check>
 
 ## Configuration Options
 
 Median supports four parameters for controlling status bar appearance:
 
-| Parameter | Values | Description |
-| --- | --- | --- |
-| `style` | `'light'`, `'dark'` or `'auto'` | Sets the color of the status bar text and icons. `light` displays black text/icons; `dark` displays white text/icons; `auto` follows the device's system Light/Dark mode setting. |
-| `color` | Hex value, e.g. `RRGGBB` or `AARRGGBB` | Sets the status bar background to a solid color. Use `00000000` for a fully transparent status bar. |
-| `overlay` | `true` or `false` | When `true`, web content extends underneath the status bar. When false (default), web content starts below the status bar. |
-| `blur` | `true` or `false` (iOS only) | When `true`, applies a blur effect behind the status bar color. When `false` (default), the status bar shows a flat, solid color. |
+| Parameter | Values                                 | Description                                                                                                                                                                       |
+| --------- | -------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `style`   | `'light'`, `'dark'` or `'auto'`        | Sets the color of the status bar text and icons. `light` displays black text/icons; `dark` displays white text/icons; `auto` follows the device's system Light/Dark mode setting. |
+| `color`   | Hex value, e.g. `RRGGBB` or `AARRGGBB` | Sets the status bar background to a solid color. Use `00000000` for a fully transparent status bar.                                                                               |
+| `overlay` | `true` or `false`                      | When `true`, web content extends underneath the status bar. When false (default), web content starts below the status bar.                                                        |
+| `blur`    | `true` or `false` (iOS only)           | When `true`, applies a blur effect behind the status bar color. When `false` (default), the status bar shows a flat, solid color.                                                 |
 
 <Warning>
   **Overlay setting on Android**
 
-  With the Overlay setting enabled on Android the keyboard will overlay on top of your web content which can cause issues for users completing forms. If you use forms in your app consider two solutions to improve UX.
+With the Overlay setting enabled on Android the keyboard will overlay on top of your web content which can cause issues for users completing forms. If you use forms in your app consider two solutions to improve UX.
 
-  1. Disable the Overlay setting via the JavaScript Bridge when showing a page that includes forms.
-  2. Make use of the [keyboard listener functions](/docs/keyboard-state-tracking) to disable/enable the Overlay setting via the JavaScript Bridge when the keyboard is active/inactive.
-</Warning>
+1. Disable the Overlay setting via the JavaScript Bridge when showing a page that includes forms.
+2. Make use of the [keyboard listener functions](/docs/keyboard-state-tracking) to disable/enable the Overlay setting via the JavaScript Bridge when the keyboard is active/inactive.
+   </Warning>
 
 ## Setting the Status Bar at Runtime
 
@@ -69,22 +68,22 @@ The example code below creates a red status bar with 50% alpha and white icons, 
 
 ```javascript JavaScript
 // Trigger on demand, e.g. from a button or route change
-if (navigator.userAgent.indexOf('median') > -1) {
+if (navigator.userAgent.indexOf("median") > -1) {
   median.statusbar.set({
-    style: 'dark',       // white text and icons
-    color: '80ff0000',   // 50% alpha red
+    style: "dark", // white text and icons
+    color: "80ff0000", // 50% alpha red
     overlay: true,
-    blur: true            // optional, iOS only
+    blur: true, // optional, iOS only
   });
 }
 
 // Or apply automatically when the app loads
 function median_library_ready() {
   median.statusbar.set({
-    style: 'dark',
-    color: '80ff0000',
+    style: "dark",
+    color: "80ff0000",
     overlay: true,
-    blur: true
+    blur: true,
   });
 }
 ```

@@ -1,9 +1,8 @@
 ---
-title: "Overview"
+title: "SalesforceOverview"
 description: "Convert your Salesforce Experience Cloud site into a fully featured native iOS and Android application"
 ---
-
-## Overview
+import { InstantPreviewCTAInline } from "/snippets/instant-preview-cta-inline.jsx";
 
 Salesforce Experience Cloud is a digital experience platform for building branded portals, help centers, forums, and partner sites that integrate directly with Salesforce CRM data. It enables organizations to securely connect customers, partners, and employees through a unified, data-driven experience layer.
 
@@ -14,8 +13,6 @@ Experience Cloud supports three core deployment patterns:
 * **Employee Communities.** Centralize internal resources, approvals, and communications in a single authenticated workspace.
 
 Median makes each of these patterns available as a native mobile app on iOS and Android, with no changes required to your existing Experience Cloud configuration.
-
-***
 
 ## **How Median Works with Salesforce**
 
@@ -29,11 +26,7 @@ Your Experience Cloud site continues to serve as the primary application layer. 
 
 This architecture means your Salesforce developers continue working in Experience Builder and deploying LWC components through standard Salesforce DX tooling. There is no separate mobile SDK to learn and no App Store build process to manage independently.
 
-Enter any URL to try it out
-
-Build Now
-
-***
+<InstantPreviewCTAInline articleType="salesforce" />
 
 ## Enterprise Considerations
 
@@ -56,8 +49,6 @@ Because the mobile app renders your existing Experience Cloud URL, any content o
 ### Multi-Org and Multi-App Support
 
 Median supports multiple simultaneous app instances from a single Salesforce org, which is useful for organizations that operate separate communities for customers, partners, and employees and want each audience to have a distinct branded app.
-
-***
 
 ## What This Documentation Covers
 
@@ -108,31 +99,6 @@ The [median-salesforce-components](https://github.com/gonativeio/median-salesfor
 | `qrScannerNative` | QR code and barcode scanning                    | No            |
 | `pdfViewer`       | Native PDF open and download                    | No            |
 
+<GitHub.Repo repo="gonativeio/median-salesforce-components" variant="inset" />
+
 Each component includes graceful degradation when loaded outside the Median app, supports both `window.median` and `window.Median` casing conventions across Median JavaScript integration options, and is deployable via `sf project deploy start` with no additional configuration.
-
-***
-
-[Add Haptic Feedback To Your Replit App](/docs/add-haptic-feedback-to-your-replit-app)
-
-[Getting Started with Salesforce Experience Cloud](/docs/getting-started-with-salesforce-experience-cloud)
-
-Copy Page
-
-* * [Overview](#overview)
-
-  * [How Median Works with Salesforce](#how-median-works-with-salesforce)
-
-  * [Enterprise Considerations](#enterprise-considerations)
-
-  * * [Security and Compliance](#security-and-compliance)
-    * [Change Management](#change-management)
-    * [Multi-Org and Multi-App Support](#multi-org-and-multi-app-support)
-
-  * [What This Documentation Covers](#what-this-documentation-covers)
-
-  * * [1. Getting Started with Salesforce Experience Cloud](#1-getting-started-with-salesforce-experience-cloud)
-    * [2. Lightning Web Components and the JavaScript Bridge](#2-lightning-web-components-and-the-javascript-bridge-)
-    * [3. Deep Linking](#3-deep-linking)
-    * [4. Component Deployment and Reference](#4-component-deployment-and-reference)
-
-  * [Open-Source LWC Component Library](#open-source-lwc-component-library)

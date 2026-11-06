@@ -3,8 +3,6 @@ title: "Splash Screen"
 description: "Configure a custom or animated splash screen for your iOS and Android app, with separate light and dark mode images, in Median App Studio."
 ---
 
-## Overview
-
 The splash screen is the first thing users see when they launch your app from the home screen or switch back to it from the background. With Median.co, you can customize the splash screen with a static image, an animation, and separate configurations for light mode and dark mode and give your app a polished, native feel from the very first frame.
 
 During initial app launch the splash screen will display while your web content is loading. The splash screen will be displayed until the web page finishes loading (until the `DOMContentLoaded` event fires), so that the transition between splash screen and your app is frictionless. We provide a test page on our developer portal that can be used to simulate long page load times, allowing you to test the splash screen experience for users on slow network connections.
@@ -21,7 +19,10 @@ Display our demo page in your app to test during development [https://median.dev
 Median's App Studio auto-generates a splash screen from your app icon, or you can upload a custom static image or animation. From there, you can fine-tune the experience for each platform using the options below.
 
 <Frame caption="App Studio – Splash Screen configuration">
-  <img src="/images/docs/c69bfb5fdffd6348f2e8719da8fd5f56ea8e62b330cb9a0da916b4be668161b8-Screenshot_2026-07-04_at_11.36.20.png" alt="App Studio Branding page with Splash Screen settings for screen style, light and dark mode background colors and a preview" />
+  <img
+    src="/images/docs/c69bfb5fdffd6348f2e8719da8fd5f56ea8e62b330cb9a0da916b4be668161b8-Screenshot_2026-07-04_at_11.36.20.png"
+    alt="App Studio Branding page with Splash Screen settings for screen style, light and dark mode background colors and a preview"
+  />
 </Frame>
 
 ### iOS splash screen setup
@@ -37,7 +38,10 @@ Starting with Android 12, Google standardized splash screen design to show a cir
 For full design specifications, see [Android UI Guidelines for splash screens <Icon icon="arrow-up-right-from-square" size={12} />](https://developer.android.com/develop/ui/views/launch/splash-screen#elements) for more details.
 
 <Frame caption="Android – Splash screen composition">
-  <img src="/images/docs/1a01ec5-android-splash-screen-composition.png" alt="Four Android splash screen layouts showing the app icon centered inside a circular mask, with and without an icon background" />
+  <img
+    src="/images/docs/1a01ec5-android-splash-screen-composition.png"
+    alt="Four Android splash screen layouts showing the app icon centered inside a circular mask, with and without an icon background"
+  />
 </Frame>
 
 ## Animated splash screen
@@ -46,17 +50,24 @@ Median supports animations created in Adobe After Effects which have been export
 
 <Columns cols={2}>
   <Frame caption="iOS – Animated splash screen">
-    <img src="/images/docs/docs/splash-screen/ios.gif" alt="An iOS app launching from the home screen and playing an animated splash screen" />
+    <img
+      src="/images/docs/docs/splash-screen/ios.gif"
+      alt="An iOS app launching from the home screen and playing an animated splash screen"
+    />
   </Frame>
   <Frame caption="Android – Animated splash screen">
-    <img src="/images/docs/docs/splash-screen/android.gif" alt="An Android app launching and playing an animated splash screen" />
+    <img
+      src="/images/docs/docs/splash-screen/android.gif"
+      alt="An Android app launching and playing an animated splash screen"
+    />
   </Frame>
 </Columns>
 
 <Warning>
   **Adobe After Effects & BodyMovin compatibility**
 
-  iOS and Android do not support some features available in the BodyMovin format such as Blend Modes that are only supported in web. Always test your exported animation file on-device to confirm it renders as expected before publishing.
+iOS and Android do not support some features available in the BodyMovin format such as Blend Modes that are only supported in web. Always test your exported animation file on-device to confirm it renders as expected before publishing.
+
 </Warning>
 
 ## Free tier splash screen
@@ -67,10 +78,16 @@ You can configure your splash screen to use the same image as your app icon or a
 
 <Columns cols={2}>
   <Frame caption="Free tier splash screen – Light mode">
-    <img src="/images/docs/docs/splash-screen/median-free-splash-light.png" alt="Free tier splash screen in light mode with the app icon centered and a Powered by Median.co badge at the bottom" />
+    <img
+      src="/images/docs/docs/splash-screen/median-free-splash-light.png"
+      alt="Free tier splash screen in light mode with the app icon centered and a Powered by Median.co badge at the bottom"
+    />
   </Frame>
   <Frame caption="Free tier splash screen – Dark mode">
-    <img src="/images/docs/docs/splash-screen/median-free-splash-dark.png" alt="Free tier splash screen in dark mode with the app icon centered and a Powered by Median.co badge at the bottom" />
+    <img
+      src="/images/docs/docs/splash-screen/median-free-splash-dark.png"
+      alt="Free tier splash screen in dark mode with the app icon centered and a Powered by Median.co badge at the bottom"
+    />
   </Frame>
 </Columns>
 
@@ -81,13 +98,15 @@ You can configure your splash screen to use the same image as your app icon or a
     Yes. You can configure a separate splash screen image, animation, and background color for both light mode and dark mode.
   </Accordion>
 
-  <Accordion title="How long does the splash screen stay on screen?">
-    It remains visible until your web page's `DOMContentLoaded` event fires, so the app never shows a blank screen while content loads. With animations, you can choose whether it also waits for a full animation cycle to complete.
-  </Accordion>
+<Accordion title="How long does the splash screen stay on screen?">
+  It remains visible until your web page's `DOMContentLoaded` event fires, so
+  the app never shows a blank screen while content loads. With animations, you
+  can choose whether it also waits for a full animation cycle to complete.
+</Accordion>
 
-  <Accordion title="What animation format does Median support?">
-    BodyMovin JSON exports from Adobe After Effects.
-  </Accordion>
+<Accordion title="What animation format does Median support?">
+  BodyMovin JSON exports from Adobe After Effects.
+</Accordion>
 
   <Accordion title="Can I remove the 'Powered by Median.co' watermark?">
     Yes. The watermark only appears on the Median Free plan. Upgrading to a paid app license removes it from your splash screen.

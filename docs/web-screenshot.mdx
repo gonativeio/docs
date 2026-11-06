@@ -6,14 +6,13 @@ description: "Capture the visible screen or a specific element of your web conte
 import { MedianLogo } from "/snippets/median-logo.jsx";
 import { AppetizeEmbed } from "/snippets/appetize-embed.jsx";
 
-## Overview
-
 Web Screenshot enables you to capture either a specific section or an entire webpage and share it as an image. You can optionally include text and a URL for better context.
 
 <Check>
   **Developer Demo**
 
-  Display our demo page in your app to test during development [https://median.dev/web-screenshot/ <Icon icon="arrow-up-right-from-square" size={12} />](https://median.dev/web-screenshot/)
+Display our demo page in your app to test during development [https://median.dev/web-screenshot/ <Icon icon="arrow-up-right-from-square" size={12} />](https://median.dev/web-screenshot/)
+
 </Check>
 
 ## Implementation Guide
@@ -82,4 +81,7 @@ const elementBlob = await median.webScreenshot.captureElement(element);
 
 Try out the plugin on iOS and Android with our interactive demo apps.
 
-<AppetizeEmbed iosEmbedCode="2lktdphx5jimiqtwx4xodch6xu" androidEmbedCode="vkvzblxvepdydl22ucncao6e7u" />
+<AppetizeEmbed
+  iosEmbedCode="2lktdphx5jimiqtwx4xodch6xu"
+  androidEmbedCode="vkvzblxvepdydl22ucncao6e7u"
+/>

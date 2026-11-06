@@ -2,6 +2,7 @@
 title: "Managing Permissions and Consent"
 description: "Learn how to manage permissions and consent."
 ---
+import { MedianLogo } from "/snippets/median-logo.jsx";
 
 Getting permission right matters — both for your users and for compliance. This guide covers everything you need to control when and how your app asks for push notification permission, how to handle privacy consent for regulations like GDPR, and how to use a soft prompt (an in-app message before the system dialog) to maximize opt-in rates on iOS and Android.
 
@@ -12,19 +13,17 @@ The first time a user opens your app, OneSignal initializes automatically and tr
 <Info>
   **Platform scope**
 
-  Delaying the push permission prompt applies to **iOS** and **Android 13+** only. On Android 12 and below, push permission is granted automatically at install time, there's no prompt.
-</Info>
+Delaying the push permission prompt applies to **iOS** and **Android 13+** only. On Android 12 and below, push permission is granted automatically at install time, there's no prompt.
 
-***
+</Info>
 
 This diagram shows the three permission strategies and how they relate to each other.
 
 ### View diagram
 
-**View diagram⎘ Copy link
-
-```
-flowchart TD
+```mermaid actions={true}
+%%{init: {'flowchart': {'defaultRenderer': 'elk'}}}%%
+flowchart LR
     A[App Launches] --> B{Permission strategy?}
     B -->|Default| C[OneSignal initializes and prompts immediately]
     B -->|Option 1: Delay| D[OneSignal initializes silently]
@@ -40,8 +39,6 @@ flowchart TD
     J -->|Deny| L[No push delivery]
 ```
 
-***
-
 ## Option 1: Delay the permission prompt
 
 This is the most common customization. You disable the automatic prompt so you can trigger it at a more intentional moment such as after sign-up, after a user completes a key action, or when they navigate to a settings screen.
@@ -56,16 +53,18 @@ This prevents OneSignal from showing the permission prompt on first launch. OneS
 
 When you're ready to prompt the user, call:
 
+<MedianLogo />
 <CodeGroup>
-  ```bash bash
-  median.onesignal.register();
-  ```
+```JavaScript JavaScript 
+median.onesignal.register(); 
+```
 </CodeGroup>
 
 A common trigger pattern is a button/link click in your app's settings or onboarding flow:
 
+<MedianLogo />
 <CodeGroup>
-  ```bash bash
+  ```JavaScript JavaScript
   <a onclick="median.onesignal.register()">Enable push notifications</a>
   ```
 </CodeGroup>
@@ -75,16 +74,15 @@ Call this only once per session; repeated calls after a user has already respond
 <Info>
   **Important distinction:**
 
-  Delaying registration is not the same as preventing OneSignal from initializing. Even with auto-register disabled, OneSignal still runs in the background and generates a `oneSignalUserId`. If you need to prevent *all* data transmission to OneSignal until the user explicitly consents, for GDPR compliance, for example, use **Option 2** instead.
-</Info>
+Delaying registration is not the same as preventing OneSignal from initializing. Even with auto-register disabled, OneSignal still runs in the background and generates a `oneSignalUserId`. If you need to prevent _all_ data transmission to OneSignal until the user explicitly consents, for GDPR compliance, for example, use **Option 2** instead.
 
-***
+</Info>
 
 ## Option 2: Require privacy consent before initializing OneSignal
 
 By default, your app transmits device data to OneSignal as soon as it launches. For apps subject to GDPR or other privacy regulations, you may need to prevent that until the user has explicitly agreed to your privacy policy.
 
-This is a stricter setting than delayed registration. With privacy consent required, OneSignal doesn't initialize *at all*/ This doesn't generate a `oneSignalUserId` or send any data until you call the grant method below.
+This is a stricter setting than delayed registration. With privacy consent required, OneSignal doesn't initialize _at all_/ This doesn't generate a `oneSignalUserId` or send any data until you call the grant method below.
 
 ### Step 1: Enable the privacy consent requirement
 
@@ -94,31 +92,32 @@ In [App Studio](https://median.co/app), go to **Native Plugins > OneSignal** and
 
 Once your user has accepted your privacy policy or consent flow, call:
 
+<MedianLogo />
 <CodeGroup>
-  ```bash bash
-  median.onesignal.userPrivacyConsent.grant();
-  ```
+  ```JavaScript JavaScript
+   median.onesignal.userPrivacyConsent.grant(); 
+   ```
 </CodeGroup>
 
 This initializes OneSignal and allows data to be transmitted. You can also revoke consent if a user later withdraws it:
 
+<MedianLogo />
 <CodeGroup>
-  ```bash bash
-  median.onesignal.userPrivacyConsent.revoke();
+  ```JavaScript JavaScript 
+  median.onesignal.userPrivacyConsent.revoke(); 
   ```
 </CodeGroup>
 
 <Info>
   **Important Note**
 
-  Revoking consent stops data transmission to OneSignal, but it does **not** prevent push notifications from being delivered to a device that's already opted in. To stop a user from receiving notifications, use [Data Tags](https://docs.median.co/docs/data-tags) to manage their notification preferences, or call `median.onesignal.logout()` to disassociate them from their OneSignal user record. See [Identifying & Targeting Users](https://docs.median.co/docs/onesignal-user-management) for details.
-</Info>
+Revoking consent stops data transmission to OneSignal, but it does **not** prevent push notifications from being delivered to a device that's already opted in. To stop a user from receiving notifications, use [Data Tags](https://docs.median.co/docs/data-tags) to manage their notification preferences, or call `median.onesignal.logout()` to disassociate them from their OneSignal user record. See [Identifying & Targeting Users](https://docs.median.co/docs/onesignal-user-management) for details.
 
-***
+</Info>
 
 ## Option 3: Soft prompt (in-app message before the native dialog)
 
-On both **iOS** and **Android 13+**, the system shows a native dialog when you request push permission. A **soft prompt** is an in-app message you control — shown *before* that dialog — that explains why notifications are useful and lets the user decide whether to proceed. If they choose "Maybe later," you skip the system prompt and can try again when context is better.
+On both **iOS** and **Android 13+**, the system shows a native dialog when you request push permission. A **soft prompt** is an in-app message you control — shown _before_ that dialog — that explains why notifications are useful and lets the user decide whether to proceed. If they choose "Maybe later," you skip the system prompt and can try again when context is better.
 
 **Why use it on every platform:** OneSignal recommends priming users before the native ask. That improves opt-in whether the user is on iPhone or Android.
 
@@ -128,7 +127,8 @@ On both **iOS** and **Android 13+**, the system shows a native dialog when you r
 
 ### How it works
 
-```
+```mermaid actions={true}
+%%{init: {'sequenceDiagram': {'defaultRenderer': 'elk'}}}%%
 sequenceDiagram
     participant App as Your App
     participant IAM as Soft Prompt (In-App Message)
@@ -157,10 +157,10 @@ This approach, recommended by OneSignal, consistently improves opt-in rates beca
 
 The soft prompt works best at moments of high intent, such as when a user has just done something that makes notification value obvious:
 
-* **After sign-up or account creation** — "Get notified when your order ships"
-* **After a purchase or booking** — "We'll send you updates on your order"
-* **After a user completes onboarding** — when they've invested enough to care about updates
-* **On a dedicated notification settings screen** — where the context is already clear
+- **After sign-up or account creation** — "Get notified when your order ships"
+- **After a purchase or booking** — "We'll send you updates on your order"
+- **After a user completes onboarding** — when they've invested enough to care about updates
+- **On a dedicated notification settings screen** — where the context is already clear
 
 Avoid showing it on first launch before a user has experienced your app. They haven't yet seen the value yet so the ask feels premature.
 
@@ -174,18 +174,17 @@ The soft prompt is an [In-App Message](https://docs.median.co/docs/in-app-messag
 
 **Button configuration:**
 
-* **"Allow" button** — triggers `median.onesignal.register()` to show the native permission prompt
-* **"Maybe later" button** — closes the in-app message without triggering the native prompt
+- **"Allow" button** — triggers `median.onesignal.register()` to show the native permission prompt
+- **"Maybe later" button** — closes the in-app message without triggering the native prompt
 
 You can use OneSignal's trigger system to control exactly when the soft prompt appears, such as after a delay, on a specific page, or after a user action. See the [In-App Messages guide](https://docs.median.co/docs/in-app-messages) for the full trigger API reference.
 
 <Info>
   **Android note:**
 
-  Android doesn't have the "one prompt only" restriction that iOS does, so a soft prompt is less critical there. It can still improve opt-in rates if you want to explain the value of notifications before the system prompt appears on Android 13+.
-</Info>
+Android doesn't have the "one prompt only" restriction that iOS does, so a soft prompt is less critical there. It can still improve opt-in rates if you want to explain the value of notifications before the system prompt appears on Android 13+.
 
-***
+</Info>
 
 ## Choosing the right approach
 
@@ -198,31 +197,3 @@ Not sure which option fits your app? Here's a quick guide:
 | Your app is subject to GDPR or requires explicit consent before any data collection | Option 2: Require privacy consent                                         |
 | You want to maximize opt-in with an in-app primer before the system dialog          | Option 3: Soft prompt (combine with Option 1; use on iOS and Android 13+) |
 | You need both GDPR compliance and a soft prompt                                     | Options 2 + 3 combined                                                    |
-
-***
-
-[OneSignal](/docs/onesignal)
-
-[Identifying & Targeting Users](/docs/identifying-targeting-users)
-
-Copy Page
-
-* * [The default behavior](#the-default-behavior)
-
-  * [Option 1: Delay the permission prompt](#option-1-delay-the-permission-prompt)
-
-  * * [Step 1: Disable automatic registration](#step-1-disable-automatic-registration)
-    * [Step 2: Trigger the prompt from JavaScript](#step-2-trigger-the-prompt-from-javascript)
-
-  * [Option 2: Require privacy consent before initializing OneSignal](#option-2-require-privacy-consent-before-initializing-onesignal)
-
-  * * [Step 1: Enable the privacy consent requirement](#step-1-enable-the-privacy-consent-requirement)
-    * [Step 2: Grant consent from JavaScript](#step-2-grant-consent-from-javascript)
-
-  * [Option 3: Soft prompt (in-app message before the native dialog)](#option-3-soft-prompt-in-app-message-before-the-native-dialog)
-
-  * * [How it works](#how-it-works)
-    * [When to show it](#when-to-show-it)
-    * [Building the soft prompt](#building-the-soft-prompt)
-
-  * [Choosing the right approach](#choosing-the-right-approach)
