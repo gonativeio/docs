@@ -286,16 +286,22 @@ Try out the plugin on iOS and Android with our interactive demo apps.
   androidEmbedCode="xu7hr5p7ooi5d33e3wht73jb4m"
 />
 
-## Frequently Asked Questions
+## Frequently asked questions
 
-### Native Datastore functions are undefined or not working
+<AccordionGroup>
+<Accordion title="Native Datastore functions are undefined or not working" id="native-datastore-functions-are-undefined-or-not-working">
 
 Ensure the JavaScript Bridge is enabled in Median App Studio and that your page has fully loaded before calling bridge functions. Verify that the plugin is enabled in your app configuration.
 
-### `get` returns preference-not-found even though a value was set
+</Accordion>
+<Accordion title="`get` returns preference-not-found even though a value was set" id="get-returns-preference-not-found-even-though-a-value-was-set">
 
 Confirm that the `key` used in `get` exactly matches the `key` used in `set`. Keys are case-sensitive. Also verify that the value was successfully stored by checking the status returned to your `statuscallback`.
 
-### Cloud storage does not sync to another device
+</Accordion>
+<Accordion title="Cloud storage does not sync to another device" id="cloud-storage-does-not-sync-to-another-device">
 
 On Android, BackupManager schedules sync operations asynchronously and the timing is system-determined and cannot be forced. On iOS, Keychain sync depends on the user's iCloud Keychain settings. Verify that iCloud Keychain is enabled on both devices.
+
+</Accordion>
+</AccordionGroup>

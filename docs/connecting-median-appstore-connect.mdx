@@ -86,20 +86,27 @@ If you're unable or unwilling to generate an App Store Connect API key, you can 
 
 Continue with ​[Register Testing Devices](https://docs.median.co/docs/registering-testing-devices) →
 
-## Frequently Asked Questions
+## Frequently asked questions
 
-### What's the difference between an Individual and a Team API key?
+<AccordionGroup>
+<Accordion title="What's the difference between an Individual and a Team API key?" id="whats-the-difference-between-an-individual-and-a-team-api-key">
 
 A Team key is scoped to your whole Apple Developer organization account and is the correct choice for most setups. An Individual key is tied to a single personal Apple ID and can cause permission errors mid-build if that person's access changes — use a Team key whenever your account is an organization account.
 
-### I closed the dialog before downloading my .p8 file - how can I retrieve it?
+</Accordion>
+<Accordion title="I closed the dialog before downloading my .p8 file - how can I retrieve it?" id="i-closed-the-dialog-before-downloading-my-p8-file---how-can-i-retrieve-it">
 
 Apple only allows the private key to be downloaded once. Go back to Users and Access → Integrations → API Keys, revoke the key you just created, and generate a new one, making sure to download the .p8 file before closing the dialog.
 
-### Can I disconnect App Store Connect later?
+</Accordion>
+<Accordion title="Can I disconnect App Store Connect later?" id="can-i-disconnect-app-store-connect-later">
 
 Yes. Click Disconnect on the Apple Developer API Connection card in Median, or revoke the key directly from App Store Connect. Builds you've already produced aren't affected, but you'll need to reconnect before starting new automatic builds or uploads.
 
-### Does this connection apply to one app or my whole organization?
+</Accordion>
+<Accordion title="Does this connection apply to one app or my whole organization?" id="does-this-connection-apply-to-one-app-or-my-whole-organization">
 
 It's organization-wide. Once connected, every app in your Median organization can use this same key for signing and uploads and you don't need to repeat this setup per app.
+
+</Accordion>
+</AccordionGroup>

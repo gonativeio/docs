@@ -525,9 +525,10 @@ Once you have the token, decode it using any JWT library. In this example, we're
 
 Remember, the user's name can only be retrieved the first time they authorize your app.
 
-## Frequently Asked Questions
+## Frequently asked questions
 
-### Why does my Google Sign-In fail with a nonce/ID token mismatch (Supabase)?
+<AccordionGroup>
+<Accordion title="Why does my Google Sign-In fail with a nonce/ID token mismatch (Supabase)?" id="why-does-my-google-sign-in-fail-with-a-nonceid-token-mismatch-supabase">
 
 **Symptom** Native Google Sign-In completes successfully (the account picker opens and Google returns a valid ID token) but the sign-in fails on the backend with a nonce or ID token verification error.
 
@@ -536,3 +537,6 @@ Remember, the user's name can only be retrieved the first time they authorize yo
 **Fix** In your Supabase project, go to **Authentication → Providers → Google** and disable nonce verification (skip nonce checks) for ID token sign-in. This lets Supabase accept the ID token from Median's native flow without requiring a nonce match.
 
 > **Note for Lovable users:** If your project is on Lovable's managed Supabase instance, this setting isn't exposed in the Lovable UI. You'll need to transfer the project to your own Supabase account to access Authentication settings directly. See \[Using Median with Lovable] for details.
+
+</Accordion>
+</AccordionGroup>

@@ -76,20 +76,27 @@ Available configuration options:
 | `cache_else_network` | Use cache if available, otherwise fetch from the network. |
 | `default`            | Use the system’s default caching behavior.                |
 
-## Frequently Asked Questions
+## Frequently asked questions
 
-### Why are my website updates not appearing in my Median app?
+<AccordionGroup>
+<Accordion title="Why are my website updates not appearing in my Median app?" id="why-are-my-website-updates-not-appearing-in-my-median-app">
 
 Your app may still be loading cached website assets, such as older JavaScript, CSS, image, or HTML files. Median apps respect your website’s cache headers, so your server configuration controls how long those assets remain cached in the app.
 
-### Should I call median.webview\.clearCache() every time the app starts?
+</Accordion>
+<Accordion title="Should I call median.webview.clearCache() every time the app starts?" id="should-i-call-medianwebviewclearcache-every-time-the-app-starts">
 
 Usually, no. Clearing the cache too often can reduce performance because the app may need to re-download assets that would otherwise load quickly from cache. For production apps, asset versioning and correct cache headers are usually better long-term solutions.
 
-### Does clearing the WebView cache sign users out?
+</Accordion>
+<Accordion title="Does clearing the WebView cache sign users out?" id="does-clearing-the-webview-cache-sign-users-out">
 
 Do not assume that it will or will not affect user sessions without testing your app. The article describes clearing the WebView cache, but it does not explicitly state whether cookies, local storage, or authentication sessions are affected. Test login behavior before using this in production.
 
-### Which Android cache mode should I choose?
+</Accordion>
+<Accordion title="Which Android cache mode should I choose?" id="which-android-cache-mode-should-i-choose">
 
 Use `default` for normal production behavior. Use `no_cache` when you need Android to always load from the network during testing or troubleshooting. Use `cache_only` only for specialized offline scenarios, and use `cache_else_network` when cached content should be preferred if available.
+
+</Accordion>
+</AccordionGroup>

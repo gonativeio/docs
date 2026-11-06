@@ -97,16 +97,22 @@ Use this checklist to ensure Haptics is working correctly in your app:
 - [ ] Plugin does not interfere with app navigation or core web flows
 - [ ] All haptic behavior is verified on a physical device, not a simulator
 
-## Frequently Asked Questions
+## Frequently asked questions
 
-### No haptic feedback in the simulator?
+<AccordionGroup>
+<Accordion title="No haptic feedback in the simulator?" id="no-haptic-feedback-in-the-simulator">
 
 This is expected behavior. Haptics will not deliver meaningful feedback in a virtual simulator environment. Test on a physical iOS or Android device to verify haptic behavior.
 
-### Android-only styles not firing?
+</Accordion>
+<Accordion title="Android-only styles not firing?" id="android-only-styles-not-firing">
 
 The `tick`, `click`, and `double_click` styles are supported on Android only. If you are testing on an iOS device, these styles will have no effect. Verify you are testing on a physical Android device.
 
-### Shake gesture callback not responding?
+</Accordion>
+<Accordion title="Shake gesture callback not responding?" id="shake-gesture-callback-not-responding">
 
 Confirm that the `median_device_shake()` function is defined on the current page. You can add it globally using the [Custom JavaScript](https://docs.median.co/docs/custom-js) feature. Ensure the function name matches exactly: `median_device_shake`.
+
+</Accordion>
+</AccordionGroup>

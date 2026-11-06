@@ -278,13 +278,15 @@ The following demo details the JSON responses for each JavaScript Bridge functio
   allowFullScreen
 ></iframe>
 
-## Frequently Asked Questions
+## Frequently asked questions
 
-### Why should I integrate Median's Auth0 plugin and use Auth0 Universal Login?
+<AccordionGroup>
+<Accordion title="Why should I integrate Median's Auth0 plugin and use Auth0 Universal Login?" id="why-should-i-integrate-medians-auth0-plugin-and-use-auth0-universal-login">
 
 Median's Auth0 plugin makes use of the Auth0 iOS and Android native SDKs for the most secure app login experience, consistent with best practices for managing authentication. To learn more about the security benefits of Auth0 Universal Login versus embedded login flows consult the Auth0 documentation discussing [Centralized Universal Login vs. Embedded Login](https://auth0.com/docs/authenticate/login/universal-vs-embedded-login#security-risks).
 
-### Can I support login on my own web page displayed within the app webview?
+</Accordion>
+<Accordion title="Can I support login on my own web page displayed within the app webview?" id="can-i-support-login-on-my-own-web-page-displayed-within-the-app-webview">
 
 Mobile security policies and the Internet Engineering Task Force (IETF) Best Current Practices (BCP) require that user login only be made in a browser session facilitated through a native app, and not be permitted in an embedded app webview itself. Google Sign-in, Facebook Login, and Auth0 hosted Universal login make this mandatory.
 
@@ -294,3 +296,6 @@ Mobile security policies and the Internet Engineering Task Force (IETF) Best Cur
 - [https://developers.facebook.com/blog/post/2021/06/28/deprecating-support-fb-login-authentication-android-embedded-browsers/](https://developers.facebook.com/blog/post/2021/06/28/deprecating-support-fb-login-authentication-android-embedded-browsers/)
 
 Our Social Login and Auth0 plugins are the recommended solutions for authentication within your app as they offer the corresponding native SDKs that meet security policies and follow best practices.
+
+</Accordion>
+</AccordionGroup>

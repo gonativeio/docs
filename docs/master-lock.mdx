@@ -344,17 +344,20 @@ Please follow the following steps for an end-to-end test
 5. Use the collected parameters to unlock the test lock.
 6. The lock automatically re-locks after the configured timeout.
 
-## Frequently Asked Questions
+## Frequently asked questions
 
-### Can I manually relock my padlock or lockbox?
+<AccordionGroup>
+<Accordion title="Can I manually relock my padlock or lockbox?" id="can-i-manually-relock-my-padlock-or-lockbox">
 
 No. Padlocks and lockboxes cannot be manually re-locked via the integration. They automatically lock after a preset timeout.
 
-### How do I relock my D1000 Deadbolt?
+</Accordion>
+<Accordion title="How do I relock my D1000 Deadbolt?" id="how-do-i-relock-my-d1000-deadbolt">
 
 The D1000 Deadbolt does not support automatic relocking. Use the `median.masterlock.relock()` method to manually extend the bolt to the locked position. Ensure you have configured the correct handedness before calling this method.
 
-### Why am I receiving a "Not Permitted" error when unlocking?
+</Accordion>
+<Accordion title='Why am I receiving a "Not Permitted" error when unlocking?' id="why-am-i-receiving-a-not-permitted-error-when-unlocking">
 
 This error indicates the access profile does not include the required permissions for the lock type. Confirm that the correct permissions (e.g. `Unlock`, `UnlockDoor`, or `UnlockShackle`) are assigned to the access profile.
 
@@ -369,10 +372,15 @@ Full Error Code:
   ```
 </CodeGroup>
 
-### What happens if a firmware update is interrupted?
+</Accordion>
+<Accordion title="What happens if a firmware update is interrupted?" id="what-happens-if-a-firmware-update-is-interrupted">
 
 If an update is interrupted or fails, the lock will remain in bootloader mode until the update is completed. You should retry the firmware update to restore normal lock operation.
 
-### Why do I need to set deadbolt handedness?
+</Accordion>
+<Accordion title="Why do I need to set deadbolt handedness?" id="why-do-i-need-to-set-deadbolt-handedness">
 
 The D1000 Deadbolt needs to know which direction the bolt extends so the motor operates correctly during unlock and relock commands. Incorrect handedness configuration will cause the motor to turn the wrong direction.
+
+</Accordion>
+</AccordionGroup>

@@ -145,15 +145,17 @@ Some plugins require specific capabilities or entitlements. These are automatica
 | [Revenue Cat](https://docs.median.co/docs/revenue-cat)                                   | In-app Purchases                     |
 | [Share Plugin](https://docs.median.co/docs/share-into-app)                               | App Groups                           |
 
-## Frequently Asked Questions
+## Frequently asked questions
 
-### How do I fix the ITMS-90078: Missing Push Notification Entitlement error when submitting my app to App Store Connect?
+<AccordionGroup>
+<Accordion title="How do I fix the ITMS-90078: Missing Push Notification Entitlement error when submitting my app to App Store Connect?" id="how-do-i-fix-the-itms-90078-missing-push-notification-entitlement-error-when-submitting-my-app-to-app-store-connect">
 
 This warning indicates that your code includes methods for registering a push token, suggesting that the app intends to use push notifications. However, since the required entitlement is missing, push notification functionality will not work.
 
 If your app does not use push notifications, you can safely ignore this warning.
 
-### Can I turn off iPad support?
+</Accordion>
+<Accordion title="Can I turn off iPad support?" id="can-i-turn-off-ipad-support">
 
 Yes. Please note that iPhone only apps will run on an iPad in a phone-sized view. It is worth putting in some effort to make your app work on iPads in that mode even if you don't want to support iPads natively.
 
@@ -162,3 +164,6 @@ To disable iPad support you can exclude iPad as a destination in Xcode as shown 
 <Frame caption="Xcode - Disable iPad Support">
   <img src="/images/docs/9a271b8fe48ab13bf7ce9a37cfc28ab996f8ffa47e66e433d672f8177bb9d647-Screenshot_2026-06-17_at_10.45.28.png" />
 </Frame>
+
+</Accordion>
+</AccordionGroup>

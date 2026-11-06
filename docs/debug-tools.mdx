@@ -44,8 +44,12 @@ The **Debug Logs** tab in Appetize displays both native app logs and web console
   <img src="/images/docs/2a2f0a6096c21bde4203934502f29453e72def21dcd7e074b6924a311590db5a-Screenshot_2025-03-31_at_09.11.47.png" />
 </Frame>
 
-## Frequently Asked Questions
+## Frequently asked questions
 
-### Why am I receiving the 'Android App Bundle' error?
+<AccordionGroup>
+<Accordion title="Why am I receiving the 'Android App Bundle' error?" id="why-am-i-receiving-the-android-app-bundle-error">
 
 When Development Tools/Web Console Logs are enabled, the Median build platform generates an unsigned Android debug build (AAB). If you attempt to publish this AAB to Google Play, you will receive the error: `The Android App Bundle was not signed`. To resolve this, disable web console logs before generating a signed Android app.
+
+</Accordion>
+</AccordionGroup>

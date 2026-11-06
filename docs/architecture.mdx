@@ -192,37 +192,45 @@ A technical review of your app's configuration aligned to your product goals, re
 
 To book ad hoc architecture services, open the Services tab when viewing your app on the Median platform. Or, [contact our Solutions Architecture Team](https://median.co/contact?topic=sales-inquiry) to explore which service best fits your needs.
 
-## Frequently Asked Questions
+## Frequently asked questions
 
-### Will this work with my existing website?
+<AccordionGroup>
+<Accordion title="Will this work with my existing website?" id="will-this-work-with-my-existing-website">
 
 Yes. Median works with any website or web app — WordPress, Webflow, Salesforce Lightning, Bubble, React, Next.js, .NET, or anything else. If it renders correctly in a mobile browser, it renders correctly in your Median app. No changes to your web codebase are required to get started.
 
-### What makes this different from a basic WebView wrapper?
+</Accordion>
+<Accordion title="What makes this different from a basic WebView wrapper?" id="what-makes-this-different-from-a-basic-webview-wrapper">
 
 A basic wrapper just displays your website in a fullscreen WebView. Median adds a production-grade native shell: the JavaScript Bridge gives your web code access to native device APIs; native navigation components provide platform-standard menus and tab bars; native plugins integrate iOS and Android SDKs for push notifications, biometric auth, in-app purchases, analytics, and more. The App Studio also handles rebuilding your app for every new iOS and Android release, so you don't maintain native code yourself.
 
-### How do I keep users logged in after closing the app?
+</Accordion>
+<Accordion title="How do I keep users logged in after closing the app?" id="how-do-i-keep-users-logged-in-after-closing-the-app">
 
 Login behavior mirrors your website. Use a persistent cookie (not a session cookie) to keep users authenticated across app restarts and device reboots. Session cookies expire when the app is closed. Any server-side cookie invalidation or timeout will still apply as normal.
 
-### Can I modify the app source code?
+</Accordion>
+<Accordion title="Can I modify the app source code?" id="can-i-modify-the-app-source-code">
 
 Yes. Full iOS (Xcode) and Android (Android Studio) source code is available for download, and your license clarifies modification. After making changes, Median's engineering team can create a custom plugin based on your modifications so that you continue receiving app updates through the App Studio. See [Build iOS from source](/docs/build-ios-from-source) and [Build Android from source](/docs/build-android-from-source).
 
-### Can I use GeckoView instead of Android System WebView?
+</Accordion>
+<Accordion title="Can I use GeckoView instead of Android System WebView?" id="can-i-use-geckoview-instead-of-android-system-webview">
 
 Yes. Median's engineering team can embed GeckoView (Mozilla's rendering engine) directly into your Android binary. This avoids the shared-resource limitations of Android System WebView including app crashes during system WebView updates and edge-case input delay bugs. The trade-off is a significantly larger app binary size. Contact Median for custom development if this is a requirement.
 
-### How do I fix blank pages or SSL errors?
+</Accordion>
+<Accordion title="How do I fix blank pages or SSL errors?" id="how-do-i-fix-blank-pages-or-ssl-errors">
 
 Blank pages or SSL errors are almost always caused by an SSL misconfiguration on your server or a third-party resource your page loads. Check your certificate chain at [https://www.ssllabs.com/ssltest/](https://www.ssllabs.com/ssltest/). Common issues include expired certificates, incomplete chains, and SHA-1 signed intermediates. Also inspect your browser's JavaScript console for mixed-content warnings from other domains.
 
-### How do I optimize caching?
+</Accordion>
+<Accordion title="How do I optimize caching?" id="how-do-i-optimize-caching">
 
 The WebView caches assets like a browser. You can use Cache-Control response headers on static assets and content-hashed filenames (e.g. `app.a3f2bc.js`) so the cache invalidates automatically on deploy. Dynamic responses (API calls, HTML pages) should either set short max-age values or opt out of caching entirely.
 
-### How do I disable unencrypted HTTP traffic?
+</Accordion>
+<Accordion title="How do I disable unencrypted HTTP traffic?" id="how-do-i-disable-unencrypted-http-traffic">
 
 Set "allowInsecure": false in the security.network object of your appConfig.json. This restricts all network traffic to HTTPS only. If the security object is missing in your appConfig.json, you can create it as shown in the example below:
 
@@ -235,3 +243,6 @@ Set "allowInsecure": false in the security.network object of your appConfig.json
   }
   ```
 </CodeGroup>
+
+</Accordion>
+</AccordionGroup>

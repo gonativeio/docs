@@ -110,16 +110,22 @@ Confirm both files were uploaded. Check _Build & Deploy > Google Services_ in Ap
 
 Double check that the Bundle ID / Package Name registered in Firebase exactly matches the identifiers in App Studio under _App Identifiers_. A mismatch is the most common root cause and Firebase silently fails to initialize if the identifiers don't match.
 
-## Frequently Asked Questions
+## Frequently asked questions
 
-### Do I need separate Firebase projects for iOS and Android?
+<AccordionGroup>
+<Accordion title="Do I need separate Firebase projects for iOS and Android?" id="do-i-need-separate-firebase-projects-for-ios-and-android">
 
 No. Both platforms can be registered under a single Firebase project.
 
-### Is this feature available on all Median apps?
+</Accordion>
+<Accordion title="Is this feature available on all Median apps?" id="is-this-feature-available-on-all-median-apps">
 
 No, Google Services configuration requires a [licensed app](https://docs.median.co/docs/licenses).
 
-### What if I change my app's Bundle ID or Package Name later?
+</Accordion>
+<Accordion title="What if I change my app's Bundle ID or Package Name later?" id="what-if-i-change-my-apps-bundle-id-or-package-name-later">
 
 You'll need to re-register your mobile app in Firebase with the new identifier and upload a fresh configuration file, since the file is tied to the identifier.
+
+</Accordion>
+</AccordionGroup>

@@ -271,31 +271,40 @@ Haptic feedback only works on a physical device, not in a web browser or simulat
 - **Forget to mention mobile-only:** Always include "for mobile app users only" in your prompts.
 - **Skip testing on real devices:** Haptics can't be felt in browsers or simulators.
 
-## Frequently Asked Questions
+## Frequently asked questions
 
-### Will haptics work in the Lovable preview?
+<AccordionGroup>
+<Accordion title="Will haptics work in the Lovable preview?" id="will-haptics-work-in-the-lovable-preview">
 
 No, you need to build and install the app through Median to test haptics on a real device. The web preview won't trigger haptics.
 
-### Do I need to install anything special?
+</Accordion>
+<Accordion title="Do I need to install anything special?" id="do-i-need-to-install-anything-special">
 
 Yes, you need the Median JavaScript Bridge installed in your app first. If you haven't done this, follow the [Getting Started with Lovable](https://docs.median.co/docs/getting-started-with-lovable) guide.
 
-### Can I customize the exact vibration pattern?
+</Accordion>
+<Accordion title="Can I customize the exact vibration pattern?" id="can-i-customize-the-exact-vibration-pattern">
 
 Median provides predefined styles that work consistently across iOS and Android. You can't create fully custom patterns, but we can help you execute custom patterns. Contact us for assistance.
 
-### What if I want haptics on the web too?
+</Accordion>
+<Accordion title="What if I want haptics on the web too?" id="what-if-i-want-haptics-on-the-web-too">
 
 Standard web browsers have limited haptic support. The Median approach focuses on native mobile apps where haptics work reliably. If you remove the `isNativeApp` check, some browsers might vibrate, but it's not guaranteed.
 
-### Do I need to know how to code?
+</Accordion>
+<Accordion title="Do I need to know how to code?" id="do-i-need-to-know-how-to-code">
 
 No! Just copy the prompts from this guide, customize the button/form/action names, and paste them into Lovable's chat. Lovable handles all the code implementation.
 
-### Will this work on all phones?
+</Accordion>
+<Accordion title="Will this work on all phones?" id="will-this-work-on-all-phones">
 
 Yes, both iPhone and Android support haptic feedback. Older devices may have simpler vibration motors, so some styles might feel similar.
+
+</Accordion>
+</AccordionGroup>
 
 ## What's next?
 
