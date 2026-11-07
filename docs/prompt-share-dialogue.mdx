@@ -1,6 +1,6 @@
 ---
-title: "Prompt Share Dialogue"
-description: "Open the native share dialog from your website."
+title: "Prompt share dialog"
+description: "Open the native iOS and Android share dialog from your website with the JavaScript Bridge to share a URL and optional text."
 keywords: ["share dialog", "share sheet", "sharing", "JavaScript Bridge"]
 searchable: true
 ---
@@ -22,11 +22,11 @@ Display our demo page in your app to test during development [https://median.dev
 
 The `median.share.sharePage()` is available with the following parameters.
 
-To invoke the native share dialogue, open the URL:
+To open the native share dialog, call:
 
 <MedianLogo />
 <CodeGroup>
-```JavaScript JavaScript 
+```javascript JavaScript 
 median.share.sharePage(); 
 ```
 </CodeGroup>
@@ -35,7 +35,7 @@ You may also use the following to share a URL other than the current URL:
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   median.share.sharePage({url: 'https://median.co/about'});
   ```
 </CodeGroup>
@@ -44,15 +44,15 @@ You may also add some text which will be also shared along with the URL that you
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   median.share.sharePage({url: 'https://median.co/about', text: 'Visit Median here'});
   ```
 </CodeGroup>
 
 ## Native share dialog preview
 
-The appearance of the share dialog and the available sharing options depend on the apps and services installed on the user's device. Simulators may show limited options due to system restrictions..
+The appearance of the share dialog and the available sharing options depend on the apps and services installed on the user's device. Simulators may show limited options due to system restrictions.
 
 | iOS                                           | Android                                           |
 | :-------------------------------------------: | :-----------------------------------------------: |
-| ![](/images/docs/73369de-iOS-PromptShare.png) | ![](/images/docs/76fab45-Android-PromptShare.png) |
+| ![Native share dialog on iOS](/images/docs/73369de-iOS-PromptShare.png) | ![Native share dialog on Android](/images/docs/76fab45-Android-PromptShare.png) |

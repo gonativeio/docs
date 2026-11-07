@@ -49,7 +49,7 @@
               "docs/overview",
               "docs/architecture",
               {
-                "group": "Security & Privacy",
+                "group": "Security & privacy",
                 "root": "docs/security",
                 "pages": [
                   "docs/report"
@@ -63,7 +63,7 @@
             ]
           },
           {
-            "group": "Getting Started",
+            "group": "Getting started",
             "pages": [
               "docs/quickstart",
               "docs/app-publishing"
@@ -85,7 +85,7 @@
             "pages": [
               "docs/app-interface-overview",
               {
-                "group": "Device Screen Control",
+                "group": "Device screen control",
                 "root": "docs/device-screen-control",
                 "pages": [
                   "docs/screen-brightness",
@@ -101,7 +101,7 @@
               "docs/new-windows",
               "docs/maximum-windows",
               {
-                "group": "Offline Page",
+                "group": "Offline page",
                 "root": "docs/offline-page",
                 "pages": [
                   "docs/service-workers",
@@ -114,12 +114,12 @@
             ]
           },
           {
-            "group": "Link Handling",
+            "group": "Link handling",
             "pages": [
               "docs/link-handling-overview",
               "docs/internal-vs-external-links",
               {
-                "group": "Deep Linking",
+                "group": "Deep linking",
                 "root": "docs/deep-linking",
                 "pages": [
                   "docs/deep-linking-validator",
@@ -132,7 +132,7 @@
             "group": "Permissions",
             "pages": [
               {
-                "group": "Permissions Overview",
+                "group": "Permissions overview",
                 "root": "docs/permissions-overview",
                 "pages": [
                   "docs/permission-prompt-localization"
@@ -157,14 +157,14 @@
             ]
           },
           {
-            "group": "Native Navigation",
+            "group": "Native navigation",
             "pages": [
               "docs/native-navigation-overview",
               "docs/navigation-instances",
               "docs/native-navigation-changes",
               "docs/native-page-transitions",
               {
-                "group": "Top Navigation Bar",
+                "group": "Top navigation bar",
                 "root": "docs/top-navigation-bar",
                 "pages": [
                   "docs/dynamic-titles",
@@ -177,7 +177,7 @@
                 ]
               },
               {
-                "group": "Sidebar Navigation",
+                "group": "Sidebar navigation",
                 "root": "docs/sidebar-navigation-menu",
                 "pages": [
                   "docs/sidebar-configuration",
@@ -186,7 +186,7 @@
                 ]
               },
               {
-                "group": "Bottom Tab Bar",
+                "group": "Bottom tab bar",
                 "root": "docs/bottom-tab-bar",
                 "pages": [
                   "docs/selecting-tabs",
@@ -201,10 +201,10 @@
             ]
           },
           {
-            "group": "Push Notifications",
+            "group": "Push notifications",
             "pages": [
               {
-                "group": "Push Notifications Overview",
+                "group": "Push notifications overview",
                 "root": "docs/push-notifications-overview",
                 "pages": [
                   "docs/push-notification-migration"
@@ -217,7 +217,7 @@
                   "docs/user-consent-management",
                   "docs/identifying-targeting-users",
                   {
-                    "group": "Sending Push Notifications",
+                    "group": "Sending push notifications",
                     "root": "docs/onesignal-notifications",
                     "pages": [
                       "docs/programmatic-notifications",
@@ -258,7 +258,7 @@
               "docs/javascript-bridge",
               "docs/detecting-app-usage",
               {
-                "group": "NPM Package",
+                "group": "npm package",
                 "root": "docs/npm-package",
                 "pages": [
                   "docs/basic-usage",
@@ -307,7 +307,7 @@
                   "docs/auth0",
                   "docs/clerk",
                   {
-                    "group": "Biometric Authentication",
+                    "group": "Biometric authentication",
                     "root": "docs/auth",
                     "pages": [
                       "docs/apple-face-id-touch-id",
@@ -316,7 +316,7 @@
                   },
                   "docs/passkey-authentication",
                   {
-                    "group": "Social Login",
+                    "group": "Social login",
                     "root": "docs/social-login",
                     "pages": [
                       "docs/facebook-login-configuration",
@@ -348,7 +348,7 @@
                   "docs/master-lock",
                   "docs/revenue-cat",
                   {
-                    "group": "Social Share",
+                    "group": "Social share",
                     "root": "docs/social-share",
                     "pages": [
                       "docs/social-share-instagram",
@@ -371,7 +371,7 @@
                 ]
               },
               {
-                "group": "Native Functionality",
+                "group": "Native functionality",
                 "root": "docs/native-functionality",
                 "pages": [
                   "docs/age-safety",
@@ -381,7 +381,7 @@
                   "docs/haptics",
                   "docs/health-bridge",
                   {
-                    "group": "In-App Purchases",
+                    "group": "In-app purchases",
                     "root": "docs/iap",
                     "pages": [
                       "docs/apple-iap",
@@ -411,7 +411,7 @@
             ]
           },
           {
-            "group": "Website Builders",
+            "group": "Website builders",
             "pages": [
               "docs/ai-app-builder-overview",
               {
@@ -457,12 +457,12 @@
             ]
           },
           {
-            "group": "Build & Test",
+            "group": "Build & test",
             "pages": [
               "docs/development-test-deep-dive",
               "docs/app-studio",
               {
-                "group": "Debug Tools",
+                "group": "Debug tools",
                 "root": "docs/debug-tools",
                 "pages": [
                   "docs/ios-debugging",
@@ -470,11 +470,11 @@
                 ]
               },
               {
-                "group": "iOS Build & Deployment",
+                "group": "iOS build & deployment",
                 "root": "docs/ios-build-deployment",
                 "pages": [
                   {
-                    "group": "Building an iOS Binary (IPA)",
+                    "group": "Building an iOS binary (IPA)",
                     "root": "docs/build-ios-binary",
                     "pages": [
                       "docs/connecting-median-appstore-connect",
@@ -491,7 +491,7 @@
                 ]
               },
               {
-                "group": "Android Build & Deployment",
+                "group": "Android build & deployment",
                 "root": "docs/android-build-deployment",
                 "pages": [
                   "docs/install-android-apk",
@@ -502,7 +502,7 @@
                 ]
               },
               {
-                "group": "App Configuration & Management",
+                "group": "App configuration & management",
                 "root": "docs/app-configuration-management",
                 "pages": [
                   "docs/app-identifiers",

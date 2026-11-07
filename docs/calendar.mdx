@@ -5,7 +5,7 @@ keywords: ["calendar", "events", "ics", "device calendar", "iOS", "Android"]
 searchable: true
 ---
 
-The Calendar Native Plugin allows users to add events from your web app directly to their device's built-in calendar. When a user taps a calendar link in your app, the plugin intercepts it, parses the event data, and prompts the user to save the event to their iOS or Android calendar.
+The Calendar plugin lets users to add events from your web app directly to their device's built-in calendar. When a user taps a calendar link in your app, the plugin intercepts it, parses the event data, and prompts the user to save the event to their iOS or Android calendar.
 
 <Check>
 **Developer Demo**
@@ -26,13 +26,13 @@ This plugin removes the friction of manually copying event details. Users can ad
 
 ### iOS native calendar menu
 
-<Frame caption="Native iOS Calendar UI Example">
-  <img src="/images/docs/09e9556-calendar_plugin.png" />
+<Frame caption="Native iOS calendar UI example">
+  <img src="/images/docs/09e9556-calendar_plugin.png" alt="Native iOS prompt to add an event to the calendar" />
 </Frame>
 
 ## Prerequisites
 
-- A Median.co app with JavaScript Bridge enabled
+- A Median app with the JavaScript Bridge enabled
 - A web page that includes `.ics` file links or `data:text/calendar` links for your events
 
 ## Implementation guide
@@ -41,8 +41,8 @@ This plugin removes the friction of manually copying event details. Users can ad
 
 The Calendar plugin is plug-and-play. You only need to verify that it has been added to your app and is enabled.
 
-<Frame caption="Median App Studio - Calendar Plugin">
-  <img src="/images/docs/561e97e3f37809255c91e97d2b5b8fdef894eb209d956c90922d0f76f7f885b0-Screenshot_2026-06-19_at_08.52.24.png" />
+<Frame caption="Calendar plugin in App Studio">
+  <img src="/images/docs/561e97e3f37809255c91e97d2b5b8fdef894eb209d956c90922d0f76f7f885b0-Screenshot_2026-06-19_at_08.52.24.png" alt="Calendar plugin enabled in the Native Plugins tab of App Studio" />
 </Frame>
 
 ### Website implementation
@@ -65,7 +65,7 @@ Host a `.ics` file on your server and link to it from your web page. The plugin 
 Embed the event data directly in a `data:text/calendar` URI. This approach requires no server-side file hosting.
 
 <CodeGroup>
-  ```HTML HTML
+  ```html HTML
   <a
     href="data:text/calendar;charset=utf8,BEGIN:VCALENDAR
   VERSION:2.0
@@ -85,7 +85,7 @@ Embed the event data directly in a `data:text/calendar` URI. This approach requi
 
 ## Testing checklist
 
-Use this checklist to ensure the Calendar Plugin is working correctly in your app:
+Use this checklist to ensure the Calendar plugin is working correctly in your app:
 
 - [ ] Tapping a hosted `.ics` file link triggers the native calendar prompt
 - [ ] Tapping a `data:text/calendar` link triggers the native calendar prompt

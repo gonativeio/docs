@@ -1,31 +1,31 @@
 ---
-title: "Android Debugging"
-description: "Debug your Android app with Android Studio and Chrome."
+title: "Android debugging"
+description: "Debug your Android app with Chrome DevTools, either in the Android Emulator or on a physical device."
 keywords: ["Android debugging", "Chrome DevTools", "remote debugging", "Android Studio", "console logs"]
 searchable: true
 ---
 
-## Android Studio & Chrome (simulator)
+## Android Studio and Chrome (emulator)
 
-1. Follow the steps in [Build Android from Source](/docs/build-android-from-source) to build your Android app.
+1. Follow the steps in [Build Android from source](/docs/build-android-from-source) to build your Android app.
 
-2. Launch the app in the Android Studio simulator.
+2. Launch the app in the Android Emulator.
 
-   <Frame caption="Android Studio - App Running in Simulator">
-     <img src="/images/docs/10cac7cc52f9b95e5c5525c2f519fb2e404e92a708740ff395073ff588801506-Screenshot_2025-10-08_at_12.20.03.png" />
+   <Frame caption="Android Studio: app running in the Android Emulator">
+     <img src="/images/docs/10cac7cc52f9b95e5c5525c2f519fb2e404e92a708740ff395073ff588801506-Screenshot_2025-10-08_at_12.20.03.png" alt="Android Studio with the app running in the Android Emulator" />
    </Frame>
 
-3. Open Chrome and go to `chrome://inspect/#devices`. Click **Inspect** to open Chrome Developer Tools for the website displayed in the simulator.
+3. Open Chrome and go to `chrome://inspect/#devices`. Click **Inspect** to open Chrome Developer Tools for the website displayed in the emulator.
 
-   <Frame caption="Google Chrome - Inspect with Chrome Development Tools">
-     <img src="/images/docs/8c6139f7e156e5be0c7da359f78c350a04d2d46d8da03531f9d429441e50c054-Screenshot_2025-10-08_at_12.20.47.png" />
+   <Frame caption="Google Chrome: inspect with Chrome Developer Tools">
+     <img src="/images/docs/8c6139f7e156e5be0c7da359f78c350a04d2d46d8da03531f9d429441e50c054-Screenshot_2025-10-08_at_12.20.47.png" alt="Chrome's inspect devices page listing the app running in the emulator" />
    </Frame>
 
-4. You can now use the Elements and Console panels to debug the website and view real-time updates in the Android Studio simulator.
+4. You can now use the Elements and Console panels to debug the website and view real-time updates in the Android Emulator.
 
 ## Chrome remote debugging (physical device)
 
-1. Follow the steps in [Build Android from Source](/docs/build-android-from-source) to build your Android app in Android Studio.
+1. Follow the steps in [Build Android from source](/docs/build-android-from-source) to build your Android app in Android Studio.
 
 2. Enable Developer Options on your device:
    - Go to **Settings > About Phone**

@@ -1,6 +1,6 @@
 ---
-title: "JavaScript Callbacks"
-description: "Handle social login with JavaScript callbacks."
+title: "JavaScript callbacks"
+description: "Handle Facebook, Google, and Apple social login in your website's JavaScript with callbacks from the Median JavaScript Bridge."
 keywords:
   [
     "social login",
@@ -53,7 +53,7 @@ Each social login method accepts these parameters:
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   median.socialLogin.facebook.login({ 'callback' : <function>, 'scope' : '<text>', forceLimitedLogin: true | false, nonce: '<text>' });
   median.socialLogin.google.login({ 'callback' : <function> });
   median.socialLogin.apple.login({ 'callback' : <function>, 'scope' : '<text>' });
@@ -64,7 +64,6 @@ Each social login method accepts these parameters:
 
 The following sections provide complete implementation details for each social login provider. Each section includes response objects, platform-specific requirements (where applicable), and a working code example. You can implement one or more providers based on your needs.
 
-Facebook LoginGoogle Sign InApple Sign In
 
 ### Facebook response objects
 
@@ -73,7 +72,7 @@ Here's what your callback function receives for Facebook.
 #### Facebook success response
 
 <CodeGroup>
-  ```JSON JSON
+  ```json JSON
   {
       "accessToken": "token string",
       "userId": "1234567890",
@@ -103,7 +102,7 @@ Here's what your callback function receives for Facebook.
 #### Facebook error response
 
 <CodeGroup>
-  ```JSON JOSN
+  ```json JSON
   {
       "error": "error description",
       "type": "facebook"
@@ -134,7 +133,7 @@ Here's an example:
 
 <MedianLogo />
 <CodeGroup>
-  ```HTML HTML
+  ```html HTML
   <button class="facebook-login browser-only" onclick="facebookLogin()">
       Log In With Facebook
   </button>
@@ -247,7 +246,7 @@ Here's what your callback function receives for Google.
 #### Google success response
 
 <CodeGroup>
-```JSON JSON
+```json JSON
 {
     "idToken": "token string",
     "type": "google"
@@ -259,7 +258,7 @@ Here's what your callback function receives for Google.
 #### Google error response
 
 <CodeGroup>
-  ```JSON JSON
+  ```json JSON
   {
       "error": "error description",
       "type": "google"
@@ -275,7 +274,7 @@ Here's an example:
 
 <MedianLogo />
 <CodeGroup>
-  ```HTML HTML
+  ```html HTML
   <div class="browser-only">
       <div id="g_id_onload"
           data-client_id="1038895183581-fdapcj78i25hdmvnes300nuf17top0uf.apps.googleusercontent.com"
@@ -379,7 +378,7 @@ Here's what your callback function receives for Apple.
 #### Apple success response
 
 <CodeGroup>
-```JSON JSON
+```json JSON
 {
     "idToken": "token string",
     "code": "code string",
@@ -396,7 +395,7 @@ Here's what your callback function receives for Apple.
 #### Apple error response
 
 <CodeGroup>
-  ```JSON JSON
+  ```json JSON
   {
       "error": "error description",
       "type": "apple"
@@ -426,7 +425,7 @@ Here's an example:
 
 <MedianLogo />
 <CodeGroup>
-  ```HTML HTML
+  ```html HTML
   <head>
       <!-- other head tags -->
 
@@ -519,7 +518,7 @@ Here's an example:
   ```
 </CodeGroup>
 
-After the user logs in, `appleLoginCallback()` runs with an object containing the user's ID token. If they cancel, you'll get an error message.
+After the user signs in, `appleLoginCallback()` runs with an object containing the user's ID token. If they cancel, you'll get an error message.
 
 Once you have the token, decode it using any JWT library. In this example, we're using jsrsasign to extract the email. Then pass the decoded data to your backend for processing.
 
@@ -532,11 +531,11 @@ Remember, the user's name can only be retrieved the first time they authorize yo
 
 **Symptom** Native Google Sign-In completes successfully (the account picker opens and Google returns a valid ID token) but the sign-in fails on the backend with a nonce or ID token verification error.
 
-**Cause** On iOS, native Google Sign-In attaches a nonce to the returned ID token. Median's JS Bridge callback for `Median.socialLogin.google.login()` currently returns only `type`, `idToken`, `state`, and `error`. The raw nonce is not exposed. If your backend auth provider (e.g. Supabase's `signInWithIdToken`) is configured to verify that nonce, the request will fail because it has no matching nonce to check against.
+**Cause** On iOS, native Google Sign-In attaches a nonce to the returned ID token. Median's JavaScript Bridge callback for `Median.socialLogin.google.login()` currently returns only `type`, `idToken`, `state`, and `error`. The raw nonce is not exposed. If your backend auth provider (e.g. Supabase's `signInWithIdToken`) is configured to verify that nonce, the request will fail because it has no matching nonce to check against.
 
 **Fix** In your Supabase project, go to **Authentication → Providers → Google** and disable nonce verification (skip nonce checks) for ID token sign-in. This lets Supabase accept the ID token from Median's native flow without requiring a nonce match.
 
-> **Note for Lovable users:** If your project is on Lovable's managed Supabase instance, this setting isn't exposed in the Lovable UI. You'll need to transfer the project to your own Supabase account to access Authentication settings directly. See \[Using Median with Lovable] for details.
+> **Note for Lovable users:** If your project is on Lovable's managed Supabase instance, this setting isn't exposed in the Lovable UI. You'll need to transfer the project to your own Supabase account to access Authentication settings directly. See [Lovable](/docs/lovable) for details on using Median with Lovable.
 
 </Accordion>
 </AccordionGroup>

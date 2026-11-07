@@ -1,9 +1,11 @@
 ---
-title: "Google In-App Purchases (Legacy)"
-description: "Legacy Google In-App Purchases plugin reference."
+title: "Google In-App Purchases (legacy)"
+description: "Reference for the legacy Google In-App Purchases plugin. For new implementations, use the current Google In-App Purchases guide."
+deprecated: true
 keywords: ["Google In-App Purchases", "legacy", "IAP", "Google Play Billing", "deprecated"]
 searchable: true
 ---
+
 import { MedianLogo } from "/snippets/median-logo.jsx";
 
 <Warning>
@@ -13,7 +15,7 @@ For new implementations, or to upgrade to the latest Google Play Billing Library
 
 </Warning>
 
-Accept payments within your app seamlessly using Google Play's Billing Library to facilitate transactions such as one-time purchase, subscription, or promo code redemption.
+Accept payments within your app using Google Play's Billing Library to facilitate transactions such as one-time purchase, subscription, or promo code redemption.
 
 In-App Purchases (IAP) provide additional channels to monetize your app. Google Play allows for standard user-initiated in-app purchases and auto-renewing subscription purchases.
 
@@ -25,21 +27,21 @@ Median’s Google Play In-App Purchase flow includes these steps:
 2. Host a JSON file on your website with a list of purchasable items
 3. Display a web UI listing purchasable items
 4. Initiate a purchase when requested by a user
-5. Verify and fulfil purchase through Google Play
+5. Verify and fulfill purchase through Google Play
 6. Provide users with subscription management
 
 ## Configure IAP in Google Play Console
 
-Create your app in the Google Play Console. The package name of your app is a globally unique identifier that identifies your app on Google Play. Your account "claims" that package name the first time you upload your app to the Google Play Console. Make sure that any pages with grey checkmarks are completed so that the checkmark turns green. The app must be fully configured in Google Play before you can create and test in-app purchases.
+Create your app in the Google Play Console. The package name of your app is a globally unique identifier that identifies your app on Google Play. Your account "claims" that package name the first time you upload your app to the Google Play Console. Make sure that any pages with gray checkmarks are completed so that the checkmark turns green. The app must be fully configured in Google Play before you can create and test in-app purchases.
 
 In the Google Play Console, go to Store Presence -> In-App Products. Create either a Managed product (standard in-app purchase), or a Subscription. The product id will be used later in code to identify the item. Title and description are used in Google Play listings, and will also be passed to your app. If you wish to have different tiers of subscriptions (e.g. a monthly and annual subscription), they must be created as separate subscriptions.
 
 ## Host a JSON file with available products
 
-Create a JSON file that lists the product IDs you would like to offer for sale. This allows you to in real time add or remove products without publishing a new version of your app. The following example shows three products for sale: a regular in-app purchase, and two subscription products. The product IDs for each must be placed in the correct section: `inappProducts` vs `subProductions`.
+Create a JSON file that lists the product IDs you would like to offer for sale. This allows you to in real time add or remove products without publishing a new version of your app. The following example shows three products for sale: a regular in-app purchase, and two subscription products. The product IDs for each must be placed in the correct section: `inappProducts` vs `subProducts`.
 
 <CodeGroup>
-  ```JSON JSON
+  ```json JSON
   {
     "inappProducts": ["remove_ads"],
     "subProducts": ["subscription_monthly", "subscription_annual"]
@@ -47,21 +49,21 @@ Create a JSON file that lists the product IDs you would like to offer for sale. 
   ```
 </CodeGroup>
 
-You must then host the JSON file on your website to be accessible by your app. We are using [https://median.dev/iap/productsGoogle.json](https://median.dev/iap/productsGoogle.json)
+You must then host the JSON file on your website to be accessible by your app. For example, the demo uses [https://median.dev/iap/productsGoogle.json](https://median.dev/iap/productsGoogle.json).
 
 ### App configuration
 
-Now you are ready to enable and configure the plugin within the Native Plugins tab of the App Studio. You will need to enter:`productsUrl` - The `productsUrl` should point to the JSON file on your website. When your app launches, it will make an HTTP GET request to your `productsUrl`.
+Now you are ready to enable and configure the plugin within the **Native Plugins** tab of App Studio. You need to enter `productsUrl`. The `productsUrl` should point to the JSON file on your website. When your app launches, it will make an HTTP GET request to your `productsUrl`.
 
 ## Purchased products and IAP status
 
 The app will verify the list of products with Google Play and retrieve each product's information. Then it will execute a JavaScript function on your website defined as `median_info_ready` with a single object parameter. Alternatively you can use the Median JavaScript Bridge to obtain this data at runtime by calling the method `median.iap.info()`.
 
-You define this function on your page, but do not actually call it.If present on a page it will be called by the app when the page is loaded.
+You define this function on your page, but don't call it. If present on a page, it will be called by the app when the page is loaded.
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   function median_info_ready(inAppPurchases) {
     console.log(inAppPurchases);
   }
@@ -72,16 +74,16 @@ Or you may return the purchase data at runtime via a promise (in async function)
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript 
+  ```javascript JavaScript
   var purchaseData = await median.iap.info();
-  console.log(inAppPurchases); 
+  console.log(purchaseData);
   ```
 </CodeGroup>
 
 In both cases `inAppPurchases` will be of the form:
 
 <CodeGroup>
-  ```JSON JSON
+  ```json JSON
   {
     "inAppPurchases": {
       "platform": "GooglePlay",
@@ -131,7 +133,7 @@ When a user decides to purchase an IAP, run the JavaScript function:
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   median.iap.purchase({ productID: "product_id" });
   ```
 </CodeGroup>
@@ -151,7 +153,7 @@ The `median.iap.purchase({'productID': 'product_id'});` call supports these addi
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   median.iap.purchase({
     productID: "annual_membership",
     previousPurchaseToken: "aaaabbbbccccddddeeeeffff",
@@ -165,7 +167,7 @@ The `median.iap.purchase({'productID': 'product_id'});` call supports these addi
 On app launch, and after any purchases are made, the app will call a JavaScript function on your page named `median_iap_purchases` with a single object parameter. Here is an example object:
 
 <CodeGroup>
-  ```JSON JSON
+  ```json JSON
   {
     "platform": "GooglePlay",
     "allPurchases": [
@@ -209,16 +211,16 @@ To open the Google Play page that lists all subscriptions for all of the user’
 
 <MedianLogo />
 <CodeGroup>
-```JavaScript JavaScript 
-median.iap.manageAllSubscriptions(); 
-```
+  ```javascript JavaScript
+  median.iap.manageAllSubscriptions();
+  ```
 </CodeGroup>
 
 To allow the user to manage just your app’s subscription with the specified product ID, open the URL:
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   median.iap.manageSubscription({ productID: "product_id" });
   ```
 </CodeGroup>

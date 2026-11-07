@@ -1,6 +1,6 @@
 ---
-title: "Localized Tab Menu"
-description: "Translate bottom tab labels by device language."
+title: "Localized tab menu"
+description: "Translate bottom tab bar labels based on the user's device language with a translation dictionary and the JavaScript Bridge."
 keywords: ["localization", "tab menu", "bottom tab bar", "translation", "dynamic tab menu"]
 searchable: true
 ---
@@ -12,7 +12,7 @@ The following implementation shows how to detect the user's language, apply a tr
 <Check>
 **Developer Demo**
 
-Display our demo page in your app to test during development [https://median.dev/tab-bar-navigation/localized-nav](https://median.dev/tab-bar-navigation/localized-nav)
+Display our demo page in your app to test during development [https://median.dev/tab-bar-navigation/localized-nav <Icon icon="arrow-up-right-from-square" size={12} />](https://median.dev/tab-bar-navigation/localized-nav)
 
 </Check>
 
@@ -20,14 +20,14 @@ Display our demo page in your app to test during development [https://median.dev
 
 This animated demo shows how the tab labels dynamically change when the user's device language is changed from English to Spanish.
 
-<Frame caption="Bottom Tab Bar Localization Demo">
-<img src="/images/docs/d368ad8463b47418acb75bd63fa58ad253cc7f7aa1448cd0ac1034cb4384c836-demo.gif" />
+<Frame caption="Bottom tab bar localization demo">
+<img src="/images/docs/d368ad8463b47418acb75bd63fa58ad253cc7f7aa1448cd0ac1034cb4384c836-demo.gif" alt="Bottom tab bar labels switching from English to Spanish when the device language changes" />
 </Frame>
 
 ### JavaScript implementation
 
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   // Get the user's language
   let userLanguage = navigator.language || navigator.userLanguage;
   let languageCode = userLanguage.split("-")[0];
@@ -82,17 +82,17 @@ This animated demo shows how the tab labels dynamically change when the user's d
   {
     icon: "fas fa-cloud",
     label: "Tab 1",
-    url: "javascript:alert('You selected tab 1')",
+    url: "javascript:console.log('You selected tab 1')",
   },
   {
     icon: "fas fa-globe",
     label: "Tab 2",
-    url: "javascript:alert('You selected tab 2')",
+    url: "javascript:console.log('You selected tab 2')",
   },
   {
     icon: "fas fa-users",
     label: "Tab 3",
-    url: "javascript:alert('You selected tab 3')",
+    url: "javascript:console.log('You selected tab 3')",
   },
   ];
 

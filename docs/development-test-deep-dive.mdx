@@ -1,6 +1,6 @@
 ---
-title: "Build & Test Overview"
-description: "Build, test, and debug your app."
+title: "Build and test overview"
+description: "Build, test, and debug your Median app with App Studio simulators, browser dev tools, physical devices, and platform diagnostic tools."
 keywords: ["build", "testing", "debugging", "simulators", "development tools"]
 searchable: true
 ---
@@ -13,7 +13,6 @@ Building and testing your Median app is the path from configuration to deploymen
   <Card
     title="Median App Studio"
     icon="cloud"
-    color="blue-500"
     href="/docs/app-studio"
   >
     Use the cloud-based App Studio to configure your app, preview changes in
@@ -21,18 +20,16 @@ Building and testing your Median app is the path from configuration to deploymen
     Studio.
   </Card>
   <Card
-    title="Device Installation"
+    title="Device installation"
     icon="download"
-    color="blue-500"
     href="/docs/install-ios-ipa"
   >
     Install development builds on physical devices, use TestFlight for iOS
     distribution builds, and download Android APKs for testing.
   </Card>
   <Card
-    title="Debug Tools"
+    title="Debug tools"
     icon="tools"
-    color="blue-500"
     href="/docs/debug-tools"
   >
     Debug and optimize your web experience with browser dev tools, inspect
@@ -40,27 +37,24 @@ Building and testing your Median app is the path from configuration to deploymen
     behavior.
   </Card>
   <Card
-    title="iOS Build & Deployment"
+    title="iOS build and deployment"
     icon="apple"
-    color="blue-500"
     href="/docs/ios-build-deployment"
   >
     Build iOS binaries (IPA), configure signing, connect to App Store Connect,
     register test devices, upload to TestFlight, and publish to the App Store.
   </Card>
   <Card
-    title="Android Build & Deployment"
+    title="Android build and deployment"
     icon="android"
-    color="blue-500"
     href="/docs/android-build-deployment"
   >
     Build Android APKs and AABs, install on devices, connect Android Studio
     simulators to localhost, and upload to Google Play.
   </Card>
   <Card
-    title="App Configuration & Management"
+    title="App configuration and management"
     icon="cog"
-    color="blue-500"
     href="/docs/app-configuration-management"
   >
     Manage app identifiers, app configuration (appconfig.json), Google Services,
@@ -72,7 +66,7 @@ Building and testing your Median app is the path from configuration to deploymen
 
 Median apps are composed of web content, native UI elements, and native functionality (such as haptics or biometrics) or SDK integrations from plugins. Test across these areas before release:
 
-### UI & UX
+### UI and UX
 
 Validate the app interface and user experience across device types, orientations, and OS versions. Typical test cases include navigation, [link handling](/docs/link-handling-overview), [deep linking](/docs/deep-linking), accessibility, and offline behavior.
 
@@ -96,7 +90,7 @@ Features like [Haptics](/docs/haptics), [Biometrics](/docs/auth), or [In-App Pur
 
 Validate plugin configuration using [median.dev](https://median.dev) demos or diagnostic tools. Median offers Solution Architecture and Engineering services to advise on plugin implementation. Diagnostic tools can help access log files for troubleshooting with our team or third-party vendors.
 
-## Testing & development tools
+## Testing and development tools
 
 ### App Studio simulators
 
@@ -110,11 +104,11 @@ Cloud-based virtual devices in [Median App Studio](/docs/app-studio) let you qui
 
 ### Browser development tools
 
-Use your browser's dev tools to inspect, debug, and optimize your web experience: viewport, user agent, console, and network requests. See [Development Tools](/docs/debug-tools) for details and links to [Chrome DevTools](https://developer.chrome.com/docs/devtools), [Safari Web Development Tools](https://developer.apple.com/safari/tools/), and [Microsoft Edge DevTools](https://learn.microsoft.com/en-us/microsoft-edge/devtools-guide-chromium/landing/).
+Use your browser's dev tools to inspect, debug, and optimize your web experience: viewport, user agent, console, and network requests. See [Development tools](/docs/debug-tools) for details and links to [Chrome DevTools](https://developer.chrome.com/docs/devtools), [Safari Web Development Tools](https://developer.apple.com/safari/tools/), and [Microsoft Edge DevTools](https://learn.microsoft.com/en-us/microsoft-edge/devtools-guide-chromium/landing/).
 
 ### Developer demos
 
-[median.dev](https://median.dev) provides demos for JavaScript Bridge functionality and many app features. During development, you can replace the Website URL with a demo page URL on the Overview tab and create a new build. In production, add a link to the demo on your live site—for example, hide it behind a sequence of taps (e.g. searching for specific attributes) so real users don't see it.
+[median.dev](https://median.dev) provides demos for JavaScript Bridge functionality and many app features. During development, you can replace the Website URL with a demo page URL on the Overview tab and create a new build. In production, add a link to the demo on your live site. For example, hide it behind a sequence of taps (e.g. searching for specific attributes) so real users don't see it.
 
 <Check>
 **Developer Demo**
@@ -123,7 +117,7 @@ Display our demo page in your app to test during development [https://median.dev
 
 </Check>
 
-If a demo works in your app but your own site does not: debug your page in the app using [Development Tools](/docs/debug-tools), inspect the demo source in your desktop browser, and recheck your JavaScript against the documentation.
+If a demo works in your app but your own site does not: debug your page in the app using [development tools](/docs/debug-tools), inspect the demo source in your desktop browser, and recheck your JavaScript against the documentation.
 
 ### Physical device testing
 
@@ -136,17 +130,17 @@ When performing QA, you may need to uninstall older test versions:
 
 ### `adb` and `sysdiagnose`
 
-For in-depth logs, system information, and application metrics, use platform diagnostic tools: [Android Debug Bridge (adb)](https://developer.android.com/tools/adb) and [Sysdiagnose](https://it-training.apple.com/tutorials/support/sup075/). See [Development Tools](/docs/debug-tools) for more on debugging in the app.
+For in-depth logs, system information, and application metrics, use platform diagnostic tools: [Android Debug Bridge (adb)](https://developer.android.com/tools/adb) and [Sysdiagnose](https://it-training.apple.com/tutorials/support/sup075/). See [Development tools](/docs/debug-tools) for more on debugging in the app.
 
 ## Choosing a testing tool
 
 | Tool                    |                   UI / UX                    |                 Performance                  |               Native features                |                Plugin config                 |
 | ----------------------- | :------------------------------------------: | :------------------------------------------: | :------------------------------------------: | :------------------------------------------: |
-| App Studio simulators   | <Icon icon="circle-check" color="#16A34A" /> | <Icon icon="circle-xmark" color="#DC2626" /> | <Icon icon="circle-minus" color="#D97706" /> | <Icon icon="circle-minus" color="#D97706" /> |
-| Browser DevTools        | <Icon icon="circle-minus" color="#D97706" /> | <Icon icon="circle-check" color="#16A34A" /> | <Icon icon="circle-xmark" color="#DC2626" /> | <Icon icon="circle-minus" color="#D97706" /> |
-| Appetize debug mode     | <Icon icon="circle-check" color="#16A34A" /> | <Icon icon="circle-minus" color="#D97706" /> | <Icon icon="circle-minus" color="#D97706" /> | <Icon icon="circle-check" color="#16A34A" /> |
-| Physical device         | <Icon icon="circle-minus" color="#D97706" /> | <Icon icon="circle-minus" color="#D97706" /> | <Icon icon="circle-check" color="#16A34A" /> | <Icon icon="circle-check" color="#16A34A" /> |
-| `adb` and `sysdiagnose` | <Icon icon="circle-xmark" color="#DC2626" /> | <Icon icon="circle-check" color="#16A34A" /> | <Icon icon="circle-check" color="#16A34A" /> | <Icon icon="circle-check" color="#16A34A" /> |
+| App Studio simulators   | <Icon icon="circle-check" color="#1174D3" /> | <Icon icon="circle-xmark" color="#E93EE3" /> | <Icon icon="circle-minus" color="#EFAC00" /> | <Icon icon="circle-minus" color="#EFAC00" /> |
+| Browser DevTools        | <Icon icon="circle-minus" color="#EFAC00" /> | <Icon icon="circle-check" color="#1174D3" /> | <Icon icon="circle-xmark" color="#E93EE3" /> | <Icon icon="circle-minus" color="#EFAC00" /> |
+| Appetize debug mode     | <Icon icon="circle-check" color="#1174D3" /> | <Icon icon="circle-minus" color="#EFAC00" /> | <Icon icon="circle-minus" color="#EFAC00" /> | <Icon icon="circle-check" color="#1174D3" /> |
+| Physical device         | <Icon icon="circle-minus" color="#EFAC00" /> | <Icon icon="circle-minus" color="#EFAC00" /> | <Icon icon="circle-check" color="#1174D3" /> | <Icon icon="circle-check" color="#1174D3" /> |
+| `adb` and `sysdiagnose` | <Icon icon="circle-xmark" color="#E93EE3" /> | <Icon icon="circle-check" color="#1174D3" /> | <Icon icon="circle-check" color="#1174D3" /> | <Icon icon="circle-check" color="#1174D3" /> |
 
 <p
   style={{
@@ -160,19 +154,19 @@ For in-depth logs, system information, and application metrics, use platform dia
   <span
     style={{ display: "inline-flex", alignItems: "center", gap: "0.375rem" }}
   >
-    <Icon icon="circle-check" color="#16A34A" />
+    <Icon icon="circle-check" color="#1174D3" />
     Recommended
   </span>
   <span
     style={{ display: "inline-flex", alignItems: "center", gap: "0.375rem" }}
   >
-    <Icon icon="circle-minus" color="#D97706" />
+    <Icon icon="circle-minus" color="#EFAC00" />
     Limited
   </span>
   <span
     style={{ display: "inline-flex", alignItems: "center", gap: "0.375rem" }}
   >
-    <Icon icon="circle-xmark" color="#DC2626" />
+    <Icon icon="circle-xmark" color="#E93EE3" />
     Not recommended
   </span>
 </p>
@@ -185,25 +179,25 @@ For in-depth logs, system information, and application metrics, use platform dia
     - **Plugin config:** Shows high-level information only.
   </Accordion>
 
-<Accordion title="Browser DevTools" icon="window-maximize">
-  - **UI / UX:** Limited to changing the user agent and viewport. -
-  **Performance:** Best for analyzing web assets. - **Native features:** Native
-  features can't be tested in a browser. - **Plugin config:** Console output
-  only.
-</Accordion>
+  <Accordion title="Browser DevTools" icon="window-maximize">
+    - **UI / UX:** Limited to changing the user agent and viewport.
+    - **Performance:** Best for analyzing web assets.
+    - **Native features:** Native features can't be tested in a browser.
+    - **Plugin config:** Console output only.
+  </Accordion>
 
-<Accordion title="Appetize debug mode" icon="bug">
-  - **UI / UX:** Switch between devices, OS versions, and orientations. -
-  **Performance:** Network logs are available. - **Native features:** Simulators
-  don't fully support native features. - **Plugin config:** Device logs help
-  validate plugin behavior.
-</Accordion>
+  <Accordion title="Appetize debug mode" icon="bug">
+    - **UI / UX:** Switch between devices, OS versions, and orientations.
+    - **Performance:** Network logs are available.
+    - **Native features:** Simulators don't fully support native features.
+    - **Plugin config:** Device logs help validate plugin behavior.
+  </Accordion>
 
-<Accordion title="Physical device" icon="mobile">
-  - **UI / UX and performance:** Coverage depends on maintaining a suite of test
-  devices. - **Native features:** Required to test native features. - **Plugin
-  config:** The fastest way to validate plugins.
-</Accordion>
+  <Accordion title="Physical device" icon="mobile">
+    - **UI / UX and performance:** Coverage depends on maintaining a suite of test devices.
+    - **Native features:** Required to test native features.
+    - **Plugin config:** The fastest way to validate plugins.
+  </Accordion>
 
   <Accordion title="adb and sysdiagnose" icon="terminal">
     - **UI / UX:** Not suited to visual testing.
@@ -212,6 +206,7 @@ For in-depth logs, system information, and application metrics, use platform dia
     - **Plugin config:** Best for diagnosing SDK issues and sharing logs with vendors.
   </Accordion>
 </AccordionGroup>
+
 ## Summary
 
-Use **Median App Studio** to configure and preview your app, **Development Tools** and median.dev to debug and test behavior, and **iOS Build & Deployment** and **Android Build & Deployment** to produce installable builds and publish to the stores. **App Configuration & Management** covers identifiers, config, and CI/CD so your build pipeline stays consistent.
+Use **App Studio** to configure and preview your app, **development tools** and median.dev to debug and test behavior, and **iOS build and deployment** and **Android build and deployment** to produce installable builds and publish to the stores. **App configuration and management** covers identifiers, config, and CI/CD so your build pipeline stays consistent.

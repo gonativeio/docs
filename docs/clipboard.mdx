@@ -33,7 +33,7 @@ Use `median.clipboard.set()` to copy a string to the system clipboard. This is t
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   median.clipboard.set({ data: "Text to copy" });
   ```
 </CodeGroup>
@@ -44,11 +44,11 @@ Use `median.clipboard.set()` to copy a string to the system clipboard. This is t
 | ------ | -------- | -------- | ----------------------------------------- |
 | `data` | `string` | Yes      | The text string to write to the clipboard |
 
-**Example use case**: Providing a "Copy to clipboard" button for invite codes, promo codes, links or other content.
+**Example use case**: Providing a "Copy to clipboard" button for invite codes, promo codes, links, or other content.
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   document.getElementById("copy-btn").addEventListener("click", function () {
     median.clipboard.set({ data: "PROMO2024" });
   });
@@ -59,7 +59,7 @@ Use `median.clipboard.set()` to copy a string to the system clipboard. This is t
 
 Use `median.clipboard.get()` to retrieve the current clipboard contents. This method is asynchronous and returns a result object with either a data property (on success) or an error property (on failure).
 
-Choose the pattern that best fits your codebase: Promises or Callbacks.
+Choose the pattern that best fits your codebase: promises or callbacks.
 
 #### Option 1: Promise (recommended)
 
@@ -67,7 +67,7 @@ Promises integrate cleanly with async/await and modern JavaScript workflows.
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   median.clipboard.get().then(function (result) {
     if (result.data) {
       console.log("Clipboard contents:", result.data);
@@ -99,7 +99,7 @@ Pass the name of your callback function as a string using the callback key:
 
 <MedianLogo />
 <CodeGroup>
-```JavaScript JavaScript
+```javascript JavaScript
 median.clipboard.get({ callback: "clipboardCallback" });
 
 function clipboardCallback(result) {
@@ -112,16 +112,16 @@ function clipboardCallback(result) {
 ```
 </CodeGroup>
 
-**Response Object**
+**Response object**
 
-Both clipboard.get() patterns return the same result object:
+Both `clipboard.get()` patterns return the same result object:
 
 | Property | Type     | Description                                                     |
 | -------- | -------- | --------------------------------------------------------------- |
 | `data`   | `string` | The clipboard text content. Present on success.                 |
 | `error`  | `string` | An error message. Present when the clipboard could not be read. |
 
-Always check for result.data before using the value, and handle the result.error case gracefully.
+Always check for `result.data` before using the value, and handle the `result.error` case.
 
 ## Platform behavior
 

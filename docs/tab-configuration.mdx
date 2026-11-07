@@ -1,23 +1,23 @@
 ---
-title: "Bottom Tab Bar Visual Editor"
-description: "Build your bottom tab bar in the Visual Editor."
+title: "Bottom tab bar Visual Editor"
+description: "Build your bottom tab bar in the Visual Editor and trigger JavaScript commands from tab menu items."
 keywords: ["bottom tab bar", "Visual Editor", "tab menu", "JavaScript commands"]
 searchable: true
 ---
 
 ## Trigger JavaScript commands from tab menu options
 
-If you'd prefer your links to trigger various JavaScript commands, you may wish to specify URLs in the Visual Editor with the following syntax (Option 1). Alternatively, you can set the URL with the JavaScript command directly in the JSON (Option 2).
+To have your links trigger JavaScript commands, specify URLs in the Visual Editor with the following syntax (Option 1). Alternatively, you can set the URL with the JavaScript command directly in the JSON (Option 2).
 
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   /* Option 1 - Visual Editor */
-  javascript: alert("test");
+  javascript: console.log("test");
   ```
 </CodeGroup>
 
 <CodeGroup>
-  ```JSON JSON
+  ```json JSON
   /* Option 2 - JSON */
   {
     "tabSelectionConfig": [
@@ -33,13 +33,13 @@ If you'd prefer your links to trigger various JavaScript commands, you may wish 
             "subLinks": [],
             "icon": "fa-home",
             "label": "Home",
-            "url": "javascript:alert('test')" //specify javascript commands like this
+            "url": "javascript:console.log('test')" //specify javascript commands like this
           },
           {
             "subLinks": [],
             "icon": "fa-search",
             "label": "Search",
-            "url": "javascript:alert('You selected tab 2. These tabs are only shown on the about page')"
+            "url": "javascript:console.log('You selected tab 2. These tabs are only shown on the about page')"
           }
         ],
         "id": "1"
@@ -53,7 +53,7 @@ If you'd prefer your links to trigger various JavaScript commands, you may wish 
 A more complicated example is to click an element when it exists, otherwise load a new URL.
 
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   /* Option 1 - Visual Editor */
   javascript: if (
     typeof jQuery === "undefined" ||
@@ -65,7 +65,7 @@ A more complicated example is to click an element when it exists, otherwise load
 </CodeGroup>
 
 <CodeGroup>
-  ```JSON JSON
+  ```json JSON
   /* Option 2 - JSON */
   {
     "tabSelectionConfig": [
@@ -87,7 +87,7 @@ A more complicated example is to click an element when it exists, otherwise load
             "subLinks": [],
             "icon": "fa-search",
             "label": "Search",
-            "url": "javascript:alert('You selected tab 2. These tabs are only shown on the about page')"
+            "url": "javascript:console.log('You selected tab 2. These tabs are only shown on the about page')"
           }
         ],
         "id": "1"
@@ -100,5 +100,5 @@ A more complicated example is to click an element when it exists, otherwise load
 
 ## Learn more
 
-* [​iOS Tab Bar Visual & Documentation](https://developer.apple.com/ios/human-interface-guidelines/ui-bars/tab-bars/)
-* [Android Tabs Visual & Documentation](http://developer.android.com/design/building-blocks/tabs.html)
+* [Apple Human Interface Guidelines: tab bars](https://developer.apple.com/ios/human-interface-guidelines/ui-bars/tab-bars/)
+* [Android design guidelines: tabs](http://developer.android.com/design/building-blocks/tabs.html)

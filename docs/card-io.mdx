@@ -7,9 +7,9 @@ searchable: true
 
 import { MedianLogo } from "/snippets/median-logo.jsx";
 
-The Card.io module improves customer conversion by simplifying the payment process. All machine vision image processing is performed locally on the device, thus sensitive cardholder information remains secure within your website.
+The Card.io module improves customer conversion by simplifying the payment process. All machine vision image processing is performed locally on the device, thus sensitive cardholder information stays on the device.
 
-Formerly a commercial pay-for-use SDK, Card.io is now open source supported by PayPal. Therefore there are no additional licenses or ongoing fees to use this module.
+Formerly a commercial pay-for-use SDK, Card.io is now open source and supported by PayPal, so there are no additional licenses or ongoing fees to use this module.
 
 <Check>
 **Developer Demo**
@@ -25,20 +25,18 @@ Display our demo page in your app to test during development [https://median.dev
 Define a JavaScript callback function to handle the scan result:
 
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   function processCard(data) {
-    alert(JSON.stringify(data));
+    console.log(JSON.stringify(data));
   }
   ```
 </CodeGroup>
 
-Trigger the card scanner using:
-
-To initiate a scan, open the URL:
+To start a scan, call `scanCard` with your callback:
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   median.card_io.scanCard({
     callbackFunction: processCard
   });
@@ -67,7 +65,7 @@ To collect the cardholder’s postal code and specify that it must be numeric:
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   median.card_io.scanCard({
     callbackFunction: processCard,
     requirePostalCode: true,
@@ -80,8 +78,8 @@ To collect the cardholder’s postal code and specify that it must be numeric:
 
 After a successful scan, your callback function receives a JavaScript object with the extracted card data. Fields may include:
 
-- cardNumber: _(string)_
-- cardholderName: _(string)_
-- expiryMonth: _(number)_
-- expiryYear: _(number)_
-- cardType: _(string)_ – One of `"visa"`, `"mastercard"`, `"amex"`, `"discover"`, or `"jcb"`
+- `cardNumber`: _(string)_
+- `cardholderName`: _(string)_
+- `expiryMonth`: _(number)_
+- `expiryYear`: _(number)_
+- `cardType`: _(string)_ One of `"visa"`, `"mastercard"`, `"amex"`, `"discover"`, or `"jcb"`

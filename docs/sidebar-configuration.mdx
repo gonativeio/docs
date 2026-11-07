@@ -1,36 +1,36 @@
 ---
 title: "Sidebar Visual Editor"
-description: "Build your sidebar menu in the Visual Editor."
+description: "Build your sidebar menu in the Visual Editor: add labels, URLs, icons, and menu groups, and trigger JavaScript from menu items."
 keywords: ["sidebar", "Visual Editor", "menu items", "menu groups", "navigation"]
 searchable: true
 ---
 
-After entering an Initial URL, we will automatically crawl your site and attempt to pull out various navigation menu options. Please select from one of the pre-populated options, or click **Start from scratch**.
+After you enter an Initial URL, Median crawls your site and tries to pull out navigation menu options. Select one of the pre-populated options, or click **Start from scratch**.
 
-Next, enter labels and absolute URLs for each menu option. You may also re-order links, add groupings, and specify icons as demonstrated in the grouping section below.
+Next, enter labels and absolute URLs for each menu option. You can also reorder links, add groupings, and specify icons as demonstrated in the grouping section below.
 
 ## Grouping menu items
 
-You may add a sidebar menu group by clicking the circular plus button ⨁ between menu items and selecting **Menu Group**. This adds a category group that can be expanded and collapsed within the sidebar menu.
+To add a sidebar menu group, click the circular plus button ⨁ between menu items and select **Menu Group**. This adds a category group that can be expanded and collapsed within the sidebar menu.
 
-<Frame caption="Sidebar Visual Editor – Add a menu group">
+<Frame caption="Sidebar Visual Editor – add a menu group">
   <img src="/images/docs/5daf92a-sidebar-menu-grouping.png" alt="Sidebar Visual Editor with menu items and the plus button between items showing the Menu Item and Menu Group options" />
 </Frame>
 
 ## Trigger JavaScript commands from sidebar menu options
 
-If you'd prefer your links to trigger various JavaScript commands, you may wish to specify URLs in the Visual Editor with the following syntax (Option 1). Alternatively, you can set the `url` to the JavaScript command directly in the JSON (Option 2).
+To have your links trigger JavaScript commands, specify URLs in the Visual Editor with the following syntax (Option 1). Alternatively, you can set the `url` to the JavaScript command directly in the JSON (Option 2).
 
 <CodeGroup>
   ```javascript Option 1 – Visual Editor
-  javascript:alert('test');
+  javascript:console.log('test');
   ```
 
   ```json Option 2 – JSON
   [
     {
       "subLinks": [],
-      "url": "javascript:alert('test')",
+      "url": "javascript:console.log('test')",
       "label": "Home",
       "icon": "fas fa-home"
     }

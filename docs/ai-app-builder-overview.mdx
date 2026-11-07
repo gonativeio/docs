@@ -1,11 +1,11 @@
 ---
-title: "Website Builder Overview"
-description: "Turn apps from AI website builders into native apps."
+title: "Website builder overview"
+description: "Turn apps from AI builders like Lovable, Replit, and Base44 into native iOS and Android apps, then publish, monetize, and grow them."
 keywords: ["website builder", "AI app builder", "Lovable", "Replit", "Base44", "native app"]
 searchable: true
 ---
 
-AI app builders like Lovable, Replit, and Base44 let you ship a working web application in hours. Median.co takes that app further by wrapping it in a native iOS and Android shell allowing you to add push notifications, biometric authentication, in-app purchases, and every other capability users expect from a mobile app, without rewriting a line of your existing code.
+AI app builders like Lovable, Replit, and Base44 let you ship a working web application in hours. Median takes that app further by wrapping it in a native iOS and Android shell, allowing you to add push notifications, biometric authentication, in-app purchases, and every other capability users expect from a mobile app, without rewriting a line of your existing code.
 
 This article is your starting point. It explains how the overall documentation is structured, what each section covers, and where to go next depending on where you are in your journey.
 
@@ -39,32 +39,29 @@ Start with the guide for your AI builder. Each platform guide covers the full co
   <Card
     title="Lovable"
     icon="code"
-    color="blue-500"
     href="/docs/lovable"
   >
     Chat-based AI that builds full web apps (frontend, backend, database, auth)
     from natural language, with Figma import and full code ownership via GitHub.
-    Turn your Lovable app into iOS and Android apps with Median.co.
+    Turn your Lovable app into iOS and Android apps with Median.
   </Card>
   <Card
     title="Replit"
     icon="code"
-    color="blue-500"
     href="/docs/replit"
   >
     Browser-based IDE with AI pair programming and Replit Agent that builds and
     deploys full apps from natural language; teams collaborate in multiplayer AI
-    chat. Convert your Replit app into a native mobile app with Median.co.
+    chat. Convert your Replit app into a native mobile app with Median.
   </Card>
   <Card
     title="Base44"
     icon="code"
-    color="blue-500"
     href="/docs/base44"
   >
     AI no-code platform with builder chat and discussion mode; auto backend,
     Stripe, APIs, real-time collaboration, and GitHub integration. Convert your
-    Base44 app into a native mobile app with Median.co.
+    Base44 app into a native mobile app with Median.
   </Card>
 </Columns>
 
@@ -76,7 +73,7 @@ Every platform guide is structured the same way so you always know where to look
 
 **Platform-specific setup**: How to get your deployed app URL and prepare it for mobile conversion, with instructions written for that specific builder's interface and deployment workflow.
 
-**Median App Studio integration**: A full walkthrough of creating your app in Median App Studio: connecting your URL, configuring branding (icon, splash screen, theme colours), and setting up native navigation.
+**Median App Studio integration**: A full walkthrough of creating your app in Median App Studio: connecting your URL, configuring branding (icon, splash screen, theme colors), and setting up native navigation.
 
 **Mobile optimization**: Best practices for responsive design, touch-friendly UI, and performance, plus ready-to-paste AI prompts you can drop directly into Lovable, Replit, or Base44 to make your app feel great on a small screen.
 
@@ -102,7 +99,6 @@ What you'll need before publishing:
   <Card
     title="Publishing"
     icon="store"
-    color="blue-500"
     href="/docs/publishing-overview"
   >
     Launch your app on the Apple App Store and Google Play Store, either through
@@ -114,7 +110,7 @@ What you'll need before publishing:
 
 ### Step 3: Monetize with RevenueCat
 
-Once your app is live, in-app subscriptions are the most powerful revenue channel available on mobile. Median's RevenueCat integration handles the full complexity of Apple StoreKit and Google Play Billing behind a simple JavaScript API regardless of which AI builder you used.
+Once your app is live, in-app subscriptions are one of the most effective revenue channels available on mobile. Median's RevenueCat integration handles the full complexity of Apple StoreKit and Google Play Billing behind a simple JavaScript API regardless of which AI builder you used.
 
 The Monetizing Your App with RevenueCat guide covers:
 
@@ -122,15 +118,15 @@ The Monetizing Your App with RevenueCat guide covers:
 - Retrieving your API key and configuring your subscription products
 - Enabling the plugin in Median App Studio
 - The complete JavaScript Bridge API: configure, isInitialized, getOfferings, purchase, restorePurchases, presentPaywall
-- Choosing the right monetization model (freemium, free trial, one-time purchase, tiered subscriptions)Paywall design and App Store review compliance
+- Choosing the right monetization model (freemium, free trial, one-time purchase, tiered subscriptions)
+- Paywall design and App Store review compliance
 
-This guide applies to all three AI builders - there is nothing platform-specific about monetization once your app is published.
+This guide applies to all three AI builders. There is nothing platform-specific about monetization once your app is published.
 
 <Columns cols={1}>
   <Card
-    title="App Monetization"
+    title="App monetization"
     icon="money-bill-1-wave"
-    color="blue-500"
     href="/docs/app-monetization"
   >
     Learn how to monetize your apps with native in-app purchases and
@@ -141,24 +137,23 @@ This guide applies to all three AI builders - there is nothing platform-specific
 
 ### Step 4: Market, launch, and grow your app
 
-Publishing is only the beginning. The App Marketing & Growth guide covers the full post-launch journey: getting found in the app stores, driving installs, converting free users to paid, and building a strong review rating.
+Publishing is only the beginning. The [App marketing and growth](/docs/app-marketing-growth) guide covers the full post-launch journey: getting found in the app stores, driving installs, converting free users to paid, and building a strong review rating.
 
 Topics covered:
 
-- App Store Optimisation (ASO) - Keyword strategy, screenshot design, description copywriting, and preview video guidance
-- Pre-launch preparation - Landing page, email capture, beta testing via TestFlight and Google Play Internal Testing
-- Launch strategy - Soft launch approach, Product Hunt, press and influencer outreach, community activation
-- Key metrics - Day 1/7/30 retention, conversion rate, MRR, churn rate, and how to track them
-- User adoption - Optimising onboarding to reach the "aha moment", push notification re-engagement, in-app messages, referral mechanics
-- App reviews - Using Median's App Review plugin to trigger the native rating prompt at the right moment, the sentiment funnel technique, and responding to reviews
+- **App Store optimization (ASO)**: Keyword strategy, screenshot design, description copywriting, and preview video guidance
+- **Pre-launch preparation**: Landing page, email capture, beta testing via TestFlight and Google Play Internal Testing
+- **Launch strategy**: Soft launch approach, Product Hunt, press and influencer outreach, community activation
+- **Key metrics**: Day 1/7/30 retention, conversion rate, MRR, churn rate, and how to track them
+- **User adoption**: Optimizing onboarding to reach the "aha moment", push notification re-engagement, in-app messages, referral mechanics
+- **App reviews**: Using Median's App Review plugin to trigger the native rating prompt, the sentiment funnel technique, and responding to reviews
 
-Like monetization, this guide is fully platform-agnostic — the marketing and growth strategies are identical whether you built on Lovable, Replit, or Base44.
+Like monetization, this guide is fully platform-agnostic: the marketing and growth strategies are identical whether you built on Lovable, Replit, or Base44.
 
 <Columns cols={1}>
   <Card
-    title="App Marketing & Growth"
+    title="App marketing and growth"
     icon="rectangle-ad"
-    color="blue-500"
     href="/docs/app-marketing-growth"
   >
     Learn to market and grow your mobile app after launch using structured
@@ -191,7 +186,7 @@ Before starting any platform guide, confirm you have the following in place.
 - Privacy policy hosted at a public URL
 - App Store Connect access for iOS TestFlight testing and App Review submission
 
-## Why convert to mobile with Median.co?
+## Why convert to mobile with Median?
 
 ### Speed and cost-effectiveness
 
@@ -199,7 +194,7 @@ Transforming a web app into native iOS and Android apps typically takes a team o
 
 ### Full native functionality
 
-Median goes well beyond a basic WebView wrapper. Through the JavaScript Bridge, your app gains access to the full native feature set that users expect: push notifications that work even when the app is closed, biometric login, deep linking, offline support, and hardware integrations like NFC and barcode scanning.
+Median goes well beyond a basic WebView wrapper. Through the JavaScript Bridge, your app gains access to the full native feature set that users expect: push notifications that work even when the app is closed, biometric sign-in, deep linking, offline support, and hardware integrations like NFC and barcode scanning.
 
 ### One codebase, two platforms
 
@@ -209,8 +204,8 @@ Build your web app once; deploy it as both an iOS and an Android app. When you u
 
 All Median platform guides include preparation steps for Apple App Store and Google Play Store submission. For teams who want a hands-off experience, Median's Publishing Service manages the entire submission process and guarantees 100% approval.
 
-<Frame caption="App Store Publishing Dashboard">
-  <img src="/images/docs/ebcd3a7b0e5b16da5d97384ce12e48132d4501f6aace6777d8256faab3b0239d-Screenshot_2026-06-19_at_09.44.49.png" />
+<Frame caption="App Store publishing in Median App Studio">
+  <img src="/images/docs/ebcd3a7b0e5b16da5d97384ce12e48132d4501f6aace6777d8256faab3b0239d-Screenshot_2026-06-19_at_09.44.49.png" alt="App Store publishing options in Median App Studio" />
 </Frame>
 
 ## Where to go next
@@ -221,6 +216,6 @@ All Median platform guides include preparation steps for Apple App Store and Goo
 | Convert a Replit app                | [Replit](/docs/replit)                               |
 | Convert a Base44 app                | [Base44](/docs/base44)                               |
 | Publish to the app stores           | [Publishing overview](/docs/publishing-overview)     |
-| Add in-app products & subscriptions | [App Monetization](/docs/app-monetization)           |
-| Grow your app after launch          | [App Marketing & Growth](/docs/app-marketing-growth) |
+| Add in-app products & subscriptions | [App monetization](/docs/app-monetization)           |
+| Grow your app after launch          | [App marketing and growth](/docs/app-marketing-growth) |
 | Create a new app now                | [median.co/app](https://median.co/app)                                     |

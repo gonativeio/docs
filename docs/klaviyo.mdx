@@ -1,6 +1,6 @@
 ---
 title: "Klaviyo"
-description: "Add Klaviyo push notifications to your app."
+description: "Add Klaviyo push notifications to your app, then request permission and manage user profiles with the JavaScript Bridge."
 keywords: ["Klaviyo", "push notifications", "engagement", "marketing"]
 searchable: true
 ---
@@ -17,16 +17,16 @@ The Klaviyo plugin enables mobile push notifications to increase engagement and 
 
 ## Prerequisites
 
-- A Median.co app with the [JavaScript Bridge](/docs/javascript-bridge) enabled
+- A Median app with the [JavaScript Bridge](/docs/javascript-bridge) enabled
 - Klaviyo account with iOS and Android mobile apps configured for push
 - **Klaviyo Public API Key** (mobile SDK initialization)
-- `GoogleService-Info.plist` and `google-services.json` uploaded in your Median app configuration (required for Firebase-backed delivery on Android and proper SDK initialization—see [Google Services](/docs/google-services))
+- `GoogleService-Info.plist` and `google-services.json` uploaded in your Median app configuration (required for Firebase-backed delivery on Android and proper SDK initialization; see [Google Services](/docs/google-services))
 - Familiarity with Klaviyo push setup and, as needed, your [App Identifiers](/docs/app-identifiers), Apple Developer account, and Google Cloud / Firebase project
 
 <Check>
   **Developer Demo**
 
-Display our demo page in your app to test during development: [https://median.dev/klaviyo/](https://median.dev/klaviyo/)
+Display our demo page in your app to test during development [https://median.dev/klaviyo/ <Icon icon="arrow-up-right-from-square" size={12} />](https://median.dev/klaviyo/)
 
 </Check>
 
@@ -40,7 +40,7 @@ Display our demo page in your app to test during development: [https://median.de
 
 **Important considerations**
 
-- Klaviyo’s Android path depends on **Google Services** (Firebase). Missing `GoogleService-Info.plist` / `google-services.json` commonly causes SDK initialization failures—see [Error handling](#error-handling).
+- Klaviyo’s Android path depends on **Google Services** (Firebase). Missing `GoogleService-Info.plist` / `google-services.json` commonly causes SDK initialization failures. See [Troubleshooting](#troubleshooting).
 - On **Android 13+**, users must explicitly grant notification permission; on older Android versions, behavior may differ. **iOS** always uses an explicit permission prompt when you request authorization.
 - Align **Bundle ID** (iOS) and **package name** (Android) between Klaviyo, your app identifiers in Median, and store listings to avoid token or delivery mismatches.
 
@@ -60,8 +60,11 @@ In Klaviyo, you will need to add and configure both (iOS and Android) mobile app
 - [How to set up iOS push notifications](https://help.klaviyo.com/hc/en-us/articles/360023213971)
 - [How to set up Android push notifications](https://help.klaviyo.com/hc/en-us/articles/14750928993307)
 
-<Frame caption="Klaviyo - Mobile app settings">
-  <img src="/images/docs/f6e43f6b104577dd6a7796ef06a3ad8ec49518ed5d795216981c205d5944a3d0-Screenshot_2025-11-25_at_14.44.43.png" />
+<Frame caption="Klaviyo: mobile app settings">
+  <img
+    src="/images/docs/f6e43f6b104577dd6a7796ef06a3ad8ec49518ed5d795216981c205d5944a3d0-Screenshot_2025-11-25_at_14.44.43.png"
+    alt="Klaviyo mobile app settings for configuring iOS and Android push"
+  />
 </Frame>
 
 #### Retrieve your public API key
@@ -69,8 +72,11 @@ In Klaviyo, you will need to add and configure both (iOS and Android) mobile app
 1. In Klaviyo, go to **Settings → Account → API Keys**.
 2. Copy the **Public API Key** (not private keys). You will paste it into the Klaviyo plugin field in Median App Studio.
 
-<Frame caption="Klaviyo - Public API Key">
-  <img src="/images/docs/89f851959e1a2b97504cdb2382c4d152964d0aa63e5ea86a3ce1b3383150c599-Screenshot_2025-11-25_at_14.45.04.png" />
+<Frame caption="Klaviyo: Public API Key">
+  <img
+    src="/images/docs/89f851959e1a2b97504cdb2382c4d152964d0aa63e5ea86a3ce1b3383150c599-Screenshot_2025-11-25_at_14.45.04.png"
+    alt="Klaviyo API Keys settings page showing the Public API Key"
+  />
 </Frame>
 
 ### App configuration
@@ -91,15 +97,18 @@ Without these files, the SDK may fail to initialize; see the Firebase error in [
 3. Enter your **Klaviyo Public API Key**.
 4. Set **Automatic Registration** to match your product flow (**Enabled** for startup permission, **Disabled** to drive prompts from JavaScript).
 
-<Frame caption="Klaviyo Plugin Configuration">
-  <img src="/images/docs/e63820d74875c6444a38b8f3709015674b2827074af72a44a07be61db3092ffc-Screenshot_2025-11-25_at_14.58.19.png" />
+<Frame caption="Klaviyo plugin configuration">
+  <img
+    src="/images/docs/e63820d74875c6444a38b8f3709015674b2827074af72a44a07be61db3092ffc-Screenshot_2025-11-25_at_14.58.19.png"
+    alt="Klaviyo plugin settings in App Studio with the API Key and Automatic Registration fields"
+  />
 </Frame>
 
 #### Configuration options
 
 | Setting                    | Description                                                                                                                      | Default | Recommended                                                                                        |
 | -------------------------- | -------------------------------------------------------------------------------------------------------------------------------- | ------- | -------------------------------------------------------------------------------------------------- |
-| **API Key**                | Klaviyo **Public API Key** used to initialize the Klaviyo SDKs.                                                                  | None    | Required—copy from Klaviyo **Settings → Account → API Keys**.                                      |
+| **API Key**                | Klaviyo **Public API Key** used to initialize the Klaviyo SDKs.                                                                  | None    | Required. Copy from Klaviyo **Settings → Account → API Keys**.                                     |
 | **Automatic Registration** | **Enabled**: requests push permissions on app startup. **Disabled**: you request later with `median.klaviyo.promptNotification`. | Enabled | Use **Disabled** for contextual prompts; **Enabled** only if you want an immediate startup prompt. |
 
 **Note**: Plugin settings take effect in new builds. After changing keys or Google Services files, create a fresh build and test on a device or simulator.
@@ -110,7 +119,7 @@ The Klaviyo plugin works with Median [deep linking](/docs/deep-linking). When de
 
 ### JavaScript Bridge functions
 
-Call these after the `deviceready` event (or equivalent) with the JavaScript Bridge loaded. The official Median examples use **callbacks**; use the same shape in production unless your integration layer wraps them in promises.
+Call these after the `median_library_ready()` event (or equivalent) with the JavaScript Bridge loaded. The official Median examples use **callbacks**; use the same shape in production unless your integration layer wraps them in promises.
 
 #### Request push notification permission
 
@@ -118,7 +127,7 @@ Displays the system dialog to enable push notifications. On **Android 13 and abo
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   median.klaviyo.promptNotification({
     callback: function (result) {
       console.log(result.granted); // true or false
@@ -147,7 +156,7 @@ Returns whether notifications are currently allowed for your app.
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   median.klaviyo.notificationEnabled({
     callback: function (result) {
       console.log(result.granted); // true or false
@@ -174,20 +183,20 @@ Identify users and attach fields Klaviyo uses for segmentation and personalizati
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   // Get the current user profile
   median.klaviyo.getProfile();
 
   // Set user profile attributes
   median.klaviyo.setProfile({
-  externalId: "USER_ID",
-  email: "[email protected]",
-  phoneNumber: "+1234567890",
+    externalId: "USER_ID",
+    email: "user@example.com",
+    phoneNumber: "+1234567890",
   });
 
   // Clear the stored user profile
   median.klaviyo.resetProfile();
-```
+  ```
 </CodeGroup>
 
 `setProfile` **parameters:**
@@ -200,41 +209,41 @@ Identify users and attach fields Klaviyo uses for segmentation and personalizati
 
 **Return value:**
 
-Profile getters/setters follow the bridge’s usual pattern (callbacks or synchronous return may vary by Median build—test in your app alongside [median.dev/klaviyo](https://median.dev/klaviyo/)).
+Profile getters and setters follow the JavaScript Bridge's usual pattern. Callbacks or synchronous returns may vary by Median build, so test in your app alongside [median.dev/klaviyo](https://median.dev/klaviyo/).
 
 ## Testing checklist
 
 Use this checklist to ensure Klaviyo is working correctly in your app:
 
-**Basic Functionality**
+**Basic functionality**
 
 * [ ] Klaviyo **Public API Key** is set in the plugin configuration.
 * [ ] `median.klaviyo.promptNotification` runs without errors and reflects user choice in `result.granted`.
 * [ ] `median.klaviyo.notificationEnabled` reports expected state after allow/deny.
 * [ ] `getProfile`, `setProfile`, and `resetProfile` run without JavaScript errors.
 
-**Platform Testing**
+**Platform testing**
 
 * [ ] iOS: permission prompt and token path behave as expected on a physical device.
 * [ ] Android: behavior verified on Android 13+ (runtime permission) and a representative older version if you support it.
 * [ ] Deep link targets from Klaviyo open **in app** when configured (not only in the browser).
 
-**Configuration and Delivery**
+**Configuration and delivery**
 
 * [ ] `GoogleService-Info.plist` and `google-services.json` are present in the shipped build (per Median [Google Services](/docs/google-services)).
 * [ ] Klaviyo app entries use the same bundle ID / package name as the Median build.
 * [ ] Test sends from Klaviyo reach the device when profiles and consent allow.
 
-**User Experience**
+**User experience**
 
 * [ ] Permission prompts appear at an appropriate moment (startup vs contextual) per **Automatic Registration** choice.
 * [ ] Logout calls `resetProfile` if you require a clean SDK identity for the next user.
 
 ## Troubleshooting
 
-### Klaviyo bridge functions are undefined or not working
+### Klaviyo JavaScript Bridge functions are undefined or not working
 
-Ensure the **JavaScript Bridge** is enabled, the **Klaviyo** plugin is enabled, and your code runs after the `deviceready` event. Confirm you are testing on a Median build that includes the plugin, not a plain mobile browser tab.
+Ensure the **JavaScript Bridge** is enabled, the **Klaviyo** plugin is enabled, and your code runs after the `median_library_ready()` event. Confirm you are testing on a Median build that includes the plugin, not a plain mobile browser tab.
 
 ### IllegalStateException: Default FirebaseApp is not initialized in this process
 
@@ -245,6 +254,7 @@ Upload **`GoogleService-Info.plist`** and **`google-services.json`** through you
 On **iOS**, check that the user has not disabled notifications for the app in Settings. On **Android 13+**, ensure you triggered a runtime permission request (`promptNotification` or startup flow). If **Automatic Registration** is **Disabled**, you must prompt explicitly before expecting tokens.
 
 ### Deep links open in the browser instead of the app
+
 Configure Median [deep linking](/docs/deep-linking) (URL scheme, Universal Links, App Links) so the URL Klaviyo uses matches routes handled inside the app. Test with Klaviyo’s open action set to that URL.
 
 ### Profile or campaign data looks wrong in Klaviyo
@@ -254,5 +264,5 @@ Verify `setProfile` is called with correct `externalId` / email / phone after lo
 <Info>
 **Still having trouble?**
 
-For issues related to Klaviyo's own configuration, permissions, or platform-specific behavior outside of Median.co, refer to [Klaviyo's integration documentation.](https://developers.klaviyo.com/en/docs/get_started)
+For issues related to Klaviyo's own configuration, permissions, or platform-specific behavior outside of Median, refer to [Klaviyo's integration documentation](https://developers.klaviyo.com/en/docs/get_started).
 </Info>

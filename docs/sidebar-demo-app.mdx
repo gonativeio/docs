@@ -1,6 +1,6 @@
 ---
-title: "Sidebar Demo App"
-description: "Try the sidebar menu in live demo apps."
+title: "Sidebar demo app"
+description: "Try the native sidebar menu in live iOS and Android demo apps, and see the configuration and JavaScript Bridge code behind them."
 keywords: ["sidebar", "demo app", "Appetize", "navigation menu", "simulator"]
 searchable: true
 ---
@@ -13,7 +13,7 @@ import { MedianLogo } from "/snippets/median-logo.jsx";
 <MedianLogo />
 
 <CodeGroup>
-  ```json Sidebar Navigation Menu Configuration
+  ```json Sidebar navigation menu configuration
   [
     {
       "subLinks": [],
@@ -28,7 +28,7 @@ import { MedianLogo } from "/snippets/median-logo.jsx";
   ]
   ```
 
-  ```javascript Set Sidebar Menu Items
+  ```javascript Set sidebar menu items
   var items = [{
     label: "Google",
     url: "https://google.com",
@@ -47,7 +47,7 @@ import { MedianLogo } from "/snippets/median-logo.jsx";
     }]
   }, {
     label: "Sample Javascript",
-    url: "javascript:alert('test')"
+    url: "javascript:console.log('test')"
   }];
   median.sidebar.setItems({
     'items': items

@@ -1,6 +1,6 @@
 ---
 title: "Android App Bundle (AAB)"
-description: "Understand AAB files and Google Play App Signing."
+description: "Learn how APKs and Android App Bundles differ, and how developer signing compares to Google Play App Signing."
 keywords: ["Android App Bundle", "AAB", "APK", "Google Play App Signing", "signing key"]
 searchable: true
 ---
@@ -25,9 +25,9 @@ For APKs, Google Play supports the traditional app signing by the developer (eit
 
 App Bundles must be signed using Google Play App Signing.
 
-Developer Signing has the advantage of being able to update an app outside of Google Play, as you are able to create an APK with the same signing key as the user's device. The downside is that you are completely responsible for managing the release key. If the key is lost, your app cannot be updated and you will need to create a new app with a new identifier and Google Play listing.
+Developer signing has the advantage of being able to update an app outside of Google Play, as you are able to create an APK with the same signing key as the user's device. The downside is that you are completely responsible for managing the release key. If the key is lost, your app cannot be updated and you will need to create a new app with a new identifier and Google Play listing.
 
-Google Play App Signing signing passes the key management responsibility to Google. The key used to sign the uploaded APK or AAB is only used to verify uploads to Google Play. If the upload key is lost, it can be reset by contacting Google support. Google Play signing is required to support Dynamic Delivery and Android App Bundles.
+Google Play App Signing passes the key management responsibility to Google. The key used to sign the uploaded APK or AAB is only used to verify uploads to Google Play. If the upload key is lost, it can be reset by contacting Google support. Google Play signing is required to support Dynamic Delivery and Android App Bundles.
 
 To summarize:
 
@@ -41,7 +41,7 @@ To summarize:
 
 ### Developer vs Google Play signing
 
-| Developer Signing                 | Google Play App Signing                              |
+| Developer signing                 | Google Play App Signing                              |
 | --------------------------------- | ---------------------------------------------------- |
 | Can update outside of Google Play | Updates only through Google Play                     |
 | Developer manages release key     | Google manages release key, developer has upload key |

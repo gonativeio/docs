@@ -1,13 +1,13 @@
 ---
-title: "Splash Screen"
-description: "Configure a static or animated splash screen."
+title: "Splash screen"
+description: "Configure a static or animated splash screen for your app, with separate settings for light mode and dark mode."
 keywords: ["splash screen", "launch screen", "animated splash", "dark mode", "branding"]
 searchable: true
 ---
 
-The splash screen is the first thing users see when they launch your app from the home screen or switch back to it from the background. With Median.co, you can customize the splash screen with a static image, an animation, and separate configurations for light mode and dark mode and give your app a polished, native feel from the very first frame.
+The splash screen is the first thing users see when they launch your app from the home screen or switch back to it from the background. With Median, you can customize the splash screen with a static image or an animation, and set separate configurations for light mode and dark mode.
 
-During initial app launch the splash screen will display while your web content is loading. The splash screen will be displayed until the web page finishes loading (until the `DOMContentLoaded` event fires), so that the transition between splash screen and your app is frictionless. We provide a test page on our developer portal that can be used to simulate long page load times, allowing you to test the splash screen experience for users on slow network connections.
+During initial app launch, the splash screen displays while your web content is loading. It stays on screen until the web page finishes loading (until the `DOMContentLoaded` event fires), so that the transition between splash screen and your app is frictionless. We provide a test page on our developer portal that can be used to simulate long page load times, allowing you to test the splash screen experience for users on slow network connections.
 
 <Check>
 **Developer Demo**
@@ -18,9 +18,9 @@ Display our demo page in your app to test during development [https://median.dev
 
 ## How to configure your splash screen
 
-Median's App Studio auto-generates a splash screen from your app icon, or you can upload a custom static image or animation. From there, you can fine-tune the experience for each platform using the options below.
+App Studio auto-generates a splash screen from your app icon, or you can upload a custom static image or animation. From there, you can fine-tune the experience for each platform using the options below.
 
-<Frame caption="App Studio – Splash Screen configuration">
+<Frame caption="App Studio – splash screen configuration">
   <img
     src="/images/docs/c69bfb5fdffd6348f2e8719da8fd5f56ea8e62b330cb9a0da916b4be668161b8-Screenshot_2026-07-04_at_11.36.20.png"
     alt="App Studio Branding page with Splash Screen settings for screen style, light and dark mode background colors and a preview"
@@ -37,9 +37,9 @@ By default, App Studio generates your launch storyboard automatically from your 
 
 Starting with Android 12, Google standardized splash screen design to show a circular, cropped image centered on the screen. For the best results, use a simple, low-complexity image with minimal text similar in style to your app icon.
 
-For full design specifications, see [Android UI Guidelines for splash screens <Icon icon="arrow-up-right-from-square" size={12} />](https://developer.android.com/develop/ui/views/launch/splash-screen#elements) for more details.
+For full design specifications, see the [Android UI guidelines for splash screens <Icon icon="arrow-up-right-from-square" size={12} />](https://developer.android.com/develop/ui/views/launch/splash-screen#elements).
 
-<Frame caption="Android – Splash screen composition">
+<Frame caption="Android – splash screen composition">
   <img
     src="/images/docs/1a01ec5-android-splash-screen-composition.png"
     alt="Four Android splash screen layouts showing the app icon centered inside a circular mask, with and without an icon background"
@@ -48,16 +48,16 @@ For full design specifications, see [Android UI Guidelines for splash screens <I
 
 ## Animated splash screen
 
-Median supports animations created in Adobe After Effects which have been exported using the BodyMovin plugin in JSON format. There are free, ready-to-use animations available on [LottieFiles <Icon icon="arrow-up-right-from-square" size={12} />](https://lottiefiles.com).
+Median supports animations created in Adobe After Effects and exported using the BodyMovin plugin in JSON format. There are free, ready-to-use animations available on [LottieFiles <Icon icon="arrow-up-right-from-square" size={12} />](https://lottiefiles.com).
 
 <Columns cols={2}>
-  <Frame caption="iOS – Animated splash screen">
+  <Frame caption="iOS – animated splash screen">
     <img
       src="/images/docs/docs/splash-screen/ios.gif"
       alt="An iOS app launching from the home screen and playing an animated splash screen"
     />
   </Frame>
-  <Frame caption="Android – Animated splash screen">
+  <Frame caption="Android – animated splash screen">
     <img
       src="/images/docs/docs/splash-screen/android.gif"
       alt="An Android app launching and playing an animated splash screen"
@@ -68,7 +68,7 @@ Median supports animations created in Adobe After Effects which have been export
 <Warning>
   **Adobe After Effects & BodyMovin compatibility**
 
-iOS and Android do not support some features available in the BodyMovin format such as Blend Modes that are only supported in web. Always test your exported animation file on-device to confirm it renders as expected before publishing.
+iOS and Android do not support some features available in the BodyMovin format such as blend modes, which are only supported on the web. Always test your exported animation file on-device to confirm it renders as expected before publishing.
 
 </Warning>
 
@@ -79,13 +79,13 @@ When you publish an app without a paid license under the Median Free offering, a
 You can configure your splash screen to use the same image as your app icon or a different image. You can also set different images and background colors for light mode and dark mode.
 
 <Columns cols={2}>
-  <Frame caption="Free tier splash screen – Light mode">
+  <Frame caption="Free tier splash screen – light mode">
     <img
       src="/images/docs/docs/splash-screen/median-free-splash-light.png"
       alt="Free tier splash screen in light mode with the app icon centered and a Powered by Median.co badge at the bottom"
     />
   </Frame>
-  <Frame caption="Free tier splash screen – Dark mode">
+  <Frame caption="Free tier splash screen – dark mode">
     <img
       src="/images/docs/docs/splash-screen/median-free-splash-dark.png"
       alt="Free tier splash screen in dark mode with the app icon centered and a Powered by Median.co badge at the bottom"

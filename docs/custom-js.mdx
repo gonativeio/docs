@@ -9,17 +9,17 @@ JavaScript added via the configuration panel is automatically injected into both
 
 ## Injecting JavaScript without `<script>` tags
 
-JavaScript should be written exactly as it would appear in a standalone .js file. Do not include HTML tags like `<script>`. The code will automatically be executed when your site loads in the app.
+JavaScript should be written exactly as it would appear in a standalone `.js` file. Do not include HTML tags like `<script>`. The code will automatically be executed when your site loads in the app.
 
-## Example: Send [Device Info](/docs/device-info) on your login page
+## Example: Send [device info](/docs/device-info) on your login page
 
-Use the Median JavaScript Bridge to access device information and send it to your server, such as during user login or registration flows:
+Use the Median JavaScript Bridge to access device information and send it to your server, such as during sign-in or registration flows:
 
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   /* This script checks if the current page path starts with /login and then calls median.deviceInfo() to retrieve device details. It sends that data to your server via a POST request. */
 
-if(location.pathname.startsWith('/login'){
+if (location.pathname.startsWith('/login')) {
   median.deviceInfo().then(function (deviceInfo) {
     fetch('https://yourwebsite.com/api/registration', {
       method: "POST",

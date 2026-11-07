@@ -1,6 +1,6 @@
 ---
 title: "Apple In-App Purchases"
-description: "Sell digital goods on iOS with Apple In-App Purchases."
+description: "Sell digital goods and subscriptions on iOS with Apple In-App Purchases, verify purchases on your server or on-device, and restore them."
 keywords: ["Apple In-App Purchases", "IAP", "StoreKit", "App Store Server API", "receipt validation", "subscriptions"]
 searchable: true
 ---
@@ -27,23 +27,23 @@ Display our demo page in your app to test during development [https://median.dev
 
 </Check>
 
-Median’s Apple App Store In-App purchase flow has these steps:
+Median's Apple App Store in-app purchase flow has these steps:
 
 1. Create In-App Purchase items in App Store Connect
 2. Host a JSON file on your website with a list of purchasable items
 3. Display a web UI listing purchasable items
 4. Initiate a purchase when requested by a user
-5. Verify and fulfil purchases through the Apple App Store
+5. Verify and fulfill purchases through the Apple App Store
 6. Restore previous purchases through the Apple App Store
 7. Manage subscription renewals and cancellations with the Apple App Store
 
-If using server-side verification, your app posts a receipt to your site. Your web server verifies the receipt with Apple and fulfills the purchase.If using on-device verification, the purchase is automatically fulfilled and purchase item data is available via JavaScript.
+If using server-side verification, your app posts a receipt to your site. Your web server verifies the receipt with Apple and fulfills the purchase. If using on-device verification, the purchase is automatically fulfilled and purchase item data is available via JavaScript.
 
 ## Configure IAP in App Store Connect
 
 Create your app on App Store Connect, picking a globally unique bundle ID.
 
-Open your new app on App Store Connect, go to App Store -> In-App Purchases.
+Open your new app on App Store Connect, go to **App Store → In-App Purchases**.
 
 Create your In-App Purchase. The Product ID is a string used to identify the IAP. For auto-renewing types, there is a concept of "subscription groups". Users can only be subscribed to one IAP in each subscription group. For example, you may offer a monthly or semi-annual membership. It would only make sense for a user to be subscribed to one, not both. There is additional information used to describe the IAP, and notes for Apple's review. You must create a user-friendly description in at least one localized language.
 
@@ -54,7 +54,7 @@ At the IAP screen, click "View Shared Secret". Save this string.
 Create a JSON file that lists the product IDs you would like to offer for sale. This allows you to in real time add or remove products for sale without publishing a new version of your app. Apple requires product IDs be alphanumeric and dots, dashes and underscores are allowed. We recommend prefixing with your Bundle ID to aid in reporting. The following example shows two products for sale, `com.appname.subscription_monthly` and `com.appname.subscription_yearly`.
 
 <CodeGroup>
-  ```JSON JSON
+  ```json JSON
   {
       "products": [
           "com.appname.subscription_monthly",
@@ -64,36 +64,37 @@ Create a JSON file that lists the product IDs you would like to offer for sale. 
   ```
 </CodeGroup>
 
-You must then host the JSON file on your website to be accessible by your app. We are using [https://median.dev/iap/productsApple.json](https://median.dev/iap/productsApple.json)
+You must then host the JSON file on your website to be accessible by your app. Our demo uses [productsApple.json](https://median.dev/iap/productsApple.json).
 
 ### App configuration
 
-Now you are ready to enable and configure the plugin within the Native Plugins tab of the App Studio. You will need to enter:
+Now you are ready to enable and configure the plugin within the **Native Plugins** tab of App Studio. You will need to enter:
 
-- `productsUrl` - The `productsUrl` should point to the JSON file on your website. When your Median app launches, it will make an HTTP GET to your `productsUrl`.
-- `postUrl` - The `postUrl` should be provided if you are using [server-side verification](#server-side-verification). It can be omitted if you would like to use [on-device verification](#on-device-verification) and fulfil the purchases within your app.
+- `productsUrl`: The `productsUrl` should point to the JSON file on your website. When your Median app launches, it will make an HTTP GET to your `productsUrl`.
+- `postUrl`: The `postUrl` should be provided if you are using [server-side verification](#server-side-verification-via-app-store-server-api). It can be omitted if you would like to use [on-device verification](#on-device-verification) and fulfill the purchases within your app.
 
 ## IAP products and status
 
 Upon launch your app will verify the list of product IDs with the App Store to ensure they are all available for purchase. Then it will execute a JavaScript function on your website defined as `median_info_ready` with a single object parameter. Alternatively you can use the Median JavaScript Bridge to obtain this data at runtime by calling the method `median.iap.info()`.
 
-You define this function on your page, but do not actually call it.If present on a page, it will be called by the app when the page is loaded.
+You define this function on your page, but do not actually call it. If present on a page, it will be called by the app when the page is loaded.
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   function median_info_ready(productsData) {
      console.log(productsData);
   }
   ```
 </CodeGroup>
 
-Or you may return the available products at runtime via a promise (in async function)
+Or you may return the available products at runtime via a promise (in async function):
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript var productsData = await median.iap.info();
-  console.log(productsData); 
+  ```javascript JavaScript
+  var productsData = await median.iap.info();
+  console.log(productsData);
   ```
 </CodeGroup>
 
@@ -101,7 +102,7 @@ In both cases `productsData` will be of the form:
 
 <MedianLogo />
 <CodeGroup>
-  ```JSON JSON
+  ```json JSON
   {
      "inAppPurchases": {
          "platform": "iTunes",
@@ -119,7 +120,7 @@ In both cases `productsData` will be of the form:
   ```
 </CodeGroup>
 
-On iOS, platform will always be iTunes. `canMakePurchases` may be `false` if disabled via parental controls, or due to other reasons - refer to [testing process](#testing-process). `products` is an array generated from `productsUrl`, filtered to show only purchasable items and with additional fields added.
+On iOS, platform will always be iTunes. `canMakePurchases` may be `false` if disabled via parental controls, or due to other reasons; refer to [testing process](#testing-process). `products` is an array generated from `productsUrl`, filtered to show only purchasable items and with additional fields added.
 
 ## Display web UI for purchases
 
@@ -131,7 +132,7 @@ When a user decides to purchase an IAP, run the JavaScript function:
 
 <MedianLogo />
 <CodeGroup>
-```JavaScript JavaScript
+```javascript JavaScript
   try {
     var purchasesData = await median.iap.purchase({'productID': 'product_id'});
     console.log(purchasesData);
@@ -166,16 +167,17 @@ You can send the `transactionId` and any other necessary transaction parameters 
 
 <MedianLogo />
 <CodeGroup>
-```JavaScript JavaScript
+```javascript JavaScript
 const transactionInfo = await median.iap.purchase({'productID': 'product_id'});
 
 console.log(transactionInfo);
 
-{
-  "transactionDate": "ISOFormatedDate",
-  "productId": "com.app_name.subscription_monthly",
-  "transactionId": "2000123808012938"
-}
+// transactionInfo will have the following structure:
+// {
+//   "transactionDate": "ISOFormatedDate",
+//   "productId": "com.app_name.subscription_monthly",
+//   "transactionId": "2000123808012938"
+// }
 
 // Send transactionInfo to your backend for verification
 ```
@@ -183,11 +185,11 @@ console.log(transactionInfo);
 
 #### Decode JWS response
 
-The response from the StoreKit API is encoded using the JWS (JSON Web Signature) format. To decode the response you will need to make use of the public keys Apple uses to encode it which can be obtained from [Apple's documentation](https://developer.apple.com/documentation/signinwithapplerestapi/fetch-apple). The encoded JWS ensures the response you are receiving is indeed from Apple and is not compromised by any machine-in-the-middle attack. It's recommended to use a well supported and reputable library to decode the JWS response instead of doing so manually. We suggest browsing [https://jwt.io/libraries](https://jwt.io/libraries) for libraries to consider that work with your development framework and that meet your requirements. Note that you should review the documentation for the library to ensure support of JSON Web Signature (JWS) and the methods to sign/verify/decode JWS messages.
+The response from the StoreKit API is encoded using the JWS (JSON Web Signature) format. To decode the response you will need to make use of the public keys Apple uses to encode it which can be obtained from [Apple's documentation](https://developer.apple.com/documentation/signinwithapplerestapi/fetch-apple). The encoded JWS ensures the response you are receiving is indeed from Apple and is not compromised by any machine-in-the-middle attack. It's recommended to use a well supported and reputable library to decode the JWS response instead of doing so manually. We suggest browsing [jwt.io's list of libraries](https://jwt.io/libraries) for libraries to consider that work with your development framework and that meet your requirements. Note that you should review the documentation for the library to ensure support of JSON Web Signature (JWS) and the methods to sign/verify/decode JWS messages.
 
-#### Fulfil purchase in app
+#### Fulfill purchase in app
 
-Upon successfully decoding the API response you will have access to all relevant information about the transaction. At this point you can consider the purchase as verified and provide access to the purchased content to the relevant user. See the full details of the API response payload and the data that is returned [Apple's documentation](https://developer.apple.com/documentation/appstoreserverapi/jwstransactiondecodedpayload).
+Upon successfully decoding the API response you will have access to all relevant information about the transaction. At this point you can consider the purchase as verified and provide access to the purchased content to the relevant user. See the full details of the API response payload and the data that is returned in [Apple's documentation](https://developer.apple.com/documentation/appstoreserverapi/jwstransactiondecodedpayload).
 
 ### Server-side verification via POST call (deprecated)
 
@@ -204,7 +206,7 @@ The JSON POST to `postUrl` will contain the contents:
 
 <MedianLogo />
 <CodeGroup>
-  ```JSON JSON
+  ```json JSON
   {
   	"receipt-data": "xxxxxxxxxxxxxxxxxxx"
   }
@@ -214,7 +216,7 @@ The JSON POST to `postUrl` will contain the contents:
 Your web server then needs to create a post to `https://buy.itunes.apple.com/verifyReceipt` with the contents:
 
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```json JSON
   {
       "receipt-data": "xxxxxxxxxxxxxxx",
       "password": "shared secret from iTunes connect",
@@ -233,7 +235,7 @@ Your server should respond with a JSON object:
 
 <MedianLogo />
 <CodeGroup>
-  ```JSON JSON
+  ```json JSON
   {  
   	"success": true,
   	"title": "Thank you for your purchase!",
@@ -245,11 +247,11 @@ Your server should respond with a JSON object:
 
 Your app will next notify the App Store that the purchase has been fulfilled and show the user your message. `loadUrl` is an optional field, which the app will open and show to the user if received in the response.
 
-If the status in the JSON is any value other than 0, or Apple’s endpoint does not return an HTTP status 200, or the request to Apple fails, do not fulfill the purchase. See [https://developer.apple.com/documentation/appstorereceipts/status](https://developer.apple.com/documentation/appstorereceipts/status) for other possible JSON status values. Your web server should respond with a JSON object with `success` set to `false`. We recommend logging the response from Apple for troubleshooting purchases, especially the `status` field.
+If the status in the JSON is any value other than 0, or Apple’s endpoint does not return an HTTP status 200, or the request to Apple fails, do not fulfill the purchase. See [Apple's list of receipt status values](https://developer.apple.com/documentation/appstorereceipts/status) for other possible JSON status values. Your web server should respond with a JSON object with `success` set to `false`. We recommend logging the response from Apple for troubleshooting purchases, especially the `status` field.
 
 On failure, your web server may supply a `message`, `title`, and `loadUrl` to provide feedback to your user. You may choose to surface the status value from Apple to your user in a message. The app will re-attempt the POST to your web server each time it launches until it gets a success. If a purchase is never fulfilled, Apple will eventually refund the user.
 
-See the full details of the API response payload and the data that is returned [Apple's documentation](https://developer.apple.com/documentation/appstorereceipts/responsebody).
+See the full details of the API response payload and the data that is returned in [Apple's documentation](https://developer.apple.com/documentation/appstorereceipts/responsebody).
 
 ### On-device verification
 
@@ -257,22 +259,23 @@ An alternative to server-side verification is on-device verification. This can b
 
 To use on-device verification only, do not provide a `postUrl` in your app’s config file. When your app launches and when purchases are made, the app will execute a JavaScript function you have defined as `median_iap_purchases` with the following data:
 
-You define this function on your page, but do not actually call it.If present on a page it will be called by the app when the page is loaded,
+You define this function on your page, but do not actually call it. If present on a page, it will be called by the app when the page is loaded.
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   function median_iap_purchases(purchasesData) {
      console.log(purchasesData);
   }
   ```
 </CodeGroup>
 
-Or you may return the purchases at runtime via a promise (in async function)
+Or you may return the purchases at runtime via a promise (in async function):
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript var purchasesData = await median.iap.purchases();
+  ```javascript JavaScript
+  var purchasesData = await median.iap.purchases();
   console.log(purchasesData);
   ```
 </CodeGroup>
@@ -281,7 +284,7 @@ In both cases `purchasesData` will be of the form:
 
 <MedianLogo />
 <CodeGroup>
-  ```JSON JSON
+  ```json JSON
   {  
     "hasValidReceipt": true,  
     "platform": "iTunes",
@@ -316,7 +319,7 @@ In both cases `purchasesData` will be of the form:
 
 The `allPurchases` field is an array of objects containing information on what that user’s device has purchased. For convenience, we provide an `activeSubscriptions` array that lists the product IDs of the subscriptions are currently active.
 
-Parse the data in your `median_iap_purchases` JavaScript function and provide any appropriate functionality. For example, you may choose to show ads in your app if the user has not purchased a premium add-removal non-consumable purchase or a recurring subscription.
+Parse the data in your `median_iap_purchases` JavaScript function and provide any appropriate functionality. For example, you may choose to show ads in your app if the user has not purchased a premium ad-removal non-consumable purchase or a recurring subscription.
 
 ## Restoring previous purchases
 
@@ -326,8 +329,8 @@ To restore purchases, run the JavaScript function:
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript 
-  median.iap.restorePurchases(); 
+  ```javascript JavaScript 
+  median.iap.restorePurchases();
   ```
 </CodeGroup>
 
@@ -337,7 +340,7 @@ Any previous purchases will be restored and will start the verification process 
 
 Apple will automatically bill users who have purchased auto-renewable subscriptions. To check on the status of a user’s subscription, POST the receipt again to Apple’s endpoint and check the `latest_receipt_info` field. You may wish to set up a regular job to go through all active subscriptions.
 
-Apple can also notify you of subscription status changes by posting to an endpoint you have set up to handle the change events. Go to App Store Connect -> Your App -> App Information and enter the URL. See the “Status Update Notifications” section in the In-App Purchase Programming guide: [https://developer.apple.com/documentation/appstoreservernotifications/enabling\\\\\\\_app\\\\\\\_store\\\\\\\_server\\\\\\\_notifications](https://developer.apple.com/documentation/appstoreservernotifications/enabling_app_store_server_notifications)
+Apple can also notify you of subscription status changes by posting to an endpoint you have set up to handle the change events. Go to **App Store Connect → Your App → App Information** and enter the URL. See Apple's guide to [enabling App Store Server Notifications](https://developer.apple.com/documentation/appstoreservernotifications/enabling_app_store_server_notifications).
 
 ## Testing process
 
@@ -357,16 +360,15 @@ If you are experiencing issues testing iOS purchases, especially if `canMakePurc
 - Reboot your device
 
 <Warning>
-  **In-App Purchase Testing**
+  **In-app purchase testing**
 
-Each of the above are potential causes of issues when testing In-App Purchases. Check each point carefully and make use of our demo page at [https://median.dev/iap](https://median.dev/iap)
+Each of the above are potential causes of issues when testing in-app purchases. Check each point carefully and make use of our [in-app purchase demo page](https://median.dev/iap).
 
 </Warning>
 
 ### Apple documentation references
 
-[https://developer.apple.com/documentation/appstoreserverapi/get\\\\\\\_transaction\\\\\\\_info](https://developer.apple.com/documentation/appstoreserverapi/get_transaction_info)
-
-[https://developer.apple.com/library/archive/releasenotes/General/ValidateAppStoreReceipt/Chapters/ValidateRemotely.html](https://developer.apple.com/library/archive/releasenotes/General/ValidateAppStoreReceipt/Chapters/ValidateRemotely.html) _(Deprecated)_
+- [App Store Server API: Get Transaction Info](https://developer.apple.com/documentation/appstoreserverapi/get_transaction_info)
+- [Validating receipts with the App Store](https://developer.apple.com/library/archive/releasenotes/General/ValidateAppStoreReceipt/Chapters/ValidateRemotely.html) _(Deprecated)_
 
 [https://help.apple.com/app-store-connect/#/dev0067a330b](https://help.apple.com/app-store-connect/#/dev0067a330b)

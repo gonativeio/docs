@@ -1,6 +1,6 @@
 ---
-title: "Dynamic Tab Menu"
-description: "Set bottom tab menu items at runtime."
+title: "Dynamic tab menu"
+description: "Select, deselect, set, and hide bottom tab menu items at runtime from your website with the Median JavaScript Bridge."
 keywords: ["dynamic tab menu", "bottom tab bar", "JavaScript Bridge", "runtime", "tabs"]
 searchable: true
 ---
@@ -9,45 +9,45 @@ import { MedianLogo } from "/snippets/median-logo.jsx";
 
 A default tab menu can be defined in the app configuration and can be overwritten dynamically as required. Alternatively, the configuration can be left blank and all tab menus set by the website. The visibility of the tab menu can also be toggled dynamically at runtime.
 
-## Implementation guide 
+## Implementation guide
 
 ### Select a tab
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript 
+  ```javascript JavaScript 
   median.tabNavigation.selectTab(1); 
   ```
 </CodeGroup>
 
-Note: The tabs are 0-indexed, i.e. `median.tabNavigation.selectTab(1)` will select the second tab
+**Note:** Tabs are 0-indexed, so `median.tabNavigation.selectTab(1)` selects the second tab.
 
 ### Deselect all tabs
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript 
+  ```javascript JavaScript 
   median.tabNavigation.deselect(); 
   ```
 </CodeGroup>
 
-### Set/change the tab buttons
+### Set or change the tab buttons
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   var tabItems = [{
                 "icon": "fas fa-cloud", //optional
                 "label": "Tab 1",
-                "url": "javascript:alert('You selected tab 1')"
+                "url": "javascript:console.log('You selected tab 1')"
             }, {
                 "icon": "fas fa-globe", //optional
                 "label": "Tab 2",
-                "url": "javascript:alert('You selected tab 2')"
+                "url": "javascript:console.log('You selected tab 2')"
             }, {
                 "icon": "fas fa-users", //optional
                 "label": "Tab 3",
-                "url": "javascript:alert('You selected tab 3')"
+                "url": "javascript:console.log('You selected tab 3')"
             }];
   median.tabNavigation.setTabs({'enabled': true, 'items': tabItems});
   ```
@@ -57,7 +57,7 @@ Note: The tabs are 0-indexed, i.e. `median.tabNavigation.selectTab(1)` will sele
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   median.tabNavigation.setTabs({'enabled': false});
   ```
 </CodeGroup>

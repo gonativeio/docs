@@ -1,13 +1,13 @@
 ---
-title: "NPM Package Overview"
-description: "Add the JavaScript Bridge to your SPA with npm."
+title: "NPM package overview"
+description: "Install the median-js-bridge npm package to use the JavaScript Bridge in React, Angular, Vue.js, and other single-page apps."
 keywords: ["npm package", "median-js-bridge", "SPA", "React", "Vue", "Angular"]
 searchable: true
 ---
 
 ## Median JavaScript Bridge NPM package
 
-Simplify the integration of your Single-Page Applications (SPAs) with the Median JavaScript Bridge NPM Package. Designed to work across popular JavaScript frameworks such as React, Angular, Vue.js, and more, this framework-agnostic library simplifies the use of Median JavaScript Bridge methods in your web apps.
+Simplify the integration of your Single-Page Applications (SPAs) with the Median JavaScript Bridge NPM package. Designed to work across popular JavaScript frameworks such as React, Angular, Vue.js, and more, this framework-agnostic library simplifies the use of Median JavaScript Bridge methods in your web apps.
 
 Follow the steps below to install the package and start using within your web app.
 
@@ -15,7 +15,7 @@ Follow the steps below to install the package and start using within your web ap
 
 <GitHub.Repo repo="gonativeio/median-javascript-bridge" />
 
-**Explore the Package on NPM**
+**Explore the package on NPM**
 
 [https://www.npmjs.com/package/median-js-bridge](https://www.npmjs.com/package/median-js-bridge)
 
@@ -23,19 +23,19 @@ Follow the steps below to install the package and start using within your web ap
 
 ### App configuration
 
-When utilizing the Median JavaScript Bridge NPM package in your web application, remember to enable the corresponding option in the App Studio (_Website Overrides > JavaScript Frameworks and NPM_).
+When utilizing the Median JavaScript Bridge NPM package in your web application, remember to enable the corresponding option in App Studio (_Web Overrides > JavaScript Frameworks and NPM_).
 
-This step prevents conflicts with the native app's embedded JavaScript Bridge Library and activates required listener support. Omitting the package while enabling the option may result in unresponsive JavaScript Bridge functions and callbacks.
+This step prevents conflicts with the native app's embedded JavaScript Bridge library and activates required listener support. Omitting the package while enabling the option may result in unresponsive JavaScript Bridge functions and callbacks.
 
 <Frame caption="Median App Studio - JavaScript Frameworks and NPM">
-  <img src="/images/docs/d7f408135a65f8292ed08fbf4c0268068f467c695400204ff97cc4d04a0a1879-Screenshot_2026-02-20_at_12.35.29.png" />
+  <img src="/images/docs/d7f408135a65f8292ed08fbf4c0268068f467c695400204ff97cc4d04a0a1879-Screenshot_2026-02-20_at_12.35.29.png" alt="JavaScript Frameworks and NPM option under Website Overrides in App Studio" />
 </Frame>
 
 ### Web app installation instructions
 
 #### Using a package manager
 
-Install the package via **npm** or **yarn** for seamless integration into your project.
+Install the package with **npm** or **yarn**.
 
 **With npm**:
 
@@ -54,7 +54,7 @@ yarn add median-js-bridge
 If you prefer to add the library directly to your web page, include the following script tag in your HTML:
 
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```html HTML
   <script
     type="text/javascript"
     src="https://unpkg.com/median-js-bridge@latest/dist/median.min.js"
@@ -73,7 +73,7 @@ When loading the library via a `<script>` tag, using **@latest** means you will 
 
 ## Next steps
 
-After a successful installation of the package you can explore dedicated use cases and examples to implement callbacks, set up event listeners and implement an optimized Navigation for your SPA.
+After a successful installation of the package you can explore dedicated use cases and examples to implement callbacks, set up event listeners and implement optimized navigation for your SPA.
 
 <CardGroup cols={1}>
   <Card title="Example commands" icon="code" href="/docs/basic-usage">

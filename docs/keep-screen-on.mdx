@@ -1,17 +1,18 @@
 ---
-title: "Keep Screen On"
-description: "Prevent the screen from dimming or locking."
+title: "Keep screen on"
+description: "Keep the device screen from dimming or locking while your app is in the foreground, and restore normal behavior with the JavaScript Bridge."
 keywords: ["keep screen on", "screen timeout", "wake lock", "display", "JavaScript Bridge"]
 searchable: true
 ---
 import { MedianLogo } from "/snippets/median-logo.jsx";
 
-The Keep Screen On JavaScript Bridge method lets you override the device's default screen-lock/timeout behavior so the screen stays awake while your app is in the foreground. It's part of Median's [Device Screen Control](/docs/device-screen-control) feature set, alongside [Screen Brightness](/docs/screen-brightness) and [Full Screen](/docs/full-screen).
+The keep screen on JavaScript Bridge method lets you override the device's default screen-lock/timeout behavior so the screen stays awake while your app is in the foreground. It's part of Median's [device screen control](/docs/device-screen-control) feature set, alongside [screen brightness](/docs/screen-brightness) and [full screen](/docs/full-screen).
 
 <Check>
   **Developer Demo**
 
-  Display our demo page in your app to test during development [https://median.dev/device-screen-controls/](<https://median.dev/device-screen-controls/&#xA;>)
+Display our demo page in your app to test during development [https://median.dev/device-screen-controls/ <Icon icon="arrow-up-right-from-square" size={12} />](https://median.dev/device-screen-controls/)
+
 </Check>
 
 ## Why use keep screen on
@@ -23,24 +24,24 @@ The Keep Screen On JavaScript Bridge method lets you override the device's defau
 
 ## JavaScript Bridge implementation
 
-#### Enable keep screen on
+### Enable keep screen on
 
 Prevents the device screen from locking or dimming while your app is active.
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   median.screen.keepScreenOn();
   ```
 </CodeGroup>
 
-#### Disable keep screen on
+### Disable keep screen on
 
 Returns the screen to the device's normal lock/timeout behavior.
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   median.screen.keepScreenNormal();
   ```
 </CodeGroup>

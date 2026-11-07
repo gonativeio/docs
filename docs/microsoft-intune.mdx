@@ -1,13 +1,13 @@
 ---
 title: "Microsoft Intune"
-description: "Add Microsoft Intune MDM and MAM to your app."
+description: "Add the Intune App SDK to your app for Microsoft Intune MDM and MAM, and register your app in Microsoft Entra ID with the required permissions."
 keywords: ["Microsoft Intune", "MDM", "MAM", "Intune App SDK", "enterprise"]
 searchable: true
 ---
 
-Median's Microsoft Intune plugin integrates the **Intune App SDK** into your iOS and Android apps, so you can manage devices and protect corporate data with Mobile Device Management (MDM) and Mobile Application Management (MAM) through [Microsoft Intune](https://learn.microsoft.com/en-us/mem/intune/fundamentals/what-is-intune)<i class="fa fa-external-link" style="paddingLeft: 5px"></i>.
+Median's Microsoft Intune plugin integrates the **Intune App SDK** into your iOS and Android apps, so you can manage devices and protect corporate data with Mobile Device Management (MDM) and Mobile Application Management (MAM) through [Microsoft Intune](https://learn.microsoft.com/en-us/mem/intune/fundamentals/what-is-intune).
 
-For details on the SDK itself, see the official [Microsoft Intune App SDK documentation](https://learn.microsoft.com/en-us/mem/intune/developer/app-sdk)<i class="fa fa-external-link" style="paddingLeft: 5px"></i>.
+For details on the SDK itself, see the official [Microsoft Intune App SDK documentation](https://learn.microsoft.com/en-us/mem/intune/developer/app-sdk).
 
 <Info>
 **Microsoft product names**
@@ -20,12 +20,12 @@ Microsoft has renamed several products referenced in older guides. **Azure Activ
 
 The Microsoft Intune plugin is a good fit for apps that need to:
 
-| Use Case                         | Example                                                                                          |
+| Use case                         | Example                                                                                          |
 | -------------------------------- | ------------------------------------------------------------------------------------------------ |
-| **Enterprise Applications**      | Internal apps that handle sensitive business data and must comply with corporate device policies |
-| **Managed Device Fleets**        | Apps deployed to company-owned iOS and Android devices enrolled in Intune                        |
-| **Bring Your Own Device (BYOD)** | Apps used on personal devices where corporate data must be protected at the app level            |
-| **Regulated Industries**         | Healthcare, finance, and government apps that must meet security and compliance requirements     |
+| **Enterprise applications**      | Internal apps that handle sensitive business data and must comply with corporate device policies |
+| **Managed device fleets**        | Apps deployed to company-owned iOS and Android devices enrolled in Intune                        |
+| **Bring your own device (BYOD)** | Apps used on personal devices where corporate data must be protected at the app level            |
+| **Regulated industries**         | Healthcare, finance, and government apps that must meet security and compliance requirements     |
 
 ## Prerequisites
 
@@ -54,8 +54,8 @@ The implementation steps below showcase where to find each of the required confi
 
   </Step>
 
-  <Step title="Create a Client Secret">
-    Create a Client Secret that your app uses to authenticate with Microsoft.
+  <Step title="Create a client secret">
+    Create a client secret that your app uses to authenticate with Microsoft.
 
     1. In the left menu, select **Certificates & secrets**.
     2. Under **Client secrets**, select **New client secret**.
@@ -65,6 +65,8 @@ The implementation steps below showcase where to find each of the required confi
     6. Copy the secret's **Value**.
 
     <Warning>
+      **Copy the secret now**
+
       The secret value is only shown once, right after you create it. Copy it before you leave the page. If you lose it, you'll need to create a new secret.
     </Warning>
 

@@ -1,6 +1,6 @@
 ---
-title: "Add Push Notifications to a Base44 App"
-description: "Add OneSignal push notifications to your Base44 app."
+title: "Add push notifications to a Base44 app"
+description: "Add OneSignal push notifications to your Base44 app with AI prompts: register users, send from a backend function, and trigger on events."
 keywords: ["Base44", "push notifications", "OneSignal", "AI prompts", "external user ID"]
 searchable: true
 ---
@@ -20,18 +20,18 @@ You need:
 
 - [ ] A Base44 app with Median's JavaScript Bridge already installed
 - [ ] OneSignal account set up with iOS/Android
-- [ ] OneSignal connected to your Median.co app
+- [ ] OneSignal connected to your Median app
 - [ ] Your OneSignal App ID (from OneSignal Settings → Keys & IDs)
 - [ ] Your OneSignal REST API Key (from OneSignal Settings → Keys & IDs)
 
-**Note:** If you haven't installed the Median JavaScript Bridge yet, do that first by following our [Getting Started with Base44](/docs/getting-started-with-base44) guide. The JavaScript Bridge enables your Base44 app to access native phone features.
+**Note:** If you haven't installed the Median JavaScript Bridge yet, do that first by following our [Getting started with Base44](/docs/getting-started-with-base44) guide. The JavaScript Bridge enables your Base44 app to access native phone features.
 
 ## Step 1: Register users with OneSignal on login
 
 When users sign in to your app, automatically register them with OneSignal so you can send them targeted notifications. Copy this prompt into Base44's Builder chat:
 
-```
-Add Median JavaScript Bridge methods to register users with OneSignal for push notifications. After a successful login, call median.onesignal.login() with the user's email address as the external ID. When the user logs out, call median.onesignal.logout() to unregister them. Only do this when running in the Median app (check if navigator.userAgent.indexOf('median') > -1). Remember to publish changes after implementation.
+```text
+Add Median JavaScript Bridge methods to register users with OneSignal for push notifications. After a successful login, call median.onesignal.login() with the user's email address as the external ID. When the user signs out, call median.onesignal.logout() to unregister them. Only do this when running in the Median app (check if navigator.userAgent.indexOf('median') > -1). Remember to publish changes after implementation.
 ```
 
 **What this does:** Users get registered with OneSignal using their email as an identifier. Now you can send them targeted notifications.
@@ -42,7 +42,7 @@ Add Median JavaScript Bridge methods to register users with OneSignal for push n
 
 Add a field to your user profiles to track OneSignal registration. Copy this prompt into Base44's Builder chat:
 
-```
+```text
 Add a column called onesignal_external_user_id to the user profiles in the database. Make it a TEXT field that stores the user's email address. Create an index on this column for faster lookups. Use Base44's integrated database management to implement this.
 ```
 
@@ -52,7 +52,7 @@ Add a column called onesignal_external_user_id to the user profiles in the datab
 
 Before you can send notifications, store your OneSignal credentials in your app's backend. Copy this prompt into Base44's Builder chat:
 
-```
+```text
 Create secure storage for OneSignal credentials in the backend:
 
 1. Add environment variables or secure configuration for:
@@ -68,7 +68,7 @@ Remember to publish changes after implementation.
 
 Create a backend function that sends push notifications to specific users. Copy this prompt into Base44's Builder chat:
 
-```
+```text
 Create a backend function called "sendPushNotification" that sends push notifications via OneSignal. The function should:
 - Accept parameters: userEmail, title, message
 - Use ONESIGNAL_API_KEY and ONESIGNAL_APP_ID from secure configuration
@@ -88,7 +88,7 @@ After Base44 implements the function, remember to publish your app to make the b
 
 Test that notifications work by calling your backend function. Copy this prompt into Base44's Builder chat:
 
-```
+```text
 Add a test button to the app's settings or dashboard that sends a test push notification to the current user. When clicked, it should:
 - Call the sendPushNotification backend function
 - Pass the current user's email, title: "Test Notification", message: "Push notifications are working!"
@@ -104,7 +104,7 @@ Remember to publish changes after implementation.
 
 If you want to send notifications based on events in your database, copy this prompt into Base44's Builder chat:
 
-```
+```text
 Create automated push notifications that trigger when specific events happen in my app. For example, when [describe your specific use case, like "a new task is assigned" or "a deadline approaches"], automatically send a push notification to the relevant user.
 
 Implementation should:

@@ -1,6 +1,6 @@
 ---
-title: "JavaScript Bridge Overview"
-description: "Control native features from your website."
+title: "JavaScript Bridge overview"
+description: "Use the Median JavaScript Bridge library or the median:// protocol to control native app features and device hardware from your website."
 keywords: ["JavaScript Bridge", "median", "native features", "API", "Median protocol"]
 searchable: true
 ---
@@ -9,14 +9,14 @@ import { MedianLogo } from "/snippets/median-logo.jsx";
 
 The Median JavaScript Bridge is an API embedded in your app that lets your website control and configure the app and access native device functionality and hardware. Your web code can call the bridge to trigger native actions, read device info, manage navigation, and integrate with native plugins.
 
-There are two ways to use the JavaScript Bridge: the [JavaScript Bridge Library](/docs/javascript-bridge#javascript-bridge-library), which provides helper functions and an abstraction layer, or the [Median Protocol](/docs/javascript-bridge#median-protocol) (`median://`) for direct, lower-level access without the library.
+There are two ways to use the JavaScript Bridge: the [JavaScript Bridge library](/docs/javascript-bridge#javascript-bridge-library), which provides helper functions and an abstraction layer, or the [Median protocol](/docs/javascript-bridge#median-protocol) (`median://`) for direct, lower-level access without the library.
 
 <Check>
-  **Legacy GoNative Namespace**
+  **Legacy GoNative namespace**
 
 For existing apps that were last updated on the GoNative.io platform you must use `gonative` rather than `median`. For example `gonative.statusbar.set()` or `gonative://statusbar/set`.
 
-For apps that have been updated on Median.co you may use either `gonative` or `median`.
+For apps that have been updated on Median you may use either `gonative` or `median`.
 
 </Check>
 
@@ -24,7 +24,7 @@ For apps that have been updated on Median.co you may use either `gonative` or `m
 
 <Columns cols={2}>
   <Card
-    title="Detecting App Usage"
+    title="Detecting app usage"
     icon="mobile-alt"
     href="/docs/detecting-app-usage"
   >
@@ -32,7 +32,7 @@ For apps that have been updated on Median.co you may use either `gonative` or `m
     UI, analytics, or behavior for the in-app experience.
   </Card>
   <Card
-    title="NPM Package"
+    title="NPM package"
     icon="npm"
     href="/docs/npm-package"
   >
@@ -40,7 +40,7 @@ For apps that have been updated on Median.co you may use either `gonative` or `m
     Basic usage, listeners, and SPA navigation support.
   </Card>
   <Card
-    title="Device Info"
+    title="Device info"
     icon="info-circle"
     href="/docs/device-info"
   >
@@ -55,14 +55,14 @@ For apps that have been updated on Median.co you may use either `gonative` or `m
     Read from and write to the device clipboard via the JavaScript Bridge.
   </Card>
   <Card
-    title="Prompt Share Dialogue"
+    title="Prompt share dialogue"
     icon="share-alt"
     href="/docs/prompt-share-dialogue"
   >
     Trigger the native share sheet to share URLs or content from your web app.
   </Card>
   <Card
-    title="App Resumed Callback"
+    title="App resumed callback"
     icon="play-circle"
     href="/docs/app-resumed-callback"
   >
@@ -70,7 +70,7 @@ For apps that have been updated on Median.co you may use either `gonative` or `m
     resume events from your web code.
   </Card>
   <Card
-    title="Keyboard State Tracking"
+    title="Keyboard state tracking"
     icon="keyboard"
     href="/docs/keyboard-state-tracking"
   >
@@ -78,7 +78,7 @@ For apps that have been updated on Median.co you may use either `gonative` or `m
     state changes.
   </Card>
   <Card
-    title="Download File"
+    title="Download file"
     icon="download"
     href="/docs/download-file"
   >
@@ -86,11 +86,11 @@ For apps that have been updated on Median.co you may use either `gonative` or `m
     manager.
   </Card>
   <Card
-    title="Clear Webview Cache"
+    title="Clear WebView cache"
     icon="broom"
     href="/docs/clear-webview-cache"
   >
-    TrClear the app webview cache programmatically from your web code.
+    Clear the app WebView cache programmatically from your web code.
   </Card>
   <Card
     title="Accessing callbacks in an iframe"
@@ -109,20 +109,20 @@ The JavaScript Bridge Library is injected into your webpage DOM at runtime and i
 <Check>
 **Developer Demo**
 
-Display our demo page in your app to test during development [https://median.dev/library-ready/](https://median.dev/library-ready/)
+Display our demo page in your app to test during development [https://median.dev/library-ready/ <Icon icon="arrow-up-right-from-square" size={12} />](https://median.dev/library-ready/)
 
 </Check>
 
 When using frameworks like React, Vue, or Angular, the `median` object may not be in scope. Options:
 
 1. Expose callbacks globally: `window.callback_function = () => {}`
-2. Use the [NPM Package](/docs/npm-package) and toggle off library injection in App Studio → Website Overrides
+2. Use the [NPM package](/docs/npm-package) and toggle off library injection in **App Studio → Web Overrides**
 3. Use the Median Protocol (`median://`) which does not require the library
 
 <Check>
   **`Median` not `median` when using NPM package**
 
-When using the NPM Package make note to use capitalized `Median` to call functions rather than lowercase `median` which is reserved for the the injected JavaScript library. Your IDE should be configured to help with code hinting to help with completion and avoid semantic errors.
+When using the NPM package, use capitalized `Median` to call functions rather than lowercase `median`, which is reserved for the injected JavaScript library. Your IDE should be configured to help with code hinting to help with completion and avoid semantic errors.
 
 </Check>
 
@@ -134,7 +134,7 @@ If `median_library_ready()` is not called (e.g. the library initializes before y
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   function median_library_ready() {
     // Your code here
   }
@@ -146,11 +146,11 @@ If `median_library_ready()` is not called (e.g. the library initializes before y
 
 ### Promises
 
-Some bridge commands return JavaScript promises. Handle them with `async/await` or `.then()/.catch()` :
+Some bridge commands return JavaScript promises. Handle them with `async/await` or `.then()` and `.catch()`:
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   median.iap.purchase({ productID: 'product_id' })
     .then(function(data) { /* handle success */ })
     .catch(function(error) { /* handle error */ });
@@ -169,14 +169,14 @@ By default, the Median JavaScript Bridge is available on every page loaded in yo
 
 When URLs are specified, only matching pages can execute JavaScript Bridge commands or access native device functionality. All other pages have Bridge access disabled.
 
-Important Considerations
+**Important considerations**
 
 - **App Store updates:** Changes to Allowed URLs require a new app version. Users must install the updated version from the Apple App Store or Google Play Store for the changes to take effect.
 
 - **Testing:** Because non-matching pages cannot access the Bridge, an incorrect configuration can cause Bridge commands to stop working during development. We recommend leaving Allowed URLs empty during development and enabling restrictions when preparing your production app.
 
-<Frame caption="Median App Studio - Restricting Bridge Access">
-  <img src="/images/docs/e7c0006951ce8101160ae4397f6c39bde388022453ca616eeb12406a3d7c0ccb-Screenshot_2026-09-16_at_08.06.28.png" />
+<Frame caption="App Studio: restricting JavaScript Bridge access">
+  <img src="/images/docs/e7c0006951ce8101160ae4397f6c39bde388022453ca616eeb12406a3d7c0ccb-Screenshot_2026-09-16_at_08.06.28.png" alt="Allowed URLs field in App Studio for restricting JavaScript Bridge access to specific URL paths" />
 </Frame>
 
 ## Frequently asked questions
@@ -184,7 +184,7 @@ Important Considerations
 <AccordionGroup>
 <Accordion title="Why do I see 'median is not defined' in the console?" id="why-do-i-see-median-is-not-defined-in-the-console">
 
-The library is injected at runtime by the app and is not available in a desktop browser. Use the [NPM Package](/docs/npm-package) if you need to develop or test outside the app, and disable library injection in App Studio → Website Overrides when using the package.
+The library is injected at runtime by the app and is not available in a desktop browser. Use the [NPM package](/docs/npm-package) if you need to develop or test outside the app, and disable library injection in **App Studio → Web Overrides** when using the package.
 
 </Accordion>
 </AccordionGroup>

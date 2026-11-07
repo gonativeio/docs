@@ -1,6 +1,6 @@
 ---
-title: "What Changed in Native Navigation"
-description: "What changed in native navigation and link rules."
+title: "What changed in native navigation"
+description: "Learn how navigation instances and URL patterns replaced per-component tabs and regular expressions, and how to check your converted app."
 keywords: ["native navigation", "instances", "migration", "link handling", "changes"]
 searchable: true
 ---
@@ -10,7 +10,7 @@ Native navigation changed in two ways:
 - **Instances replace per-component tabs.** All navigation components are now set up together, in groups called instances. Each instance decides which components show, what they contain, and which pages it applies to.
 - **URL patterns replace regular expressions.** Rules that choose pages, for both navigation and link handling, now use simple wildcard patterns.
 
-This page explains what moved where and how existing apps were converted. To learn how navigation works now, see [Native Navigation](/docs/native-navigation-overview).
+This page explains what moved where and how existing apps were converted. To learn how navigation works now, see the [native navigation overview](/docs/native-navigation-overview).
 
 ## Where your settings are now
 
@@ -66,7 +66,7 @@ To hide it on some pages, create an instance for those pages and turn **Contextu
 
 Each instance has its own sidebar items, so you can show a different menu on different pages by creating an instance for them.
 
-The sidebar can no longer change automatically based on whether a user is logged in. To show a different menu after login, set it from your site with [`median.sidebar.setItems()`](/docs/sidebar-navigation-menu).
+The sidebar can no longer change automatically based on whether a user is signed in. To show a different menu after sign-in, set it from your site with [`median.sidebar.setItems()`](/docs/sidebar-navigation-menu).
 
 ### Page titles
 
@@ -81,10 +81,12 @@ To change the title on those pages, create an instance for them and set the titl
 Check your rules under **Link Handling** and recreate any that are missing.
 
 <Note>
+  **Runtime rules**
+
   Rules you set from your site at runtime with `median.internalExternal.set()`
   still use regular expressions. Only rules configured in App Studio changed.
 </Note>
 
 ## JavaScript Bridge
 
-Bridge methods that change navigation at runtime, such as `median.sidebar.setItems()` and `median.tabNavigation.setTabs()`, now change the items of the matching instance. See [Change navigation at runtime](/docs/native-navigation-overview#change-navigation-at-runtime) for how long those changes last.
+JavaScript Bridge methods that change navigation at runtime, such as `median.sidebar.setItems()` and `median.tabNavigation.setTabs()`, now change the items of the matching instance. See [Change navigation at runtime](/docs/native-navigation-overview#change-navigation-at-runtime) for how long those changes last.

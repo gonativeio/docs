@@ -1,6 +1,6 @@
 ---
-title: "Add Push Notifications To Your Lovable App"
-description: "Add OneSignal push notifications to your Lovable app."
+title: "Add push notifications to your Lovable app"
+description: "Add OneSignal push notifications to your Lovable app with AI prompts, Supabase Edge Functions, and the Median JavaScript Bridge."
 keywords: ["Lovable", "push notifications", "OneSignal", "Supabase", "AI prompts"]
 searchable: true
 ---
@@ -13,20 +13,20 @@ You need:
 
 - [ ] A Lovable app with Median's JavaScript Bridge already installed
 - [ ] OneSignal account set up with iOS/Android
-- [ ] OneSignal connected to your Median.co app
+- [ ] OneSignal connected to your Median app
 - [ ] Your OneSignal App ID (from OneSignal Settings → Keys & IDs)
 - [ ] Your OneSignal REST API Key (from OneSignal Settings → Keys & IDs)
 
-**Note:** If you haven't installed the Median JavaScript Bridge yet, do that first by following our [Getting Started with Lovable](/docs/getting-started-with-lovable) guide. The JavaScript Bridge enables your Lovable app to access native phone features.
+**Note:** If you haven't installed the Median JavaScript Bridge yet, do that first by following our [Getting started with Lovable](/docs/getting-started-with-lovable) guide. The JavaScript Bridge enables your Lovable app to access native phone features.
 
-Need help with OneSignal setup? Follow our [OneSignal guide first](/docs/onesignal).
+Need help with OneSignal setup? Follow our [OneSignal guide](/docs/onesignal) first.
 
 ## Step 1: Register users with OneSignal
 
 When users sign in to your app, automatically register them with OneSignal so you can send them notifications. Copy this prompt into Lovable:
 
-```
-Add Median JavaScript Bridge methods to register users with OneSignal for push notifications. After a successful login, call median.onesignal.login() with the user's email address as the external ID. When the user logs out, call median.onesignal.logout() to unregister them. Only do this when running in the Median app (check if typeof median !== 'undefined').
+```text
+Add Median JavaScript Bridge methods to register users with OneSignal for push notifications. After a successful login, call median.onesignal.login() with the user's email address as the external ID. When the user signs out, call median.onesignal.logout() to unregister them. Only do this when running in the Median app (check if typeof median !== 'undefined').
 ```
 
 **What this does:** Users get registered with OneSignal using their email as an identifier. Now you can send them targeted notifications.
@@ -35,7 +35,7 @@ Add Median JavaScript Bridge methods to register users with OneSignal for push n
 
 Add a field to your profiles table to track OneSignal registration. Copy this prompt into Lovable:
 
-```
+```text
 Add a column called onesignal_external_user_id to the profiles table. Make it a TEXT field that stores the user's email address. Create an index on this column for faster lookups.
 ```
 
@@ -53,7 +53,7 @@ Before you can send notifications, store your OneSignal credentials:
 
 Create a backend function that sends push notifications to specific users. Copy this prompt into Lovable:
 
-```
+```text
 Create a Supabase Edge Function called "send-push-notification" that sends push notifications via OneSignal. The function should:
 - Accept a POST request with: userEmail, title, message
 - Use ONESIGNAL_API_KEY and ONESIGNAL_APP_ID from environment variables
@@ -66,7 +66,7 @@ Target the user with: include_external_user_ids: [userEmail]
 
 After Lovable creates the function, deploy it:
 
-```
+```bash
 supabase functions deploy send-push-notification
 ```
 
@@ -74,7 +74,7 @@ supabase functions deploy send-push-notification
 
 Test that notifications work by calling your edge function. Copy this prompt into Lovable:
 
-```
+```text
 Add a test button to my app's settings page that sends a test push notification to the current user. When clicked, it should call the send-push-notification edge function with:
 - userEmail: current user's email
 - title: "Test Notification"
@@ -87,7 +87,7 @@ Show a success or error message after sending.
 
 Want to send notifications based on events in your database? Here's how. Copy this prompt into Lovable (customize for your needs):
 
-```
+```text
 Create a Supabase Edge Function called "check-notifications" that:
 1. Queries my [table_name] table for items that need notifications
 2. For each item found, sends a push notification to the user
@@ -98,7 +98,7 @@ Customize this for my specific use case: [explain what should trigger notificati
 
 Then schedule it to run automatically:
 
-```
+```text
 Create a Supabase cron job that runs check-notifications every [hour/day/week]. Add the SQL to create the cron job in pg_cron format.
 ```
 
@@ -108,7 +108,7 @@ Create a Supabase cron job that runs check-notifications every [hour/day/week]. 
 
 Try this prompt:
 
-```
+```text
 Add better logging to show:
 - Whether the Median app is detected
 - If OneSignal login succeeds or fails

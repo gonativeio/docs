@@ -1,6 +1,6 @@
 ---
 title: "Adjust"
-description: "Track installs, events, and attribution with Adjust."
+description: "Track installs, in-app events, revenue, and attribution in your app with the Adjust plugin and the Median JavaScript Bridge."
 keywords:
   ["Adjust", "attribution", "analytics", "event tracking", "install tracking"]
 searchable: true
@@ -10,22 +10,20 @@ import { MedianLogo } from "/snippets/median-logo.jsx";
 
 Track app installs, user interactions, and attribution data using the Adjust iOS and Android SDKs via the Median JavaScript Bridge.
 
-The Adjust Native Plugin integrates the Adjust iOS and Android SDKs into your app to enable advanced analytics and event tracking. You can register app installs, track user interactions, and retrieve attribution data. You can also trigger events and fetch attribution details directly from JavaScript using the Median JavaScript Bridge.
-
-Use **Automatic** initialization unless you need to control exactly when Adjust starts (for example after consent or login). If you choose **Manual**, call `median.adjust.initialize(...)` before other Adjust bridge calls.
+The Adjust Native Plugin integrates the Adjust iOS and Android SDKs into your app to enable advanced analytics and event tracking. You can register app installs, track user interactions, and retrieve attribution data. You can also trigger events and fetch attribution details directly from JavaScript using the JavaScript Bridge.
 
 ## Why use Adjust?
 
 - **Event tracking**: Send custom events to Adjust from your app, including revenue and metadata.
 - **Attribution data**: Retrieve attribution information when users install through Adjust-tracked campaigns or deep links.
-- **JavaScript Bridge**: Initialize, track events, and fetch attribution via the Median JavaScript Bridge.
+- **JavaScript Bridge**: Initialize, track events, and fetch attribution via the JavaScript Bridge.
 - **Dual initialization**: Automatically on app start or manually via a JavaScript Bridge method (select in plugin settings).
 
 ## Prerequisites
 
-- [ ] A Median.co app with JavaScript Bridge enabled
+- [ ] A Median app with JavaScript Bridge enabled
 - [ ] Adjust SDK (iOS and Android) as provided by the plugin
-- [ ] **Adjust app token** — In the [Adjust dashboard](https://www.adjust.com/), open **AppView → All apps**, select your app, then go to **App information** and scroll to **App details**. Your **app token** is listed there with your app name and reporting currency. Adjust assigns this token when you add the app; you paste it into the Adjust plugin in Median App Studio. Official steps: [Get app token and choose reporting currency](https://help.adjust.com/en/article/app-token-and-reporting-currency) (Adjust Help Center).
+- [ ] **Adjust app token**: In the [Adjust dashboard](https://www.adjust.com/), open **AppView → All apps**, select your app, then go to **App information** and scroll to **App details**. Your **app token** is listed there with your app name and reporting currency. Adjust assigns this token when you add the app; you paste it into the Adjust plugin in Median App Studio. Official steps: [Get app token and choose reporting currency](https://help.adjust.com/en/article/app-token-and-reporting-currency) (Adjust Help Center).
 - [ ] Set the Adjust **environment** to **production** before publishing (see [Understanding the Adjust environment](#understanding-the-adjust-environment)).
 
 ## Integration guide
@@ -33,13 +31,13 @@ Use **Automatic** initialization unless you need to control exactly when Adjust 
 ### Understanding the Adjust environment
 
 <Warning>
-**Adjust Environment**
+**Adjust environment**
 
 Prior to publishing your app, confirm that the Adjust environment is set to **production** in Median App Studio (equivalent to `AdjustConfig.EnvironmentProduction` in the native Adjust SDK). See [Understanding the Adjust environment](#understanding-the-adjust-environment) below.
 
 </Warning>
 
-The Adjust SDK runs in either a **non-production** (testing) or **production** (live) mode. In Median.co's plugin, this is the **Environment** control (**Development** vs **Production**).
+The Adjust SDK runs in either a **non-production** (testing) or **production** (live) mode. In Median's plugin, this is the **Environment** control (**Development** vs **Production**).
 
 | Setting in Median | Meaning                                                                                                                                                                                                                                                                                                                   |
 | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -51,15 +49,16 @@ The Adjust SDK runs in either a **non-production** (testing) or **production** (
 <Info>
 **Important considerations**
 
-- The boolean passed to `median.adjust.initialize(true | false)` enables or disables SKAdNetwork on **iOS** only; **Android ignores this parameter**.
-- Event tokens are created in the Adjust dashboard, not in the Median App Studio.
+- The boolean passed to `median.adjust.initialize()` enables or disables SKAdNetwork on **iOS** only; **Android ignores this parameter**.
+- Event tokens are created in the Adjust dashboard, not in Median App Studio.
+
 </Info>
 
 ### Plugin setup
 
 #### Enable the plugin
 
-1. **Navigate to Native Plugins**: In your Median dashboard, open your app in App Studio and go to the Native Plugins section.
+1. **Navigate to Native Plugins**: Open your app in App Studio and go to the **Native Plugins** section.
 2. **Enable Adjust**: Select Adjust from your list of purchased plugins and enable it.
 3. **Configure the plugin**: Set **App Token**, **Environment**, **Initialization**, and **StoreKit Ad Network Attribution** in App Studio.
 
@@ -67,14 +66,14 @@ The Adjust SDK runs in either a **non-production** (testing) or **production** (
 
 Configure the Adjust native plugin in **App Studio → Native Plugins → Adjust**. These map to the Adjust SDK options described in the [Adjust Developer Hub](https://dev.adjust.com/).
 
-| Setting                             | Options                          | What it does                                                                                                                                                                                                                                                                                                                                                                                     |
-| ----------------------------------- | -------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **App Token**                       | Text field                       | Your app’s unique ID in Adjust. Required for the SDK to send data to the correct app. Get the value from the Adjust dashboard ([prerequisites](#prerequisites)).                                                                                                                                                                                                                                 |
-| **Environment**                     | **Production** / **Development** | **Production** = live traffic for released apps (`AdjustConfig.EnvironmentProduction`). **Development** = use during internal testing so test events are not mixed with production analytics. See [Understanding the Adjust environment](#understanding-the-adjust-environment).                                                                                                                 |
-| **Initialization**                  | **Automatic** / **Manual**       | **Automatic** — Adjust starts when the app launches. **Manual** — you start Adjust from JavaScript with `median.adjust.initialize(...)` after the bridge is ready.                                                                                                                                                                                                                               |
-| **StoreKit Ad Network Attribution** | **Enable** / **Disable** (iOS)   | Controls Apple **SKAdNetwork** (SKAN) participation for privacy-preserving attribution on iOS. When **Manual** initialization is used, the boolean passed to `median.adjust.initialize(true \| false)` enables or disables SKAN for that session; **Android ignores this parameter**. See [Set up SKAdNetwork and conversion values](https://dev.adjust.com/en/sdk/ios/features/skad/) (Adjust). |
+| Setting                             | Options                          | What it does                                                                                                                                                                                                                                                                                                                                                                        |
+| ----------------------------------- | -------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **App Token**                       | Text field                       | Your app’s unique ID in Adjust. Required for the SDK to send data to the correct app. Get the value from the Adjust dashboard ([prerequisites](#prerequisites)).                                                                                                                                                                                                                    |
+| **Environment**                     | **Production** / **Development** | **Production** = live traffic for released apps (`AdjustConfig.EnvironmentProduction`). **Development** = use during internal testing so test events are not mixed with production analytics. See [Understanding the Adjust environment](#understanding-the-adjust-environment).                                                                                                    |
+| **Initialization**                  | **Automatic** / **Manual**       | **Automatic**: Adjust starts when the app launches. **Manual**: you start Adjust from JavaScript with `median.adjust.initialize(...)` after the bridge is ready.                                                                                                                                                                                                                    |
+| **StoreKit Ad Network Attribution** | **Enable** / **Disable** (iOS)   | Controls Apple **SKAdNetwork** (SKAN) participation for privacy-preserving attribution on iOS. When **Manual** initialization is used, the boolean passed to `median.adjust.initialize()` enables or disables SKAN for that session; **Android ignores this parameter**. See [Set up SKAdNetwork and conversion values](https://dev.adjust.com/en/sdk/ios/features/skad/) (Adjust). |
 
-**JavaScript mapping:** `median.adjust.initialize(true | false)` applies when **Initialization** is **Manual** (call it to start the SDK). The optional boolean reflects **StoreKit Ad Network Attribution** on iOS. `median.adjust.trackEvent` and `median.adjust.attributionInfo` require a successfully configured SDK (**App Token** and **Environment**); see notes under each function below.
+**JavaScript mapping:** `median.adjust.initialize()` applies when **Initialization** is **Manual** (call it to start the SDK). The optional boolean reflects **StoreKit Ad Network Attribution** on iOS. `median.adjust.trackEvent` and `median.adjust.attributionInfo` require a successfully configured SDK (**App Token** and **Environment**); see notes under each function below.
 
 #### Configuration options
 
@@ -88,11 +87,12 @@ Initialize the Adjust plugin manually. Takes an optional argument to enable or d
 
 <MedianLogo />
 <CodeGroup>
-```javascript javascript
+```javascript JavaScript
 // Initialize method takes an optional argument to enable or disable SKAN
 // This parameter is only relevant for iOS and will be ignored for Android
+// Pass true to enable SKAN or false to disable it
 
-median.adjust.initialize(true | false);
+median.adjust.initialize(true);
 ```
 </CodeGroup>
 
@@ -112,7 +112,7 @@ Send a custom event to Adjust. Events can include revenue data and additional me
 
 <MedianLogo />
 <CodeGroup>
-```javascript javascript
+```javascript JavaScript
 const adjustEvent = new AdjustEvent("abc123");
 adjustEvent.setRevenue(0.01, "EUR");
 median.adjust.trackEvent(adjustEvent);
@@ -137,7 +137,7 @@ Retrieve attribution data for users who installed the app through an Adjust-trac
 <MedianLogo />
 
 <CodeGroup>
-  ```javascript javascript 
+  ```javascript JavaScript 
   median.adjust.attributionInfo(); 
   ```
 </CodeGroup>
@@ -152,7 +152,7 @@ Use this checklist to confirm Adjust is working in your app:
 
 - [ ] **App Token** is set in App Studio (from Adjust **AppView →** your app **→ App information → App details**)
 - [ ] Plugin is enabled in **Native Plugins** and **Initialization** (automatic or manual) matches how you start the SDK in code
-- [ ] If using manual initialization, `median.adjust.initialize(true | false)` is called after the app and bridge are ready; SKAN boolean aligns with **StoreKit Ad Network Attribution** on iOS
+- [ ] If using manual initialization, `median.adjust.initialize()` is called after the app and bridge are ready; SKAN boolean aligns with **StoreKit Ad Network Attribution** on iOS
 - [ ] **Environment** is set to **Production** before publishing
 
 ### Platform testing
@@ -175,7 +175,7 @@ Use this checklist to confirm Adjust is working in your app:
 
 ### Adjust functions are undefined or not working
 
-Ensure the JavaScript Bridge is enabled in your Median dashboard and that you're calling the functions after the `deviceready` event. Verify that the plugin is enabled in your app configuration. If you use manual initialization, call `median.adjust.initialize()` before other Adjust calls.
+Ensure the JavaScript Bridge is enabled in App Studio and that you're calling the functions after the `median_library_ready()` event. Verify that the plugin is enabled in your app configuration. If you use manual initialization, call `median.adjust.initialize()` before other Adjust calls.
 
 ### Events or revenue not showing in the Adjust dashboard
 
@@ -192,6 +192,6 @@ Verify you're calling `adjustEvent.setRevenue(amount, currency)` with the correc
 <Info>
   **Still having trouble?**
 
-For Adjust SDK behavior outside Median.co, refer to [Adjust’s developer documentation.](https://dev.adjust.com/)
+For Adjust SDK behavior outside Median, refer to [Adjust's developer documentation](https://dev.adjust.com/).
 
 </Info>

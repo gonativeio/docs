@@ -1,29 +1,29 @@
 ---
 title: "Master Lock"
-description: "Unlock Master Lock Bluetooth padlocks and lock boxes."
+description: "Unlock Master Lock Bluetooth padlocks, lockboxes, and deadbolts, update firmware, and reset locks with the Master Lock plugin and the JavaScript Bridge."
 keywords: ["Master Lock", "Bluetooth", "padlock", "lock box", "SDK"]
 searchable: true
 ---
 import { MedianLogo } from "/snippets/median-logo.jsx";
 
-The Master Lock Plugin allows you to unlock and manage Master Lock Bluetooth® padlocks, lockboxes, and deadbolts by integrating with the [Master Lock Mobile SDKs](https://sdkdocs.masterlockvault.com/).
+The Master Lock plugin allows you to unlock and manage Master Lock Bluetooth® padlocks, lockboxes, and deadbolts by integrating with the [Master Lock Mobile SDKs](https://sdkdocs.masterlockvault.com/).
 
 This guide provides step-by-step instructions to configure the plugin and use its features through the [Median JavaScript Bridge](/docs/javascript-bridge). Features include scanning, unlocking, relocking (D1000), firmware updates, lock resets, and deadbolt configuration.
 
 <Check>
 **Developer Demo**
 
-Test your setup during development by embedding the [Master Lock demo page](https://median.dev/masterlock) in your app.
+Display our demo page in your app to test during development [https://median.dev/masterlock <Icon icon="arrow-up-right-from-square" size={12} />](https://median.dev/masterlock)
 
 </Check>
 
 ## Implementation guide
 
-### Lock provisioning (activation, setup and access)
+### Lock provisioning (activation, setup, and access)
 
 The lock setup and activation is handled using the [Master Lock Connected Products Web API](https://cp.masterlockvault.com/swagger/ui/index). For the latest details, always refer to the official API specification.
 
-In general, you will need the following steps in order to provision a lock, retrieve it's information and provision a new access profile for your users.
+In general, you'll need the following steps to provision a lock, retrieve its information, and provision a new access profile for your users.
 
 #### Step 1: API authentication
 
@@ -31,35 +31,35 @@ Use the `/authenticate` endpoint to retrieve an API token by using your license 
 
 #### Step 2: Activate a lock (optional)
 
-Use the `/v2/device/activate` endpoint to active a new lock. Skip this step if your locks are already provisioned.
+Use the `/v2/device/activate` endpoint to activate a new lock. Skip this step if your locks are already provisioned.
 
 #### Step 3: Retrieve lock information
 
-Use the `/v2/device` to obtain the Firmware Version of your lock(s). The Firmware Version is a required parameter to unlock the lock using the SDK.
+Use the `/v2/device` endpoint to obtain the Firmware Version of your lock(s). The Firmware Version is a required parameter to unlock the lock using the SDK.
 
 #### Step 4: Create an access profile
 
-Use the `/v2/device/accessprofile/create` to create a new temporary access profile for your users. Please ensure the access profile has the `Unlock` permission otherwise the user won't be able to unlock the Bluetooth locks.
+Use the `/v2/device/accessprofile/create` endpoint to create a new temporary access profile for your users. Make sure the access profile has the `Unlock` permission, otherwise the user won't be able to unlock the Bluetooth locks.
 
 There are multiple API endpoints to create access profiles. The endpoint above creates a single profile for a single lock, but you can also create an access profile for multiple locks, or multiple access profiles for a single lock.
 
-**Note: Access Profile Permissions**
+**Note: access profile permissions**
 
-| Unlock Access Permission | Mechanism | Applicable Lock Types                        |
+| Unlock access permission | Mechanism | Applicable lock types                        |
 | ------------------------ | --------- | -------------------------------------------- |
 | Unlock                   | Primary   | 4400, 4401, 6400, and D1000                  |
 | UnlockDoor               | Primary   | 5440, 5441, and 6440                         |
 | UnlockShackle            | Secondary | only useful for the 5440 portable lock boxes |
 
-Please always validate with the latest permissions outlined in the [Master Lock Access Profile and Permissions](https://sdkdocs.masterlockvault.com/docs/CoreConcepts/AccessProfiles#permissions) documentation.
+Always validate with the latest permissions outlined in the [Master Lock Access Profile and Permissions](https://sdkdocs.masterlockvault.com/docs/CoreConcepts/AccessProfiles#permissions) documentation.
 
 ### JavaScript Bridge functions
 
 #### Plugin permissions
 
-The Master Lock Plugin requires Bluetooth and Location permissions to scan for and interact with nearby locks. These permissions are requested automatically at runtime.
+The Master Lock plugin requires Bluetooth and location permissions to scan for and interact with nearby locks. These permissions are requested automatically at runtime.
 
-If you prefer to check and request permissions before initializing the plugin, see our [Permissions Overview](/docs/permissions-overview) for implementation details.
+If you prefer to check and request permissions before initializing the plugin, see the [permissions overview](/docs/permissions-overview) for implementation details.
 
 #### Initialize Master Lock SDK
 
@@ -67,14 +67,14 @@ The SDK must be initialized before scanning or unlocking. This design supports m
 
 <MedianLogo />
 <CodeGroup>
-```JavaScript JavaScript 
-median.masterlock.initialize({license}); 
+```javascript JavaScript
+median.masterlock.initialize({ license: "YOUR_MASTER_LOCK_LICENSE" });
 ```
 </CodeGroup>
 
 #### Scan for locks
 
-Discover nearby Master Lock devices. You are able to define a scanning timeout in milliseconds (otherwise a default value of 15s will be used) and can are able to define functions for each of the following events:
+Discover nearby Master Lock devices. You can define a scanning timeout in milliseconds (otherwise a default value of 15 seconds is used) and define functions for each of the following events:
 
 - `onScanStart`: App started scanning for nearby locks.
 - `onScanStop`: App stopped scanning for nearby locks.
@@ -82,7 +82,7 @@ Discover nearby Master Lock devices. You are able to define a scanning timeout i
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   median.masterlock.scan({
     onScanStart: "onScanStart",
     onScanStop: "onScanStop",
@@ -98,12 +98,12 @@ Unlocking requires the Device ID, Access Profile, Firmware Version, and a timeou
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   median.masterlock.unlock({
     deviceId,
     accessProfile,
     firmwareVersion,
-    mechanism: "primary" | "secondary"
+    mechanism: "primary", // or "secondary"
     timeout: timeout
   });
   ```
@@ -111,7 +111,7 @@ Unlocking requires the Device ID, Access Profile, Firmware Version, and a timeou
 
 Parameters:
 
-- `deviceId`: The lock's unique identifier - available during setup or Master Lock API.
+- `deviceId`: The lock's unique identifier, available during setup or from the Master Lock API.
 - `accessProfile`: Profile generated via the Master Lock API.
 - `firmwareVersion`: Lock firmware version.
 - `mechanism`: Defines the primary or secondary lock mechanism.
@@ -123,7 +123,7 @@ Initiate an OTA firmware update on a Master Lock device. The update process runs
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   median.masterlock.updateFirmware({
     deviceId,
     accessProfile,
@@ -155,7 +155,7 @@ Subscribe to firmware update state changes and progress. Use this to display rea
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   // Add listener
   const listenerId = median.masterlock.firmwareUpdate.addListener((status) => {
     console.log(status.deviceId, status.state, status.percentage);
@@ -169,17 +169,17 @@ Subscribe to firmware update state changes and progress. Use this to display rea
 The callback receives a status object with:
 
 * `deviceId`: The lock being updated.
-* `state`: Current state - `downloading`, `downloadComplete`, `applying`, `validating`, `done`, or `error`.
+* `state`: Current state: `downloading`, `downloadComplete`, `applying`, `validating`, `done`, or `error`.
 * `percentage`: Progress percentage (0-100), only populated when state is `applying`.
 * `error`: Error details when state is `error`.
 
 #### Lock reset
 
-Perform a lock reset to invalidate all access profiles, temporary codes, and secondary codes. Use this when re-keying a lock or revoking all access. Please note that the Lock Reset is only available for the **D1000 Deadbolt**.
+Perform a lock reset to invalidate all access profiles, temporary codes, and secondary codes. Use this when re-keying a lock or revoking all access. Lock reset is only available for the **D1000 Deadbolt**.
 
 <MedianLogo />
 <CodeGroup>
-```JavaScript JavaScript
+```javascript JavaScript
 median.masterlock.lockReset({
   deviceId,
   accessProfile,
@@ -212,9 +212,9 @@ Returns a promise that resolves with:
 - After reset, all users must refresh their access profiles via the Master Lock API.
 </Warning>
 
-**Lock Reset Error Codes**
+**Lock reset error codes**
 
-| Error Code              | Description                       | Recovery Action                        |
+| Error code              | Description                       | Recovery action                        |
 | ----------------------- | --------------------------------- | -------------------------------------- |
 | `ACKNOWLEDGEMENT_ERROR` | API acknowledgement failed        | Retry operation                        |
 | `BLUETOOTH_DISABLED`    | Bluetooth is disabled             | Prompt user to enable Bluetooth        |
@@ -223,16 +223,16 @@ Returns a promise that resolves with:
 | `OFFLINE`               | No network connection             | Connect to network                     |
 | `PHONE_BATTERY_LOW`     | Phone battery \< 10%              | Charge phone                           |
 | `SESSION_NOT_INITIATED` | Lock session not established      | Ensure lock is awake and in range      |
-| `SDK_NOT_INITIALIZED`   | SDK not initialized               | Call initialize() first                |
+| `SDK_NOT_INITIALIZED`   | SDK not initialized               | Call `initialize()` first              |
 | `COMMAND_NOT_ALLOWED`   | Feature blocked by license        | Contact Master Lock for license update |
 
-#### Get Deadbolt handedness
+#### Get deadbolt handedness
 
 Read the current bolt direction configuration from a D1000 Deadbolt. This is useful for displaying the current configuration in your app UI.
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   median.masterlock.getDeadboltHandedness({
     deviceId,
     accessProfile,
@@ -251,20 +251,20 @@ Returns a promise that resolves with:
 
 - `success`: Boolean indicating if read completed.
 - `deviceId`: The lock that was queried.
-- `handedness`: Current configuration - `left` or `right`.
+- `handedness`: Current configuration: `left` or `right`.
 
-#### Set Deadbolt handedness
+#### Set deadbolt handedness
 
 Configure the bolt direction on a D1000 Deadbolt. This must be set correctly for proper unlock/relock motor operation.
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   median.masterlock.setDeadboltHandedness({
     deviceId,
     accessProfile,
     firmwareVersion,
-    handedness: "left" | "right",
+    handedness: "left", // or "right"
   });
   ```
 </CodeGroup>
@@ -274,7 +274,7 @@ Parameters:
 - `deviceId`: The lock's unique identifier.
 - `accessProfile`: Profile generated via the Master Lock API.
 - `firmwareVersion`: Lock firmware version.
-- `handedness`: The desired bolt direction - `left` or `right`.
+- `handedness`: The desired bolt direction: `left` or `right`.
 
 Returns a promise that resolves with:
 
@@ -282,7 +282,7 @@ Returns a promise that resolves with:
 - `handedness`: The configured handedness.
 
 <Info>
-  **Determining Handedness**
+  **Determining handedness**
 
 Stand inside the door looking at the thumbturn side of the deadbolt:
 
@@ -296,7 +296,7 @@ Manually relock a D1000 Deadbolt by extending the bolt to the locked position. T
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   median.masterlock.relock({
     deviceId,
     accessProfile,
@@ -327,7 +327,7 @@ Returns a promise that resolves with:
 ## Testing your integration
 
 <Info>
-**Test Environment**
+**Test environment**
 
 Hardware-dependent features **cannot be tested using simulators**. You'll need a physical Master Lock padlock or lockbox.
 
@@ -335,7 +335,7 @@ For iOS, test on a physical device using TestFlight after an App Studio distribu
 
 </Info>
 
-Please follow the following steps for an end-to-end test
+Follow these steps for an end-to-end test:
 
 1. Activate and set up a lock using the Master Lock API.
 2. Collect the **Device ID** and **Firmware Version** using the Master Lock API.
@@ -361,10 +361,10 @@ The D1000 Deadbolt does not support automatic relocking. Use the `median.masterl
 
 This error indicates the access profile does not include the required permissions for the lock type. Confirm that the correct permissions (e.g. `Unlock`, `UnlockDoor`, or `UnlockShackle`) are assigned to the access profile.
 
-Full Error Code:
+Full error response:
 
 <CodeGroup>
-  ```JSON JSON
+  ```json JSON
   {
     "success": false,
     "error": "Error in response - Not Permitted"

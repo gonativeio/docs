@@ -1,6 +1,6 @@
 ---
-title: "Deep Linking for Salesforce Experience Cloud"
-description: "Set up deep linking for Experience Cloud."
+title: "Deep linking for Salesforce Experience Cloud"
+description: "Host the AASA and Asset Links files on Salesforce Experience Cloud with Apex and Visualforce so links to your site open your Median app."
 keywords: ["Salesforce", "Experience Cloud", "deep linking", "Universal Links", "App Links"]
 searchable: true
 ---
@@ -9,10 +9,10 @@ Deep linking allows URLs to your Experience Cloud site to open the native Median
 
 This is part three of a four-part series:
 
-1. [Getting Started with Salesforce Experience Cloud](/docs/getting-started-with-salesforce-experience-cloud)
+1. [Getting started with Salesforce Experience Cloud](/docs/getting-started-with-salesforce-experience-cloud)
 2. [Lightning Web Components and the JavaScript Bridge](/docs/salesforce-lwc-median)
-3. **Deep Linking** (this page)
-4. [Salesforce LWC Component Deployment and Reference](/docs/salesforce-lwc-components)
+3. **Deep linking** (this page)
+4. [Salesforce LWC component deployment and reference](/docs/salesforce-lwc-components)
 
 ## How deep linking works
 
@@ -25,7 +25,7 @@ Apple (iOS) and Google (Android) each require you to prove ownership of your dom
 
 The challenge with Salesforce Experience Cloud is that it is a managed platform. You cannot place arbitrary files in the web root of your domain the way you would with a traditional web server. Both files must instead be served through the Salesforce platform itself.
 
-**Before starting:** For production apps, configure your custom domain in Salesforce Setup before setting up deep linking. Deep linking must be configured against the domain end users will see. The Salesforce-generated `.my.site.com` domain may not work correctly with App Store or Play Store universal link verification.
+**Before starting:** For production apps, configure your custom domain in Salesforce Setup before setting up deep linking. Deep linking must be configured against the domain end users will see. The Salesforce-generated `.my.site.com` domain may not work correctly with App Store or Google Play link verification.
 
 ## Step 7a: Apple app site association (AASA) for iOS
 
@@ -67,11 +67,11 @@ In Salesforce Setup, navigate to **Sites** and confirm the Visualforce page is l
 
 Map the well-known path to the Visualforce page using one of two approaches:
 
-**Option A: Custom URL Redirects (simpler)**
+**Option A: Custom URL redirects (simpler)**
 
 In Salesforce Setup, navigate to **Sites > \[Your Site] > Custom URLs** and create a redirect from `/.well-known/apple-app-site-association` to the Visualforce page URL.
 
-**Option B: Site URL Rewriter Class (more control)**
+**Option B: Site URL rewriter class (more control)**
 
 Implement the `Site.UrlRewriter` interface in an Apex class and register it under **Sites > \[Your Site] > Site URL Rewriter**. This approach gives you programmatic control over the mapping and is preferred for orgs that already use a URL rewriter for other purposes.
 
@@ -79,8 +79,8 @@ Implement the `Site.UrlRewriter` interface in an Apex class and register it unde
 
 Before submitting your app to the App Store, verify that the file is reachable and valid:
 
-1. Visit `https://yourdomain.com/.well-known/apple-app-site-association` in a browser and confirm it returns JSON without requiring a login.
-2. Use the [Median.co Deep Linking Validator](https://median.co/deep-linking-validator/) to check the payload format.
+1. Visit `https://yourdomain.com/.well-known/apple-app-site-association` in a browser and confirm it returns JSON without requiring sign-in.
+2. Use the [Median Deep Linking Validator](https://median.co/deep-linking-validator/) to check the payload format.
 3. Confirm the `appID` value matches your app's bundle identifier and Team ID exactly. A mismatch here is the most common cause of deep linking failures.
 
 ## Step 7b: Asset links for Android
@@ -99,7 +99,7 @@ Create a separate Apex class for the Android Asset Links payload. Replace the pa
   ```
 </CodeGroup>
 
-Your SHA-256 certificate fingerprint is available in the App Studio (**Link Handling > Universal Links / Deep Links**), in the Google Play Console under **Setup > App Integrity**, or from your keystore using `keytool -list -v -keystore your.keystore`.
+Your SHA-256 certificate fingerprint is available in App Studio (**Link Handling > Universal Links / Deep Links**), in the Google Play Console under **Setup > App Integrity**, or from your keystore using `keytool -list -v -keystore your.keystore`.
 
 ### Create the Visualforce page for Android
 
@@ -121,8 +121,8 @@ Map `/.well-known/assetlinks.json` to the Visualforce page using the same approa
 
 ### Verify the asset links file
 
-1. Visit `https://yourdomain.com/.well-known/assetlinks.json` in a browser and confirm it returns JSON without requiring a login.
-2. Use the [Median.co Deep Linking Validator](https://median.co/deep-linking-validator/) to validate the payload.
+1. Visit `https://yourdomain.com/.well-known/assetlinks.json` in a browser and confirm it returns JSON without requiring sign-in.
+2. Use the [Median Deep Linking Validator](https://median.co/deep-linking-validator/) to validate the payload.
 
 ## Step 7c: Configure deep linking in Median App Studio
 
@@ -131,19 +131,19 @@ Once both verification files are in place:
 1. In Median App Studio, navigate to **Link Handling > Universal Links / Deep Links.**
 2. Add your custom domain.
 
-<Frame caption="App Studio - Deep Link Configuration">
-  <img src="/images/docs/738025c58f1ddded53751019bc3c0cd9bd2e63fb5e37d8891da9c79bc7ec0ad7-Screenshot_2026-07-21_at_06.36.50.png" />
+<Frame caption="App Studio: deep link configuration">
+  <img src="/images/docs/738025c58f1ddded53751019bc3c0cd9bd2e63fb5e37d8891da9c79bc7ec0ad7-Screenshot_2026-07-21_at_06.36.50.png" alt="Universal Links and Deep Links settings under Link Handling in App Studio" />
 </Frame>
 
-## Troubleshooting: Deep links open the browser instead of the app
+## Troubleshooting: deep links open the browser instead of the app
 
 If tapping a link opens the mobile browser rather than the app, work through the following checks in order:
 
-1. **File accessibility.** Visit both well-known URLs in a browser while logged out of Salesforce. If you are redirected to a login page, the Visualforce page is not marked as publicly accessible. Check the Guest User profile permissions for the page under **Sites > \[Your Site] > Public Access Settings**.
+1. **File accessibility.** Visit both well-known URLs in a browser while signed out of Salesforce. If you are redirected to a sign-in page, the Visualforce page is not marked as publicly accessible. Check the Guest User profile permissions for the page under **Sites > \[Your Site] > Public Access Settings**.
 2. **JSON validity.** A single character error in the JSON payload causes silent verification failure. Use the validators linked above to confirm both files parse correctly.
 3. **Domain mismatch.** Confirm the domain in your Median deep linking configuration matches the domain where the verification files are hosted. Deep linking is domain-specific; a redirect from `.my.site.com` to a custom domain will not carry the verification through.
-4. **App Store / Play Store propagation.** Apple and Google cache AASA and Asset Links verification at app install time. If you updated the files after the app was installed on a test device, uninstall and reinstall the app to force a fresh verification check.
+4. **App Store and Google Play propagation.** Apple and Google cache AASA and Asset Links verification at app install time. If you updated the files after the app was installed on a test device, uninstall and reinstall the app to force a fresh verification check.
 
 [Lightning Web Components and the Median JavaScript Bridge](/docs/salesforce-lwc-median)
 
-[Salesforce LWC Component Deployment and Reference](/docs/salesforce-lwc-components)
+[Salesforce LWC component deployment and reference](/docs/salesforce-lwc-components)

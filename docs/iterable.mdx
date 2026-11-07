@@ -1,19 +1,21 @@
 ---
 title: "Iterable"
-description: "Add Iterable push notifications to your app."
-keywords: ["Iterable", "push notifications", "engagement", "user identification"]
+description: "Add Iterable push notifications to your app, then initialize the SDK, request permission, and identify users with the JavaScript Bridge."
+keywords:
+  ["Iterable", "push notifications", "engagement", "user identification"]
 searchable: true
 ---
+
 import { MedianLogo } from "/snippets/median-logo.jsx";
 
 The Iterable plugin connects your app to Iterable’s iOS and Android SDKs ([Overview of Iterable's iOS and Android SDKs](https://support.iterable.com/hc/en-us/articles/360028925511-Overview-of-Iterable-s-iOS-and-Android-SDKs/)) for push delivery, audience targeting, and user identification.
 
-Configure the plugin in the Median dashboard (including API key and optional data region), then use the [JavaScript Bridge](/docs/javascript-bridge) to initialize the SDK when needed, register for push, request permission, and identify users by email or user ID.
+Configure the plugin in Median App Studio (including API key and optional data region), then use the [Median JavaScript Bridge](/docs/javascript-bridge) to initialize the SDK when needed, register for push, request permission, and identify users by email or user ID.
 
 <Check>
 **Developer Demo**
 
-Display our demo page in your app to test during development [https://median.dev/iterable/](https://median.dev/iterable/)
+Display our demo page in your app to test during development [https://median.dev/iterable/ <Icon icon="arrow-up-right-from-square" size={12} />](https://median.dev/iterable/)
 
 </Check>
 
@@ -26,8 +28,8 @@ Display our demo page in your app to test during development [https://median.dev
 
 ## Prerequisites
 
-- [ ] A Median.co app with JavaScript Bridge enabled
-- [ ] Access to **Push Notifications** → Iterable in the Median App Dashboard
+- [ ] A Median app with the JavaScript Bridge enabled
+- [ ] Access to **Push Notifications → Iterable** in App Studio
 - [ ] An Iterable API key and (if applicable) a data region such as `EU`
 - [ ] Deep linking enabled in the app if notification URLs should open in-app
 
@@ -37,7 +39,7 @@ Display our demo page in your app to test during development [https://median.dev
 
 #### Enable the plugin
 
-1. **Navigate to Push Notifications**: In the Median.co dashboard, open the **Push Notifications** tab and select Iterable.
+1. **Navigate to Push Notifications**: In App Studio, open the **Push Notifications** tab and select Iterable.
 2. **Enable Iterable**: Turn the plugin on and paste your Iterable **API key** (and **data region** if required).
 3. **Configure settings**: Adjust `active`, `autoRegister`, and related fields to match your rollout. Enable **Deep linking** in the app so notification links open in-app rather than only in the device browser.
 
@@ -53,17 +55,17 @@ Display our demo page in your app to test during development [https://median.dev
 **Example configuration:**
 
 <CodeGroup>
-  ```JSON JSON
+  ```json JSON
   {
-    "active": true | false,
-    "autoRegister": true | false, // optional, if true push permission will be requested automatically
-    "apiKey": STRING, // if specified initialization will initiate automatically, otherwise provide when initializing at runtime via JavaScript Bridge
-    "dataRegion": STRING // if specified (e.g. 'EU') the app will use region-specific endpoints, can also be provided when initializing at runtime via JavaScript Bridge
+    "active": true,
+    "autoRegister": false,
+    "apiKey": "YOUR_ITERABLE_API_KEY",
+    "dataRegion": "EU"
   }
   ```
 </CodeGroup>
 
-**Note**: If you omit `apiKey` from dashboard config, call `median.iterable.initialize()` from your web layer with the same key and optional `dataRegion` before relying on other bridge methods.
+`autoRegister` and `dataRegion` are optional. If you set `apiKey`, the SDK initializes automatically. If you omit `apiKey` from the App Studio config, call `median.iterable.initialize()` from your web layer with the same key and optional `dataRegion` before relying on other JavaScript Bridge methods.
 
 ### JavaScript Bridge functions
 
@@ -73,16 +75,16 @@ Manually initializes the Iterable SDK when you are not relying on automatic init
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
+  // Omit callback to use the returned promise
   median.iterable.initialize({
-    'apiKey': STRING,
-    'dataRegion': STRING, // optional, e.g. 'EU'
-    'callback': function // optional otherwise returns promise
+    apiKey: "YOUR_ITERABLE_API_KEY",
+    dataRegion: "EU", // optional
+    callback: function (result) {
+      // result.success is true or false
+      console.log(result.success);
+    }
   });
-  // Return value:
-  {
-    "success": true | false
-  }
   ```
 </CodeGroup>
 
@@ -100,14 +102,12 @@ Returns whether the Iterable SDK has been initialized and, when initialized, ech
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
-  median.iterable.isInitialized({'callback': function});
-  // Return value:
-  {
-    'initialized': true | false,
-    'apiKey': STRING, // available only if initialized is true
-    'dataRegion': STRING // available only if initialized is true
-  }
+  ```javascript JavaScript
+  median.iterable.isInitialized().then(function (result) {
+    // result.initialized is true or false
+    // result.apiKey and result.dataRegion are only set when initialized is true
+    console.log(result);
+  });
   ```
 </CodeGroup>
 
@@ -123,12 +123,11 @@ Registers the current user for push notifications and refreshes the device token
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
-  median.iterable.registerPush({'callback': function});
-  // Return value:
-  {
-    "success": true | false
-  }
+  ```javascript JavaScript
+  median.iterable.registerPush().then(function (result) {
+    // result.success is true or false
+    console.log(result.success);
+  });
   ```
 </CodeGroup>
 
@@ -144,12 +143,11 @@ Prompts the user for push notification permission.
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
-  median.iterable.requestPermission({'callback': function});
-  // Return value:
-  {
-    "granted": true | false
-  }
+  ```javascript JavaScript
+  median.iterable.requestPermission().then(function (result) {
+    // result.granted is true or false
+    console.log(result.granted);
+  });
   ```
 </CodeGroup>
 
@@ -159,21 +157,19 @@ Prompts the user for push notification permission.
 | ---------- | ---------- | -------- | --------------------------------------------------- |
 | `callback` | `function` | No       | Optional callback; omit to use the returned promise |
 
-### Set email
+#### Set email
 
 Identifies the current user by email in Iterable. After a successful call, invoke `registerPush` to generate a new token for that profile.
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   median.iterable.setEmail({
-    'email': STRING,
-    'callback': function // optional otherwise returns promise
+    email: "user@example.com"
+  }).then(function (result) {
+    // result.success is true or false
+    console.log(result.success);
   });
-  // Return value:
-  {
-    "success": true | false
-  }
   ```
 </CodeGroup>
 
@@ -190,15 +186,13 @@ Identifies the current user by user ID. After a successful call, invoke `registe
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   median.iterable.setUserId({
-    'userId': STRING,
-    'callback': function
+    userId: "user-123"
+  }).then(function (result) {
+    // result.success is true or false
+    console.log(result.success);
   });
-  // Return value:
-  {
-    "success": true | false
-  }
   ```
 </CodeGroup>
 
@@ -213,39 +207,39 @@ Identifies the current user by user ID. After a successful call, invoke `registe
 
 Use this checklist to ensure Iterable is working correctly in your app:
 
-**Basic Functionality**
+**Basic functionality**
 
 - [ ] Plugin configuration includes `active`, valid `apiKey`, and correct `dataRegion` when applicable
-- [ ] `median.iterable.isInitialized()` reflects the expected state after dashboard config or `initialize()`
+- [ ] `median.iterable.isInitialized()` reflects the expected state after App Studio config or `initialize()`
 - [ ] `median.iterable.requestPermission()` (or `autoRegister`) yields the expected permission outcome
 - [ ] `median.iterable.registerPush()` completes with `success: true` after permission is granted
 
-**Platform Testing**
+**Platform testing**
 
 - [ ] Push registration and receipt behave on Android test devices
 - [ ] Push registration and receipt behave on iOS test devices
 - [ ] Iterable test sends reach the device after `setEmail` / `setUserId` and `registerPush`
 
-**Error Scenarios**
+**Error scenarios**
 
 - [ ] Failed `initialize` or `registerPush` paths do not leave the app in a broken state (retry or messaging as needed)
 - [ ] Behavior is sane when permission is denied (no silent assumptions that push is enabled)
 
-**Edge Cases**
+**Edge cases**
 
 - [ ] Runtime `initialize` with `apiKey` / `dataRegion` matches your Iterable project
 - [ ] User switching (`setEmail` / `setUserId` changes) is followed by `registerPush` so tokens stay aligned
 
-**User Experience**
+**User experience**
 
 - [ ] Permission prompts appear at a sensible time relative to your onboarding
 - [ ] Deep-linked notification opens land on the correct in-app destination
 
 ## Troubleshooting
 
-### Why are Iterable bridge functions undefined or not working?
+### Why are Iterable JavaScript Bridge functions undefined or not working?
 
-Confirm the JavaScript Bridge is enabled in Median App Studio, call bridge APIs after the `deviceready` event, and verify Iterable is enabled under **Push Notifications** with `active` set appropriately.
+Confirm the JavaScript Bridge is enabled in App Studio, call JavaScript Bridge APIs after the `median_library_ready()` event, and verify Iterable is enabled under **Push Notifications** with `active` set appropriately.
 
 ### Why is isInitialized false, or why does initialize keep failing?
 
@@ -266,6 +260,6 @@ If your Iterable workspace uses the EU stack, set `dataRegion` (for example `EU`
 <Info>
   **Still having issues?**
 
-For issues related to Iterable's own configuration, permissions, or platform-specific behavior outside of Median.co, refer to the [Iterable integration documentation](https://support.iterable.com/hc/en-us/articles/360035079872-Push-Notification-Overview).
+For issues related to Iterable's own configuration, permissions, or platform-specific behavior outside of Median, refer to the [Iterable integration documentation](https://support.iterable.com/hc/en-us/articles/360035079872-Push-Notification-Overview).
 
 </Info>

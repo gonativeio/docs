@@ -1,6 +1,6 @@
 ---
-title: "Google Sign-in Configuration"
-description: "Set up OAuth clients for Google Sign-In."
+title: "Google Sign-In configuration"
+description: "Create a Google Cloud project and OAuth clients for iOS, Android, and web, then add the credentials to the Social Login plugin in App Studio."
 keywords: ["Google Sign-In", "OAuth", "Google Cloud", "client ID", "social login"]
 searchable: true
 ---
@@ -11,21 +11,23 @@ This guide walks you through setting up Google Sign-In for your app. You'll crea
 
 Make sure you have:
 
-* A Google Cloud account ([create one here](https://cloud.google.com/))
+* A [Google Cloud account](https://cloud.google.com/)
 * Your app's **iOS Bundle ID** (example: `co.median.ios.soclogin`)
 * Your app's **Android Package Name** (example: `co.median.android.soclogin`)
-* Your app's **Android SHA-1 certificate fingerprint** (get from the Median.co team if we're signing your app)
+* Your app's **Android SHA-1 certificate fingerprint** (get it from the Median team if we're signing your app)
 * Admin access to Google Cloud Console
 
 ## Step 1: Create a Google Cloud project
 
 <Info>
-  **Existing Google Cloud Project**If you already have a Google Cloud Project for your website, you can use it. Skip to Step 2 to create your OAuth clients.
+  **Existing Google Cloud project**
+
+  If you already have a Google Cloud Project for your website, you can use it. Skip to Step 2 to create your OAuth clients.
 </Info>
 
 ### 1.1 Create new project
 
-1. Log in to [Google Cloud Console](https://console.cloud.google.com/).
+1. Sign in to [Google Cloud Console](https://console.cloud.google.com/).
 2. Click **New Project**.
 3. Enter a **Project name** (example: `MySocialLoginApp`).
 4. Click **Create**.
@@ -38,8 +40,8 @@ Before creating OAuth clients, you need to configure the OAuth consent screen th
 
 1. In Google Cloud Console, go to **APIs & Services** → **OAuth consent screen**.
 
-<Frame caption="Google Cloud - OAuth Consent Screen">
-  <img src="/images/docs/2734798e13008b8b54c0f2612b2afebe59170547178430f01b5e57249208a014-Screenshot_2025-04-11_at_12.13.24.png" />
+<Frame caption="Google Cloud OAuth consent screen">
+  <img alt="OAuth consent screen page under APIs & Services in Google Cloud Console" src="/images/docs/2734798e13008b8b54c0f2612b2afebe59170547178430f01b5e57249208a014-Screenshot_2025-04-11_at_12.13.24.png" />
 </Frame>
 
 ### 2.2 Configure the consent screen
@@ -60,32 +62,35 @@ Before creating OAuth clients, you need to configure the OAuth consent screen th
 
 6. Click **Save and Continue**.
 
-<Frame caption="OAuth Consent - App Information">
-  <img src="/images/docs/42da4f9c148b16ab6b3a54e9676da6fcbd6de1132a9a58e809f3e7789109a3dc-Screenshot_2025-04-11_at_12.14.28.png" />
+<Frame caption="OAuth consent app information">
+  <img alt="App information form on the OAuth consent screen" src="/images/docs/42da4f9c148b16ab6b3a54e9676da6fcbd6de1132a9a58e809f3e7789109a3dc-Screenshot_2025-04-11_at_12.14.28.png" />
 </Frame>
 
 <Info>
-  **Firebase Users*
-  If you use Firebase Console, make sure to configure the Support Email in Firebase Console → Settings → General → Public Settings → Support Email
+  **Firebase users**
+
+  If you use Firebase Console, make sure to configure the support email in **Firebase Console → Settings → General → Public Settings → Support Email**.
 </Info>
 
 ## Step 3: Create OAuth clients
 
 You need to create three separate OAuth clients: one for iOS, one (or more) for Android, and one for web.
 
-iOS ClientAndroid ClientWeb Client
+### iOS client
 
 1. Navigate to **APIs & Services** → **Credentials**.
 2. Click **Create Credentials** → Select **OAuth client ID**.
 3. For **Application type**, select **iOS**.
 4. Enter a descriptive **Name** for your iOS app.
-5. Enter your **iOS Bundle ID** (example: `co.median.ios.soclogin`)
+5. Enter your **iOS Bundle ID** (example: `co.median.ios.soclogin`).
 6. Click **Create**.
 7. Save your **iOS Client ID**.
 
-<Frame caption="Google Cloud - iOS OAuth Client Setup">
-  <img src="/images/docs/81e01ecb2de2174683e3baa71ac51bad7729213825332fef92c9988e23874088-Screenshot_2025-04-11_at_12.17.21.png" />
+<Frame caption="iOS OAuth client setup">
+  <img alt="Create OAuth client ID form with Application type set to iOS" src="/images/docs/81e01ecb2de2174683e3baa71ac51bad7729213825332fef92c9988e23874088-Screenshot_2025-04-11_at_12.17.21.png" />
 </Frame>
+
+### Android client
 
 1. Navigate to **APIs & Services** → **Credentials**.
 
@@ -99,17 +104,16 @@ iOS ClientAndroid ClientWeb Client
 
 6. Enter your **SHA-1 certificate fingerprint**:
 
-   * **If Median is signing your app**: Find your Android Release Certificate SHA-1 Fingerprint in the App Studio
+   * **If Median is signing your app**: Find your Android release certificate SHA-1 fingerprint in App Studio
    * **If using Google Play App Signing**: Available from Google Play Console → **Release** → **Setup** → **App Integrity** page
 
 7. Click **Create**.
 
 8. **Save your Android Client ID**.
 
-<Frame caption="Google Cloud - Android OAuth Client Setup">
-  <img src="/images/docs/8c74472a4bcbeb915107c5dca3655eb48ec479dfcbd02189d7d93067a5d59b68-Screenshot_2025-04-11_at_12.42.07.png" />
+<Frame caption="Android OAuth client setup">
+  <img alt="Create OAuth client ID form with Application type set to Android" src="/images/docs/8c74472a4bcbeb915107c5dca3655eb48ec479dfcbd02189d7d93067a5d59b68-Screenshot_2025-04-11_at_12.42.07.png" />
 </Frame>
-
 
 **For local debugging:**
 
@@ -125,13 +129,15 @@ You will need to create additional OAuth clients for each development machine us
 
 Enter the keystore password (default for debug keystore is `android`).
 
-**For debug builds:** The package name should append `.debug` (example: `co.median.android.soclogin.debug`)
+**For debug builds:** The package name should append `.debug` (example: `co.median.android.soclogin.debug`).
 
 Create a separate OAuth client for each developer machine with a descriptive name.
 
-<Frame caption="SHA-1 of Android Debug Keystore">
-  <img src="/images/docs/a8fcc916483671386c24606bd1de06fb017d2d90de18e97a53f28fe509c8c312-Screenshot_2025-04-11_at_14.11.12.png" />
+<Frame caption="SHA-1 of Android debug keystore">
+  <img alt="keytool output showing the SHA-1 fingerprint of the debug keystore" src="/images/docs/a8fcc916483671386c24606bd1de06fb017d2d90de18e97a53f28fe509c8c312-Screenshot_2025-04-11_at_14.11.12.png" />
 </Frame>
+
+### Web client
 
 1. Navigate to **APIs & Services** → **Credentials**.
 2. Click **Create Credentials** → Select **OAuth client ID**.
@@ -139,10 +145,10 @@ Create a separate OAuth client for each developer machine with a descriptive nam
 4. Enter a descriptive **Name**.
 5. **Optional**: Add **Authorized JavaScript origins** and **Authorized redirect URIs** if using Server-Side Redirects. Leave blank if using JavaScript Callbacks.
 6. Click **Create**.
-7. **Save your Web Client ID** for the Median.co configuration.
+7. **Save your Web Client ID** for the Median configuration.
 
-<Frame caption="Web OAuth Client Setup">
-  <img src="/images/docs/795c5a9513a5cf06589b1edc0aeb4d9ebc9bee068e05ce13e6ec5f579f48a7ff-Screenshot_2025-04-11_at_12.46.46.png" />
+<Frame caption="Web OAuth client setup">
+  <img alt="Create OAuth client ID form with Application type set to Web application" src="/images/docs/795c5a9513a5cf06589b1edc0aeb4d9ebc9bee068e05ce13e6ec5f579f48a7ff-Screenshot_2025-04-11_at_12.46.46.png" />
 </Frame>
 
 ## Step 4: Verify the OAuth client dashboard
@@ -153,44 +159,48 @@ Your Google Cloud Credentials dashboard should now show:
 * **Android Client ID** (one or more if including debug clients)
 * **Web Client ID**
 
-<Frame caption="Complete Google Cloud Project Setup">
-  <img src="/images/docs/c24f1e867aba5ef14d8f7edaad0f726351cb72498d7a625de33b0b3de94a3df8-Screenshot_2025-04-11_at_14.49.56.png" />
+<Frame caption="Completed Google Cloud project setup">
+  <img alt="Credentials page listing the iOS, Android, and web OAuth clients" src="/images/docs/c24f1e867aba5ef14d8f7edaad0f726351cb72498d7a625de33b0b3de94a3df8-Screenshot_2025-04-11_at_14.49.56.png" />
 </Frame>
 
 <Info>
-  **Configuration Complete**You've successfully configured Google Cloud. Next, add these credentials to the Median App Studio.
+  **Configuration complete**
+
+  You've configured Google Cloud. Next, add these credentials to App Studio.
 </Info>
 
-## Step 5: Add credentials to the Median App Studio
+## Step 5: Add credentials to Median App Studio
 
-Now that your Google Cloud OAuth clients are configured, add these credentials to the Median App Studio:
+Now that your Google Cloud OAuth clients are configured, add these credentials to App Studio:
 
-1. Log in to the [Median App Studio](https://median.co/app/).
+1. Sign in to [App Studio](https://median.co/app/).
 2. Navigate to: **Native Plugins** → **Social Login** → **Settings**.
 3. Enter your **Google Sign-In Configuration**:
 
-| Median App Studio | Value from Google Cloud | Where You Found It               |
+| App Studio field  | Value from Google Cloud | Where you found it               |
 | ----------------- | ----------------------- | -------------------------------- |
-| **iOS Client ID** | Your iOS Client ID      | Credentials dashboard (Step 3.2) |
-| **Web Client ID** | Your Web Client ID      | Credentials dashboard (Step 3.8) |
+| **iOS Client ID** | Your iOS Client ID      | Credentials dashboard (Step 3, iOS client) |
+| **Web Client ID** | Your Web Client ID      | Credentials dashboard (Step 3, Web client) |
 
 <Info>
-  **Multiple Android Clients** If you created multiple Android OAuth clients (production + debug), use your **production** Android Client ID in the Median App Studio.
+  **Multiple Android clients**
+
+  If you created multiple Android OAuth clients (production and debug), use your **production** Android Client ID in App Studio.
 </Info>
 
 4. Click **Confirm** and **Save**.
 5. **Rebuild your app** for the changes to take effect.
 
-<Frame caption="Example Social Login Plugin Configuration">
-  <img src="/images/docs/45689f3ce342af1f29e6918e51f477bb412c85e0e4506b5b3010c95ed81afe0e-Screenshot_2026-07-13_at_10.24.50.png" />
+<Frame caption="Example Social Login plugin configuration">
+  <img alt="Google Sign-In settings in the Social Login plugin in App Studio" src="/images/docs/45689f3ce342af1f29e6918e51f477bb412c85e0e4506b5b3010c95ed81afe0e-Screenshot_2026-07-13_at_10.24.50.png" />
 </Frame>
 
 ## Frequently asked questions
 
 <AccordionGroup>
-<Accordion title="Android App doesn't display the prompt to select the account." id="android-app-doesnt-display-the-prompt-to-select-the-account">
+<Accordion title="Android app doesn't display the prompt to select the account" id="android-app-doesnt-display-the-prompt-to-select-the-account">
 
-If your Google Sign-In button is not launching the overlay to select your google account it typically manifests as a `No credentials available` issue in the debug console. The full stack trace typically shows as follows:
+If your Google Sign-In button is not launching the overlay to select your Google account, it typically shows up as a `No credentials available` issue in the debug console. The full stack trace typically shows as follows:
 
 <CodeGroup>
   ```bash bash
@@ -211,23 +221,23 @@ If your Google Sign-In button is not launching the overlay to select your google
   ```
 </CodeGroup>
 
-To resolve the issue, please follow the three troubleshooting steps below to confirm your Cloud Project Configuration, Google User account, and Android Device Simulator settings.
+To resolve the issue, follow the three troubleshooting steps below to confirm your Cloud project configuration, Google user account, and Android emulator settings.
 
-1. The most common case of this issue is a misconfiguration on the Android OAuth client. Please confirm the SHA-1 you're using for your Android OAuth client and/or set up a second Android OAuth client for local testing using your debug SHA-1 value.
+1. The most common case of this issue is a misconfiguration on the Android OAuth client. Confirm the SHA-1 you're using for your Android OAuth client and/or set up a second Android OAuth client for local testing using your debug SHA-1 value.
 
-2. If you have confirmed your OAuth client configuration, please confirm the user configuration on your test device.
+2. If you have confirmed your OAuth client configuration, confirm the user configuration on your test device.
 
-   1. Log in to a Google Account on the test or simulator device you are using
-   2. Ensure that the logged-in user allows Google Sign-In prompts. This configuration can be reviewed in your [Google Account Settings](https://myaccount.google.com/connections/settings).
+   1. Sign in to a Google Account on the test device or emulator you are using.
+   2. Ensure that the signed-in user allows Google Sign-In prompts. This configuration can be reviewed in your [Google Account Settings](https://myaccount.google.com/connections/settings).
 
-3. If you observe the issue occasionally in your simulators only, it could be that you are using a simulator with an API level below 35. Please update the API level of your simulators in Android Studio.
+3. If you observe the issue occasionally in your emulators only, it could be that you are using an emulator with an API level below 35. Update the API level of your emulators in Android Studio.
 
 </Accordion>
-<Accordion title="How to find your Android package name and iOS Bundle ID?" id="how-to-find-your-android-package-name-and-ios-bundle-id">
+<Accordion title="How do I find my Android package name and iOS Bundle ID?" id="how-to-find-your-android-package-name-and-ios-bundle-id">
 
-For applications in **development**, the required parameters can be found in the [App Identifiers](/docs/app-identifiers) section of the App Studio.
+For applications in **development**, the required parameters can be found in the [App Identifiers](/docs/app-identifiers) section of App Studio.
 
-For **live or published apps**, use the [deviceInfo() ](/docs/device-info)JavaScript bridge command to retrieve the corresponding value, which is stored under the `appId` key.
+For **live or published apps**, use the [`deviceInfo()`](/docs/device-info) JavaScript Bridge command to retrieve the corresponding value, which is stored under the `appId` key.
 
 </Accordion>
 </AccordionGroup>

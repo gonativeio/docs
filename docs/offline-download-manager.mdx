@@ -1,6 +1,6 @@
 ---
-title: "Offline Download Manager"
-description: "Download media files for offline use."
+title: "Offline download manager"
+description: "Download documents and media files to the device so users can open them offline, and track progress with the JavaScript Bridge."
 keywords: ["offline download manager", "offline", "downloads", "media files", "documents"]
 searchable: true
 ---
@@ -8,7 +8,7 @@ import { AppetizeEmbed } from "/snippets/appetize-embed.jsx";
 import { MedianLogo } from "/snippets/median-logo.jsx";
 
 
-The Offline Download Manager plugin lets your app download and manage document and media files directly on the device. Users can access downloaded files without a network connection, and you can track download progress and manage files through a built-in interface or programmatically through the JavaScript bridge.
+The Offline Download Manager plugin lets your app download and manage document and media files directly on the device. Users can access downloaded files without a network connection, and you can track download progress and manage files through a built-in interface or programmatically through the JavaScript Bridge.
 
 <Check>
 **Developer Demo**
@@ -30,7 +30,7 @@ Offline access removes dependency on network connectivity for content-heavy apps
 
 ### JavaScript Bridge functions
 
-Use the following JavaScript bridge functions to initialize the download manager, start downloads, and display the file management UI.
+Use the following JavaScript Bridge functions to initialize the download manager, start downloads, and display the file management UI.
 
 #### Initialization
 
@@ -38,7 +38,7 @@ Create a JavaScript function to receive status events, e.g.
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   function downloadCallback(data) {
     console.log(data);
   }
@@ -49,7 +49,7 @@ Before starting any downloads, you will need to register your callback by runnin
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   {/* Note: This command returns a promise */}
   <button onclick="median.downloads.init({'callback': downloadCallback})">
     Register Download Callback
@@ -59,7 +59,7 @@ Before starting any downloads, you will need to register your callback by runnin
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   median.downloads.init({ callback: downloadCallback }); // returns promise
   ```
 </CodeGroup>
@@ -70,7 +70,7 @@ To start a download, run the following command using the Median JavaScript Bridg
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   <button onclick="median.downloads.downloadFile({'url': 'URL', 'title': 'Title'})">
     Start Download
   </button>
@@ -79,7 +79,7 @@ To start a download, run the following command using the Median JavaScript Bridg
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   median.downloads.downloadFile({ url: "URL", title: "Title" });
   ```
 </CodeGroup>
@@ -114,14 +114,14 @@ To show the download manager user interface, run the following command using the
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   <button onclick="median.downloads.showUI()">Show Download Manager UI</button>
   ```
 </CodeGroup>
 
 <MedianLogo />
 <CodeGroup>
-```JavaScript JavaScript 
+```javascript JavaScript 
 median.downloads.showUI(); 
 ```
 </CodeGroup>
@@ -140,7 +140,7 @@ Ensure the JavaScript Bridge is enabled in Median App Studio. Define a `median_l
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   function median_library_ready() {
     // safe to call median.downloads functions here
   }
@@ -165,9 +165,9 @@ Configure an `offline.html` page in your app to ensure the download manager rema
 ## Offline download manager demo app
 
 <Info>
-**Demo App - Note**
+**Demo apps**
 
-In the sample applications below, you can explore how document and media files are downloaded, along with the callback responses that occur during the download process. Additionally, these apps demonstrate the functionality of the offline file manager. For a complete offline experience, we recommend downloading the Android app and switching to Airplane mode after downloading at least one file.
+In the sample applications below, you can explore how document and media files are downloaded, along with the callback responses that occur during the download process. Additionally, these apps demonstrate the functionality of the offline file manager. For a complete offline experience, we recommend downloading the Android app and switching to airplane mode after downloading at least one file.
 </Info>
 
 <AppetizeEmbed

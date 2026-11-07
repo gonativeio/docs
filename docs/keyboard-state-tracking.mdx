@@ -1,6 +1,6 @@
 ---
-title: "Keyboard State Tracking"
-description: "Track on-screen keyboard visibility."
+title: "Keyboard state tracking"
+description: "Get or listen for the on-screen keyboard's visibility and size, and toggle the iOS accessory view with the JavaScript Bridge."
 keywords: ["keyboard", "keyboard state", "on-screen keyboard", "JavaScript Bridge", "UI"]
 searchable: true
 ---
@@ -10,13 +10,13 @@ import { AppetizeEmbed } from "/snippets/appetize-embed.jsx";
 <Check>
 **Developer Demo**
 
-Display our demo page in your app to test during development [https://median.dev/keyboard/](https://median.dev/keyboard/)
+Display our demo page in your app to test during development [https://median.dev/keyboard/ <Icon icon="arrow-up-right-from-square" size={12} />](https://median.dev/keyboard/)
 
 </Check>
 
 ## Implementation guide
 
-Use the Median [JavaScript Bridge](/docs/javascript-bridge) to obtain or listen the keyboard state.
+Use the [Median JavaScript Bridge](/docs/javascript-bridge) to get or listen for the keyboard state.
 
 ### Get current keyboard state
 
@@ -24,20 +24,12 @@ Retrieve the current visibility status and size of the on-screen keyboard. This 
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
-  median.keyboard.info({'callback': function});
-  // Returns:
-  {
-    'visible': BOOL,
-    'keyboardWindowSize': {
-      'width': INT,
-      'height': INT
-    },
-    'visibleWindowSize': {
-      'width': INT,
-      'height': INT
-    }
-  }
+  ```javascript JavaScript
+  median.keyboard.info().then(function (state) {
+    console.log(state.visible); // true or false
+    console.log(state.keyboardWindowSize); // { width, height }
+    console.log(state.visibleWindowSize); // { width, height }
+  });
   ```
 </CodeGroup>
 
@@ -47,38 +39,32 @@ Automatically listen for changes in keyboard visibility and dimensions. Define a
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
-  median.keyboard.listen(function);
+  ```javascript JavaScript
+  // Called on each state change with the same object that median.keyboard.info() returns:
+  // visible, keyboardWindowSize { width, height }, and visibleWindowSize { width, height }
+  function handleKeyboardChange(state) {
+    console.log(state.visible, state.keyboardWindowSize, state.visibleWindowSize);
+  }
+
+  median.keyboard.listen(handleKeyboardChange);
+
   // To stop listening, pass an empty string:
   // median.keyboard.listen("");
-
-  // Returns on each state change:
-  {
-    'visible': BOOL,
-    'keyboardWindowSize': {
-      'width': INT,
-      'height': INT
-    },
-    'visibleWindowSize': {
-      'width': INT,
-      'height': INT
-    }
-  }
-```
+  ```
 </CodeGroup>
 
-#### Example: Hide bottom navigation when keyboard is visible
+#### Example: hide bottom navigation when keyboard is visible
 
 The following code hides the bottom tab bar when the keyboard appears and restores it when the keyboard is dismissed. This can be useful to preserve screen space for large forms.
 
 <MedianLogo />
 <CodeGroup>
-```JavaScript JavaScript
+```javascript JavaScript
   // Defining a listener
   function addListener() {
     try {
       median.keyboard.listen(hideKeyboard);
-      alert("Keyboard listener added");
+      console.log("Keyboard listener added");
     } catch (error) {
       console.error("Failed to add keyboard listener", error);
     }
@@ -101,7 +87,7 @@ On iOS devices, the software keyboard may display an accessory view containing s
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript 
+  ```javascript JavaScript 
   median.keyboard.showAccessoryView(true); // Show accessory view
   median.keyboard.showAccessoryView(false); // Hide accessory view 
   ```

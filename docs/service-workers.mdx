@@ -1,18 +1,18 @@
 ---
-title: "Service Workers"
-description: "Enable service workers in your iOS and Android app."
+title: "Service workers"
+description: "Use service workers for offline access in your Median app. They work out of the box on Android and need App-Bound Domains on iOS 14 and later."
 keywords: ["service workers", "offline", "caching", "PWA", "WKAppBoundDomains"]
 searchable: true
 ---
 
 ## Service worker overview
 
-Service Workers are the modern standard for enabling offline functionality, background sync, and push-style caching on the web. If your website already uses a Service Worker for offline access, that same code can work inside your Median app, but support differs meaningfully between Android and iOS, and iOS requires extra configuration.
+Service workers are the web standard for enabling offline functionality, background sync, and push-style caching. If your website already uses a service worker for offline access, that same code can work inside your Median app, but support differs meaningfully between Android and iOS, and iOS requires extra configuration.
 
 <Warning>
-  **Legacy Note**
+  **Legacy note**
 
-  Both platforms used to support the older HTML5 Application Cache Manifest for offline caching. That API is deprecated and no longer functions on iOS, so if you're migrating an older app, Service Workers are the only supported path forward on iOS.
+  Both platforms used to support the older HTML5 Application Cache Manifest for offline caching. That API is deprecated and no longer functions on iOS, so if you're migrating an older app, service workers are the only supported path forward on iOS.
 </Warning>
 
 ## Platform support
@@ -25,13 +25,13 @@ Service Workers are the modern standard for enabling offline functionality, back
 
 ## Android
 
-On Android, Median apps render your site inside a standard WebView that supports the Service Worker API the same way Chrome does. If your Service Worker already works in a mobile browser, it will work in your Median Android app with no additional configuration.
+On Android, Median apps render your site inside a standard WebView that supports the Service Worker API the same way Chrome does. If your service worker already works in a mobile browser, it will work in your Median Android app with no additional configuration.
 
 Registration, caching, and the fetch lifecycle all behave as they would on the open web.
 
 ## iOS
 
-On iOS, Service Worker support is available only on **iOS 14 or later** and requires using **App-Bound Domains**. This feature is not supported out of the box in Median apps but can be enabled with custom implementation. Please note that the app will only communicate with the domains added in the configuration.
+On iOS, service worker support is available only on **iOS 14 or later** and requires using **App-Bound Domains**. This feature is not supported out of the box in Median apps but can be enabled with custom implementation. Please note that the app will only communicate with the domains added in the configuration.
 
 <Warning>
   **Important**
@@ -69,6 +69,6 @@ For more details, refer to:
 
 [Will iOS 14 support Service Workers in WKWebView? (dev.to) <Icon icon="arrow-up-right-from-square" size={12} />](https://dev.to/ben/will-ios-14-support-service-workers-in-wkwebview-5gn)
 
-[App-Bound Domains Overview (webkit.org) <Icon icon="arrow-up-right-from-square" size={12} />](https://webkit.org/blog/10882/app-bound-domains/)
+[App-Bound Domains overview (webkit.org) <Icon icon="arrow-up-right-from-square" size={12} />](https://webkit.org/blog/10882/app-bound-domains/)
 
 If you don't have access to a macOS system to build the app, Median can handle the setup for you as part of a small custom development service. [Contact us <Icon icon="arrow-up-right-from-square" size={12} />](https://median.co/contact?topic=sales-inquiry) to learn more.

@@ -1,12 +1,13 @@
 ---
-title: "Full Screen"
-description: "Hide system UI to use the full screen."
+title: "Full screen"
+description: "Hide the Android status and navigation bars, or the iOS landscape sidebars, so your content uses the full screen."
 keywords: ["full screen", "immersive mode", "status bar", "navigation bar", "system UI"]
 searchable: true
 ---
+
 import { MedianLogo } from "/snippets/median-logo.jsx";
 
-Full Screen lets your app take over areas of the display that are normally reserved for system UI (Android Navigation Bar and Status Bar), or the sidebars shown around modern iOS devices in landscape. This allows you to use the entire screen for your content.
+Full screen lets your app take over areas of the display that are normally reserved for system UI (the Android navigation bar and status bar), or the sidebars shown around modern iOS devices in landscape. This allows you to use the entire screen for your content.
 
 <Check>
 **Developer Demo**
@@ -23,10 +24,10 @@ Display our demo page in your app to test during development [https://median.dev
 
 ### Platform behavior
 
-Full Screen behaves differently by platform:
+Full screen behaves differently by platform:
 
-- **iOS**: On iOS, the sidebars that show when modern iOS devices are in landscape mode can be hidden to provide the full horizontal screen space to your app.
-- **Android**: On Android, the Android Navigation Bar and Status Bar can be hidden to provide a full screen experience for the user.
+- **iOS**: The sidebars that show when modern iOS devices are in landscape mode can be hidden to provide the full horizontal screen space to your app.
+- **Android**: The navigation bar and status bar can be hidden to provide a full screen experience for the user.
 
 To set this mode as default, enable it within your app configuration on the **Interface** tab. To set it at runtime, use the Median JavaScript Bridge command.
 
@@ -34,42 +35,42 @@ To set this mode as default, enable it within your app configuration on the **In
 
 ### App setup
 
-Full Screen can be enabled as the app's default behavior directly in the App Studio, without any code.
+Full screen can be enabled as the app's default behavior directly in App Studio, without any code.
 
-1. **Navigate to Interface**: In the App Studio, go to the **Interface** tab.
+1. **Navigate to Interface**: In App Studio, go to the **Interface** tab.
 2. **Enable Full Screen**: Toggle Full Screen to enabled status to apply it by default across your app.
 
 ### JavaScript Bridge implementation (Android)
 
-On Android, Full Screen mode can also be toggled dynamically at runtime.
+On Android, full screen mode can also be toggled dynamically at runtime.
 
 #### Enable full screen
 
-Hides the Android Navigation Bar and Status Bar.
+Hides the Android navigation bar and status bar.
 
 <MedianLogo />
 <CodeGroup>
-```JavaScript JavaScript 
-median.android.screen.fullScreen(); 
+```javascript JavaScript
+median.android.screen.fullScreen();
 ```
 </CodeGroup>
 
 #### Disable full screen
 
-Restores the Android Navigation Bar and Status Bar to normal.
+Restores the Android navigation bar and status bar to normal.
 
 <MedianLogo />
 <CodeGroup>
-```JavaScript JavaScript 
-median.android.screen.normal(); 
+```javascript JavaScript
+median.android.screen.normal();
 ```
 </CodeGroup>
 
 <Warning>
-  **Full Screen and Keyboard UX**
+  **Full screen and keyboard UX**
 
-With Full Screen enabled on Android, the keyboard will overlay on top of your web content, which can cause issues for users completing forms. If your app uses forms, consider one of these approaches:
+With full screen enabled on Android, the keyboard overlays your web content, which can cause issues for users completing forms. If your app uses forms, consider one of these approaches:
 
-1. Disable Full Screen mode via the JavaScript Bridge when showing a page that includes forms.
-2. Use the [Keyboard State Tracking](/docs/keyboard-state-tracking) listener functions to disable/enable Full Screen mode via the JavaScript Bridge as the keyboard becomes active or inactive.
+1. Disable full screen mode via the JavaScript Bridge when showing a page that includes forms.
+2. Use the [keyboard state tracking](/docs/keyboard-state-tracking) listener functions to disable or enable full screen mode via the JavaScript Bridge as the keyboard becomes active or inactive.
 </Warning>

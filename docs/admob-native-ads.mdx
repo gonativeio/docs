@@ -1,6 +1,6 @@
 ---
-title: "AdMob Native Ads"
-description: "Show Google AdMob ads in your app."
+title: "AdMob native ads"
+description: "Show Google AdMob banner and interstitial ads in your app, and handle iOS tracking consent and GDPR consent with the JavaScript Bridge."
 keywords: ["AdMob", "ads", "monetization", "banner ads", "interstitial ads", "Google Mobile Ads"]
 searchable: true
 ---
@@ -8,7 +8,7 @@ searchable: true
 import { MedianLogo } from "/snippets/median-logo.jsx";
 
 
-Monetize your mobile app and gain actionable analytics with Google AdMob, a leading mobile advertising platform. This guide explains how to integrate AdMob using the Median Native JavaScript Bridge, including setup, banner and interstitial ad formats, user consent for tracking, and GDPR compliance.
+Monetize your mobile app and gain analytics with Google AdMob, Google's mobile advertising platform. This guide explains how to integrate AdMob using the Median JavaScript Bridge, including setup, banner and interstitial ad formats, user consent for tracking, and GDPR compliance.
 
 <Check>
 **Developer Demo**
@@ -21,18 +21,18 @@ Display our demo page in your app to test during development [https://median.dev
 
 Google AdMob enables mobile app developers to earn revenue by displaying native banner ads and interstitial ads. These ad formats offer a better user experience and higher monetization potential compared to traditional website-based ads.
 
-The AdMob Native Ads SDK, when integrated with your app via Median's Native JavaScript Bridge, unlocks full access to the platform’s features, including advanced ad rendering and user tracking consent management.
+The AdMob Native Ads SDK, when integrated with your app via the JavaScript Bridge, gives you access to the platform’s features, including advanced ad rendering and user tracking consent management.
 
 ## Supported ad formats
 
 AdMob supports two primary ad types:
 
-- **Banner Ads** Displayed persistently near the bottom of the app window, below your web content. Ideal for passive monetization without interrupting user experience.
-- **Interstitial Ads** Full-screen ads that appear at natural breaks in your app flow (e.g., after completing a level or before loading a new page). These ads may include video, animation, or timers and are more visually engaging—but should be used thoughtfully due to their interruptive nature.
+- **Banner ads:** Displayed persistently near the bottom of the app window, below your web content. Ideal for passive monetization without interrupting user experience.
+- **Interstitial ads:** Full-screen ads that appear at natural breaks in your app flow (e.g., after completing a level or before loading a new page). These ads may include video, animation, or timers and are more visually engaging, but should be used thoughtfully due to their interruptive nature.
 
 |                   Banner Ad                   |                   Interstitial Ad                   |
 | :-------------------------------------------: | :-------------------------------------------------: |
-| ![](/images/docs/docs/admob/admob-banner.png) | ![](/images/docs/docs/admob/admob-interstitial.png) |
+| ![AdMob banner ad below the web content](/images/docs/docs/admob/admob-banner.png) | ![Full-screen AdMob interstitial ad](/images/docs/docs/admob/admob-interstitial.png) |
 
 ## Implementation guide
 
@@ -49,12 +49,12 @@ Android will only display a banner ad if there is an ad available. iOS will disp
 
 There are separate unit identifiers for Android and iOS because AdMob considers them to be two separate apps.
 
-To disable automatically showing the banner ad when the app loads AdMob Banner Ad Enabled to **Disable**. You may then show it programmatically at run-time (see Javascript Bridge command below).
+To disable automatically showing the banner ad when the app loads, set **AdMob Banner Ad Enabled** to **Disable**. You may then show it programmatically at runtime (see the JavaScript Bridge command below).
 
 <Warning>
 **ATT required for iOS**
 
-Make sure to enable App Tracking Transparency (ATT) on the Permission tab to ensure AdMob functions correctly on iOS.
+Make sure to enable App Tracking Transparency (ATT) on the **Permissions** tab to ensure AdMob functions correctly on iOS.
 
 </Warning>
 
@@ -62,37 +62,37 @@ Make sure to enable App Tracking Transparency (ATT) on the Permission tab to ens
 
 Interstitial ads are not shown automatically. They are pre-loaded in the background and must be invoked at runtime.
 
-To show an interstitial ad, run the JavaScript function
+To show an interstitial ad, run the following JavaScript function:
 
 <MedianLogo />
 <CodeGroup>
-  ```javascript javascript 
-  median.admob.showInterstitialIfReady(); 
+  ```javascript JavaScript
+  median.admob.showInterstitialIfReady();
   ```
 </CodeGroup>
 
 > Note: This should be done when the user is at a natural pausing point, for example when they tap something to initiate an action, or they have finished viewing a piece of content. Note that interstitial ad fill rates are significantly lower than banner ads, and there may not always be an interstitial ad ready. In that case, no interstitial will be shown.
 >
-> Alternatively, trigger the ad - if available - on the next page navigation:
+> Alternatively, trigger the ad, if available, on the next page navigation:
 
 <MedianLogo />
 <CodeGroup>
-  ```javascript javascript 
+  ```javascript JavaScript
   median.admob.showInterstitialOnNextPageLoadIfReady();
   ```
 </CodeGroup>
 
 ### Control banner ad display
 
-To enable/disable displaying banner ads, run the following commands. If AdMob Banner Ad Enabled is set to **Disable** you must run the enable command to begin showing the banner.
+To enable/disable displaying banner ads, run the following commands. If **AdMob Banner Ad Enabled** is set to **Disable** you must run the enable command to begin showing the banner.
 
 Enable or disable banner ads with these commands:
 
 <MedianLogo />
 <CodeGroup>
-  ```javascript javascript 
+  ```javascript JavaScript
   median.admob.banner.enable(); // Show banner
-  median.admob.banner.disable(); // Hide banner 
+  median.admob.banner.disable(); // Hide banner
   ```
 </CodeGroup>
 
@@ -104,24 +104,23 @@ Enable ATT and prompt the user with the following commands:
 
 <MedianLogo />
 <CodeGroup>
-  ```javascript javascript
+  ```javascript JavaScript
   // Using a callback
   median.admob.request.tracking({ callback: trackingCallback });
 
-function trackingCallback(result) {
-  if (result.status === 'authorized') {
-    alert('Thank you for enabling personalized ads');
+  function trackingCallback(result) {
+    if (result.status === 'authorized') {
+      console.log('Thank you for enabling personalized ads');
+    }
   }
-}
 
-// Using a promise
-median.admob.request.tracking().then(function(result) {
-  if (result.status === 'authorized') {
-    alert('Thank you for enabling personalized ads');
-  }
-});
-
-```
+  // Using a promise
+  median.admob.request.tracking().then(function(result) {
+    if (result.status === 'authorized') {
+      console.log('Thank you for enabling personalized ads');
+    }
+  });
+  ```
 </CodeGroup>
 
 `callback` is an optional parameter to get the result of the user decision. It should be the name of a JavaScript function that will receive the result. The result will be an object with a status string, which can be "authorized", "denied", or "restricted" (denied by corporate policy or user is underage).
@@ -134,20 +133,20 @@ Create a user message in your AdMob console under **Privacy & Messaging**, then 
 
 <MedianLogo />
 <CodeGroup>
-```javascript javascript
+```javascript JavaScript
 // Callback method
 median.admob.request.consent({ callback: consentCallback });
 
 function consentCallback(result) {
   if (result.success === true) {
-    alert('Thank you for enabling personalized ads');
+    console.log('Thank you for enabling personalized ads');
   }
 }
 
 // Promise method
 median.admob.request.consent().then(function(result) {
   if (result.success === true) {
-    alert('Thank you for enabling personalized ads');
+    console.log('Thank you for enabling personalized ads');
   }
 });
 ```

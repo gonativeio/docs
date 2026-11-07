@@ -1,6 +1,6 @@
 ---
-title: "Dynamic Menu Items"
-description: "Change sidebar menu items from your website."
+title: "Dynamic menu items"
+description: "Change your app's sidebar menu items from your website's JavaScript at runtime, without rebuilding your app."
 keywords: ["dynamic menu", "sidebar menu", "JavaScript Bridge", "runtime", "navigation"]
 searchable: true
 ---
@@ -9,17 +9,17 @@ import { MedianLogo } from "/snippets/median-logo.jsx";
 
 Change the links in your app's sidebar menu from your website's JavaScript, without rebuilding your app.
 
-The sidebar menu you configure in the App Studio is the same for every user. With `median.sidebar.setItems()`, your web code can replace those menu items at runtime. For example, it can show different links to signed-in users, adjust the menu for different user roles, or add a link to a new section of your site. You can also turn the sidebar on if it's hidden and choose whether your changes are kept after the app restarts.
+The sidebar menu you configure in App Studio is the same for every user. With `median.sidebar.setItems()`, your web code can replace those menu items at runtime. For example, it can show different links to signed-in users, adjust the menu for different user roles, or add a link to a new section of your site. You can also turn the sidebar on if it's hidden and choose whether your changes are kept after the app restarts.
 
 ## When to use dynamic menu items
 
 Use dynamic menu items when your menu depends on who is using the app or what they're doing:
 
-- **Signed-in vs. signed-out users:** Show "Account" and "Log out" links after login, and "Sign in" before.
+- **Signed-in vs. signed-out users:** Show "Account" and "Log out" links after sign-in, and "Sign in" before.
 - **Role-based menus:** Show admin or premium links only to the users who should see them.
 - **Content changes:** Add or remove links without publishing a new app version.
 
-If your menu is the same for every user, configure it in the App Studio instead.
+If your menu is the same for every user, configure it in App Studio instead.
 
 ## Set the sidebar menu items
 
@@ -52,7 +52,7 @@ const items = [
   },
   {
     label: "Sample JavaScript",
-    url: "javascript:alert('test')"
+    url: "javascript:console.log('test')"
   }
 ];
 

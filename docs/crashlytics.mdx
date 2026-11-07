@@ -20,12 +20,12 @@ Firebase Crashlytics is a real-time crash reporting solution that helps you iden
 
 - **App crash events**: Native crash reporting.
 - **WebView console errors**: WebView console errors logged to Crashlytics.
-- **Android toast errors**: Android-only (e.g. SSL certificate warnings).
+- **Android toast errors**: Android-only (for example, SSL certificate warnings).
 - **Runtime control**: Enable/disable log collection and set user IDs via the Median JavaScript Bridge.
 
 ## Prerequisites
 
-- [ ] A Median.co app with JavaScript Bridge enabled
+- [ ] A Median app with the JavaScript Bridge enabled
 - [ ] Firebase project with Crashlytics enabled
 - [ ] `GoogleService-Info.plist` (iOS) and `google-services.json` (Android) from Firebase Console
 - [ ] Plugin purchased and enabled in Median App Studio
@@ -39,26 +39,29 @@ Display our demo page in your app to test during development [https://median.dev
 
 ## When to use this plugin
 
-Firebase Crashlytics is essential for apps that need to:
+Use Firebase Crashlytics if your app needs to:
 
-| Use Case                 | Example                                           |
-| ------------------------ | ------------------------------------------------- |
-| **Crash reporting**      | Track and fix native app crashes in real time     |
-| **WebView errors**       | Log WebView console errors to Crashlytics         |
-| **Android toast errors** | Capture Android toast errors (e.g. SSL warnings)  |
-| **Per-user tracking**    | Set a custom user ID to track crash logs per user |
-| **Privacy compliance**   | Request user opt-in before collecting logs        |
+| Use case                 | Example                                                  |
+| ------------------------ | -------------------------------------------------------- |
+| **Crash reporting**      | Track and fix native app crashes in real time            |
+| **WebView errors**       | Log WebView console errors to Crashlytics                |
+| **Android toast errors** | Capture Android toast errors (for example, SSL warnings) |
+| **Per-user tracking**    | Set a custom user ID to track crash logs per user        |
+| **Privacy compliance**   | Request user opt-in before collecting logs               |
 
 ## Integration guide
 
 ### Enable the plugin
 
-1. **Navigate to Native Plugins**: Open your app in **Median's App Studio** and go to the **Native Plugins section**.
+1. **Navigate to Native Plugins**: Open your app in **Median App Studio** and go to the **Native Plugins section**.
 2. **Enable Firebase Crashlytics**: Select **Google Firebase Crashlytics** from your list of purchased plugins and enable it.
 3. **Configure log collection**: Use the options below to customize which logs are collected.
 
 <Frame caption="Enable Firebase Crashlytics in App Studio">
-  <img src="/images/docs/fff30c1-GoogleCrashlytics_Enable.png" />
+  <img
+    src="/images/docs/fff30c1-GoogleCrashlytics_Enable.png"
+    alt="Google Firebase Crashlytics plugin enabled in the Native Plugins section of App Studio"
+  />
 </Frame>
 
 ### Configuration options
@@ -69,10 +72,13 @@ Firebase Crashlytics is essential for apps that need to:
 | **toastErrorLogsEnabled** | Enable/disable Android toast error collection    | Per your needs (Android only)                               |
 | **webErrorLogsEnabled**   | Enable/disable WebView console error collection  | Per your needs                                              |
 
-Toggle the options as needed, then click Advanced Mode for further configuration.
+Toggle the options as needed, then click **Advanced Mode** for further configuration.
 
 <Frame caption="Enable or disable specific log types">
-  <img src="/images/docs/0fce73d-GoogleCrashlytics_Config.png" />
+  <img
+    src="/images/docs/0fce73d-GoogleCrashlytics_Config.png"
+    alt="Crashlytics log collection toggles in the plugin settings"
+  />
 </Frame>
 
 ### App configuration
@@ -83,19 +89,22 @@ Toggle the options as needed, then click Advanced Mode for further configuration
    1. **Android:** `google-services.json`
    2. **iOS:** `GoogleService-Info.plist`
 
-3. **Upload** **GoogleService-Info.plist (iOS)** and **google-services.json (Android)** in the Median App Studio under **Build & Deploy > Google Services**. You can upload the files from Firebase or copy and paste their contents into App Studio.
+3. **Upload** **GoogleService-Info.plist (iOS)** and **google-services.json (Android)** in App Studio under **Build & Deploy → Google Services**. You can upload the files from Firebase or copy and paste their contents into App Studio.
 
 For full instructions, refer to the official Firebase setup guides:
 
-- [Android Setup](https://firebase.google.com/docs/android/setup)
-- [iOS Setup](https://firebase.google.com/docs/ios/setup)
+- [Android setup](https://firebase.google.com/docs/android/setup)
+- [iOS setup](https://firebase.google.com/docs/ios/setup)
 
 ### Finalizing the app build
 
 Once the configuration files are uploaded, save the changes and rebuild your app.
 
 <Frame caption="Upload your GoogleService-Info.plist and google-services.json configurations">
-  <img src="/images/docs/673adab78087bd5a5039f6da1ecab94c9b409bde8d0b665e064586218b4a35ff-analytics.gif" />
+  <img
+    src="/images/docs/673adab78087bd5a5039f6da1ecab94c9b409bde8d0b665e064586218b4a35ff-analytics.gif"
+    alt="Uploading Firebase configuration files under Build & Deploy in App Studio"
+  />
 </Frame>
 
 ### JavaScript Bridge functions
@@ -108,7 +117,7 @@ Enable or disable Crashlytics log collection at runtime.
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   // Enable/disable Crashlytics
   median.firebaseCrashlytics.enable(true);
   median.firebaseCrashlytics.enable(false);
@@ -135,7 +144,7 @@ Assign a custom user ID to track crash logs per user in Firebase. Persists betwe
 
 <MedianLogo />
 <CodeGroup>
-```JavaScript JavaScript
+```javascript JavaScript
 median.firebaseCrashlytics.setUserId("user_123");
 ```
 </CodeGroup>
@@ -150,7 +159,7 @@ Remove the previously set user ID.
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript 
+  ```javascript JavaScript 
   median.firebaseCrashlytics.unsetUserId(); 
   ```
 </CodeGroup>
@@ -160,7 +169,10 @@ Remove the previously set user ID.
 To comply with privacy policies or regulations, you can ask users for permission before collecting logs. Enable the permission prompt by setting **requestOptIn** to true in the plugin configuration. Users will see a permission dialog on first app launch after installation.
 
 <Frame caption="Request user opt-in for log collection">
-  <img src="/images/docs/ba4493a-2024-02-14_14-56-43_High_Res_Screenshot.png" />
+  <img
+    src="/images/docs/ba4493a-2024-02-14_14-56-43_High_Res_Screenshot.png"
+    alt="Permission dialog asking the user to allow log collection"
+  />
 </Frame>
 
 ## Testing checklist
@@ -170,7 +182,7 @@ Use this checklist to verify Crashlytics is configured and logging as expected:
 ### Basic functionality
 
 - [ ] Firebase Crashlytics plugin is enabled in App Studio
-- [ ] `GoogleService-Info.plist` (iOS) and `google-services.json` (Android) are uploaded in **Build & Deploy > Google Services**
+- [ ] `GoogleService-Info.plist` (iOS) and `google-services.json` (Android) are uploaded in **Build & Deploy → Google Services**
 - [ ] App is rebuilt after saving configuration changes
 - [ ] `median.firebaseCrashlytics.enable(true)` enables log collection at runtime
 
@@ -190,13 +202,11 @@ Use this checklist to verify Crashlytics is configured and logging as expected:
 - [ ] Open [https://median.dev/crashlytics](https://median.dev/crashlytics) inside your app and confirm logs/events are received in Firebase Crashlytics
 - [ ] Consent prompt (if used) appears at an appropriate time and copy matches your policy
 
----
-
 ## Troubleshooting
 
 ### Crashlytics functions are undefined or not working
 
-Ensure the JavaScript Bridge is enabled in your Median dashboard and that you call functions after the `deviceready` event. Verify the plugin is enabled and `GoogleService-Info.plist` (iOS) and `google-services.json` (Android) are uploaded in **Build & Deploy > Google Services**.
+Ensure the JavaScript Bridge is enabled in App Studio and that you call functions after the `median_library_ready()` event. Verify the plugin is enabled and `GoogleService-Info.plist` (iOS) and `google-services.json` (Android) are uploaded in **Build & Deploy → Google Services**.
 
 ### Logs do not appear in Firebase Crashlytics
 
@@ -217,6 +227,6 @@ The prompt only appears when `requestOptIn` is enabled and is shown on first lau
 <Info>
   **Still having trouble?**
 
-For Firebase Crashlytics outside Median.co refer to [Firebase Crashlytics documentation.](https://firebase.google.com/docs/crashlytics/get-started)
+For Firebase Crashlytics issues outside Median, refer to the [Firebase Crashlytics documentation](https://firebase.google.com/docs/crashlytics/get-started).
 
 </Info>

@@ -1,19 +1,18 @@
 ---
-title: "App Configuration & Management"
-description: "Manage app configuration across builds and environments."
+title: "App configuration and management"
+description: "Manage app identifiers, appConfig.json, backups, multiple app instances, and CI/CD builds for your iOS and Android apps."
 keywords: ["app configuration", "configuration management", "builds", "best practices"]
 searchable: true
 ---
 
-App Configuration & Management is essential for streamlining development, ensuring consistency across builds, and maintaining a scalable deployment pipeline. By correctly managing app identifiers, handling multiple app instances, and integrating CI/CD workflows, developers can improve efficiency and reduce errors in both Android and iOS development.
+Good app configuration and management keeps your builds consistent and your deployment pipeline scalable. By managing app identifiers, handling multiple app instances, and integrating CI/CD workflows, you can reduce errors in both Android and iOS development.
 
 ## Key aspects of app configuration & management
 
 <Columns cols={1}>
   <Card
-    title="App Identifiers"
+    title="App identifiers"
     icon="sign-posts-wrench"
-    color="blue-500"
     href="/docs/app-identifiers"
   >
     Each mobile application requires a unique identifier to distinguish it
@@ -22,9 +21,8 @@ App Configuration & Management is essential for streamlining development, ensuri
     prevents conflicts in app installations.
   </Card>
   <Card
-    title="App Configuration"
+    title="App configuration"
     icon="gears"
-    color="blue-500"
     href="/docs/app-configuration-appconfigjson"
   >
     The appConfig.json file is a key-value datastore containing the full
@@ -32,29 +30,26 @@ App Configuration & Management is essential for streamlining development, ensuri
     manually edit the full app configuration.
   </Card>
   <Card
-    title="Google Services"
+    title="Google services"
     icon="google"
-    color="blue-500"
     href="/docs/google-services"
   >
     Google Services for Mobile Apps provide essential tools that enhance
     functionality, user engagement, and app performance. From analytics and
     crash reporting to authentication and cloud messaging, these services
-    integrate seamlessly into your app.
+    integrate into your app.
   </Card>
   <Card
-    title="Backup Management"
+    title="Backup management"
     icon="cloud"
-    color="blue-500"
     href="/docs/backup-management"
   >
     Median App Studio automatically creates and manages backups every time you
     save your app, with options for naming, bookmarking, and restoring versions.
   </Card>
   <Card
-    title="Managing Multiple App Instances"
+    title="Managing multiple app instances"
     icon="rectangle-vertical-history"
-    color="blue-500"
     href="/docs/multiple-app-instances"
   >
     Running multiple instances of an app is useful for testing different
@@ -63,9 +58,8 @@ App Configuration & Management is essential for streamlining development, ensuri
     bundle identifiers.
   </Card>
   <Card
-    title="CI/CD Integration for Automated Builds"
+    title="CI/CD integration for automated builds"
     icon="conveyor-belt"
-    color="blue-500"
     href="/docs/cicd-integration"
   >
     A well-configured CI/CD pipeline automates app builds, tests, and
@@ -79,6 +73,6 @@ App Configuration & Management is essential for streamlining development, ensuri
 ## Best practices for app configuration
 
 - Use environment-specific app identifiers to separate development, testing, and production builds.
-- Configure multiple instances with unique URLs, App Icons, and App Identifiers
-- Automate builds and deployments with a robust CI/CD pipeline.
-- Leverage Median's robust backup and configuration management solution to ensure consistency across apps.
+- Configure multiple instances with unique URLs, app icons, and app identifiers.
+- Automate builds and deployments with a CI/CD pipeline.
+- Use Median's backup and configuration management to keep apps consistent.

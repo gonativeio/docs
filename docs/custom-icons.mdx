@@ -1,11 +1,11 @@
 ---
-title: "Custom Icons"
+title: "Custom icons"
 description: "Upload SVG icons for your native navigation."
 keywords: ["custom icons", "SVG", "icons", "native navigation", "branding"]
 searchable: true
 ---
 
-Median includes a large library of built-in icons, but many apps need icons that match their own brand or represent app-specific features. With **Custom Icons**, you can upload your own SVG files and use them anywhere native navigation icons are supported, including the Bottom Tab Bar, Top Navigation Bar, Sidebar Menu, and Contextual Navigation.
+Median includes a large library of built-in icons, but many apps need icons that match their own brand or represent app-specific features. With **Custom Icons**, you can upload your own SVG files and use them anywhere native navigation icons are supported, including the bottom tab bar, top navigation bar, sidebar menu, and contextual navigation toolbar.
 
 Custom icons are packaged into an icon font using [Fontello](https://fontello.com), an integrated tool that opens directly inside App Studio. Once imported, your icons appear alongside the built-in icon sets in the icon picker.
 
@@ -13,7 +13,7 @@ Custom icons are packaged into an icon font using [Fontello](https://fontello.co
   <iframe
     className="w-full aspect-video rounded-xl"
     src="https://www.youtube.com/embed/pGCTAI-gCX4"
-    title="Median.co Custom Icons"
+    title="Median custom icons"
     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
     allowFullScreen
   ></iframe>
@@ -27,6 +27,8 @@ Make sure you have the following ready:
 - One or more icons in **SVG format**
 
 <Tip>
+  **Prepare your SVG files**
+
   For best results, use simple, single-color SVG icons built from filled paths.
   Convert strokes and text to outlines and merge shapes into a single compound
   path before exporting. Fontello ignores colors, gradients, and embedded
@@ -35,7 +37,7 @@ Make sure you have the following ready:
 
 ## Adding custom icons
 
-The steps below use the Bottom Tab Bar as the entry point, but once uploaded, your custom icons are available to every native navigation component.
+The steps below use the bottom tab bar as the entry point, but once uploaded, your custom icons are available to every native navigation component.
 
 <Steps>
   <Step title="Open your app in App Studio">
@@ -66,7 +68,9 @@ The steps below use the Bottom Tab Bar as the entry point, but once uploaded, yo
     | Add after icon name | Unchecked |
 
     <Warning>
-      If the font name, CSS prefix, or suffix setting differ from the values above, your custom icons will not display in your app.
+      **Use these exact values**
+
+      If the font name, CSS prefix, or suffix setting differs from the values above, your custom icons will not display in your app.
     </Warning>
 
   </Step>
@@ -79,6 +83,8 @@ The steps below use the Bottom Tab Bar as the entry point, but once uploaded, yo
 </Steps>
 
 <Note>
+  **Rebuild required**
+
   Changes to native navigation icons require a new build of your app. Rebuild
   your app in App Studio to see your custom icons on device.
 </Note>
@@ -99,12 +105,12 @@ Check that the font name is set to `custom-icons`, the CSS prefix is set to `ico
 
 ### My icon appears blank, distorted, or as a solid shape
 
-    This usually means the SVG uses strokes, masks, or overlapping shapes that Fontello can't convert. Open the file in a vector editor, convert strokes to outlines, combine shapes into a single compound path, and import it again.
+This usually means the SVG uses strokes, masks, or overlapping shapes that Fontello can't convert. Open the file in a vector editor, convert strokes to outlines, combine shapes into a single compound path, and import it again.
 
 ### My icon shows the wrong color
 
-    Icon fonts are single-color. Colors defined in the SVG are ignored, and the icon uses the color set for the navigation component in App Studio. Adjust the component's icon color settings instead.
+Icon fonts are single-color. Colors defined in the SVG are ignored, and the icon uses the color set for the navigation component in App Studio. Adjust the component's icon color settings instead.
 
 ### Previously uploaded icons disappeared
 
-    Only icons that are highlighted at export are included in the font. Reopen Fontello, select all the icons you want to keep, and export again.
+Only icons that are highlighted at export are included in the font. Reopen Fontello, select all the icons you want to keep, and export again.

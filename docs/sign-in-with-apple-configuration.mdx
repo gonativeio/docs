@@ -1,23 +1,23 @@
 ---
-title: "Sign in with Apple Configuration"
-description: "Set up a Service ID for Sign in with Apple."
+title: "Sign in with Apple configuration"
+description: "Register a Service ID, configure web authentication, and add the required iOS capability to set up Sign in with Apple for your Median app."
 keywords: ["Sign in with Apple", "Service ID", "Apple Developer", "social login"]
 searchable: true
 ---
 
-This guide walks you through configuring Sign in with Apple for your Median app. You'll register a Service ID in Apple Developer Portal, configure web authentication, and confirm the required iOS capability.
+This guide walks you through configuring Sign in with Apple for your Median app. You'll register a Service ID in the Apple Developer Portal, configure web authentication, and confirm the required iOS capability.
 
 ## Before you start
 
 Make sure you have:
 
-* An Apple Developer account ([create one here <Icon icon="arrow-up-right-from-square" size={12} />](https://developer.apple.com/account/))
+* An Apple Developer account ([create an Apple Developer account <Icon icon="arrow-up-right-from-square" size={12} />](https://developer.apple.com/account/))
 * Your app's **iOS Bundle ID** (example: `co.median.ios.soclogin`)
 * Your **website domain** (example: `yourdomain.com`)
 * Your **return URLs** for authentication callbacks
-* Admin or Account Holder role in Apple Developer account
+* Admin or Account Holder role in your Apple Developer account
 
-**Not sure where to find these?** Check our [App Identifiers Guide](/docs/app-identifiers).
+**Not sure where to find these?** Check our [app identifiers guide](/docs/app-identifiers).
 
 <Info>
   **Sign in with Apple is iOS only**
@@ -29,7 +29,7 @@ Make sure you have:
 
 ### 1.1 Access identifiers
 
-1. Log in to your [Apple Developer Account <Icon icon="arrow-up-right-from-square" size={12} />](https://developer.apple.com/account/).
+1. Sign in to your [Apple Developer account <Icon icon="arrow-up-right-from-square" size={12} />](https://developer.apple.com/account/).
 2. Click **Certificates, Identifiers & Profiles**.
 
    <Frame caption="Apple Developer – Certificates, Identifiers & Profiles">
@@ -66,7 +66,7 @@ Make sure you have:
      <img src="/images/docs/73d0252-Service_ID.png" alt="Register a Services ID page with the Description and Identifier fields highlighted" />
    </Frame>
 
-**Save your Identifier** - This is your **Client ID** for Sign in with Apple (though no additional parameters are required in Median App Studio, as it uses your Bundle ID automatically).
+**Save your Identifier.** This is your **Client ID** for Sign in with Apple (though no additional parameters are required in Median App Studio, as it uses your Bundle ID automatically).
 
 ## Step 3: Configure web authentication
 
@@ -91,7 +91,7 @@ Make sure you have:
 2. **Domains and Subdomains**: Add your website domains.
 3. **Return URLs**: Add your authentication callback URLs.
 
-   <Frame caption="Apple Developer – Web Authentication Configuration">
+   <Frame caption="Apple Developer – web authentication configuration">
      <img src="/images/docs/b6ef7d1-Web_Authentication_Configuration.png" alt="Web Authentication Configuration dialog with the Primary App ID, Domains and Subdomains, and Return URLs fields highlighted" />
    </Frame>
 
@@ -134,11 +134,11 @@ For App Studio builds using the App Store Connect API workflow, Median can regis
   Failing to include the Sign in with Apple capability will result in Error Code 1000: `Error Domain=com.apple.AuthenticationServices.AuthorizationError Code=1000 "(null)"`
 </Warning>
 
-## Step 5: Enable the plugin in the Median App Studio
+## Step 5: Enable the plugin in Median App Studio
 
 Sign in with Apple requires minimal configuration in Median App Studio.
 
-1. Log in to [Median App Studio <Icon icon="arrow-up-right-from-square" size={12} />](https://median.co/app).
+1. Sign in to [Median App Studio <Icon icon="arrow-up-right-from-square" size={12} />](https://median.co/app).
 2. Navigate to: **Native Plugins** → **Social Login** → **Settings**.
 3. **Enable Sign in with Apple**.
 
@@ -157,6 +157,6 @@ If `email: null` is received, then reset the **Sign in with Apple** session.
 
 Apple only returns the complete user profile for the first initial login by a user. Subsequent logins to your app using Sign in with Apple from the same Apple ID will only return `idToken` and `email` will be null.
 
-During testing, you may reset the login session for your test account to simulate an initial login and return the complete user profile. To do this log in to your Apple account at [https://appleid.apple.com/account/manage <Icon icon="arrow-up-right-from-square" size={12} />](https://appleid.apple.com/account/manage) and go to "**Sign in and Security**" > "**Sign in with Apple**". In the window that opens click your app and then select "**Stop using Sign in with Apple**".
+During testing, you may reset the login session for your test account to simulate an initial login and return the complete user profile. To do this, sign in to your Apple account at [https://appleid.apple.com/account/manage <Icon icon="arrow-up-right-from-square" size={12} />](https://appleid.apple.com/account/manage) and go to "**Sign in and Security**" > "**Sign in with Apple**". In the window that opens, click your app and then select "**Stop using Sign in with Apple**".
 
-When you now use the **Sign in with Apple** in your app again, it will create a new session, and return the complete user profile for you to process and save.
+When you now use **Sign in with Apple** in your app again, it creates a new session, and return the complete user profile for you to process and save.

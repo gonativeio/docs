@@ -1,18 +1,18 @@
 ---
 title: "Zoom"
-description: "Add native Zoom Video SDK calls to your app."
+description: "Add in-app video calls to your app with the Zoom Video SDK, and join sessions from your website with the Median JavaScript Bridge."
 keywords: ["Zoom", "Zoom Video SDK", "video calls", "video conferencing"]
 searchable: true
 ---
 
 import { MedianLogo } from "/snippets/median-logo.jsx";
 
-The Zoom Plugin allows you to add [embedded video experiences](https://developers.zoom.us/docs/video-sdk/) leveraging Zoom's core technology such as in-app video calling. Provide advanced video features and ensure a cohesive and integrated experience for your users.
+The Zoom plugin lets you add [embedded video experiences](https://developers.zoom.us/docs/video-sdk/) built on Zoom's core technology, such as in-app video calling.
 
 <Check>
 **Developer Demo**
 
-Display our demo page in your app to test during development [https://median.dev/zoom/](https://median.dev/zoom/)
+Display our demo page in your app to test during development [https://median.dev/zoom/ <Icon icon="arrow-up-right-from-square" size={12} />](https://median.dev/zoom/)
 
 </Check>
 
@@ -20,16 +20,16 @@ Display our demo page in your app to test during development [https://median.dev
 
 ### Step 1: Generate JWT token
 
-A JWT token will be required to join Zoom video calls. Generate a JWT using your SDK Key and SDK Secret as described in this [Zoom Documentation](https://developers.zoom.us/docs/video-sdk/auth/#how-to-generate-a-video-sdk-jwt)
+You need a JWT token to join Zoom video calls. Generate a JWT using your SDK Key and SDK Secret as described in Zoom's guide to [generating a Video SDK JWT](https://developers.zoom.us/docs/video-sdk/auth/#how-to-generate-a-video-sdk-jwt).
 
 ### Step 2: Run JavaScript Bridge command
 
-Run the following JS Bridge method with the JWT token, meeting number, and an optional username and password as seen below:
+Run the following JavaScript Bridge method with the JWT token, meeting number, and an optional username and password as seen below:
 
 <MedianLogo />
 
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   // If passed to the `join` method as a callback this will be called upon conclusion of the call
   function zoom_callback(data) {
       if (data.error) {

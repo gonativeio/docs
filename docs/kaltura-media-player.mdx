@@ -1,6 +1,6 @@
 ---
-title: "Kaltura Media Player"
-description: "Stream video with the native Kaltura player."
+title: "Kaltura media player"
+description: "Stream live and on-demand Kaltura video in a native player with AirPlay and Chromecast support, using the JavaScript Bridge."
 keywords: ["Kaltura", "media player", "video streaming", "AirPlay", "Chromecast"]
 searchable: true
 ---
@@ -9,19 +9,19 @@ import { MedianLogo } from "/snippets/median-logo.jsx";
 
 Integrate Kaltura's media player into your mobile app to stream live and on-demand video content natively. The player includes built-in support for AirPlay and Google Chromecast, enabling streaming to compatible smart TVs and devices.
 
-Kaltura is a widely adopted, enterprise-grade video platform used by global organizations for high-quality video playback, content management, monetization, and analytics. The Kaltura Player supports adaptive bitrate streaming, customizable player UI, closed captions, and playback analytics, making it ideal for professional video delivery.
+Kaltura is an enterprise video platform for video playback, content management, monetization, and analytics. The Kaltura Player supports adaptive bitrate streaming, a customizable player UI, closed captions, and playback analytics.
 
 ## Implementation guide
 
-### Play a video 
+### Play a video
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   median.kaltura.play({
     entryId: 'your_kaltura_entry_id',
-    onError: 'errorCallbackFunction',     // Optional: function to handle playback errors
-    callback: successCallbackFunction     // Optional: function to run after successful playback
+    onError: 'errorCallbackFunction',     // Optional: name of a function to handle playback errors
+    callback: 'successCallbackFunction'   // Optional: name of a function to run after playback starts
   });
   ```
 </CodeGroup>
@@ -38,7 +38,7 @@ Kaltura is a widely adopted, enterprise-grade video platform used by global orga
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   function handlePlaybackError(error) {
     console.error("Kaltura playback error:", error);
   }

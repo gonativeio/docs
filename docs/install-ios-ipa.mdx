@@ -1,6 +1,6 @@
 ---
 title: "Install iOS IPA"
-description: "Install an IPA on registered iOS devices."
+description: "Install a development IPA from Median App Studio on registered iOS devices with a QR code, after enabling Developer Mode."
 keywords: ["install IPA", "iOS", "device testing", "development profile", "UDID"]
 searchable: true
 ---
@@ -10,7 +10,7 @@ This direct-install workflow is useful for development profile builds and quick 
 <Info>
   **Device must be registered**
 
-This guide assumes your device is enrolled as an iOS tester, as covered in Registering Testing Devices, and that signing is complete per Configure Signing for Your App. Installation will fail on a device that hasn't been registered.
+This guide assumes your device is enrolled as an iOS tester, as covered in [Registering testing devices](/docs/registering-testing-devices), and that signing is complete per [Configure signing for your app](/docs/configure-signing-for-your-app). Installation will fail on a device that hasn't been registered.
 
 </Info>
 
@@ -18,22 +18,22 @@ This guide assumes your device is enrolled as an iOS tester, as covered in Regis
 
 ### Step 1: Enable developer mode
 
-On the test device, go to Settings → Privacy & Security → Developer Mode and turn it on. The device will restart and prompt you to confirm.
+On the test device, go to **Settings → Privacy & Security → Developer Mode** and turn it on. The device will restart and prompt you to confirm.
 
-<Frame caption="iOS Privacy & Security Settings">
-  <img src="/images/docs/docs/ios-binary/image6.png" />
+<Frame caption="iOS Privacy & Security settings">
+  <img alt="Developer Mode option in iOS Privacy & Security settings" src="/images/docs/docs/ios-binary/image6.png" />
 </Frame>
 
 iOS blocks installation of apps signed outside the App Store unless Developer Mode is explicitly enabled. This is an Apple-level requirement, not a Median-specific setting.
 
 ### Step 2: Get the install link or QR code
 
-If you are a member of the development team, open the app in App Studio, go to **Build & Deploy**, then click **Install on iPhone/iPad** for the iOS IPA build. **If the app is built with a deployment profile the 'Install on iPhone/iPad' will be disabled.**
+If you are a member of the development team, open the app in App Studio, go to **Build & Deploy**, then click **Install on iPhone/iPad** for the iOS IPA build. **If the app is built with a deployment profile, Install on iPhone/iPad is disabled.**
 
-If you are not a member of the development team you will need to be provided with the public sharing link for the app where you can click **Install IPA on device**. In either case you will open a modal with a QR code.
+If you are not a member of the development team, you need the public sharing link for the app where you can click **Install IPA on device**. In either case, a modal opens with a QR code.
 
-<Frame caption="Installation QR Code">
-  <img src="/images/docs/6cfd2a12e3a62ae040f3e61202072735992c34183ce5e3cf92ba2ee32954e585-Screenshot_2026-07-06_at_10.31.52.png" />
+<Frame caption="Installation QR code">
+  <img alt="Modal in App Studio with a QR code for installing the iOS app" src="/images/docs/6cfd2a12e3a62ae040f3e61202072735992c34183ce5e3cf92ba2ee32954e585-Screenshot_2026-07-06_at_10.31.52.png" />
 </Frame>
 
 ### Step 3: Scan the QR code

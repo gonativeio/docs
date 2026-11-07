@@ -1,23 +1,23 @@
 ---
 title: "Google Services"
-description: "Add Firebase config files to your app."
+description: "Generate the Firebase configuration files for iOS and Android and upload them in App Studio to enable Firebase features in your app."
 keywords: ["Google Services", "Firebase", "google-services.json", "GoogleService-Info.plist", "configuration"]
 searchable: true
 ---
 
-If your app relies on Firebase-powered features like [Firebase Cloud Messaging push notifications](/docs/firebase-cloud-messaging), [Firebase Analytics](/docs/firebase-analytics), or [Firebase Crashlytics reporting](/docs/crashlytics) it needs two configuration files from the Firebase Console:
+If your app relies on Firebase-powered features like [Firebase Cloud Messaging push notifications](/docs/firebase-cloud-messaging), [Firebase Analytics](/docs/firebase-analytics), or [Firebase Crashlytics reporting](/docs/crashlytics), it needs two configuration files from the Firebase Console:
 
-- `GoogleService-Info.plist`for iOS
-- `google-services.json`for Android
+- `GoogleService-Info.plist` for iOS
+- `google-services.json` for Android
 
 Median lets you upload these files directly in App Studio, so Firebase is wired into your native mobile app builds without touching source code. This guide walks through generating both files in the Firebase Console and uploading them to your Median app.
 
-### Prerequisites
+## Prerequisites
 
 Before you start, make sure you have:
 
 - A [Google Firebase account](https://firebase.google.com/) with owner or editor access to the target project
-- Your app's **Bundle ID** (iOS) and **Package Name** (Android), found in App Studio under _Build & Deploy > App Identifiers_ see [App Identifiers](/docs/app-identifiers) if you haven't set these yet.
+- Your app's **Bundle ID** (iOS) and **Package Name** (Android), found in App Studio under _Build & Deploy > App Identifiers_. See [App identifiers](/docs/app-identifiers) if you haven't set these yet.
 - A licensed Median app (required to access the Google Services upload setting)
 
 This guide uses a demo app with the following identifiers, which you'll need to replace with your own:
@@ -39,49 +39,49 @@ Google's Console UI changes from time to time. If any screen in this guide doesn
 
 If you do not have an active Google Firebase project, you may need to create a new project after signing into your [Google Firebase Account](https://firebase.google.com/docs/android/setup).
 
-Once your project is setup you can start the integration by choosing the iOS or Android logo in your Project Overview screen. Both integrations can be set up under one Project.
+Once your project is set up, you can start the integration by choosing the iOS or Android logo in your Project Overview screen. Both integrations can be set up under one Project.
 
-<Frame caption="Google Firebase - Project Overview">
-  <img src="/images/docs/dc35b33c4875abc9bfedea9df79c72f711ee2976b9586a20e0536f11844942a4-Screenshot_2026-09-03_at_09.50.55.png" />
+<Frame caption="Google Firebase project overview">
+  <img alt="Firebase Project Overview screen with iOS and Android app options" src="/images/docs/dc35b33c4875abc9bfedea9df79c72f711ee2976b9586a20e0536f11844942a4-Screenshot_2026-09-03_at_09.50.55.png" />
 </Frame>
 
 ### Step 2: Register your iOS app and download the config file
 
-You can register your app in Firebase by providing the Apple Bundle ID. The Apple Bundle ID of your app can be found and configured in the App Studio under the _Build & Deploy > App Identifiers_ section. You can learn more about your Bundle ID in the [App Identifiers](/docs/app-identifiers) documentation.
+You can register your app in Firebase by providing the Apple Bundle ID. The Apple Bundle ID of your app can be found and configured in App Studio under the _Build & Deploy > App Identifiers_ section. Learn more about your Bundle ID in the [App identifiers](/docs/app-identifiers) documentation.
 
-<Frame caption="Google Firebase - Register iOS App">
-  <img src="/images/docs/61c9a035ef6dd821a2f4907f250057c99b691bd2a672eec15d1efa9b485f1d80-Screenshot_2026-09-03_at_09.53.38.png" />
+<Frame caption="Register an iOS app in Firebase">
+  <img alt="Firebase form to register an iOS app with its Apple Bundle ID" src="/images/docs/61c9a035ef6dd821a2f4907f250057c99b691bd2a672eec15d1efa9b485f1d80-Screenshot_2026-09-03_at_09.53.38.png" />
 </Frame>
 
 Once registered, download your generated `GoogleService-Info.plist` file.
 
-<Frame caption="Google Firebase - GoogleServices-Info download">
-  <img src="/images/docs/4bbc8fc9aefe1b21cb535209ca38b6a2eaf74a798cf2ecbc9de320dc9f251d17-Screenshot_2026-09-03_at_09.54.19.png" />
+<Frame caption="Download GoogleService-Info.plist from Firebase">
+  <img alt="Firebase step to download the GoogleService-Info.plist file" src="/images/docs/4bbc8fc9aefe1b21cb535209ca38b6a2eaf74a798cf2ecbc9de320dc9f251d17-Screenshot_2026-09-03_at_09.54.19.png" />
 </Frame>
 
 That's it for iOS. You don't need to complete Firebase's SDK installation steps, since Median handles that natively once you upload this file (see Step 4).
 
 ### Step 3: Register your Android app and download the config file
 
-You can register your app in Firebase by providing the Android Package Name. The Android Package Name of your app can be found and configured in the App Studio under the _Build & Deploy > App Identifiers_ section. You can learn more about your package name in the [App Identifiers](/docs/app-identifiers) documentation.
+You can register your app in Firebase by providing the Android Package Name. The Android Package Name of your app can be found and configured in App Studio under the _Build & Deploy > App Identifiers_ section. Learn more about your package name in the [App identifiers](/docs/app-identifiers) documentation.
 
-<Frame caption="Google Firebase - Register Android App">
-  <img src="/images/docs/7733cd14bccd879bf72c08d53fcffdc21d208d106512ee474232eeee98402eca-Screenshot_2026-09-03_at_09.57.43.png" />
+<Frame caption="Register an Android app in Firebase">
+  <img alt="Firebase form to register an Android app with its package name" src="/images/docs/7733cd14bccd879bf72c08d53fcffdc21d208d106512ee474232eeee98402eca-Screenshot_2026-09-03_at_09.57.43.png" />
 </Frame>
 
 Once your app is registered you can download your `google-services.json` file.
 
-<Frame caption="Google Firebase - Download google-services.json">
-  <img src="/images/docs/c9e2f8edae787f0378f848316ad2b6e9a405025e495ab653948ba9a041a81e0a-Screenshot_2026-09-03_at_09.58.27.png" />
+<Frame caption="Download google-services.json from Firebase">
+  <img alt="Firebase step to download the google-services.json file" src="/images/docs/c9e2f8edae787f0378f848316ad2b6e9a405025e495ab653948ba9a041a81e0a-Screenshot_2026-09-03_at_09.58.27.png" />
 </Frame>
 
 Once you download the configuration file the Google Firebase setup for Android is complete.
 
-#### Android debug builds & product flavors
+#### Android debug builds and product flavors
 
 If your app uses multiple Android product flavors or a separate debug package (for example, `com.yourpackagename.dev`), generate a separate `google-services.json` for each package name and place it in the matching source folder. For example, a `dev` flavor build expects its file at:
 
-```
+```text
 /app/src/dev/google-services.json
 ```
 
@@ -94,8 +94,8 @@ In App Studio, go to _Build & Deploy > Google Services_ and upload both files:
 
 You can either upload the files directly or open each one in a text editor and paste its contents into App Studio.
 
-<Frame caption="App Studio - Google Services File Upload">
-  <img src="/images/docs/0e504ff6e9f542674cfee420e16ad8e81a0f6105cd6b7d2f00374af528fbc1af-output.gif" />
+<Frame caption="Google Services file upload in App Studio">
+  <img alt="Uploading GoogleService-Info.plist and google-services.json in Build & Deploy > Google Services" src="/images/docs/0e504ff6e9f542674cfee420e16ad8e81a0f6105cd6b7d2f00374af528fbc1af-output.gif" />
 </Frame>
 
 Save your changes and rebuild your app. Firebase services are now configured for both platforms.
@@ -108,7 +108,7 @@ Confirm both files were uploaded. Check _Build & Deploy > Google Services_ in Ap
 
 ### Config uploaded, but Firebase still isn't initializing
 
-Double check that the Bundle ID / Package Name registered in Firebase exactly matches the identifiers in App Studio under _App Identifiers_. A mismatch is the most common root cause and Firebase silently fails to initialize if the identifiers don't match.
+Double-check that the Bundle ID or Package Name registered in Firebase exactly matches the identifiers in App Studio under _App Identifiers_. A mismatch is the most common root cause, and Firebase silently fails to initialize if the identifiers don't match.
 
 ## Frequently asked questions
 

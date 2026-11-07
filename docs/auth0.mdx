@@ -1,6 +1,6 @@
 ---
 title: "Auth0"
-description: "Add native Auth0 sign-in to your app."
+description: "Add native Auth0 Universal Login to your app, store refresh tokens securely, and enable Face ID, Touch ID, and Android biometrics."
 keywords: ["Auth0", "authentication", "sign in", "OAuth", "SSO"]
 searchable: true
 ---
@@ -10,7 +10,7 @@ import { AppetizeEmbed } from "/snippets/appetize-embed.jsx";
 
 Auth0 is a highly adaptable authentication and authorization platform. Median's Auth0 Native Plugin implements the [Auth0 iOS](https://github.com/auth0/Auth0.swift) and [Android SDK](https://github.com/auth0/Auth0.Android) into your app.
 
-The Auth0 integration allows you to request a login token from Auth0 using Universal Login and a native login UI. And optionally to store a refresh token to the secure device storage so that future logins are seamless using Face ID / Touch ID and Android Biometric. This biometric functionality is similar to our [Face ID / Touch ID Android Biometric](/docs/auth) Native Plugin.
+The Auth0 integration allows you to request a login token from Auth0 using Universal Login and a native login UI. It can optionally store a refresh token in secure device storage, so that future sign-ins can use Face ID / Touch ID and Android Biometric. This biometric functionality is similar to our [Face ID / Touch ID Android Biometric](/docs/auth) Native Plugin.
 
 <Check>
 **Developer Demo**
@@ -24,11 +24,11 @@ Display our demo page in your app to test during development [https://median.dev
 ### Auth0 configuration
 
 <Warning>
-  **Configuration Disclaimer**
+  **Configuration disclaimer**
 
 Please be aware that the following steps provide a sample implementation to demonstrate the configuration for Median's Developer Demo. Auth0 is a highly customizable authentication and authorization service and the configuration below may not be suitable for your production environment. **We strongly recommend consulting with Auth0 experts to review and tailor your production configuration to your needs**.
 
-Additional information on the Auth0 Universal Login configuration for mobile applications can be found in the [Auth0 Native App Quickstart Guide](https://auth0.com/docs/quickstart/native#native)
+Additional information on the Auth0 Universal Login configuration for mobile applications can be found in the [Auth0 Native App Quickstart Guide](https://auth0.com/docs/quickstart/native#native).
 
 </Warning>
 
@@ -36,8 +36,8 @@ Additional information on the Auth0 Universal Login configuration for mobile app
 
 Regardless of your existing Applications, Universal Login will require a new Native Application, as the Auth0 Quickstart Guide outlines.
 
-<Frame caption="Auth0 Application Type">
-  <img src="/images/docs/a7fa5032b8b2f6df1ec5e2aef86f50ac8d2d81153bab2f155e8b7473f52aeeb1-Screenshot_2025-09-08_at_14.45.53.png" />
+<Frame caption="Auth0 application type">
+  <img src="/images/docs/a7fa5032b8b2f6df1ec5e2aef86f50ac8d2d81153bab2f155e8b7473f52aeeb1-Screenshot_2025-09-08_at_14.45.53.png" alt="Native application type selected when creating an Auth0 application" />
 </Frame>
 
 #### Auth0 application URIs
@@ -54,7 +54,7 @@ For our example configuration, we assume the following values:
 
 Based on the parameters above we can add the following three URLs to the Auth0 application configuration as allowed Callback URLs and Allowed Logout URLs:
 
-```
+```text
 demo://dev-tax7avdd0xmeaavx.us.auth0.com/android/co.median.android.ynbmjx/callback,
 https://dev-tax7avdd0xmeaavx.us.auth0.com/ios/co.median.ios.ynbmjx/callback,
 co.median.ios.ynbmjx://dev-tax7avdd0xmeaavx.us.auth0.com/ios/co.median.ios.ynbmjx/callback
@@ -62,16 +62,16 @@ co.median.ios.ynbmjx://dev-tax7avdd0xmeaavx.us.auth0.com/ios/co.median.ios.ynbmj
 
 You can learn more about the application URLs for your target platform (iOS and/or Android) in the respective [Auth0 Native App Quickstart Guide](https://auth0.com/docs/quickstart/native#native).
 
-<Frame caption="Auth0 Callback and Logout URLs">
-  <img src="/images/docs/8c0dc2b5e753710e5f6edc559e2f56eeda6333cbfba2d0103b1d91ab0888047d-Screenshot_2025-09-08_at_15.02.49.png" />
+<Frame caption="Auth0 callback and logout URLs">
+  <img src="/images/docs/8c0dc2b5e753710e5f6edc559e2f56eeda6333cbfba2d0103b1d91ab0888047d-Screenshot_2025-09-08_at_15.02.49.png" alt="Allowed Callback URLs and Allowed Logout URLs in the Auth0 application settings" />
 </Frame>
 
-#### Advanced settings: Device settings
+#### Advanced settings: device settings
 
 Please populate your iOS bundle ID and Android Package name under Advanced Setting > Device Settings in the Auth0 Dashboard.
 
-<Frame caption="Auth0 Device Settings">
-  <img src="/images/docs/d3a3a85e5ad7ef455d172e83c17944fcdb876f2cec226477623922271734992c-Screenshot_2025-09-08_at_15.05.23.png" />
+<Frame caption="Auth0 device settings">
+  <img src="/images/docs/d3a3a85e5ad7ef455d172e83c17944fcdb876f2cec226477623922271734992c-Screenshot_2025-09-08_at_15.05.23.png" alt="iOS and Android settings under Advanced Settings > Device Settings in Auth0" />
 </Frame>
 
 ### App configuration
@@ -80,7 +80,7 @@ Please populate your iOS bundle ID and Android Package name under Advanced Setti
 
 ##### Link handling rules
 
-Verify the link Handling rules for links to your Auth0 Domain. You can learn more about Link Handling in our [Link Behavior](/docs/internal-vs-external-links) article.
+Verify the link handling rules for links to your Auth0 Domain. You can learn more about link handling in our [Link Behavior](/docs/internal-vs-external-links) article.
 
 ##### Universal deep links
 
@@ -92,31 +92,31 @@ Verify a [URL Scheme Protocol](/docs/url-scheme-protocol) is specified for your 
 
 #### Auth0 plugin configuration
 
-The Auth0 Native Plugin requires several parameters to be set in the App Studio, on the Native Plugins tab under "Advanced Mode". Sample parameters are as follows:
+The Auth0 Native Plugin requires several parameters to be set in App Studio, on the **Native Plugins** tab under "Advanced Mode". Sample parameters are as follows:
 
 <MedianLogo />
 <CodeGroup>
-  ```JSON JSON
+  ```json JSON
   {
-    "domain": "dev-tax7avdd0xmeaavx.us.auth0.com", 
-    "clientId": "wTD****************KBwV", 
+    "domain": "dev-tax7avdd0xmeaavx.us.auth0.com",
+    "clientId": "wTD****************KBwV",
     "scheme": "demo",
-    "audience":"https://median-test.auth0.com/api/v2/"
+    "audience": "https://median-test.auth0.com/api/v2/"
   }
-
-// Parameter notes:
-// "scheme" is based on the URL scheme of your Android Callback URLs
-// "audience" is optional and based on your Auth0 tenant config
-
-```
+  ```
 </CodeGroup>
+
+Parameter notes:
+
+- `scheme` is based on the URL scheme of your Android Callback URLs.
+- `audience` is optional and based on your Auth0 tenant config.
 
 These parameters should match the [Application Settings](https://auth0.com/docs/get-started/applications/application-settings) on your Auth0 Dashboard.
 
 You can find an example configuration based on the parameters below.
 
-<Frame caption="App Studio - Auth0 Example Configuration">
-<img src="/images/docs/b1fa03c2730f06cce914894ff62885da839d74127f55694cf551fd2b914ed057-Screenshot_2025-09-29_at_12.54.18.png" />
+<Frame caption="App Studio: Auth0 example configuration">
+<img src="/images/docs/b1fa03c2730f06cce914894ff62885da839d74127f55694cf551fd2b914ed057-Screenshot_2025-09-29_at_12.54.18.png" alt="Auth0 plugin parameters in App Studio Advanced Mode" />
 </Frame>
 
 ## Implementation guide
@@ -129,38 +129,38 @@ To prompt Universal Login and retrieve a token:
 
 <MedianLogo />
 <CodeGroup>
-```JavaScript JavaScript
+```javascript JavaScript
 const credentials = await median.auth0.login(
   {
     scope: "email profile offline_access" // optionally pass a scope
   }
 );
 
-// credentials object will have the following structure
-{
-  accessToken: STRING,
-  idToken: STRING,
-  scope: STRING,
-  error: STRING, // if an error occurred,
-  refreshToken: STRING // with 'offline_access' scope configured
-}
+// credentials object will have the following structure:
+// {
+//   accessToken: string,
+//   idToken: string,
+//   scope: string,
+//   error: string, // if an error occurred
+//   refreshToken: string // with 'offline_access' scope configured
+// }
 ```
 </CodeGroup>
 
 <Frame caption="Auth0 Universal Login">
-  <img src="/images/docs/3f6bdcc-image.png" />
+  <img src="/images/docs/3f6bdcc-image.png" alt="Auth0 Universal Login screen in the app" />
 </Frame>
 
 ### Sign out
 
-To logout:
+To sign out:
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
-  median.auth0.logout.then(function(){
-    error: STRING // if an error occurred
-  }
+  ```javascript JavaScript
+  median.auth0.logout().then(function (result) {
+    // result.error is set if an error occurred
+  });
   ```
 </CodeGroup>
 
@@ -168,9 +168,9 @@ To logout:
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   // Support for Face ID / Touch ID / Android Biometrics is enabled
-  // when logging in using the enableBiometrics parameter.
+  // when signing in using the enableBiometrics parameter.
 
   median.auth0.login({
     enableBiometrics: true,
@@ -178,41 +178,39 @@ To logout:
   });
 
   // To determine if biometrics are enabled and available on the device
-  // after login use the status method.
+  // after sign-in use the status method.
 
   const auth0Status = await median.auth0.status();
 
-  // status object will have the following structure
+  // status object will have the following structure:
   // hasValidCredentials indicates whether credentials are stored, and that the access token has not expired.
-
-  {
-    biometryAvailable: boolean,
-    biometryType: 'touchId' | 'faceId' | 'none',
-    hasValidCredentials: boolean
-  }
-
-```
+  // {
+  //   biometryAvailable: boolean,
+  //   biometryType: 'touchId', 'faceId', or 'none',
+  //   hasValidCredentials: boolean
+  // }
+  ```
 </CodeGroup>
 
 ### Get saved credentials
 
-Credentials are saved in the device secure storage and can be retrieved in later sessions. Retrieving saved credentials will automatically renew the tokens using the `refreshToken` already saved from the previous successful login.
+Credentials are saved in the device secure storage and can be retrieved in later sessions. Retrieving saved credentials will automatically renew the tokens using the `refreshToken` already saved from the previous successful sign-in.
 
-To get credentials saved in secure storage
+To get credentials saved in secure storage:
 
 <MedianLogo />
 <CodeGroup>
-```JavaScript JavaScript
+```javascript JavaScript
 const credentials = await median.auth0.getCredentials();
 
-// credentials object will have the following structure
-{
-  accessToken: STRING,
-  idToken: STRING,
-  scope: STRING,
-  error: STRING, // if an error occurred,
-  refreshToken: STRING
-}
+// credentials object will have the following structure:
+// {
+//   accessToken: string,
+//   idToken: string,
+//   scope: string,
+//   error: string, // if an error occurred
+//   refreshToken: string
+// }
 ```
 </CodeGroup>
 
@@ -220,16 +218,15 @@ const credentials = await median.auth0.getCredentials();
 
 Retrieving the credentials automatically returns renewed credentials if the existing credentials are expired but you can also request to renew the credentials manually.
 
-You can optionally pass a `refreshToken` to be used. By default, the method will use the refresh token saved from the previous successful login.
+You can optionally pass a `refreshToken` to be used. By default, the method will use the refresh token saved from the previous successful sign-in.
 
-To logout:
+To renew credentials manually:
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
-  const credentials median.auth0.renew({
-    // optionally pass a refresh token
-    refreshToken?: string 
+  ```javascript JavaScript
+  const credentials = await median.auth0.renew({
+    refreshToken: '<refresh_token>' // optional
   });
   ```
 </CodeGroup>
@@ -252,16 +249,16 @@ To logout:
 ### Website implementation
 
 - [ ] Use `median.auth0.login` to launch the Auth0 plugin and initiate the authentication flow for app users.
-- [ ] Use `median.auth0.logout` to provide app users with a logout method.
+- [ ] Use `median.auth0.logout` to provide app users with a sign-out method.
 - [ ] Review JavaScript and Auth0 implementation to ensure the use of refresh tokens and enable biometrics.
 - [ ] Set up and publicly host `[yourdomain]/.well-known/assetlinks.json` and `[yourdomain]/.well-known/apple-app-site-association` files to enable deep linking.
 
 ## Auth0 plugin demo
 
 <Warning>
-  **Sample App - Note**
+  **Sample app note**
 
-The following demo details the JSON responses for each JavaScript Bridge function based on the configuration and setup outlined above. Please be aware that biometric functionality cannot be tested using iOS and Android simulators. A video showcasing FaceID/TouchID and Android Biometrics support is included below for your reference.
+The following demo details the JSON responses for each JavaScript Bridge function based on the configuration and setup outlined above. Please be aware that biometric functionality cannot be tested using iOS and Android simulators. A video showcasing Face ID/Touch ID and Android Biometrics support is included below for your reference.
 
 </Warning>
 
@@ -273,7 +270,7 @@ The following demo details the JSON responses for each JavaScript Bridge functio
 <iframe
   className="w-full aspect-video rounded-xl"
   src="https://www.youtube.com/embed/AF_lfUog9sg"
-  title="Median.co's Auth0 plugin"
+  title="Median's Auth0 plugin"
   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
   allowFullScreen
 ></iframe>
@@ -283,17 +280,17 @@ The following demo details the JSON responses for each JavaScript Bridge functio
 <AccordionGroup>
 <Accordion title="Why should I integrate Median's Auth0 plugin and use Auth0 Universal Login?" id="why-should-i-integrate-medians-auth0-plugin-and-use-auth0-universal-login">
 
-Median's Auth0 plugin makes use of the Auth0 iOS and Android native SDKs for the most secure app login experience, consistent with best practices for managing authentication. To learn more about the security benefits of Auth0 Universal Login versus embedded login flows consult the Auth0 documentation discussing [Centralized Universal Login vs. Embedded Login](https://auth0.com/docs/authenticate/login/universal-vs-embedded-login#security-risks).
+Median's Auth0 plugin makes use of the Auth0 iOS and Android native SDKs for the most secure app sign-in experience, consistent with best practices for managing authentication. To learn more about the security benefits of Auth0 Universal Login versus embedded login flows consult the Auth0 documentation discussing [Centralized Universal Login vs. Embedded Login](https://auth0.com/docs/authenticate/login/universal-vs-embedded-login#security-risks).
 
 </Accordion>
 <Accordion title="Can I support login on my own web page displayed within the app webview?" id="can-i-support-login-on-my-own-web-page-displayed-within-the-app-webview">
 
-Mobile security policies and the Internet Engineering Task Force (IETF) Best Current Practices (BCP) require that user login only be made in a browser session facilitated through a native app, and not be permitted in an embedded app webview itself. Google Sign-in, Facebook Login, and Auth0 hosted Universal login make this mandatory.
+Mobile security policies and the Internet Engineering Task Force (IETF) Best Current Practices (BCP) require that user login only be made in a browser session facilitated through a native app, and not be permitted in an embedded app webview itself. Google Sign-In, Facebook Login, and Auth0 hosted Universal Login make this mandatory.
 
-- [https://datatracker.ietf.org/doc/html/rfc8252](https://datatracker.ietf.org/doc/html/rfc8252)
-- [https://auth0.com/blog/oauth-2-best-practices-for-native-apps/](https://auth0.com/blog/oauth-2-best-practices-for-native-apps/)
-- [https://developers.googleblog.com/en/upcoming-security-changes-to-googles-oauth-20-authorization-endpoint-in-embedded-webviews/](https://developers.googleblog.com/en/upcoming-security-changes-to-googles-oauth-20-authorization-endpoint-in-embedded-webviews/)
-- [https://developers.facebook.com/blog/post/2021/06/28/deprecating-support-fb-login-authentication-android-embedded-browsers/](https://developers.facebook.com/blog/post/2021/06/28/deprecating-support-fb-login-authentication-android-embedded-browsers/)
+- [IETF RFC 8252: OAuth 2.0 for Native Apps](https://datatracker.ietf.org/doc/html/rfc8252)
+- [Auth0: OAuth 2.0 best practices for native apps](https://auth0.com/blog/oauth-2-best-practices-for-native-apps/)
+- [Google: security changes to OAuth 2.0 in embedded webviews](https://developers.googleblog.com/en/upcoming-security-changes-to-googles-oauth-20-authorization-endpoint-in-embedded-webviews/)
+- [Meta: deprecating Facebook Login on Android embedded browsers](https://developers.facebook.com/blog/post/2021/06/28/deprecating-support-fb-login-authentication-android-embedded-browsers/)
 
 Our Social Login and Auth0 plugins are the recommended solutions for authentication within your app as they offer the corresponding native SDKs that meet security policies and follow best practices.
 

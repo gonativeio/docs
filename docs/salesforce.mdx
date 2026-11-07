@@ -1,6 +1,6 @@
 ---
-title: "SalesforceOverview"
-description: "Turn your Experience Cloud site into a native app."
+title: "Salesforce overview"
+description: "Turn your Salesforce Experience Cloud site into a native iOS and Android app with Median, and find the guide for each step of the integration."
 keywords: ["Salesforce", "Experience Cloud", "native app", "enterprise", "LWC"]
 searchable: true
 ---
@@ -10,9 +10,9 @@ Salesforce Experience Cloud is a digital experience platform for building brande
 
 Experience Cloud supports three core deployment patterns:
 
-* **Customer Communities.** Reduce support costs by enabling self-service access to cases, knowledge articles, and account data.
-* **Partner Communities.** Accelerate sales cycles by providing partners with real-time pipeline visibility and CRM access.
-* **Employee Communities.** Centralize internal resources, approvals, and communications in a single authenticated workspace.
+* **Customer communities.** Reduce support costs by enabling self-service access to cases, knowledge articles, and account data.
+* **Partner communities.** Accelerate sales cycles by providing partners with real-time pipeline visibility and CRM access.
+* **Employee communities.** Centralize internal resources, approvals, and communications in a single authenticated workspace.
 
 Median makes each of these patterns available as a native mobile app on iOS and Android, with no changes required to your existing Experience Cloud configuration.
 
@@ -38,7 +38,7 @@ Organizations running Salesforce at enterprise scale typically have requirements
 
 Median operates as a native container around your existing Salesforce authentication layer. End users authenticate through your standard Experience Cloud login flow, including SSO, MFA, and any identity provider configured in Salesforce. Median does not proxy, cache, or intercept authentication tokens.
 
-Additional enterprise-grade controls available through Median.co include:
+Additional enterprise-grade controls available through Median include:
 
 * **Jailbreak and root detection.** Prevents the app from running on compromised devices.
 * **Microsoft Intune support.** Enables mobile application management (MAM) policies for regulated industries.
@@ -58,11 +58,11 @@ The Salesforce integration documentation is organized into four guides. Each gui
 
 ### 1. Getting started with Salesforce Experience Cloud
 
-[Getting Started with Salesforce Experience Cloud](/docs/getting-started-with-salesforce-experience-cloud) covers the foundational steps required before any LWC development begins:
+[Getting started with Salesforce Experience Cloud](/docs/getting-started-with-salesforce-experience-cloud) covers the foundational steps required before any LWC development begins:
 
 * Retrieving your Experience Cloud site URL
 * Creating your app in Median App Studio
-* Configuring Content Security Policy (CSP) in Experience Builder to allow the Median JavaScript bridge
+* Configuring Content Security Policy (CSP) in Experience Builder to allow the Median JavaScript Bridge
 
 ### 2. Lightning Web Components and the JavaScript Bridge
 
@@ -75,7 +75,7 @@ The Salesforce integration documentation is organized into four guides. Each gui
 
 ### 3. Deep linking
 
-[Deep Linking for Salesforce Experience Cloud](/docs/salesforce-deep-linking) covers the Salesforce-specific challenge of hosting Apple App Site Association (AASA) and Android Asset Links verification files on a managed platform:
+[Deep linking for Salesforce Experience Cloud](/docs/salesforce-deep-linking) covers the Salesforce-specific challenge of hosting Apple App Site Association (AASA) and Android Asset Links verification files on a managed platform:
 
 * Serving AASA and Asset Links JSON through Visualforce pages and Apex controllers
 * Mapping well-known paths via URL rewriting in Salesforce Setup
@@ -84,7 +84,7 @@ The Salesforce integration documentation is organized into four guides. Each gui
 
 ### 4. Component deployment and reference
 
-[Salesforce LWC Component Deployment and Reference](/docs/salesforce-lwc-components) covers deploying the open-source component library and building custom components:
+[Salesforce LWC component deployment and reference](/docs/salesforce-lwc-components) covers deploying the open-source component library and building custom components:
 
 * Deploying components with the Salesforce CLI
 * Adding components to Experience Builder pages
@@ -94,7 +94,7 @@ The Salesforce integration documentation is organized into four guides. Each gui
 
 The [median-salesforce-components](https://github.com/gonativeio/median-salesforce-components) repository on GitHub provides ready-to-deploy reference components covering common Median integration patterns for Salesforce:
 
-| Component         | Median Feature                                  | Apex Required |
+| Component         | Median feature                                  | Apex required |
 | ----------------- | ----------------------------------------------- | ------------- |
 | `oneSignal`       | Push notification info, user login and logout   | No            |
 | `biometricAuth`   | Biometric credential save, retrieve, and delete | No            |

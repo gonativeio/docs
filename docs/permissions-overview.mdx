@@ -1,6 +1,6 @@
 ---
-title: "Permissions Overview"
-description: "Manage device permissions in your app."
+title: "Permissions overview"
+description: "Understand device permission prompts on iOS and Android, check permission status, and open app settings with the JavaScript Bridge."
 keywords:
   ["permissions", "camera", "location", "contacts", "permission prompts"]
 searchable: true
@@ -76,7 +76,7 @@ Display our demo page in your app to test during development [permissions demo p
 
 When requesting permissions from your users, they will be asked to provide their consent. Those prompts are native app components with very limited customization.
 
-- **iOS**: iOS allows a customizable usage description for permission prompts, enabling developers to explain how the requested data will be used. You can follow [Permission Prompt Localization](/docs/permission-prompt-localization) to localize the usage description.
+- **iOS**: iOS allows a customizable usage description for permission prompts, enabling developers to explain how the requested data will be used. You can follow [Permission prompt localization](/docs/permission-prompt-localization) to localize the usage description.
 - **Android**: Android permission prompts are served from the system and are translated to the device language. No additional customization is supported.
 
 ## JavaScript Bridge functions
@@ -87,7 +87,7 @@ Users can change the permissions granted to your app through their device settin
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   // get status of all permissions
   const response = await median.permissions.status();
 
@@ -99,7 +99,7 @@ Users can change the permissions granted to your app through their device settin
 The `response` object includes the current state for each requested permission:
 
 <CodeGroup>
-```JSON JSON
+```json JSON
 {
   "Contacts": "undetermined",
   "Camera": "granted"
@@ -138,7 +138,7 @@ When users have denied permissions, you can direct them to the app's settings pa
 
 <MedianLogo />
 <CodeGroup>
-```JavaScript JavaScript 
+```javascript JavaScript 
 median.open.appSettings(); 
 ```
 </CodeGroup>
@@ -153,13 +153,13 @@ You can also review app permissions on device following the official guides:
 ## Frequently asked questions
 
 <AccordionGroup>
-<Accordion title="Can I request Bluetooth Access?" id="can-i-request-bluetooth-access">
+<Accordion title="Can I request Bluetooth access?" id="can-i-request-bluetooth-access">
 
 As of now Bluetooth is an experimental feature not supported by iOS WebKit or Android WebView.
 
-You can track compatibility here: [MDN - Web Bluetooth API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Bluetooth_API#browser_compatibility)
+You can track browser compatibility in [MDN: Web Bluetooth API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Bluetooth_API#browser_compatibility).
 
-We support a range of Bluetooth devices such as payment terminals, printers, sensor devices, etc through vendor provided SDKs and custom native plugins that implement the iOS Core Bluetooth and Android Bluetooth functionality.
+We support a range of Bluetooth devices such as payment terminals, printers, and sensor devices through vendor-provided SDKs and custom native plugins that implement the iOS Core Bluetooth and Android Bluetooth functionality.
 
 We implemented custom Bluetooth integrations in our iBeacon and Master Lock plugins.
 

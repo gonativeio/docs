@@ -1,6 +1,6 @@
 ---
 title: "AgeSafety"
-description: "Check user age and supervision status with platform signals."
+description: "Check a user's age range and supervision status with platform age signals, and gate content or purchases for minors in your app."
 keywords:
   [
     "AgeSafety",
@@ -15,7 +15,7 @@ searchable: true
 import { MedianLogo } from "/snippets/median-logo.jsx";
 
 <Warning>
-  **Beta API Notice**
+  **Beta API notice**
 
 The underlying platform APIs are currently in beta. During the beta period, Play Age Signals may return `API_NOT_AVAILABLE` or throw exceptions on some devices. Always handle these cases gracefully and provide conservative fallbacks for age-gated flows.
 
@@ -28,7 +28,7 @@ The plugin intentionally passes through platform signals (it does not collect or
 <Check>
 **Developer Demo**
 
-Test your implementation using our developer demo page at [https://median.dev/age-safety](https://median.dev/age-safety)
+Display our demo page in your app to test during development [https://median.dev/age-safety](https://median.dev/age-safety)
 
 </Check>
 
@@ -62,7 +62,7 @@ The following terms will help you implement AgeSafety:
 
 ### App setup
 
-Enable the AgeSafety plugin in your Median dashboard before calling any JavaScript bridge functions. Navigate to your app's plugin settings and toggle AgeSafety on.
+Enable the AgeSafety plugin in Median App Studio before calling any JavaScript Bridge functions. Navigate to your app's plugin settings and toggle AgeSafety on.
 
 ### JavaScript Bridge guide
 
@@ -74,18 +74,19 @@ Retrieve age and supervision signals from the platform.
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   // Using promises
   const resp = await median.ageSafety.getAgeSignals({ ageGates: [13, 17, 21] });
   console.log('Age signals:', resp);
 
-  // Using callback methods
-  median.ageSafety.getAgeSignals({ ageGates: [13, 17] }, function (resp) {
-  console.log('Age signals callback:', resp);
-  }, function (err) {
-  console.error('AgeSafety error (callback)', err);
-  });
-```
+// Using callback methods
+median.ageSafety.getAgeSignals({ ageGates: [13, 17] }, function (resp) {
+console.log('Age signals callback:', resp);
+}, function (err) {
+console.error('AgeSafety error (callback)', err);
+});
+
+````
 </CodeGroup>
 
 Return value (resolved Promise/success callback) is an AgeSignalsResponse.
@@ -96,7 +97,7 @@ A convenience helper that checks whether the user meets a numeric minimum age.
 
 <MedianLogo />
 <CodeGroup>
-```JavaScript JavaScript
+```javascript JavaScript
 async function checkMinimumAge(requiredAge) {
     // Async/await style
   try {
@@ -119,18 +120,19 @@ median.ageSafety.requireMinimumAge(18, function (resp) {
 }, function (err) {
   console.error(err);
 });
-```
+````
+
 </CodeGroup>
 
 AgeRequirementResponse.allowed is computed as `ageLowerBound` >= `requiredAge` when age bounds are available. If bounds are missing, allowed may be false, and an app-level conservative policy should apply.
 
-### Implementation example: Gate a purchase flow
+### Implementation example: gate a purchase flow
 
 This example verifies a user's age before allowing a purchase, routes supervised accounts to a parental-approval flow, and falls back conservatively when signals are unavailable.
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   async function attemptPurchase() {
           try {
                   const resp = await median.ageSafety.getAgeSignals({ ageGates: [18] });
@@ -158,7 +160,7 @@ For more on JavaScript Bridge fundamentals used above, see [Basic Usage](/docs/b
 | `NOT_SUPPORTED` | Device or OS does not support age signals                         | Play Age Signals entitlement missing or unsupported OS | Provide a conservative fallback; do not block the entire flow                     |
 | `API_ERROR`     | Underlying platform API threw an exception                        | System-level error during age signal retrieval         | Catch the error and apply a conservative default                                  |
 | `USER_DENIED`   | User denied permission or signal is unavailable                   | iOS system prompt declined                             | Design your UI to apply a conservative default when verification is not available |
-| `UNKNOWN`       | Platform returned signals, but age bounds could not be determined | Age signal exists but is inconclusive                  | Treat identically to a missing signal — apply your conservative default           |
+| `UNKNOWN`       | Platform returned signals, but age bounds could not be determined | Age signal exists but is inconclusive                  | Treat identically to a missing signal: apply your conservative default            |
 
 ## Testing checklist
 
@@ -179,7 +181,7 @@ Use this checklist to confirm AgeSafety is working correctly in your app:
 
 ### AgeSafety functions are undefined or not working
 
-Ensure the JavaScript Bridge is enabled in Median App Studio and that you're calling the functions after the `deviceready` event. Also verify that the plugin is enabled in your app configuration.
+Ensure the JavaScript Bridge is enabled in Median App Studio and that you're calling the functions after the `median_library_ready()` event. Also verify that the plugin is enabled in your app configuration.
 
 ### getAgeSignals always throws an error on some Android devices
 

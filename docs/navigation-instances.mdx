@@ -1,6 +1,6 @@
 ---
-title: "Native Navigation Instances"
-description: "Show different menus on different pages."
+title: "Native navigation instances"
+description: "Show different native navigation menus on different pages with instances, and match pages using wildcard URL patterns."
 keywords: ["native navigation", "instances", "URL pattern", "menus", "navigation components"]
 searchable: true
 ---
@@ -10,7 +10,7 @@ import { MedianLogo } from "/snippets/median-logo.jsx";
 <Info>
   **Looking for the earlier navigation settings?**
 
-Native navigation used to be set up on a separate tab for each component. See [What changed in Native Navigation](/docs/native-navigation-changes) to find where those settings are now.
+Native navigation used to be set up on a separate tab for each component. See [What changed in native navigation](/docs/native-navigation-changes) to find where those settings are now.
 
 </Info>
 
@@ -31,10 +31,10 @@ Each instance turns these components on or off and has its own items for each on
 
 | Component             | What it shows                                                                                                                                                                          |
 | --------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Top Navbar**        | The bar at the top of the screen, with the page title, menu button, and action buttons such as refresh, share, and custom buttons. See [Top Navigation Bar](/docs/top-navigation-bar). |
-| **Sidebar**           | A menu that slides in from the side, with links and groups of links. See [Sidebar Navigation Menu](/docs/sidebar-navigation-menu).                                                     |
-| **Bottom Navbar**     | Tabs along the bottom of the screen for the main sections of your app. See [Bottom Tab Bar](/docs/bottom-tab-bar).                                                                     |
-| **Contextual Navbar** | iOS only. A toolbar with back, forward, and refresh buttons. See [iOS Contextual Navigation Toolbar](/docs/contextual-navigation-toolbar).                                             |
+| **Top Navbar**        | The bar at the top of the screen, with the page title, menu button, and action buttons such as refresh, share, and custom buttons. See [Top navigation bar](/docs/top-navigation-bar). |
+| **Sidebar**           | A menu that slides in from the side, with links and groups of links. See [Sidebar navigation menu](/docs/sidebar-navigation-menu).                                                     |
+| **Bottom Navbar**     | Tabs along the bottom of the screen for the main sections of your app. See [Bottom tab bar](/docs/bottom-tab-bar).                                                                     |
+| **Contextual Navbar** | iOS only. A toolbar with back, forward, and refresh buttons. See [iOS contextual navigation toolbar](/docs/contextual-navigation-toolbar).                                             |
 
 When an instance turns a component off, that component is hidden on the instance's pages.
 
@@ -110,6 +110,8 @@ JavaScript Bridge methods that change navigation, such as [`median.sidebar.setIt
 The change stays in place while the user navigates, including on pages that belong to other instances, until another call replaces it or the app restarts.
 
 <Warning>
+  **Runtime changes reset when the app restarts**
+
   The `persist` option doesn't restore runtime changes when the app restarts. To
   keep your changes, apply them each time the app starts.
 </Warning>

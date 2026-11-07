@@ -1,6 +1,6 @@
 ---
-title: "Targeting Users with Firebase Cloud Messaging"
-description: "Send FCM notifications to specific users."
+title: "Targeting users with Firebase Cloud Messaging"
+description: "Link Firebase Cloud Messaging registration tokens to your user accounts, keep them current, and send to one user, several devices, or a topic."
 keywords: ["Firebase Cloud Messaging", "FCM", "registration token", "targeting", "push notifications"]
 searchable: true
 ---
@@ -9,11 +9,11 @@ import { MedianLogo } from "/snippets/median-logo.jsx";
 
 Firebase Cloud Messaging (FCM) delivers to devices, not to people. To send a notification to one specific user, your backend needs to know which devices that user is signed in on.
 
-This guide explains how to link registration tokens to your user accounts, keep that link accurate through login, logout, and token rotation, and send to a single user or a segment.
+This guide explains how to link registration tokens to your user accounts, keep that link accurate through sign-in, sign-out, and token rotation, and send to a single user or a segment.
 
 ## How FCM targeting works
 
-Each installation of your app receives a unique **registration token** from Firebase. The token identifies _one app install on one device_. It carries no information about who is using the app, and Firebase has no concept of a user account or a login call.
+Each installation of your app receives a unique **registration token** from Firebase. The token identifies _one app install on one device_. It carries no information about who is using the app, and Firebase has no concept of a user account or a sign-in call.
 
 That makes the user-to-device mapping your responsibility:
 
@@ -38,24 +38,24 @@ flowchart LR
 
 ### What a push provider would normally handle for you
 
-Customer engagement platforms built on top of FCM and APNs hide this work behind a user model. You call a login function with your user ID, and the platform's SDK collects the device token in the background. From then on, you send to "user 123," and the platform resolves that to the right devices, notices when tokens change, and discards the ones that stop working.
+Customer engagement platforms built on top of FCM and APNs hide this work behind a user model. You call a sign-in function with your user ID, and the platform's SDK collects the device token in the background. From then on, you send to "user 123," and the platform resolves that to the right devices, notices when tokens change, and discards the ones that stop working.
 
 FCM is the transport layer underneath those platforms. Using it directly gives you full control of the pipeline and no per-user platform costs, but the bookkeeping moves to your backend:
 
 | Responsibility                | With an engagement platform | With FCM directly                                                    |
 | ----------------------------- | --------------------------- | -------------------------------------------------------------------- |
 | Collecting the device token   | Done by the platform SDK    | Your web app calls `getToken()` and posts the result to your backend |
-| Linking a device to a user    | One login call              | Your backend stores each token against a user ID                     |
+| Linking a device to a user    | One sign-in call            | Your backend stores each token against a user ID                     |
 | One user, several devices     | Resolved by the platform    | You store one row per token and send to each                         |
 | Token rotation                | Tracked automatically       | Your app reports the token on every launch                           |
 | Uninstalls and expired tokens | Cleaned up automatically    | You remove tokens when Firebase rejects them                         |
-| Logout and shared devices     | One logout call             | You delete the row and call `deleteToken()`                          |
+| Sign-out and shared devices   | One sign-out call           | You delete the row and call `deleteToken()`                          |
 | Segments and audiences        | Tags and dashboard filters  | Topics, or queries against your own user data                        |
 | Delivery and opt-in reporting | Built-in dashboard          | Your own logging                                                     |
 
 The rest of this guide covers each of these responsibilities. None of them is complicated on its own, but all of them need to be in place before per-user targeting is reliable.
 
-## Link a device to a user at login
+## Link a device to a user at sign-in
 
 Once the user has signed in, read the device's token and post it to your backend together with your own user ID.
 
@@ -113,7 +113,7 @@ median.firebaseMessaging.requestPermission({
 <Info>
   **When to link the device**
 
-Link the device on every app launch where the user is signed in, not only on your login page. Tokens can change without notice, and a returning user who is already signed in never goes through your login flow.
+Link the device on every app launch where the user is signed in, not only on your sign-in page. Tokens can change without notice, and a returning user who is already signed in never goes through your sign-in flow.
 
 </Info>
 
@@ -131,7 +131,7 @@ Store tokens in their own table instead of a single column on the user record, s
 Make the insert an upsert keyed on `fcm_token`. If a token arrives that's already stored for a _different_ user, reassign it to the new user. That happens when two people share a device, and reassigning the token stops the first user's notifications from reaching the second.
 
 
-## Unlink a device at logout
+## Unlink a device at sign-out
 
 When a user signs out, remove the link in both places: delete the token from your backend, then delete it on the device.
 
@@ -182,7 +182,7 @@ A registration token stays the same for long periods, but it isn't permanent, an
 | First launch, or first `register()` call        | A token is issued                                    | Store it once the user is signed in                          |
 | User signs in                                   | Unchanged                                            | Link the token to the user                                   |
 | User signs out                                  | Unchanged until you call `deleteToken()`             | Remove the row, then delete the token                        |
-| A different user signs in on the same device    | Unchanged, unless it was deleted at logout           | Reassign the token to the new user                           |
+| A different user signs in on the same device    | Unchanged, unless it was deleted at sign-out           | Reassign the token to the new user                           |
 | App reinstalled, or app data cleared            | A new token is issued, and the old one stops working | Store the new token, and prune the old one when a send fails |
 | App restored onto a new device                  | A new token is issued                                | Store the new token                                          |
 | App uninstalled                                 | The token stops working                              | Prune it when a send fails                                   |
@@ -390,13 +390,13 @@ Subscriptions belong to the device, so they stay when a user signs out, and they
 <CodeGroup>
 
 ```javascript Sync account topics
-// After login: subscribe to the segments this account belongs to
+// After sign-in: subscribe to the segments this account belongs to
 function syncAccountTopics(user) {
   median.firebaseMessaging.subscribeToTopic({ topic: "plan_" + user.plan });
   median.firebaseMessaging.subscribeToTopic({ topic: "region_" + user.region });
 }
 
-// Before logout: remove every subscription from this device
+// Before sign-out: remove every subscription from this device
 function clearTopics() {
   median.firebaseMessaging.getSubscribedTopics({
     callback: function (result) {

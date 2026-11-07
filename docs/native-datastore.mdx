@@ -1,6 +1,6 @@
 ---
-title: "Native Datastore"
-description: "Store key-value data on the device or cloud."
+title: "Native datastore"
+description: "Store key-value data such as user preferences on the device or in the user's cloud account with the Native Datastore plugin and the JavaScript Bridge."
 keywords:
   [
     "Native Datastore",
@@ -15,27 +15,27 @@ searchable: true
 import { AppetizeEmbed } from "/snippets/appetize-embed.jsx";
 import { MedianLogo } from "/snippets/median-logo.jsx";
 
-The Native Datastore Plugin enables developers to persist key-value data such as user preferences and app settings directly on the user's device or in the cloud via the Median JavaScript Bridge.
+The Native Datastore plugin enables developers to persist key-value data such as user preferences and app settings directly on the user's device or in the cloud via the Median JavaScript Bridge.
 
 This plugin supports both App Storage and Cloud Storage, giving you flexibility in how data is saved and accessed across sessions and devices.
 
 <Check>
 **Developer Demo**
 
-Display our demo page in your app to test during development [https://median.dev/native-datastore/](https://median.dev/native-datastore/)
+Display our demo page in your app to test during development [https://median.dev/native-datastore/ <Icon icon="arrow-up-right-from-square" size={12} />](https://median.dev/native-datastore/)
 
 </Check>
 
 ## Why use native datastore
 
-- **User preference persistence**: Save settings like theme, language, and notification preferences that survive app restarts and webview cache clears without relying on cookies.
+- **User preference persistence**: Save settings like theme, language, and notification preferences that survive app restarts and WebView cache clears without relying on cookies.
 - **Authentication state**: Store session tokens and login flags locally so users stay authenticated between app launches, with cloud storage restoring state after a reinstall.
 - **Cross-device settings sync**: Use cloud storage to carry user preferences across devices without building a sync backend. When a user reinstalls or switches devices, their settings are restored automatically.
 - **Offline-first apps**: Cache lightweight values like a user's account ID or last-known app state so the app can render meaningful content without a network connection.
 
 ## Storage backends
 
-| Storage Type  | Android                                    | iOS                     |
+| Storage type  | Android                                    | iOS                     |
 | ------------- | ------------------------------------------ | ----------------------- |
 | App Storage   | SharedPreferences                          | UserDefaults            |
 | Cloud Storage | SharedPreferences + Android Backup Service | Apple Keychain Services |
@@ -67,7 +67,7 @@ To save a value, use the following JavaScript Bridge command. To get status of t
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   median.storage.app.set({
     key: KEY,
     value: VALUE,
@@ -96,7 +96,7 @@ To retrieve the saved settings define a callback function and call the JavaScrip
 
 <MedianLogo />
 <CodeGroup>
-```JavaScript JavaScript
+```javascript JavaScript
   // Callback
   median.storage.app.get({
     key: KEY,
@@ -128,7 +128,7 @@ To delete a setting provide the KEY of the previously saved setting. The status 
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   median.storage.app.delete({
     key: KEY,
     statuscallback: statcb,
@@ -149,7 +149,7 @@ Removes all stored key-value pairs from device-local storage.
 
 <MedianLogo />
 <CodeGroup>
-```JavaScript JavaScript
+```javascript JavaScript
   median.storage.app.deleteAll({
     statuscallback: statcb  // optional
   });
@@ -164,7 +164,7 @@ Removes all stored key-value pairs from device-local storage.
 
 This option utilizes Android SharedPreferences combined with the native Android Backup Service and Apple Keychain Services to store the local app settings on a device. You will provide a key-value pair to save the app settings. You will use the key to retrieve or delete the settings.
 
-Note: On Android, the location of the Cloud Storage (SharedPreferences) database file is `DATA/data/APP_PACKAGE_NAME/shared_prefs/user_preferences_backup.xml`
+**Note**: On Android, the location of the Cloud Storage (SharedPreferences) database file is `DATA/data/APP_PACKAGE_NAME/shared_prefs/user_preferences_backup.xml`
 
 #### Set command (cloud storage)
 
@@ -172,7 +172,7 @@ To save a value, use the following JavaScript Bridge command. To get status of t
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   median.storage.cloud.set({
     key: KEY,
     value: VALUE,
@@ -194,7 +194,7 @@ To retrieve the saved settings define a callback function and call the JavaScrip
 
 <MedianLogo />
 <CodeGroup>
-```JavaScript JavaScript
+```javascript JavaScript
 median.storage.cloud.get({
   key: KEY,
   callback: cbRead,
@@ -225,7 +225,7 @@ median.storage.cloud
 ```
 </CodeGroup>
 
-> [Learn more about using promises and the Media JavaScript Bridge](/docs/javascript-bridge#promises).
+> [Learn more about using promises with the JavaScript Bridge](/docs/javascript-bridge#promises).
 
 #### Delete command (cloud storage)
 
@@ -233,7 +233,7 @@ To delete a setting provide the KEY of the previously saved setting. The status 
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   median.storage.cloud.delete({
     key: KEY,
     statuscallback: statcb,
@@ -254,7 +254,7 @@ Delete all saved settings from the device:
 
 <MedianLogo />
 <CodeGroup>
-```JavaScript JavaScript
+```javascript JavaScript
 median.storage.cloud.deleteAll({ statuscallback: statcb });
 
 function statcb(result) {
@@ -291,7 +291,7 @@ Try out the plugin on iOS and Android with our interactive demo apps.
 <AccordionGroup>
 <Accordion title="Native Datastore functions are undefined or not working" id="native-datastore-functions-are-undefined-or-not-working">
 
-Ensure the JavaScript Bridge is enabled in Median App Studio and that your page has fully loaded before calling bridge functions. Verify that the plugin is enabled in your app configuration.
+Ensure the JavaScript Bridge is enabled in App Studio and that your page has fully loaded before calling JavaScript Bridge functions. Verify that the plugin is enabled in your app configuration.
 
 </Accordion>
 <Accordion title="`get` returns preference-not-found even though a value was set" id="get-returns-preference-not-found-even-though-a-value-was-set">

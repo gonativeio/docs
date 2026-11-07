@@ -5,9 +5,9 @@ keywords: ["App Store Connect", "API key", "iOS builds", "Apple Developer accoun
 searchable: true
 ---
 
-To simplify the iOS build process, the Median App Studio integrates directly with your Apple Developer account through the App Store Connect API. When you configure this connection, our platform automatically generates and manages the required certificates and provisioning profiles for your app and uploads new distribution builds directly to App Store Connect.
+To simplify the iOS build process, Median App Studio integrates directly with your Apple Developer account through the App Store Connect API. When you configure this connection, our platform automatically generates and manages the required certificates and provisioning profiles for your app and uploads new distribution builds directly to App Store Connect.
 
-This integration fasttracks the build and upload workflow so you can test with TestFlight and submit to the Apple App Store without Xcode, a Mac computer, or Apple Transporter. You still create the App Store Connect app record and complete the store listing in App Store Connect.
+This integration speeds up the build and upload workflow so you can test with TestFlight and submit to the Apple App Store without Xcode, a Mac computer, or Apple Transporter. You still create the App Store Connect app record and complete the store listing in App Store Connect.
 
 **You’re always in control**: you can disconnect this integration at any time from your Median settings, or revoke the API key directly from your App Store Connect account.
 
@@ -29,8 +29,8 @@ Apple lets you download the `.p8` private key file exactly once. If you close th
 
 </Warning>
 
-<Frame caption="App Store Connect API Keys">
-  <img src="/images/docs/6398cb57064451becaf524583e0746e03d27aae4a1b2bd430f5d6ec7a0265e2a-Screenshot_2026-07-06_at_09.33.52.png" />
+<Frame caption="App Store Connect API keys">
+  <img src="/images/docs/6398cb57064451becaf524583e0746e03d27aae4a1b2bd430f5d6ec7a0265e2a-Screenshot_2026-07-06_at_09.33.52.png" alt="API Keys page under Users and Access in App Store Connect" />
 </Frame>
 
 You'll need three things from this step to complete Step 2:
@@ -40,7 +40,7 @@ You'll need three things from this step to complete Step 2:
 - The downloaded `.p8` **private key file**
 
 <Warning>
-  **Individual vs. Team keys**
+  **Individual vs. team keys**
 
 If your Apple Developer account belongs to an organization, generate the key from an account with Team (organization) access, not an individual/personal API key. Individual keys are scoped to a single Apple ID and can cause permission errors partway through a build or upload.
 
@@ -48,43 +48,43 @@ If your Apple Developer account belongs to an organization, generate the key fro
 
 ### Step 2: Connect the key to Median
 
-1. In Median App Studio, open **Build & Deploy** tab for your app in the App Studio and click **Configure** in the iOS IPA section.
+1. In App Studio, open the **Build & Deploy** tab for your app and click **Configure** in the iOS IPA section.
 
 2. In the Apple Developer API Connection section: Enter the **Issuer ID and Key ID**, and upload your **Private Key (.p8)** file. All of those can be obtained in Step 1.
 
 3. Click **Connect**.
 
 <Frame caption="Connected Apple Developer API">
-  <img src="/images/docs/2e1920496cf9da2d97d08efc52aeb5ad9752c53258256b63db69d1d5f29e0735-Screenshot_2026-07-06_at_09.41.45.png" />
+  <img src="/images/docs/2e1920496cf9da2d97d08efc52aeb5ad9752c53258256b63db69d1d5f29e0735-Screenshot_2026-07-06_at_09.41.45.png" alt="Apple Developer API Connection card with a Connected badge and Test API Key and Disconnect actions" />
 </Frame>
 
 Once connected, the card displays a Connected badge along with **Test API Key** and **Disconnect** actions to validate the configuration and disconnect the API connection.
 
 4. In the **Bundle ID & App Store Connect App** section:
-   1. Register the Bundle ID for your app within your Apple Developer account. (We also provide an option to register your Bundle ID automatically via the API connection).
-   2. Create an App Store Connect App Record for your app. (This step cannot be completed through the API and must be configured manually in App Store Connect).
+   1. Register the Bundle ID for your app within your Apple Developer account. You can also register your Bundle ID automatically through the API connection.
+   2. Create an App Store Connect app record for your app. This step can't be completed through the API and must be done manually in App Store Connect.
 
 <Frame caption="Registered Bundle ID">
-  <img src="/images/docs/275f298b25ef1fe9b381492e92ab13ccbde7d23a4818bb3e1d0439dd2d727fc6-Screenshot_2026-07-06_at_09.44.24.png" />
+  <img src="/images/docs/275f298b25ef1fe9b381492e92ab13ccbde7d23a4818bb3e1d0439dd2d727fc6-Screenshot_2026-07-06_at_09.44.24.png" alt="Registered Bundle ID in the Bundle ID & App Store Connect App section" />
 </Frame>
 
 5. In the **Signing & Upload Settings** section, select **Distribution Profile** and set **Upload to App Store Connect** to **Automatic**. This is the recommended setting for TestFlight and App Store submission.
 
-   **Profile Overview**
+   **Profile overview**
 
    A **Development build/profile** is limited to devices you've explicitly registered as testers and is meant for direct installs outside App Store Connect.
 
-   A **Distribution build/profile** is required for TestFlight and App Store releases. You choose between these in the Signing & Upload Settings section covered in Configure Signing for Your App.
+   A **Distribution build/profile** is required for TestFlight and App Store releases. You choose between these in the Signing & Upload Settings section covered in [Configure signing for your app](/docs/configure-signing-for-your-app).
 
 6. Each time you build a new iOS IPA, it will be automatically uploaded. If **Manual** is selected, you can press the **Upload** button after the build completes.
 
 ## Prefer not to use an API key?
 
-If you're unable or unwilling to generate an App Store Connect API key, you can sign builds manually instead by uploading your own distribution certificate and provisioning profile. See [Option 2: Upload Your Own Signing Assets in Configure Signing for Your App](/docs/configure-signing-for-your-app).
+If you're unable or unwilling to generate an App Store Connect API key, you can sign builds manually instead by uploading your own distribution certificate and provisioning profile. See [Option 2: Upload your own signing assets](/docs/configure-signing-for-your-app#option-2-upload-your-own-signing-assets-manual-tab) in Configure signing for your app.
 
 ## Next step
 
-Continue with ​[Register Testing Devices](/docs/registering-testing-devices) →
+Continue with [Register testing devices](/docs/registering-testing-devices) →
 
 ## Frequently asked questions
 

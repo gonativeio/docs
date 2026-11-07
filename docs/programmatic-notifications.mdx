@@ -1,6 +1,6 @@
 ---
-title: "Programmatic Notifications"
-description: "Send OneSignal notifications from your server."
+title: "Programmatic notifications"
+description: "Send OneSignal push notifications from your server with the REST API, targeting users by external ID, segment, or device."
 keywords: ["OneSignal", "REST API", "programmatic notifications", "push notifications", "targeting"]
 searchable: true
 ---
@@ -10,9 +10,9 @@ Programmatic notifications are sent in response to events triggered from your se
 This guide covers when to use the API, how to target users by different methods, and a working example.
 
 <Info>
-  **OneSignal REST API Documentation**
+  **OneSignal REST API documentation**
 
-The full documentation is available at [https://documentation.onesignal.com/reference/push-notification](https://documentation.onesignal.com/reference/push-notification)
+See the full [OneSignal REST API reference](https://documentation.onesignal.com/reference/push-notification).
 
 </Info>
 
@@ -24,7 +24,7 @@ Common use cases:
 
 - **Order and shipping updates:** notify a user when their status changes
 - **Message alerts:** let users know they have a new message waiting
-- **Account activity:** password changes, login attempts, payment confirmations
+- **Account activity:** password changes, sign-in attempts, payment confirmations
 - **Re-engagement:** reach users who haven't opened the app after a number of days
 - **Personalized reminders:** based on a user's saved preferences or upcoming events
 
@@ -34,7 +34,7 @@ For one-off campaigns and broadcasts, [sending from the OneSignal dashboard](/do
 
 The most common use case is to send the notification to all devices belonging to a specific user. This requires associating the user with an identifier via `median.onesignal.login()`. See [Identifying & targeting users](/docs/identifying-targeting-users) for how to set that up.
 
-**User Identifiers**
+**User identifiers**
 
 | Identifier                           | API field                      | Notes                                             |
 | ------------------------------------ | ------------------------------ | ------------------------------------------------- |
@@ -47,7 +47,7 @@ The most common use case is to send the notification to all devices belonging to
 Segments let you broadcast to large groups of users defined by shared attributes such as data tags, subscription status, location, and more.
 
 <CodeGroup>
-  ```JSON JSON
+  ```json JSON
   {
     "app_id": "{{YOUR_ONESIGNAL_APP_ID}}",
     "target_channel": "push",
@@ -58,14 +58,14 @@ Segments let you broadcast to large groups of users defined by shared attributes
   ```
 </CodeGroup>
 
-You can include multiple segments and exclude others in the same request. Segments are created and managed in the OneSignal dashboard. See [Identifying & targeting users](/docs/identifying-targeting-users)m for how to use data tags to build segments programmatically.
+You can include multiple segments and exclude others in the same request. Segments are created and managed in the OneSignal dashboard. See [Identifying & targeting users](/docs/identifying-targeting-users) for how to use data tags to build segments programmatically.
 
 ## Targeting by specific device
 
 To target one specific device, for example, the device a user is currently active on, use the `subscription.id`. Retrieve this from the `oneSignalInfo` object in your app and store it in your backend.
 
 <CodeGroup>
-  ```JSON JSON
+  ```json JSON
   {
     "app_id": "{{YOUR_ONESIGNAL_APP_ID}}",
     "target_channel": "push",
@@ -79,11 +79,13 @@ The `subscription.id` is linked to the app on the user's device. It only changes
 
 ## Finding your app ID and API key
 
-1. Log in to your [OneSignal dashboard](https://dashboard.onesignal.com/login).
+1. Sign in to your [OneSignal dashboard](https://dashboard.onesignal.com/login).
 2. Select your app.
 3. Go to **Settings > Keys & IDs**.
 
 <Warning>
+  **Keep your REST API Key private**
+
   Your REST API Key is a server-side secret. Never include it in client-side
   JavaScript or mobile app code; it authorizes sending notifications on your
   behalf.
@@ -91,7 +93,7 @@ The `subscription.id` is linked to the app on the user's device. It only changes
 
 ## Full example: send to a user by external ID
 
-Here's a complete request that sends a **Order Shipped** notification to a user targeted by their external ID. Replace the placeholder values with your own credentials from the OneSignal dashboard (**Settings > Keys & IDs**).
+Here's a complete request that sends an **Order Shipped** notification to a user targeted by their external ID. Replace the placeholder values with your own credentials from the OneSignal dashboard (**Settings > Keys & IDs**).
 
 <CodeGroup>
   ```bash bash

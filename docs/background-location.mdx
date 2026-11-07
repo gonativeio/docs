@@ -1,12 +1,12 @@
 ---
-title: "Background Location"
+title: "Background location"
 description: "Receive location updates while your app is in the background."
 keywords: ["background location", "geolocation", "location tracking", "GPS", "permissions"]
 searchable: true
 ---
 import { MedianLogo } from "/snippets/median-logo.jsx";
 
-The Background Location plugin extends Median.co's geolocation support to keep your app receiving location data even after it's paused or backgrounded. Missed updates are delivered in batch when the app resumes, and location data can be posted directly to a server endpoint while the app is backgrounded.
+The Background Location plugin extends Median's geolocation support to keep your app receiving location data even after it's paused or backgrounded. Missed updates are delivered in batch when the app resumes, and location data can be posted directly to a server endpoint while the app is backgrounded.
 
 <Check>
   **Developer Demo**
@@ -35,9 +35,9 @@ When background location is active on iOS, the app may modify the device’s sta
 
 Android requires that an ongoing service display a foreground notification. You may customize the title and text for this notification.
 
-The Background Location Native Plugin requires the iOS location permission `authorizedAlways` and Android permissions `ACCESS_FINE_LOCATION`, `ACCESS_COARSE_LOCATION` and `ACCESS_BACKGROUND_LOCATION`.
+The Background Location Native Plugin requires the iOS location permission `authorizedAlways` and Android permissions `ACCESS_FINE_LOCATION`, `ACCESS_COARSE_LOCATION`, and `ACCESS_BACKGROUND_LOCATION`.
 
-If you only require the background process to run while your app is open on the device you can add an additional parameter to your `appConfig.json` as follows: `foregroundOnly: true`.On iOS this configuration uses the location permission `authorizedWhenInUse` rather than `authorizedAlways`.On Android the permission `ACCESS_BACKGROUND_LOCATION` is not required, only `ACCESS_FINE_LOCATION` and `ACCESS_COARSE_LOCATION` are requested.
+If you only require the background process to run while your app is open on the device, you can add an additional parameter to your `appConfig.json` as follows: `foregroundOnly: true`. On iOS this configuration uses the location permission `authorizedWhenInUse` rather than `authorizedAlways`. On Android the permission `ACCESS_BACKGROUND_LOCATION` is not required, only `ACCESS_FINE_LOCATION` and `ACCESS_COARSE_LOCATION` are requested.
 
 ## Implementation guide
 
@@ -47,16 +47,16 @@ If you only require the background process to run while your app is open on the 
 2. Find the Background Location plugin in your list of 'Added plugins' and activate it as shown below.
 3. Rebuild your app to apply the new configuration.
 
-<Frame caption="Background Location Plugin Activation">
-  <img src="/images/docs/fc3d541d38b9c7b8ffbca741c837ce88872dc08579831cdd326a0caa445fd9ac-Screenshot_2026-09-17_at_11.58.31.png" />
+<Frame caption="Background Location plugin activation">
+  <img src="/images/docs/fc3d541d38b9c7b8ffbca741c837ce88872dc08579831cdd326a0caa445fd9ac-Screenshot_2026-09-17_at_11.58.31.png" alt="Background Location plugin activated in the Native Plugins tab of App Studio" />
 </Frame>
 
 #### Manual build process
 
-If you build from downloaded iOS source or manually manage Apple signing assets, open the Capabilities tab in Xcode, expand Background Modes, and enable Location updates as shown below. This step is not required if you're using the IPA or our publishing services deployment.
+If you build from downloaded iOS source or manually manage Apple signing assets, open the Capabilities tab in Xcode, expand Background Modes, and enable Location updates as shown below. This step is not required if you're using the IPA or Median's Publishing Service.
 
-<Frame caption="XCode Background Modes">
-  <img src="/images/docs/5026fb172e5d02d6a55c7c002639b75f8fe30830d61b860a6897f6a685df7df7-Screenshot_2026-09-17_at_12.03.02.png" />
+<Frame caption="Xcode Background Modes">
+  <img src="/images/docs/5026fb172e5d02d6a55c7c002639b75f8fe30830d61b860a6897f6a685df7df7-Screenshot_2026-09-17_at_12.03.02.png" alt="Location updates enabled under Background Modes in Xcode" />
 </Frame>
 
 ### JavaScript Bridge implementation
@@ -67,7 +67,7 @@ Starts the background location service. Pass a `locationRequest` configuration o
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript 
+  ```javascript JavaScript 
   median.backgroundLocation.start(locationRequest); 
   ```
 </CodeGroup>
@@ -130,7 +130,7 @@ As an example, you may use this JavaScript code to start background locations:
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   function locationUpdated(data) {
   	console.log('got location', data);
   }
@@ -158,7 +158,7 @@ Stops the background location service and ends all location updates.
 
 <MedianLogo />
 <CodeGroup>
-```JavaScript JavaScript
+```javascript JavaScript
 median.backgroundLocation.stop();
 ```
 </CodeGroup>

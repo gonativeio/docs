@@ -1,13 +1,13 @@
 ---
 title: "Prepare your Lovable app for publishing"
-description: "Test and prepare your Lovable app for the stores."
+description: "Test your Lovable app on physical devices, verify sign-in, permissions, and payments, and prepare your App Store and Google Play listings."
 keywords: ["Lovable", "publishing", "testing", "App Store", "Google Play", "store listing"]
 searchable: true
 ---
 
 Lovable publishes your project as a web app. The Apple App Store and Google Play require installed mobile builds, so test the app in its final iOS and Android environments before you submit it. Authentication, permissions, payments, links, and device behavior can work in a browser and still fail inside an installed app.
 
-This guide covers the testing and release work after you have created the app in Median App Studio. If you have not configured the app yet, start with [Getting Started with Lovable](/docs/getting-started-with-lovable).
+This guide covers the testing and release work after you have created the app in Median App Studio. If you have not configured the app yet, start with [Getting started with Lovable](/docs/getting-started-with-lovable).
 
 ## Before you create store builds
 
@@ -50,7 +50,7 @@ Authentication is a common point of failure in a Lovable mobile app. Add the req
 - Email magic links
 - Apple sign-in
 - Google sign-in
-- Logout and session expiration
+- Sign-out and session expiration
 
 If authentication opens an external browser, confirm that the customer returns to the correct screen inside the app. A successful login in the Lovable browser preview does not confirm the installed flow.
 
@@ -82,7 +82,7 @@ For digital purchases, test:
 - A failed purchase
 - Restore purchases
 - Access after reinstalling the app
-- Access on a second device after login
+- Access on a second device after signing in
 - Subscription expiration and renewal
 
 Make sure the Lovable interface reads the current entitlement and does not ask an existing customer to pay twice.
@@ -131,6 +131,6 @@ Use [Median's publishing overview](/docs/publishing-overview) for account and su
 
 ## Choose how to manage submission
 
-Your team can manage App Store Connect and Google Play Console, or use [Median Publishing Service](/docs/publishing-service) for submission, reviewer responses, and resubmissions.
+Your team can manage App Store Connect and Google Play Console, or use [Median's Publishing Service](/docs/publishing-service) for submission, reviewer responses, and resubmissions.
 
 Approval depends on the complete app and accurate submission details. Test the same build and account that the reviewer will receive, keep the production backend available, and answer review questions with specific instructions.

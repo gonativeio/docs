@@ -1,5 +1,5 @@
 ---
-title: "Clear Webview Cache"
+title: "Clear WebView cache"
 description: "Clear the webview cache to show updated content."
 keywords: ["webview cache", "clear cache", "stale content", "caching", "JavaScript Bridge"]
 searchable: true
@@ -15,12 +15,12 @@ Median apps respect the same cache headers as modern browsers. This means your w
 
 ### Website configuration
 
-To force the app to load the latest version of your assets (e.g., JavaScript or CSS files), you can use file versioning like:
+To force the app to load the latest version of your assets (for example, JavaScript or CSS files), you can use file versioning like:
 
 <CodeGroup>
-  ``` 
-  application_782374982.js 
-  styles_782374982.css 
+  ```text Text
+  application_782374982.js
+  styles_782374982.css
   ```
 </CodeGroup>
 
@@ -30,12 +30,12 @@ Updating the filename ensures the browser and app will request a fresh version f
 
 Median provides a JavaScript command to programmatically clear the webview cache. This is especially useful during development or when troubleshooting cache-related display issues.
 
-To clear the cache, open the URL:
+To clear the cache, call:
 
 <MedianLogo />
 <CodeGroup>
-```JavaScript JavaScript 
-median.webview.clearCache(); 
+```javascript JavaScript
+median.webview.clearCache();
 ```
 </CodeGroup>
 
@@ -48,7 +48,7 @@ Some configuration options in `appConfig.json` apply specifically to Android app
 Median includes a configuration option for Android apps to clear the WebView cache every time the app exits. To enable this, add the following in the [appConfig.json](/docs/app-configuration-appconfigjson):
 
 <CodeGroup>
-  ```JSON JSON
+  ```json JSON
   "general": {
     "androidClearCache": true
   }
@@ -60,7 +60,7 @@ Median includes a configuration option for Android apps to clear the WebView cac
 You can also control how the Android WebView handles caching by setting the cacheMode option. Add the following under the general section in your [appConfig.json](/docs/app-configuration-appconfigjson):
 
 <CodeGroup>
-  ```JSON JSON
+  ```json JSON
   "general": {
     "androidCacheMode": "no_cache" // options: no_cache | cache_only | cache_else_network | default
   }
@@ -91,7 +91,7 @@ Usually, no. Clearing the cache too often can reduce performance because the app
 </Accordion>
 <Accordion title="Does clearing the WebView cache sign users out?" id="does-clearing-the-webview-cache-sign-users-out">
 
-Do not assume that it will or will not affect user sessions without testing your app. The article describes clearing the WebView cache, but it does not explicitly state whether cookies, local storage, or authentication sessions are affected. Test login behavior before using this in production.
+Don't assume either way. This page doesn't confirm whether cookies, local storage, or authentication sessions are affected, so test sign-in behavior in your app before using this in production.
 
 </Accordion>
 <Accordion title="Which Android cache mode should I choose?" id="which-android-cache-mode-should-i-choose">

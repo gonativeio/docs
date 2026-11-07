@@ -1,6 +1,6 @@
 ---
-title: "Auto New Windows"
-description: "Open pages in new windows for multi-level navigation."
+title: "Auto new windows"
+description: "Open pages in new windows with a Back button for multi-level navigation, configured in App Studio or at runtime with the JavaScript Bridge."
 keywords: ["Auto New Windows", "navigation hierarchy", "multi-level navigation", "windows"]
 searchable: true
 ---
@@ -16,12 +16,12 @@ Median allows you to configure this user experience easily by assigning individu
 
 See below for an example.
 
-<Frame caption="Auto New Windows Example">
-  <img src="/images/docs/83ec6e7f125aa0114a3a7d8352a7e16d84a69303bfb65c5dda3a530671680d25-autonewwindows.gif" />
+<Frame caption="Auto new windows example">
+  <img src="/images/docs/83ec6e7f125aa0114a3a7d8352a7e16d84a69303bfb65c5dda3a530671680d25-autonewwindows.gif" alt="Tapping a link opens the page in a new window with a Back button in the top navigation bar" />
 </Frame>
 
 <Warning>
-  **Navigation History**
+  **Navigation history**
 
 When a page that is assigned a higher level opens in a new window within your app, it will not have the navigation history of the prior page. This means functionality such as swipe gestures will only take the user back to the originally opened URL for that window.
 
@@ -36,21 +36,21 @@ You may define the navigation hierarchy for your app at build time within your a
 Whenever a user navigates to a URL that matches a higher level rule, the page will load in a new window (Android Activity or iOS ViewController). Rules are prioritized top to bottom. If no match is found for a link, the link will open in the current level.
 
 <Warning>
-  **Single-Page-App**
+  **Single-page apps**
 
-Auto new windows will load the new page in a new webview, and requires a full page load. For example, if your site is a single-page-app driven by AJAX, then you may need to force a full page load using something like: `window.location.href = 'https://my-ajax-site/path";`
+Auto new windows will load the new page in a new webview, and requires a full page load. For example, if your site is a single-page app driven by AJAX, then you may need to force a full page load using something like: `window.location.href = 'https://my-ajax-site/path';`
 
 </Warning>
 
 ### JavaScript Bridge
 
-Auto new windows can be set dynamically from your website using the Median JavaScript Bridge. A default auto new windows setting can be defined in the App Studio that is then overwritten dynamically as required. Or alternatively, the configuration can be left blank in the App Studio and the auto new windows configuration set by your website.
+Auto new windows can be set dynamically from your website using the Median JavaScript Bridge. A default auto new windows setting can be defined in App Studio that is then overwritten dynamically as required. Or alternatively, the configuration can be left blank in App Studio and the auto new windows configuration set by your website.
 
-To configure "Auto New Windows" settings, define your navigation levels structure as a JSON object and run the following command:
+To configure auto new windows settings, define your navigation levels structure as a JSON object and run the following command:
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   var autoNewWindowsRules = {
       active: true,
       persist: true,
@@ -61,7 +61,9 @@ To configure "Auto New Windows" settings, define your navigation levels structur
         regex: '.*',
         level: 1
       }]
-  }
+  };
+
+  median.navigationLevels.set(autoNewWindowsRules);
   ```
 </CodeGroup>
 
@@ -71,7 +73,7 @@ To revert to the appConfig.json definition built into your app, run the followin
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   median.navigationLevels.set({persist: true});
   ```
 </CodeGroup>
@@ -84,8 +86,8 @@ To revert to the appConfig.json definition built into your app, run the followin
 />
 
 <CodeGroup>
-  ```JSON Auto New Windows Configuration
-  /* Auto New Windows Configuration */
+  ```json Auto new windows configuration
+  /* Auto new windows configuration */
   [
     {
       "regex": "https://median.dev/auto-new-windows/index.html/?",
@@ -102,8 +104,8 @@ To revert to the appConfig.json definition built into your app, run the followin
   ]
   ```
 
-```JavaScript Set Auto New Windows
-/* Set Auto New Windows */
+```javascript Set auto new windows
+/* Set auto new windows */
 median.navigationLevels.set({
   active: true,
   levels: [{
@@ -120,8 +122,8 @@ median.navigationLevels.set({
 });
 ```
 
-```JavaScript Revert Auto New Windows
-/* Revert Auto New Windows */
+```javascript Revert auto new windows
+/* Revert auto new windows */
 if (navigator.userAgent.indexOf('median') > -1) {
   median.navigationLevels.set({ persist: true });
 }

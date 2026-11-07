@@ -1,6 +1,6 @@
 ---
 title: "Localization"
-description: "Localize your app's web content and native interface."
+description: "Learn how your app passes the device language to your website, and which native interface strings Median translates for the languages you enable."
 keywords: ["localization", "languages", "translation", "multilingual", "native interface"]
 searchable: true
 ---
@@ -8,13 +8,15 @@ searchable: true
 Your app shows content in two layers, and each layer is localized separately:
 
 - **Web content** is your website, displayed in the app. Your website controls its own translations, just as it does in a browser.
-- **Native interface** is everything Median renders outside your website, such as dialog buttons and the menu that appears when a user long-presses a link. Median translates these strings for the languages you enable in the App Studio.
+- **Native interface** is everything Median renders outside your website, such as dialog buttons and the menu that appears when a user long-presses a link. Median translates these strings for the languages you enable in App Studio.
 
 ## Web content
 
 Your app passes the user's device language to your website in the `Accept-Language` header, the same way a mobile browser does. If your website already serves translated content based on that header, it works in the app with no changes. This works for any language your website supports.
 
 <Tip>
+  **Read the language in JavaScript**
+
   You can also read the user's language in JavaScript with `navigator.language`.
   This is useful if your site switches languages on the client side instead of
   the server.
@@ -29,7 +31,7 @@ Median translates these native strings:
 
 ### Enable languages
 
-1. In the App Studio, go to **Interface → Localization**.
+1. In App Studio, go to **Interface → Localization**.
 2. Select the languages you want to include.
 3. Rebuild your app. Language changes only take effect in a new build.
 
@@ -128,9 +130,11 @@ If a user's device language isn't enabled in your app, the native strings are sh
 
 ## Request a language or report a translation
 
-If your language isn't listed, or a translation is missing or incorrect, [contact our team](https://median.co/contact) with the language and the strings you'd like added or changed. We'll update the translations and announce the change in the [Release Notes](/docs/changelog).
+If your language isn't listed, or a translation is missing or incorrect, [contact our team](https://median.co/contact) with the language and the strings you'd like added or changed. We'll update the translations and announce the change in the [release notes](/docs/changelog).
 
 <Note>
+  **Store listings**
+
   Your App Store and Google Play listings are localized separately in App Store
   Connect and Google Play Console.
 </Note>

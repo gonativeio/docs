@@ -1,6 +1,6 @@
 ---
 title: "Apple App Tracking Transparency"
-description: "Request iOS App Tracking Transparency consent."
+description: "Request App Tracking Transparency consent on iOS, automatically on launch or manually with the JavaScript Bridge, and check the user's choice."
 keywords: ["App Tracking Transparency", "ATT", "IDFA", "privacy", "tracking consent", "iOS"]
 searchable: true
 ---
@@ -17,18 +17,18 @@ Fortunately, Median makes it easy for you to configure your app to utilize Apple
 
 ### Enable ATT in your app configuration
 
-- Open the Permissions tab in the App Studio.
+- Open the **Permissions** tab in App Studio.
 
 - **Enable** App Tracking Transparency.
 
 - Choose how the ATT prompt is displayed:
-  - **Automatic** - The prompt is shown automatically on the first app launch.
-  - **Manual** - You control when the prompt appears via JavaScript.
+  - **Automatic**: The prompt is shown automatically on the first app launch.
+  - **Manual**: You control when the prompt appears via JavaScript.
 
 You may provide your own description to explain why tracking is used, or use the default text supplied by Median.
 
-<Frame caption="ATT App Configuration">
-  <img src="/images/docs/21bece73783e8b29dd2fca2cdd95eac07ef9502b452337db9040dc7106b8d320-Screenshot_2025-07-04_at_11.49.56.png" />
+<Frame caption="ATT app configuration">
+  <img src="/images/docs/21bece73783e8b29dd2fca2cdd95eac07ef9502b452337db9040dc7106b8d320-Screenshot_2025-07-04_at_11.49.56.png" alt="App Tracking Transparency settings in the App Studio Permissions tab" />
 </Frame>
 
 ### Prompt for user consent at runtime (manual method)
@@ -37,7 +37,7 @@ If you prefer to trigger the ATT prompt at a specific moment in your app (e.g., 
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   function request() {
     median.ios.attconsent.request()
       .then(function (result) {
@@ -60,7 +60,7 @@ You can check whether the user has already responded to the ATT prompt using the
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   function status() {
     median.ios.attconsent.status()
       .then(function (result) {
@@ -76,5 +76,5 @@ This is useful for conditional logic. For example, adjusting third-party SDK beh
 
 ## Additional resources
 
-- 📘 [Apple’s AppTrackingTransparency Framework Documentation](https://developer.apple.com/documentation/apptrackingtransparency)
-- 📖 [Median Blog: What Is App Tracking Transparency for iOS?](https://median.co/blog/what-is-app-tracking-transparency-for-ios)
+- [Apple's AppTrackingTransparency framework documentation](https://developer.apple.com/documentation/apptrackingtransparency)
+- [Median blog: What is App Tracking Transparency for iOS?](https://median.co/blog/what-is-app-tracking-transparency-for-ios)

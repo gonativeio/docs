@@ -1,5 +1,5 @@
 ---
-title: "Custom User Agent"
+title: "Custom user agent"
 description: "Customize the user agent to detect app traffic."
 keywords: ["user agent", "custom user agent", "detect app", "MedianIOS", "MedianAndroid"]
 searchable: true
@@ -9,23 +9,20 @@ searchable: true
 
 By default, Median appends a platform-specific identifier to the end of the native device user agent:
 
-- **iOS**: MedianIOS/1.0 median
-- **Android**: MedianAndroid/1.0 median
+- **iOS**: `MedianIOS/1.0 median`
+- **Android**: `MedianAndroid/1.0 median`
 
 This modification enables your server to detect and respond differently to requests coming from your Median-powered app.
 
-By default, the following strings are appended to the end of the device user agent:
-
-In the iOS app, the device default user agent is appended with `MedianIOS/1.0 median`In the Android app, the default device user agent is appended with `MedianAndroid/1.0 median`
-
 <Info>
-  **Legacy GoNative User Agent Strings**
+  **Legacy GoNative user agent strings**
 
-GoNative.io was rebranded to Median.co in September 2023. Apps that were originally built on the legacy GoNative.io platform may still use the legacy user agent strings:
+GoNative.io was rebranded to Median in September 2023. Apps that were originally built on the legacy GoNative.io platform may still use the legacy user agent strings:
 
-iOS app: `GoNativeIOS/1.0 gonative` Android app: `GoNativeAndroid/1.0 gonative`
+- iOS app: `GoNativeIOS/1.0 gonative`
+- Android app: `GoNativeAndroid/1.0 gonative`
 
-These legacy strings exist only for backward compatibility with pre-rebrand builds. Any app built or rebuilt on Median.co uses the current MedianIOS/MedianAndroid strings above. To confirm the exact user agent used in your app, open the Web Overrides tab in your Median dashboard or use our [deviceInfo debugging function](/docs/device-info).
+These legacy strings exist only for backward compatibility with pre-rebrand builds. Any app built or rebuilt on Median uses the current `MedianIOS` and `MedianAndroid` strings above. To confirm the exact user agent used in your app, open the **Web Overrides** tab in App Studio or use our [deviceInfo debugging function](/docs/device-info).
 
 </Info>
 
@@ -38,7 +35,7 @@ You can fully customize the user agent by selecting the Custom option in your ap
 You can also detect whether a request originates from your app directly in your website’s JavaScript using `navigator.userAgent`. For example:
 
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   if (navigator.userAgent.indexOf('median') > -1) {
     // App-specific logic here
   }

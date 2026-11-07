@@ -7,7 +7,7 @@ searchable: true
 
 import { MedianLogo } from "/snippets/median-logo.jsx";
 
-Median.co's Clerk Native Plugin integrates the [Clerk iOS SDK](https://clerk.com/docs/quickstarts/ios) and [Android SDK](https://clerk.com/docs/quickstarts/android) into your app to provide a native sign-in experience with session token management.
+Median's Clerk plugin integrates the [Clerk iOS SDK](https://clerk.com/docs/quickstarts/ios) and [Android SDK](https://clerk.com/docs/quickstarts/android) into your app to provide a native sign-in experience with session token management.
 
 Instead of relying on a webview-based auth flow, the plugin presents Clerk's native UI for sign-in and sign-up, then surfaces the resulting JWT session token directly to your web layer via the Median JavaScript Bridge.
 
@@ -23,13 +23,13 @@ Display our demo page in your app to test during development: [https://median.de
 ## Why use Clerk
 
 - **Native sign-in UI**: Clerk's native iOS and Android sign-in and sign-up screens appear as full platform UI, giving users a consistent and polished authentication experience outside the webview.
-- **JWT session tokens on demand**: After login, use `median.clerk.getAuthStatus` to retrieve a fresh JWT token at any point and attach it to API requests — no client-side session management required.
+- **JWT session tokens on demand**: After sign-in, use `median.clerk.getAuthStatus` to retrieve a fresh JWT token at any point and attach it to API requests — no client-side session management required.
 - **Complete user management**: Clerk is a full authentication and user management platform, covering sign-in, sign-up, and session lifecycle, reducing the backend authentication work your team needs to build.
 - **Cross-platform with one bridge API**: The same four `median.clerk.*` functions work on both iOS and Android, with only initialization behavior differing by platform.
 
 ## Prerequisites
 
-- A Median.co app with JavaScript Bridge enabled
+- A Median app with the JavaScript Bridge enabled
 - A Clerk application created in the [Clerk Dashboard](https://dashboard.clerk.com/sign-in) with a **Publishable Key** (starts with `pk_test_` or `pk_live_`)
 - The Clerk plugin enabled in Median App Studio with the publishable key configured under Advanced Mode
 - Basic understanding of JWT authentication if you plan to use the session token for API requests
@@ -42,14 +42,14 @@ Create a Clerk application in the [Clerk Dashboard](https://dashboard.clerk.com/
 
 ### App configuration
 
-In the Native Plugins tab of the App Studio, enter your **Publishable Key**:
+In the **Native Plugins** tab of App Studio, enter your **Publishable Key**:
 
-<Frame caption="Clerk Plugin Configuration">
-  <img src="/images/docs/bca22d11f10594ede4fc0394aae904c58a08f5f1c26871c26ebcc75e107d422c-Screenshot_2026-06-09_at_9.45.29_AM.png" />
+<Frame caption="Clerk plugin configuration">
+  <img src="/images/docs/bca22d11f10594ede4fc0394aae904c58a08f5f1c26871c26ebcc75e107d422c-Screenshot_2026-06-09_at_9.45.29_AM.png" alt="Publishable Key field in the Clerk plugin settings in App Studio" />
 </Frame>
 
 <Info>
-  **Auto-Initialization**
+  **Auto-initialization**
 
 On iOS and Android, the Clerk SDK is automatically initialized at app startup using the `publishableKey` from the app configuration.
 
@@ -63,7 +63,7 @@ Presents Clerk's native sign-in UI. The interface supports both sign-in and sign
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   const result = await median.clerk.presentSignIn();
 
 // result object
@@ -79,7 +79,7 @@ token: "eyJ..." // present when hasValidToken is true
 
 <MedianLogo />
 <CodeGroup>
-```JavaScript JavaScript
+```javascript JavaScript
 // Callback example
 median.clerk.presentSignIn({
   callback: function(result) {
@@ -99,7 +99,7 @@ Signs the current user out and invalidates their Clerk session. For this functio
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   const result = await median.clerk.signOut();
 
 // result object
@@ -120,7 +120,7 @@ Retrieves the current authentication status, including the session token and use
 
 <MedianLogo />
 <CodeGroup>
-```JavaScript JavaScript
+```javascript JavaScript
 const result = await median.clerk.getAuthStatus();
 
 // result object
@@ -136,7 +136,7 @@ const result = await median.clerk.getAuthStatus();
 
 <MedianLogo />
 <CodeGroup>
-  ```JavaScript JavaScript
+  ```javascript JavaScript
   // Example: use token for API request
   const status = await median.clerk.getAuthStatus();
   if (status.state === 'signedIn' && status.hasValidToken) {
@@ -171,17 +171,13 @@ Use this checklist to ensure Clerk is working correctly in your app:
 
 ### `median.clerk` functions are undefined or not working
 
-Ensure the JavaScript Bridge is enabled in Median App Studio and that the Clerk native plugin is enabled and configured. On iOS, verify that `median.clerk.initialize()` is called before any other method and that the call returns `success: true`.
+Ensure the JavaScript Bridge is enabled in Median App Studio and that the Clerk plugin is enabled and configured.
 
-### NOT_INITIALIZED error on iOS
-
-On iOS, the Clerk SDK is not initialized automatically at startup — you must call `median.clerk.initialize({ publishableKey: 'pk_...' })` from JavaScript before calling `presentSignIn`, `signOut`, or `getAuthStatus`. On Android, this call is optional because the SDK initializes from the server configuration.
-
-### Sign-in completes but token is missing or hasValidToken is false
+### Sign-in completes but token is missing or `hasValidToken` is false
 
 Check that your Clerk application is configured correctly in the Clerk Dashboard and that the publishable key matches your app environment. Also verify that the user fully completed the sign-in flow rather than dismissing it — a dismissed flow returns `state: "signedOut"` with no token.
 
-### SDK_ERROR on sign-in or sign-out
+### `SDK_ERROR` on sign-in or sign-out
 
 Check the `error.message` field for details. Common causes include network connectivity issues, an invalid or revoked publishable key, or a temporary Clerk service issue. Verify the publishable key in App Studio matches your Clerk Dashboard and that the device has network access.
 

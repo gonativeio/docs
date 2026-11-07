@@ -1,6 +1,6 @@
 ---
 title: "Share into app"
-description: "Let users share URLs from other apps into yours."
+description: "Let users share URLs from other apps into your app and receive the shared URL and page title in a JavaScript callback."
 keywords: ["share into app", "share extension", "share sheet", "share intent"]
 searchable: true
 ---
@@ -15,34 +15,34 @@ Once configured, your app appears as a target option when a user shares a URL on
 <Check>
   **Developer Demo**
 
-  Display our demo page in your app to test during development <br />[https://median.dev/share-into-app/ ](https://median.dev/share-into-app/)<Icon icon="arrow-up-right-from-square" size={12} />
+  Display our demo page in your app to test during development [https://median.dev/share-into-app/ <Icon icon="arrow-up-right-from-square" size={12} />](https://median.dev/share-into-app/)
 </Check>
 
-## Why use share into app
+## Why use Share into App
 
 - **Native system integration**: Your app appears directly in the iOS Share Sheet and Android Share Menu, so users can share into your app from any browser or native app.
 - **Deep linking shared content**: Shared URLs launch your app and deliver the URL and page title to a JavaScript callback you control, enabling any downstream action.
-- **Broad app compatibility**: Ideal for social apps, bookmarking tools, productivity platforms, and any app that benefits from capturing web content users discover outside your app.
+- **Broad app compatibility**: Useful for social apps, bookmarking tools, productivity platforms, and any app that benefits from capturing web content users discover outside your app.
 
 ## Implementation guide
 
 ### App configuration
 
-1. **Navigate to Native Plugins**: In Median App Studio, go to the Native Plugins section.
+1. **Navigate to Native Plugins**: In Median App Studio, go to the **Native Plugins** section.
 2. **Enable Share into App**: Toggle the plugin to enabled status.
 
-<Frame caption="App Studio – Enable Share into App">
+<Frame caption="App Studio – enable Share into App">
   <img src="/images/docs/4482d06f894e754a1c57c7542a2423c2c01dc15e29c629309324ebed9b28f7f0-Screenshot_2026-06-25_at_10.06.36.png" alt="App Studio Native Plugins page with the Share into app plugin added and enabled" />
 </Frame>
 
 #### iOS configuration
 
-Add an **App Group** identifier to the Share into app plugin configuration. Enter the bare iOS Bundle ID of your app (for example `com.example.app`), **not** the prefixed identifier — the platform derives the App Group as `group.<bundleId>` internally.
+Add an **App Group** identifier to the Share into app plugin configuration. Enter the bare iOS Bundle ID of your app (for example `com.example.app`), **not** the prefixed identifier. The platform derives the App Group as `group.<bundleId>` internally.
 
 <Warning>
   **App Groups must be set up manually in the Apple Developer Portal**
 
-  The App Group cannot be created through the Median platform. <br /><br />You must register it in the [Apple Developer Portal ](https://developer.apple.com/account/resources/identifiers)<Icon icon="arrow-up-right-from-square" size={12} /> and enable it on **both** your app's App ID and its `<bundleId>.ShareExtension` App ID. A release build will not work without it — see [Building an iOS Binary with App Groups Entitlement](/docs/building-an-ios-binary-for-apps-using-app-groups-entitlements).
+  The App Group cannot be created through the Median platform. <br /><br />You must register it in the [Apple Developer Portal ](https://developer.apple.com/account/resources/identifiers)<Icon icon="arrow-up-right-from-square" size={12} /> and enable it on **both** your app's App ID and its `<bundleId>.ShareExtension` App ID. A release build won't work without it. See [Building an iOS binary with App Groups entitlements](/docs/building-an-ios-binary-for-apps-using-app-groups-entitlements).
 </Warning>
 
 You will also need to set up the URL scheme protocol. You can find this setting in the **Link Handling** section in App Studio.
@@ -57,8 +57,8 @@ Define a JavaScript function named `median_share_to_app(data)` on your website. 
 
 ```javascript JavaScript
 function median_share_to_app(data) {
-  alert(data.url); // Shared URL
-  alert(data.subject); // Page title or shared text
+  console.log(data.url); // Shared URL
+  console.log(data.subject); // Page title or shared text
 }
 ```
 
@@ -78,7 +78,7 @@ function median_share_to_app(data) {
 You can test the full share flow using our virtual demo app on iOS and Android simulators.
 
 <Info>
-  **Demo Instructions**
+  **Demo instructions**
 
   1. Open any webpage (e.g., [median.co <Icon icon="arrow-up-right-from-square" size={12} />](https://median.co)) in the mobile browser.
   2. Tap the browser’s Share or Send to menu.
@@ -103,15 +103,15 @@ Use this checklist to ensure Share into App is working correctly in your app:
     Enable the JavaScript Bridge in Median App Studio and define `median_share_to_app` on your website before the native callback fires. Also confirm that you enabled the plugin in your app configuration.
   </Accordion>
 
-  <Accordion title="App does not appear in the iOS Share Sheet?">
+  <Accordion title="App doesn't appear in the iOS share sheet">
     Verify that the App Group identifier in the Share into App plugin configuration matches the App Group you registered in your Apple Developer Account. Also confirm that you have configured the URL scheme protocol in the Link Handling section of App Studio.
   </Accordion>
 
-  <Accordion title="The callback fires but data.url or data.subject is empty?">
+  <Accordion title="The callback fires but data.url or data.subject is empty">
     Check that your `median_share_to_app` function reads `data.url` for the shared URL and `data.subject` for the page title or shared text. Confirm the user is sharing a URL that provides both values as not all share sources supply a subject.
   </Accordion>
 
-  <Accordion title="Share into App does not work after enabling the plugin?">
+  <Accordion title="Share into App doesn't work after enabling the plugin">
     After enabling the plugin in App Studio, rebuild and redeploy your app. Plugin configuration changes require a new binary before they take effect on device.
   </Accordion>
 </AccordionGroup>
