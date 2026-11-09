@@ -20,8 +20,8 @@
     }
   },
   "favicon": {
-    "light": "/images/median/median-logomark-light.png",
-    "dark": "/images/median/median-logomark-dark.png"
+    "light": "/images/median/favicon-black.png",
+    "dark": "/images/median/favicon-black.png"
   },
   "metadata": {
     "timestamp": true
