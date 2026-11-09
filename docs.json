@@ -37,6 +37,10 @@
   "search": {
     "prompt": "Search the Median docs..."
   },
+  "banner": {
+    "content": "📚 **Welcome to the new Median docs!** We've moved to a new documentation platform and some page URLs have changed, so please update your bookmarks. Spot a broken link or missing page? [Contact support](https://median.co/contact) or [raise an issue on GitHub](https://github.com/gonativeio/docs/issues).",
+    "dismissible": true
+  },
   "navigation": {
     "tabs": [
       {
