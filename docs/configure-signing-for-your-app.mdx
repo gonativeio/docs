@@ -1,7 +1,14 @@
 ---
 title: "Configure signing for your app"
 description: "Set up iOS signing for your app."
-keywords: ["iOS signing", "provisioning profile", "certificates", "automatic provisioning", "App Store Connect"]
+keywords:
+  [
+    "iOS signing",
+    "provisioning profile",
+    "certificates",
+    "automatic provisioning",
+    "App Store Connect",
+  ]
 searchable: true
 ---
 
@@ -10,7 +17,10 @@ With your App Store Connect integration set up, the next step is to enable signi
 All iOS signing configuration lives in one place: the iOS IPA Build Configuration panel in Median App Studio. This article walks through each section of that panel, in order.
 
 <Frame caption="App Studio: iOS IPA Build Configuration panel">
-  <img src="/images/docs/c761e590aa91a725f27e03510a184c3fb389ce96faf626adf977e9467b4999e0-Screenshot_2026-07-06_at_11.41.36.png" alt="iOS IPA Build Configuration panel in App Studio" />
+  <img
+    src="/images/docs/c761e590aa91a725f27e03510a184c3fb389ce96faf626adf977e9467b4999e0-Screenshot_2026-07-06_at_11.41.36.png"
+    alt="iOS IPA Build Configuration panel in App Studio"
+  />
 </Frame>
 
 The panel has a top-level Automatic (API) / Manual toggle. Automatic (API) is the recommended path for most apps and is covered first below; Manual is covered in Option 2.
@@ -22,7 +32,10 @@ The panel has a top-level Automatic (API) / Manual toggle. Automatic (API) is th
 If you completed [Connecting Median with App Store Connect](/docs/connecting-median-appstore-connect), this section already shows a Connected badge along with your Issuer ID, Key ID, and private key filename. If not, complete that article before continuing.
 
 <Frame caption="Apple Developer API Connection section">
-  <img src="/images/docs/a3bec75cd84472ef9fffdaf750b06e138a3e8c9b3fb3f26e729d2eaf9ca74ac3-Screenshot_2026-07-06_at_11.42.02.png" alt="Apple Developer API Connection section with a Connected badge, Issuer ID, and Key ID" />
+  <img
+    src="/images/docs/a3bec75cd84472ef9fffdaf750b06e138a3e8c9b3fb3f26e729d2eaf9ca74ac3-Screenshot_2026-07-06_at_11.42.02.png"
+    alt="Apple Developer API Connection section with a Connected badge, Issuer ID, and Key ID"
+  />
 </Frame>
 
 ### Section 2: Bundle ID & App Store Connect app
@@ -32,7 +45,10 @@ This section ensures your app's Bundle ID is registered with Apple and that a ma
 The Bundle ID your app requires (generated from your Median app) is shown at the top of this section. You can also learn more about the Bundle ID in our [App identifiers](/docs/app-identifiers) article.
 
 <Frame caption="Bundle ID & App Store Connect section">
-  <img src="/images/docs/3560d5cb3c2fa9db468c07064adb3fcbdcbbfbd0c45241a2abf87e44be294347-Screenshot_2026-07-06_at_11.45.41.png" alt="Bundle ID & App Store Connect App section in App Studio" />
+  <img
+    src="/images/docs/3560d5cb3c2fa9db468c07064adb3fcbdcbbfbd0c45241a2abf87e44be294347-Screenshot_2026-07-06_at_11.45.41.png"
+    alt="Bundle ID & App Store Connect App section in App Studio"
+  />
 </Frame>
 
 #### Register the Bundle ID
@@ -53,13 +69,16 @@ Sign in to App Store Connect, go to the Apps tab, click the + button, and fill i
 
 This section helps you configure the right signing profile for your app.
 
-| Profile              | Use case                                                                                                                 |
-| -------------------- | ------------------------------------------------------------------------------------------------------------------------ |
-| Distribution Profile | Use this for uploading to App Store Connect, for TestFlight distribution, or for release to the App Store.               |
+| Profile              | Use case                                                                                                                                                      |
+| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Distribution Profile | Use this for uploading to App Store Connect, for TestFlight distribution, or for release to the App Store.                                                    |
 | Development Profile  | Use this for testing directly on devices you've registered in [Registering testing devices](/docs/registering-testing-devices), outside of App Store Connect. |
 
 <Frame caption="Signing & Upload Settings section">
-  <img src="/images/docs/18ea181cac8c859f2b9dd7883c2e7da44c88a0ba4aa448348e2fe6d6df0c192f-Screenshot_2026-07-06_at_11.40.00.png" alt="Signing & Upload Settings section with Distribution Profile and Development Profile options" />
+  <img
+    src="/images/docs/18ea181cac8c859f2b9dd7883c2e7da44c88a0ba4aa448348e2fe6d6df0c192f-Screenshot_2026-07-06_at_11.40.00.png"
+    alt="Signing & Upload Settings section with Distribution Profile and Development Profile options"
+  />
 </Frame>
 
 ## Option 2: Upload your own signing assets (manual tab)
@@ -82,10 +101,11 @@ To upload your own assets:
 3. Open your app in **App Studio**.
 4. Navigate to **Build & Deploy**, click **Configure** in the iOS IPA section, and upload the `.p12` file (with its password) and the provisioning profile in the Manual tab.
 
-If you encounter issues generating these assets, we encourage you to post your question in our [online discussion forum](https://docs.median.co/discuss) where the Median team and community are always willing to help.
-
 <Frame caption="Manual provisioning">
-  <img src="/images/docs/61dd87fb904b0d929bd7430e55ee4c68ea0bea5b5a783f2bc8bd1fc24c98afbf-Screenshot_2026-07-06_at_11.49.43.png" alt="Manual tab for uploading a .p12 certificate and provisioning profile" />
+  <img
+    src="/images/docs/61dd87fb904b0d929bd7430e55ee4c68ea0bea5b5a783f2bc8bd1fc24c98afbf-Screenshot_2026-07-06_at_11.49.43.png"
+    alt="Manual tab for uploading a .p12 certificate and provisioning profile"
+  />
 </Frame>
 
 ## Next step

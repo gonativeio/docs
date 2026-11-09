@@ -20,8 +20,8 @@
     }
   },
   "favicon": {
-    "light": "/images/median/median-logomark-light.png",
-    "dark": "/images/median/median-logomark-dark.png"
+    "light": "/images/median/favicon-black.png",
+    "dark": "/images/median/favicon-black.png"
   },
   "metadata": {
     "timestamp": true
@@ -553,8 +553,8 @@
     ]
   },
   "logo": {
-    "light": "/images/median/median-logo-light.png",
-    "dark": "/images/median/median-logo-dark.png",
+    "light": "/images/median/median-docs-light.svg",
+    "dark": "/images/median/median-docs-dark.svg",
     "href": "/docs/overview"
   },
   "navbar": {
