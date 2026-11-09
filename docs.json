@@ -683,5 +683,13 @@
       "source": "/docs/revenuecat",
       "destination": "/docs/revenue-cat"
     }
-  ]
+  ],
+  "integrations": {
+    "clarity": {
+      "projectId": "xcavaibynk"
+    },
+    "ga4": {
+      "measurementId": "G-JHTZNFF295"
+    }
+  }
 }
