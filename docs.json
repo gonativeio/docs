@@ -456,6 +456,13 @@
                   "docs/salesforce-lwc-components"
                 ]
               },
+              {
+                "group": "Shopify",
+                "root": "docs/shopify",
+                "pages": [
+                  "docs/using-social-login-in-the-mobile-app-of-your-shopify-store"
+                ]
+              },
               "docs/app-monetization",
               "docs/app-marketing-growth"
             ]

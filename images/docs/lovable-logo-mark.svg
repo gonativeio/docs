@@ -1,0 +1,111 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-1 -1 127 127" width="64" height="64">
+      
+      <mask
+        id="lovableIconMask"
+        width="124"
+        height="126"
+        x="0"
+        y="0"
+        maskUnits="userSpaceOnUse"
+        style="mask-type:alpha"
+      >
+        <path
+          fill="url(#lovableIconGrad)"
+          fill-rule="evenodd"
+          clip-rule="evenodd"
+          d="M37.3.343c20.43 0 36.991 16.605 36.991 37.088v14.095h12.31c20.43 0 36.991 16.605 36.991 37.088s-16.561 37.088-36.99 37.088H.31V37.431C.31 16.948 16.87.343 37.3.343Z"
+        />
+      </mask>
+      <g mask="url(#lovableIconMask)">
+        <g filter="url(#lovableBlurA)">
+          <circle cx="54.389" cy="67.257" r="83.452" fill="#4B73FF" />
+        </g>
+        <g filter="url(#lovableBlurB)">
+          <ellipse
+            cx="63.557"
+            cy="21.462"
+            fill="#FF66F4"
+            rx="106.879"
+            ry="83.452"
+          />
+        </g>
+        <g filter="url(#lovableBlurC)">
+          <ellipse
+            cx="80.992"
+            cy="5.757"
+            fill="#FF0105"
+            rx="83.452"
+            ry="73.289"
+          />
+        </g>
+        <g filter="url(#lovableBlurD)">
+          <circle cx="65.043" cy="21.442" r="50.188" fill="#FE7B02" />
+        </g>
+      </g>
+      <defs>
+        <filter
+          id="lovableBlurA"
+          width="241.704"
+          height="241.704"
+          x="-66.463"
+          y="-53.596"
+          color-interpolation-filters="sRGB"
+          filterUnits="userSpaceOnUse"
+        >
+          <feFlood flood-opacity="0" result="BackgroundImageFix" />
+          <feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
+          <feGaussianBlur result="effect1_foregroundBlur" stdDeviation="18.7" />
+        </filter>
+        <filter
+          id="lovableBlurB"
+          width="288.559"
+          height="241.704"
+          x="-80.723"
+          y="-99.39"
+          color-interpolation-filters="sRGB"
+          filterUnits="userSpaceOnUse"
+        >
+          <feFlood flood-opacity="0" result="BackgroundImageFix" />
+          <feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
+          <feGaussianBlur result="effect1_foregroundBlur" stdDeviation="18.7" />
+        </filter>
+        <filter
+          id="lovableBlurC"
+          width="241.704"
+          height="221.378"
+          x="-39.86"
+          y="-104.931"
+          color-interpolation-filters="sRGB"
+          filterUnits="userSpaceOnUse"
+        >
+          <feFlood flood-opacity="0" result="BackgroundImageFix" />
+          <feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
+          <feGaussianBlur result="effect1_foregroundBlur" stdDeviation="18.7" />
+        </filter>
+        <filter
+          id="lovableBlurD"
+          width="175.176"
+          height="175.176"
+          x="-22.545"
+          y="-66.146"
+          color-interpolation-filters="sRGB"
+          filterUnits="userSpaceOnUse"
+        >
+          <feFlood flood-opacity="0" result="BackgroundImageFix" />
+          <feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
+          <feGaussianBlur result="effect1_foregroundBlur" stdDeviation="18.7" />
+        </filter>
+        <linearGradient
+          id="lovableIconGrad"
+          x1="41.797"
+          x2="79.356"
+          y1="22.372"
+          y2="125.655"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop offset="0.025" stop-color="#FF8E63" />
+          <stop offset="0.56" stop-color="#FF7EB0" />
+          <stop offset="0.95" stop-color="#4B73FF" />
+        </linearGradient>
+      </defs>
+    </svg>
