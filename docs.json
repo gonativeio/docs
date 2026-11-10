@@ -328,7 +328,8 @@
                       "docs/sign-in-with-apple-configuration",
                       "docs/social-login-website-configuration",
                       "docs/social-login-server-side-redirects",
-                      "docs/social-login-javascript-callbacks"
+                      "docs/social-login-javascript-callbacks",
+                      "docs/using-social-login-in-the-mobile-app-of-your-shopify-store"
                     ]
                   }
                 ]

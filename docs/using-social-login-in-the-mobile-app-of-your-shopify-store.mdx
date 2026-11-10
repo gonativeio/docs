@@ -1,0 +1,39 @@
+---
+title: "Using Social Login in your Shopify Store's mobile app"
+sidebarTitle: "Shopify Stores"
+description: "Let customers sign in to your Shopify store's iOS and Android app with Google, Facebook and Shop, and add Sign in with Apple on Shopify Plus with your own identity provider."
+---
+
+## Overview
+
+Shopify's [Customer accounts feature <Icon icon="arrow-up-right-from-square" size={12} />](https://admin.shopify.com/settings/customer_accounts) lets customers sign in to your store with their Google, Facebook and Shop login details. This works in your Median app out of the box.
+
+Adding Sign in with Apple requires a Shopify Plus plan and Median's [Social Login](/docs/social-login) plugin, connected through your own identity provider and custom login page.
+
+<Warning>
+  **Apple App Store Guideline 4.8**
+
+  If your iOS app uses a third-party or social login service (such as Google, Facebook or X) to set up or authenticate a customer's primary account, Apple requires you to also offer an equivalent login option that limits data collection to name and email, lets users keep their email private, and doesn't track them for advertising without consent. Sign in with Apple meets these requirements. This does not affect Android apps. See [Apple's App Review Guidelines <Icon icon="arrow-up-right-from-square" size={12} />](https://developer.apple.com/app-store/review/guidelines/#login-services).
+</Warning>
+
+## Enable Sign in with Google and Facebook in Customer Accounts
+
+<Warning>
+  **Legacy customer accounts**
+
+  Shopify's social sign-in features are not supported on legacy customer accounts. Upgrade to the latest version of customer accounts in your Shopify admin to enable social sign-in.
+</Warning>
+
+1. In your Shopify admin, go to **Settings → Customer accounts**.
+2. Make sure you aren't using legacy customer accounts. If you are, a message prompting you to update will be visible.
+3. In the **Authentication** section, click **Manage**.
+4. On the **Authentication** page, set up Google and Facebook sign-in by following these Shopify guides:
+   * [Sign in with Google <Icon icon="arrow-up-right-from-square" size={12} />](https://help.shopify.com/en/manual/customers/customer-accounts/sign-in-options/social-sign-in/google)
+   * [Sign in with Facebook <Icon icon="arrow-up-right-from-square" size={12} />](https://help.shopify.com/en/manual/customers/customer-accounts/sign-in-options/social-sign-in/facebook)
+5. After saving your changes, open your customer login page in the mobile app to test these social login methods.
+
+## Connect your own Identity Provider (Shopify Plus)
+
+Shopify Plus stores can connect an OpenID Connect (OIDC) compliant identity provider, such as Auth0 or Okta, to use a custom login page and enable Sign in with Apple. The provider replaces Shopify's default sign-in page, so you can place the buttons for each social login method, including Sign in with Apple.
+
+See [Shopify's identity provider documentation <Icon icon="arrow-up-right-from-square" size={12} />](https://help.shopify.com/en/manual/customers/customer-accounts/sign-in-options/identity-provider) to get started. This approach requires Median's [Social Login](/docs/social-login) plugin. To set up Sign in with Apple, follow [Sign in with Apple Configuration](/docs/sign-in-with-apple-configuration).
