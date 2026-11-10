@@ -70,6 +70,7 @@
             "group": "Getting started",
             "pages": [
               "docs/quickstart",
+              "docs/simulators",
               "docs/app-publishing"
             ]
           },
