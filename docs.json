@@ -328,8 +328,7 @@
                       "docs/sign-in-with-apple-configuration",
                       "docs/social-login-website-configuration",
                       "docs/social-login-server-side-redirects",
-                      "docs/social-login-javascript-callbacks",
-                      "docs/using-social-login-in-the-mobile-app-of-your-shopify-store"
+                      "docs/social-login-javascript-callbacks"
                     ]
                   }
                 ]
@@ -455,6 +454,13 @@
                   "docs/salesforce-lwc-median",
                   "docs/salesforce-deep-linking",
                   "docs/salesforce-lwc-components"
+                ]
+              },
+              {
+                "group": "Shopify",
+                "root": "docs/shopify",
+                "pages": [
+                  "docs/using-social-login-in-the-mobile-app-of-your-shopify-store"
                 ]
               },
               "docs/app-monetization",
