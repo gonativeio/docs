@@ -1,0 +1,36 @@
+title: "[Request] "
+labels: ["status: needs review"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Before posting, please search existing requests. If yours exists, upvote it and add your use case in a comment. Votes drive prioritization.
+  - type: dropdown
+    id: area
+    attributes:
+      label: Product area
+      options:
+        - App configuration
+        - Native plugins
+        - JavaScript Bridge
+        - iOS build
+        - Android build
+        - Documentation
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem are you trying to solve?
+      description: Describe the use case, not just the feature.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+  - type: textarea
+    id: workaround
+    attributes:
+      label: Current workaround (if any)
