@@ -119,31 +119,15 @@ In the dashboard of your Sendbird app:
 1. In **App Studio**, open the **Native Plugins** tab and enable the **Sendbird** plugin.
 
 <Frame caption="App Studio – enable the Sendbird plugin">
-  <img src="/images/docs/ee1bf8fd2155fe5ee7df642c17c613d067fc4721e41d53bebbdc7e84091b1834-Screenshot_2026-03-13_at_2.43.32_PM.png" alt="App Studio Native Plugins page with the Sendbird plugin enabled" />
+  <img src="/images/docs/sendbird-app-studio-plugin-settings.webp" alt="App Studio Sendbird plugin page with Plugin Enabled turned on, an empty App ID (Optional) field, and Automatic Registration set to Enable" />
 </Frame>
 
 #### Configuration options
 
-For advanced configuration, add the parameters below to the **Advanced Configuration** field (optional):
-
-<CodeGroup>
-
-```javascript JavaScript
-{
-"active": true | false,
-"autoRegister": true | false,
-// if true push permission will be requested automatically
-"appId": STRING  // optional - if defined the Sendbird SDK will be initialized automatically
-}
-```
-
-</CodeGroup>
-
 | Setting | Description |
 | --- | --- |
-| **`active`** | `true` or `false`. |
-| **`autoRegister`** | `true` or `false` — if `true`, push permission is requested automatically. |
-| **`appId`** | Optional string — if defined, the Sendbird SDK is initialized automatically. |
+| **App ID** | Optional string — if defined, the Sendbird SDK is initialized automatically. |
+| **Automatic Registration** | When set to **Enable**, push permission is requested automatically. |
 
 #### Android: `google-services.json`
 
