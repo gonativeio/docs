@@ -7,6 +7,7 @@
     "light": "#4299ED",
     "dark": "#1174D3"
   },
+  "description": "Median docs: convert websites and web apps into native iOS and Android apps with App Studio, the JavaScript Bridge, and native plugins.",
   "fonts": {
     "family": "DM Sans",
     "heading": {
@@ -26,9 +27,22 @@
   "metadata": {
     "timestamp": true
   },
+  "contextual": {
+    "options": [
+      "copy",
+      "view",
+      "chatgpt",
+      "claude",
+      "perplexity",
+      "mcp",
+      "cursor",
+      "vscode"
+    ]
+  },
   "seo": {
-    "indexing": "all",
+    "indexing": "navigable",
     "metatags": {
+      "canonical": "https://docs.median.co",
       "og:site_name": "Median Docs",
       "og:type": "website",
       "twitter:card": "summary_large_image"
@@ -609,6 +623,10 @@
     },
     {
       "source": "/discuss",
+      "destination": "/docs/support"
+    },
+    {
+      "source": "/discuss/:slug*",
       "destination": "/docs/support"
     },
     {
