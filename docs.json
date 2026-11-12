@@ -686,10 +686,6 @@
       "destination": "/docs/swipe-gestures#pull-to-refresh"
     },
     {
-      "source": "/docs/deep-linking-1",
-      "destination": "/docs/deep-linking"
-    },
-    {
       "source": "/docs/free-splash-screen",
       "destination": "/docs/splash-screen"
     },
