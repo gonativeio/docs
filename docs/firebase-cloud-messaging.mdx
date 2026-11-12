@@ -1,7 +1,14 @@
 ---
 title: "Firebase Cloud Messaging"
 description: "Send native push notifications with Firebase Cloud Messaging and manage permissions, tokens, topics, channels, and badges from your web app."
-keywords: ["Firebase Cloud Messaging", "FCM", "push notifications", "Firebase", "topics"]
+keywords:
+  [
+    "Firebase Cloud Messaging",
+    "FCM",
+    "push notifications",
+    "Firebase",
+    "topics",
+  ]
 searchable: true
 ---
 
@@ -56,7 +63,10 @@ Create (or reuse) a Firebase project and register your Android and iOS apps to i
 3. Upload `google-services.json` (Android) and `GoogleService-Info.plist` (iOS) in **Google Services** configuration.
 
 <Frame caption="App Studio Google Services configuration">
-  <img alt="Google Services section in Build & Deploy with upload fields for google-services.json and GoogleService-Info.plist" src="/images/docs/e16132209cfe5298ccd9c00fa4ed7895fd3aa96cd31d32cfb6298a930e3f2eb0-Screenshot_2026-08-26_at_11.29.36.png" />
+  <img
+    alt="Google Services section in Build & Deploy with upload fields for google-services.json and GoogleService-Info.plist"
+    src="/images/docs/e16132209cfe5298ccd9c00fa4ed7895fd3aa96cd31d32cfb6298a930e3f2eb0-Screenshot_2026-08-26_at_11.29.36.png"
+  />
 </Frame>
 
 4. Enable the **Firebase Cloud Messaging** native plugin.
@@ -64,7 +74,10 @@ Create (or reuse) a Firebase project and register your Android and iOS apps to i
 6. Rebuild your app to include the Firebase Cloud Messaging SDKs and your settings.
 
 <Frame caption="App Studio Firebase Cloud Messaging configuration">
-  <img alt="Firebase Cloud Messaging plugin settings in App Studio" src="/images/docs/fffe6acce36437b899ed317316a4f8ee2b313fb09b2f390467d0af42f54ae7f1-Screenshot_2026-08-26_at_11.28.21.png" />
+  <img
+    alt="Firebase Cloud Messaging plugin settings in App Studio"
+    src="/images/docs/fffe6acce36437b899ed317316a4f8ee2b313fb09b2f390467d0af42f54ae7f1-Screenshot_2026-08-26_at_11.28.21.png"
+  />
 </Frame>
 
 #### Plugin configuration options
@@ -160,12 +173,12 @@ Returns the current FCM registration token for the device, if one has been gener
   ```
 </CodeGroup>
 
-  <Card
-    title="Looking to send pushes to individual users or segments?"
-    href="/docs/fcm-identifying-targeting-users"
-  >
-    Follow the guide below to identify and target individual users or segments.
-  </Card>
+<Card
+  title="Looking to send pushes to individual users or segments?"
+  href="/docs/fcm-identifying-targeting-users"
+>
+  Follow the guide below to identify and target individual users or segments.
+</Card>
 
 **Delete token**
 
@@ -315,9 +328,10 @@ Controls whether an incoming push shows a visible banner while the app is in the
   // Show a native banner for pushes received while the app is open
   median.firebaseMessaging.enableForegroundBanners();
 
-  // Suppress the native banner; the notificationReceived listener still fires
-  median.firebaseMessaging.disableForegroundBanners();
-  ```
+// Suppress the native banner; the notificationReceived listener still fires
+median.firebaseMessaging.disableForegroundBanners();
+
+```
 </CodeGroup>
 
 #### Listeners
@@ -329,12 +343,12 @@ Register listeners to respond when notifications are received in the foreground 
 ```javascript JavaScript
 // Triggers when a push notification is delivered while the app is active
 const receivedListenerId = median.firebaseMessaging.notificationReceived.addListener((data) => {
-  console.log("Notification received:", data);
+console.log("Notification received:", data);
 });
 
 // Triggers when a push notification is tapped by the user
 const clickedListenerId = median.firebaseMessaging.notificationClicked.addListener((data) => {
-  console.log("Notification tapped:", data);
+console.log("Notification tapped:", data);
 });
 
 // Remove a listener when it's no longer needed
@@ -358,18 +372,64 @@ Use this checklist, together with the [demo page](https://median.dev/firebase-me
 
 ## Troubleshooting
 
-### App Studio reports missing Google services configuration files
+<AccordionGroup>
+  <Accordion title="App Studio reports missing Google services configuration files" icon="file-circle-exclamation">
+    FCM requires Google Services to be configured for your app. Follow the steps in our [Google Services guide](/docs/google-services) to add `google-services.json` (Android) and `GoogleService-Info.plist` (iOS).
+  </Accordion>
 
-You need to configure Google Services to use FCM. Follow the steps in our [Google Services guide](/docs/google-services).
+  <Accordion title="Test push from the sender isn't arriving" icon="paper-plane">
+    Check that everything points to the same Firebase project:
 
-### Deep links open in the browser instead of the app
+    - The **project ID** in the Test Sender matches the project in your app's `google-services.json` / `GoogleService-Info.plist`.
+    - The **service account key** belongs to that same project.
+    - The **destination token or topic** is current.
 
-Configure Median [deep linking](/docs/deep-linking) (URL scheme, Universal Links, App Links) so the target URL used in your FCM payload matches routes handled inside the app.
+    Device tokens can rotate. If it's been a while, copy the token from the demo page again.
 
-### Test push from the sender isn't arriving
+  </Accordion>
 
-Confirm the Firebase project ID in the Test Sender matches the project tied to your app's `google-services.json`/`GoogleService-Info.plist`, that the service account key belongs to the same project, and that the destination token or topic is current. Tokens can rotate, so re-copy the token from the demo page if it's been a while.
+  <Accordion
+    title="Deep links open in the browser instead of the app"
+    icon="link"
+  >
+    Configure Median [deep linking](/docs/deep-linking) (URL scheme, Universal
+    Links, and App Links) so the target URL in your FCM payload matches a route
+    the app handles.
+  </Accordion>
 
-### Badge count isn't showing
+  <Accordion title="Custom notification sound doesn't play (Android)" icon="volume-high">
+    On Android, a notification's sound belongs to its **notification channel**, not the individual message. To play a custom sound, set `channel_id` alongside `sound` in the message's `android.notification` block:
 
-Badge counts are best-effort and depend on launcher support. They work on Samsung, Xiaomi, and similar launchers, but do nothing on stock Android (AOSP/Pixel-style) launchers. This is a platform limitation, not a bug in your integration.
+    ```json FCM message
+    {
+      "message": {
+        "token": "<device token>",
+        "notification": { "title": "Order shipped", "body": "Your order is on its way" },
+        "android": {
+          "notification": { "channel_id": "order_updates", "sound": "order_chime" }
+        }
+      }
+    }
+    ```
+
+    The first message sent with a new `channel_id` creates that channel with the given sound. Android doesn't let apps change a channel's sound after it's created, so the channel keeps that sound permanently.
+
+    <Note>
+      To use a different sound, send it on a new `channel_id`. Messages without a `channel_id` use the default channel and its sound.
+    </Note>
+
+  </Accordion>
+
+  <Accordion
+    title="Tapping grouped notifications doesn't open the target URL (Android)"
+    icon="layer-group"
+  >
+    When several notifications from your app are showing, Android may bundle them
+    into a group. Tapping the group summary opens the app without a target URL.
+    Expand the group and tap an individual notification to open its URL.
+  </Accordion>
+
+  <Accordion title="Badge count isn't showing (Android)" icon="hashtag">
+    Badge counts are best-effort and depend on launcher support. They work on Samsung, Xiaomi, and similar launchers, but have no effect on stock Android (AOSP/Pixel-style) launchers. This is a platform limitation, not a problem with your integration.
+  </Accordion>
+</AccordionGroup>
