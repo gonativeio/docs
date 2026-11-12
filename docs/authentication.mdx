@@ -1,9 +1,19 @@
 ---
 title: "Authentication"
 description: "Compare Median's authentication plugins and learn how sessions, two-factor authentication, and magic links work in a hybrid webview app."
-keywords: ["authentication", "sign in", "biometrics", "social login", "passkeys", "plugins"]
+keywords:
+  [
+    "authentication",
+    "sign in",
+    "biometrics",
+    "social login",
+    "passkeys",
+    "plugins",
+  ]
 searchable: true
 ---
+
+import RequestPlugin from "/snippets/request-plugin.mdx";
 
 Modern users expect instant, secure access without creating yet another password. Median's authentication plugins offer sign-in through social accounts (Facebook, Google, Apple), biometric verification (Face ID, Touch ID), or enterprise Auth0 integration. Social login reduces signup abandonment by 20-40%, while biometric authentication adds security without extra steps for the user.
 
@@ -71,7 +81,7 @@ Google, for example, rejects OAuth sign-in from embedded webviews. Use the [Soci
   </Card>
 </Columns>
 
-## Can't find your vendor?
+<RequestPlugin />
 
 As your needs evolve, Median can enhance your plugin implementation to include new functions or data points from third-party SDKs. We'll work with you to meet your specific requirements. [Contact us for details](https://median.co/contact?topic=sales-inquiry).
 
@@ -94,8 +104,8 @@ MFA is enforced by your server or identity provider, so it works in your app the
 | SMS or email one-time code         | The user reads the code in a notification or another app, then types it in. | Add `autocomplete="one-time-code"` and `inputmode="numeric"` to the input so the keyboard can suggest the code. |
 | Authenticator app (TOTP)           | The user leaves your app to copy a code, then returns.                      | Keep the challenge page intact when the app resumes. Do not reload or restart the flow.                         |
 | Push approval                      | The user approves in another app, then returns.                             | Poll for approval so the page advances on its own when the user comes back.                                     |
-| Passkey or security key (WebAuthn) | Handled by the operating system prompt.                                     | Use the [Passkey Authentication](/docs/passkey-authentication) plugin.                    |
-| Biometrics                         | Face ID, Touch ID, or Android Biometric prompt.                             | Use the [biometric plugin](/docs/auth) to unlock saved credentials.                       |
+| Passkey or security key (WebAuthn) | Handled by the operating system prompt.                                     | Use the [Passkey Authentication](/docs/passkey-authentication) plugin.                                          |
+| Biometrics                         | Face ID, Touch ID, or Android Biometric prompt.                             | Use the [biometric plugin](/docs/auth) to unlock saved credentials.                                             |
 
 ### Magic links
 
