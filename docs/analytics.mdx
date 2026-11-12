@@ -1,9 +1,19 @@
 ---
 title: "Analytics"
 description: "Compare Median's analytics plugins for tracking events, attribution, user behavior, and crashes in your iOS and Android app."
-keywords: ["analytics", "plugins", "Firebase Analytics", "AppsFlyer", "Adjust", "attribution"]
+keywords:
+  [
+    "analytics",
+    "plugins",
+    "Firebase Analytics",
+    "AppsFlyer",
+    "Adjust",
+    "attribution",
+  ]
 searchable: true
 ---
+
+import RequestPlugin from "/snippets/request-plugin.mdx";
 
 Analytics plugins provide important insights into how users interact with your mobile app, enabling you to make data-driven decisions that drive growth, engagement, and revenue. By tracking user behavior, measuring campaign performance, and monitoring app health, analytics tools help you understand what’s working and what needs improvement. Median's analytics plugins integrate with platforms like Google Firebase Analytics, AppsFlyer, Adjust, Meta App Events, and more.
 
@@ -100,14 +110,6 @@ Analytics plugins provide important insights into how users interact with your m
     across your user base.
   </Card>
   <Card
-    title="Meta App Events"
-    icon="/images/docs/7f718c590aef24268c76f9456167ce1c187ca89c630d9f07714801d618a9218c-plugin_meta-events.svg"
-    href="/docs/facebook"
-  >
-    Collect analytics, measure Facebook Ad performance, and build audiences for
-    ad targeting.
-  </Card>
-  <Card
     title="Intent Edge"
     icon="/images/docs/40cf9590a23e5598779049faf08f48620f675d6102efbdafa154940288aef4da-plugin_intentedge.svg"
     href="/docs/intent-edge"
@@ -115,8 +117,14 @@ Analytics plugins provide important insights into how users interact with your m
     Enable personalized user experiences through on-device artificial
     intelligence.
   </Card>
+  <Card
+    title="Meta App Events"
+    icon="/images/docs/7f718c590aef24268c76f9456167ce1c187ca89c630d9f07714801d618a9218c-plugin_meta-events.svg"
+    href="/docs/facebook"
+  >
+    Collect analytics, measure Facebook Ad performance, and build audiences for
+    ad targeting.
+  </Card>
 </Columns>
 
-## Can't find your vendor?
-
-As your needs evolve, Median can enhance your plugin implementation to include new functions or data points from third-party SDKs. We'll work with you to meet your specific requirements. [Contact us for details](https://median.co/contact?topic=sales-inquiry).
+<RequestPlugin />
