@@ -4,6 +4,9 @@ description: "Add MoEngage push notifications to your app, and manage permission
 keywords: ["MoEngage", "push notifications", "engagement", "events"]
 searchable: true
 ---
+
+import { DeveloperDemo } from "/snippets/developer-demo.jsx";
+
 import { MedianLogo } from "/snippets/median-logo.jsx";
 
 Median integrates MoEngage's native SDKs on iOS and Android, including APNS Auth Keys (iOS) and FCM Authentication (Android), and exposes push permission management, user identity, event tracking, and the MoEngage notification center through the Median JavaScript Bridge.
@@ -15,12 +18,7 @@ Median integrates MoEngage's native SDKs on iOS and Android, including APNS Auth
 - **Behavioral event tracking**: Log named events with or without key-value payloads for MoEngage segmentation and campaigns.
 - **In-app notification center**: Launch the MoEngage inbox and subscription center from any JavaScript context in your app.
 
-<Check>
-**Developer Demo**
-
-Display our demo page in your app to test during development [https://median.dev/moengage/ <Icon icon="arrow-up-right-from-square" size={12} />](https://median.dev/moengage/)
-
-</Check>
+<DeveloperDemo path="moengage" />
 
 ## Prerequisites
 
@@ -52,7 +50,7 @@ MoEngage is a good fit for apps that need to:
 
 - Android push permission dialogs appear on Android 13 and above; on Android 12 and below, permission is always granted without user interaction.
 - Deep linking must be configured separately in Median App Studio for in-app notification routing to work.
-</Info>
+  </Info>
 
 ## Integration guide
 
@@ -74,11 +72,12 @@ Provide a callback function, or a promise is returned.
   // Using a callback
   median.moengage.promptNotification({ callback: function () {} });
 
-  // Using a promise
-  median.moengage.promptNotification().then(function (result) {
-    console.log('Notification permission result:', result);
-  });
-  ```
+// Using a promise
+median.moengage.promptNotification().then(function (result) {
+console.log('Notification permission result:', result);
+});
+
+````
 </CodeGroup>
 
 **Parameters:**
@@ -96,16 +95,16 @@ Provide a callback function, or a promise is returned.
 <MedianLogo />
 <CodeGroup>
 ```javascript JavaScript
-  // Using a callback
-  median.moengage.notificationEnabled({ callback: function (result) {
-    console.log('Notifications enabled:', result);
-  }});
+// Using a callback
+median.moengage.notificationEnabled({ callback: function (result) {
+  console.log('Notifications enabled:', result);
+}});
 
-  // Using a promise
-  median.moengage.notificationEnabled().then(function (result) {
-    console.log('Notifications enabled:', result);
-  });
-```
+// Using a promise
+median.moengage.notificationEnabled().then(function (result) {
+  console.log('Notifications enabled:', result);
+});
+````
 
 </CodeGroup>
 
@@ -121,9 +120,7 @@ Sets a persistent user identifier across installs and platforms. Call after logi
 
 <MedianLogo />
 <CodeGroup>
-```javascript JavaScript
-median.moengage.setUniqueId('uniqueid');
-```
+  ```javascript JavaScript median.moengage.setUniqueId('uniqueid'); ```
 </CodeGroup>
 
 **Parameters:**
@@ -138,9 +135,7 @@ Updates the existing user unique ID with a new alias. Use when a user's identifi
 
 <MedianLogo />
 <CodeGroup>
-```javascript JavaScript
-median.moengage.setAlias('alias');
-```
+  ```javascript JavaScript median.moengage.setAlias('alias'); ```
 </CodeGroup>
 
 **Parameters:**
@@ -154,11 +149,7 @@ median.moengage.setAlias('alias');
 Resets unique ID and all data for the current user. Call on logout to disassociate the device from a user account.
 
 <MedianLogo />
-<CodeGroup>
-```javascript JavaScript
-median.moengage.resetUser();
-```
-</CodeGroup>
+<CodeGroup>```javascript JavaScript median.moengage.resetUser(); ```</CodeGroup>
 
 #### Log event with or without data
 
@@ -170,9 +161,10 @@ Logs a named event with an optional key-value payload. Use for behavioral analyt
   // Event with payload
   median.moengage.trackEvent('eventName', { key_1: 'value_1', key_2: 'value_2' });
 
-  // Event without payload
-  median.moengage.trackEvent('eventName');
-```
+// Event without payload
+median.moengage.trackEvent('eventName');
+
+````
 </CodeGroup>
 
 **Parameters:**
@@ -190,7 +182,8 @@ Launches the MoEngage notification and subscription center.
 <CodeGroup>
 ```javascript JavaScript
   median.moengage.launchInbox();
-```
+````
+
 </CodeGroup>
 
 ## Testing checklist

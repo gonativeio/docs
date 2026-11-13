@@ -5,6 +5,8 @@ keywords: ["Klaviyo", "push notifications", "engagement", "marketing"]
 searchable: true
 ---
 
+import { DeveloperDemo } from "/snippets/developer-demo.jsx";
+
 import { MedianLogo } from "/snippets/median-logo.jsx";
 
 The Klaviyo plugin enables mobile push notifications to increase engagement and audience insight. It integrates the official [Klaviyo Swift SDK](https://github.com/klaviyo/klaviyo-swift-sdk) on iOS and the [Klaviyo Kotlin SDK](https://github.com/klaviyo/klaviyo-android-sdk) on Android. This guide covers Klaviyo account setup, Median App Studio configuration, and [Median JavaScript Bridge](/docs/javascript-bridge) APIs for permissions and profiles.
@@ -23,12 +25,7 @@ The Klaviyo plugin enables mobile push notifications to increase engagement and 
 - `GoogleService-Info.plist` and `google-services.json` uploaded in your Median app configuration (required for Firebase-backed delivery on Android and proper SDK initialization; see [Google Services](/docs/google-services))
 - Familiarity with Klaviyo push setup and, as needed, your [App Identifiers](/docs/app-identifiers), Apple Developer account, and Google Cloud / Firebase project
 
-<Check>
-  **Developer Demo**
-
-Display our demo page in your app to test during development [https://median.dev/klaviyo/ <Icon icon="arrow-up-right-from-square" size={12} />](https://median.dev/klaviyo/)
-
-</Check>
+<DeveloperDemo path="klaviyo" />
 
 ## Key terms
 
@@ -187,16 +184,17 @@ Identify users and attach fields Klaviyo uses for segmentation and personalizati
   // Get the current user profile
   median.klaviyo.getProfile();
 
-  // Set user profile attributes
-  median.klaviyo.setProfile({
-    externalId: "USER_ID",
-    email: "user@example.com",
-    phoneNumber: "+1234567890",
-  });
+// Set user profile attributes
+median.klaviyo.setProfile({
+externalId: "USER_ID",
+email: "user@example.com",
+phoneNumber: "+1234567890",
+});
 
-  // Clear the stored user profile
-  median.klaviyo.resetProfile();
-  ```
+// Clear the stored user profile
+median.klaviyo.resetProfile();
+
+```
 </CodeGroup>
 
 `setProfile` **parameters:**
@@ -266,3 +264,4 @@ Verify `setProfile` is called with correct `externalId` / email / phone after lo
 
 For issues related to Klaviyo's own configuration, permissions, or platform-specific behavior outside of Median, refer to [Klaviyo's integration documentation](https://developers.klaviyo.com/en/docs/get_started).
 </Info>
+```

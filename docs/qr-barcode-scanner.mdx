@@ -4,21 +4,20 @@ description: "Scan QR codes and barcodes with the device camera from your websit
 keywords: ["QR code scanner", "barcode scanner", "scanning", "camera"]
 searchable: true
 ---
+
+import { DeveloperDemo } from "/snippets/developer-demo.jsx";
+
 import { MedianLogo } from "/snippets/median-logo.jsx";
 
 Add QR code and barcode scanning to your mobile app using the device camera. Ideal for use cases such as:
+
 - In-store retail shopping
 - Warehouse and inventory management
 - Data center asset tracking
 
 The Median QR/Barcode Scanner plugin is built on top of customized, open-source libraries and offers full functionality without licensing fees or usage limits.
 
-<Check>
-**Developer Demo**
-
-Display our demo page in your app to test during development [https://median.dev/qr-barcode/](https://median.dev/qr-barcode/)
-
-</Check>
+<DeveloperDemo path="qr-barcode" />
 
 ## Underlying open-source technologies
 
@@ -28,8 +27,8 @@ Display our demo page in your app to test during development [https://median.dev
 
 ## UI example
 
-|                  iOS                   |                  Android                   |
-| :------------------------------------: | :----------------------------------------: |
+|                             iOS                              |                               Android                                |
+| :----------------------------------------------------------: | :------------------------------------------------------------------: |
 | ![QR code scanner on iOS](/images/docs/5649c1d-Apple-QR.png) | ![QR code scanner on Android](/images/docs/7bb3e13-Android-QR_1.png) |
 
 ## Implementation guide
@@ -50,26 +49,27 @@ The method supports both callback and Promise-based approaches:
     callback: process_barcode
   });
 
-  function process_barcode(data) {
-    if (data.success) {
-      console.log('Got barcode: ' + data.code);
-    }
-  }
+function process_barcode(data) {
+if (data.success) {
+console.log('Got barcode: ' + data.code);
+}
+}
 
-  // Promise example
-  median.barcode.scan({ formats: ['QR_CODE'] }).then(function (data) {
-    if (data.success) {
-      console.log('Got barcode: ' + data.code);
-    }
-  });
+// Promise example
+median.barcode.scan({ formats: ['QR_CODE'] }).then(function (data) {
+if (data.success) {
+console.log('Got barcode: ' + data.code);
+}
+});
 
-  // Scan all supported formats (default)
-  median.barcode.scan().then(function (data) {
-    if (data.success) {
-      console.log('Got barcode: ' + data.code);
-    }
-  });
-```
+// Scan all supported formats (default)
+median.barcode.scan().then(function (data) {
+if (data.success) {
+console.log('Got barcode: ' + data.code);
+}
+});
+
+````
 </CodeGroup>
 
 The native scanner UI will launch within your app. Upon scan completion, focus will return to the webview where an object in the format below will be returned.
@@ -82,7 +82,8 @@ The native scanner UI will launch within your app. Upon scan completion, focus w
   code: "STRING",     // The actual scanned value
   error: "STRING"     // Error message if unsuccessful
 }
-```
+````
+
 </CodeGroup>
 
 [Learn more about using promises and the Median JavaScript Bridge](/docs/javascript-bridge#promises).
@@ -104,7 +105,6 @@ You can also dynamically set the prompt message in-app using the `setPrompt()` m
 
 <MedianLogo />
 <CodeGroup>
-  ```javascript JavaScript 
-  median.barcode.setPrompt('Align the QR code or barcode within the frame to scan automatically'); 
-  ```
+  ```javascript JavaScript median.barcode.setPrompt('Align the QR code or
+  barcode within the frame to scan automatically'); ```
 </CodeGroup>

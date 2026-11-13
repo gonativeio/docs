@@ -1,21 +1,25 @@
 ---
 title: "AdMob native ads"
 description: "Show Google AdMob banner and interstitial ads in your app, and handle iOS tracking consent and GDPR consent with the JavaScript Bridge."
-keywords: ["AdMob", "ads", "monetization", "banner ads", "interstitial ads", "Google Mobile Ads"]
+keywords:
+  [
+    "AdMob",
+    "ads",
+    "monetization",
+    "banner ads",
+    "interstitial ads",
+    "Google Mobile Ads",
+  ]
 searchable: true
 ---
 
-import { MedianLogo } from "/snippets/median-logo.jsx";
+import { DeveloperDemo } from "/snippets/developer-demo.jsx";
 
+import { MedianLogo } from "/snippets/median-logo.jsx";
 
 Monetize your mobile app and gain analytics with Google AdMob, Google's mobile advertising platform. This guide explains how to integrate AdMob using the Median JavaScript Bridge, including setup, banner and interstitial ad formats, user consent for tracking, and GDPR compliance.
 
-<Check>
-**Developer Demo**
-
-Display our demo page in your app to test during development [https://median.dev/admob/](https://median.dev/admob/)
-
-</Check>
+<DeveloperDemo path="admob" />
 
 ## What is AdMob?
 
@@ -30,8 +34,8 @@ AdMob supports two primary ad types:
 - **Banner ads:** Displayed persistently near the bottom of the app window, below your web content. Ideal for passive monetization without interrupting user experience.
 - **Interstitial ads:** Full-screen ads that appear at natural breaks in your app flow (e.g., after completing a level or before loading a new page). These ads may include video, animation, or timers and are more visually engaging, but should be used thoughtfully due to their interruptive nature.
 
-|                   Banner Ad                   |                   Interstitial Ad                   |
-| :-------------------------------------------: | :-------------------------------------------------: |
+|                                     Banner Ad                                      |                                   Interstitial Ad                                    |
+| :--------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------: |
 | ![AdMob banner ad below the web content](/images/docs/docs/admob/admob-banner.png) | ![Full-screen AdMob interstitial ad](/images/docs/docs/admob/admob-interstitial.png) |
 
 ## Implementation guide
@@ -66,9 +70,7 @@ To show an interstitial ad, run the following JavaScript function:
 
 <MedianLogo />
 <CodeGroup>
-  ```javascript JavaScript
-  median.admob.showInterstitialIfReady();
-  ```
+  ```javascript JavaScript median.admob.showInterstitialIfReady(); ```
 </CodeGroup>
 
 > Note: This should be done when the user is at a natural pausing point, for example when they tap something to initiate an action, or they have finished viewing a piece of content. Note that interstitial ad fill rates are significantly lower than banner ads, and there may not always be an interstitial ad ready. In that case, no interstitial will be shown.
@@ -77,8 +79,7 @@ To show an interstitial ad, run the following JavaScript function:
 
 <MedianLogo />
 <CodeGroup>
-  ```javascript JavaScript
-  median.admob.showInterstitialOnNextPageLoadIfReady();
+  ```javascript JavaScript median.admob.showInterstitialOnNextPageLoadIfReady();
   ```
 </CodeGroup>
 
@@ -90,10 +91,8 @@ Enable or disable banner ads with these commands:
 
 <MedianLogo />
 <CodeGroup>
-  ```javascript JavaScript
-  median.admob.banner.enable(); // Show banner
-  median.admob.banner.disable(); // Hide banner
-  ```
+  ```javascript JavaScript median.admob.banner.enable(); // Show banner
+  median.admob.banner.disable(); // Hide banner ```
 </CodeGroup>
 
 ### iOS 14+ tracking consent (IDFA)
@@ -108,19 +107,20 @@ Enable ATT and prompt the user with the following commands:
   // Using a callback
   median.admob.request.tracking({ callback: trackingCallback });
 
-  function trackingCallback(result) {
-    if (result.status === 'authorized') {
-      console.log('Thank you for enabling personalized ads');
-    }
-  }
+function trackingCallback(result) {
+if (result.status === 'authorized') {
+console.log('Thank you for enabling personalized ads');
+}
+}
 
-  // Using a promise
-  median.admob.request.tracking().then(function(result) {
-    if (result.status === 'authorized') {
-      console.log('Thank you for enabling personalized ads');
-    }
-  });
-  ```
+// Using a promise
+median.admob.request.tracking().then(function(result) {
+if (result.status === 'authorized') {
+console.log('Thank you for enabling personalized ads');
+}
+});
+
+````
 </CodeGroup>
 
 `callback` is an optional parameter to get the result of the user decision. It should be the name of a JavaScript function that will receive the result. The result will be an object with a status string, which can be "authorized", "denied", or "restricted" (denied by corporate policy or user is underage).
@@ -138,18 +138,19 @@ Create a user message in your AdMob console under **Privacy & Messaging**, then 
 median.admob.request.consent({ callback: consentCallback });
 
 function consentCallback(result) {
-  if (result.success === true) {
-    console.log('Thank you for enabling personalized ads');
-  }
+if (result.success === true) {
+  console.log('Thank you for enabling personalized ads');
+}
 }
 
 // Promise method
 median.admob.request.consent().then(function(result) {
-  if (result.success === true) {
-    console.log('Thank you for enabling personalized ads');
-  }
+if (result.success === true) {
+  console.log('Thank you for enabling personalized ads');
+}
 });
-```
+````
+
 </CodeGroup>
 
 `callback` is an optional parameter to get the result of the user decision. It should be the name of a JavaScript function that will receive the result. The result will be an object with a `result` boolean.

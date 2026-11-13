@@ -1,9 +1,19 @@
 ---
 title: "Apple In-App Purchases"
 description: "Sell digital goods and subscriptions on iOS with Apple In-App Purchases, verify purchases on your server or on-device, and restore them."
-keywords: ["Apple In-App Purchases", "IAP", "StoreKit", "App Store Server API", "receipt validation", "subscriptions"]
+keywords:
+  [
+    "Apple In-App Purchases",
+    "IAP",
+    "StoreKit",
+    "App Store Server API",
+    "receipt validation",
+    "subscriptions",
+  ]
 searchable: true
 ---
+
+import { DeveloperDemo } from "/snippets/developer-demo.jsx";
 
 import { MedianLogo } from "/snippets/median-logo.jsx";
 
@@ -20,12 +30,7 @@ In-app purchases provide additional channels to monetize your app. iOS contains 
 
 Generally, if your app accepts payment for any digital goods or memberships, Apple’s App Store Guidelines require you to accept in-app purchases as the only payment method within your mobile app.
 
-<Check>
-**Developer Demo**
-
-Display our demo page in your app to test during development [https://median.dev/iap](https://median.dev/iap)
-
-</Check>
+<DeveloperDemo path="iap" />
 
 Median's Apple App Store in-app purchase flow has these steps:
 
@@ -92,10 +97,8 @@ Or you may return the available products at runtime via a promise (in async func
 
 <MedianLogo />
 <CodeGroup>
-  ```javascript JavaScript
-  var productsData = await median.iap.info();
-  console.log(productsData);
-  ```
+  ```javascript JavaScript var productsData = await median.iap.info();
+  console.log(productsData); ```
 </CodeGroup>
 
 In both cases `productsData` will be of the form:
@@ -142,11 +145,12 @@ When a user decides to purchase an IAP, run the JavaScript function:
 
 //Or via a promise
 median.iap.purchase({'productID': 'product_id'}).then(function(purchasesData){
-  console.log(purchasesData);
-    }).catch(function(error){
-      console.log(error);
-    });
-```
+console.log(purchasesData);
+}).catch(function(error){
+console.log(error);
+});
+
+````
 </CodeGroup>
 
 Your app will start the in-app purchase flow and return `purchasesData` in the format listed further below. If the purchase fails an error will be thrown with the error provided by Apple.
@@ -180,7 +184,8 @@ console.log(transactionInfo);
 // }
 
 // Send transactionInfo to your backend for verification
-```
+````
+
 </CodeGroup>
 
 #### Decode JWS response
@@ -274,10 +279,8 @@ Or you may return the purchases at runtime via a promise (in async function):
 
 <MedianLogo />
 <CodeGroup>
-  ```javascript JavaScript
-  var purchasesData = await median.iap.purchases();
-  console.log(purchasesData);
-  ```
+  ```javascript JavaScript var purchasesData = await median.iap.purchases();
+  console.log(purchasesData); ```
 </CodeGroup>
 
 In both cases `purchasesData` will be of the form:
@@ -329,9 +332,7 @@ To restore purchases, run the JavaScript function:
 
 <MedianLogo />
 <CodeGroup>
-  ```javascript JavaScript 
-  median.iap.restorePurchases();
-  ```
+  ```javascript JavaScript median.iap.restorePurchases(); ```
 </CodeGroup>
 
 Any previous purchases will be restored and will start the verification process outlined above, as if they were newly purchased. If there are no purchases to restore, no action is performed. Unfortunately, it is not possible to differentiate between a lack of purchases to restore, a delay, or a failure to restore. You may choose to display a message such as “Restore requested. If you have previous purchases they will be available shortly.”

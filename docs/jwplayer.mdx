@@ -5,16 +5,13 @@ keywords: ["JW Player", "video player", "video playback", "media", "streaming"]
 searchable: true
 ---
 
+import { DeveloperDemo } from "/snippets/developer-demo.jsx";
+
 import { MedianLogo } from "/snippets/median-logo.jsx";
 
 JW Player is a video platform for hosting and playing video. Median's JW Player plugin integrates the [JW Player iOS SDK](https://docs.jwplayer.com/players/docs/ios-overview) and [Android SDK](https://docs.jwplayer.com/players/docs/android-overview) into your app to provide native video playback with support for single videos, playlists, and adaptive streaming.
 
-<Check>
-  **Developer Demo**
-
-Display our demo page in your app to test during development [https://median.dev/jwplayer <Icon icon="arrow-up-right-from-square" size={12} />](https://median.dev/jwplayer)
-
-</Check>
+<DeveloperDemo path="jwplayer" />
 
 ## Why use JW Player?
 
@@ -42,16 +39,19 @@ Before you begin, ensure you have the following:
 5. Save your configuration.
 
 <Frame caption="JW Player plugin configuration">
-  <img src="/images/docs/e57fa87ad7ee523bbc5d214f8a9deaa293bd18b41341d2d87036b1d67f6262ba-Screenshot_2026-06-17_at_10.15.48.png" alt="JW Player plugin settings in App Studio with fields for the Android and iOS license keys and the Google Cast App ID" />
+  <img
+    src="/images/docs/e57fa87ad7ee523bbc5d214f8a9deaa293bd18b41341d2d87036b1d67f6262ba-Screenshot_2026-06-17_at_10.15.48.png"
+    alt="JW Player plugin settings in App Studio with fields for the Android and iOS license keys and the Google Cast App ID"
+  />
 </Frame>
 
 #### Plugin configuration options
 
-| Setting                  | Description                                                                                                                                                                                                                                                                                                                               | Required                 |
-| ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------ |
+| Setting                  | Description                                                                                                                                                                                                                                                                                                        | Required                 |
+| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------ |
 | Android License Key      | The license key connects your Android app to your JW Player account. To get your key, open your [JW Player dashboard](https://dashboard.jwplayer.com/login). On the Properties page, click the name of a property. Under Network & setup files, click Player setup files. Under Android SDK, copy the License key. | Yes, for Android support |
 | iOS License Key          | The license key connects your iOS app to your JW Player account. To get your key, open your [JW Player dashboard](https://dashboard.jwplayer.com/login). On the Properties page, click the name of a property. Under Network & setup files, click Player setup files. Under iOS SDK, copy the License key.         | Yes, for iOS support     |
-| Google Cast App ID (iOS) | This key enables your iOS app to cast media to Google Chrome Cast compatible devices. You can obtain this key in your [Google Cast SDK Developer Console](https://cast.google.com/publish).                                                                                                                                               | Optional                 |
+| Google Cast App ID (iOS) | This key enables your iOS app to cast media to Google Chrome Cast compatible devices. You can obtain this key in your [Google Cast SDK Developer Console](https://cast.google.com/publish).                                                                                                                        | Optional                 |
 
 <Info>
   **Rebuild after configuration**
@@ -78,11 +78,12 @@ On iOS and Android, the JW Player plugin auto-initializes at runtime using the l
     licenseKey: 'YOUR_JW_PLAYER_LICENSE_KEY'
   });
 
-  // result.success is true or false
-  // On failure only, result.error is set, for example:
-  // { code: "NOT_INITIALIZED", message: "Invalid license key" }
-  console.log(result);
-  ```
+// result.success is true or false
+// On failure only, result.error is set, for example:
+// { code: "NOT_INITIALIZED", message: "Invalid license key" }
+console.log(result);
+
+````
 </CodeGroup>
 
 ##### Parameters
@@ -100,25 +101,25 @@ To play a video:
 <MedianLogo />
 <CodeGroup>
 ```javascript JavaScript
-  // Play a single video
-  const singleResult = await median.jwplayer.play({
-    file: 'https://example.com/video.mp4',
-    startTime: 30             // optional: start at 30 seconds
-  });
+// Play a single video
+const singleResult = await median.jwplayer.play({
+  file: 'https://example.com/video.mp4',
+  startTime: 30             // optional: start at 30 seconds
+});
 
-  // Play a playlist
-  const playlistResult = await median.jwplayer.play({
-    files: [
-      'https://example.com/video1.mp4',
-      'https://example.com/video2.mp4'
-    ]
-  });
+// Play a playlist
+const playlistResult = await median.jwplayer.play({
+  files: [
+    'https://example.com/video1.mp4',
+    'https://example.com/video2.mp4'
+  ]
+});
 
-  // Play from a JW Player playlist URL
-  const playlistUrlResult = await median.jwplayer.play({
-    playlistUrl: 'https://cdn.jwplayer.com/v2/playlists/abc123'
-  });
-```
+// Play from a JW Player playlist URL
+const playlistUrlResult = await median.jwplayer.play({
+  playlistUrl: 'https://cdn.jwplayer.com/v2/playlists/abc123'
+});
+````
 
 </CodeGroup>
 

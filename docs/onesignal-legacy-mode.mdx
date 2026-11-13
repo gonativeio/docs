@@ -1,9 +1,13 @@
 ---
 title: "Legacy mode"
 description: "Send personalized OneSignal push notifications from apps that use Legacy Mode with the iOS v3 and Android v4 SDKs, and plan your migration."
-keywords: ["OneSignal", "legacy mode", "player ID", "migration", "push notifications"]
+keywords:
+  ["OneSignal", "legacy mode", "player ID", "migration", "push notifications"]
 searchable: true
 ---
+
+import { DeveloperDemo } from "/snippets/developer-demo.jsx";
+
 import { MedianLogo } from "/snippets/median-logo.jsx";
 
 <Info>
@@ -17,12 +21,7 @@ import { MedianLogo } from "/snippets/median-logo.jsx";
 
 By default, Median apps integrate with the latest OneSignal iOS and Android SDKs (v5+) and the user-centric data model. With Legacy Mode enabled, your app falls back to OneSignal's previous iOS v3 and Android v4 SDKs, which use a **device-centric** data model where each device has a unique Player ID.
 
-<Check>
-**Developer Demo**
-
-Display our demo page in your app to test during development [https://median.dev/onesignal-legacy](https://median.dev/onesignal-legacy)
-
-</Check>
+<DeveloperDemo path="onesignal-legacy" />
 
 ## Sending personalized notifications in legacy mode
 
@@ -54,24 +53,25 @@ Add JavaScript to a login success page to retrieve the `oneSignalInfo` object. T
   /* Login Page Sample Code */
   var gn_oneSignalUserId;
 
-  function median_onesignal_info(oneSignalInfo){
-    gn_oneSignalUserId = oneSignalInfo.oneSignalUserId;
-  }
+function median_onesignal_info(oneSignalInfo){
+gn_oneSignalUserId = oneSignalInfo.oneSignalUserId;
+}
 
-  function yourLoginFunction(){
-    if(gn_oneSignalUserId){
-    $.ajax({
-      url: updateUserRecord,
-      type: "POST",
-      data: {
-        yourAppUserId: userId,
-        oneSignalUserId: gn_oneSignalUserId
-      },
-      contentType: "application/json"
-    });
-    }
-  }
-```
+function yourLoginFunction(){
+if(gn_oneSignalUserId){
+$.ajax({
+url: updateUserRecord,
+type: "POST",
+data: {
+yourAppUserId: userId,
+oneSignalUserId: gn_oneSignalUserId
+},
+contentType: "application/json"
+});
+}
+}
+
+````
 </CodeGroup>
 
 For more JavaScript examples, see [OneSignal Info](/docs/identifying-targeting-users).
@@ -101,7 +101,8 @@ median.onesignal.externalUserId.set({
 
 // Remove an External ID
 median.onesignal.externalUserId.remove();
-```
+````
+
 </CodeGroup>
 
 ## Comparing the two options

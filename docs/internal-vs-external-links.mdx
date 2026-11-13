@@ -1,9 +1,19 @@
 ---
 title: "Link behavior"
 description: "Control whether links open inside your app, in an in-app browser, or externally, using App Studio rules or the JavaScript Bridge."
-keywords: ["link behavior", "internal links", "external links", "in-app browser", "URL pattern"]
+keywords:
+  [
+    "link behavior",
+    "internal links",
+    "external links",
+    "in-app browser",
+    "URL pattern",
+  ]
 searchable: true
 ---
+
+import { DeveloperDemo } from "/snippets/developer-demo.jsx";
+
 import { MedianLogo } from "/snippets/median-logo.jsx";
 
 URLs in your app can be loaded in three ways:
@@ -12,12 +22,7 @@ URLs in your app can be loaded in three ways:
 - Within an **in-app browser** window, for sites that are not ideal inside the main WebView (for example external websites). When the user closes the embedded browser, focus returns to your app, which helps session time and reduces bounce.
 - **Externally** in the device default mobile browser or the default app registered for a deep link (for example, Safari, Chrome, Google Maps, or LinkedIn). Use this for fully external content, especially third-party destinations where you have limited control and want a clear separation between your app and the external experience. Users always leave your app when a link opens externally.
 
-<Check>
-**Developer Demo**
-
-Display our demo page in your app to test during development [https://median.dev/link-handling/ <Icon icon="arrow-up-right-from-square" size={12} />](https://median.dev/link-handling/)
-
-</Check>
+<DeveloperDemo path="link-handling" />
 
 ### In-app browser (reference)
 
@@ -25,20 +30,44 @@ Display our demo page in your app to test during development [https://median.dev
   <thead>
     <tr>
       <th></th>
-      <th style={{textAlign: "center"}}>iOS</th>
-      <th style={{textAlign: "center"}}>Android</th>
+      <th style={{ textAlign: "center" }}>iOS</th>
+      <th style={{ textAlign: "center" }}>Android</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td style={{verticalAlign: "middle", textAlign: "center"}}>**Initial view**</td>
-      <td style={{textAlign: "center"}}><img src="/images/docs/docs/in-app-browser/ios.png" alt="iOS in-app browser when it first opens" /></td>
-      <td style={{textAlign: "center"}}><img src="/images/docs/docs/in-app-browser/android.png" alt="Android in-app browser when it first opens" /></td>
+      <td style={{ verticalAlign: "middle", textAlign: "center" }}>
+        **Initial view**
+      </td>
+      <td style={{ textAlign: "center" }}>
+        <img
+          src="/images/docs/docs/in-app-browser/ios.png"
+          alt="iOS in-app browser when it first opens"
+        />
+      </td>
+      <td style={{ textAlign: "center" }}>
+        <img
+          src="/images/docs/docs/in-app-browser/android.png"
+          alt="Android in-app browser when it first opens"
+        />
+      </td>
     </tr>
     <tr>
-      <td style={{verticalAlign: "middle", textAlign: "center"}}>**After scroll / menu**</td>
-      <td style={{textAlign: "center"}}><img src="/images/docs/docs/in-app-browser/ios-scroll.png" alt="iOS in-app browser after scroll" /></td>
-      <td style={{textAlign: "center"}}><img src="/images/docs/docs/in-app-browser/android-context-menu.png" alt="Android in-app browser context menu" /></td>
+      <td style={{ verticalAlign: "middle", textAlign: "center" }}>
+        **After scroll / menu**
+      </td>
+      <td style={{ textAlign: "center" }}>
+        <img
+          src="/images/docs/docs/in-app-browser/ios-scroll.png"
+          alt="iOS in-app browser after scroll"
+        />
+      </td>
+      <td style={{ textAlign: "center" }}>
+        <img
+          src="/images/docs/docs/in-app-browser/android-context-menu.png"
+          alt="Android in-app browser context menu"
+        />
+      </td>
     </tr>
   </tbody>
 </table>
@@ -73,10 +102,8 @@ When opening a URL through the JavaScript Bridge, use one of the following modes
 
 <MedianLogo />
 <CodeGroup>
-  ```javascript JavaScript 
-  // Modes: "blank" (default), "internal", "external", or "appbrowser"
-  median.window.open("https://median.co", "appbrowser");
-  ```
+  ```javascript JavaScript // Modes: "blank" (default), "internal", "external",
+  or "appbrowser" median.window.open("https://median.co", "appbrowser"); ```
 </CodeGroup>
 
 ### Link handling rules
@@ -95,12 +122,12 @@ Rule matching is evaluated **top to bottom**. Put the **most specific** rules fi
 
 To edit a rule, select the **Edit** control on the rule. Choose how the rule should match URLs:
 
-| Match type         | Behavior                               |
-| ------------------ | -------------------------------------- |
-| **Single Page**    | Apply to one specific URL you enter.   |
-| **Multiple Pages** | Apply using a URL path prefix.         |
-| **All Pages**      | Apply the rule across the entire app.  |
-| **Custom**         | Supply your own URL pattern.           |
+| Match type         | Behavior                              |
+| ------------------ | ------------------------------------- |
+| **Single Page**    | Apply to one specific URL you enter.  |
+| **Multiple Pages** | Apply using a URL path prefix.        |
+| **All Pages**      | Apply the rule across the entire app. |
+| **Custom**         | Supply your own URL pattern.          |
 
 Toggle **Include Subdomains** to extend the rule to subdomains of the matched domain.
 
@@ -115,7 +142,8 @@ To match arbitrary domains with a query flag, use a URL pattern such as `https?:
 <Warning>
 **URL pattern compatibility**
 
-  Lookahead and lookbehind expressions, including negative variants, **are not supported on Android** and are only available **on iOS 14 and later**. Rules using these patterns will silently fail to match on unsupported platforms. Use simple, positive regular expressions to ensure consistent behavior across both platforms.
+Lookahead and lookbehind expressions, including negative variants, **are not supported on Android** and are only available **on iOS 14 and later**. Rules using these patterns will silently fail to match on unsupported platforms. Use simple, positive regular expressions to ensure consistent behavior across both platforms.
+
 </Warning>
 
 #### Changing rules at runtime
@@ -153,20 +181,18 @@ To apply new internal, external, and app browser rules at runtime, run the follo
     },
   ];
 
-  median.internalExternal.set({ rules: rulesArray });
-```
+median.internalExternal.set({ rules: rulesArray });
+
+````
 </CodeGroup>
 
 ## Context menu
 
 The **context menu** is a floating menu shown when the user **long-presses a link**. You can turn it on or off at runtime and choose which actions appear, using the JavaScript Bridge.
 
-<Check>
-**Developer Demo**
+import { DeveloperDemo } from "/snippets/developer-demo.jsx";
 
-Display our demo page in your app to test during development [https://median.dev/context-menu/ <Icon icon="arrow-up-right-from-square" size={12} />](https://median.dev/context-menu/)
-
-</Check>
+<DeveloperDemo path="context-menu" />
 
 ### Enable or disable
 
@@ -174,17 +200,16 @@ Display our demo page in your app to test during development [https://median.dev
 <CodeGroup>
 ```javascript JavaScript
   median.contextMenu.setEnabled(true); // or false to disable
-```
+````
+
 </CodeGroup>
 
 ### Set available actions
 
 <MedianLogo />
 <CodeGroup>
-  ```javascript JavaScript 
-  // Define which actions appear in the context menu
-  median.contextMenu.setActions(["copyLink", "openExternal"]); 
-  ```
+  ```javascript JavaScript // Define which actions appear in the context menu
+  median.contextMenu.setActions(["copyLink", "openExternal"]); ```
 </CodeGroup>
 
 ### Supported actions

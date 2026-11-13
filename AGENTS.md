@@ -79,6 +79,8 @@ Every page needs a `title` and a `description`:
 title: "Status bar"
 description: "Control the color and style of the device status bar in your app."
 ---
+
+import { DeveloperDemo } from "/snippets/developer-demo.jsx";
 ```
 
 - The title is in sentence case (see [Style](#style)). It's also the sidebar label, unless you set a shorter `sidebarTitle`.
@@ -113,8 +115,6 @@ When combining several old articles into one page, keep the most-linked slug and
 Median hosts prebuilt demo pages on `median.dev` that call a feature through the JavaScript Bridge. Developers load them inside their Median app to test the feature before they add it to their own site. Every plugin or feature page with a demo page uses the `DeveloperDemo` snippet. Don't write demo callouts by hand, and don't use `<Check>` or the old "**Developer Demo**" format.
 
 ```mdx
-import { DeveloperDemo } from "/snippets/developer-demo.jsx";
-
 <DeveloperDemo path="status-bar" />
 ```
 

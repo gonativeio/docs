@@ -5,16 +5,13 @@ keywords: ["debugging", "debug logs", "Appetize", "webview", "console logs"]
 searchable: true
 ---
 
+import { DeveloperDemo } from "/snippets/developer-demo.jsx";
+
 Accessing web logs in a WebView-based mobile app presents unique challenges. Since WebViews function as embedded browsers within an app, they lack built-in developer tools, making it difficult to inspect network activity. Additionally, mobile environments impose restrictions on logging and debugging, further complicating the process.
 
 To overcome these limitations, developers can inspect network logs using Appetize.io simulators by enabling debug logs and accessing the console output in the Appetize environment.
 
-<Check>
-**Developer Demo**
-
-Display our demo page in your app to test during development [https://median.dev/web-console-logs/](https://median.dev/web-console-logs/)
-
-</Check>
+<DeveloperDemo path="web-console-logs" />
 
 ## Enable debug logs
 
@@ -25,7 +22,10 @@ To debug JavaScript in WebView content using our browser-based simulators, follo
 3. Toggle **Debug Mode** and click **Appetize** to enable logging.
 
 <Frame caption="App Studio: Development Tools">
-  <img src="/images/docs/4f96cfbf3cf5756f08db3a3392dddfba3d6d8cc9bc402bb590ec4e83f25e2d42-Screenshot_2025-07-03_at_18.02.33.png" alt="Debug Mode toggle and Appetize button in the App Studio simulator panel" />
+  <img
+    src="/images/docs/4f96cfbf3cf5756f08db3a3392dddfba3d6d8cc9bc402bb590ec4e83f25e2d42-Screenshot_2025-07-03_at_18.02.33.png"
+    alt="Debug Mode toggle and Appetize button in the App Studio simulator panel"
+  />
 </Frame>
 
 ## Connecting local builds to a browser
@@ -41,7 +41,10 @@ The **Debug Logs** tab in Appetize displays both native app logs and web console
 - Native app logs will also be displayed, so filtering by prefix is recommended.
 
 <Frame caption="Viewing JavaScript console via Appetize">
-  <img src="/images/docs/2a2f0a6096c21bde4203934502f29453e72def21dcd7e074b6924a311590db5a-Screenshot_2025-03-31_at_09.11.47.png" alt="Debug Logs tab in Appetize showing prefixed web console output" />
+  <img
+    src="/images/docs/2a2f0a6096c21bde4203934502f29453e72def21dcd7e074b6924a311590db5a-Screenshot_2025-03-31_at_09.11.47.png"
+    alt="Debug Logs tab in Appetize showing prefixed web console output"
+  />
 </Frame>
 
 ## Frequently asked questions

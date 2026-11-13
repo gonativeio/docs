@@ -12,6 +12,8 @@ keywords:
 searchable: true
 ---
 
+import { DeveloperDemo } from "/snippets/developer-demo.jsx";
+
 import { MedianLogo } from "/snippets/median-logo.jsx";
 
 Google Firebase Analytics provides insights into user behavior within your app, helping you understand how users engage and interact. It offers essential app metrics such as average revenue per user (ARPU), active users, retention reports, and event counts, along with detailed user properties like device type, app version, and OS version. By combining these data points, Firebase Analytics enables data-driven decision-making to optimize app performance and user experience.
@@ -32,12 +34,7 @@ Google Firebase Analytics provides insights into user behavior within your app, 
 - [ ] `google-services.json` (Android) and `GoogleService-Info.plist` (iOS) from Firebase after app registration
 - [ ] Plugin enabled in App Studio (Native Plugins > Google Firebase Analytics)
 
-<Check>
-**Developer Demo**
-
-Display our demo page in your app to test during development [https://median.dev/firebase-analytics/](https://median.dev/firebase-analytics/)
-
-</Check>
+<DeveloperDemo path="firebase-analytics" />
 
 ## Implementation guide
 
@@ -169,8 +166,7 @@ Set default event parameters logged alongside other information for log event.
 <CodeGroup>
   ```javascript JavaScript
   median.firebaseAnalytics.event.defaultEventParameters(data); //data is an
-  object of key-value pairs converted into bundle params 
-  ```
+  object of key-value pairs converted into bundle params ```
 </CodeGroup>
 
 **Parameters:**
@@ -293,8 +289,7 @@ Log remove from cart events
 <CodeGroup>
   ```java ProductItem String item_id String item_name String item_category
   String item_variant String item_brand String item_list_name String
-  item_list_id double price 
-  ```
+  item_list_id double price ```
 </CodeGroup>
 
 ## Default event logging

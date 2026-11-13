@@ -5,18 +5,15 @@ keywords: ["haptics", "haptic feedback", "vibration", "JavaScript Bridge"]
 searchable: true
 ---
 
+import { DeveloperDemo } from "/snippets/developer-demo.jsx";
+
 import { MedianLogo } from "/snippets/median-logo.jsx";
 
 The Haptics plugin lets you trigger haptic vibration effects used to provide feedback to end users based on various events and actions within your app. Support is provided for six different haptic effects that have been specifically designed to be comparable across iOS and Android devices.
 
 The plugin also provides support for the "shake" gesture such that a JavaScript callback is invoked when the user shakes their device.
 
-<Check>
-**Developer Demo**
-
-Display our demo page in your app to test during development [https://median.dev/haptics/](https://median.dev/haptics/)
-
-</Check>
+<DeveloperDemo path="haptics" />
 
 ## Why use haptics
 
@@ -39,7 +36,10 @@ Display our demo page in your app to test during development [https://median.dev
 2. **Enable Haptics**: Toggle the Haptics plugin to enabled status. The plugin can also be trialed.
 
 <Frame caption="Haptics plugin enablement">
-  <img alt="Haptics plugin in the Native Plugins list in App Studio" src="/images/docs/4af20a67444dbf148ebc34d28780ed05374e33e2160f7d34287a4f1c52ed40a1-Screenshot_2026-06-29_at_16.06.30.png" />
+  <img
+    alt="Haptics plugin in the Native Plugins list in App Studio"
+    src="/images/docs/4af20a67444dbf148ebc34d28780ed05374e33e2160f7d34287a4f1c52ed40a1-Screenshot_2026-06-29_at_16.06.30.png"
+  />
 </Frame>
 
 ### JavaScript Bridge implementation

@@ -6,6 +6,8 @@ keywords:
 searchable: true
 ---
 
+import { DeveloperDemo } from "/snippets/developer-demo.jsx";
+
 import { MedianLogo } from "/snippets/median-logo.jsx";
 
 Mobile app permissions play a critical role in ensuring secure interaction between users and applications. They serve as a framework that enables apps to access specific features or data on a user's device, such as the camera, microphone, location, or contact list, and allow the user to retain complete control over their privacy and data security.
@@ -14,12 +16,7 @@ By granting these permissions, users allow apps to deliver tailored functionalit
 
 Apple and Google encourage developers to request permission thoughtfully. If a user has declined, you can suggest they enable the permission through the app's settings menu and include a button that launches the app settings screen using the JavaScript Bridge.
 
-<Check>
-**Developer Demo**
-
-Display our demo page in your app to test during development [permissions demo page](https://median.dev/permissions/)
-
-</Check>
+<DeveloperDemo path="permissions" />
 
 ## Related documentation
 
@@ -91,9 +88,10 @@ Users can change the permissions granted to your app through their device settin
   // get status of all permissions
   const response = await median.permissions.status();
 
-  // only get status of selected permissions
-  const response = await median.permissions.status(["Contacts", "Camera"]);
-```
+// only get status of selected permissions
+const response = await median.permissions.status(["Contacts", "Camera"]);
+
+````
 </CodeGroup>
 
 The `response` object includes the current state for each requested permission:
@@ -104,7 +102,7 @@ The `response` object includes the current state for each requested permission:
   "Contacts": "undetermined",
   "Camera": "granted"
 }
-```
+````
 
 </CodeGroup>
 
@@ -137,11 +135,7 @@ Test launching the app settings menu: [median.dev/app-settings](https://median.d
 When users have denied permissions, you can direct them to the app's settings page to enable the required permissions:
 
 <MedianLogo />
-<CodeGroup>
-```javascript JavaScript 
-median.open.appSettings(); 
-```
-</CodeGroup>
+<CodeGroup>```javascript JavaScript median.open.appSettings(); ```</CodeGroup>
 
 To open the Settings page for your app, use the URL above or the JavaScript Bridge call.
 

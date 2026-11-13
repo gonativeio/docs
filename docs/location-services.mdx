@@ -1,19 +1,24 @@
 ---
 title: "Location services"
 description: "Request location permissions on iOS and Android with the JavaScript Bridge without showing users duplicate permission prompts."
-keywords: ["location services", "geolocation", "location permissions", "GPS", "JavaScript Bridge"]
+keywords:
+  [
+    "location services",
+    "geolocation",
+    "location permissions",
+    "GPS",
+    "JavaScript Bridge",
+  ]
 searchable: true
 ---
+
+import { DeveloperDemo } from "/snippets/developer-demo.jsx";
+
 import { MedianLogo } from "/snippets/median-logo.jsx";
 
 To access device location services in your Android or iOS app, you must handle permissions correctly using the Median JavaScript Bridge. This guide covers best practices to avoid duplicate permission prompts.
 
-<Check>
-**Developer Demo**
-
-Display our demo page in your app to test during development [https://median.dev/location-services/ <Icon icon="arrow-up-right-from-square" size={12} />](https://median.dev/location-services/)
-
-</Check>
+<DeveloperDemo path="location-services" />
 
 ## Implementation guide
 
@@ -37,11 +42,12 @@ This function ensures the web-based geolocation API uses the native implementati
     navigator.geolocation.getCurrentPosition(locationSuccess, locationError, locationOptions);
   }
 
-  // Fallback: Call immediately on non-iOS platforms
-  if (!navigator.userAgent.includes('MedianIOS')) {
-    median_geolocation_ready();
-  }
-  ```
+// Fallback: Call immediately on non-iOS platforms
+if (!navigator.userAgent.includes('MedianIOS')) {
+median_geolocation_ready();
+}
+
+````
 </CodeGroup>
 
 ## Android: request runtime location permission
@@ -55,8 +61,9 @@ Ensure you have Location Services permission enabled in your app configuration, 
 <MedianLogo />
 <CodeGroup>
 ```javascript JavaScript
-  median.android.geoLocation.promptLocationServices();
-```
+median.android.geoLocation.promptLocationServices();
+````
+
 </CodeGroup>
 
 - If the user has already granted permission, this command has no effect.

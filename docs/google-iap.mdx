@@ -1,9 +1,18 @@
 ---
 title: "Google In-App Purchases"
 description: "Sell in-app products and subscriptions in your Android app with Google Play Billing, from product setup to purchase verification and testing."
-keywords: ["Google In-App Purchases", "IAP", "Google Play Billing", "subscriptions", "purchases"]
+keywords:
+  [
+    "Google In-App Purchases",
+    "IAP",
+    "Google Play Billing",
+    "subscriptions",
+    "purchases",
+  ]
 searchable: true
 ---
+
+import { DeveloperDemo } from "/snippets/developer-demo.jsx";
 
 import { MedianLogo } from "/snippets/median-logo.jsx";
 
@@ -20,12 +29,7 @@ Median’s Google Play In-App Purchase flow includes these steps:
 5. Verify and fulfill purchase through Google Play
 6. Provide users with subscription management
 
-<Check>
-**Developer Demo**
-
-Display our demo page in your app to test during development [https://median.dev/iap/](https://median.dev/iap/)
-
-</Check>
+<DeveloperDemo path="iap" />
 
 ## Configure IAP in Google Play Console
 
@@ -71,10 +75,8 @@ Or you may return the products data at runtime via a promise (in async function)
 
 <MedianLogo />
 <CodeGroup>
-  ```javascript JavaScript 
-  var productsData = await median.iap.info();
-  console.log(productsData); 
-  ```
+  ```javascript JavaScript var productsData = await median.iap.info();
+  console.log(productsData); ```
 </CodeGroup>
 
 In both cases `productsData` will be of the form:
@@ -213,45 +215,46 @@ When a user decides to purchase an IAP, run the JavaScript function below. `prod
   });
   console.log(purchasesData);
 
-  //Or via a promise
-  median.iap.purchase({
-      'productID': 'product_id', // Required
-      'offerToken': 'offer_token' // Only required for "subs" type subscription purchases
-    }).then(function(purchasesData){
-      console.log(purchasesData);
-    }).catch(function(error){
-      console.log(error);
-  });
-  ```
+//Or via a promise
+median.iap.purchase({
+'productID': 'product_id', // Required
+'offerToken': 'offer_token' // Only required for "subs" type subscription purchases
+}).then(function(purchasesData){
+console.log(purchasesData);
+}).catch(function(error){
+console.log(error);
+});
+
+````
 </CodeGroup>
 
- Your app will start the in-app purchase flow and return `purchasesData` in the format listed further below. If the purchase fails an error will be thrown with the error provided by Google.
+Your app will start the in-app purchase flow and return `purchasesData` in the format listed further below. If the purchase fails an error will be thrown with the error provided by Google.
 
- The `median.iap.purchase()` method supports these additional parameters for auto-renewing subscriptions:
+The `median.iap.purchase()` method supports these additional parameters for auto-renewing subscriptions:
 
- * `previousProductID` – the product ID we are replacing. This is required to support subscription upgrades and downgrades (i.e. converting a monthly subscription to annual, or changing a subscription tier from basic to premium membership).
+* `previousProductID` – the product ID we are replacing. This is required to support subscription upgrades and downgrades (i.e. converting a monthly subscription to annual, or changing a subscription tier from basic to premium membership).
 
-   1. `previousProductID` is no longer accepted for purchase. Instead, use `previousPurchaseToken`. If this field is empty, the `prorationMode` is also ignored
-   2. The history/details of purchase now contain a list of Product IDs. Like how the library kept the `productID` field (which is the first item of the list), we also kept the `productID` in our response data for compatibility support. Hence, the web component shall get both `productID` and `productID`s for `median_iap_purchases`
+ 1. `previousProductID` is no longer accepted for purchase. Instead, use `previousPurchaseToken`. If this field is empty, the `prorationMode` is also ignored
+ 2. The history/details of purchase now contain a list of Product IDs. Like how the library kept the `productID` field (which is the first item of the list), we also kept the `productID` in our response data for compatibility support. Hence, the web component shall get both `productID` and `productID`s for `median_iap_purchases`
 
- * `replacementMode` – determines how to credit the user for a mid-period subscription change. Valid values include:
+* `replacementMode` – determines how to credit the user for a mid-period subscription change. Valid values include:
 
-   * `CHARGE_FULL_PRICE` - The new plan takes effect immediately, and the user is charged full price of new plan and is given a full billing cycle of subscription, plus remaining prorated time from the old plan.
-   * `CHARGE_PRORATED_PRICE` - The new plan takes effect immediately, and the billing cycle remains the same.
-   * `DEFERRED` - The new purchase takes effect immediately, the new plan will take effect when the old item expires.
-   * `UNKNOWN_REPLACEMENT_MODE` - (no details provided)
-   * `WITHOUT_PRORATION` - The new plan takes effect immediately, and the new price will be charged on next recurrence time.
-   * `WITH_TIME_PRORATION` - The new plan takes effect immediately, and the remaining time will be prorated and credited to the user.
+ * `CHARGE_FULL_PRICE` - The new plan takes effect immediately, and the user is charged full price of new plan and is given a full billing cycle of subscription, plus remaining prorated time from the old plan.
+ * `CHARGE_PRORATED_PRICE` - The new plan takes effect immediately, and the billing cycle remains the same.
+ * `DEFERRED` - The new purchase takes effect immediately, the new plan will take effect when the old item expires.
+ * `UNKNOWN_REPLACEMENT_MODE` - (no details provided)
+ * `WITHOUT_PRORATION` - The new plan takes effect immediately, and the new price will be charged on next recurrence time.
+ * `WITH_TIME_PRORATION` - The new plan takes effect immediately, and the remaining time will be prorated and credited to the user.
 
 <MedianLogo />
 <CodeGroup>
 ```javascript JavaScript
 median.iap.purchase({
-  productID: "annual_membership",
-  previousPurchaseToken: "aaaabbbbccccddddeeeeffff",
-  prorationMode: "IMMEDIATE_AND_CHARGE_PRORATED_PRICE",
+productID: "annual_membership",
+previousPurchaseToken: "aaaabbbbccccddddeeeeffff",
+prorationMode: "IMMEDIATE_AND_CHARGE_PRORATED_PRICE",
 });
-```
+````
 
 </CodeGroup>
 
@@ -276,10 +279,8 @@ Or you may return the purchases at runtime via a promise (in async function)
 
 <MedianLogo />
 <CodeGroup>
-  ```javascript JavaScript 
-  var purchasesData = await median.iap.purchases();
-  console.log(purchasesData); 
-  ```
+  ```javascript JavaScript var purchasesData = await median.iap.purchases();
+  console.log(purchasesData); ```
 </CodeGroup>
 
 In both cases `purchasesData` will be of the form:
@@ -330,9 +331,7 @@ To open the Google Play page that lists all subscriptions for all of the user’
 
 <MedianLogo />
 <CodeGroup>
-  ```javascript JavaScript
-  median.iap.manageAllSubscriptions();
-  ```
+  ```javascript JavaScript median.iap.manageAllSubscriptions(); ```
 </CodeGroup>
 
 To allow the user to manage just your app’s subscription with the specified product ID, open the URL:

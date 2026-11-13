@@ -1,26 +1,31 @@
 ---
 title: "Keep screen on"
 description: "Keep the device screen from dimming or locking while your app is in the foreground, and restore normal behavior with the JavaScript Bridge."
-keywords: ["keep screen on", "screen timeout", "wake lock", "display", "JavaScript Bridge"]
+keywords:
+  [
+    "keep screen on",
+    "screen timeout",
+    "wake lock",
+    "display",
+    "JavaScript Bridge",
+  ]
 searchable: true
 ---
+
+import { DeveloperDemo } from "/snippets/developer-demo.jsx";
+
 import { MedianLogo } from "/snippets/median-logo.jsx";
 
 The keep screen on JavaScript Bridge method lets you override the device's default screen-lock/timeout behavior so the screen stays awake while your app is in the foreground. It's part of Median's [device screen control](/docs/device-screen-control) feature set, alongside [screen brightness](/docs/screen-brightness) and [full screen](/docs/full-screen).
 
-<Check>
-  **Developer Demo**
-
-Display our demo page in your app to test during development [https://median.dev/device-screen-controls/ <Icon icon="arrow-up-right-from-square" size={12} />](https://median.dev/device-screen-controls/)
-
-</Check>
+<DeveloperDemo path="device-screen-controls" />
 
 ## Why use keep screen on
 
-* **Navigation and map apps**: Keep turn-by-turn directions or live tracking visible on screen during a trip, without users having to keep tapping to wake the device.
-* **Presentation and kiosk displays**: Hold a screen awake indefinitely for signage, in-store kiosks, or presentation mode where no one is actively touching the device.
-* **QR code and barcode display**: Keep a boarding pass, ticket, or payment QR code visible long enough to be scanned, even if the user pauses before presenting it.
-* **Fitness and workout sessions**: Keep workout timers, stats, or instructional content visible throughout an active session without the screen dimming or locking.
+- **Navigation and map apps**: Keep turn-by-turn directions or live tracking visible on screen during a trip, without users having to keep tapping to wake the device.
+- **Presentation and kiosk displays**: Hold a screen awake indefinitely for signage, in-store kiosks, or presentation mode where no one is actively touching the device.
+- **QR code and barcode display**: Keep a boarding pass, ticket, or payment QR code visible long enough to be scanned, even if the user pauses before presenting it.
+- **Fitness and workout sessions**: Keep workout timers, stats, or instructional content visible throughout an active session without the screen dimming or locking.
 
 ## JavaScript Bridge implementation
 
@@ -30,9 +35,7 @@ Prevents the device screen from locking or dimming while your app is active.
 
 <MedianLogo />
 <CodeGroup>
-  ```javascript JavaScript
-  median.screen.keepScreenOn();
-  ```
+  ```javascript JavaScript median.screen.keepScreenOn(); ```
 </CodeGroup>
 
 ### Disable keep screen on
@@ -41,7 +44,5 @@ Returns the screen to the device's normal lock/timeout behavior.
 
 <MedianLogo />
 <CodeGroup>
-  ```javascript JavaScript
-  median.screen.keepScreenNormal();
-  ```
+  ```javascript JavaScript median.screen.keepScreenNormal(); ```
 </CodeGroup>
