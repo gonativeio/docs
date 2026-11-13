@@ -6,11 +6,15 @@ keywords:
 searchable: true
 ---
 
+import { DeveloperDemo } from "/snippets/developer-demo.jsx";
+
 import { MedianLogo } from "/snippets/median-logo.jsx";
 
 Background Audio enables native, continuous microphone recording in your Median-powered app, even when the app is in the background or the device is locked. The plugin records continuously with persistent notifications on Android and system-level recording indicators on iOS, plus real-time state updates and optional on-device speech-to-text transcription.
 
 The plugin supports start, stop, pause, and resume controls with real-time event callbacks for state changes and optional transcript delivery. Implement it using async JavaScript on top of the Median JavaScript Bridge.
+
+<DeveloperDemo path="background-audio" />
 
 ## Why use background audio
 
@@ -24,13 +28,6 @@ The plugin supports start, stop, pause, and resume controls with real-time event
 - [ ] Enable the JavaScript Bridge in your Median app
 - [ ] Grant microphone permission before or during your recording flow (see `checkPermission` and `requestPermission`)
 - [ ] Learn the basics of async JavaScript (`async` / `await`) and the optional callbacks used below
-
-<Check>
-**Developer Demo**
-
-Display our demo page in your app to test during development [https://median.dev/background-audio/](https://median.dev/background-audio/)
-
-</Check>
 
 **Key terms**
 
@@ -51,7 +48,7 @@ The following terms will help you implement Background Audio effectively:
 - Android shows status text such as "audio recording in progress" or "paused" and exposes **Launch App** and **Stop Recording** actions on the notification.
 - WAV works only on iOS; Android automatically uses M4A if you request WAV.
 - OS interruptions (for example, calls or Siri) can pause the session (`SESSION_INTERRUPTED`); handle `error` listener state and the error reference table.
-</Info>
+  </Info>
 
 ## Implementation guide
 
@@ -72,9 +69,9 @@ Returns whether the user has already granted microphone permission. This method 
   ```javascript JavaScript
   const permission = await median.backgroundAudio.checkPermission();
 
-if (!permission.granted) {
-// Prompt the user to grant permission
-}
+  if (!permission.granted) {
+  // Prompt the user to grant permission
+  }
 ```
 </CodeGroup>
 
@@ -98,9 +95,9 @@ Prompts the user for microphone permission. If the user grants it, you can start
   ```javascript JavaScript
   const permission = await median.backgroundAudio.requestPermission();
 
-if (permission.granted) {
-const result = await median.backgroundAudio.startRecording();
-}
+  if (permission.granted) {
+    const result = await median.backgroundAudio.startRecording();
+  }
 ```
 </CodeGroup>
 
@@ -131,7 +128,7 @@ Starts a background-aware recording session. Optional configuration controls for
     maxDuration: 3600,
     enableTranscription: true,
     sttLanguage: "en-US",
-    });
+  });
 ```
 </CodeGroup>
 
@@ -183,9 +180,8 @@ Pauses an active recording without releasing the background session. This method
 
 <MedianLogo />
 <CodeGroup>
-  ```javascript JavaScript
-  const status = await median.backgroundAudio.pause();
-  console.log("Recording paused");
+  ```javascript JavaScript const status = await median.backgroundAudio.pause();
+  console.log("Recording paused"); 
   ```
 </CodeGroup>
 
@@ -199,9 +195,8 @@ Resumes a paused session. This method returns a promise.
 
 <MedianLogo />
 <CodeGroup>
-  ```javascript JavaScript
-  const status = await median.backgroundAudio.resume();
-  console.log("Recording resumed");
+  ```javascript JavaScript const status = await median.backgroundAudio.resume();
+  console.log("Recording resumed"); 
   ```
 </CodeGroup>
 
@@ -222,12 +217,12 @@ Stops the session and retrieves the file URI, duration, and optional transcript.
   ```javascript JavaScript
   const result = await median.backgroundAudio.stopRecording();
 
-console.log("File URI:", result.fileUri);
-console.log("Duration:", result.durationSeconds, "seconds");
+  console.log("File URI:", result.fileUri);
+  console.log("Duration:", result.durationSeconds, "seconds");
 
-if (result.transcript) {
-console.log("Transcript:", result.transcript);
-}
+  if (result.transcript) {
+    console.log("Transcript:", result.transcript);
+  }
 ```
 </CodeGroup>
 
@@ -246,7 +241,6 @@ interface StopRecordingResult {
   transcript?: string;
 }
 ```
-
 </CodeGroup>
 
 #### Get status
@@ -255,10 +249,8 @@ Returns the current recording state and elapsed time. Pass a callback function t
 
 <MedianLogo />
 <CodeGroup>
-  ```javascript JavaScript
-  // Using promises (recommended)
-  const status = await median.backgroundAudio.getStatus();
-  console.log(JSON.stringify(status));
+  ```javascript JavaScript // Using promises (recommended) const status = await
+  median.backgroundAudio.getStatus(); console.log(JSON.stringify(status)); 
   ```
 </CodeGroup>
 
@@ -319,8 +311,7 @@ Registers a listener for real-time recording lifecycle updates. Returns a listen
     } else if (event.state === "error") {
       console.error("Error code:", event.errorCode);
     }
-
-});
+  });
 ```
 </CodeGroup>
 
@@ -394,16 +385,16 @@ No return value.
   } catch (error) {
     switch (error.code) {
       case "PERMISSION_DENIED":
-      // Prompt the user to enable the microphone in Settings
-    break;
+        // Prompt the user to enable the microphone in Settings
+        break;
       case "ALREADY_RECORDING":
-      // Surface current session state instead of starting again
-    break;
+        // Surface current session state instead of starting again
+        break;
       case "STT_UNAVAILABLE":
-      // Fall back to file URI only
-    break;
+        // Fall back to file URI only
+        break;
       default:
-      console.error("Unexpected background audio error:", error);
+        console.error("Unexpected background audio error:", error);
     }
   }
 ```
@@ -445,10 +436,10 @@ If permissions haven't been granted, prompt the user:
   ```javascript JavaScript
   const permission = await median.backgroundAudio.requestPermission();
 
-if (permission.granted) {
-// Start recording
-const result = await median.backgroundAudio.startRecording();
-}
+  if (permission.granted) {
+    // Start recording
+    const result = await median.backgroundAudio.startRecording();
+  }
 ```
 </CodeGroup>
 
@@ -497,7 +488,7 @@ HTML example:
       }
     }
   </script>
-```
+  ```
 </CodeGroup>
 
 ### Sequence diagram

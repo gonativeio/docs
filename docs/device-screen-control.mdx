@@ -1,43 +1,29 @@
 ---
 title: "Device screen control"
 description: "Control screen brightness, screen timeout, full screen, and orientation in your Median app from App Studio or the JavaScript Bridge."
-keywords: ["screen control", "brightness", "keep screen on", "full screen", "display"]
+keywords:
+  ["screen control", "brightness", "keep screen on", "full screen", "display"]
 searchable: true
 ---
 
+import { DeveloperDemo } from "/snippets/developer-demo.jsx";
+
 Device screen control features let you customize the device screen behavior of your Median app, including screen brightness, screen timeout behavior, and full-screen display. These settings can be configured as defaults in App Studio and, where supported, changed dynamically at runtime using the Median JavaScript Bridge.
 
-<Check>
-**Developer Demo**
-
-Display our demo page in your app to test during development [https://median.dev/device-screen-controls/](https://median.dev/device-screen-controls/)
-
-</Check>
+<DeveloperDemo path="device-screen-controls" />
 
 ## Screen controls
 
 <Columns cols={2}>
-  <Card
-    title="Screen brightness"
-    icon="sun"
-    href="/docs/screen-brightness"
-  >
+  <Card title="Screen brightness" icon="sun" href="/docs/screen-brightness">
     Dynamically adjust the device's screen brightness while users are inside
     your app.
   </Card>
-  <Card
-    title="Keep screen on"
-    icon="lightbulb"
-    href="/docs/keep-screen-on"
-  >
+  <Card title="Keep screen on" icon="lightbulb" href="/docs/keep-screen-on">
     Prevent the device from automatically turning off or locking the screen
     while your app is in use.
   </Card>
-  <Card
-    title="Full screen"
-    icon="expand"
-    href="/docs/full-screen"
-  >
+  <Card title="Full screen" icon="expand" href="/docs/full-screen">
     Allow your app to use the entire available display by hiding system UI.
   </Card>
   <Card

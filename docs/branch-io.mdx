@@ -1,9 +1,12 @@
 ---
 title: "Branch.io"
 description: "Add deferred deep linking with Branch.io."
-keywords: ["Branch.io", "deferred deep linking", "deep links", "attribution", "Branch"]
+keywords:
+  ["Branch.io", "deferred deep linking", "deep links", "attribution", "Branch"]
 searchable: true
 ---
+
+import { DeveloperDemo } from "/snippets/developer-demo.jsx";
 
 import { MedianLogo } from "/snippets/median-logo.jsx";
 
@@ -11,12 +14,7 @@ The **Branch.io plugin** enables **deferred deep linking** within your app, allo
 
 This guide provides step-by-step instructions for configuring the plugin and utilizing its features through the [Median JavaScript Bridge](/docs/javascript-bridge).
 
-<Check>
-**Developer Demo**
-
-Display our demo page in your app to test during development [https://median.dev/branch](https://median.dev/branch)
-
-</Check>
+<DeveloperDemo path="branch" />
 
 ## Implementation guide
 
@@ -25,7 +23,10 @@ Display our demo page in your app to test during development [https://median.dev
 To set up the Branch.io plugin, update the required parameters in the **Native Plugins** tab under **Branch.io**:
 
 <Frame caption="Branch.io plugin configuration">
-  <img src="/images/docs/46de228279749e1126620631cbf86a61ed09497a1d51f693c064406a6e3f4892-Screenshot_2025-07-04_at_12.30.04.png" alt="Branch.io plugin settings in the Native Plugins tab of App Studio" />
+  <img
+    src="/images/docs/46de228279749e1126620631cbf86a61ed09497a1d51f693c064406a6e3f4892-Screenshot_2025-07-04_at_12.30.04.png"
+    alt="Branch.io plugin settings in the Native Plugins tab of App Studio"
+  />
 </Frame>
 
 #### Sample JSON

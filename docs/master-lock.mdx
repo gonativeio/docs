@@ -4,18 +4,16 @@ description: "Unlock Master Lock Bluetooth padlocks, lockboxes, and deadbolts, u
 keywords: ["Master Lock", "Bluetooth", "padlock", "lock box", "SDK"]
 searchable: true
 ---
+
+import { DeveloperDemo } from "/snippets/developer-demo.jsx";
+
 import { MedianLogo } from "/snippets/median-logo.jsx";
 
 The Master Lock plugin allows you to unlock and manage Master Lock Bluetooth® padlocks, lockboxes, and deadbolts by integrating with the [Master Lock Mobile SDKs](https://sdkdocs.masterlockvault.com/).
 
 This guide provides step-by-step instructions to configure the plugin and use its features through the [Median JavaScript Bridge](/docs/javascript-bridge). Features include scanning, unlocking, relocking (D1000), firmware updates, lock resets, and deadbolt configuration.
 
-<Check>
-**Developer Demo**
-
-Display our demo page in your app to test during development [https://median.dev/masterlock <Icon icon="arrow-up-right-from-square" size={12} />](https://median.dev/masterlock)
-
-</Check>
+<DeveloperDemo path="masterlock" />
 
 ## Implementation guide
 
@@ -163,7 +161,7 @@ Subscribe to firmware update state changes and progress. Use this to display rea
 
   // Remove listener when done
   median.masterlock.firmwareUpdate.removeListener(listenerId);
-  ```
+```
 </CodeGroup>
 
 The callback receives a status object with:
@@ -288,7 +286,7 @@ Stand inside the door looking at the thumbturn side of the deadbolt:
 
 - If the bolt is on the **left** and extends **left** → use `left`
 - If the bolt is on the **right** and extends **right** → use `right`
-</Info>
+  </Info>
 
 #### Relock (D1000 Deadbolt only)
 
@@ -322,7 +320,7 @@ Returns a promise that resolves with:
 - Only applicable to D1000 Deadbolt model.
 - Lock must be awake and in Bluetooth range.
 - Ensure deadbolt handedness is configured correctly before using this method.
-</Warning>
+  </Warning>
 
 ## Testing your integration
 

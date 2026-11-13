@@ -1,9 +1,12 @@
 ---
 title: "Status bar"
 description: "Control the color and style of the device status bar in your app, and change them at runtime with the JavaScript Bridge."
-keywords: ["status bar", "color", "light mode", "dark mode", "JavaScript Bridge"]
+keywords:
+  ["status bar", "color", "light mode", "dark mode", "JavaScript Bridge"]
 searchable: true
 ---
+
+import { DeveloperDemo } from "/snippets/developer-demo.jsx";
 
 import { MedianLogo } from "/snippets/median-logo.jsx";
 
@@ -11,23 +14,18 @@ Set default styling options and the light or dark style for the device status ba
 
 You can also set the status bar visibility and style at runtime from your website using the Median JavaScript Bridge.
 
-<Check>
-  **Developer Demo**
-
-Display our demo page in your app to test during development [https://median.dev/status-bar/ <Icon icon="arrow-up-right-from-square" size={12} />](https://median.dev/status-bar/)
-
-</Check>
+<DeveloperDemo path="status-bar" />
 
 ## Configuration options
 
 Median supports four parameters for controlling status bar appearance:
 
-| Parameter | Values                                 | Description                                                                                                                                                                       |
-| --------- | -------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Parameter | Values                                 | Description                                                                                                                                                                          |
+| --------- | -------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `style`   | `'light'`, `'dark'` or `'auto'`        | Sets the color of the status bar text and icons. `light` displays black text/icons; `dark` displays white text/icons; `auto` follows the device's system light or dark mode setting. |
-| `color`   | Hex value, e.g. `RRGGBB` or `AARRGGBB` | Sets the status bar background to a solid color. Use `00000000` for a fully transparent status bar.                                                                               |
-| `overlay` | `true` or `false`                      | When `true`, web content extends underneath the status bar. When false (default), web content starts below the status bar.                                                        |
-| `blur`    | `true` or `false` (iOS only)           | When `true`, applies a blur effect behind the status bar color. When `false` (default), the status bar shows a flat, solid color.                                                 |
+| `color`   | Hex value, e.g. `RRGGBB` or `AARRGGBB` | Sets the status bar background to a solid color. Use `00000000` for a fully transparent status bar.                                                                                  |
+| `overlay` | `true` or `false`                      | When `true`, web content extends underneath the status bar. When false (default), web content starts below the status bar.                                                           |
+| `blur`    | `true` or `false` (iOS only)           | When `true`, applies a blur effect behind the status bar color. When `false` (default), the status bar shows a flat, solid color.                                                    |
 
 <Warning>
   **Overlay setting on Android**
@@ -36,7 +34,7 @@ With the Overlay setting enabled on Android, the keyboard overlays your web cont
 
 1. Disable the Overlay setting via the JavaScript Bridge when showing a page that includes forms.
 2. Make use of the [keyboard listener functions](/docs/keyboard-state-tracking) to disable/enable the Overlay setting via the JavaScript Bridge when the keyboard is active/inactive.
-</Warning>
+   </Warning>
 
 ## Setting the status bar at runtime
 

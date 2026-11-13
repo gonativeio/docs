@@ -1,20 +1,18 @@
 ---
 title: "Splash screen"
 description: "Configure a static or animated splash screen for your app, with separate settings for light mode and dark mode."
-keywords: ["splash screen", "launch screen", "animated splash", "dark mode", "branding"]
+keywords:
+  ["splash screen", "launch screen", "animated splash", "dark mode", "branding"]
 searchable: true
 ---
+
+import { DeveloperDemo } from "/snippets/developer-demo.jsx";
 
 The splash screen is the first thing users see when they launch your app from the home screen or switch back to it from the background. With Median, you can customize the splash screen with a static image or an animation, and set separate configurations for light mode and dark mode.
 
 During initial app launch, the splash screen displays while your web content is loading. It stays on screen until the web page finishes loading (until the `DOMContentLoaded` event fires), so that the transition between splash screen and your app is frictionless. We provide a test page on our developer portal that can be used to simulate long page load times, allowing you to test the splash screen experience for users on slow network connections.
 
-<Check>
-**Developer Demo**
-
-Display our demo page in your app to test during development [https://median.dev/splash-screen-transition <Icon icon="arrow-up-right-from-square" size={12} />](https://median.dev/splash-screen-transition)
-
-</Check>
+<DeveloperDemo path="splash-screen-transition" />
 
 ## How to configure your splash screen
 

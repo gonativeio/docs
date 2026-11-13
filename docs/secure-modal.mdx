@@ -1,22 +1,30 @@
 ---
 title: "Secure modal"
 description: "Open Apple Pay on the web and other secure third-party scripts in a secure modal window, and get a callback when the modal closes."
-keywords: ["Secure Modal", "Apple Pay", "secure window", "payments", "third-party scripts"]
+keywords:
+  [
+    "Secure Modal",
+    "Apple Pay",
+    "secure window",
+    "payments",
+    "third-party scripts",
+  ]
 searchable: true
 ---
+
+import { DeveloperDemo } from "/snippets/developer-demo.jsx";
 
 import { MedianLogo } from "/snippets/median-logo.jsx";
 
 <Frame caption="Secure Modal – Apple Pay on the web">
-  <img src="/images/docs/c89b776-IMG_BE499B5E91D0-1.jpeg" alt="Apple Pay on the web demo opened in the Secure Modal with a Close button at the top and the Apple Pay sheet showing Pay with Touch ID" style={{ maxWidth: "360px" }} />
+  <img
+    src="/images/docs/c89b776-IMG_BE499B5E91D0-1.jpeg"
+    alt="Apple Pay on the web demo opened in the Secure Modal with a Close button at the top and the Apple Pay sheet showing Pay with Touch ID"
+    style={{ maxWidth: "360px" }}
+  />
 </Frame>
 
-<Check>
-**Developer Demo**
-
-Display our demo page in your app to test during development [https://median.dev/modal/ <Icon icon="arrow-up-right-from-square" size={12} />](https://median.dev/modal/)
-
-</Check>
+<DeveloperDemo path="modal" />
 
 <Check>
 **Apple Pay on iOS 16+**
