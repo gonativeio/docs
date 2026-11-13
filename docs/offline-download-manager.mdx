@@ -124,7 +124,11 @@ To show the download manager user interface, run the following command using the
 </CodeGroup>
 
 <MedianLogo />
-<CodeGroup>```javascript JavaScript median.downloads.showUI(); ```</CodeGroup>
+<CodeGroup>
+```javascript JavaScript 
+median.downloads.showUI(); 
+```
+</CodeGroup>
 
 ### Offline page
 
@@ -145,11 +149,10 @@ Ensure the JavaScript Bridge is enabled in Median App Studio. Define a `median_l
     // safe to call median.downloads functions here
   }
 
-// fallback if bridge initialized before page loaded
-if (window.median) {
-median_library_ready();
-}
-
+  // fallback if bridge initialized before page loaded
+  if (window.median) {
+    median_library_ready();
+  }
 ```
 </CodeGroup>
 
@@ -175,4 +178,3 @@ In the sample applications below, you can explore how document and media files a
   iosEmbedCode="xysajiycq42yuwa4e6we7q4mpy"
   androidEmbedCode="soqxcz4iyfidwogetizuj2ahaq"
 />
-```

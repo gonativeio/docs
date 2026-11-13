@@ -57,11 +57,10 @@ Before accessing contacts, check whether the user has already granted permission
   // Callback style
   median.contacts.getPermissionStatus({ callback: myCallback });
 
-// Promise style
-const result = await median.contacts.getPermissionStatus({});
-console.log(result.status); // for example, "granted"
-
-````
+  // Promise style
+  const result = await median.contacts.getPermissionStatus({});
+  console.log(result.status); // for example, "granted"
+```
 </CodeGroup>
 
 #### Permission status values
@@ -96,8 +95,7 @@ median.contacts.getAll({ callback: myCallback });
 
 // Promise style
 const result = await median.contacts.getAll({});
-````
-
+```
 </CodeGroup>
 
 **Note**: On iOS the `note` field is not returned by `getAll()` by default. Accessing it requires the `com.apple.developer.contacts.notes` entitlement, which requires approval by Apple.
@@ -115,10 +113,10 @@ Display the device's native contact selection UI, allowing the user to choose on
     multiple: true  // true = allow multi-select; false = single contact only
   });
 
-// Promise style
-const result = await median.contacts.pickContact({ multiple: false });
+  // Promise style
+  const result = await median.contacts.pickContact({ multiple: false });
 
-````
+  ```
 </CodeGroup>
 
 **Note**: The `note` field is available when using `pickContact()` on iOS, without any additional entitlement.
@@ -133,8 +131,7 @@ When permission is granted, all contact methods return an object in the followin
   success: true,
   contacts: [] // array of contact objects
 }
-````
-
+```
 </CodeGroup>
 
 `contacts` is an array of contact objects. Available fields depend on the platform.

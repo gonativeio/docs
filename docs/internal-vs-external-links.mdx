@@ -13,7 +13,6 @@ searchable: true
 ---
 
 import { DeveloperDemo } from "/snippets/developer-demo.jsx";
-
 import { MedianLogo } from "/snippets/median-logo.jsx";
 
 URLs in your app can be loaded in three ways:
@@ -103,7 +102,8 @@ When opening a URL through the JavaScript Bridge, use one of the following modes
 <MedianLogo />
 <CodeGroup>
   ```javascript JavaScript // Modes: "blank" (default), "internal", "external",
-  or "appbrowser" median.window.open("https://median.co", "appbrowser"); ```
+  or "appbrowser" median.window.open("https://median.co", "appbrowser"); 
+  ```
 </CodeGroup>
 
 ### Link handling rules
@@ -181,16 +181,13 @@ To apply new internal, external, and app browser rules at runtime, run the follo
     },
   ];
 
-median.internalExternal.set({ rules: rulesArray });
-
-````
+  median.internalExternal.set({ rules: rulesArray });
+```
 </CodeGroup>
 
 ## Context menu
 
 The **context menu** is a floating menu shown when the user **long-presses a link**. You can turn it on or off at runtime and choose which actions appear, using the JavaScript Bridge.
-
-import { DeveloperDemo } from "/snippets/developer-demo.jsx";
 
 <DeveloperDemo path="context-menu" />
 
@@ -200,8 +197,7 @@ import { DeveloperDemo } from "/snippets/developer-demo.jsx";
 <CodeGroup>
 ```javascript JavaScript
   median.contextMenu.setEnabled(true); // or false to disable
-````
-
+```
 </CodeGroup>
 
 ### Set available actions
@@ -209,7 +205,8 @@ import { DeveloperDemo } from "/snippets/developer-demo.jsx";
 <MedianLogo />
 <CodeGroup>
   ```javascript JavaScript // Define which actions appear in the context menu
-  median.contextMenu.setActions(["copyLink", "openExternal"]); ```
+  median.contextMenu.setActions(["copyLink", "openExternal"]); 
+  ```
 </CodeGroup>
 
 ### Supported actions

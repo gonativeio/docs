@@ -77,16 +77,15 @@ Call `playTrack` function with the `track` object
   ```javascript JavaScript
   // Optional: show a spinner
 
-// Start the player
-const { success } = await median.backgroundMedia.playTrack(track);
+  // Start the player
+  const { success } = await median.backgroundMedia.playTrack(track);
 
-// Optional: hide the spinner
+  // Optional: hide the spinner
 
-if(success) {
-// Track started playing successfully.
-}
-
-````
+  if(success) {
+  // Track started playing successfully.
+  }
+```
 </CodeGroup>
 
 HTML (with `track` defined as global variable):
@@ -95,8 +94,7 @@ HTML (with `track` defined as global variable):
 <CodeGroup>
 ```html HTML
 <button type="button" onclick="median.backgroundMedia.playTrack(track)">Play Track</button>
-````
-
+```
 </CodeGroup>
 
 The player UI will display Play/Pause and Close controls for a single track.
@@ -144,8 +142,7 @@ Retrieve player status including current track time, `isPaused` status, album, a
     console.log(status);
   }
   </script>
-
-````
+```
 </CodeGroup>
 
 #### Option 2: Using a promise
@@ -162,8 +159,7 @@ async function getInfo() {
   console.log(JSON.stringify(status));
 }
 </script>
-````
-
+```
 </CodeGroup>
 
 #### Status example

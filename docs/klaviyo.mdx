@@ -184,15 +184,15 @@ Identify users and attach fields Klaviyo uses for segmentation and personalizati
   // Get the current user profile
   median.klaviyo.getProfile();
 
-// Set user profile attributes
-median.klaviyo.setProfile({
-externalId: "USER_ID",
-email: "user@example.com",
-phoneNumber: "+1234567890",
-});
+  // Set user profile attributes
+  median.klaviyo.setProfile({
+    externalId: "USER_ID",
+    email: "user@example.com",
+    phoneNumber: "+1234567890",
+  });
 
-// Clear the stored user profile
-median.klaviyo.resetProfile();
+  // Clear the stored user profile
+  median.klaviyo.resetProfile();
 
 ```
 </CodeGroup>
@@ -264,4 +264,3 @@ Verify `setProfile` is called with correct `externalId` / email / phone after lo
 
 For issues related to Klaviyo's own configuration, permissions, or platform-specific behavior outside of Median, refer to [Klaviyo's integration documentation](https://developers.klaviyo.com/en/docs/get_started).
 </Info>
-```

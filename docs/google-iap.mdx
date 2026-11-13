@@ -76,7 +76,8 @@ Or you may return the products data at runtime via a promise (in async function)
 <MedianLogo />
 <CodeGroup>
   ```javascript JavaScript var productsData = await median.iap.info();
-  console.log(productsData); ```
+  console.log(productsData); 
+  ```
 </CodeGroup>
 
 In both cases `productsData` will be of the form:
@@ -215,17 +216,16 @@ When a user decides to purchase an IAP, run the JavaScript function below. `prod
   });
   console.log(purchasesData);
 
-//Or via a promise
-median.iap.purchase({
-'productID': 'product_id', // Required
-'offerToken': 'offer_token' // Only required for "subs" type subscription purchases
-}).then(function(purchasesData){
-console.log(purchasesData);
-}).catch(function(error){
-console.log(error);
-});
-
-````
+  //Or via a promise
+  median.iap.purchase({
+    'productID': 'product_id', // Required
+    'offerToken': 'offer_token' // Only required for "subs" type subscription purchases
+  }).then(function(purchasesData){
+    console.log(purchasesData);
+  }).catch(function(error){
+    console.log(error);
+  });
+```
 </CodeGroup>
 
 Your app will start the in-app purchase flow and return `purchasesData` in the format listed further below. If the purchase fails an error will be thrown with the error provided by Google.
@@ -250,12 +250,11 @@ The `median.iap.purchase()` method supports these additional parameters for auto
 <CodeGroup>
 ```javascript JavaScript
 median.iap.purchase({
-productID: "annual_membership",
-previousPurchaseToken: "aaaabbbbccccddddeeeeffff",
-prorationMode: "IMMEDIATE_AND_CHARGE_PRORATED_PRICE",
+  productID: "annual_membership",
+  previousPurchaseToken: "aaaabbbbccccddddeeeeffff",
+  prorationMode: "IMMEDIATE_AND_CHARGE_PRORATED_PRICE",
 });
-````
-
+```
 </CodeGroup>
 
 ## Purchase verification and fulfillment, and purchase restoration
@@ -280,7 +279,8 @@ Or you may return the purchases at runtime via a promise (in async function)
 <MedianLogo />
 <CodeGroup>
   ```javascript JavaScript var purchasesData = await median.iap.purchases();
-  console.log(purchasesData); ```
+  console.log(purchasesData); 
+  ```
 </CodeGroup>
 
 In both cases `purchasesData` will be of the form:

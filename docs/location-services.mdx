@@ -42,12 +42,11 @@ This function ensures the web-based geolocation API uses the native implementati
     navigator.geolocation.getCurrentPosition(locationSuccess, locationError, locationOptions);
   }
 
-// Fallback: Call immediately on non-iOS platforms
-if (!navigator.userAgent.includes('MedianIOS')) {
-median_geolocation_ready();
-}
-
-````
+  // Fallback: Call immediately on non-iOS platforms
+  if (!navigator.userAgent.includes('MedianIOS')) {
+    median_geolocation_ready();
+  }
+```
 </CodeGroup>
 
 ## Android: request runtime location permission
@@ -62,8 +61,7 @@ Ensure you have Location Services permission enabled in your app configuration, 
 <CodeGroup>
 ```javascript JavaScript
 median.android.geoLocation.promptLocationServices();
-````
-
+```
 </CodeGroup>
 
 - If the user has already granted permission, this command has no effect.

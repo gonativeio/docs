@@ -53,25 +53,24 @@ Add JavaScript to a login success page to retrieve the `oneSignalInfo` object. T
   /* Login Page Sample Code */
   var gn_oneSignalUserId;
 
-function median_onesignal_info(oneSignalInfo){
-gn_oneSignalUserId = oneSignalInfo.oneSignalUserId;
-}
+  function median_onesignal_info(oneSignalInfo){
+    gn_oneSignalUserId = oneSignalInfo.oneSignalUserId;
+  }
 
-function yourLoginFunction(){
-if(gn_oneSignalUserId){
-$.ajax({
-url: updateUserRecord,
-type: "POST",
-data: {
-yourAppUserId: userId,
-oneSignalUserId: gn_oneSignalUserId
-},
-contentType: "application/json"
-});
-}
-}
-
-````
+  function yourLoginFunction(){
+    if(gn_oneSignalUserId){
+      $.ajax({
+      url: updateUserRecord,
+      type: "POST",
+      data: {
+      yourAppUserId: userId,
+      oneSignalUserId: gn_oneSignalUserId
+    },
+      contentType: "application/json"
+    });
+    }
+  }
+```
 </CodeGroup>
 
 For more JavaScript examples, see [OneSignal Info](/docs/identifying-targeting-users).
@@ -101,8 +100,7 @@ median.onesignal.externalUserId.set({
 
 // Remove an External ID
 median.onesignal.externalUserId.remove();
-````
-
+```
 </CodeGroup>
 
 ## Comparing the two options

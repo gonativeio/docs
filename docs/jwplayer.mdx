@@ -78,12 +78,11 @@ On iOS and Android, the JW Player plugin auto-initializes at runtime using the l
     licenseKey: 'YOUR_JW_PLAYER_LICENSE_KEY'
   });
 
-// result.success is true or false
-// On failure only, result.error is set, for example:
-// { code: "NOT_INITIALIZED", message: "Invalid license key" }
-console.log(result);
-
-````
+  // result.success is true or false
+  // On failure only, result.error is set, for example:
+  // { code: "NOT_INITIALIZED", message: "Invalid license key" }
+  console.log(result);
+```
 </CodeGroup>
 
 ##### Parameters
@@ -119,8 +118,7 @@ const playlistResult = await median.jwplayer.play({
 const playlistUrlResult = await median.jwplayer.play({
   playlistUrl: 'https://cdn.jwplayer.com/v2/playlists/abc123'
 });
-````
-
+```
 </CodeGroup>
 
 <MedianLogo />

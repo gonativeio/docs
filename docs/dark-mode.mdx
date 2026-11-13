@@ -25,25 +25,24 @@ You may add a control toggle within your web content to force light or dark mode
     median.screen.setColorScheme("light");
   }
 
-// Force Dark Mode
-// Always use Dark styling irrespective of device mode
-if (navigator.userAgent.indexOf("median") > -1) {
-median.screen.setColorScheme("dark");
-}
+  // Force Dark Mode
+  // Always use Dark styling irrespective of device mode
+  if (navigator.userAgent.indexOf("median") > -1) {
+    median.screen.setColorScheme("dark");
+  }
 
-// Auto Mode
-// Set to Auto mode to follow the device mode (Light or Dark)
-if (navigator.userAgent.indexOf("median") > -1) {
-median.screen.setColorScheme("auto");
-}
+  // Auto Mode
+  // Set to Auto mode to follow the device mode (Light or Dark)
+  if (navigator.userAgent.indexOf("median") > -1) {
+    median.screen.setColorScheme("auto");
+  }
 
-// Revert to Default
-// Revert to the default configuration set in the app (Light/Dark/Auto)
-if (navigator.userAgent.indexOf("median") > -1) {
-median.screen.resetColorScheme();
-}
-
-```
+  // Revert to Default
+  // Revert to the default configuration set in the app (Light/Dark/Auto)
+  if (navigator.userAgent.indexOf("median") > -1) {
+    median.screen.resetColorScheme();
+  }
+  ```
 </CodeGroup>
 
 We recommend using CSS variables to define the desired colors in light mode versus dark mode.
@@ -60,4 +59,3 @@ For a live example that you can adapt for your own website, check out Median's [
     allowFullScreen
   ></iframe>
 </Frame>
-```

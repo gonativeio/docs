@@ -51,12 +51,12 @@ Automatically listen for changes in keyboard visibility and dimensions. Define a
     console.log(state.visible, state.keyboardWindowSize, state.visibleWindowSize);
   }
 
-median.keyboard.listen(handleKeyboardChange);
+  median.keyboard.listen(handleKeyboardChange);
 
-// To stop listening, pass an empty string:
-// median.keyboard.listen("");
+  // To stop listening, pass an empty string:
+  // median.keyboard.listen("");
 
-````
+```
 </CodeGroup>
 
 #### Example: hide bottom navigation when keyboard is visible
@@ -84,8 +84,7 @@ function hideKeyboard(data) {
     median.tabNavigation.setTabs({ enabled: true });
   }
 }
-````
-
+```
 </CodeGroup>
 
 ### Toggle accessory view (iOS only)
@@ -95,8 +94,8 @@ On iOS devices, the software keyboard may display an accessory view containing s
 <MedianLogo />
 <CodeGroup>
   ```javascript JavaScript median.keyboard.showAccessoryView(true); // Show
-  accessory view median.keyboard.showAccessoryView(false); // Hide accessory
-  view ```
+  accessory view median.keyboard.showAccessoryView(false); // Hide accessory view 
+  ```
 </CodeGroup>
 
 ## Demo app

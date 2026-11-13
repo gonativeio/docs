@@ -153,8 +153,7 @@ const credentials = await median.auth0.login(
 // error: string, // if an error occurred
 // refreshToken: string // with 'offline_access' scope configured
 // }
-
-````
+```
 </CodeGroup>
 
 <Frame caption="Auth0 Universal Login">
@@ -171,8 +170,7 @@ To sign out:
   median.auth0.logout().then(function (result) {
     // result.error is set if an error occurred
   });
-````
-
+```
 </CodeGroup>
 
 ### Support for Face ID / Touch ID / Android biometrics
@@ -200,8 +198,7 @@ const auth0Status = await median.auth0.status();
 // biometryType: 'touchId', 'faceId', or 'none',
 // hasValidCredentials: boolean
 // }
-
-````
+```
 </CodeGroup>
 
 ### Get saved credentials
@@ -223,7 +220,7 @@ const credentials = await median.auth0.getCredentials();
 //   error: string, // if an error occurred
 //   refreshToken: string
 // }
-````
+```
 
 </CodeGroup>
 

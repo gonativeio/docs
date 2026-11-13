@@ -145,7 +145,7 @@ Parameters:
 - Updates can take up to 5 minutes.
 - The lock will unlock automatically during update to ensure accessibility in case of failure.
 - After completion, you must fetch a new access profile from the Master Lock API.
-  </Warning>
+</Warning>
 
 #### Firmware update listener
 
@@ -159,10 +159,9 @@ Subscribe to firmware update state changes and progress. Use this to display rea
     console.log(status.deviceId, status.state, status.percentage);
   });
 
-// Remove listener when done
-median.masterlock.firmwareUpdate.removeListener(listenerId);
-
-````
+  // Remove listener when done
+  median.masterlock.firmwareUpdate.removeListener(listenerId);
+```
 </CodeGroup>
 
 The callback receives a status object with:
@@ -180,12 +179,11 @@ Perform a lock reset to invalidate all access profiles, temporary codes, and sec
 <CodeGroup>
 ```javascript JavaScript
 median.masterlock.lockReset({
-deviceId,
-accessProfile,
-firmwareVersion,
+  deviceId,
+  accessProfile,
+  firmwareVersion,
 });
-````
-
+```
 </CodeGroup>
 
 Parameters:
@@ -210,7 +208,7 @@ Returns a promise that resolves with:
 - Currently only D1000 Deadbolt model supports this operation.
 - Cannot be performed if lock or phone battery is below 10%.
 - After reset, all users must refresh their access profiles via the Master Lock API.
-  </Warning>
+</Warning>
 
 **Lock reset error codes**
 

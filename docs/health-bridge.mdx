@@ -147,7 +147,7 @@ This method accepts an array of data types and returns an object indicating whic
 
 - **Android**: Returns a list of granted and declined data types.
 - **iOS**: Does not return any information about permission status. The OS will prompt the user when data is first requested, and you won't get confirmation about which permissions were granted.
-  </Warning>
+</Warning>
 
 You can optionally skip `requestPermissions()` and directly call `getData()` (next step), and the OS will handle permissions automatically.
 
@@ -187,14 +187,13 @@ After permissions are granted (or requested implicitly), use the `getData()` met
     bucket: "day",
   });
 
-console.log(result.data.steps);
-// [
-// { timestamp: '2025-05-01T00:00:00Z', value: 8123 },
-// { timestamp: '2025-05-02T00:00:00Z', value: 7890 },
-// ...
-// ]
-
-````
+  console.log(result.data.steps);
+  // [
+  // { timestamp: '2025-05-01T00:00:00Z', value: 8123 },
+  // { timestamp: '2025-05-02T00:00:00Z', value: 7890 },
+  // ...
+  // ]
+```
 </CodeGroup>
 
 Want to show a daily step chart for the past week? Fetch steps with `bucket: 'day'` and map the values to your chart component.
@@ -229,8 +228,7 @@ Want to show a daily step chart for the past week? Fetch steps with `bucket: 'da
   ]
 }
 }
-````
-
+```
 </CodeGroup>
 
 ## Integration testing

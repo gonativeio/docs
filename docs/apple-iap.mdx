@@ -143,14 +143,13 @@ When a user decides to purchase an IAP, run the JavaScript function:
     console.log(error);
   }
 
-//Or via a promise
-median.iap.purchase({'productID': 'product_id'}).then(function(purchasesData){
-console.log(purchasesData);
-}).catch(function(error){
-console.log(error);
-});
-
-````
+  //Or via a promise
+  median.iap.purchase({'productID': 'product_id'}).then(function(purchasesData){
+    console.log(purchasesData);
+  }).catch(function(error){
+    console.log(error);
+  });
+```
 </CodeGroup>
 
 Your app will start the in-app purchase flow and return `purchasesData` in the format listed further below. If the purchase fails an error will be thrown with the error provided by Apple.
@@ -184,8 +183,7 @@ console.log(transactionInfo);
 // }
 
 // Send transactionInfo to your backend for verification
-````
-
+```
 </CodeGroup>
 
 #### Decode JWS response
@@ -332,7 +330,9 @@ To restore purchases, run the JavaScript function:
 
 <MedianLogo />
 <CodeGroup>
-  ```javascript JavaScript median.iap.restorePurchases(); ```
+  ```javascript JavaScript 
+  median.iap.restorePurchases(); 
+  ```
 </CodeGroup>
 
 Any previous purchases will be restored and will start the verification process outlined above, as if they were newly purchased. If there are no purchases to restore, no action is performed. Unfortunately, it is not possible to differentiate between a lack of purchases to restore, a delay, or a failure to restore. You may choose to display a message such as “Restore requested. If you have previous purchases they will be available shortly.”

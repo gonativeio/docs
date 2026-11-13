@@ -49,27 +49,26 @@ The method supports both callback and Promise-based approaches:
     callback: process_barcode
   });
 
-function process_barcode(data) {
-if (data.success) {
-console.log('Got barcode: ' + data.code);
-}
-}
+  function process_barcode(data) {
+    if (data.success) {
+      console.log('Got barcode: ' + data.code);
+    }
+  }
 
-// Promise example
-median.barcode.scan({ formats: ['QR_CODE'] }).then(function (data) {
-if (data.success) {
-console.log('Got barcode: ' + data.code);
-}
-});
+  // Promise example
+  median.barcode.scan({ formats: ['QR_CODE'] }).then(function (data) {
+    if (data.success) {
+      console.log('Got barcode: ' + data.code);
+    }
+  });
 
-// Scan all supported formats (default)
-median.barcode.scan().then(function (data) {
-if (data.success) {
-console.log('Got barcode: ' + data.code);
-}
-});
-
-````
+  // Scan all supported formats (default)
+  median.barcode.scan().then(function (data) {
+    if (data.success) {
+      console.log('Got barcode: ' + data.code);
+    }
+  });
+```
 </CodeGroup>
 
 The native scanner UI will launch within your app. Upon scan completion, focus will return to the webview where an object in the format below will be returned.
@@ -82,8 +81,7 @@ The native scanner UI will launch within your app. Upon scan completion, focus w
   code: "STRING",     // The actual scanned value
   error: "STRING"     // Error message if unsuccessful
 }
-````
-
+```
 </CodeGroup>
 
 [Learn more about using promises and the Median JavaScript Bridge](/docs/javascript-bridge#promises).
@@ -105,6 +103,7 @@ You can also dynamically set the prompt message in-app using the `setPrompt()` m
 
 <MedianLogo />
 <CodeGroup>
-  ```javascript JavaScript median.barcode.setPrompt('Align the QR code or
-  barcode within the frame to scan automatically'); ```
+  ```javascript JavaScript 
+  median.barcode.setPrompt('Align the QR code or barcode within the frame to scan automatically'); 
+  ```
 </CodeGroup>

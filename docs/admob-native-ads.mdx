@@ -107,20 +107,19 @@ Enable ATT and prompt the user with the following commands:
   // Using a callback
   median.admob.request.tracking({ callback: trackingCallback });
 
-function trackingCallback(result) {
-if (result.status === 'authorized') {
-console.log('Thank you for enabling personalized ads');
-}
-}
+  function trackingCallback(result) {
+    if (result.status === 'authorized') {
+      console.log('Thank you for enabling personalized ads');
+    }
+  }
 
-// Using a promise
-median.admob.request.tracking().then(function(result) {
-if (result.status === 'authorized') {
-console.log('Thank you for enabling personalized ads');
-}
-});
-
-````
+  // Using a promise
+  median.admob.request.tracking().then(function(result) {
+    if (result.status === 'authorized') {
+      console.log('Thank you for enabling personalized ads');
+    }
+  });
+```
 </CodeGroup>
 
 `callback` is an optional parameter to get the result of the user decision. It should be the name of a JavaScript function that will receive the result. The result will be an object with a status string, which can be "authorized", "denied", or "restricted" (denied by corporate policy or user is underage).
@@ -138,19 +137,18 @@ Create a user message in your AdMob console under **Privacy & Messaging**, then 
 median.admob.request.consent({ callback: consentCallback });
 
 function consentCallback(result) {
-if (result.success === true) {
-  console.log('Thank you for enabling personalized ads');
-}
+  if (result.success === true) {
+    console.log('Thank you for enabling personalized ads');
+  }
 }
 
 // Promise method
 median.admob.request.consent().then(function(result) {
-if (result.success === true) {
-  console.log('Thank you for enabling personalized ads');
-}
+  if (result.success === true) {
+    console.log('Thank you for enabling personalized ads');
+  }
 });
-````
-
+```
 </CodeGroup>
 
 `callback` is an optional parameter to get the result of the user decision. It should be the name of a JavaScript function that will receive the result. The result will be an object with a `result` boolean.

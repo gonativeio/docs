@@ -183,9 +183,8 @@ Identifies a customer by a hard identifier and value, so Bloomreach Engagement c
     value: "user@example.com",
   };
 
-const result = await median.bloomreach.identifyCustomer(params);
-
-````
+  const result = await median.bloomreach.identifyCustomer(params);
+  ```
 </CodeGroup>
 
 **Parameters:**
@@ -210,8 +209,7 @@ const params = {
     age: 25,
   },
 };
-````
-
+```
 </CodeGroup>
 
 #### Sign out a customer
@@ -317,4 +315,3 @@ Verify `google-services.json` is embedded in the app and Bloomreach push configu
 
 For issues related to Bloomreach's own configuration, permissions, or platform-specific behavior outside Median, refer to [Bloomreach's integration documentation](https://documentation.bloomreach.com/engagement/docs/documentation-overview).
 </Info>
-```

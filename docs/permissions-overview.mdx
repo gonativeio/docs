@@ -88,10 +88,9 @@ Users can change the permissions granted to your app through their device settin
   // get status of all permissions
   const response = await median.permissions.status();
 
-// only get status of selected permissions
-const response = await median.permissions.status(["Contacts", "Camera"]);
-
-````
+  // only get status of selected permissions
+  const response = await median.permissions.status(["Contacts", "Camera"]);
+```
 </CodeGroup>
 
 The `response` object includes the current state for each requested permission:
@@ -102,8 +101,7 @@ The `response` object includes the current state for each requested permission:
   "Contacts": "undetermined",
   "Camera": "granted"
 }
-````
-
+```
 </CodeGroup>
 
 Each permission can have the following states:
@@ -135,7 +133,11 @@ Test launching the app settings menu: [median.dev/app-settings](https://median.d
 When users have denied permissions, you can direct them to the app's settings page to enable the required permissions:
 
 <MedianLogo />
-<CodeGroup>```javascript JavaScript median.open.appSettings(); ```</CodeGroup>
+<CodeGroup>
+```javascript JavaScript 
+median.open.appSettings(); 
+```
+</CodeGroup>
 
 To open the Settings page for your app, use the URL above or the JavaScript Bridge call.
 

@@ -71,14 +71,13 @@ To save a value, use the following JavaScript Bridge command. To get status of t
     statuscallback: statcb,
   });
 
-// Optional callback for status
-function statcb(result) {
-if (result.status) {
-console.log(result.status);
-}
-}
-
-````
+  // Optional callback for status
+  function statcb(result) {
+    if (result.status) {
+      console.log(result.status);
+    }
+  }
+```
 </CodeGroup>
 
 | Parameter        | Type     | Required | Description                                       |
@@ -111,8 +110,7 @@ To retrieve the saved settings define a callback function and call the JavaScrip
       console.log(result.data);
       console.log(result.status);
   });
-````
-
+```
 </CodeGroup>
 
 | Parameter  | Type     | Required             | Description                                |
@@ -132,14 +130,13 @@ To delete a setting provide the KEY of the previously saved setting. The status 
     statuscallback: statcb,
   });
 
-// Optional callback for status
-function statcb(result) {
-if (result.status) {
-console.log(result.status);
-}
-}
-
-````
+  // Optional callback for status
+  function statcb(result) {
+    if (result.status) {
+      console.log(result.status);
+    }
+  }
+```
 </CodeGroup>
 
 #### Delete all (app storage)
@@ -156,8 +153,7 @@ Removes all stored key-value pairs from device-local storage.
   function statcb(result) {
     console.log(result.status);
   }
-````
-
+```
 </CodeGroup>
 
 ### Cloud storage
@@ -179,14 +175,13 @@ To save a value, use the following JavaScript Bridge command. To get status of t
     statuscallback: statcb,
   });
 
-// Optional callback for status
-function statcb(result) {
-if (result.status) {
-console.log(result.status);
-}
-}
-
-````
+  // Optional callback for status
+  function statcb(result) {
+    if (result.status) {
+      console.log(result.status);
+    }
+  }
+```
 </CodeGroup>
 
 #### Get command (cloud storage)
@@ -223,8 +218,7 @@ median.storage.cloud
       console.log(result.status);
     }
   });
-````
-
+```
 </CodeGroup>
 
 > [Learn more about using promises with the JavaScript Bridge](/docs/javascript-bridge#promises).
@@ -241,14 +235,13 @@ To delete a setting provide the KEY of the previously saved setting. The status 
     statuscallback: statcb,
   });
 
-// Optional callback for status
-function statcb(result) {
-if (result.status) {
-console.log(result.status);
-}
-}
-
-````
+  // Optional callback for status
+  function statcb(result) {
+    if (result.status) {
+      console.log(result.status);
+    }
+  }
+```
 </CodeGroup>
 
 #### Delete all (cloud storage)
@@ -265,8 +258,7 @@ function statcb(result) {
     console.log(result.status);
   }
 }
-````
-
+```
 </CodeGroup>
 
 ### Callback status reference
