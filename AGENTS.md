@@ -48,6 +48,7 @@ Use **Median** for the company and product in prose. `Median.co` is the domain a
 | Global Theme                                                                              | theme settings                                  |
 | URL pattern                                                                               | regex (for App Studio rules)                    |
 | sign in, sign out                                                                         | log in, login (as a verb)                       |
+| demo page (the prebuilt pages on `median.dev`)                                            | demo site, test page, Developer Demo (in prose) |
 
 - "Dashboard" is fine for third-party products, such as the OneSignal dashboard. Median's own interface is always App Studio.
 - Service names keep the capitalization the brand uses: Self-Service, Assisted App Development, Concierge App Development, Full-Service, and Enterprise. Only mention a service if an existing page or the user confirms it's current.
@@ -60,7 +61,7 @@ Use **Median** for the company and product in prose. `Median.co` is the domain a
 - Active voice and second person ("you").
 - Short sentences, one idea per sentence. Prefer a colon or a new sentence to an em dash, and use at most one em dash per sentence.
 - Oxford comma, always: "iOS, Android, and the web".
-- **Sentence case for page titles, sidebar titles, headings, and card titles.** Capitalize only proper nouns: Median product names (App Studio, JavaScript Bridge, Publishing Service), third-party brands (OneSignal, Google Sign-In), and platform names. Generic features are lowercase: "Share button", "Getting started with Replit", "Pull-to-refresh".
+- **Sentence case for page titles, sidebar titles, headings, card titles, and the bold first line of callouts.** Capitalize only proper nouns: Median product names (App Studio, JavaScript Bridge, Publishing Service), third-party brands (OneSignal, Google Sign-In), and platform names. Generic features are lowercase: "Share button", "Getting started with Replit", "Pull-to-refresh".
 - Use imperative headings for tasks: "Create an instance", "Send to a topic".
 - Bold for UI elements, with arrows for paths: **Native Plugins → OneSignal**. Write UI labels exactly as App Studio shows them, even when they're title case.
 - Code formatting for file names, paths, method names, parameters, and values.
@@ -91,7 +92,7 @@ description: "Control the color and style of the device status bar in your app."
 Plugin and feature pages follow this order. Leave out sections that don't apply.
 
 1. Introduction: what the feature does and when to use it, in one or two short paragraphs. State costs, plan or plugin requirements, and platform limits here.
-2. Developer Demo callout (see below), if a demo page exists.
+2. Developer demo callout, if a demo page exists on `median.dev` (see [Developer demo callouts](#developer-demo-callouts)).
 3. Prerequisites.
 4. Configuration: App Studio settings as a table with **Setting**, **Description**, and, where helpful, **Recommendation** columns.
 5. JavaScript Bridge methods: one H3 per method or feature.
@@ -104,16 +105,38 @@ When combining several old articles into one page, keep the most-linked slug and
 ## Components and patterns
 
 - Start a callout with a bold line, not a heading. Headings inside callouts appear in the table of contents.
-- Developer Demo callouts use this exact format:
+- Put all `import` lines for snippets directly after the frontmatter, one per snippet, before any page content. Never place an import inside another component.
+- When a snippet controls wording or layout (for example `DeveloperDemo`), change the snippet, not individual pages. Don't copy a snippet's output into a page by hand.
+
+### Developer demo callouts
+
+Median hosts prebuilt demo pages on `median.dev` that call a feature through the JavaScript Bridge. Developers load them inside their Median app to test the feature before they add it to their own site. Every plugin or feature page with a demo page uses the `DeveloperDemo` snippet. Don't write demo callouts by hand, and don't use `<Check>` or the old "**Developer Demo**" format.
 
 ```mdx
-<Check>
-  **Developer Demo**
+import { DeveloperDemo } from "/snippets/developer-demo.jsx";
 
-Display our demo page in your app to test during development [https://median.dev/status-bar/ <Icon icon="arrow-up-right-from-square" size={12} />](https://median.dev/status-bar/)
-
-</Check>
+<DeveloperDemo path="status-bar" />
 ```
+
+| Prop       | Required | Description                                                                                                                  |
+| ---------- | -------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| `path`     | Yes      | The demo page's slug on `median.dev`, for example `age-safety`. The snippet adds the domain and a trailing slash.            |
+| `feature`  | No       | The feature name in sentence case. Defaults to the slug with spaces (`deep-linking` becomes "deep linking").                 |
+| `url`      | No       | A full URL, only for a demo page hosted somewhere other than `median.dev`. Replaces `path`.                                  |
+| `showNote` | No       | Shows the note that the demo page only works inside a Median app. Defaults to `true`. Set `{false}` only if that isn't true. |
+
+- Set `feature` when the name contains a brand or proper noun, or when the slug doesn't read naturally in a sentence: `<DeveloperDemo feature="AdMob" path="admob" />`.
+- Put feature-specific follow-up steps between the opening and closing tags, in one or two sentences with descriptive link text. Closing tags start at column 1.
+
+```mdx
+<DeveloperDemo path="deep-linking">
+  After setup, check your configuration with the [Deep Linking
+  Validator](/docs/deep-linking-validator).
+</DeveloperDemo>
+```
+
+- Use one demo callout per page, placed after the introduction.
+- Only add a callout for a demo page that exists. Open the URL to check it before you commit. Don't invent demo pages or slugs.
 
 ### JavaScript Bridge code
 
@@ -127,16 +150,18 @@ import { MedianLogo } from "/snippets/median-logo.jsx";
 <CodeGroup>
 
 ```javascript JavaScript
-median.statusbar.set({ style: "dark", color: "80ff0000" });
+if (typeof median !== "undefined") {
+  median.statusbar.set({ style: "dark", color: "80ff0000" });
+}
 ```
 
 </CodeGroup>
 ````
 
-- Use lowercase language tags (`javascript`, `json`, `bash`) with a title after them. Use `text` for AI prompts and plain output.
+- Use lowercase language tags (`javascript`, `json`, `bash`) with a title after them. Use `text` for plain output and for prompts shown alongside code. Use `<Prompt>` for standalone AI prompts readers should copy (see [Other components](#other-components)).
 - Put related variants (for example Set / Get, or Subscribe / Unsubscribe) as tabs in one `CodeGroup`.
 - Examples must be valid code readers can copy. Don't use pseudo-syntax like `stop(true | false)`. Show real values and explain the options in a table.
-- Guard calls that only work in the app: `if (typeof median !== 'undefined')` for the injected library, or `Median.isNativeApp()` for the npm package. Prefer `median_library_ready()` for code that runs on page load.
+- Guard calls that only work in the app: `if (typeof median !== 'undefined')` for the injected library, or `Median.isNativeApp()` for the npm package. For code that runs on page load, define a `median_library_ready()` function, which the library calls once it's ready.
 - Use `console.log` in example handlers, not `window.alert()`.
 
 ### Cards
@@ -153,6 +178,7 @@ median.statusbar.set({ style: "dark", color: "80ff0000" });
 - `<AccordionGroup>` for long reference content and FAQs.
 - `<Frame>` around every image, with a `caption` where helpful.
 - `<Prompt description="...">` for AI prompts readers should copy. The description says what the prompt does. Don't repeat the prompt text elsewhere.
+- `<DeveloperDemo path="..." />` from `/snippets/developer-demo.jsx` for demo pages. See [Developer demo callouts](#developer-demo-callouts).
 - `<AppetizeEmbed iosEmbedCode="..." androidEmbedCode="..." />` from `/snippets/appetize-embed.jsx` for live simulators. Pass only the platforms you have.
 - `<InstantPreviewCTAInline articleType="lovable" />` from `/snippets/instant-preview-cta-inline.jsx` on website builder pages. Always set `articleType` (`replit`, `lovable`, `base44`, `salesforce`, `bolt`).
 
@@ -188,7 +214,7 @@ These rules apply to images, snippets, custom CSS, and anything else that shows 
 
 ### Colors
 
-Use only the brand palette. Don't introduce other colors, such as Tailwind's default greens, reds, or grays, in custom CSS, snippets, or inline styles.
+Use only the brand palette. Don't introduce other colors, such as Tailwind's default greens, reds, or grays, in custom CSS, snippets, or inline styles. Mintlify's built-in callouts (`<Tip>`, `<Note>`, `<Warning>`, and so on) keep their default styling; don't override it.
 
 | Name         | Base      | Darker                                                   | Lighter   |
 | ------------ | --------- | -------------------------------------------------------- | --------- |
@@ -208,7 +234,7 @@ Extra colors, for illustrations only: purple `#3F3EDF` and orange `#ED4F06`.
 
 ### Typography
 
-- `docs.json` sets Questrial for headings and DM Sans for body text. Don't set fonts in MDX, snippets, or inline styles.
+- `docs.json` sets Questrial for headings and DM Sans for body text. Don't set fonts in MDX, snippets, or inline styles. The one exception is the Mermaid `init` line in [Diagrams](#diagrams), which sets DM Sans because Mermaid doesn't inherit the page font.
 - Code uses Mintlify's monospace font.
 
 ### Icons
@@ -243,12 +269,13 @@ Extra colors, for illustrations only: purple `#3F3EDF` and orange `#ED4F06`.
 
 These have broken builds in this repo before. Check for them in every change.
 
-- **Indented closing tags after a list.** A closing tag like `</Warning>` or `</Info>` indented directly under a list item is parsed as part of the list. Closing tags of callouts always start at column 1.
-- **Curly braces in text.** `{` and `}` outside code are parsed as JavaScript. Escape them (`\{ style: "x" \}`) or put the text in backticks. This applies inside `<Prompt>` too.
+- **Indented closing tags after a list.** A closing tag like `</Warning>` or `</Info>` indented directly under a list item is parsed as part of the list. Closing tags of callouts and snippet components (such as `</DeveloperDemo>`) always start at column 1.
+- **Curly braces in text.** `{` and `}` outside code are parsed as JavaScript. Escape them (`\{ style: "x" \}`) or put the text in backticks. This applies inside `<Prompt>` and inside `<DeveloperDemo>` children too.
 - **Code fences on one line.** Opening and closing ` ``` ` must each be on their own line.
 - **Blank lines inside JSX** (for example inside `<video>` or between `<source>` tags) can turn content into Markdown paragraphs.
 - **Unpaired backticks** and spaces inside code spans (`` `foo `bar ``) render incorrectly.
 - **Duplicate headings** on a page create duplicate anchors. Make each heading unique.
+- **Duplicate imports.** Importing the same snippet twice on one page fails the build. Keep one import per snippet at the top of the page.
 
 ## Validation
 
