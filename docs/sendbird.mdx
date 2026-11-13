@@ -79,7 +79,7 @@ Configure Sendbird and push outside Median before or in parallel with the App St
 Sendbird’s SDK requires the **Application ID** of your Sendbird application to initialize. You can find it in the dashboard of your Sendbird application.
 
 <Frame caption="Sendbird – find the Application ID">
-  <img src="/images/docs/ebd99f951c390390ffd69607f0dea32abe8c130b162b2813cd1e8b6fc414281a-Screenshot_2026-03-12_at_8.40.44_AM.png" alt="Sendbird dashboard Overview page with the Application ID highlighted" />
+  <img src="/images/docs/docs/sendbird/dashboard-application-id.png" alt="Sendbird dashboard Overview page with the Application ID highlighted" />
 </Frame>
 
 #### Set up Sendbird push notifications (APNs and FCM)
@@ -109,7 +109,7 @@ In the dashboard of your Sendbird app:
 3. Add your push notification credentials.
 
 <Frame caption="Sendbird – push notification settings">
-  <img src="/images/docs/6f38aed3d9dd08ec859009e072fe1ca8a4577d7e51289efc34dae67b4be34e6f-Screenshot_2026-03-13_at_2.41.34_PM.png" alt="Sendbird Settings, Chat, Push notifications page with push turned on and Add credential buttons for APNs and FCM highlighted" />
+  <img src="/images/docs/docs/sendbird/dashboard-push-notification-settings.png" alt="Sendbird Settings, Chat, Push notifications page with push turned on and Add credential buttons for APNs and FCM highlighted" />
 </Frame>
 
 ### Median App Studio configuration
@@ -119,14 +119,14 @@ In the dashboard of your Sendbird app:
 1. In **App Studio**, open the **Native Plugins** tab and enable the **Sendbird** plugin.
 
 <Frame caption="App Studio – enable the Sendbird plugin">
-  <img src="/images/docs/sendbird-app-studio-plugin-settings.webp" alt="App Studio Sendbird plugin page with Plugin Enabled turned on, an empty App ID (Optional) field, and Automatic Registration set to Enable" />
+  <img src="/images/docs/docs/sendbird/app-studio-plugin-settings.png" alt="Sendbird plugin settings in App Studio, with Plugin Enabled turned on, an empty App ID field, and Automatic Registration set to Enable" />
 </Frame>
 
 #### Configuration options
 
 | Setting | Description |
 | --- | --- |
-| **App ID** | Optional string — if defined, the Sendbird SDK is initialized automatically. |
+| **App ID** | Optional. If set, the Sendbird SDK is initialized automatically. |
 | **Automatic Registration** | When set to **Enable**, push permission is requested automatically. |
 
 #### Android: `google-services.json`
@@ -134,7 +134,7 @@ In the dashboard of your Sendbird app:
 Firebase Cloud Messaging (FCM) requires embedding a `google-services.json` file in the app to send Android push notifications. Upload this file in the **Build & Deploy** tab of App Studio.
 
 <Frame caption="App Studio – add google-services.json">
-  <img src="/images/docs/6f9e4820184e1192763f4af308eb26544d1c6900d43562b579a90c003c1241b2-Screenshot_2026-03-13_at_2.46.17_PM.png" alt="App Studio Build & Download page with the Add google-services.json button highlighted under Google Services" />
+  <img src="/images/docs/docs/sendbird/app-studio-google-services-json.png" alt="App Studio Build & Download page with the Add google-services.json button highlighted under Google Services" />
 </Frame>
 
 Push notifications must also be configured in your **Sendbird** dashboard by adding the FCM service account key (HTTP v1). Refer to the Sendbird push setup steps above.
@@ -375,7 +375,7 @@ median.sendbird.showUI();
 </CodeGroup>
 
 <Frame caption="Sendbird demo app – show channels UI">
-  <img src="/images/docs/aa2cf1bef7fce2e81593df7719056f0b74cdd8625efab8e8c3ba98a27fbba76e-Screenshot_2026-03-19_at_5.07.46_PM.png" alt="Sendbird channel list UI open in the app simulator" />
+  <img src="/images/docs/docs/sendbird/demo-app-channels-ui.png" alt="Sendbird channel list UI open in the app simulator" />
 </Frame>
 
 #### Show channels UI and enter channel
@@ -394,7 +394,7 @@ median.sendbird.showChannelUI({ url: STRING });
 **Parameters:** `url` (string) — channel URL.
 
 <Frame caption="Sendbird demo app – show channels UI and enter channel">
-  <img src="/images/docs/6434cce2d7c960e1f9043c2ad271026f3789d8d7561a653fdfa434dbb71b0727-Screenshot_2026-03-19_at_5.09.39_PM.png" alt="Sendbird chat UI open on a channel in the app simulator" />
+  <img src="/images/docs/docs/sendbird/demo-app-channel-chat.png" alt="Sendbird chat UI open on a channel in the app simulator" />
 </Frame>
 
 #### Close UI callback
