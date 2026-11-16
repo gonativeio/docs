@@ -99,29 +99,35 @@ Once exported, your custom icon font is shared across your entire app configurat
 
 To add more icons later, repeat the steps above and import the new SVG files in Fontello. Make sure your existing custom icons are still selected (highlighted) before clicking **Export font**. Only highlighted icons are included in the exported font, so any icon left unselected will be removed from your app.
 
-## Dynamically updating icons
+## Change tab icons at runtime
 
-You can change the icons of the tab menu items at runtime from your website with the Median JavaScript Bridge. This is useful for apps that need badges on icons like shopping carts or notification bell icons. 
+You can replace the bottom tab bar's tabs, including their icons, from your website with the Median JavaScript Bridge. Call `median.tabNavigation.setTabs()` with the full list of tabs you want to show. For the other tab methods, see [Dynamic tab menu](/docs/dynamic-tab-menu).
 
 <MedianLogo />
 
-```javascript
-var tabItems = [{
-              "icon": "fas fa-cloud", //optional
-              "label": "Tab 1",
-              "url": "javascript:console.log('You selected tab 1')"
-          }, {
-              "icon": "fas fa-globe", //optional
-              "label": "Tab 2",
-              "url": "javascript:console.log('You selected tab 2')"
-          }, {
-              "icon": "fas fa-users", //optional
-              "label": "Tab 3",
-              "url": "javascript:console.log('You selected tab 3')"
-          }];
+<CodeGroup>
 
-median.tabNavigation.setTabs({'enabled': true, 'items': tabItems});
+```javascript JavaScript
+var tabItems = [{
+    "icon": "fas fa-home",
+    "label": "Home",
+    "url": "javascript:console.log('You selected Home')"
+}, {
+    "icon": "fas fa-user",
+    "label": "Profile",
+    "url": "javascript:console.log('You selected Profile')"
+}, {
+    "icon": "fas fa-bell",
+    "label": "Notifications",
+    "url": "javascript:console.log('You selected Notifications')"
+}];
+
+if (typeof median !== 'undefined') {
+    median.tabNavigation.setTabs({ "enabled": true, "items": tabItems });
+}
 ```
+
+</CodeGroup>
 
 ## Troubleshooting
 
