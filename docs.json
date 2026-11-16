@@ -704,6 +704,14 @@
     {
       "source": "/docs/revenuecat",
       "destination": "/docs/revenue-cat"
+    },
+    {
+      "source": "/docs/webauthn",
+      "destination": "/docs/passkey-authentication"
+    },
+    {
+      "source": "/docs/microsoft-dynamics-365",
+      "destination": "/docs/ms-dynamics"
     }
   ],
   "integrations": {
