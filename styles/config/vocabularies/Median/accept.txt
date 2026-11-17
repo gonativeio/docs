@@ -56,7 +56,7 @@ NSObject
 iCalendar
 
 # File formats and acronyms (plurals)
-APNs
+APNS
 APKs
 AABs
 IPAs
