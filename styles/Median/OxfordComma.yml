@@ -1,0 +1,7 @@
+extends: existence
+message: "Use the Oxford comma in '%s'."
+link: https://github.com/gonativeio/docs/blob/main/AGENTS.md#style
+level: suggestion
+scope: sentence
+tokens:
+  - '(?:[^\s,]+,){1,} [^\s,]+ (?:and|or) '

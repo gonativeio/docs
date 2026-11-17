@@ -1,0 +1,21 @@
+# Terminology table from AGENTS.md
+extends: substitution
+message: "Use '%s' instead of '%s'."
+link: https://github.com/gonativeio/docs/blob/main/AGENTS.md#terminology
+level: error
+ignorecase: false
+action:
+  name: replace
+swap:
+  'GoNative(?!\.io|AppConfig)|gonative(?!\.io)': Median
+  'Median dashboard': App Studio
+  'JS [Bb]ridge|Javascript Bridge': JavaScript Bridge
+  'App Publishing Service': Publishing Service
+  'maintenance plan': Support & Updates Plan
+  'enterprise plan': Median for Enterprise
+  iTunes: App Store
+  'Play Market': Google Play
+  'navigation profile': instance
+  'theme settings': Global Theme
+  '(?:log in|login) (?:to|with)': sign in
+  'log out': sign out

@@ -1,0 +1,7 @@
+extends: occurrence
+message: "Use at most one em dash per sentence. Prefer a colon or a new sentence."
+link: https://github.com/gonativeio/docs/blob/main/AGENTS.md#style
+level: warning
+scope: sentence
+max: 1
+token: '—'

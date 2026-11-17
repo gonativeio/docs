@@ -1,0 +1,14 @@
+extends: substitution
+message: "Use the contraction '%s' instead of '%s'."
+link: https://github.com/gonativeio/docs/blob/main/AGENTS.md#voice
+level: suggestion
+ignorecase: true
+swap:
+  'do not': don't
+  'does not': doesn't
+  'is not': isn't
+  'are not': aren't
+  'cannot': can't
+  'will not': won't
+  'you will': you'll
+  'it is': it's
