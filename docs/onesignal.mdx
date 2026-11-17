@@ -14,7 +14,7 @@ See the [Median integration on OneSignal](https://onesignal.com/integrations/med
 ## Why use OneSignal with Median
 
 - **Web-first control**: Drive push, in-app messaging, user identity, segments, and consent from your site's JavaScript through the [JavaScript Bridge](/docs/javascript-bridge).
-- **Consistent cross-platform setup**: One Median plugin surface for iOS and Android after you complete each platform's credential steps (APNs and FCM).
+- **Consistent cross-platform setup**: One Median plugin surface for iOS and Android after you complete each platform's credential steps (APNS and FCM).
 - **Full OneSignal toolkit**: Use dashboard campaigns, [programmatic delivery](/docs/programmatic-notifications), [user targeting](/docs/identifying-targeting-users), and [in-app messages](/docs/in-app-messages) from the same integration.
 - **Modern SDK defaults**: Runs on **OneSignal SDK v5+** with a user-centric model; older apps should confirm behavior against [Legacy Mode](/docs/onesignal-legacy-mode).
 
@@ -30,7 +30,7 @@ Make sure you have the following before starting. Missing any one of these will 
 
 **iOS apps**
 
-- [x] An Apple Push Notification service (APNs) credential — either a [.p8 token key (recommended)](https://documentation.onesignal.com/docs/en/ios-p8-token-based-connection-to-apns) or a [.p12 certificate](https://documentation.onesignal.com/docs/en/ios-p12-generate-certificates), generated from your Apple Developer account
+- [x] An Apple Push Notification service (APNS) credential — either a [.p8 token key (recommended)](https://documentation.onesignal.com/docs/en/ios-p8-token-based-connection-to-apns) or a [.p12 certificate](https://documentation.onesignal.com/docs/en/ios-p12-generate-certificates), generated from your Apple Developer account
 - [x] Push Notifications and Background Modes (Remote notifications) capabilities included in your iOS signing setup
 - [x] App Groups capability included if you use badge counts, rich notification images, or confirmed delivery analytics
 
@@ -50,21 +50,21 @@ Head straight to [Managing Permissions & Consent](/docs/user-consent-management)
 
 Median's OneSignal integration is especially useful when you need to:
 
-| Use case                                 | Example                                                                                                                                                                                                 |
-| ---------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Transactional and lifecycle messages** | Send order updates, booking reminders, or account alerts as push notifications.                                                                                                                         |
-| **Re-engagement**                        | Re-engage users with new content, limited-time offers, or abandoned-journey follow-ups.                                                                                                                 |
-| **Segmented or identified audiences**    | Target signed-in users, tags, or segments defined in OneSignal from the dashboard or API.                                                                                                               |
-| **In-app messaging**                     | Show prompts, or announcements inside the app, including flows that don't require push permission first.                                                                                                |
+| Use case                                 | Example                                                                                                                                                                           |
+| ---------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Transactional and lifecycle messages** | Send order updates, booking reminders, or account alerts as push notifications.                                                                                                   |
+| **Re-engagement**                        | Re-engage users with new content, limited-time offers, or abandoned-journey follow-ups.                                                                                           |
+| **Segmented or identified audiences**    | Target signed-in users, tags, or segments defined in OneSignal from the dashboard or API.                                                                                         |
+| **In-app messaging**                     | Show prompts, or announcements inside the app, including flows that don't require push permission first.                                                                          |
 | **Consent and timing**                   | Control _when_ the OS permission dialog appears or wait until privacy consent before initializing OneSignal. See [Managing Permissions & Consent](/docs/user-consent-management). |
-| **Server-triggered push**                | Send notifications from your backend using [OneSignal's REST API](https://documentation.onesignal.com/reference/rest-api-overview)                                                                      |
+| **Server-triggered push**                | Send notifications from your backend using [OneSignal's REST API](https://documentation.onesignal.com/reference/rest-api-overview)                                                |
 
 ## What you'll do
 
 Use this section as a fast navigation map into the full setup path:
 
 1. **Gather credentials**: Complete the items in [Prerequisites](#prerequisites), including your **OneSignal App ID**, REST **API Key**, and **platform credentials**.
-2. **Configure iOS** (if applicable): Follow the [iOS setup](#ios-setup) to generate your **APNs credential** and confirm the required iOS capabilities.
+2. **Configure iOS** (if applicable): Follow the [iOS setup](#ios-setup) to generate your **APNS credential** and confirm the required iOS capabilities.
 3. **Configure Android** (if applicable): Follow the [Android setup](#android-setup) to create a **Firebase project** and upload **FCM credentials** to OneSignal.
 4. **Enable the plugin in Median**: Go to [Plugin setup](#plugin-setup) and connect OneSignal to your app in Median App Studio.
 5. **Verify delivery**: Complete the [Testing checklist](#testing-checklist) and review [Troubleshooting](#troubleshooting) if a test notification doesn't arrive.
@@ -105,14 +105,14 @@ In your OneSignal dashboard:
 
 ## iOS setup
 
-### Step 1: Generate your APNs credential
+### Step 1: Generate your APNS credential
 
-Apple requires an APNs credential to authorize push notifications for your app. OneSignal supports two methods — pick one:
+Apple requires an APNS credential to authorize push notifications for your app. OneSignal supports two methods — pick one:
 
 - **.p8 token key (recommended)** — doesn't expire, works across all apps in your Apple Developer account. Follow [OneSignal's p8 token-based guide](https://documentation.onesignal.com/docs/en/ios-p8-token-based-connection-to-apns).
 - **.p12 certificate (alternative)** — app-specific, expires after one year and must be renewed. Follow [OneSignal's p12 certificate guide](https://documentation.onesignal.com/docs/en/ios-p12-generate-certificates).
 
-Upload the credential to your OneSignal dashboard under **Settings > Push & In-App > Apple iOS (APNs)**.
+Upload the credential to your OneSignal dashboard under **Settings > Push & In-App > Apple iOS (APNS)**.
 
 ### Step 2: Confirm push notifications and background modes
 
@@ -127,7 +127,10 @@ For App Studio builds using the App Store Connect API workflow, Median can regis
 4. Click **+ Capability** again and add **Background Modes**, then enable **Remote notifications**.
 
 <Frame caption="Push Notifications capability in Xcode">
-  <img src="/images/docs/bed5c9a-Push_Notifications_Capability.png" alt="Push Notifications capability added under Signing and Capabilities in Xcode" />
+  <img
+    src="/images/docs/bed5c9a-Push_Notifications_Capability.png"
+    alt="Push Notifications capability added under Signing and Capabilities in Xcode"
+  />
 </Frame>
 
 Median's build process requires both capabilities to be present. Without them, push notifications won't be delivered on iOS — even if your OneSignal configuration is otherwise correct.
@@ -200,7 +203,7 @@ Use this checklist to verify OneSignal is working correctly in your app:
 **Configuration testing**
 
 - [ ] In App Studio, the OneSignal App ID is entered in **Native Plugins > OneSignal**
-- [ ] In the OneSignal dashboard, the iOS APNs credential (.p8 key or .p12 certificate) is uploaded under **Settings > Push & In-App > Apple iOS (APNs)**
+- [ ] In the OneSignal dashboard, the iOS APNS credential (.p8 key or .p12 certificate) is uploaded under **Settings > Push & In-App > Apple iOS (APNS)**
 - [ ] In the OneSignal dashboard, the Android FCM Service Account JSON is uploaded under **Settings > Push & In-App > Google Android (FCM)**
 - [ ] The iOS Push Notifications and Background Modes (Remote notifications) capabilities are included in your App Studio signing setup, or enabled on the main app target if building from source
 - [ ] (iOS, if using badges/rich media/confirmed delivery) App Groups capability with `group.YOUR_BUNDLE_IDENTIFIER.onesignal` is included in your App Studio signing setup, or enabled on both the main app and OneSignalNotificationServiceExtension targets if building from source
@@ -216,7 +219,7 @@ Use this checklist to verify OneSignal is working correctly in your app:
 
 Confirm four things:
 
-- Your APNs credential (.p8 key or .p12 certificate) is uploaded in OneSignal under **Settings > Push & In-App > Apple iOS (APNs)**.
+- Your APNS credential (.p8 key or .p12 certificate) is uploaded in OneSignal under **Settings > Push & In-App > Apple iOS (APNS)**.
 - The Push Notifications capability is included in your iOS signing setup.
 - The Background Modes capability is enabled with **Remote notifications** for your main app target.
 - The device accepted the push permission prompt — denied permissions won't receive notifications.

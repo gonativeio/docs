@@ -1,7 +1,14 @@
 ---
 title: "Push notifications overview"
 description: "Learn the types of push notifications, compare Median's push notification plugins, and set up push permissions on iOS and Android."
-keywords: ["push notifications", "plugins", "OneSignal", "Firebase Cloud Messaging", "engagement"]
+keywords:
+  [
+    "push notifications",
+    "plugins",
+    "OneSignal",
+    "Firebase Cloud Messaging",
+    "engagement",
+  ]
 searchable: true
 ---
 
@@ -46,7 +53,7 @@ Generally, you want to think about the following three categories of push notifi
 
 The following terms will help you implement push notifications effectively:
 
-**APNs (Apple Push Notification service)**: Apple's service for delivering push notifications to iOS devices. Requires a .p8 token key (recommended) or .p12 certificate generated from your Apple Developer account and uploaded to OneSignal under **Settings > Push & In-App > Apple iOS (APNs)**.
+**APNS (Apple Push Notification service)**: Apple's service for delivering push notifications to iOS devices. Requires a .p8 token key (recommended) or .p12 certificate generated from your Apple Developer account and uploaded to OneSignal under **Settings > Push & In-App > Apple iOS (APNS)**.
 
 **FCM (Firebase Cloud Messaging)**: Google's service for delivering push notifications to Android devices. Requires a Firebase project and a Service Account JSON credentials file uploaded to OneSignal under **Settings > Push & In-App > Google Android (FCM)**.
 
@@ -218,7 +225,7 @@ No additional steps are required other than obtaining the user's consent to rece
 <AccordionGroup>
 <Accordion title="Why choose native push over web push?" id="why-choose-native-push-over-web-push">
 
-Native apps connect directly to Apple's APNs and Google's FCM (the same infrastructure every major App Store and Play Store app relies on) for more consistent delivery and full access to targeting, automation, and rich notification features. With Median, you get this native push experience without building separate iOS and Android codebases from scratch.
+Native apps connect directly to Apple's APNS and Google's FCM (the same infrastructure every major App Store and Play Store app relies on) for more consistent delivery and full access to targeting, automation, and rich notification features. With Median, you get this native push experience without building separate iOS and Android codebases from scratch.
 
 </Accordion>
 <Accordion title="Do push notifications work as well on a PWA as they do in a native app?" id="do-push-notifications-work-as-well-on-a-pwa-as-they-do-in-a-native-app">

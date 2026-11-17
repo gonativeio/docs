@@ -43,7 +43,7 @@ The demo also links to a standalone [Test Sender](https://median.dev/firebase-me
 - A Median app with the [JavaScript Bridge](/docs/javascript-bridge) enabled.
 - A Firebase project with Cloud Messaging enabled.
 - `google-services.json` uploaded in your Median app configuration (required for push delivery on Android).
-- `GoogleService-Info.plist` uploaded in your Median app configuration, plus an APNs authentication key or certificate configured in the Firebase console (required for push delivery on iOS).
+- `GoogleService-Info.plist` uploaded in your Median app configuration, plus an APNS authentication key or certificate configured in the Firebase console (required for push delivery on iOS).
 
 ## Implementation guide
 
@@ -54,7 +54,7 @@ Create (or reuse) a Firebase project and register your Android and iOS apps to i
 1. In the [Firebase console](https://console.firebase.google.com/), create a project (or select an existing one) and enable Cloud Messaging.
 2. Add an Android app to the project using your app's package name/Application ID, then download the generated `google-services.json`.
 3. Add an iOS app to the project using your app's Bundle ID, then download the generated `GoogleService-Info.plist`.
-4. In **Project settings → Cloud Messaging → Apple app configuration**, upload an APNs authentication key (recommended) or certificate so Firebase can deliver to iOS devices.
+4. In **Project settings → Cloud Messaging → Apple app configuration**, upload an APNS authentication key (recommended) or certificate so Firebase can deliver to iOS devices.
 
 ### App configuration
 
@@ -330,7 +330,6 @@ Controls whether an incoming push shows a visible banner while the app is in the
 
 // Suppress the native banner; the notificationReceived listener still fires
 median.firebaseMessaging.disableForegroundBanners();
-
 ```
 </CodeGroup>
 
@@ -417,7 +416,6 @@ Use this checklist, together with the [demo page](https://median.dev/firebase-me
     <Note>
       To use a different sound, send it on a new `channel_id`. Messages without a `channel_id` use the default channel and its sound.
     </Note>
-
   </Accordion>
 
   <Accordion

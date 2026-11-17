@@ -287,7 +287,7 @@ vale --minAlertLevel=suggestion docs/    # also show suggestions
 | Rule                  | Level      | Checks                                                                                                  |
 | --------------------- | ---------- | ------------------------------------------------------------------------------------------------------- |
 | `Vale.Spelling`       | error      | US English spelling, code identifiers outside backticks, and lowercase acronyms such as `url` or `http` |
-| `Vale.Terms`          | error      | Words in `accept.txt` written exactly as listed, for example "APNs", not "APNS"                         |
+| `Vale.Terms`          | error      | Words in `accept.txt` written exactly as listed                                                         |
 | `Vale.Repetition`     | error      | Repeated words, such as "to to"                                                                         |
 | `Median.Terms`        | error      | Terms from the [terminology](#terminology) table that are always wrong                                  |
 | `Median.LinkText`     | error      | "here" and "click here" as link text                                                                    |
