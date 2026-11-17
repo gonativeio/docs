@@ -52,7 +52,7 @@
     "prompt": "Search the Median docs..."
   },
   "banner": {
-    "content": "⚠️ iOS app developers may experience issues with App Store Connect and Xcode. See [Apple's Status page](https://developer.apple.com/system-status/) for the latest updates.",
+    "content": "⚠️ iOS app developers may experience issues with App Store Connect and Xcode. See [Apple's System Status page](https://developer.apple.com/system-status/) for the latest updates.",
     "dismissible": true
   },
   "navigation": {
