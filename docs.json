@@ -51,10 +51,6 @@
   "search": {
     "prompt": "Search the Median docs..."
   },
-  "banner": {
-    "content": "⚠️ iOS app developers may experience issues with App Store Connect and Xcode. See [Apple's System Status page](https://developer.apple.com/system-status/) for the latest updates.",
-    "dismissible": true
-  },
   "navigation": {
     "tabs": [
       {
@@ -587,7 +583,13 @@
     "links": [
       {
         "label": "Support",
+        "icon": "handshake",
         "href": "/docs/support"
+      },
+      {
+        "label": "Talk to Us",
+        "icon": "headset",
+        "href": "https://median.co/contact?topic=Sales&utm_source=docs&utm_medium=navbar&utm_campaign=talk_to_sales"
       }
     ],
     "primary": {
