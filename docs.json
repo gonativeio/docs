@@ -714,6 +714,22 @@
     {
       "source": "/docs/microsoft-dynamics-365",
       "destination": "/docs/ms-dynamics"
+    },
+    {
+      "source": "/docs/google-firebase-crashlytics",
+      "destination": "/docs/crashlytics"
+    },
+    {
+      "source": "/docs/masterlock",
+      "destination": "/docs/master-lock"
+    },
+    {
+      "source": "/docs/native-media-player-background-mode",
+      "destination": "/docs/native-media-player#background-mode"
+    },
+    {
+      "source": "/docs/tags-json-url",
+      "destination": "/docs/identifying-targeting-users#method-1-native-ui"
     }
   ],
   "integrations": {
