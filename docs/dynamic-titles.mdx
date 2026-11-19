@@ -112,3 +112,60 @@ For a one-off setting of the current page's title, URL encode the desired title 
 <a onclick="gonative.navigationTitles.setCurrent({'title':'Hello%20World'})">Set Current Page's Title</a>
 ```
 </CodeGroup>
+
+### Set a title image at runtime
+
+Show an image in place of the title, such as a logo for the signed-in user's organization. Pass either:
+
+| Parameter | Description |
+| --------- | ----------- |
+| `url` | Image URL. The app downloads it, so the server doesn't need to allow cross-origin requests. Relative URLs are resolved against the current page. |
+| `image` | Image data from your page: a `Blob`, a data URL, or a base64 string. |
+
+The image is scaled to the same height as the top navigation bar image set in App Studio, and keeps its aspect ratio. It replaces any title or image already showing.
+
+The image applies to the [navigation instance](/docs/navigation-instances) that matches the current page, and shows again whenever the user returns to a page of that instance. If your app doesn't use instances, it applies to every page. It stays until you reset it or the app restarts.
+
+<MedianLogo />
+
+<CodeGroup>
+
+```javascript URL
+median.navigation
+  .setTitleImage({ url: "https://example.com/images/logo.png" })
+  .catch((error) => console.log(error.code, error.message));
+```
+
+```javascript Blob
+const response = await fetch("/images/logo.png");
+const blob = await response.blob();
+
+median.navigation
+  .setTitleImage({ image: blob })
+  .catch((error) => console.log(error.code, error.message));
+```
+
+```javascript Reset
+median.navigation.resetTitleImage();
+```
+
+</CodeGroup>
+
+`resetTitleImage()` goes back to the title or image configured at build time.
+
+Both methods return a promise that resolves with `{ success: true }`. If setting the image fails, the promise rejects with an error object:
+
+```json JSON
+{
+  "code": "NETWORK_ERROR",
+  "message": "Download failed with HTTP 404"
+}
+```
+
+If you pass a `callback` function instead, it receives `{ success: false, error: { code, message } }` on failure.
+
+| Error code | Cause |
+| ---------- | ----- |
+| `INVALID_PARAMETERS` | Neither `url` nor `image` was passed, or `url` isn't a valid URL. |
+| `NETWORK_ERROR` | The image couldn't be downloaded. |
+| `INVALID_IMAGE` | The data isn't valid base64 or isn't an image the device can display. |
