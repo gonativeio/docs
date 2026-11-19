@@ -5,16 +5,14 @@ keywords: ["build", "testing", "debugging", "simulators", "development tools"]
 searchable: true
 ---
 
+import { DeveloperDemo } from "/snippets/developer-demo.jsx";
+
 Building and testing your Median app is the path from configuration to deployment. This section covers how to use Median App Studio, development tools, and platform-specific build and deployment workflows so you can run your app on simulators and devices and publish to the App Store and Google Play.
 
 ## Related documentation
 
 <Columns cols={2}>
-  <Card
-    title="Median App Studio"
-    icon="cloud"
-    href="/docs/app-studio"
-  >
+  <Card title="Median App Studio" icon="cloud" href="/docs/app-studio">
     Use the cloud-based App Studio to configure your app, preview changes in
     browser simulators, and manage builds without installing Xcode or Android
     Studio.
@@ -27,11 +25,7 @@ Building and testing your Median app is the path from configuration to deploymen
     Install development builds on physical devices, use TestFlight for iOS
     distribution builds, and download Android APKs for testing.
   </Card>
-  <Card
-    title="Debug tools"
-    icon="tools"
-    href="/docs/debug-tools"
-  >
+  <Card title="Debug tools" icon="tools" href="/docs/debug-tools">
     Debug and optimize your web experience with browser dev tools, inspect
     network and console, and use Median's developer resources for testing app
     behavior.
@@ -110,12 +104,7 @@ Use your browser's dev tools to inspect, debug, and optimize your web experience
 
 [median.dev](https://median.dev) provides demos for JavaScript Bridge functionality and many app features. During development, you can replace the Website URL with a demo page URL on the Overview tab and create a new build. In production, add a link to the demo on your live site. For example, hide it behind a sequence of taps (e.g. searching for specific attributes) so real users don't see it.
 
-<Check>
-**Developer Demo**
-
-Display our demo page in your app to test during development [https://median.dev/share-function](https://median.dev/share-function)
-
-</Check>
+<DeveloperDemo path="share-function" />
 
 If a demo works in your app but your own site does not: debug your page in the app using [development tools](/docs/debug-tools), inspect the demo source in your desktop browser, and recheck your JavaScript against the documentation.
 
@@ -179,25 +168,25 @@ For in-depth logs, system information, and application metrics, use platform dia
     - **Plugin config:** Shows high-level information only.
   </Accordion>
 
-  <Accordion title="Browser DevTools" icon="window-maximize">
-    - **UI / UX:** Limited to changing the user agent and viewport.
-    - **Performance:** Best for analyzing web assets.
-    - **Native features:** Native features can't be tested in a browser.
-    - **Plugin config:** Console output only.
-  </Accordion>
+<Accordion title="Browser DevTools" icon="window-maximize">
+  - **UI / UX:** Limited to changing the user agent and viewport. -
+  **Performance:** Best for analyzing web assets. - **Native features:** Native
+  features can't be tested in a browser. - **Plugin config:** Console output
+  only.
+</Accordion>
 
-  <Accordion title="Appetize debug mode" icon="bug">
-    - **UI / UX:** Switch between devices, OS versions, and orientations.
-    - **Performance:** Network logs are available.
-    - **Native features:** Simulators don't fully support native features.
-    - **Plugin config:** Device logs help validate plugin behavior.
-  </Accordion>
+<Accordion title="Appetize debug mode" icon="bug">
+  - **UI / UX:** Switch between devices, OS versions, and orientations. -
+  **Performance:** Network logs are available. - **Native features:** Simulators
+  don't fully support native features. - **Plugin config:** Device logs help
+  validate plugin behavior.
+</Accordion>
 
-  <Accordion title="Physical device" icon="mobile">
-    - **UI / UX and performance:** Coverage depends on maintaining a suite of test devices.
-    - **Native features:** Required to test native features.
-    - **Plugin config:** The fastest way to validate plugins.
-  </Accordion>
+<Accordion title="Physical device" icon="mobile">
+  - **UI / UX and performance:** Coverage depends on maintaining a suite of test
+  devices. - **Native features:** Required to test native features. - **Plugin
+  config:** The fastest way to validate plugins.
+</Accordion>
 
   <Accordion title="adb and sysdiagnose" icon="terminal">
     - **UI / UX:** Not suited to visual testing.

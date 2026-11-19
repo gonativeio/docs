@@ -1,19 +1,24 @@
 ---
 title: "Native gestures and interactions"
 description: "Enable swipe navigation, pinch-to-zoom, and pull-to-refresh in your app, and toggle swipe gestures at runtime with the JavaScript Bridge."
-keywords: ["swipe gestures", "pull to refresh", "pinch to zoom", "gestures", "navigation"]
+keywords:
+  [
+    "swipe gestures",
+    "pull to refresh",
+    "pinch to zoom",
+    "gestures",
+    "navigation",
+  ]
 searchable: true
 ---
+
+import { DeveloperDemo } from "/snippets/developer-demo.jsx";
+
 import { MedianLogo } from "/snippets/median-logo.jsx";
 
 Enable native interaction gestures in your app. Median supports swipe-based navigation, pinch-to-zoom, and pull-to-refresh, so your app behaves like a native mobile application.
 
-<Check>
-**Developer Demo**
-
-Display our demo page in your app to test during development [https://median.dev/swipe-gestures/ <Icon icon="arrow-up-right-from-square" size={12} />](https://median.dev/swipe-gestures/)
-
-</Check>
+<DeveloperDemo path="swipe-gestures" />
 
 ## Implementation guide
 
@@ -36,18 +41,18 @@ You can toggle swipe gestures at runtime to dynamically enable or disable naviga
 
 <MedianLogo />
 <CodeGroup>
-```javascript JavaScript
-median.android.swipeGestures.enable();
-```
+  ```javascript JavaScript 
+  median.android.swipeGestures.enable(); 
+  ```
 </CodeGroup>
 
 **Disable swipe gestures**
 
 <MedianLogo />
 <CodeGroup>
-```javascript JavaScript
-median.android.swipeGestures.disable();
-```
+  ```javascript JavaScript 
+  median.android.swipeGestures.disable(); 
+  ```
 </CodeGroup>
 
 ### Pinch-to-zoom

@@ -1,9 +1,12 @@
 ---
 title: "Download file"
 description: "Control file downloads and inline viewing with Content-Disposition headers, or download files and images with the JavaScript Bridge."
-keywords: ["file download", "Content-Disposition", "downloads", "inline viewing", "PDF"]
+keywords:
+  ["file download", "Content-Disposition", "downloads", "inline viewing", "PDF"]
 searchable: true
 ---
+
+import { DeveloperDemo } from "/snippets/developer-demo.jsx";
 
 import { MedianLogo } from "/snippets/median-logo.jsx";
 
@@ -74,12 +77,7 @@ To download and save an image to the user’s photo gallery (iOS Photos or Andro
   ```
 </CodeGroup>
 
-<Check>
-**Developer Demo**
-
-Display our demo page in your app to test during development [https://median.dev/download-functions/](https://median.dev/download-functions/)
-
-</Check>
+<DeveloperDemo path="download-functions" />
 
 ### Viewing PDF files in the app
 
@@ -88,10 +86,8 @@ You can view PDF files directly within your app using one of the following metho
 **Option 1: Open via URL**
 
 <CodeGroup>
-  ```javascript JavaScript
-  // Navigate to the PDF file's URL
-  window.location.href = 'https://yoursite.com/file.pdf';
-  ```
+  ```javascript JavaScript // Navigate to the PDF file's URL
+  window.location.href = 'https://yoursite.com/file.pdf'; ```
 </CodeGroup>
 
 **Option 2: Use JavaScript Bridge**
@@ -106,8 +102,8 @@ You can view PDF files directly within your app using one of the following metho
 
 On iOS, Median uses Apple's built-in PDFKit framework. On Android, Median uses the [Pdf-Viewer library](https://github.com/afreakyelf/Pdf-Viewer).
 
-|                         iOS                          |                         Android                          |
-| :--------------------------------------------------: | :------------------------------------------------------: |
+|                                  iOS                                  |                                    Android                                    |
+| :-------------------------------------------------------------------: | :---------------------------------------------------------------------------: |
 | ![PDF viewer on iOS](/images/docs/docs/pdf-viewer/pdf-viewer-ios.png) | ![PDF viewer on Android](/images/docs/docs/pdf-viewer/pdf-viewer-android.png) |
 
 ### Printing PDF files

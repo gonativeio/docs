@@ -12,6 +12,8 @@ keywords:
 searchable: true
 ---
 
+import { DeveloperDemo } from "/snippets/developer-demo.jsx";
+
 import { AppetizeEmbed } from "/snippets/appetize-embed.jsx";
 import { MedianLogo } from "/snippets/median-logo.jsx";
 
@@ -19,12 +21,7 @@ The Native Datastore plugin enables developers to persist key-value data such as
 
 This plugin supports both App Storage and Cloud Storage, giving you flexibility in how data is saved and accessed across sessions and devices.
 
-<Check>
-**Developer Demo**
-
-Display our demo page in your app to test during development [https://median.dev/native-datastore/ <Icon icon="arrow-up-right-from-square" size={12} />](https://median.dev/native-datastore/)
-
-</Check>
+<DeveloperDemo path="native-datastore" />
 
 ## Why use native datastore
 
@@ -80,7 +77,6 @@ To save a value, use the following JavaScript Bridge command. To get status of t
       console.log(result.status);
     }
   }
-
 ```
 </CodeGroup>
 

@@ -132,12 +132,11 @@ Register listeners to respond when notifications are received in the foreground 
     console.log(JSON.stringify(data));
   });
 
-// Triggers when a push notification is delivered while the app is active
-median.customerio.push.received.addListener((data) => {
-console.log(JSON.stringify(data));
-});
-
-````
+  // Triggers when a push notification is delivered while the app is active
+  median.customerio.push.received.addListener((data) => {
+    console.log(JSON.stringify(data));
+  });
+```
 </CodeGroup>
 
 #### User identity
@@ -156,8 +155,7 @@ median.customerio.identify({
     plan: "pro"
   }
 });
-````
-
+```
 </CodeGroup>
 
 **Get the current user ID**
@@ -166,7 +164,9 @@ Returns the user ID currently associated with the session.
 
 <MedianLogo />
 <CodeGroup>
-  ```javascript JavaScript median.customerio.getUserId(); ```
+  ```javascript JavaScript 
+  median.customerio.getUserId(); 
+  ```
 </CodeGroup>
 
 **Clear user identity**
@@ -211,7 +211,9 @@ Removes the device push token from Customer.io. Call this alongside `reset()` wh
 
 <MedianLogo />
 <CodeGroup>
-  ```javascript JavaScript median.customerio.deleteDeviceToken(); ```
+  ```javascript JavaScript 
+  median.customerio.deleteDeviceToken(); 
+  ```
 </CodeGroup>
 
 #### Event tracking

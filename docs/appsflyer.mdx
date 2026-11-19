@@ -6,18 +6,15 @@ keywords:
 searchable: true
 ---
 
+import { DeveloperDemo } from "/snippets/developer-demo.jsx";
+
 import { MedianLogo } from "/snippets/median-logo.jsx";
 
 The AppsFlyer Native Plugin records app installs, updates, and sessions automatically so you can attribute installs, measure campaign performance, and evaluate user quality. Send custom in-app events through the [Median JavaScript Bridge](/docs/javascript-bridge).
 
 The plugin integrates the AppsFlyer SDK in your app and exposes a small JavaScript API for setting a customer user ID, logging custom events, and receiving conversion and deep link data. You configure your app in the **AppsFlyer dashboard** and in **Median App Studio**, then use the bridge for custom logic.
 
-<Warning>
-  **iOS 14.5+ App Tracking Transparency requirement**
-
-Requesting user consent through the App Tracking Transparency (ATT) framework is required for iOS 14.5+. See [Apple App Tracking Transparency](/docs/apple-att) in the Median docs and [AppsFlyer – Enabling ATT support](https://dev.appsflyer.com/hc/docs/integrate-ios-sdk#enabling-app-tracking-transparency-att-support) for implementation details.
-
-</Warning>
+<DeveloperDemo path="appsflyer" />
 
 ## Why use AppsFlyer?
 
@@ -44,12 +41,12 @@ Requesting user consent through the App Tracking Transparency (ATT) framework is
 - [ ] **Android package name** (from [Median App Identifiers](/docs/app-identifiers#android-package-name)) or your app’s Play Store URL
 - [ ] For iOS 14.5+: ATT implemented and, if desired, ATT prompt delay configured in the plugin
 
-<Check>
-**Developer Demo**
+<Warning>
+  **iOS 14.5+ App Tracking Transparency requirement**
 
-Display our demo page in your app to test during development [https://median.dev/appsflyer/](https://median.dev/appsflyer/)
+Requesting user consent through the App Tracking Transparency (ATT) framework is required for iOS 14.5+. See [Apple App Tracking Transparency](/docs/apple-att) in the Median docs and [AppsFlyer – Enabling ATT support](https://dev.appsflyer.com/hc/docs/integrate-ios-sdk#enabling-app-tracking-transparency-att-support) for implementation details.
 
-</Check>
+</Warning>
 
 ## When to use this plugin
 
@@ -142,14 +139,13 @@ Associates your own customer user ID with AppsFlyer so you can cross-reference i
   ```javascript JavaScript
   import Median from "median-js-bridge";
 
-try {
-const { success } = await Median.appsflyer.setCustomerUserId("user123");
-console.log(success ? "User ID set successfully" : "Failed to set user ID");
-} catch (err) {
-console.error(err.code, err.message);
-}
-
-````
+  try {
+    const { success } = await Median.appsflyer.setCustomerUserId("user123");
+    console.log(success ? "User ID set successfully" : "Failed to set user ID");
+  } catch (err) {
+    console.error(err.code, err.message);
+  }
+```
 </CodeGroup>
 
 **Parameters**
@@ -166,16 +162,15 @@ Logs a custom in-app event with an optional object of values. Use it for signups
 <CodeGroup>
 ```javascript JavaScript
 try {
-const { success } = await median.appsflyer.logEvent("purchase", {
-  value: 99.99,
-  currency: "USD",
-});
-console.log(success ? "Event logged successfully" : "Failed to log event");
-} catch (err) {
-console.error(err.code, err.message);
-}
-````
-
+  const { success } = await median.appsflyer.logEvent("purchase", {
+    value: 99.99,
+    currency: "USD",
+    });
+    console.log(success ? "Event logged successfully" : "Failed to log event");
+  } catch (err) {
+    console.error(err.code, err.message);
+  }
+```
 </CodeGroup>
 
 **npm package**
@@ -185,17 +180,16 @@ console.error(err.code, err.message);
   ```javascript JavaScript
   import Median from "median-js-bridge";
 
-try {
-const { success } = await Median.appsflyer.logEvent("purchase", {
-value: 99.99,
-currency: "USD",
-});
-console.log(success ? "Event logged successfully" : "Failed to log event");
-} catch (err) {
-console.error(err.code, err.message);
-}
-
-````
+  try {
+  const { success } = await Median.appsflyer.logEvent("purchase", {
+    value: 99.99,
+    currency: "USD",
+    });
+    console.log(success ? "Event logged successfully" : "Failed to log event");
+  } catch (err) {
+    console.error(err.code, err.message);
+  }
+```
 </CodeGroup>
 
 **Parameters**
@@ -214,15 +208,14 @@ Both values are cached natively once the AppsFlyer SDK returns them. These funct
 ```javascript JavaScript
 const conversion = await median.appsflyer.getConversionData();
 if (conversion.data) {
-console.log("Install attribution:", conversion.data.af_status);
+  console.log("Install attribution:", conversion.data.af_status);
 }
 
 const deepLink = await median.appsflyer.getDeepLinkResult();
 if (deepLink.data) {
-// Navigate using deepLink.data.deeplinkValue
+  // Navigate using deepLink.data.deeplinkValue
 }
-````
-
+```
 </CodeGroup>
 
 **Sample response**
@@ -310,16 +303,16 @@ Register listeners using the `median-js-bridge` package. Each listener returns a
   ```javascript JavaScript
   import Median from "median-js-bridge";
 
-const conversionListenerId = Median.appsflyer.conversionData.addListener(
-(data) => {
-console.log("Conversion data:", data);
-if (data.af_status === "Non-organic") {
-// Handle paid attribution
-}
-},
-);
+  const conversionListenerId = Median.appsflyer.conversionData.addListener(
+    (data) => {
+      console.log("Conversion data:", data);
+      if (data.af_status === "Non-organic") {
+      // Handle paid attribution
+      }
+    },
+  );
 
-````
+```
 </CodeGroup>
 
 **Deep link result**
@@ -328,15 +321,14 @@ if (data.af_status === "Non-organic") {
 <CodeGroup>
 ```javascript JavaScript
 const deeplinkListenerId = Median.appsflyer.deeplinkResult.addListener(
-(data) => {
-  console.log("Deep link data:", data);
-  if (data.deeplinkValue) {
-    // Navigate or handle deep link
-  }
-},
+  (data) => {
+    console.log("Deep link data:", data);
+    if (data.deeplinkValue) {
+      // Navigate or handle deep link
+    }
+  },
 );
-````
-
+```
 </CodeGroup>
 
 **SDK start**
@@ -357,7 +349,8 @@ To remove a listener later, use its ID:
   ```javascript JavaScript
   Median.appsflyer.conversionData.removeListener(conversionListenerId);
   Median.appsflyer.deeplinkResult.removeListener(deeplinkListenerId);
-  Median.appsflyer.sdkStart.removeListener(sdkStartListenerId); ```
+  Median.appsflyer.sdkStart.removeListener(sdkStartListenerId); 
+  ```
 </CodeGroup>
 
 **Sample response – conversion data**
@@ -421,36 +414,32 @@ The payload differs by platform. Read `deeplinkValue` defensively rather than br
   { "success": false, "data": null, "error": { "message": "not_found" } }
   ```
 
-```json iOS
-{}
-```
-
+  ```json iOS
+  {}
+  ```
 </CodeGroup>
 
 ## Testing checklist
 
 Use this checklist to confirm AppsFlyer is working in your app:
 
-### Basic functionality
+**Basic functionality**
 
 - [ ] Plugin is enabled and configured in **Native Plugins > AppsFlyer > Settings**
 - [ ] `median.appsflyer.setCustomerUserId(id)` runs without errors
 - [ ] `median.appsflyer.logEvent(name, values)` runs without errors
 - [ ] Conversion callback (`median_appsflyer_cd_success` or `median_appsflyer_cd`) is called on launch or when returning to the app
 
-### Platform testing
-
+**Platform testing**
 - [ ] Behavior verified on a **real Android device** (not only simulator)
 - [ ] Behavior verified on a **real iOS device** (not only simulator)
 - [ ] On iOS 14.5+, ATT prompt appears when configured and consent affects behavior as expected
 
-### Configuration testing
-
+**Configuration testing**
 - [ ] **Android Dev Key**, **Apple Dev Key**, and **Apple App ID** match the AppsFlyer dashboard
 - [ ] Global callback function names match exactly (`median_appsflyer_cd_success`, `median_appsflyer_cd`, `median_appsflyer_deeplink_result`)
 
-### User experience
-
+**User experience**
 - [ ] No JavaScript errors in the console from the plugin or callbacks
 - [ ] Callbacks do not block the UI; navigation or UI updates remain responsive
 

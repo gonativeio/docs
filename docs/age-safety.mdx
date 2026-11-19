@@ -12,6 +12,8 @@ keywords:
 searchable: true
 ---
 
+import { DeveloperDemo } from "/snippets/developer-demo.jsx";
+
 import { MedianLogo } from "/snippets/median-logo.jsx";
 
 <Warning>
@@ -25,12 +27,7 @@ AgeSafety exposes system-provided age signals and supervision state so you can d
 
 The plugin intentionally passes through platform signals (it does not collect or send identifiable data itself). Use the plugin to gate UI, require parental confirmation, or disable features for underage users.
 
-<Check>
-**Developer Demo**
-
-Display our demo page in your app to test during development [https://median.dev/age-safety](https://median.dev/age-safety)
-
-</Check>
+<DeveloperDemo path="age-safety" />
 
 ## Why use AgeSafety?
 
@@ -79,14 +76,13 @@ Retrieve age and supervision signals from the platform.
   const resp = await median.ageSafety.getAgeSignals({ ageGates: [13, 17, 21] });
   console.log('Age signals:', resp);
 
-// Using callback methods
-median.ageSafety.getAgeSignals({ ageGates: [13, 17] }, function (resp) {
-console.log('Age signals callback:', resp);
-}, function (err) {
-console.error('AgeSafety error (callback)', err);
-});
-
-````
+  // Using callback methods
+  median.ageSafety.getAgeSignals({ ageGates: [13, 17] }, function (resp) {
+    console.log('Age signals callback:', resp);
+  }, function (err) {
+    console.error('AgeSafety error (callback)', err);
+  });
+```
 </CodeGroup>
 
 Return value (resolved Promise/success callback) is an AgeSignalsResponse.
@@ -120,8 +116,7 @@ median.ageSafety.requireMinimumAge(18, function (resp) {
 }, function (err) {
   console.error(err);
 });
-````
-
+```
 </CodeGroup>
 
 AgeRequirementResponse.allowed is computed as `ageLowerBound` >= `requiredAge` when age bounds are available. If bounds are missing, allowed may be false, and an app-level conservative policy should apply.

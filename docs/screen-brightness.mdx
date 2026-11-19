@@ -5,24 +5,22 @@ keywords: ["screen brightness", "brightness", "display", "JavaScript Bridge"]
 searchable: true
 ---
 
+import { DeveloperDemo } from "/snippets/developer-demo.jsx";
+
 import { MedianLogo } from "/snippets/median-logo.jsx";
 
 The Screen Brightness JavaScript Bridge method lets you set the device's screen brightness at runtime, overriding the user's system setting while they're inside your app. It's part of Median's [device screen control](/docs/device-screen-control) feature set, alongside [Keep screen on](/docs/keep-screen-on) and [Full screen](/docs/full-screen).
 
 ## Why use screen brightness
 
-* **Low-light and night reading modes**: Automatically dim the screen for reading, news, or ebook apps so brightness matches your app's own dark mode or a scheduled "night" experience.
-* **Camera-driven flows**: Boost brightness before opening a barcode, QR, or document scanning flow so the camera has enough light to focus and capture accurately.
-* **Photo and video accuracy**: Raise brightness when displaying photos, videos, or color-critical content so users see true colors and detail instead of a dimmed system setting.
-* **Kiosk and presentation displays**: Lock brightness at maximum for outward-facing kiosk, signage, or in-store display use cases where the screen must stay clearly visible.
-* **Battery-conscious experiences**: Lower brightness during long-running sessions like maps, tracking, or background-heavy screens to help conserve battery.
-* **User-controlled accessibility**: Expose an in-app brightness slider so users can fine-tune brightness to their needs without leaving your app to use system controls.
+- **Low-light and night reading modes**: Automatically dim the screen for reading, news, or ebook apps so brightness matches your app's own dark mode or a scheduled "night" experience.
+- **Camera-driven flows**: Boost brightness before opening a barcode, QR, or document scanning flow so the camera has enough light to focus and capture accurately.
+- **Photo and video accuracy**: Raise brightness when displaying photos, videos, or color-critical content so users see true colors and detail instead of a dimmed system setting.
+- **Kiosk and presentation displays**: Lock brightness at maximum for outward-facing kiosk, signage, or in-store display use cases where the screen must stay clearly visible.
+- **Battery-conscious experiences**: Lower brightness during long-running sessions like maps, tracking, or background-heavy screens to help conserve battery.
+- **User-controlled accessibility**: Expose an in-app brightness slider so users can fine-tune brightness to their needs without leaving your app to use system controls.
 
-<Check>
-  **Developer Demo**
-
-  Display our demo page in your app to test during development [https://median.dev/device-screen-controls/ <Icon icon="arrow-up-right-from-square" size={12} />](https://median.dev/device-screen-controls/)
-</Check>
+<DeveloperDemo path="device-screen-controls" />
 
 ## JavaScript Bridge implementation
 

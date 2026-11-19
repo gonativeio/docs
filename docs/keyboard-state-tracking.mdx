@@ -1,18 +1,23 @@
 ---
 title: "Keyboard state tracking"
 description: "Get or listen for the on-screen keyboard's visibility and size, and toggle the iOS accessory view with the JavaScript Bridge."
-keywords: ["keyboard", "keyboard state", "on-screen keyboard", "JavaScript Bridge", "UI"]
+keywords:
+  [
+    "keyboard",
+    "keyboard state",
+    "on-screen keyboard",
+    "JavaScript Bridge",
+    "UI",
+  ]
 searchable: true
 ---
+
+import { DeveloperDemo } from "/snippets/developer-demo.jsx";
+
 import { MedianLogo } from "/snippets/median-logo.jsx";
 import { AppetizeEmbed } from "/snippets/appetize-embed.jsx";
 
-<Check>
-**Developer Demo**
-
-Display our demo page in your app to test during development [https://median.dev/keyboard/ <Icon icon="arrow-up-right-from-square" size={12} />](https://median.dev/keyboard/)
-
-</Check>
+<DeveloperDemo path="keyboard" />
 
 ## Implementation guide
 
@@ -50,7 +55,8 @@ Automatically listen for changes in keyboard visibility and dimensions. Define a
 
   // To stop listening, pass an empty string:
   // median.keyboard.listen("");
-  ```
+
+```
 </CodeGroup>
 
 #### Example: hide bottom navigation when keyboard is visible
@@ -60,24 +66,24 @@ The following code hides the bottom tab bar when the keyboard appears and restor
 <MedianLogo />
 <CodeGroup>
 ```javascript JavaScript
-  // Defining a listener
-  function addListener() {
-    try {
-      median.keyboard.listen(hideKeyboard);
-      console.log("Keyboard listener added");
-    } catch (error) {
-      console.error("Failed to add keyboard listener", error);
-    }
+// Defining a listener
+function addListener() {
+  try {
+    median.keyboard.listen(hideKeyboard);
+    console.log("Keyboard listener added");
+  } catch (error) {
+    console.error("Failed to add keyboard listener", error);
   }
+}
 
-  // Defining a callback function that will be executed on state changes
-  function hideKeyboard(data) {
-    if (data.visible) {
-      median.tabNavigation.setTabs({ enabled: false });
-    } else {
-      median.tabNavigation.setTabs({ enabled: true });
-    }
+// Defining a callback function that will be executed on state changes
+function hideKeyboard(data) {
+  if (data.visible) {
+    median.tabNavigation.setTabs({ enabled: false });
+  } else {
+    median.tabNavigation.setTabs({ enabled: true });
   }
+}
 ```
 </CodeGroup>
 
@@ -87,9 +93,8 @@ On iOS devices, the software keyboard may display an accessory view containing s
 
 <MedianLogo />
 <CodeGroup>
-  ```javascript JavaScript 
-  median.keyboard.showAccessoryView(true); // Show accessory view
-  median.keyboard.showAccessoryView(false); // Hide accessory view 
+  ```javascript JavaScript median.keyboard.showAccessoryView(true); // Show
+  accessory view median.keyboard.showAccessoryView(false); // Hide accessory view 
   ```
 </CodeGroup>
 
@@ -99,4 +104,3 @@ On iOS devices, the software keyboard may display an accessory view containing s
   iosEmbedCode="poywuj7ew4z2bhevftr7nudxwm"
   androidEmbedCode="4odmw65xe64u23u7osilfmgnam"
 />
-

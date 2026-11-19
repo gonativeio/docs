@@ -5,14 +5,11 @@ keywords: ["calendar", "events", "ics", "device calendar", "iOS", "Android"]
 searchable: true
 ---
 
+import { DeveloperDemo } from "/snippets/developer-demo.jsx";
+
 The Calendar plugin lets users to add events from your web app directly to their device's built-in calendar. When a user taps a calendar link in your app, the plugin intercepts it, parses the event data, and prompts the user to save the event to their iOS or Android calendar.
 
-<Check>
-**Developer Demo**
-
-Display our demo page in your app to test during development [https://median.dev/calendar/](https://median.dev/calendar/)
-
-</Check>
+<DeveloperDemo path="calendar" />
 
 ## Why use calendar
 
@@ -27,7 +24,10 @@ This plugin removes the friction of manually copying event details. Users can ad
 ### iOS native calendar menu
 
 <Frame caption="Native iOS calendar UI example">
-  <img src="/images/docs/09e9556-calendar_plugin.png" alt="Native iOS prompt to add an event to the calendar" />
+  <img
+    src="/images/docs/09e9556-calendar_plugin.png"
+    alt="Native iOS prompt to add an event to the calendar"
+  />
 </Frame>
 
 ## Prerequisites
@@ -42,7 +42,10 @@ This plugin removes the friction of manually copying event details. Users can ad
 The Calendar plugin is plug-and-play. You only need to verify that it has been added to your app and is enabled.
 
 <Frame caption="Calendar plugin in App Studio">
-  <img src="/images/docs/561e97e3f37809255c91e97d2b5b8fdef894eb209d956c90922d0f76f7f885b0-Screenshot_2026-06-19_at_08.52.24.png" alt="Calendar plugin enabled in the Native Plugins tab of App Studio" />
+  <img
+    src="/images/docs/561e97e3f37809255c91e97d2b5b8fdef894eb209d956c90922d0f76f7f885b0-Screenshot_2026-06-19_at_08.52.24.png"
+    alt="Calendar plugin enabled in the Native Plugins tab of App Studio"
+  />
 </Frame>
 
 ### Website implementation

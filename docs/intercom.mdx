@@ -1,9 +1,19 @@
 ---
 title: "Intercom"
 description: "Add Intercom push notifications, event tracking, and mobile carousels to your app, and control them with the JavaScript Bridge."
-keywords: ["Intercom", "push notifications", "messaging", "customer support", "engagement"]
+keywords:
+  [
+    "Intercom",
+    "push notifications",
+    "messaging",
+    "customer support",
+    "engagement",
+  ]
 searchable: true
 ---
+
+import { DeveloperDemo } from "/snippets/developer-demo.jsx";
+
 import { MedianLogo } from "/snippets/median-logo.jsx";
 
 The Intercom plugin enables mobile push notifications and event tracking in your Median app to increase user engagement. It integrates directly with the official Intercom SDK for Android and Intercom SDK for iOS.
@@ -23,12 +33,7 @@ The Intercom plugin enables mobile push notifications and event tracking in your
 - [ ] Apple Developer Account details (for iOS push notifications)
 - [ ] Google Service Account details (for Android push notifications)
 
-<Check>
-**Developer Demo**
-
-Display our demo page in your app to test during development [https://median.dev/intercom/ <Icon icon="arrow-up-right-from-square" size={12} />](https://median.dev/intercom/)
-
-</Check>
+<DeveloperDemo path="intercom" />
 
 ## Implementation guide
 
@@ -54,11 +59,17 @@ During the setup you will need access to your [App Identifiers](/docs/app-identi
 Use the screenshots below as an example of how to set up your Android and iOS apps in Intercom.
 
 <Frame caption="Intercom: set up the Messenger for mobile push">
-  <img src="/images/docs/6890656532b90381c79e528b32abb9c03ff35cd43921666dcfe41f3f09538512-Screenshot_2026-01-23_at_14.58.45.png" alt="Intercom Messenger settings for setting up mobile push on iOS and Android" />
+  <img
+    src="/images/docs/6890656532b90381c79e528b32abb9c03ff35cd43921666dcfe41f3f09538512-Screenshot_2026-01-23_at_14.58.45.png"
+    alt="Intercom Messenger settings for setting up mobile push on iOS and Android"
+  />
 </Frame>
 
 <Frame caption="Intercom: retrieve your App ID and API keys">
-  <img src="/images/docs/436f5cd1dbde4c673b3e232a662ac380061edf2efbb4a692cba18bdc7f0c7e59-Screenshot_2026-01-23_at_14.26.51.png" alt="Intercom workspace settings showing the App ID and the iOS and Android API keys" />
+  <img
+    src="/images/docs/436f5cd1dbde4c673b3e232a662ac380061edf2efbb4a692cba18bdc7f0c7e59-Screenshot_2026-01-23_at_14.26.51.png"
+    alt="Intercom workspace settings showing the App ID and the iOS and Android API keys"
+  />
 </Frame>
 
 ### App configuration
@@ -76,7 +87,10 @@ Once your app is set up in Intercom, configure the Intercom plugin in Median App
 #### Configuration options
 
 <Frame caption="Intercom plugin configuration">
-  <img src="/images/docs/475928000ed59aa614c9e90247bdcfe39b0e89a9102afabd952cb2c5f1c1bee7-Screenshot_2026-02-05_at_10.09.12.png" alt="Intercom plugin settings in App Studio with fields for App ID, iOS API Key, and Android API Key" />
+  <img
+    src="/images/docs/475928000ed59aa614c9e90247bdcfe39b0e89a9102afabd952cb2c5f1c1bee7-Screenshot_2026-02-05_at_10.09.12.png"
+    alt="Intercom plugin settings in App Studio with fields for App ID, iOS API Key, and Android API Key"
+  />
 </Frame>
 
 | Setting             | Description                                  | Default | Recommended                   |
@@ -193,7 +207,10 @@ Intercom push notifications and mobile carousels are created and sent through th
 To manually create your messages, navigate to **Outbound > Messages** and create a new message using the **+ New message** button.
 
 <Frame caption="Intercom outbound messages">
-  <img src="/images/docs/fdf22714e3dee569c3ea02b548832f103d830633f76819cbf558f107f8e6ea71-Screenshot_2026-01-26_at_11.18.54.png" alt="Intercom Outbound Messages page with the New message button" />
+  <img
+    src="/images/docs/fdf22714e3dee569c3ea02b548832f103d830633f76819cbf558f107f8e6ea71-Screenshot_2026-01-26_at_11.18.54.png"
+    alt="Intercom Outbound Messages page with the New message button"
+  />
 </Frame>
 
 For detailed guidance, refer to Intercom's official documentation:

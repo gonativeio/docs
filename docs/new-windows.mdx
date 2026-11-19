@@ -1,20 +1,18 @@
 ---
 title: "New windows"
 description: "Open and close pages in new webview windows."
-keywords: ["new windows", "windows", "JavaScript Bridge", "navigation", "webview"]
+keywords:
+  ["new windows", "windows", "JavaScript Bridge", "navigation", "webview"]
 searchable: true
 ---
+
+import { DeveloperDemo } from "/snippets/developer-demo.jsx";
 
 import { MedianLogo } from "/snippets/median-logo.jsx";
 
 Your app can show pages in multiple webview windows that are stacked on top of each other. Opening a page in a new window keeps the previous page in its current state underneath, so when the user closes the new window, they return to exactly where they were. This is useful for detail pages, checkout flows, or any page the user opens from a list and then leaves.
 
-<Check>
-  **Developer Demo**
-
-Display our demo page in your app to test during development [https://median.dev/windows/](https://median.dev/windows/)
-
-</Check>
+<DeveloperDemo path="windows" />
 
 ## Configure new windows
 

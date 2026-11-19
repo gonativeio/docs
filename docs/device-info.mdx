@@ -1,21 +1,26 @@
 ---
 title: "Device info"
 description: "Get device, app, and advertising ID data from your Median app with the JavaScript Bridge for analytics, support, and version checks."
-keywords: ["device info", "deviceInfo", "IDFA", "GAID", "device ID", "JavaScript Bridge"]
+keywords:
+  [
+    "device info",
+    "deviceInfo",
+    "IDFA",
+    "GAID",
+    "device ID",
+    "JavaScript Bridge",
+  ]
 searchable: true
 ---
+
+import { DeveloperDemo } from "/snippets/developer-demo.jsx";
 
 import { MedianLogo } from "/snippets/median-logo.jsx";
 import { AppetizeEmbed } from "/snippets/appetize-embed.jsx";
 
 The `deviceInfo` function of the Median JavaScript Bridge returns real-time information about the user's device and your native app. Use it for analytics, feature compatibility checks, technical support, and advertising attribution.
 
-<Check>
-**Developer Demo**
-
-Display our demo page in your app to test during development [https://median.dev/device-info](https://median.dev/device-info)
-
-</Check>
+<DeveloperDemo path="device-info" />
 
 ## Why use device info?
 
@@ -30,12 +35,12 @@ Display our demo page in your app to test during development [https://median.dev
 
 `deviceInfo` returns a single object containing the following categories of data:
 
-| Category                | Example fields                                                                    |
-| ----------------------- | --------------------------------------------------------------------------------- |
-| Platform                | `platform`, `os`, `osVersion`                                                     |
-| App                     | `appId`, `appVersion`, `appBuild`, `installationId`                               |
-| Hardware                | `hardware`, `model`                                                               |
-| Configuration           | `carrierNames`, `timeZone`, `language`                                            |
+| Category                | Example fields                                                                                        |
+| ----------------------- | ----------------------------------------------------------------------------------------------------- |
+| Platform                | `platform`, `os`, `osVersion`                                                                         |
+| App                     | `appId`, `appVersion`, `appBuild`, `installationId`                                                   |
+| Hardware                | `hardware`, `model`                                                                                   |
+| Configuration           | `carrierNames`, `timeZone`, `language`                                                                |
 | Advertising identifiers | `gaid` (Android), `idfa` (iOS). See [advertising identifiers](#advertising-identifiers-gaid-and-idfa) |
 
 See the [field reference](#field-reference) for every key returned in the payload.
@@ -46,7 +51,7 @@ See the [field reference](#field-reference) for every key returned in the payloa
 - On Android, the `carrierNames` field requires the `READ_PHONE_STATE` permission.
 - `gaid` and `idfa` are only returned when a supported advertising SDK is configured. See [advertising identifiers](#advertising-identifiers-gaid-and-idfa).
 - `median_device_info()` is called by the native app as soon as the page loads. The function must be defined at page load time. It can't be added asynchronously or deferred.
-</Info>
+  </Info>
 
 ## Advertising identifiers (GAID and IDFA)
 

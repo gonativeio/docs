@@ -1,22 +1,26 @@
 ---
 title: "Deep linking overview"
 description: "Set up Universal Links and App Links."
-keywords: ["deep linking", "Universal Links", "App Links", "apple-app-site-association", "assetlinks.json"]
+keywords:
+  [
+    "deep linking",
+    "Universal Links",
+    "App Links",
+    "apple-app-site-association",
+    "assetlinks.json",
+  ]
 searchable: true
 ---
+
+import { DeveloperDemo } from "/snippets/developer-demo.jsx";
 
 **Universal Links** (iOS) and **App Links** (Android), often grouped as **deep links**, let `http://` and `https://` URLs open in your Median app instead of the mobile browser when users tap them in email, SMS, or other apps. When configured, they provide a smoother, more native experience.
 
 Enable Universal Links, App Links, and optional URL schemes in Median App Studio. When a user opens a matching link on a device, the configured link type determines whether the URL opens in your app instead of the mobile browser.
 
-<Check>
-**Developer Demo**
-
-Display our demo page in your app to test during development [https://median.dev/deep-linking/](https://median.dev/deep-linking/)
-
-After setup, validate your implementation using the [Deep Linking Validator](/docs/deep-linking-validator).
-
-</Check>
+<DeveloperDemo path="deep-linking">
+  After setup, validate your implementation using the [Deep Linking Validator](/docs/deep-linking-validator).
+</DeveloperDemo>
 
 ## How deep linking works
 

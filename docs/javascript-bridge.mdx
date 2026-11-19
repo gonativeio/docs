@@ -1,9 +1,12 @@
 ---
 title: "JavaScript Bridge overview"
 description: "Use the Median JavaScript Bridge library or the median:// protocol to control native app features and device hardware from your website."
-keywords: ["JavaScript Bridge", "median", "native features", "API", "Median protocol"]
+keywords:
+  ["JavaScript Bridge", "median", "native features", "API", "Median protocol"]
 searchable: true
 ---
+
+import { DeveloperDemo } from "/snippets/developer-demo.jsx";
 
 import { MedianLogo } from "/snippets/median-logo.jsx";
 
@@ -31,27 +34,15 @@ For apps that have been updated on Median you may use either `gonative` or `medi
     Detect when your website is running inside the Median app so you can adapt
     UI, analytics, or behavior for the in-app experience.
   </Card>
-  <Card
-    title="NPM package"
-    icon="npm"
-    href="/docs/npm-package"
-  >
+  <Card title="NPM package" icon="npm" href="/docs/npm-package">
     Use the median-js-bridge NPM package in React, Vue, or other frameworks.
     Basic usage, listeners, and SPA navigation support.
   </Card>
-  <Card
-    title="Device info"
-    icon="info-circle"
-    href="/docs/device-info"
-  >
+  <Card title="Device info" icon="info-circle" href="/docs/device-info">
     Retrieve device information such as platform, OS version, and app version
     from the JavaScript Bridge.
   </Card>
-  <Card
-    title="Clipboard"
-    icon="clipboard"
-    href="/docs/clipboard"
-  >
+  <Card title="Clipboard" icon="clipboard" href="/docs/clipboard">
     Read from and write to the device clipboard via the JavaScript Bridge.
   </Card>
   <Card
@@ -77,11 +68,7 @@ For apps that have been updated on Median you may use either `gonative` or `medi
     Track when the device keyboard is shown or hidden and respond to keyboard
     state changes.
   </Card>
-  <Card
-    title="Download file"
-    icon="download"
-    href="/docs/download-file"
-  >
+  <Card title="Download file" icon="download" href="/docs/download-file">
     Download files from your web app to the device using the native download
     manager.
   </Card>
@@ -106,12 +93,7 @@ For apps that have been updated on Median you may use either `gonative` or `medi
 
 The JavaScript Bridge Library is injected into your webpage DOM at runtime and is available on any page displayed in the app. You can call `median.module.function()` once the library is ready.
 
-<Check>
-**Developer Demo**
-
-Display our demo page in your app to test during development [https://median.dev/library-ready/ <Icon icon="arrow-up-right-from-square" size={12} />](https://median.dev/library-ready/)
-
-</Check>
+<DeveloperDemo path="library-ready" />
 
 When using frameworks like React, Vue, or Angular, the `median` object may not be in scope. Options:
 
@@ -176,7 +158,10 @@ When URLs are specified, only matching pages can execute JavaScript Bridge comma
 - **Testing:** Because non-matching pages cannot access the Bridge, an incorrect configuration can cause Bridge commands to stop working during development. We recommend leaving Allowed URLs empty during development and enabling restrictions when preparing your production app.
 
 <Frame caption="App Studio: restricting JavaScript Bridge access">
-  <img src="/images/docs/e7c0006951ce8101160ae4397f6c39bde388022453ca616eeb12406a3d7c0ccb-Screenshot_2026-09-16_at_08.06.28.png" alt="Allowed URLs field in App Studio for restricting JavaScript Bridge access to specific URL paths" />
+  <img
+    src="/images/docs/e7c0006951ce8101160ae4397f6c39bde388022453ca616eeb12406a3d7c0ccb-Screenshot_2026-09-16_at_08.06.28.png"
+    alt="Allowed URLs field in App Studio for restricting JavaScript Bridge access to specific URL paths"
+  />
 </Frame>
 
 ## Frequently asked questions

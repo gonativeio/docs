@@ -1,9 +1,19 @@
 ---
 title: "App resumed callback"
 description: "Run JavaScript when your app returns from the background."
-keywords: ["median_app_resumed", "app resumed", "callback", "background", "auto-reload", "kiosk"]
+keywords:
+  [
+    "median_app_resumed",
+    "app resumed",
+    "callback",
+    "background",
+    "auto-reload",
+    "kiosk",
+  ]
 searchable: true
 ---
+
+import { DeveloperDemo } from "/snippets/developer-demo.jsx";
 
 <Info>
   **Note**
@@ -14,12 +24,7 @@ On Android, `median_app_resumed()` is also triggered after any native permission
 
 You can define `median_app_resumed()` directly on your web page or within your [Custom JavaScript](/docs/custom-js) configuration.
 
-<Check>
-**Developer Demo**
-
-Display our demo page in your app to test during development [https://median.dev/app-resumed-callback/](https://median.dev/app-resumed-callback/)
-
-</Check>
+<DeveloperDemo path="app-resumed-callback" />
 
 ## Native auto-reload plugin for kiosk and signage apps
 
@@ -32,5 +37,8 @@ For Android apps used in kiosk or digital signage environments, we offer a custo
 See the demo below to view the `median_app_resumed` callback log and run custom JavaScript when the app resumes from the background.
 
 <Frame caption="Median app resumed demo">
-  <img src="/images/docs/11e3683d65ba1b838f8c2a5c75f6f9a24b59461b986b3e92328a975a5962e844-app-resumed.gif" alt="Demo app logging the median_app_resumed callback when the app returns from the background" />
+  <img
+    src="/images/docs/11e3683d65ba1b838f8c2a5c75f6f9a24b59461b986b3e92328a975a5962e844-app-resumed.gif"
+    alt="Demo app logging the median_app_resumed callback when the app returns from the background"
+  />
 </Frame>

@@ -1,21 +1,26 @@
 ---
 title: "Reader modal"
 description: "Show Apple's external link modal in reader apps so users can manage accounts and payments on your website, using the JavaScript Bridge."
-keywords: ["Reader Modal", "reader apps", "external link", "Apple", "account management"]
+keywords:
+  [
+    "Reader Modal",
+    "reader apps",
+    "external link",
+    "Apple",
+    "account management",
+  ]
 searchable: true
 ---
+
+import { DeveloperDemo } from "/snippets/developer-demo.jsx";
+
 import { MedianLogo } from "/snippets/median-logo.jsx";
 
 Apple allows apps offering digital content - such as magazines, newspapers, books, audio, music, and video - to link externally to their websites for account management and payments.
 
 To be able to offer this functionality within your app, you require special permission from Apple to use the **External Link Account entitlement**. Learn more in [Apple's reader apps documentation](https://developer.apple.com/support/reader-apps/).
 
-<Check>
-**Developer Demo**
-
-Display our demo page in your app to test during development [https://median.dev/reader-modal/](https://median.dev/reader-modal/)
-
-</Check>
+<DeveloperDemo path="reader-modal" />
 
 ## Implementation guide
 
@@ -25,8 +30,8 @@ Before displaying and opening the external link to your website, confirm that th
 
 <MedianLogo />
 <CodeGroup>
-  ```javascript JavaScript 
-  const {canMakePayments} = await median.readerModal.canMakePayments(); 
+  ```javascript JavaScript const {canMakePayments} = await
+  median.readerModal.canMakePayments(); 
   ```
 </CodeGroup>
 
@@ -36,13 +41,16 @@ Once you've verified that the user can make purchases, proceed to show the modal
 
 <MedianLogo />
 <CodeGroup>
-```javascript JavaScript 
-median.readerModal.showModal(); 
-```
+  ```javascript JavaScript 
+  median.readerModal.showModal(); 
+  ```
 </CodeGroup>
 
 The modal will appear as shown below on devices running iOS 16+.
 
 <Frame caption="In-app modal sheet">
-  <img src="/images/docs/bc3c9cee03b3cdbf5bf069b0cbc92006f046d2835aaacd13cfb4aba4cfd18a0c-68093e3e0205e115ad351fa4_Screenshot_2025-04-23_at_16.20.57.png" alt="External link modal sheet shown before leaving the app on iOS" />
+  <img
+    src="/images/docs/bc3c9cee03b3cdbf5bf069b0cbc92006f046d2835aaacd13cfb4aba4cfd18a0c-68093e3e0205e115ad351fa4_Screenshot_2025-04-23_at_16.20.57.png"
+    alt="External link modal sheet shown before leaving the app on iOS"
+  />
 </Frame>
