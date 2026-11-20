@@ -589,7 +589,7 @@
       {
         "label": "Talk to Us",
         "icon": "headset",
-        "href": "https://median.co/contact?topic=Sales&utm_source=docs&utm_medium=navbar&utm_campaign=talk_to_sales"
+        "href": "https://median.co/contact?topic=general-inquiry&utm_source=docs&utm_medium=navbar"
       }
     ],
     "primary": {

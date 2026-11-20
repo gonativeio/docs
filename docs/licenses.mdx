@@ -5,7 +5,15 @@ keywords: ["licenses", "pricing", "plans", "free apps", "upgrade", "App Studio"]
 searchable: true
 ---
 
-Median lets you build and test apps for free. This page covers how licensing works, what happens to unclaimed apps in App Studio, and how to apply, troubleshoot, and manage your license.
+Median lets you build and test apps for free. A license is what allows you to publish a white-labeled app to the Apple App Store and Google Play, and it's tied to your app's identifiers. This page covers how licensing works, current plans, what happens to unclaimed apps in App Studio, and how to apply and troubleshoot your license.
+
+## Key facts
+
+- **One license = one app**, published on both iOS and Android.
+- **Licenses are tied to your app identifiers**: your iOS Bundle ID and Android Package Name. These must match your listings in App Store Connect and Google Play Console.
+- **Building and testing is free.** You only need a paid license to publish without Median branding.
+- **Starter licenses are purchased in App Studio** on the **Billing** tab and are applied to your app automatically.
+- **For Business, Enterprise, or agency pricing**, [chat with our sales team](#talk-to-sales).
 
 ## Pricing overview
 
@@ -23,15 +31,44 @@ In addition to the base app license, Median offers a range of optional products 
 - Median's **Publishing Service**, where our team completes all steps required to publish your app to the app stores, with guaranteed approval
 - **Custom development** allows us to extend the Median platform to integrate third-party SDKs or add advanced functionality for your specific use case
 
-Full pricing details are available on the [Median pricing page](https://median.co/pricing).
+### Talk to sales
 
-## What each license includes
+Need Business or Enterprise, volume pricing for an agency, a custom quote, or help choosing a plan? Our team can walk you through the options.
 
-Each license allows you to publish one app, which includes both an iOS and an Android version. Your license is attached to your iOS Bundle ID and Android Package Name. Please make sure these identifiers match your app listing in App Store Connect and Google Play Console to avoid license issues during your initial release and future updates. See [App Identifiers](/docs/app-identifiers) for more.
+<CardGroup cols={2}>
+  <Card title="Chat with our sales team" icon="comments" href="https://median.co/contact?topic=sales-inquiry">
+    Get a quote for Business, Enterprise, or agency volume licensing.
+  </Card>
 
-Median does not offer a discounted license for a single platform (iOS-only or Android-only). The platform is designed to produce one full-featured app with both iOS and Android versions, and we can't license a subset of that.
+  <Card title="Compare plans" icon="tags" href="https://median.co/pricing">
+    See current pricing and the full feature comparison.
+  </Card>
+</CardGroup>
 
-For development agencies building many apps, Median offers volume-based pricing. [Contact our team](https://median.co/pricing) for details.
+## How licenses work
+
+Each license lets you publish **one app**, which includes both an iOS and an Android version.
+
+### Licenses are tied to your app identifiers
+
+Your license is attached to two identifiers:
+
+- **iOS Bundle ID**, for example `com.example.myapp`
+- **Android Package Name**, for example `com.example.myapp`
+  Median uses these identifiers to verify that a published app is licensed. They must match:
+
+1. The identifiers set in App Studio
+2. Your app listing in **App Store Connect**
+3. Your app listing in **Google Play Console**
+   If any of these don't match, your app may show as unlicensed during your initial release or a later update. Apple and Google don't let you change an app's identifier after it's published, so choose your final identifiers before applying a license. See [App identifiers](/docs/app-identifiers) for naming guidance.
+
+### Single-platform apps
+
+Median doesn't offer a discounted license for a single platform (iOS-only or Android-only). The platform produces one full-featured app with both iOS and Android versions, and the license covers both.
+
+### Agencies and multiple apps
+
+Each app needs its own license. Development agencies building many apps can get volume-based pricing; [chat with our sales team](#talk-to-sales) for details.
 
 ## Building apps without an account
 
@@ -39,8 +76,8 @@ You can start building an app in App Studio immediately, without creating an acc
 
 | App age            | Banner shown                                                                                                     | What it means                                                                                                           |
 | ------------------ | ---------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
-| 0–3 days           | **Draft App:** Verify your email address to create a free account and save your progress.                        | Your app is safe for now, but has no account attached and needs to be claimed to avoid expiry.                          |
-| 4–10 days          | **Draft App:** App will be deleted in x days. Create a free account to save your progress and continue building. | _x_ = 10 minus the number of days since the app was created. Create an account in order to keep building.               |
+| 0-3 days           | **Draft App:** Verify your email address to create a free account and save your progress.                        | Your app is safe for now, but has no account attached and needs to be claimed to avoid expiry.                          |
+| 4-10 days          | **Draft App:** App will be deleted in x days. Create a free account to save your progress and continue building. | _x_ = 10 minus the number of days since the app was created. Create an account in order to keep building.               |
 | Older than 10 days | **App Studio Demo Expired:** Verify your email address to create a free account and continue building.           | The app has been expired; you must create an account to keep building otherwise the app will be scheduled for deletion. |
 
 <Frame caption="Draft App without verified email address">
@@ -59,37 +96,83 @@ To avoid losing your work, verify your email address as soon as possible after c
 
 ## Applying a license to your app
 
-If you purchase a license directly in App Studio, your app is licensed automatically.
+**Purchased in App Studio:** your app is licensed automatically.
 
-If you purchased a license directly from Median (rather than through App Studio), apply it manually using the license key sent to you by email:
+**Purchased directly from Median** (for example, through our sales team): apply the license key you received by email.
 
-1. In App Studio, open the app of your organization that you want to license.
-2. Click the **⋮** dropdown next to your app name.
-3. Select **Apply Existing License**.
+<Steps>
+  <Step title="Check your identifiers">
+    Confirm your iOS Bundle ID and Android Package Name in App Studio match the
+    identifiers on your license and your app store listings.
+  </Step>
+
+<Step title="Open your app">
+  In App Studio, open the app in your organization that you want to license.
+</Step>
+
+  <Step title="Apply the license">
+    Click the **⋮** menu next to your app name and select **Apply Existing
+    License**.
+  </Step>
+</Steps>
 
 <Frame caption="App Studio: apply license">
-  ![App menu in App Studio with the Apply Existing License option](/images/docs/13507f6f612449451fbc9cca0c94347f5796a27e25ebc29b3b256e4b4fc8f6f2-Screenshot_2026-09-09_at_14.05.44.png)
+  ![App menu in App Studio with the Apply Existing License
+  option](/images/docs/13507f6f612449451fbc9cca0c94347f5796a27e25ebc29b3b256e4b4fc8f6f2-Screenshot_2026-09-09_at_14.05.44.png)
 </Frame>
 
 After applying your license, you don't need to rebuild or re-download your app. Just make sure your iOS Bundle ID and Android Package Name are set correctly first.
 
 ## Support
 
-Median receives a high volume of support requests, and our team aims to respond to all inquiries as quickly as possible. Business and Enterprise customers with an active support & updates plan are prioritized according to their plan's SLA terms.
+Median receives a high volume of support requests, and our team aims to respond to every inquiry as quickly as possible. Business and Enterprise customers with an active support & updates plan are prioritized according to their plan's SLA.
 
-See [Support](/docs/support) for the full list of support options.
+See [Support](/docs/support) for all support options. For pricing and licensing questions before you buy, [chat with our sales team](#talk-to-sales).
 
 ## Frequently asked questions
 
 <AccordionGroup>
-<Accordion title="How many apps can be published with each license?" id="how-many-apps-can-be-published-with-each-license">
+  <Accordion title="How many apps can be published with each license?" id="how-many-apps-can-be-published-with-each-license">
+    Each license allows you to publish one app, which includes versions for both iOS and Android devices. Your license is attached to your iOS Bundle ID and Android Package Name. To avoid license issues during your initial app release and future app updates, verify that these identifiers in App Studio match your app listing in App Store Connect and Google Play Console. More information on [App Identifiers](/docs/app-identifiers).
+  </Accordion>
 
-Each license allows you to publish one app, which includes versions for both iOS and Android devices. Your license is attached to your iOS Bundle ID and Android Package Name. To avoid license issues during your initial app release and future app updates, verify that these identifiers in App Studio match your app listing in App Store Connect and Google Play Console. More information on [App Identifiers](/docs/app-identifiers).
+  <Accordion title="Why does my app say it isn't licensed?">
+    Almost always, the identifiers don't match. The iOS Bundle ID and Android
+    Package Name on your license must exactly match the identifiers you're
+    publishing with, both in App Studio and in App Store Connect and Google Play
+    Console. Check for typos, casing differences, or a different identifier used
+    for one platform. If the identifiers are correct and the error persists,
+    contact [Median Support](/docs/support). If a third-party developer built your
+    app, confirm they're an approved Median partner and that a valid license was
+    issued for your identifiers. See [App identifiers](/docs/app-identifiers).
+  </Accordion>
 
-</Accordion>
-<Accordion title="Why do I receive an error saying my app is not licensed?" id="why-do-i-receive-an-error-saying-my-app-is-not-licensed">
+  <Accordion title="Can I build and test before buying a license?">
+    Yes. You can build and test your app in App Studio for free, including on the
+    simulator. You only need a paid license to publish a white-labeled app without
+    the "Powered by Median.co" watermark.
+  </Accordion>
 
-It’s important that the iOS Bundle ID and Android Package Name on your license match the identifiers you are using to publish your app. Contact Median Support if you need to update these values on your license. If you worked with a third-party developer to build your app, make sure they are an approved partner and/or you have received a valid Median license. More information on [App Identifiers](/docs/app-identifiers).
+  <Accordion title="Can I publish a Free app commercially?">
+    Median Free is intended for non-commercial use. Free apps published to the
+    stores show a "Powered by Median.co" message and have limited JavaScript
+    Bridge and plugin access. Purchase a Starter or Plus license to publish a
+    white-labeled commercial app.
+  </Accordion>
 
-</Accordion>
+  <Accordion title="Do I need to rebuild my app after applying a license?">
+    No. Once the license is applied, you don't need to rebuild or re-download your
+    app, provided your iOS Bundle ID and Android Package Name were already set
+    correctly.
+  </Accordion>
+
+  <Accordion title="Is there a discount for an iOS-only or Android-only app?">
+    No. Every license covers one app on both iOS and Android, and there's no
+    discounted single-platform license.
+  </Accordion>
+
+  <Accordion title="Can I transfer a license to another app or organization?">
+    Contact [Median Support](/docs/support) with the license key and the
+    destination app or organization. We are happy to transfer the license for you.
+  </Accordion>
 </AccordionGroup>
