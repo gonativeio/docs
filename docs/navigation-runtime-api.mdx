@@ -23,8 +23,6 @@ Each call applies to the instance that matches the current page, unless you pass
 
 </Warning>
 
-<MedianLogo />
-
 ## Item shape
 
 `setTopItems` and `setBottomItems` take an array of items. Each item can have these fields:
@@ -56,6 +54,7 @@ Fields you leave out stay unchanged. Calling `setTopItems` or `setBottomItems` c
 
 ### Add a badge to a bottom tab
 
+<MedianLogo />
 <CodeGroup>
 
 ```javascript Set
@@ -77,6 +76,7 @@ median.navigation
 
 This example changes the icon of the first top bar item and the code that runs when the user taps it.
 
+<MedianLogo />
 <CodeGroup>
 
 ```javascript JavaScript
@@ -110,6 +110,7 @@ median.navigation
 | `colorDark` | Color used in dark mode, in the same format. Defaults to `color`. |
 | `instanceId` | The instance to change. Defaults to the instance that matches the current page. |
 
+<MedianLogo />
 <CodeGroup>
 
 ```javascript Set
@@ -128,6 +129,7 @@ median.navigation
 
 ### Replace the top bar items
 
+<MedianLogo />
 <CodeGroup>
 
 ```javascript Set
@@ -158,6 +160,7 @@ median.navigation
 | `updateBottomItem({ item, ... })` | Changes one tab. See [Update an item](#update-an-item). |
 | `resetBottomItems({ instanceId })` | Removes the tabs and updates set at runtime and goes back to the build-time tabs. |
 
+<MedianLogo />
 <CodeGroup>
 
 ```javascript Set
@@ -184,6 +187,7 @@ median.navigation
 
 `getTopItems` and `getBottomItems` return the items as they're currently shown, including runtime changes.
 
+<MedianLogo />
 <CodeGroup>
 
 ```javascript Bottom tabs
@@ -253,6 +257,7 @@ Replacing an instance removes the runtime changes made to it. `getInstance` and 
 
 ### Add an instance
 
+<MedianLogo />
 <CodeGroup>
 
 ```javascript Add
@@ -310,20 +315,3 @@ If you pass a `callback` function instead, it receives `{ success: false, error:
 | `INSTANCE_NOT_FOUND` | No instance has the `instanceId` you passed. |
 | `ITEM_NOT_FOUND` | The `item` position doesn't exist in the bar as it's currently shown. |
 | `NAVIGATION_V2_REQUIRED` | The app doesn't use navigation instances. |
-
-## Related documentation
-
-<CardGroup cols={2}>
-  <Card title="Native navigation instances" icon="layer-group" href="/docs/navigation-instances">
-    Show different navigation on different pages.
-  </Card>
-  <Card title="Top navigation bar" icon="window-maximize" href="/docs/top-navigation-bar">
-    Add buttons and titles to the top of your app.
-  </Card>
-  <Card title="Bottom tab bar" icon="table-columns" href="/docs/bottom-tab-bar">
-    Add a native tab bar to the bottom of your app.
-  </Card>
-  <Card title="Dynamic titles" icon="heading" href="/docs/dynamic-titles">
-    Set the title text or image per page.
-  </Card>
-</CardGroup>
