@@ -1,0 +1,12 @@
+extends: existence
+message: "Avoid marketing language like '%s'. Show the result instead."
+link: https://github.com/gonativeio/docs/blob/main/AGENTS.md#style
+level: warning
+ignorecase: true
+tokens:
+  - powerful
+  - seamless(?:ly)?
+  - industry-leading
+  - market-leading
+  - unbelievabl[ey]
+  - at precisely the right moment

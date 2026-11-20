@@ -13,6 +13,7 @@
 - Use the Mintlify MCP server, `https://mcp.mintlify.com`, to edit content and settings via MCP.
 - Use the Mintlify docs MCP server, `https://www.mintlify.com/docs/mcp`, to look up how Mintlify works.
 - The writing and visual rules below follow the Median Brand Guidelines (version 1.0, December 2023). When this file and the brand guidelines disagree, ask the user instead of guessing.
+- Many of the writing rules below are enforced by Vale. See [Spelling and style checks](#spelling-and-style-checks-vale).
 
 ## Files you must not edit by hand
 
@@ -53,6 +54,7 @@ Use **Median** for the company and product in prose. `Median.co` is the domain a
 - Service names keep the capitalization the brand uses: Self-Service, Assisted App Development, Concierge App Development, Full-Service, and Enterprise. Only mention a service if an existing page or the user confirms it's current.
 - `median.*` methods come from the library injected into the app. `Median.*` methods come from the `median-js-bridge` npm package. Don't mix them in one example.
 - Keep official third-party names as written: Firebase Cloud Messaging, OneSignal, App Store Connect, Google Play Console, Microsoft Entra ID, Microsoft Dynamics 365.
+- Vale enforces this table through `styles/Median/Terms.yml` (always wrong) and `styles/Median/TermsSuggest.yml` (usually wrong, but correct in some contexts, such as "emulator" for Android Studio's emulator). When you change the table, update those rules in the same change.
 
 ## Style
 
@@ -257,9 +259,70 @@ Before committing:
 ```bash
 npx mint validate      # MDX parse errors and content checks
 npx mint broken-links  # internal links
+vale docs/             # spelling, terminology, and style (see below)
 ```
 
 `mint validate` catches closing tags that break the build. To find closing tags indented directly under a list item, check the lines just before them rather than every indented tag, because tags indented inside components such as `<Steps>` are valid.
+
+### Spelling and style checks (Vale)
+
+[Vale](https://vale.sh) checks spelling and many of the rules in this file. The same configuration runs on pull requests, so fix alerts before you open one.
+
+| File                                           | Contains                                                    |
+| ---------------------------------------------- | ----------------------------------------------------------- |
+| `.vale.ini`                                    | Which rules run on which files, and the minimum alert level |
+| `styles/Median/`                               | Median rules, one YAML file per rule                        |
+| `styles/config/vocabularies/Median/accept.txt` | Accepted product names and technical terms                  |
+
+Run Vale on the pages you changed, or on all of `docs/`:
+
+```bash
+vale docs/status-bar.mdx                 # one page
+vale docs/                               # all pages: warnings and errors, as CI reports them
+vale --minAlertLevel=suggestion docs/    # also show suggestions
+```
+
+#### What Vale checks
+
+| Rule                  | Level      | Checks                                                                                                  |
+| --------------------- | ---------- | ------------------------------------------------------------------------------------------------------- |
+| `Vale.Spelling`       | error      | US English spelling, code identifiers outside backticks, and lowercase acronyms such as `url` or `http` |
+| `Vale.Terms`          | error      | Words in `accept.txt` written exactly as listed                                                         |
+| `Vale.Repetition`     | error      | Repeated words, such as "to to"                                                                         |
+| `Median.Terms`        | error      | Terms from the [terminology](#terminology) table that are always wrong                                  |
+| `Median.LinkText`     | error      | "here" and "click here" as link text                                                                    |
+| `Median.Emoji`        | error      | Emoji                                                                                                   |
+| `Median.TermsSuggest` | warning    | Terms that are usually wrong, such as "emulator", "extension", "add-on", "logout", and "support plan"   |
+| `Median.Headings`     | warning    | Sentence case in headings                                                                               |
+| `Median.Marketing`    | warning    | Marketing language, such as "powerful" and "seamlessly"                                                 |
+| `Median.EmDash`       | warning    | More than one em dash in a sentence                                                                     |
+| `Median.Contractions` | suggestion | "do not", "is not", "you will", and other phrases that read better as contractions                      |
+| `Median.OxfordComma`  | suggestion | Lists without the Oxford comma                                                                          |
+
+Vale skips code blocks, inline code, URLs, and frontmatter. It doesn't check `docs/changelog.mdx` or `docs/changelog-archive.mdx`, which are generated, and it doesn't check spelling on `docs/localization.mdx`, which lists button labels in many languages.
+
+#### Fixing alerts
+
+Fix the text first. Most alerts are real: a typo, a term from the terminology table, or an identifier that belongs in backticks. Don't reword correct text just to make an alert go away.
+
+- **Code identifiers:** Put method names, parameters, values, and file names in backticks, as the [Style](#style) rules require. Vale skips code, so this fixes the alert. Don't add identifiers to `accept.txt`.
+- **Product and brand names:** Add them to `accept.txt` in the right group, one per line. Entries are case-sensitive regular expressions. Add the possessive as its own line (`Klaviyo['’]s`) so alerts show the plain name. `Vale.Terms` then enforces that spelling on every page, so use the official capitalization. Never add a misspelling or a term the terminology table rejects.
+- **Proper nouns in headings:** Add them to `exceptions` in `styles/Median/Headings.yml`. Add multi-word names as one entry, such as `App Store Connect`. Don't add generic features: they stay lowercase.
+- **Intentional exceptions:** When text is correct but breaks a rule, such as a historical reference to GoNative or an error message quoted exactly, turn off only that rule around it with MDX comments:
+
+```mdx
+{/* vale Median.Terms = NO */}
+GoNative.io was rebranded to Median in September 2023.
+{/* vale Median.Terms = YES */}
+```
+
+Keep exceptions as small as possible. Don't use `{/* vale off */}` or turn off a rule for a whole page.
+
+#### Changing the rules
+
+- When you change the terminology table or a style rule in this file, update the matching Vale rule in the same change. Each Median rule links back to its section here.
+- After changing a rule, the vocabulary, or `.vale.ini`, run `vale docs/` and check that the new alerts are real before committing.
+- Keep `error` for rules with no legitimate exceptions. Use `warning` for rules that need judgment, and `suggestion` for rules that would flag too many existing pages.
 
 ## Content boundaries
 

@@ -1,0 +1,13 @@
+# Terms that are usually wrong but have legitimate uses, so they're warnings
+extends: substitution
+message: "In Median docs, prefer '%s' over '%s' (see AGENTS.md terminology)."
+link: https://github.com/gonativeio/docs/blob/main/AGENTS.md#terminology
+level: warning
+ignorecase: true
+swap:
+  'add-ons?': native plugin
+  'extensions?': native plugin
+  'app builder': App Studio
+  'emulators?': simulator
+  logout: sign-out
+  'support plan': Support & Updates Plan

@@ -1,7 +1,14 @@
 ---
 title: "Targeting users with Firebase Cloud Messaging"
 description: "Link Firebase Cloud Messaging registration tokens to your user accounts, keep them current, and send to one user, several devices, or a topic."
-keywords: ["Firebase Cloud Messaging", "FCM", "registration token", "targeting", "push notifications"]
+keywords:
+  [
+    "Firebase Cloud Messaging",
+    "FCM",
+    "registration token",
+    "targeting",
+    "push notifications",
+  ]
 searchable: true
 ---
 
@@ -38,7 +45,7 @@ flowchart LR
 
 ### What a push provider would normally handle for you
 
-Customer engagement platforms built on top of FCM and APNs hide this work behind a user model. You call a sign-in function with your user ID, and the platform's SDK collects the device token in the background. From then on, you send to "user 123," and the platform resolves that to the right devices, notices when tokens change, and discards the ones that stop working.
+Customer engagement platforms built on top of FCM and APNS hide this work behind a user model. You call a sign-in function with your user ID, and the platform's SDK collects the device token in the background. From then on, you send to "user 123," and the platform resolves that to the right devices, notices when tokens change, and discards the ones that stop working.
 
 FCM is the transport layer underneath those platforms. Using it directly gives you full control of the pipeline and no per-user platform costs, but the bookkeeping moves to your backend:
 
@@ -130,7 +137,6 @@ Store tokens in their own table instead of a single column on the user record, s
 
 Make the insert an upsert keyed on `fcm_token`. If a token arrives that's already stored for a _different_ user, reassign it to the new user. That happens when two people share a device, and reassigning the token stops the first user's notifications from reaching the second.
 
-
 ## Unlink a device at sign-out
 
 When a user signs out, remove the link in both places: delete the token from your backend, then delete it on the device.
@@ -182,7 +188,7 @@ A registration token stays the same for long periods, but it isn't permanent, an
 | First launch, or first `register()` call        | A token is issued                                    | Store it once the user is signed in                          |
 | User signs in                                   | Unchanged                                            | Link the token to the user                                   |
 | User signs out                                  | Unchanged until you call `deleteToken()`             | Remove the row, then delete the token                        |
-| A different user signs in on the same device    | Unchanged, unless it was deleted at sign-out           | Reassign the token to the new user                           |
+| A different user signs in on the same device    | Unchanged, unless it was deleted at sign-out         | Reassign the token to the new user                           |
 | App reinstalled, or app data cleared            | A new token is issued, and the old one stops working | Store the new token, and prune the old one when a send fails |
 | App restored onto a new device                  | A new token is issued                                | Store the new token                                          |
 | App uninstalled                                 | The token stops working                              | Prune it when a send fails                                   |
@@ -269,7 +275,6 @@ median.firebaseMessaging.checkPermission({
 
 </CodeGroup>
 
-
 ## Send to a specific user
 
 Send from your server with the [FCM HTTP v1 API](https://firebase.google.com/docs/cloud-messaging/send/v1-api). Look up the user's tokens in your database and send one request per token.
@@ -321,7 +326,6 @@ A service account key can send to every user of your Firebase project. Only use 
 
 </Warning>
 
-
 ## When to use each target
 
 | Target                      | Use it when                                                                                                                                                                           |
@@ -338,7 +342,6 @@ For most apps, use tokens for personal notifications and topics for broadcasts.
 A topic such as `user_123` can look like a shortcut for reaching one user on all their devices without storing tokens. But topic subscriptions are requested by the app, so any app install can subscribe to any topic name. Only use topics for content you'd be comfortable with any user receiving.
 
 </Warning>
-
 
 ## Segment users with topics
 

@@ -1,0 +1,8 @@
+extends: existence
+message: "Use descriptive link text instead of '%s'."
+link: https://github.com/gonativeio/docs/blob/main/AGENTS.md#style
+level: error
+scope: raw
+nonword: true
+tokens:
+  - '\[(?:click )?here\]\('

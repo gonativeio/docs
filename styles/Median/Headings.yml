@@ -1,0 +1,118 @@
+extends: capitalization
+message: "'%s' should use sentence case."
+link: https://github.com/gonativeio/docs/blob/main/AGENTS.md#style
+level: warning
+scope: heading
+match: $sentence
+# Allow a capital letter after a colon, as in "Step 1: Create an instance"
+indicators:
+  - ':'
+# Proper nouns that keep their capitalization in headings.
+# Add a product or brand here when it's flagged by mistake.
+exceptions:
+  # Median
+  - Median
+  - App Studio
+  - JavaScript Bridge
+  - Publishing Service
+  - Global Theme
+  - Support & Updates Plan
+  - Median for Enterprise
+  # Apple
+  - Apple
+  - Apple Developer
+  - App Store
+  - App Store Connect
+  - App Review
+  - Bundle ID
+  - Sign in with Apple
+  - PhaseScriptExecution
+  - App Tracking Transparency
+  - Face ID
+  - Touch ID
+  - Liquid Glass
+  - Safari
+  - Transporter
+  - Xcode
+  - iOS
+  - macOS
+  - Mac
+  - WKWebView
+  - CocoaPods
+  # Google and Android
+  - Google
+  - Google Play
+  - Google Cloud
+  - Google Play Billing
+  - Google Play Billing Library
+  - Google Play Store
+  - Google Play Developer
+  - Google Play App Signing
+  - Play Store
+  - App Links
+  - Android
+  - Android Studio
+  - Android App Bundle
+  - Chrome
+  - Firebase
+  - Firebase Cloud Messaging
+  - FirebaseApp
+  - Health Connect
+  - AdMob
+  # Partners and third parties
+  - Adjust
+  - AgeSafety
+  - AppsFlyer
+  - Clerk
+  - Cordial
+  - Customer.io
+  - Experience Cloud
+  - Experience Builder
+  - Bloomreach Engagement
+  - Universal Login
+  - Master Lock
+  - D1000 Deadbolt
+  - Split View
+  - Marketing Cloud
+  - Intercom
+  - Iterable
+  - JW Player
+  - Lightning
+  - Lightning Web Components
+  - Lightning Web Security
+  - Lovable
+  - Replit
+  - Base44
+  - Meta
+  - Meta App Events
+  - Meta Events Manager
+  - Limited Login
+  - Microsoft
+  - Microsoft Dynamics
+  - Microsoft Dynamics 365
+  - MoEngage
+  - OneSignal
+  - External User IDs
+  - React
+  - RevenueCat
+  - Salesforce
+  - Shopify
+  - Universal Links
+  # Technologies and acronyms
+  - JavaScript
+  - WebView
+  - WebRTC
+  - OAuth
+  - CSS
+  - API
+  - SDK
+  - SDKs
+  - URL
+  - URLs
+  - JSON
+  - PDF
+  - QR
+  - FAQ
+  - ID
+  - npm
+  - I

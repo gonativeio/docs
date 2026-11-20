@@ -1,11 +1,18 @@
 ---
 title: "Push SDK migration guide"
 description: "Migrate between push notification SDKs such as OneSignal and Klaviyo without losing reach, tokens, or user opt-in status."
-keywords: ["push notifications", "migration", "SDK migration", "device tokens", "opt-in"]
+keywords:
+  [
+    "push notifications",
+    "migration",
+    "SDK migration",
+    "device tokens",
+    "opt-in",
+  ]
 searchable: true
 ---
 
-Migrating push notification SDKs is a critical infrastructure update for any mobile application. For Median users, this process typically involves transitioning between providers like OneSignal, Braze, or custom FCM/APNs implementations.
+Migrating push notification SDKs is a critical infrastructure update for any mobile application. For Median users, this process typically involves transitioning between providers like OneSignal, Braze, or custom FCM/APNS implementations.
 
 A successful migration ensures that you don't lose the ability to reach your existing user base while transitioning to a new platform. This article outlines strategies for a smooth transition, focusing on token management, permissions, and the technical implications of publishing updates.
 
@@ -31,7 +38,7 @@ Remove the old SDK and replace it entirely with the new one in a single release.
 
 ## Managing device tokens and identities
 
-Push tokens are unique identifiers assigned by APNs (iOS) or FCM (Android). While most modern SDKs abstract raw token management, identity synchronization remains crucial during migration.
+Push tokens are unique identifiers assigned by APNS (iOS) or FCM (Android). While most modern SDKs abstract raw token management, identity synchronization remains crucial during migration.
 
 ### Token extraction and mapping
 
