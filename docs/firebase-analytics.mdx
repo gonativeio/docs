@@ -1,6 +1,6 @@
 ---
 title: "Google Firebase Analytics"
-description: "Track user behavior in your app with Google Firebase Analytics: consent, user properties, custom events, screen views, and eCommerce events."
+description: "Track user behavior in your app with Google Firebase Analytics: consent, user properties, custom events, screen views, and e-commerce events."
 keywords:
   [
     "Firebase Analytics",
@@ -21,7 +21,7 @@ Google Firebase Analytics provides insights into user behavior within your app, 
 - **Real-time insights**: User behavior tracking and integration with other Firebase services.
 - **Essential metrics**: ARPU, active users, retention, event counts, device type, app version, OS version.
 - **Consent management**: Configure ad storage, analytics storage, ad user data, and ad personalization at runtime.
-- **JavaScript Bridge**: Enable/disable logging, set user ID and properties, log custom events and screen views, and use eCommerce events.
+- **JavaScript Bridge**: Enable/disable logging, set user ID and properties, log custom events and screen views, and use e-commerce events.
 
 ## Prerequisites
 
@@ -214,9 +214,9 @@ Log a customized screen view event (in addition to default logging).
 | --------- | -------- | -------- | ----------- |
 | `screen`  | `string` | Yes      | Screen name |
 
-### eCommerce events
+### e-commerce events
 
-Firebase offers a special command set that is tailored for ecommerce integrations. You can learn more about the commands in the [Firebase Measure ecommerce documentation](https://firebase.google.com/docs/analytics/measure-ecommerce).
+Firebase offers a special command set that is tailored for e-commerce integrations. You can learn more about the commands in the [Firebase Measure e-commerce documentation](https://firebase.google.com/docs/analytics/measure-ecommerce).
 
 Log item views
 
@@ -318,7 +318,7 @@ By default, Firebase Analytics automatically logs key events such as screen_view
 **Configuration testing**
 
 - [ ] Default consent option in Plugin Settings matches your policy (`Follow EU Consent Policy`, `Deny`, or `Allow`)
-- [ ] `setUser`, `setUserProperty`, `logEvent`, `logScreen`, and eCommerce calls appear in Firebase Analytics as expected
+- [ ] `setUser`, `setUserProperty`, `logEvent`, `logScreen`, and e-commerce calls appear in Firebase Analytics as expected
 
 **User experience**
 
@@ -343,9 +343,9 @@ Check the default consent option in Plugin Settings (`Follow EU Consent Policy`,
 
 Set the user ID only after the user is authenticated using `median.firebaseAnalytics.event.setUser({'ID': 'your_user_id'})`, then apply properties with `setUserProperty`. Trigger a follow-up event after those calls so the updated identity and properties are attached to event data.
 
-### eCommerce events are incomplete or rejected
+### E-commerce events are incomplete or rejected
 
-Confirm your eCommerce payload includes valid `currency` (3-letter uppercase code), numeric `price`, and `quantity` where required. For `data`, include a valid ProductItem map and provide at least `item_id` or `item_name` to improve event quality and reporting reliability.
+Confirm your e-commerce payload includes valid `currency` (3-letter uppercase code), numeric `price`, and `quantity` where required. For `data`, include a valid ProductItem map and provide at least `item_id` or `item_name` to improve event quality and reporting reliability.
 
 <Info>
   **Still having trouble?**
