@@ -17,5 +17,6 @@ swap:
   'Play Market': Google Play
   'navigation profile': instance
   'theme settings': Global Theme
-  '(?:log in|login) (?:to|with)': sign in
+  '(?:log in|login) to': sign in to
+  '(?:log in|login) with': sign in with
   'log out': sign out
