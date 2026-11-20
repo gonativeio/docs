@@ -51,7 +51,7 @@ iPhones?
 Xiaomi
 Huawei
 Vue
-Sysdiagnose
+sysdiagnose
 NSObject
 iCalendar
 
