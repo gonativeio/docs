@@ -1,0 +1,144 @@
+---
+title: "Count badges on tab icons"
+---
+
+import { MedianLogo } from "/snippets/median-logo.jsx";
+
+You can show a count on a bottom tab bar's icon to indicate the number of counts such as the number of notifications, messages, or items in a shopping cart. You do this by uploading a set of custom icons with the numbers drawn into them, then swapping between them from your website with the Median JavaScript Bridge when the count changes.
+
+<Info>
+  **How the counts work**
+
+  Each count is a separate icon, not a live badge. You can only show the counts you've created icons for, so most apps use icons for 1 to 9 and a "9+" icon for anything higher. Icon fonts are single-color, so the count uses the same color as the rest of the icon.
+</Info>
+
+## Prerequisites
+
+- An app in Median App Studio with a [bottom tab bar](/docs/bottom-tab-bar) added
+- The JavaScript Bridge enabled for your website
+- SVG files for your count icons, prepared as described in [Custom icons](/docs/custom-icons)
+
+## Create your custom icons
+
+Create one icon for each count you want to show, plus a version with no count. Upload them in Fontello by following the steps in [Custom icons](/docs/custom-icons), and give them names that end in the count. 
+
+In the JavaScript Bridge, you reference a custom icon by the font name and the icon name together, for example `custom-icons icon-bell-3`.
+
+<Tip>
+  **Keep the number readable**
+
+  Tab icons are small on screen. Place the number in a cut-out circle in the top-right corner of the icon, use a bold typeface, and convert the number to outlines before you export the SVG.
+</Tip>
+
+<Note>
+  **Rebuild after adding icons**
+
+  Uploading new icons requires a new build of your app. Changing which icon a tab shows at runtime doesn't.
+</Note>
+
+## Update the icon when the count changes
+
+Using`median.tabNavigation.setTabs()` replaces the whole tab bar, so each call must include every tab, not only the one with the count. The call doesn't keep the selected tab, so call `median.tabNavigation.selectTab()` afterward to keep the reader on the current tab. Tabs are 0-indexed, so `selectTab(0)` selects the first tab.
+
+Below is a helper function you can use on your website. Change the labels, URLs, and tab order to match your app.
+
+<MedianLogo />
+
+<CodeGroup>
+
+```javascript JavaScript
+// Returns the custom icon for a count, for example "custom-icons icon-bell-3"
+function getCountIcon(name, count) {
+    if (count <= 0) {
+        return "custom-icons icon-" + name;
+    }
+    if (count > 9) {
+        return "custom-icons icon-" + name + "-9-plus";
+    }
+    return "custom-icons icon-" + name + "-" + count;
+}
+
+// Rebuilds the tab bar with the latest counts, then reselects the current tab
+function updateTabCounts(notificationCount, cartCount, selectedTab) {
+    if (typeof median === 'undefined') {
+        return;
+    }
+
+    var tabItems = [{
+        "icon": "fas fa-home",
+        "label": "Home",
+        "url": "https://example.com/"
+    }, {
+        "icon": getCountIcon("bell", notificationCount),
+        "label": "Notifications",
+        "url": "https://example.com/notifications"
+    }, {
+        "icon": getCountIcon("cart", cartCount),
+        "label": "Cart",
+        "url": "https://example.com/cart"
+    }, {
+        "icon": "fas fa-user",
+        "label": "Profile",
+        "url": "https://example.com/profile"
+    }];
+
+    median.tabNavigation.setTabs({ "enabled": true, "items": tabItems });
+    median.tabNavigation.selectTab(selectedTab);
+}
+```
+
+</CodeGroup>
+
+## Keep the count in sync
+
+Call `updateTabCounts()` whenever a count changes. Pass the index of the tab the reader is on, so it stays selected.
+
+<MedianLogo />
+
+<CodeGroup>
+
+```javascript On page load
+// Runs when the JavaScript Bridge is ready
+function median_library_ready() {
+    // Replace with the counts from your server or app state
+    updateTabCounts(3, 0, 0);
+}
+```
+
+```javascript New notification
+// Call this when your site receives a new notification or message
+function onNewNotification(unreadCount) {
+    updateTabCounts(unreadCount, getCartCount(), 1);
+}
+```
+
+```javascript Cart update
+// Call this after an item is added to or removed from the cart
+function onCartChange(itemCount) {
+    updateTabCounts(getNotificationCount(), itemCount, 2);
+}
+```
+
+</CodeGroup>
+
+In these examples, `getCartCount()` and `getNotificationCount()` stand for your own functions that return the current counts. Pass both counts on every call, because `setTabs()` redraws every tab.
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="The tab shows a blank icon">
+    The icon name doesn't match an icon in your custom font. Make sure the name in your code matches the Fontello name exactly, including the `custom-icons ` prefix, and that the icon was highlighted when you clicked **Export font**. If you uploaded the icon recently, rebuild your app.
+  </Accordion>
+
+  <Accordion title="The wrong tab is selected after the count changes">
+    `setTabs()` doesn't keep the selected tab. Call `median.tabNavigation.selectTab()` with the index of the current tab right after `setTabs()`, as shown in `updateTabCounts().`
+  </Accordion>
+
+  <Accordion title="The count doesn't change">
+    Check that the JavaScript Bridge is enabled for your website and that your first call runs inside `median_library_ready()`. The code does nothing in a regular browser, so test it in your app.
+  </Accordion>
+
+  <Accordion title="Other tabs disappear when the count changes">
+    `setTabs()` replaces the whole tab bar. Include every tab in `tabItems`, not only the tab with the count.
+  </Accordion>
+</AccordionGroup>
