@@ -22,6 +22,8 @@ If your app collects data for advertising, analytics, or third-party services, y
 
 Fortunately, Median makes it easy for you to configure your app to utilize Apple's AppTrackingTransparency Framework to remain compliant.
 
+## Implementation guide
+
 ### Enable ATT in your app configuration
 
 - Open the **Permissions** tab in App Studio.
@@ -36,12 +38,12 @@ Fortunately, Median makes it easy for you to configure your app to utilize Apple
 
 <Frame caption="ATT app configuration">
   <img
-    src="/images/docs/apple-att/app-tracking-transparency.png"
+    src="/images/docs/docs/apple-att/app-tracking-transparency.png"
     alt="App Tracking Transparency settings in the App Studio Permissions tab"
   />
 </Frame>
 
-#### User Tracking Description (`NSUserTrackingUsageDescription`)
+#### User tracking description (`NSUserTrackingUsageDescription`)
 
 When App Tracking Transparency is enabled, Median adds the `NSUserTrackingUsageDescription` key to your app's `Info.plist`. Apple requires this key for any app that requests tracking authorization, and its value is the explanation users see in the ATT system prompt.
 
@@ -58,7 +60,7 @@ You can replace this with your own text in the **User Tracking Description** fie
 
 ### Prompt for user consent at runtime (manual method)
 
-If you prefer to trigger the ATT prompt at a specific moment in your app (e.g., after onboarding or before accessing personalized content), use the following JavaScript function:
+If you prefer to trigger the ATT prompt at a specific moment in your app (e.g., after user onboarding or before accessing personalized content), use the following JavaScript function:
 
 <MedianLogo />
 <CodeGroup>
