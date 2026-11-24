@@ -1,7 +1,16 @@
 ---
 title: "Apple App Tracking Transparency"
 description: "Request App Tracking Transparency consent on iOS, automatically on launch or manually with the JavaScript Bridge, and check the user's choice."
-keywords: ["App Tracking Transparency", "ATT", "IDFA", "privacy", "tracking consent", "iOS"]
+keywords:
+  [
+    "App Tracking Transparency",
+    "ATT",
+    "IDFA",
+    "privacy",
+    "tracking consent",
+    "iOS",
+    "NSUserTrackingUsageDescription",
+  ]
 searchable: true
 ---
 
@@ -19,21 +28,39 @@ Fortunately, Median makes it easy for you to configure your app to utilize Apple
 
 - Open the **Permissions** tab in App Studio.
 
-- **Enable** App Tracking Transparency.
+- Under **App Tracking Transparency**, set the iOS option to **Enable**.
 
-- Choose how the ATT prompt is displayed:
+- Use **Consent On Load** to choose how the ATT prompt is displayed:
   - **Automatic**: The prompt is shown automatically on the first app launch.
-  - **Manual**: You control when the prompt appears via JavaScript.
+  - **Manual**: You control when the prompt appears via the JavaScript Bridge (see [below](#prompt-for-user-consent-at-runtime-manual-method)).
 
-You may provide your own description to explain why tracking is used, or use the default text supplied by Median.
+- Review the **User Tracking Description**, which sets the message shown in the ATT prompt.
 
 <Frame caption="ATT app configuration">
-  <img src="/images/docs/21bece73783e8b29dd2fca2cdd95eac07ef9502b452337db9040dc7106b8d320-Screenshot_2025-07-04_at_11.49.56.png" alt="App Tracking Transparency settings in the App Studio Permissions tab" />
+  <img
+    src="/images/docs/docs/apple-att/app-tracking-transparency.png"
+    alt="App Tracking Transparency settings in the App Studio Permissions tab"
+  />
 </Frame>
+
+#### User tracking description (`NSUserTrackingUsageDescription`)
+
+When App Tracking Transparency is enabled, Median adds the `NSUserTrackingUsageDescription` key to your app's `Info.plist`. Apple requires this key for any app that requests tracking authorization, and its value is the explanation users see in the ATT system prompt.
+
+By default, Median sets the value to:
+
+> Your data will be used to personalize your experience and at times to deliver personalized ads
+
+You can replace this with your own text in the **User Tracking Description** field. Describe clearly and accurately how your app uses tracking data, since Apple reviews this text during App Review.
+
+<Note>
+  Because `NSUserTrackingUsageDescription` is part of your app's `Info.plist`,
+  changes to the User Tracking Description take effect in your next build.
+</Note>
 
 ### Prompt for user consent at runtime (manual method)
 
-If you prefer to trigger the ATT prompt at a specific moment in your app (e.g., after onboarding or before accessing personalized content), use the following JavaScript function:
+If you prefer to trigger the ATT prompt at a specific moment in your app (e.g., after user onboarding or before accessing personalized content), use the following JavaScript function:
 
 <MedianLogo />
 <CodeGroup>
