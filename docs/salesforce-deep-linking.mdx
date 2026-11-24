@@ -99,7 +99,7 @@ Create a separate Apex class for the Android Asset Links payload. Replace the pa
   ```
 </CodeGroup>
 
-Your SHA-256 certificate fingerprint is available in App Studio (**Link Handling > Universal Links / Deep Links**), in the Google Play Console under **Setup > App Integrity**, or from your keystore using `keytool -list -v -keystore your.keystore`.
+Your SHA-256 certificate fingerprint is available in App Studio (**Link Handling > Universal Links / Deep Links / Web Credentials**, in the Android file), in the Google Play Console under **Setup > App Integrity**, or from your keystore using `keytool -list -v -keystore your.keystore`.
 
 ### Create the Visualforce page for Android
 
@@ -128,7 +128,7 @@ Map `/.well-known/assetlinks.json` to the Visualforce page using the same approa
 
 Once both verification files are in place:
 
-1. In Median App Studio, navigate to **Link Handling > Universal Links / Deep Links.**
+1. In Median App Studio, navigate to **Link Handling > Universal Links / Deep Links / Web Credentials**.
 2. Add your custom domain.
 
 <Frame caption="App Studio: deep link configuration">

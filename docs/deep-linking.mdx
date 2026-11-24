@@ -1,13 +1,15 @@
 ---
 title: "Deep linking overview"
-description: "Set up Universal Links and App Links."
-keywords: ["deep linking", "Universal Links", "App Links", "apple-app-site-association", "assetlinks.json"]
+description: "Set up Universal Links, App Links, and Web Credentials for your domains."
+keywords: ["deep linking", "Universal Links", "App Links", "Web Credentials", "passkeys", "apple-app-site-association", "assetlinks.json"]
 searchable: true
 ---
 
 **Universal Links** (iOS) and **App Links** (Android), often grouped as **deep links**, let `http://` and `https://` URLs open in your Median app instead of the mobile browser when users tap them in email, SMS, or other apps. When configured, they provide a smoother, more native experience.
 
 Enable Universal Links, App Links, and optional URL schemes in Median App Studio. When a user opens a matching link on a device, the configured link type determines whether the URL opens in your app instead of the mobile browser.
+
+**Web Credentials** (iOS only) lets your app offer the passwords and passkeys that users saved for your website, so they can sign in without typing them again.
 
 <Check>
 **Developer Demo**
@@ -22,13 +24,43 @@ After setup, validate your implementation using the [Deep Linking Validator](/do
 
 Configure **Universal Links** (iOS) or **App Links** (Android) in Median App Studio. Once configured, links that match the domains you specify open in the app instead of the browser.
 
+iOS and Android only trust your app with a domain after they find a file hosted on that domain, so setup has two parts: add your domains in App Studio, then host the files App Studio generates.
+
 ### Best practice
 
 Add both your **root domain** and the **`www`** host (for example, `median.co` and `www.median.co`) so coverage matches how links are shared.
 
+## Set up your domains
+
+<Steps>
+  <Step title="Configure your domains">
+    In App Studio, go to **Link Handling → Universal Links / Deep Links / Web Credentials** and add each domain your links use, such as `example.com`. Enter the domain only, without `https://`, a port, or a path.
+
+    For each domain, select what it's used for. New domains start with **Universal Links** selected, and each domain needs at least one option.
+
+    | Option | Platforms | Description |
+    | --- | --- | --- |
+    | **Universal Links** | iOS and Android | Links to this domain open in your app. |
+    | **Web Credentials** | iOS only | Your app offers the passwords and passkeys users saved for this domain. See [Web Credentials configuration](#web-credentials-configuration). |
+
+    For Android, set **Android link type** to **App Links** or **Web Links**. See [App Links configuration](#app-links-configuration).
+  </Step>
+  <Step title="Host the file on your domains">
+    Open the **iOS** and **Android** tabs. Copy or download each file and upload it to the path App Studio shows, over HTTPS with no redirects.
+
+    - **iOS:** Upload the same `apple-app-site-association` file to every domain. Replace `<Team ID>` with your [Apple Team ID](https://developer.apple.com/help/glossary/team-id/) first.
+    - **Android:** With **App Links**, upload `assetlinks.json` to each domain that uses Universal Links. Your app's signing fingerprint is added to the file after your first Android build. **Web Links** need no file.
+  </Step>
+  <Step title="Rebuild your app">
+    Your domains are added to your app when it's built, so rebuild after you change them. Then check your setup with the [Deep Linking Validator](/docs/deep-linking-validator).
+  </Step>
+</Steps>
+
 ## Platform configuration
 
 ### Android
+
+Android uses only the domains that have **Universal Links** selected. Domains that only use Web Credentials aren't added to your Android app and don't need `assetlinks.json`.
 
 ### App Links configuration
 
@@ -75,7 +107,7 @@ See Apple’s documentation on [Universal Links](https://developer.apple.com/lib
 Requirements:
 
 - Create an **explicit app ID** in your Apple Developer account for your app’s bundle ID.
-- In the provisioning profile for that app ID, enable **Associated Domains** under App Services.
+- In the provisioning profile for that app ID, enable **Associated Domains** under App Services. Universal Links and Web Credentials both need it.
 - Include your app ID (with **TEAMID** from your Apple Developer account) in the AASA file on your domain.
 
 #### Example: `apple-app-site-association`
@@ -104,6 +136,34 @@ Requirements:
 - If you use multiple subdomains (`example.com`, `www.example.com`, `support.example.com`, and so on), each needs its own Associated Domains entry and its own `apple-app-site-association` file.
 - Serve the AASA file with `Content-Type: application/json`, over `https://` with a valid certificate, returning HTTP 200 with no redirects. After deployment, you can test the file with [Branch’s AASA validator](https://branch.io/resources/aasa-validator/). Additional references: [Universal Links](https://developer.apple.com/library/prerelease/ios/documentation/General/Conceptual/AppSearch/UniversalLinks.html) and [Associated Domains](https://developer.apple.com/documentation/xcode/supporting-associated-domains).
 </Warning>
+
+### Web Credentials configuration
+
+Web Credentials lets iOS offer the passwords and passkeys that users saved for your website inside your app. Users sign in with AutoFill instead of typing their details, and passkeys created on your website work in your app. See Apple's [Shared web credentials](https://developer.apple.com/documentation/security/shared-web-credentials) documentation.
+
+When a domain uses Web Credentials, the `apple-app-site-association` file App Studio generates includes a `webcredentials` block with your app ID. App Studio adds the `applinks` block only when a domain uses Universal Links, and the `webcredentials` block only when a domain uses Web Credentials.
+
+#### Example: `apple-app-site-association` with Web Credentials
+
+<CodeGroup>
+  ```json JSON
+  /* Example - /apple-app-site-association with Web Credentials */
+  {
+    "applinks": {
+      "apps": [],
+      "details": [
+        {
+          "appID": "TEAMID.co.median.example",
+          "paths": ["*"]
+        }
+      ]
+    },
+    "webcredentials": {
+      "apps": ["TEAMID.co.median.example"]
+    }
+  }
+  ```
+</CodeGroup>
 
 ## URL scheme protocol
 
