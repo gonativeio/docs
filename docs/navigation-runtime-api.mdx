@@ -99,15 +99,17 @@ median.navigation
 | `getTopItems({ instanceId })` | Returns the items as they're shown. |
 | `updateTopItem({ item, ... })` | Changes one item. See [Update an item](#update-an-item). |
 | `resetTopItems({ instanceId })` | Removes the items and updates set at runtime and goes back to the build-time items. |
-| `setTopNavBarColor({ color, colorDark, instanceId })` | Sets the bar's background color. |
-| `resetTopNavBarColor({ instanceId })` | Goes back to the build-time color. |
+| `setTopNavBarColor({ color, colorDark, textColor, textColorDark, instanceId })` | Sets the bar's background color and, optionally, the color of its title and buttons. |
+| `resetTopNavBarColor({ instanceId })` | Goes back to the build-time colors. |
 
 ### Set the top bar color
 
 | Parameter | Description |
 | --------- | ----------- |
 | `color` | Background color as `#RRGGBB` or `#AARRGGBB`. Required. |
-| `colorDark` | Color used in dark mode, in the same format. Defaults to `color`. |
+| `colorDark` | Background color used in dark mode, in the same format. Defaults to `color`. |
+| `textColor` | Color of the title text and the bar's buttons, in the same format. If you leave it out, the bar keeps its build-time text color. |
+| `textColorDark` | Text and button color used in dark mode. Defaults to `textColor`. |
 | `instanceId` | The instance to change. Defaults to the instance that matches the current page. |
 
 <MedianLogo />
@@ -115,7 +117,11 @@ median.navigation
 
 ```javascript Set
 median.navigation
-  .setTopNavBarColor({ color: "#1174D3", colorDark: "#0E0D08" })
+  .setTopNavBarColor({
+    color: "#1174D3",
+    colorDark: "#0E0D08",
+    textColor: "#FFFFFF",
+  })
   .catch((error) => console.log(error.code, error.message));
 ```
 
