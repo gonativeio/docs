@@ -63,6 +63,7 @@ IPAs
 PWAs
 
 # Technical vocabulary
+adb
 [Hh]aptics
 backgrounded
 (?i)webviews
