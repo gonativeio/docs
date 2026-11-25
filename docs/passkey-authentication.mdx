@@ -30,7 +30,7 @@ At a high level, passkey authentication replaces traditional passwords. The user
 
 1. A user taps the "Sign in" button on your website _inside the app_.
 2. The website requests a challenge from your server.
-3. On Android, the plugin intercepts this call and triggers the native biometric prompt (e.g., "Sign in with Touch ID"). On iOS the native plugin is not required, but the Apple App Site Association (AASA) file needs to be configured and hosted.
+3. On Android, the plugin intercepts this call and triggers the native biometric prompt (e.g., "Sign in with Touch ID"). On iOS the native plugin isn't required, but your domain needs Web Credentials selected in App Studio and the Apple App Site Association (AASA) file hosted.
 4. Once the user verifies, the device signs the challenge and passes it back to your website.
 5. Your website sends this proof to your server to complete the login.
 
@@ -129,38 +129,21 @@ After completing the website configuration steps above, configure the WebAuthn p
 
 ### iOS setup
 
-On iOS the native plugin is not required, but the Apple App Site Association (AASA) file needs to be configured and hosted.
+On iOS the native plugin isn't required. Instead, select Web Credentials for your domain in App Studio and host the Apple App Site Association (AASA) file it generates.
 
-#### 1. Extend your Apple app site association (AASA)
+#### 1. Select Web Credentials for your domain
 
-For iOS, you must host an `apple-app-site-association` file that includes a `webcredentials` object. This file tells iOS that your app is authorized to handle credentials and authentication for your domain.
+In App Studio, go to **Link Handling → Universal Links / Deep Links / Web Credentials**, add your website's domain, and select **Web Credentials** for it. App Studio adds your domain to the iOS app when it's built, and includes a `webcredentials` object in the `apple-app-site-association` file it generates. This file tells iOS that your app can use the passkeys saved for your domain.
 
-You can follow the steps in [iOS Universal Links Configuration](/docs/deep-linking#ios-universal-links-configuration) to obtain your AASA. Once you obtained your AASA you will need to add a webcredentials object as defined below.
+Rebuild your app after you change your domains. See [Web Credentials configuration](/docs/deep-linking#web-credentials-configuration) for the full setup.
 
-**Example AASA**
+**Example AASA with Web Credentials**
 
-<CodeGroup>
-  ```json JSON
-  /* Example - /apple-app-site-association */
-  {
-    "applinks": {
-      "apps": [],
-      "details": [
-        {
-          "appID": "TEAMID.co.median.example",
-          "paths": ["*"]
-        }
-      ]
-    }
-  }
-  ```
-</CodeGroup>
-
-**Example AASA including WebAuthn support**
+The `applinks` object is only included when a domain also uses Universal Links.
 
 <CodeGroup>
   ```json JSON
-  /* Example - /apple-app-site-association with Passkey Support */
+  /* Example - /apple-app-site-association with Web Credentials */
   {
     "applinks": {
       "apps": [],
@@ -180,8 +163,8 @@ You can follow the steps in [iOS Universal Links Configuration](/docs/deep-linki
 
 #### 2. Host your AASA file
 
-Deep Links and WebAuthn on iOS will not work unless a PATH is specified as part of the URL. For example, [http://example.com](http://example.com) will NOT work, but [http://example.com/PATH](http://example.com/PATH) will work.
+Download the file from App Studio, replace `<Team ID>` with your [Apple Team ID](https://developer.apple.com/help/glossary/team-id/), and upload it to your domain.
 
-If your site uses multiple subdomains (such as example.com, [www.example.com](http://www.example.com), and support.example.com), EACH requires its own entry in the Associated Domains Entitlement, and each must serve its own /apple-app-site-association file.
+If your site uses multiple subdomains (such as `example.com`, `www.example.com`, and `support.example.com`), add each one in App Studio with **Web Credentials** selected, and host the `apple-app-site-association` file on each.
 
 You must host the /apple-app-site-association file with a Content-Type: application/json HTTP header, using https\:// with a valid SSL certificate, and with a 200 HTTP Status Code with no redirects.
