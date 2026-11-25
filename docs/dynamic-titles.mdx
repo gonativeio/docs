@@ -122,9 +122,18 @@ Show an image in place of the title, such as a logo for the signed-in user's org
 | `url` | Image URL. The app downloads it, so the server doesn't need to allow cross-origin requests. Relative URLs are resolved against the current page. |
 | `image` | Image data from your page: a `Blob`, a data URL, or a base64 string. |
 
+Use a PNG, JPEG, or WebP image. SVG images aren't supported.
+
 The image is scaled to the same height as the top navigation bar image set in App Studio, and keeps its aspect ratio. It replaces any title or image already showing.
 
 The image applies to the [navigation instance](/docs/navigation-instances) that matches the current page, and shows again whenever the user returns to a page of that instance. If your app doesn't use instances, it applies to every page. It stays until you reset it or the app restarts.
+
+<Check>
+**Developer Demo**
+
+Display our demo page in your app to test during development [https://median.dev/title-image](https://median.dev/title-image)
+
+</Check>
 
 <MedianLogo />
 

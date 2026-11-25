@@ -14,6 +14,13 @@ These methods require an app that uses navigation instances. Changes last until 
 
 Each call applies to the instance that matches the current page, unless you pass `instanceId`. The change shows again whenever the user returns to a page of that instance.
 
+<Check>
+**Developer Demo**
+
+Display our demo page in your app to test during development [https://median.dev/navigation-runtime](https://median.dev/navigation-runtime)
+
+</Check>
+
 <Warning>
   **Known limits**
 
@@ -111,6 +118,8 @@ median.navigation
 | `textColor` | Color of the title text and the bar's buttons, in the same format. If you leave it out, the bar keeps its build-time text color. |
 | `textColorDark` | Text and button color used in dark mode. Defaults to `textColor`. |
 | `instanceId` | The instance to change. Defaults to the instance that matches the current page. |
+
+The text color doesn't change the status bar text, a title image, or the bottom tab bar.
 
 <MedianLogo />
 <CodeGroup>
@@ -212,7 +221,8 @@ median.navigation
       "label": "Cart",
       "url": "/cart",
       "icon": "fas fa-cart-shopping",
-      "badge": 3
+      "badge": 3,
+      "selected": true
     }
   ]
 }
