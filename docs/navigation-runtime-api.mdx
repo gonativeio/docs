@@ -1,0 +1,344 @@
+---
+title: "Change navigation at runtime"
+sidebarTitle: "Runtime navigation"
+description: "Use the Median JavaScript Bridge to change instances, top bar items, bottom tabs, badges, and the top bar color while your app is running."
+keywords: ["native navigation", "instances", "badge", "top navigation bar", "bottom tab bar", "JavaScript Bridge"]
+searchable: true
+---
+
+import { MedianLogo } from "/snippets/median-logo.jsx";
+
+Use the `median.navigation` methods in the JavaScript Bridge to add a badge to a tab, swap the buttons in the top bar, change the bar color, or replace a whole [navigation instance](/docs/navigation-instances).
+
+Each call applies to the instance that matches the current page, unless you pass `instanceId`. The change shows again whenever the user returns to a page of that instance.
+
+<Check>
+  **Developer Demo**
+
+Display our demo page in your app to test during development [https://median.dev/navigation-runtime <Icon icon="arrow-up-right-from-square" size={12} />](https://median.dev/navigation-runtime)
+
+</Check>
+
+<Warning>
+  **Known limits**
+
+- Badges are numbers only.
+- A top bar item that moves into the overflow ("more") menu because the bar has no room doesn't show its badge.
+- You refer to items by their position in the bar. After you replace a bar's items, read them again with `getTopItems` or `getBottomItems` before you update them.
+
+</Warning>
+
+## Prerequisites
+
+Your app must use [navigation instances](/docs/navigation-instances), otherwise the `median.navigation` methods fail.
+
+## Item fields
+
+`setTopItems` and `setBottomItems` take an array of items. Each item can have these fields:
+
+| Field | Description |
+| ----- | ----------- |
+| `label` | Text shown for the item. |
+| `url` | Page to open when the user taps the item. Can be an absolute URL, a relative URL, or a `javascript:` URL. |
+| `icon` | Icon name, from the same icons App Studio uses, for example `fas fa-house`. |
+| `inactiveIcon` | Icon shown when the tab isn't selected. Bottom tab bar only. |
+| `system` | Built-in action for a top bar item: `share`, `refresh`, or `search`. |
+
+## Update an item
+
+`updateTopItem` and `updateBottomItem` change one item without replacing the others.
+
+| Parameter | Description |
+| --------- | ----------- |
+| `item` | Position of the item in the bar as it's currently shown, starting at `0`. Required. |
+| `label` | New label. |
+| `icon` | New icon name. |
+| `inactiveIcon` | New icon name for the unselected state. |
+| `url` | New URL to open when tapped. Can't be combined with `javascript`. |
+| `javascript` | Code to run in the page when the user taps the item. Can't be combined with `url`. |
+| `badge` | A number to show on the item. `0` or `null` removes the badge. Values above 99 show as `99+`. |
+| `instanceId` | The instance to change. Defaults to the instance that matches the current page. |
+
+Fields you leave out stay unchanged. Calling `setTopItems` or `setBottomItems` clears earlier item updates for that bar.
+
+### Add a badge to a bottom tab
+
+<MedianLogo />
+<CodeGroup>
+
+```javascript Set
+median.navigation
+  .updateBottomItem({ item: 2, badge: 5 })
+  .then((result) => console.log(result))
+  .catch((error) => console.log(error.code, error.message));
+```
+
+```javascript Remove
+median.navigation
+  .updateBottomItem({ item: 2, badge: null })
+  .catch((error) => console.log(error.code, error.message));
+```
+
+</CodeGroup>
+
+### Change a top bar item
+
+This example changes the icon of the first top bar item and the code that runs when the user taps it.
+
+<MedianLogo />
+<CodeGroup>
+
+```javascript JavaScript
+median.navigation
+  .updateTopItem({
+    item: 0,
+    icon: "fas fa-cart-shopping",
+    javascript: "console.log('Cart tapped')",
+  })
+  .catch((error) => console.log(error.code, error.message));
+```
+
+</CodeGroup>
+
+## Top bar
+
+| Method | Description |
+| ------ | ----------- |
+| `setTopItems({ items, instanceId })` | Replaces the top bar items and shows the bar for the instance. |
+| `getTopItems({ instanceId })` | Returns the items. See [Read items](#read-items). |
+| `updateTopItem(options)` | Changes one item. See [Update an item](#update-an-item) for the options. |
+| `resetTopItems({ instanceId })` | Removes runtime changes to the items. The bar goes back to the items your app was built with. |
+| `setTopNavBarColor({ color, colorDark, textColor, textColorDark, instanceId })` | Sets the bar's background color and, optionally, the color of its title and buttons. |
+| `resetTopNavBarColor({ instanceId })` | Goes back to the colors your app was built with. |
+
+### Set the top bar color
+
+| Parameter | Description |
+| --------- | ----------- |
+| `color` | Background color as `#RRGGBB` or `#AARRGGBB`. Required. |
+| `colorDark` | Background color used in dark mode, in the same format. Defaults to `color`. |
+| `textColor` | Color of the title text and the bar's buttons, in the same format. If you leave it out, the bar keeps the text color your app was built with. |
+| `textColorDark` | Text and button color used in dark mode. Defaults to `textColor`. |
+| `instanceId` | The instance to change. Defaults to the instance that matches the current page. |
+
+The text color doesn't change the status bar text, a title image, or the bottom tab bar.
+
+<MedianLogo />
+<CodeGroup>
+
+```javascript Set
+median.navigation
+  .setTopNavBarColor({
+    color: "#1174D3",
+    colorDark: "#0E0D08",
+    textColor: "#FFFFFF",
+  })
+  .catch((error) => console.log(error.code, error.message));
+```
+
+```javascript Reset
+median.navigation
+  .resetTopNavBarColor()
+  .catch((error) => console.log(error.code, error.message));
+```
+
+</CodeGroup>
+
+### Replace the top bar items
+
+<MedianLogo />
+<CodeGroup>
+
+```javascript Set
+median.navigation
+  .setTopItems({
+    items: [
+      { label: "Search", url: "/search", icon: "fas fa-magnifying-glass" },
+      { label: "Cart", url: "/cart", icon: "fas fa-cart-shopping" },
+    ],
+  })
+  .catch((error) => console.log(error.code, error.message));
+```
+
+```javascript Reset
+median.navigation
+  .resetTopItems()
+  .catch((error) => console.log(error.code, error.message));
+```
+
+</CodeGroup>
+
+## Bottom tab bar
+
+| Method | Description |
+| ------ | ----------- |
+| `setBottomItems({ items, instanceId })` | Replaces the tabs and shows the bar for the instance. |
+| `getBottomItems({ instanceId })` | Returns the tabs. See [Read items](#read-items). |
+| `updateBottomItem(options)` | Changes one tab. See [Update an item](#update-an-item) for the options. |
+| `resetBottomItems({ instanceId })` | Removes runtime changes to the tabs. The bar goes back to the tabs your app was built with. |
+
+### Replace the bottom tabs
+
+<MedianLogo />
+<CodeGroup>
+
+```javascript Set
+median.navigation
+  .setBottomItems({
+    items: [
+      { label: "Home", url: "/", icon: "fas fa-house" },
+      { label: "Orders", url: "/orders", icon: "fas fa-box" },
+      { label: "Account", url: "/account", icon: "fas fa-user" },
+    ],
+  })
+  .catch((error) => console.log(error.code, error.message));
+```
+
+```javascript Reset
+median.navigation
+  .resetBottomItems()
+  .catch((error) => console.log(error.code, error.message));
+```
+
+</CodeGroup>
+
+## Read items
+
+`getTopItems` and `getBottomItems` return the items as they're currently shown, including runtime changes.
+
+<MedianLogo />
+<CodeGroup>
+
+```javascript Bottom tabs
+median.navigation
+  .getBottomItems()
+  .then((result) => console.log(result.items))
+  .catch((error) => console.log(error.code, error.message));
+```
+
+```javascript Top bar
+median.navigation
+  .getTopItems()
+  .then((result) => console.log(result.items))
+  .catch((error) => console.log(error.code, error.message));
+```
+
+```json Result
+{
+  "success": true,
+  "items": [
+    {
+      "index": 0,
+      "label": "Cart",
+      "url": "/cart",
+      "icon": "fas fa-cart-shopping",
+      "badge": 3,
+      "selected": true
+    }
+  ]
+}
+```
+
+</CodeGroup>
+
+Each item has an `index` to use as `item` in `updateTopItem` and `updateBottomItem`, and a `badge` that's `null` when none is set. Bottom tab bar items also have `selected`, which is `true` for the tab that matches the current page.
+
+## Instances
+
+An instance defines which pages it appears on and which navigation components it shows. `visibleIn` takes one URL pattern or an array of them. See [Matching pages](/docs/navigation-instances#matching-pages) for the pattern format.
+
+| Method | Description |
+| ------ | ----------- |
+| `setInstances({ instances })` | Replaces the whole list of instances. Exactly one instance must be visible in `**` (all pages), and every `id` must be unique. |
+| `setInstance({ instance })` | Replaces the instance with the same `id`, or adds a new one ahead of the `**` instance. |
+| `resetInstances()` | Goes back to the instances your app was built with. |
+| `getInstance()` | Returns the instance for the current page. |
+| `getInstances()` | Returns the full list of instances. |
+
+Replacing an instance removes the runtime changes made to it. `getInstance` and `getInstances` include runtime changes. You can pass their output back to `setInstance` and `setInstances`.
+
+### Instance fields
+
+```json JSON
+{
+  "id": "checkout",
+  "name": "Checkout",
+  "visibleIn": ["example.com/checkout/**", "example.com/cart"],
+  "components": {
+    "topNavigationBar": {
+      "active": true,
+      "items": [
+        { "label": "Help", "url": "/help", "icon": "fas fa-circle-question" }
+      ]
+    },
+    "bottomTabBar": {
+      "active": true,
+      "items": [
+        { "label": "Cart", "url": "/cart", "icon": "fas fa-cart-shopping" },
+        { "label": "Shop", "url": "/", "icon": "fas fa-store" }
+      ]
+    }
+  }
+}
+```
+
+### Add an instance
+
+<MedianLogo />
+<CodeGroup>
+
+```javascript Add
+median.navigation
+  .setInstance({
+    instance: {
+      id: "checkout",
+      name: "Checkout",
+      visibleIn: ["example.com/checkout/**", "example.com/cart"],
+      components: {
+        bottomTabBar: {
+          active: true,
+          items: [
+            { label: "Cart", url: "/cart", icon: "fas fa-cart-shopping" },
+            { label: "Shop", url: "/", icon: "fas fa-store" },
+          ],
+        },
+      },
+    },
+  })
+  .catch((error) => console.log(error.code, error.message));
+```
+
+```javascript Read
+median.navigation
+  .getInstances()
+  .then((result) => console.log(result.instances))
+  .catch((error) => console.log(error.code, error.message));
+```
+
+```javascript Reset
+median.navigation
+  .resetInstances()
+  .catch((error) => console.log(error.code, error.message));
+```
+
+</CodeGroup>
+
+## Results and errors
+
+Setters, updaters, and resetters return a promise that resolves with `{ success: true }`. If a call fails, the promise rejects with an error object:
+
+```json JSON
+{
+  "code": "ITEM_NOT_FOUND",
+  "message": "No item at index 7"
+}
+```
+
+If you pass a `callback` function instead, it receives `{ success: false, error: { code, message } }` on failure.
+
+| Error code | Cause |
+| ---------- | ----- |
+| `INVALID_PARAMETERS` | A parameter is missing or invalid. For example, you passed both `url` and `javascript`, a color isn't in a valid format, or the instances break the rules in [Instances](#instances). |
+| `INSTANCE_NOT_FOUND` | No instance has the `instanceId` you passed. |
+| `ITEM_NOT_FOUND` | The `item` position doesn't exist in the bar as it's currently shown. |
+| `NAVIGATION_V2_REQUIRED` | The app doesn't use navigation instances. |

@@ -109,7 +109,7 @@ JavaScript Bridge methods that change navigation, such as [`median.sidebar.setIt
 
 The change stays in place while the user navigates, including on pages that belong to other instances, until another call replaces it or the app restarts.
 
-A title image set with [`median.navigation.setTitleImage()`](/docs/dynamic-titles#set-a-title-image-at-runtime) is the exception: it only shows on pages of the instance it was set on.
+The [`median.navigation` methods](/docs/navigation-runtime-api) are the exception, including [`setTitleImage()`](/docs/dynamic-titles#set-a-title-image-at-runtime). Their changes only show on pages of the instance they apply to.
 
 <Warning>
   **Runtime changes reset when the app restarts**
