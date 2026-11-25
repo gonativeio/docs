@@ -9,7 +9,9 @@ filterTagMatch: "all"
 
 <Info>Looking for older releases? See the [changelog archive](/docs/changelog-archive) for releases from more than 12 months ago.</Info>
 
-<Update label="Nov 24, 2026" tags={["New feature","App Studio"]} rss={{"title":"App Studio · Nov 24, 2026 · New feature","description":"Add iOS Web Credentials Support & Deep Links Setup Improvements Updated Deep Links configuration to support iOS Web Credentials, allowing domains to be configured for Universal Links and credential sharing separately. Simplified domain setup with a two-step workflow for configur…","date":"2026-11-24"}}>
+<Update label="Nov 24, 2026" tags={["New feature","Bug fix","App Studio"]} rss={{"title":"App Studio · Nov 24, 2026 · New feature, Bug fix","description":"Add iOS Web Credentials Support & Deep Links Setup Improvements Updated Deep Links configuration to support iOS Web Credentials, allowing domains to be configured for Universal Links and credential sharing separately. Simplified domain setup with a two-step workflow for configur…","date":"2026-11-24"}}>
+
+**New feature**
 
 **Add iOS Web Credentials Support & Deep Links Setup Improvements**
 
@@ -18,17 +20,92 @@ filterTagMatch: "all"
 - Improved domain validation to automatically clean up common formatting issues and prevent invalid domain configurations.
 - Improved the configuration interface with clearer options, tooltips, and responsive layouts.
 
+**Bug fix**
+
+- Android builds no longer try to generate launch images when the splash screen has no source image
+
 </Update>
 
-<Update label="Nov 12, 2026" tags={["New feature","App Studio"]} rss={{"title":"App Studio · Nov 12, 2026 · New feature","description":"Update password strength indicator UI with color-coded strength level progress bar and add password visibility toggle to show or hide the entered password","date":"2026-11-12"}}>
+<Update label="Nov 19, 2026" tags={["Bug fix","Android"]} rss={{"title":"Android · Nov 19, 2026 · Bug fix","description":"Fixed a crash on launch on devices without telephony service, common on MDM-managed devices OneSignal subscription and Offline Downloads screens no longer draw under the system bars on Android 15+","date":"2026-11-19"}}>
+
+- Fixed a crash on launch on devices without telephony service, common on MDM-managed devices
+- OneSignal subscription and Offline Downloads screens no longer draw under the system bars on Android 15+
+
+</Update>
+
+<Update label="Nov 18, 2026" tags={["Maintenance","App Studio"]} rss={{"title":"App Studio · Nov 18, 2026 · Maintenance","description":"Added plugins are now sorted by name, with OneSignal and Firebase Cloud Messaging pinned first","date":"2026-11-18"}}>
+
+- Added plugins are now sorted by name, with OneSignal and Firebase Cloud Messaging pinned first
+
+</Update>
+
+<Update label="Nov 17, 2026" tags={["Bug fix","App Studio"]} rss={{"title":"App Studio · Nov 17, 2026 · Bug fix","description":"An error is now shown when the uploaded google-services.json file is not valid JSON","date":"2026-11-17"}}>
+
+- An error is now shown when the uploaded `google-services.json` file is not valid JSON
+
+</Update>
+
+<Update label="Nov 13, 2026" tags={["New feature","Maintenance","App Studio"]} rss={{"title":"App Studio · Nov 13, 2026 · New feature, Maintenance","description":"Upload custom notification sounds for the Firebase Cloud Messaging plugin The docs panel can now be opened in a new tab","date":"2026-11-13"}}>
+
+**New feature**
+
+- Upload custom notification sounds for the Firebase Cloud Messaging plugin
+
+**Maintenance**
+
+- The docs panel can now be opened in a new tab
+
+</Update>
+
+<Update label="Nov 13, 2026" tags={["Bug fix","Android"]} rss={{"title":"Android · Nov 13, 2026 · Bug fix","description":"Fixed a crash when a website requests a client certificate several times at once","date":"2026-11-13"}}>
+
+- Fixed a crash when a website requests a client certificate several times at once
+
+</Update>
+
+<Update label="Nov 12, 2026" tags={["New feature","App Studio"]} rss={{"title":"App Studio · Nov 12, 2026 · New feature","description":"Update password strength indicator UI with color-coded strength level progress bar and add password visibility toggle to show or hide the entered password Added Sendbird App ID and Automatic Registration options to the plugin settings","date":"2026-11-12"}}>
 
 - Update password strength indicator UI with color-coded strength level progress bar and add password visibility toggle to show or hide the entered password
+
+- Added Sendbird App ID and Automatic Registration options to the plugin settings
+
+</Update>
+
+<Update label="Nov 11, 2026" tags={["Maintenance","Android"]} rss={{"title":"Android · Nov 11, 2026 · Maintenance","description":"AdMob plugin now uses Google's next-generation Mobile Ads SDK and UMP 4.0, with no configuration or JavaScript Bridge changes","date":"2026-11-11"}}>
+
+- AdMob plugin now uses Google's next-generation Mobile Ads SDK and UMP 4.0, with no configuration or JavaScript Bridge changes
+
+</Update>
+
+<Update label="Nov 9, 2026" tags={["Maintenance","iOS"]} rss={{"title":"iOS · Nov 9, 2026 · Maintenance","description":"Firebase Analytics plugin upgraded to Firebase SDK 12, so Firebase Analytics, Crashlytics and Messaging can be installed together Restored the Firebase Crashlytics opt-in prompt","date":"2026-11-09"}}>
+
+- Firebase Analytics plugin upgraded to Firebase SDK 12, so Firebase Analytics, Crashlytics and Messaging can be installed together
+- Restored the Firebase Crashlytics opt-in prompt
 
 </Update>
 
 <Update label="Nov 9, 2026" tags={["Bug fix","Android"]} rss={{"title":"Android · Nov 9, 2026 · Bug fix","description":"Fixed geolocation flag not working in Android","date":"2026-11-09"}}>
 
 - Fixed geolocation flag not working in Android
+
+</Update>
+
+<Update label="Nov 6, 2026" tags={["New feature","App Studio"]} rss={{"title":"App Studio · Nov 6, 2026 · New feature","description":"Added Firebase Crashlytics log collection options to the plugin settings","date":"2026-11-06"}}>
+
+- Added Firebase Crashlytics log collection options to the plugin settings
+
+</Update>
+
+<Update label="Nov 6, 2026" tags={["New feature","iOS"]} rss={{"title":"iOS · Nov 6, 2026 · New feature","description":"Firebase Cloud Messaging plugin now supports rich push notifications with images","date":"2026-11-06"}}>
+
+- Firebase Cloud Messaging plugin now supports rich push notifications with images
+
+</Update>
+
+<Update label="Nov 6, 2026" tags={["Bug fix","Android"]} rss={{"title":"Android · Nov 6, 2026 · Bug fix","description":"Custom JavaScript and page-load events no longer run twice when a navigation is cancelled before it loads Status bar and system bar colors now accept values without a leading #, and invalid colors are ignored instead of causing a crash","date":"2026-11-06"}}>
+
+- Custom JavaScript and page-load events no longer run twice when a navigation is cancelled before it loads
+- Status bar and system bar colors now accept values without a leading `#`, and invalid colors are ignored instead of causing a crash
 
 </Update>
 
@@ -41,6 +118,34 @@ filterTagMatch: "all"
 - Existing navigation settings are automatically migrated to the new configuration, with updated documentation to help users transition.
 - Learn more: [Navigation Instances](/docs/navigation-instances), [What's Changed in Native Navigation](/docs/native-navigation-changes), and [Link Behavior](/docs/internal-vs-external-links).
 
+- Test any URL to see which Link Behavior rule and Native Navigation instance apply to it
+
+</Update>
+
+<Update label="Nov 4, 2026" tags={["Bug fix","Android"]} rss={{"title":"Android · Nov 4, 2026 · Bug fix","description":"forceUserAgent / androidForceUserAgent is now applied correctly Fixed Firebase Crashlytics failing to start in release builds","date":"2026-11-04"}}>
+
+- `forceUserAgent` / `androidForceUserAgent` is now applied correctly
+- Fixed Firebase Crashlytics failing to start in release builds
+
+</Update>
+
+<Update label="Oct 30, 2026" tags={["Bug fix","iOS"]} rss={{"title":"iOS · Oct 30, 2026 · Bug fix","description":"The sidebar now opens only on the root screen and uses the Global Theme font Showing or hiding the sidebar with median.sidebar.setItems now persists across pages","date":"2026-10-30"}}>
+
+- The sidebar now opens only on the root screen and uses the Global Theme font
+- Showing or hiding the sidebar with `median.sidebar.setItems` now persists across pages
+
+</Update>
+
+<Update label="Oct 30, 2026" tags={["Bug fix","Android"]} rss={{"title":"Android · Oct 30, 2026 · Bug fix","description":"Fixed sidebar issues with Native Navigation, including the first sidebar item being highlighted by default","date":"2026-10-30"}}>
+
+- Fixed sidebar issues with Native Navigation, including the first sidebar item being highlighted by default
+
+</Update>
+
+<Update label="Oct 28, 2026" tags={["Bug fix","Android"]} rss={{"title":"Android · Oct 28, 2026 · Bug fix","description":"Bloomreach plugin now accepts API keys with or without the Token prefix, and the Bloomreach SDK is updated to 5.4.0","date":"2026-10-28"}}>
+
+- Bloomreach plugin now accepts API keys with or without the `Token ` prefix, and the Bloomreach SDK is updated to 5.4.0
+
 </Update>
 
 <Update label="Oct 23, 2026" tags={["New feature","App Studio"]} rss={{"title":"App Studio · Oct 23, 2026 · New feature","description":"Added a Language selector to the App Studio simulator, allowing users to preview their apps in different languages before starting a simulator session or during a simulator session.","date":"2026-10-23"}}>
@@ -49,9 +154,36 @@ filterTagMatch: "all"
 
 </Update>
 
-<Update label="Oct 15, 2026" tags={["Bug fix","iOS"]} rss={{"title":"iOS · Oct 15, 2026 · Bug fix","description":"Fixed deep links from push notifications not opening when the app is launched from a closed state in the Firebase Cloud Messaging plugin","date":"2026-10-15"}}>
+<Update label="Oct 23, 2026" tags={["New feature","Bug fix","iOS"]} rss={{"title":"iOS · Oct 23, 2026 · New feature, Bug fix","description":"Added support for iPhone Duo Fixed the App Tracking Transparency prompt not appearing when requested on app launch","date":"2026-10-23"}}>
+
+**New feature**
+
+- Added support for iPhone Duo
+
+**Bug fix**
+
+- Fixed the App Tracking Transparency prompt not appearing when requested on app launch
+
+</Update>
+
+<Update label="Oct 21, 2026" tags={["Bug fix","iOS"]} rss={{"title":"iOS · Oct 21, 2026 · Bug fix","description":"Fixed page content scrolling under the top navigation bar with the Liquid Glass design on iOS 26+, including after the keyboard is dismissed","date":"2026-10-21"}}>
+
+- Fixed page content scrolling under the top navigation bar with the Liquid Glass design on iOS 26+, including after the keyboard is dismissed
+
+</Update>
+
+<Update label="Oct 15, 2026" tags={["Maintenance","App Studio"]} rss={{"title":"App Studio · Oct 15, 2026 · Maintenance","description":"Build buttons now join a build that is already queued or running instead of starting a duplicate Removed simulator devices and iOS versions that are no longer available","date":"2026-10-15"}}>
+
+- Build buttons now join a build that is already queued or running instead of starting a duplicate
+- Removed simulator devices and iOS versions that are no longer available
+
+</Update>
+
+<Update label="Oct 15, 2026" tags={["Bug fix","iOS"]} rss={{"title":"iOS · Oct 15, 2026 · Bug fix","description":"Fixed deep links from push notifications not opening when the app is launched from a closed state in the Firebase Cloud Messaging plugin Sidebar menu button visibility set through the JavaScript Bridge now persists when navigating between pages","date":"2026-10-15"}}>
 
 - Fixed deep links from push notifications not opening when the app is launched from a closed state in the Firebase Cloud Messaging plugin
+
+- Sidebar menu button visibility set through the JavaScript Bridge now persists when navigating between pages
 
 </Update>
 
@@ -304,9 +436,9 @@ filterTagMatch: "all"
 
 </Update>
 
-<Update label="Apr 23, 2026" tags={["Bug fix","iOS"]} rss={{"title":"iOS · Apr 23, 2026 · Bug fix","description":"Fixed setStatusBarOverlay JS bridge method not working (always used appConfig value)","date":"2026-04-23"}}>
+<Update label="Apr 23, 2026" tags={["Bug fix","iOS"]} rss={{"title":"iOS · Apr 23, 2026 · Bug fix","description":"Fixed setStatusBarOverlay JavaScript Bridge method not working (always used appConfig value)","date":"2026-04-23"}}>
 
-- Fixed `setStatusBarOverlay` JS bridge method not working (always used appConfig value)
+- Fixed `setStatusBarOverlay` JavaScript Bridge method not working (always used appConfig value)
 
 </Update>
 
@@ -525,9 +657,9 @@ filterTagMatch: "all"
 
 </Update>
 
-<Update label="Dec 16, 2025" tags={["New feature","iOS","Android"]} rss={{"title":"iOS & Android · Dec 16, 2025 · New feature","description":"Added new JS Bridge method to allow set webview zoom","date":"2025-12-16"}}>
+<Update label="Dec 16, 2025" tags={["New feature","iOS","Android"]} rss={{"title":"iOS & Android · Dec 16, 2025 · New feature","description":"Added new JavaScript Bridge method to allow set webview zoom","date":"2025-12-16"}}>
 
-- Added new JS Bridge method to allow set webview zoom
+- Added new JavaScript Bridge method to allow set webview zoom
 
 </Update>
 
