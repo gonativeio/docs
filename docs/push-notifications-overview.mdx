@@ -235,7 +235,7 @@ iOS supports numeric badges consistently across all devices.
 
 - **Permission:** Badges are part of the notification permission the user grants. Users can turn badges off for your app at any time under **Settings > Notifications > [Your app] > Badges**, even while still allowing alerts.
 - **Setting the count:** The badge number is set by the push payload or by your app. iOS does not increment or decrement the count on its own. If you want each notification to add to the count, your push provider must support incrementing (for OneSignal, this relies on the Notification Service Extension being included in your build).
-- **Clearing the count:** iOS does not clear the badge when the user opens the app or reads content. Your app or push provider has to reset it. With OneSignal, use `median.onesignal.badge.set(0)`. See [OneSignal badge count](/docs/onesignal-badge-count).
+- **Clearing the count:** iOS does not clear the badge when the user opens the app or reads content. Your app or push provider has to reset it. With OneSignal, use `median.onesignal.badge.set(0)`. See [OneSignal badge count](/docs/notification-customization#notification-badges).
 
 ### Android
 

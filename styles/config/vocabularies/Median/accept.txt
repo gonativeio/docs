@@ -54,6 +54,9 @@ Vue
 sysdiagnose
 NSObject
 iCalendar
+realme
+vivo
+Funtouch
 
 # File formats and acronyms (plurals)
 APNS
@@ -63,6 +66,8 @@ IPAs
 PWAs
 
 # Technical vocabulary
+adb
+Autostart
 [Hh]aptics
 backgrounded
 (?i)webviews
@@ -103,3 +108,4 @@ jsrsasign
 px
 webpage['’]s
 cardholder['’]s
+Notification Service Extension
