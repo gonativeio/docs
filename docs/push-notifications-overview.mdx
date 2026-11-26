@@ -8,9 +8,12 @@ keywords:
     "OneSignal",
     "Firebase Cloud Messaging",
     "engagement",
+    "badges",
+    "badge count"
   ]
 searchable: true
 ---
+import RequestPlugin from "/snippets/request-plugin.mdx";
 
 Push notifications help you drive user engagement and increase customer satisfaction with your app and/or service. You can learn more about push notifications in our [blog](https://median.co/blog/how-to-write-push-notification-copy-that-engages-and-converts-a-guide). Median's push notification plugins connect to marketing automation platforms like OneSignal, Braze, and Klaviyo, enabling you to send personalized messages triggered by user behavior, lifecycle stages, and real-time events.
 
@@ -201,6 +204,8 @@ The following terms will help you implement push notifications effectively:
   </Card>
 </CardGroup>
 
+<RequestPlugin />
+
 ## Push permissions
 
 ### General
@@ -220,6 +225,48 @@ Receiving push notifications on iOS will require enabling 'Push Notifications' c
 
 No additional steps are required other than obtaining the user's consent to receive push notifications.
 
+## App icon badges
+
+App icon badges are the small indicators on your app's icon that tell users something is waiting for them, usually unread push notifications. How a badge looks, and whether it shows a number at all, depends on the operating system, the device manufacturer, and the user's own settings. Treat badges as a helpful extra signal rather than a guaranteed one, and keep your in-app unread indicators as the source of truth.
+
+### iOS
+
+iOS supports numeric badges consistently across all devices.
+
+- **Permission:** Badges are part of the notification permission the user grants. Users can turn badges off for your app at any time under **Settings > Notifications > [Your app] > Badges**, even while still allowing alerts.
+- **Setting the count:** The badge number is set by the push payload or by your app. iOS does not increment or decrement the count on its own. If you want each notification to add to the count, your push provider must support incrementing (for OneSignal, this relies on the Notification Service Extension being included in your build).
+- **Clearing the count:** iOS does not clear the badge when the user opens the app or reads content. Your app or push provider has to reset it. With OneSignal, use `median.onesignal.badge.set(0)`. See [OneSignal badge count](/docs/onesignal-badge-count).
+
+### Android
+
+Android has no standard, system-wide API for showing a numeric count on an app icon. What users see is decided by the device's launcher:
+
+- Since Android 8.0, launchers show a **notification dot** when your app has active notifications in the notification shade.
+- The badge usually reflects **notifications currently in the shade**, not unread items in your app. When the user dismisses or clears a notification, the badge typically disappears with it, and a badge count sent without a visible notification may not display at all.
+- Users can disable badges per app, or per notification channel, in the app's notification settings.
+
+#### Behavior by device and custom OS
+
+| Device / OS | Typical badge behavior | Notes |
+| --- | --- | --- |
+| Google Pixel and stock Android | Dot only | The count appears only in the long-press menu on the app icon. |
+| Samsung (One UI) | Number or dot | The user picks the style in the device's notification settings ("App icon badges"). The count is based on active notifications. |
+| Huawei (EMUI / HarmonyOS) | Number | Uses Huawei's own launcher badge mechanism. Huawei devices sold without Google Mobile Services cannot receive FCM, so FCM-based push (and its badges) will not reach them. |
+| Xiaomi (MIUI / HyperOS) | Number | The count follows notifications in the shade. Aggressive battery management can stop delivery when the app is closed; users may need to enable Autostart for your app. |
+| OPPO, OnePlus, realme (ColorOS / OxygenOS) | Dot or number, varies by OS version | Numeric badges have historically been limited to approved apps on some versions. Users may need to enable badges manually. |
+| vivo (Funtouch OS / OriginOS) | Varies, often off by default | Numeric badges have historically been limited to approved apps. Users may need to enable desktop icon badges in settings. |
+| Third-party launchers (e.g. Nova) | Depends on the launcher | Some require the user to grant notification access before badges appear. |
+
+<Note>
+  Manufacturers change badge behavior between OS versions, so the table above describes common behavior, not a guarantee. Always test on real devices from the markets your users are in.
+</Note>
+
+### Best practices
+
+- **Don't rely on badges for critical information.** Some users will never see a number, so use push notifications, in-app messages, or email for anything important.
+- **Clear badges when content is read.** Reset the badge from your web app when the user views the related content, so the count doesn't go stale on iOS.
+- **Keep Android notifications meaningful.** Because Android badges usually mirror the notification shade, avoid leaving outdated notifications in place just to keep a badge visible.
+
 ## Frequently asked questions
 
 <AccordionGroup>
@@ -231,6 +278,16 @@ Native apps connect directly to Apple's APNS and Google's FCM (the same infrastr
 <Accordion title="Do push notifications work as well on a PWA as they do in a native app?" id="do-push-notifications-work-as-well-on-a-pwa-as-they-do-in-a-native-app">
 
 Not quite. PWA push on iOS only works if a user manually adds your site to their Home Screen, and only on iOS 16.4 or above. Anyone who skips that step, or is on an older device, gets no push at all. Native apps have no such barrier: once installed, push works immediately across all supported iOS and Android versions, with full support for rich notifications (images, action buttons, grouping) that PWAs can't match.
+
+</Accordion>
+<Accordion title="Why does my app show a dot instead of a number on Android?" id="why-does-my-app-show-a-dot-instead-of-a-number-on-android">
+
+Android leaves badge display to the device's launcher. Stock Android and Pixel devices only show a dot, while Samsung, Huawei, and Xiaomi devices can show a number. On Samsung devices, the user chooses between a dot and a number in their notification settings. Your app cannot override this.
+
+</Accordion>
+<Accordion title="Why doesn't the badge clear when users open my app?" id="why-doesnt-the-badge-clear-when-users-open-my-app">
+
+On iOS, the badge stays until your app or push provider resets it. Use your plugin's badge method (for example, `median.onesignal.badge.set(0)`) when the user reads the content. On Android, the badge is usually tied to notifications in the shade, so it clears when those notifications are dismissed. Some launchers cache the badge, and toggling badges off and on in the app's notification settings will reset it.
 
 </Accordion>
 </AccordionGroup>
