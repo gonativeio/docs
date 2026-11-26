@@ -731,6 +731,10 @@
     {
       "source": "/docs/tags-json-url",
       "destination": "/docs/identifying-targeting-users#method-1-native-ui"
+    },
+    {
+      "source": "/docs/development-tools",
+      "destination": "/docs/debug-tools"
     }
   ],
   "integrations": {
