@@ -48,6 +48,7 @@ exceptions:
   - Google Play Store
   - Google Play Developer
   - Google Play App Signing
+  - Google Play Console
   - Play Store
   - App Links
   - Android
@@ -111,6 +112,7 @@ exceptions:
   - URLs
   - JSON
   - PDF
+  - APK
   - QR
   - FAQ
   - ID
