@@ -1,44 +1,133 @@
 ---
 title: "Google developer verification"
-description: "Get your ADI registration value from Google Play Console and add it in App Studio so future Android builds include it."
-keywords: ["Google developer verification", "App Device Integrity", "ADI", "Android", "adi-registration.properties"]
+description: "Register your Median Android app for Google's developer verification, and add the ADI value in App Studio when Google asks you to prove key ownership."
+keywords:
+  [
+    "Google developer verification",
+    "ADI",
+    "Android",
+    "adi-registration.properties",
+    "Android developer verification",
+  ]
 searchable: true
 ---
 
-This guide explains how to upload the `adi-registration.properties` value required for App Device Integrity (ADI) verification and including it in future app builds.
+## What is Android developer verification?
 
-## Understanding app device integrity (ADI)
+Android developer verification links every Android app to a verified individual or organization. Google enforces it on certified Android devices (devices that ship with Google Play Protect), regardless of where the app was downloaded. That includes Google Play, other app stores, mobile device management (MDM) distribution, and direct APK downloads.
 
-App Device Integrity is a security framework powered by the Google Play Integrity API. Its primary purpose is to ensure that your app is running in a secure, untampered environment.
+Verification confirms who the developer is. It isn't a review of your app's content.
 
-- **What it does**: It verifies whether the app interaction originates from a legitimate app binary (anti-tampering) running on an authentic Android device. This prevents malicious actors from using modified versions of your app or running it on compromised/emulated devices.
-- **The .properties file**: The `adi-registration.properties` file acts as a configuration handshake between your app and the Google Play Integrity services. It contains a value that allows the API to recognize your specific application during the attestation process.
+### Timeline
 
-## Uploading the ADI property value
+| Date               | Milestone                                                                                                                       |
+| ------------------ | ------------------------------------------------------------------------------------------------------------------------------- |
+| March 2026         | Verification opened to all developers in Play Console and the Android Developer Console                                         |
+| August 2026        | Limited distribution accounts (students and hobbyists) and the "advanced flow" for installing unverified apps launched globally |
+| September 30, 2026 | Enforcement began in Brazil, Indonesia, Singapore, and Thailand                                                                 |
+| 2027 and beyond    | Global enforcement                                                                                                              |
 
-**In Google Play Console**
+## What you need to do
 
-Follow the steps in [Google's guide to registering your package name](https://support.google.com/googleplay/android-developer/answer/16761053?hl=en) to register your Android package name.
+There are two parts: verify your identity, then register your app's package name and signing key to that identity.
 
-- The ADI property value is available on **step 3**, on the **Sign and upload an APK** page.
+<Steps>
+  <Step title="Verify your developer identity">
+    - **Apps on Google Play:** complete verification in Google Play Console.
+    - **Apps distributed only outside Google Play:** create an account in the [Android Developer Console](https://developer.android.com/developer-verification/guides) and verify there.
+  </Step>
+  <Step title="Check whether your package name is already registered">
+    Google attempted to register Play apps automatically in March 2026. In Play
+    Console, open the **Android developer verification** page and check the
+    **Package names** tab. If your app's status is **Registered**, you're done.
+  </Step>
+  <Step title="Register your package name if it isn't">
+    How you register depends on whether the package name has been used before:
+    | Your situation | What Google asks for | Median build needed? |
+    | --- | --- | --- |
+    | New package name (never installed on Android) | The public certificate of your signing key | No |
+    | Existing package name (has installs) | Proof that you own the private signing key: a signed APK that contains an `adi-registration.properties` file | **Yes**. See [Prove key ownership](#prove-key-ownership-with-a-median-build) |
+    | Existing package name, and the same key is already verified for another app in your account | Nothing. Google skips the upload step | No |
+  </Step>
+</Steps>
+
+## Prove key ownership with a Median build
+
+Use this when Google asks you to upload an APK to prove you own the signing key for an existing package name.
+
+Google checks ownership with a file named `adi-registration.properties` inside a signed APK. The file holds the **ADI property value**, a snippet that Google Play Console generates for your package name and signing key. Only someone with the private key can sign an APK that contains it, so a correctly signed APK shows Google the key is yours.
+
+### Copy the value from Google Play Console
+
+1. Go to **Android developer verification → Package names** and select **Register package name**.
+2. Enter your app's package name and select **Next**.
+3. Select the signing key you're registering, then select **Upload APK**.
+4. Copy the **ADI property value** shown on the **Sign and upload an APK** page.
+
+See [Google's guide to registering your package name](https://support.google.com/googleplay/android-developer/answer/16761053) for full details.
 
 <Frame caption="Google Play Console: Sign and upload an APK">
-  <img alt="Sign and upload an APK page in Google Play Console showing the ADI property value" src="/images/docs/8ddaa4e8c43a5c939458de892d8bbb9071720c646bf21a5ea425192f6be9a4a6-image.png" />
+  <img
+    alt="Sign and upload an APK page in Google Play Console showing the ADI property value"
+    src="/images/docs/8ddaa4e8c43a5c939458de892d8bbb9071720c646bf21a5ea425192f6be9a4a6-image.png"
+  />
 </Frame>
 
-**In Median App Studio**
+### Add the value in Median App Studio
 
-1. Navigate to the **Build & Deploy** section > **Google Developer Verification**.
-2. Paste the **ADI property value**.
+1. Go to **Build & Deploy → Google Developer Verification**.
+2. Paste the **ADI property value**. Median adds it to your app as `assets/adi-registration.properties`.
+3. Rebuild your app and download the signed binary.
 
 <Frame caption="App Studio Google Developer Verification">
-  <img alt="Google Developer Verification field in App Studio" src="/images/docs/4038950eb24550f6a372792e57b135912ba8c4065abefd7cb48f99df9d5fc618-image.png" />
+  <img
+    alt="Google Developer Verification field in App Studio"
+    src="/images/docs/4038950eb24550f6a372792e57b135912ba8c4065abefd7cb48f99df9d5fc618-image.png"
+  />
 </Frame>
 
-## Additional resources
+### Upload the APK
 
-For more in-depth technical details, refer to the official Google Developer documentation:
+Return to Play Console, select **Upload**, and upload the signed APK. Google checks the signature and registers your ownership. You'll receive an email when registration completes, and you can follow the status on the **Packages** page.
 
-- [Google Play Integrity API overview](https://developer.android.com/google/play/integrity)
-- [Setup and integration guide](https://developer.android.com/google/play/integrity/setup)
-- [Understanding integrity verdicts](https://developer.android.com/google/play/integrity/verdicts)
+<Warning>
+  **Use the matching signing key**
+
+Sign the APK with the private key that matches the key you're registering. An APK signed with a different key fails verification.
+</Warning>
+
+## Agencies and white-label apps
+
+The verified developer should be the organization that publishes and is accountable for the app, which is usually the end client rather than the agency that built it.
+
+Agencies managing many apps can automate package name and key registration with the [Android Developer Console API](https://developer.android.com/developer-verification/guides/developer-console-api).
+
+## What users see for unverified apps
+
+On affected devices, users can still install apps that aren't registered to a verified developer. To do so, they need Android Debug Bridge (`adb`) or an "advanced flow," which includes restarting the device and waiting 24 hours. For a business app this friction is usually unacceptable, so register before enforcement reaches your users' countries.
+
+## FAQ
+
+<AccordionGroup>
+  <Accordion title="Is this related to the Play Integrity API?">
+    No. The `adi-registration.properties` file is only used by Android developer
+    verification to prove you own your signing key. It doesn't enable or
+    configure the Play Integrity API.
+  </Accordion>
+  <Accordion title="My app is only on Google Play. Am I affected?">
+    Yes. Play developers verify through Play Console. Google attempted to
+    register existing Play apps automatically, so check your package name status
+    first.
+  </Accordion>
+  <Accordion title="Do I need a new Median build?">
+    Only if Google asks you to prove ownership of the signing key for an
+    existing package name. Otherwise, verification is tied to your developer
+    account, package name, and key, not your Median version.
+  </Accordion>
+</AccordionGroup>
+
+## Official resources
+
+- [Android developer verification guides](https://developer.android.com/developer-verification/guides)
+- [Play Console Help: Register your package name](https://support.google.com/googleplay/android-developer/answer/16761053)
+- [Android Developer Console API](https://developer.android.com/developer-verification/guides/developer-console-api)
