@@ -25,17 +25,9 @@ Display our demo page in your app to test during development [https://median.dev
 
 ## Prerequisites
 
-- Access to the Braze plugin settings in Median App Studio (Native Plugins tab).
-
-- Braze credentials and endpoints for your platforms:
-  - `iosApiKey`
-  - `iosEndpointKey`
-  - `androidApiKey`
-  - `androidEndpointKey`
-  - `firebaseSenderId`
-
-- If using automatic prompts, set `autoRegister` in plugin config.
-
+- Access to the Braze plugin settings in Median App Studio (**Native Plugins** tab).
+- Your Braze API keys and SDK endpoints for iOS and Android, from **Settings → APIs and Identifiers** in your Braze dashboard.
+- Your Firebase Cloud Messaging Sender ID and `google-services.json` for Android (see [Google Services](/docs/google-services)).
 - If testing with the Median demo page, use `https://median.dev/braze/`.
 
 ## Implementation guide
@@ -46,14 +38,27 @@ Enable push notifications through Braze In-App Messaging as documented in the [B
 
 ### App configuration
 
-Enable the Braze plugin in the **Native Plugins** tab as shown below. The plugin does not require the configuration of the following parameters.
+Enable the Braze plugin in the **Native Plugins** tab and fill in its settings.
 
-- `autoRegister`: Determines whether the app should automatically ask for push permissions at app launch
-- API keys and endpoints: As configured in your Braze dashboard (Settings > APIs and Identifiers > API Keys)
-- `firebaseSenderId`: Firebase Cloud Messaging Sender ID
+| Setting | Description |
+| --- | --- |
+| **iOS API Key** | Braze API key for your iOS app. |
+| **iOS SDK Endpoint** | Braze SDK endpoint for your iOS app. |
+| **Android API Key** | Braze API key for your Android app. |
+| **Android SDK Endpoint** | Braze SDK endpoint for your Android app. |
+| **Firebase Sender ID (Android only)** | Firebase Cloud Messaging Sender ID. |
+| **Notification Channel Name (Android only)** | Name of the notification channel users see in Android settings. |
+| **Notification Channel Description (Android only)** | Description of that notification channel. |
+| **Automatic Registration** | When set to **Enable**, push permission is requested automatically. Disabled by default. |
 
-<Frame caption="Braze plugin enablement and configuration">
-  <img src="/images/docs/f08acbe933a9a0fafe54a08fba8281dc9bb7353b98ca4c392b25a3c7bc0f17d1-Screenshot_2026-06-22_at_08.09.02.png" alt="Braze plugin enabled and configured in the Native Plugins tab of App Studio" />
+<Warning>
+  **`google-services.json` required**
+
+  Braze requires you to upload a `google-services.json` file to App Studio. See [Google Services](/docs/google-services) for the steps.
+</Warning>
+
+<Frame caption="App Studio – Braze plugin settings">
+  <img src="/images/docs/docs/braze/app-studio-braze-settings.webp" alt="Braze settings in the Native Plugins tab of App Studio, with the plugin enabled and Automatic Registration set to Disable" />
 </Frame>
 
 ### Deep linking
