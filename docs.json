@@ -435,8 +435,8 @@
                 "root": "docs/base44",
                 "pages": [
                   "docs/getting-started-with-base44",
-                  "docs/add-push-notifications-to-a-base44-app",
-                  "docs/adding-haptic-feedback-to-your-base44-app"
+                  "docs/add-push-notifications-to-your-base44-app",
+                  "docs/add-haptic-feedback-to-your-base44-app"
                 ]
               },
               {
@@ -454,7 +454,7 @@
                 "root": "docs/replit",
                 "pages": [
                   "docs/getting-started-with-replit",
-                  "docs/add-push-notifications-to-a-replit-app",
+                  "docs/add-push-notifications-to-your-replit-app",
                   "docs/add-haptic-feedback-to-your-replit-app"
                 ]
               },
@@ -620,6 +620,18 @@
     ]
   },
   "redirects": [
+    {
+      "source": "/docs/add-push-notifications-to-a-base44-app",
+      "destination": "/docs/add-push-notifications-to-your-base44-app"
+    },
+    {
+      "source": "/docs/adding-haptic-feedback-to-your-base44-app",
+      "destination": "/docs/add-haptic-feedback-to-your-base44-app"
+    },
+    {
+      "source": "/docs/add-push-notifications-to-a-replit-app",
+      "destination": "/docs/add-push-notifications-to-your-replit-app"
+    },
     {
       "source": "/docs",
       "destination": "/docs/overview"
