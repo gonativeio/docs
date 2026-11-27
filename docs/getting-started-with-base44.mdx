@@ -149,7 +149,7 @@ Before adding any native feature, your app must know when it's running inside th
 
 ### Why detection matters
 
-Native features only work inside of your mobile app. If you (or Base44's AI) try to call a native feature like `median.camera.takePicture()` in a web browser, it will fail and likely crash your app. Detection lets you safely:
+Native features only work inside of your mobile app. If you (or Base44's AI) try to call a native feature like `Median.haptics.trigger()` in a web browser, it will fail and likely crash your app. Detection lets you safely:
 
 * Show or hide mobile-only buttons and features
 * Provide different experiences for web users (like a standard file upload)
@@ -160,7 +160,7 @@ Native features only work inside of your mobile app. If you (or Base44's AI) try
 To get started, open Base44's Builder chat. Use the following prompt, which specifically requests the officially recommended detection method.
 
 <Prompt description="Add mobile app detection">
-I am using Median to turn this web app into a native mobile app. Please create a global JavaScript helper variable or function named `isMedianApp`. This helper should check if `navigator.userAgent.indexOf('median') > -1`. I will use this variable to conditionally show mobile-only features. Remember to publish changes after implementation.
+I am using Median to turn this web app into a native mobile app. The median-js-bridge npm package is installed. Please create a global JavaScript helper function named `isMedianApp` that returns `Median.isNativeApp()` (import Median from 'median-js-bridge'). Call it when it's needed instead of storing the result when the page loads, and wrap code that must run on page load in `Median.onReady()`. Don't use the user agent. I will use this helper to conditionally show mobile-only features. Remember to publish changes after implementation.
 </Prompt>
 
 Base44's AI will add detection code that looks similar to this:
@@ -168,19 +168,17 @@ Base44's AI will add detection code that looks similar to this:
 <MedianLogo />
 <CodeGroup>
   ```javascript JavaScript
-  // Detect if running in Median mobile app (official method)
-  const isMedianApp = navigator.userAgent.indexOf('median') > -1;
+  import Median from 'median-js-bridge';
 
-  // You can now use this variable throughout your app
-  if (isMedianApp) {
-    // Show mobile-only features
-    // Call Median JavaScript Bridge APIs
+  // Detect if running in the Median mobile app.
+  // Call it when you need it, for example in a click handler.
+  const isMedianApp = () => Median.isNativeApp();
+
+  // On page load, wait until the JavaScript Bridge is ready.
+  // Median.onReady() only runs the callback inside the Median app.
+  Median.onReady(() => {
     alert('Running inside a Median native app!');
-  } else {
-    // Show web-only features
-    // Use web APIs instead
-    alert('Running in a web browser.');
-  }
+  });
   ```
 </CodeGroup>
 
@@ -189,7 +187,7 @@ Base44's AI will add detection code that looks similar to this:
 ### Test your detection
 
 1. **Publish your Base44 app:** Use Base44's publish feature to make your changes live.
-2. Open your Base44 app in your normal desktop web browser. You should see the alert: "Running in a web browser."
+2. Open your Base44 app in your normal desktop web browser. No alert appears, because `isMedianApp()` returns `false` outside the app.
 3. Build a test version of your app in App Studio.
 4. Open your app in the Median simulator or on your mobile device. You should see the alert: "Running inside a Median native app!"
 

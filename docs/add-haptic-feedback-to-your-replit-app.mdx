@@ -109,8 +109,7 @@ Replit Agent implements three things:
 
 What's happening under the hood:
 
-- It checks if you're in the mobile app (`isNativeApp`).
-- It waits for the bridge to load (`isReady`).
+- It checks if you're in the mobile app (`Median.isNativeApp()`).
 - It triggers haptics and handles errors so nothing breaks.
 
 ## Step 3: More examples you can use
@@ -169,4 +168,4 @@ Add haptic feedback to all toggle switches. When users toggle a switch on or off
 - Is your phone's vibration turned on?
 - Was the JavaScript Bridge installed correctly?
 - Any errors in the console?
-- Is the detection code (`isNativeApp`) working?
+- Is the detection code (`Median.isNativeApp()`) working?
