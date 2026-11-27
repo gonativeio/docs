@@ -29,7 +29,7 @@ The guide includes a Replit prompt you can paste as is or adapt to your own app.
 
 ### Prompt Replit
 
-1. Go to [replit.com <Icon icon="arrow-up-right-from-square" size={12} />](https://replit.com) and create an account.
+1. Go to [Replit <Icon icon="arrow-up-right-from-square" size={12} />](https://replit.com) and create an account.
 2. Follow the prompts to finish the account setup.
 3. Prompt Replit Agent to build the app. You can use or modify this prompt:
 
@@ -44,7 +44,7 @@ This web app will later be converted to a mobile app using Median.co to enable F
    - Title: Simple and secure access. Body: Unlock the vault with your 4-digit code or using Face ID / Touch ID.
 2. Enter your code: 4-digit number pad; confirm title "One more time". No Continue button — advance when user enters 4th digit. Code must exist before biometric enrollment.
 3. Biometrics page — Enable and Not now only (no Open my vault):
-   - Title: Unlock with [Face ID|Touch ID|Biometrics] from biometryType. Body: You can set this up later in the vault settings.
+   - Title: Unlock with [Face ID|Touch ID|Biometrics] from `biometryType`. Body: You can set this up later in the vault settings.
    - Enable: auth.status + auth.save(\{ secret: code \}) then enter the empty vault (no Face ID sheet on save).
    - Not now: enter the empty vault with code-only unlock.
 4. Land on an empty vault list. User can enable biometrics later in Settings. Do not ask again.
@@ -64,7 +64,7 @@ This web app will later be converted to a mobile app using Median.co to enable F
 - Full-page single-column form (no nested card): Domain, username, password, notes (optional, max 200). Confirm before delete.
 
 ## Settings
-- Enable / disable biometrics (label from biometryType)
+- Enable / disable biometrics (label from `biometryType`)
 - Change code (verify current code, then set a new 4-digit code)
 - Theme: System / Light / Dark
 - Reset demo: confirm, wipe vault data + biometric secret, go to onboarding page 1
@@ -81,12 +81,12 @@ This web app will later be converted to a mobile app using Median.co to enable F
 - Detect native with Median.isNativeApp() ONLY. Never use the user agent. Poll isNativeApp() (or Median.onReady) up to ~3 seconds before the first native call.
 - Fire-and-forget (return undefined): clipboard.set, haptics.trigger. A resolved await is not success.
 - Callback-backed (return a promise that never rejects): auth.status, auth.save, auth.get, auth.delete. Timeout them (~5s; ~60s for auth.get).
-- Auth status: available if result.hasTouchId === true. Use result.biometryType for labels (faceId / touchId / else Biometrics).
+- Auth status: available if `result.hasTouchId === true`. Use `result.biometryType` for labels (`faceId` / `touchId` / else Biometrics).
 - Auth save: await Median.auth.save(\{ secret: String \}) — no biometric UI.
 - Auth get (button tap only): await Median.auth.get(\{ prompt: 'Unlock Vault', callbackOnCancel: 1 \}). Success if result.success && result.secret.
 - Auth delete on disable Face ID or Reset demo.
 - Clipboard: Median.clipboard.set(\{ data: passwordString \}).
-- Haptics: Median.haptics.trigger(\{ style: 'notificationSuccess' \}) on unlock and copy only.
+- Haptics: `Median.haptics.trigger({ style: 'notificationSuccess' })` on unlock and copy only.
 - If the Median shell is present but isNativeApp() never becomes true, show: "Median JavaScript Bridge not detected — enable JavaScript Bridge / NPM in App Studio, then rebuild."
 </Prompt>
 

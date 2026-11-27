@@ -39,7 +39,7 @@ On Lovable’s **Free** plan you get **5 daily build credits**, which reset ever
 <Prompt description="Build a mobile-first health app named Daily Health.">
 Build a mobile-first health app named "Daily Health".
 
-Add email/password signup and sign-in only. Use a Supabase backend to store user profiles and daily step totals (user_id, local_date, steps). Protect Dashboard and Profile pages so only signed-in users can access them.
+Add email/password signup and sign-in only. Use a Supabase backend to store user profiles and daily step totals (`user_id`, `local_date`, `steps`). Protect Dashboard and Profile pages so only signed-in users can access them.
 
 UI: Use a minimal, clear mobile layout with legible text, modern UI components, and a ~420px centered column. Include Dashboard and Profile tabs.
 
@@ -53,13 +53,13 @@ Use the Median JavaScript Bridge NPM package per /docs/npm-package.
 
 Detect the native environment with Median.isNativeApp() ONLY. Never use the user agent.
 
-Only when .isNativeApp() is true, on Connect Health / Refresh follow /docs/health-bridge: 1. Call Median.healthBridge.requestPermissions(["steps", "heartRate", "activeEnergy"]) 2. Call Median.healthBridge.getData for those types from the start of the user's local today through now, with bucket "day" 3. Map only today's local day into the three cards 4. Add today's steps for the signed-in user in Supabase
+Only when .isNativeApp() is true, on Connect Health / Refresh follow /docs/health-bridge: 1. Call `Median.healthBridge.requestPermissions(["steps", "heartRate", "activeEnergy"])` 2. Call Median.healthBridge.getData for those types from the start of the user's local today through now, with bucket "day" 3. Map only today's local day into the three cards 4. Add today's steps for the signed-in user in Supabase
 Never call Health Bridge in the browser.
 
 On first sign-in in the Median app, show an informative prompt to request push notification permission. Wire the Profile toggle to opt in / opt out using Median + OneSignal consent patterns from /docs/user-consent-management.
 
 When health data is successfully rendered after Connect Health / Refresh, trigger haptic feedback:
-Median.haptics.trigger(\{ style: "notificationSuccess" \})
+`Median.haptics.trigger({ style: "notificationSuccess" })`
 See /docs/haptics
 
 </Prompt>

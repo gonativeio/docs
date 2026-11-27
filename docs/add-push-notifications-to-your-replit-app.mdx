@@ -137,7 +137,7 @@ Target the user with: include_external_user_ids: [userEmail]
 **OneSignal integration**
 
 - Added `loginOneSignal(externalId)` and `logoutOneSignal()` methods to the Median hook with built-in safety checks to only run in the native app
-- Created a new `POST /api/send-push-notification` endpoint that sends push notifications via OneSignal's API, accepting userEmail, title, and message
+- Created a new `POST /api/send-push-notification` endpoint that sends push notifications via OneSignal's API, accepting `userEmail`, `title`, and `message`
 
 **Database schema:**
 
@@ -146,7 +146,7 @@ Target the user with: include_external_user_ids: [userEmail]
 
 **API endpoint features:**
 
-- Validates required fields (userEmail, title, message)
+- Validates required fields (`userEmail`, `title`, `message`)
 - Uses your configured `ONESIGNAL_API_KEY` and `ONESIGNAL_APP_ID` secrets
 - Sends notifications targeting users by their email address
 - Includes comprehensive error handling with detailed responses
