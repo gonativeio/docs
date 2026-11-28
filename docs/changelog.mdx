@@ -9,9 +9,17 @@ filterTagMatch: "all"
 
 <Info>Looking for older releases? See the [changelog archive](/docs/changelog-archive) for releases from more than 12 months ago.</Info>
 
-<Update label="Nov 26, 2026" tags={["Bug fix","App Studio"]} rss={{"title":"App Studio · Nov 26, 2026 · Bug fix","description":"Fixed iOS builds failing with a provisioning profile error for some bundle IDs, such as those containing a hyphen","date":"2026-11-26"}}>
+<Update label="Nov 26, 2026" tags={["Bug fix","App Studio"]} rss={{"title":"App Studio · Nov 26, 2026 · Bug fix","description":"Fixed iOS builds failing with a provisioning profile error for some bundle IDs, such as those containing a hyphen Universal Links and Web Credentials domains that are not valid, such as //shop.example.com or /path, are now shown as invalid instead of being removed without warning","date":"2026-11-26"}}>
 
 - Fixed iOS builds failing with a provisioning profile error for some bundle IDs, such as those containing a hyphen
+
+- Universal Links and Web Credentials domains that are not valid, such as `//shop.example.com` or `/path`, are now shown as invalid instead of being removed without warning
+
+</Update>
+
+<Update label="Nov 26, 2026" tags={["Bug fix","Android"]} rss={{"title":"Android · Nov 26, 2026 · Bug fix","description":"Fixed OneSignal (legacy) plugin background tasks failing in release builds","date":"2026-11-26"}}>
+
+- Fixed OneSignal (legacy) plugin background tasks failing in release builds
 
 </Update>
 
