@@ -21,7 +21,7 @@ Display our demo page in your app to test during development [https://median.dev
 
 - **Push permission control**: Request and check notification permission from JavaScript.
 - **Customer identity support**: Identify and persist customer state across sessions.
-- **Customer logout support**: Clear customer session state when needed.
+- **Customer sign-out support**: Clear customer session state when needed.
 - **Deep linking readiness**: Configure domains to route links into the app.
 
 ## Prerequisites
@@ -43,7 +43,13 @@ Display our demo page in your app to test during development [https://median.dev
 
 Bloomreach Engagement issues one set of SDK credentials per project: a project token, an API key (public key), and a base URL. Median uses these same three values to initialize the native iOS and Android SDKs on your behalf. A manual SDK integration or initialization is not required.
 
-Retrieve your credentials from the Bloomreach Engagement web app under [Project settings > Access management > API](https://documentation.bloomreach.com/engagement/docs/mobile-sdks-api-access-management). For background on how these credentials map to SDK initialization, see the official Configuration for iOS SDK and Configuration for Android SDK references.
+Retrieve your credentials from the Bloomreach Engagement web app under [Project Settings → Access management → API](https://documentation.bloomreach.com/engagement/docs/mobile-sdks-api-access-management). For background on how these credentials map to SDK initialization, see the official Configuration for iOS SDK and Configuration for Android SDK references.
+
+<Warning>
+  **Application ID**
+
+  In Bloomreach, add your push service credentials in **Project Settings → Channels → Push notifications**. The Application ID must be `default-application`.
+</Warning>
 
 ### App configuration
 
@@ -62,7 +68,7 @@ After you activate the plugin, configure it with the following settings. A refer
 | Setting          | Required | Description                                                                                                                                                                                                          |
 | ---------------- | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **active**       | Yes      | Enables or disables the plugin. Set to `true` for active integrations.                                                                                                                                               |
-| **apiKey**       | Yes      | Bloomreach Engagement API key (public key), from Project settings > Access management > API.                                                                                                                         |
+| **apiKey**       | Yes      | Bloomreach Engagement API key (public key), from **Project Settings → Access management → API**.                                                                                                                         |
 | **projectToken** | Yes      | Bloomreach Engagement project token.                                                                                                                                                                                 |
 | **baseURL**      | Yes      | Your project's regional Bloomreach Engagement API base URL (for example, `https://api.exponea.com` or a regional endpoint such as `https://api.eu1.exponea.com`).                                                    |
 | **autoRegister** | No       | Automatically prompts users for push permission on app launch. Set to `false` if you want to control permission timing manually rather than prompt the user automatically when launching the app for the first time. |
@@ -94,7 +100,7 @@ Replace each value with the credentials from your Bloomreach Engagement project 
 Android devices receive Bloomreach Engagement push notifications through Firebase Cloud Messaging (FCM). Complete both of the following:
 
 1. **`google-services.json`**: In Median App Studio, open the **Build & Deploy** tab and upload your Firebase project's `google-services.json` file so it's embedded in the app binary.
-2. **Firebase Cloud Messaging integration in Bloomreach Engagement**: In the Bloomreach Engagement web app, add a Firebase Cloud Messaging integration under **Data & Assets > Integrations**, then enable it under **Project Settings > Channels > Push notifications**.
+2. **Firebase Cloud Messaging integration in Bloomreach Engagement**: In the Bloomreach Engagement web app, add a Firebase Cloud Messaging integration under **Data & Assets → Integrations**, then enable it under **Project Settings → Channels → Push notifications**.
 
 For Bloomreach-side steps (projects, keys, and campaigns), use [Bloomreach’s documentation](https://documentation.bloomreach.com/).
 
@@ -221,7 +227,7 @@ Clears the current customer session, detaching subsequent tracking and push deli
 
 | Parameter  | Required | Type       | Description                     |
 | ---------- | -------- | ---------- | ------------------------------- |
-| `callback` | No       | `function` | Callback for logout completion. |
+| `callback` | No       | `function` | Callback for when sign-out completes. |
 
 ### Usage examples
 
@@ -240,7 +246,7 @@ Clears the current customer session, detaching subsequent tracking and push deli
   ```
 </CodeGroup>
 
-#### Identify a customer, then clear the session on logout
+#### Identify a customer, then clear the session on sign-out
 
 <MedianLogo />
 <CodeGroup>

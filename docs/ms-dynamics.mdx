@@ -55,22 +55,26 @@ The following terms are specific to the Microsoft Dynamics push integration and 
 
 ### Enable the plugin
 
-1. **Open your app in Median App Studio**: Navigate to **Push Notifications** in your app configuration.
-2. **Select Microsoft Dynamics**: Choose Microsoft Dynamics from the list of available push providers.
+1. **Open your app in Median App Studio**: Go to **Native Plugins**.
+2. **Enable Microsoft Dynamics 365**: Turn on the plugin and enter the values from your Dynamics mobile app configuration in the plugin settings.
 3. **Save and rebuild**: Save your configuration. A new build is required for the plugin to be active.
 
 ### Configuration options
 
-| Setting                    | Description                                                               | Default  | Recommended                                                                  |
-| -------------------------- | ------------------------------------------------------------------------- | -------- | ---------------------------------------------------------------------------- |
-| **Push provider**          | Selects Microsoft Dynamics as the push integration for this build         | None     | Set to Microsoft Dynamics                                                    |
-| **Automatic registration** | Controls whether push permission is requested automatically at app launch | Disabled | Disabled. Use `promptNotificationPermission` to choose when to prompt.        |
+Copy these values from the mobile app configuration in Dynamics 365 Customer Insights – Journeys.
 
-<Info>
-  **Note**
+| Setting | Description |
+| --- | --- |
+| **Mobile App ID** | ID of the mobile app configuration in Dynamics. |
+| **Organization ID** | ID of your Dynamics 365 organization. |
+| **Public Endpoint URL** | Endpoint the app uses to register devices with Dynamics. |
+| **API Access Token** | Token that authorizes the app's requests to that endpoint. |
 
-  Unlike consumer-focused push integrations, the Microsoft Dynamics plugin does not require an SDK key to be entered in App Studio. Authentication between the app and Dynamics is handled via the device registration flow using `registerDevice` and the tokens returned by `registrationInfo`, which your backend or Dynamics environment processes directly.
-</Info>
+<Warning>
+  **All four settings are required**
+
+  If a value is missing or empty, device registration fails and the JavaScript Bridge returns an error. Fill in all four settings before you rebuild.
+</Warning>
 
 ## JavaScript Bridge functions
 

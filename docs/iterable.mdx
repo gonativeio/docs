@@ -29,8 +29,9 @@ Display our demo page in your app to test during development [https://median.dev
 ## Prerequisites
 
 - [ ] A Median app with the JavaScript Bridge enabled
-- [ ] Access to **Push Notifications → Iterable** in App Studio
+- [ ] Access to **Native Plugins → Iterable** in App Studio
 - [ ] An Iterable API key and (if applicable) a data region such as `EU`
+- [ ] `google-services.json` uploaded to your app (see [Google Services](/docs/google-services))
 - [ ] Deep linking enabled in the app if notification URLs should open in-app
 
 ## Integration guide
@@ -39,33 +40,20 @@ Display our demo page in your app to test during development [https://median.dev
 
 #### Enable the plugin
 
-1. **Navigate to Push Notifications**: In App Studio, open the **Push Notifications** tab and select Iterable.
-2. **Enable Iterable**: Turn the plugin on and paste your Iterable **API key** (and **data region** if required).
-3. **Configure settings**: Adjust `active`, `autoRegister`, and related fields to match your rollout. Enable **Deep linking** in the app so notification links open in-app rather than only in the device browser.
+1. **Navigate to Native Plugins**: In App Studio, open **Native Plugins** and select Iterable.
+2. **Enable Iterable**: Turn the plugin on and fill in the settings below.
+3. **Add `google-services.json`**: Iterable requires [`google-services.json`](/docs/google-services).
+4. **Enable deep linking**: Set up [deep linking](/docs/deep-linking) so notification links open in your app rather than the device browser.
 
 #### Configuration options
 
-| Setting          | Description                                                           | Default  | Recommended                                                                                                      |
-| ---------------- | --------------------------------------------------------------------- | -------- | ---------------------------------------------------------------------------------------------------------------- |
-| **active**       | Master switch for the Iterable plugin                                 | —        | Set `true` when the integration should run                                                                       |
-| **autoRegister** | When `true`, requests push permission automatically                   | Optional | Use `true` only if you want an automatic permission prompt; otherwise prompt explicitly with `requestPermission` |
-| **apiKey**       | Iterable API key; enables automatic initialization when set in config | —        | Set from your Iterable project settings                                                                          |
-| **dataRegion**   | Region-specific routing (for example `EU`)                            | Optional | Set to match your Iterable data residency                                                                        |
+| Setting | Description |
+| --- | --- |
+| **API Key (Optional)** | If set, the Iterable SDK is initialized automatically. |
+| **Data Region** | **US** or **EU**. Match your Iterable project's data residency. Defaults to **US**. |
+| **Automatic Registration** | When set to **Enable**, push permission is requested automatically. Enabled by default. |
 
-**Example configuration:**
-
-<CodeGroup>
-  ```json JSON
-  {
-    "active": true,
-    "autoRegister": false,
-    "apiKey": "YOUR_ITERABLE_API_KEY",
-    "dataRegion": "EU"
-  }
-  ```
-</CodeGroup>
-
-`autoRegister` and `dataRegion` are optional. If you set `apiKey`, the SDK initializes automatically. If you omit `apiKey` from the App Studio config, call `median.iterable.initialize()` from your web layer with the same key and optional `dataRegion` before relying on other JavaScript Bridge methods.
+If you leave **API Key** empty, call `median.iterable.initialize()` from your web app with your API key and optional `dataRegion` before relying on other JavaScript Bridge methods.
 
 ### JavaScript Bridge functions
 
@@ -209,9 +197,9 @@ Use this checklist to ensure Iterable is working correctly in your app:
 
 **Basic functionality**
 
-- [ ] Plugin configuration includes `active`, valid `apiKey`, and correct `dataRegion` when applicable
+- [ ] The plugin is enabled in **Native Plugins**, with a valid **API Key** and the correct **Data Region** when applicable
 - [ ] `median.iterable.isInitialized()` reflects the expected state after App Studio config or `initialize()`
-- [ ] `median.iterable.requestPermission()` (or `autoRegister`) yields the expected permission outcome
+- [ ] `median.iterable.requestPermission()` (or **Automatic Registration**) yields the expected permission outcome
 - [ ] `median.iterable.registerPush()` completes with `success: true` after permission is granted
 
 **Platform testing**
@@ -239,7 +227,7 @@ Use this checklist to ensure Iterable is working correctly in your app:
 
 ### Why are Iterable JavaScript Bridge functions undefined or not working?
 
-Confirm the JavaScript Bridge is enabled in App Studio, call JavaScript Bridge APIs after the `median_library_ready()` event, and verify Iterable is enabled under **Push Notifications** with `active` set appropriately.
+Confirm the JavaScript Bridge is enabled in App Studio, call JavaScript Bridge APIs after the `median_library_ready()` event, and verify Iterable is enabled under **Native Plugins**.
 
 ### Why is isInitialized false, or why does initialize keep failing?
 
