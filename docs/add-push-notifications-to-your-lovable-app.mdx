@@ -26,7 +26,7 @@ Need help with OneSignal setup? Follow our [OneSignal guide](/docs/onesignal) fi
 When users sign in to your app, automatically register them with OneSignal so you can send them notifications. Copy this prompt into Lovable:
 
 ```text
-Add Median JavaScript Bridge methods to register users with OneSignal for push notifications. After a successful login, call median.onesignal.login() with the user's email address as the external ID. When the user signs out, call median.onesignal.logout() to unregister them. Only do this when running in the Median app (check if typeof median !== 'undefined').
+Add Median JavaScript Bridge methods to register users with OneSignal for push notifications. After a successful login, call Median.onesignal.login() with the user's email address as the external ID. When the user signs out, call Median.onesignal.logout() to unregister them. Only do this when running in the Median app (check with Median.isNativeApp() from the median-js-bridge npm package).
 ```
 
 **What this does:** Users get registered with OneSignal using their email as an identifier. Now you can send them targeted notifications.

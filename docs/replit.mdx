@@ -55,3 +55,37 @@ You'll get ready-to-use AI prompts for:
 - Adding the Median JavaScript Bridge to your project
 - Adding haptic feedback to a button
 - Making your app mobile-responsive
+
+## Frequently asked questions
+
+### Can I turn a Replit web app into an iOS app?
+
+Yes. Paste the public URL of your Replit app into the **Website URL** field in App Studio. Median wraps your web app in a native iOS and Android app, and you can try it right away in the App Studio simulator. To get started, follow [Tutorial: Build a Vault app with Replit and Median](/docs/getting-started-with-replit).
+
+### Can I publish a Replit app to the App Store?
+
+Yes. Connect your Apple Developer account in App Studio, set **Upload to App Store Connect** to **Automatic**, test the build in TestFlight, and submit it for App Review. You don't need to rewrite your app in Swift or build it in Xcode. See [Connecting App Store Connect](/docs/connecting-median-appstore-connect) and the [publishing guide](/docs/app-publishing), which also covers Google Play.
+
+### Does Median work with `.replit.app` URLs?
+
+Yes. Median accepts `.replit.app` URLs and custom domains. Paste the public URL of your Replit app into the **Website URL** field in App Studio. To publish your Replit app and find its public URL, see Replit's guide [Publish your app <Icon icon="arrow-up-right-from-square" size={12} />](https://docs.replit.com/build/publish-your-app).
+
+### Do I need to rebuild my Replit app in React Native?
+
+No. Your Replit codebase stays the same, and Median only needs the public URL of your app. See the [Median architecture overview](/docs/architecture) to learn how Median apps work.
+
+### How is Median different from Replit's native mobile app workflow?
+
+Replit Agent can build a separate mobile app with React Native or Expo. Median wraps your existing Replit web app in a native iOS and Android app instead:
+
+- **One web codebase:** You don't rebuild the app in React Native or manage a second mobile project. The Median app loads your published Replit URL.
+- **Web updates without a new binary:** Changes you publish in Replit appear in the app on the next load, without rebuilding or republishing your Median app.
+- **Native features from JavaScript:** Use the [Median JavaScript Bridge](/docs/javascript-bridge) for push notifications, biometric authentication, haptics, and other native plugins, instead of adding and debugging React Native modules.
+
+### Can I add push notifications to a Replit web app?
+
+Yes. Add the Median JavaScript Bridge to your Replit project, then connect OneSignal to register users and send push notifications. See [Add push notifications to your Replit app](/docs/add-push-notifications-to-your-replit-app) for step-by-step instructions.
+
+### Can I test haptics in a simulator?
+
+No. Haptic feedback only works on a physical device, not in the App Studio simulator or a desktop browser. Install a test build with [Install iOS IPA](/docs/install-ios-ipa) or [Install Android APK](/docs/install-android-apk). See [Add haptic feedback to your Replit app](/docs/add-haptic-feedback-to-your-replit-app).

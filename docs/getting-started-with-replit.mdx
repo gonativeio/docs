@@ -1,185 +1,227 @@
 ---
-title: "Getting started with Replit"
-description: "Build a to-do app with Replit, turn it into a native iOS and Android app with Median, and add the JavaScript Bridge and app detection."
-keywords: ["Replit", "tutorial", "getting started", "to-do app", "native app"]
+title: "Tutorial: Build a Vault app with Replit and Median"
+description: "Build a password vault web app in Replit, then turn it into a native iOS and Android app with Median and add Face ID, clipboard, and haptic feedback."
+keywords: ["Replit", "tutorial", "getting started", "vibe coding", "AI app builder", "native app"]
 searchable: true
 ---
 
-import { MedianLogo } from "/snippets/median-logo.jsx";
 import { InstantPreviewCTAInline } from "/snippets/instant-preview-cta-inline.jsx";
 
-We'll build the complete app using Replit, then add native mobile features like push notifications and haptic feedback. We provide example prompts at every step so you can follow along or adapt them for your own projects.
+Follow this guide to build a mobile password vault app with Replit and Median. You unlock the vault with a 4-digit code or with Face ID / Touch ID, and you get haptic feedback when you unlock the vault or copy a password.
 
-**What we'll build:**
+The guide includes a Replit prompt you can paste as is or adapt to your own app.
 
-* A responsive to-do list web app using Replit
-* Push notifications when tasks are assigned or due
-* Haptic feedback when completing or deleting tasks
-* A native iOS and Android app built with Median
+<Info>
+  **Replit credits**
 
-**Why a to-do list?**
+  Building apps in Replit uses credits. Replit's **Free** plan includes daily agent credits that reset every day. See [Replit's credits and usage <Icon icon="arrow-up-right-from-square" size={12} />](https://docs.replit.com/billing/managing-spend#view-usage) for details.
+</Info>
 
-It's simple enough to build quickly but complex enough to showcase real native features. The patterns you learn apply to any mobile app, from productivity tools to social networks. By the end, you'll have a working example and the confidence to build your own mobile apps using the same approach.
+<Tip>
+  **Vault demo app**
 
-**Build your own app instead**
+  Try the Vault app [in the simulator <Icon icon="arrow-up-right-from-square" size={12} />](https://median.co/share/wexwyql) or [clone it into your App Studio organization <Icon icon="arrow-up-right-from-square" size={12} />](https://median.co/clone/wexwyql).
 
-You might prefer to use similar prompts to build an app of your own choice rather than following this exact to-do app example. The prompts and patterns in this guide work for any mobile app; just adapt them to your project. Feel free to substitute your own app idea and customize the prompts accordingly.
+  The demo app is a proof of concept. It stores passwords unencrypted on the device (UserDefaults on iOS, SharedPreferences on Android), so don't use it for real passwords.
+</Tip>
 
-## Step 1: Build your to-do app
+## Build the Vault app in Replit
 
-Let's start by building your to-do list app in Replit. Open a new Replit project and use Replit Agent to create your mobile-first to-do application.
+### Prompt Replit
 
-<Prompt description="Build a mobile-first to-do app.">
-Build a mobile-first web application to-do list. Add authentication for signup and sign in (including Apple, Google and Facebook sign-in) and add a backend that stores the user data along with their to-dos. The to-do app should have functions to add, edit and remove to-dos and each to-do needs to have a title, description, priority (high, med, low) and a deadline (time).
+1. Go to [Replit <Icon icon="arrow-up-right-from-square" size={12} />](https://replit.com) and create an account.
+2. Follow the prompts to finish the account setup.
+3. Prompt Replit Agent to build the app. You can use or modify this prompt:
+
+<Prompt description="Build a mobile-first password vault app named Vault.">
+Build a mobile-first password vault app named "Vault" with React, Vite, Tailwind CSS, and shadcn/ui.
+
+This web app will later be converted to a mobile app using Median.co to enable Face ID / Touch ID, Copy to Clipboard, Haptic Feedback. The vault will be unlocked using a 4 digit code or Face ID / Touch ID. Do not add Sign up / Sign in, email, social login, or recovery email.
+
+## On the user's first session
+1. Two onboarding pages (no kickers):
+   - Title: Your Vault. Body: Securely access your passwords.
+   - Title: Simple and secure access. Body: Unlock the vault with your 4-digit code or using Face ID / Touch ID.
+2. Enter your code: 4-digit number pad; confirm title "One more time". No Continue button — advance when user enters 4th digit. Code must exist before biometric enrollment.
+3. Biometrics page — Enable and Not now only (no Open my vault):
+   - Title: Unlock with [Face ID|Touch ID|Biometrics] from `biometryType`. Body: You can set this up later in the vault settings.
+   - Enable: auth.status + auth.save(\{ secret: code \}) then enter the empty vault (no Face ID sheet on save).
+   - Not now: enter the empty vault with code-only unlock.
+4. Land on an empty vault list. User can enable biometrics later in Settings. Do not ask again.
+
+## Return visits
+- Lock screen: If biometrics are enabled, primary button Unlock with [Face ID|Touch ID|Biometrics]; secondary Unlock with code. Do NOT auto-prompt on load.
+- Code pad appears after Unlock with code (or biometric failure). Submit on the 4th digit.
+- Forgot code → Settings → Reset demo.
+
+## Vault list
+- Header: Lock + Settings (gear). No marketing hero.
+- Empty state: "Add your first password" CTA only.
+- Each row: site, username, masked password, Reveal, Copy.
+- Reveal toggles the mask with NO re-auth. Copy uses Median clipboard + haptic + toast, NO re-auth.
+
+## Add / Edit
+- Full-page single-column form (no nested card): Domain, username, password, notes (optional, max 200). Confirm before delete.
+
+## Settings
+- Enable / disable biometrics (label from `biometryType`)
+- Change code (verify current code, then set a new 4-digit code)
+- Theme: System / Light / Dark
+- Reset demo: confirm, wipe vault data + biometric secret, go to onboarding page 1
+
+## Browser (not inside Median)
+- Top banner: open in the Median app for Face ID, clipboard, and on-device vault.
+- Disable native actions. Show three read-only samples: GitHub / demo@median.co, Wi-Fi / home-network, Bank / ****1234.
+- User can still add passwords and copy passwords to clipboard
+- Do not fake successful Face ID.
+
+## Median JavaScript Bridge (required)
+- Install median-js-bridge and import: import Median from 'median-js-bridge'.
+- See official median docs for usage https://docs.median.co/docs/npm-package
+- Detect native with Median.isNativeApp() ONLY. Never use the user agent. Poll isNativeApp() (or Median.onReady) up to ~3 seconds before the first native call.
+- Fire-and-forget (return undefined): clipboard.set, haptics.trigger. A resolved await is not success.
+- Callback-backed (return a promise that never rejects): auth.status, auth.save, auth.get, auth.delete. Timeout them (~5s; ~60s for auth.get).
+- Auth status: available if `result.hasTouchId === true`. Use `result.biometryType` for labels (`faceId` / `touchId` / else Biometrics).
+- Auth save: await Median.auth.save(\{ secret: String \}) — no biometric UI.
+- Auth get (button tap only): await Median.auth.get(\{ prompt: 'Unlock Vault', callbackOnCancel: 1 \}). Success if result.success && result.secret.
+- Auth delete on disable Face ID or Reset demo.
+- Clipboard: Median.clipboard.set(\{ data: passwordString \}).
+- Haptics: `Median.haptics.trigger({ style: 'notificationSuccess' })` on unlock and copy only.
+- If the Median shell is present but isNativeApp() never becomes true, show: "Median JavaScript Bridge not detected — enable JavaScript Bridge / NPM in App Studio, then rebuild."
 </Prompt>
 
-**What this prompt does:**
-
-* Creates a mobile-responsive to-do list interface
-* Sets up user authentication with multiple sign-in options (email, Apple, Google, Facebook)
-* Configures a database backend to store user data and to-dos
-* Implements CRUD operations (create, read, update, delete) for to-dos
-* Adds to-do properties: title, description, priority levels, and deadlines
-
-**After running the prompt:**
-
-Replit Agent will generate your complete to-do app with authentication and database setup. You should see:
-
-* A sign-in/sign-up page with social authentication options
-* A main to-do list view
-* Forms to add and edit to-dos
-* To-do items displaying title, description, priority, and deadline
-* Delete functionality for to-dos
-
-Next: once your app is built and deployed, you're ready to convert it to a native mobile app with our platform.
-
-## Step 2: Get your Replit app URL
-
-The first step in your mobile app journey is simple: we need to tell Median where to find your web application. This requires your Replit app's public URL, the link that allows anyone on the internet to view your app.
-
-1. **Deploy your app:** Make sure your app is running. Replit automatically generates a public URL when your app is active.
-2. **Locate the deployment URL:** Look for the URL at the top of your Replit interface in the "Webview" panel. It will look like `https://your-repl-name.your-username.repl.co`.
-3. **Copy the URL:** Save this URL; you'll paste it into Median App Studio in the next step to begin the conversion process.
+4. Replit Agent builds the app and shows a preview in the browser.
 
 <Warning>
-  **Important requirements**
+  **Testing native features**
 
-  Your Replit app must be deployed and publicly accessible for Median to analyze and convert it. Make sure your Repl is running and the URL loads without requiring authentication.
-
-  **Quick check:** Test your URL by opening it in a private/incognito browser window. If you can see your app without signing in, you're ready to proceed.
-
-  **Note:** Replit apps go to sleep when inactive. For production apps, consider upgrading to a paid Replit plan for always-on deployments, or use Replit's deployment options to ensure your app stays accessible.
+  You can test Face ID / Touch ID and copying to the clipboard on a physical device or in Median's browser-based simulators. Haptic feedback only works on a physical device.
 </Warning>
 
-## Step 3: Create your app in Median App Studio
+### Review the Replit app
+
+1. Go through the onboarding pages, create a 4-digit code, and choose **Not now** on the biometrics page.
+2. On the **Vault** page, add a password.
+3. Review the rest of the app, and prompt Replit Agent to make any changes you need.
+4. Click **Publish** in the top-right corner to open the publishing panel, and publish your app.
+5. Copy the public URL. It ends in `.replit.app`.
+6. Open the URL in a private or incognito window to check that it's reachable. If it isn't, describe the page you see to Replit Agent so it can troubleshoot.
+
+## Create your app in Median App Studio
+
+1. Enter your Replit public URL below and click **Build Now**.
 
 <InstantPreviewCTAInline articleType="replit" />
 
-1. **Access the Studio:** Visit [https://median.co/login](https://median.co/login) or click **Sign In** via the navigation bar.
-2. **Initialize your project:** Click the **Create a New App** button to start your mobile app project.
-3. **Connect your Replit app:** Paste the Replit app URL you copied in the previous step. This tells us where to find your web application.
+2. Follow the prompts to create the app.
+3. Click the simulator to open your app.
 
-Once you press Enter, Median automatically analyzes your site's structure, detects mobile compatibility features, and generates a real-time preview across multiple device simulators. You'll instantly see how your Replit app will look and behave on actual iOS and Android devices.
+To configure and customize your app further, see the [Quickstart](/docs/quickstart).
 
-## Step 4: Configure basic app settings
+## Configure the Median JavaScript Bridge and enable app plugins
 
-You can completely customize your app. In App Studio, navigate through the sidebar tabs:
+The Median JavaScript Bridge connects your website (the Replit app) to your mobile app. In this guide, the Replit app uses it to trigger Face ID / Touch ID, the clipboard, and haptic feedback.
 
-* **App name:** Set the name that will appear under your app icon.
-* **Branding:** Upload your app icon (what users see on their home screen) and splash screen (what users see when the app opens).
-* **Navigation:** Configure native UI elements like a top navigation bar or a tab menu. These complement your web content and make your app feel truly native.
+### Update the JavaScript frameworks and NPM setting
 
-## Step 5: Install the Median JavaScript Bridge
+1. In App Studio, go to **Web Overrides**.
+2. Under **JavaScript Frameworks and NPM**, select **Use NPM Package**.
+3. Save your changes.
 
-To add native mobile features like push notifications and haptic feedback, you'll need the Median JavaScript Bridge. This API connects your web app to native device features.
+See [NPM package](/docs/npm-package) for details.
 
-### Why this matters
-
-While your web app will work perfectly fine with our conversion, adding native features creates an experience that rivals apps built specifically for mobile platforms. Think haptic feedback when users tap buttons, access to the device camera for profile photos, or push notifications that keep users engaged.
-
-### Adding the JavaScript Bridge
-
-1. **Open your Replit project:** Navigate to the project you want to enhance with native features.
-2. **Access Replit Agent:** Open Replit's AI assistant.
-3. **Install the JavaScript Bridge:** Use this simple prompt to add the Median JavaScript library to your project:
-
-<Prompt description="Add Median JavaScript Bridge to your project.">
-Please add the Median JavaScript library to this project. I plan to use Median to convert this web app into iOS and Android Mobile Apps. Install the median-js-bridge npm package and import it in the appropriate files.
-</Prompt>
-
-
-Replit Agent will install the `median-js-bridge` package and add the necessary imports to your code. You can verify this by checking your `package.json` file in the file explorer.
-
-## Step 6: Configure npm package settings in App Studio
-
-After the AI installs the `median-js-bridge` package, you must update your settings in App Studio to prevent conflicts.
-
-**Why this matters:** By default, App Studio automatically injects the JavaScript Bridge into your app. However, since you've now added it as an npm package in your Replit project, the bridge will be included in your web app's code. Having both would cause conflicts.
-
-**What to do:**
-
-1. Sign in to App Studio.
-2. Navigate to your app and click **Web Overrides**.
-3. Navigate to the **JavaScript Frameworks and NPM** section and select **Enable** from the dropdown list.
-4. Save your changes.
-
-This tells Median: "Don't inject the JavaScript Bridge. My web app already includes it via npm."
-
-For detailed configuration instructions, see our [npm package documentation](/docs/npm-package).
-
-<Frame caption="App Studio JavaScript Frameworks and NPM setting">
-  <img alt="JavaScript Frameworks and NPM section in Web Overrides in App Studio" src="/images/docs/1bd2517be2d506b4ca27616039e171fedf439e146f2bdd525247690a06f35f61-Screenshot_2025-09-23_at_12.28.31.png" />
+<Frame caption="App Studio – JavaScript Frameworks and NPM">
+  <img src="/images/docs/ea4a8415645261d4a9ee7522cb914d78ed940364774968e5cf1590032f07cafe-image.png" alt="JavaScript Frameworks and NPM setting under Web Overrides in App Studio, set to Use NPM Package" />
 </Frame>
 
-Once the AI installs the library, you'll have access to dozens of native mobile features. In the following sections, we'll show you exactly which prompts to use to add specific functionality like push notifications and haptic feedback.
+### Enable app plugins
 
-## Step 7: Detect mobile app usage
+1. Go to **Native Plugins**.
+2. Add and enable these plugins:
+   - **Face ID / Touch ID / Android Biometrics**
+   - **Clipboard**
+   - **Haptic Feedback**
+3. Go to **Build & Deploy**.
+4. Click **Rebuild all** so the app build includes the new plugins and the NPM setting.
 
-Before adding any native feature, your app must know when it's running inside the native mobile app versus a standard web browser.
+<Frame caption="App Studio – add native plugins">
+  <img src="/images/docs/docs/replit/app-studio-add-native-plugins.png" alt="Native Plugins page in App Studio, adding the Face ID / Touch ID / Android Biometrics, Clipboard, and Haptic Feedback plugins" />
+</Frame>
 
-### Why detection matters
+<Frame caption="App Studio – enable plugins and save changes">
+  <img src="/images/docs/docs/replit/app-studio-enable-native-plugins.png" alt="Native Plugins page in App Studio with the three plugins enabled and the Save button" />
+</Frame>
 
-Native features only work inside of your mobile app. If you (or Replit Agent) try to call a native feature like `median.camera.takePicture()` in a web browser, it will fail and likely crash your app. Detection lets you safely:
+<Frame caption="App Studio – Rebuild all">
+  <img src="/images/docs/docs/replit/app-studio-rebuild-all.png" alt="Build & Deploy page in App Studio with the Rebuild all button" />
+</Frame>
 
-* Show or hide mobile-only buttons and features
-* Provide different experiences for web users (like a standard file upload)
-* Call our native APIs without errors
+## Build and test on a device
 
-### Prompt Replit Agent to add detection
+Install the app on a physical device to test the native features. For iOS, you can [upload your build to your Apple Developer account automatically](/docs/connecting-median-appstore-connect) and register a test device in App Studio.
 
-To get started, open Replit Agent. Use the following prompt, which specifically requests the officially recommended detection method.
+- **iOS:** [Install an iOS IPA](/docs/install-ios-ipa)
+- **Android:** [Install an Android APK](/docs/install-android-apk)
 
-<Prompt description="Add mobile app detection.">
-I am using Median to turn this web app into a native mobile app. Please create a global JavaScript helper variable or function named `isMedianApp`. This helper should check if `navigator.userAgent.indexOf('median') > -1`. I will use this variable to conditionally show mobile-only features.
-</Prompt>
+**What success looks like**
 
-### What Replit Agent will implement
+- You can enable biometric authentication.
+- You can create a 4-digit code and reach the vault.
+- You can hide and reveal passwords.
+- You can copy passwords to your clipboard and feel haptic feedback.
 
-Replit Agent will add detection code that looks similar to this:
+## Development checklist
 
-<MedianLogo />
-<CodeGroup>
-  ```javascript JavaScript
-  // Detect if running in Median mobile app (official method)
-  const isMedianApp = navigator.userAgent.indexOf('median') > -1;
+**App creation**
 
-  // You can now use this variable throughout your app
-  if (isMedianApp) {
-    // Show mobile-only features
-    // Call Median JavaScript Bridge APIs
-    console.log('Running inside a Median native app!');
-  } else {
-    // Show web-only features
-    // Use web APIs instead
-    console.log('Running in a web browser.');
-  }
-  ```
-</CodeGroup>
+- [ ] You've created the web app in Replit.
+- [ ] You've created a Median app with your Replit public URL.
 
-### Test your detection
+**App configuration**
 
-1. Open your Replit app in your normal desktop web browser. Open the developer console. You should see the message: `isMedianApp = false` (or your console log "Running in a web browser.").
-2. Build a test version of your app in App Studio.
-3. Open your app in the Median simulator or on your mobile device. Check the remote console. You should see: `isMedianApp = true` (or "Running inside a Median native app!").
+- [ ] In App Studio, **Web Overrides → JavaScript Frameworks and NPM** is set to **Use NPM Package**.
+- [ ] The Replit app imports `median-js-bridge`.
+- [ ] **Face ID / Touch ID / Android Biometrics**, **Clipboard**, and **Haptic Feedback** are enabled.
+- [ ] You rebuilt the Median app after enabling the plugins, and you're testing the latest build.
 
-Once detection works, you're ready to add other native features.
+**Mobile app testing**
+
+- [ ] You can install the mobile app on a physical device.
+- [ ] You can enable biometric authentication during onboarding.
+- [ ] You can lock the vault and unlock it with Face ID / Touch ID or the code pad.
+- [ ] The app gives haptic feedback after you copy a password.
+- [ ] You can add, edit, and delete a password.
+
+When you're ready to publish, see [App Store publishing](/docs/app-publishing).
+
+## Troubleshooting
+
+### Face ID / Touch ID is unavailable or never prompts
+
+In App Studio, check that the **Face ID / Touch ID / Android Biometrics** plugin is enabled and that you're testing the latest build. In Replit, ask Replit Agent to confirm it's using the right JavaScript Bridge methods. See [Face ID / Touch ID](/docs/auth).
+
+### The JavaScript Bridge isn't detected
+
+Confirm that Replit Agent installed `median-js-bridge`. In App Studio, set **Web Overrides → JavaScript Frameworks and NPM** to **Use NPM Package**, then rebuild the app. See [NPM package](/docs/npm-package).
+
+### An Expo test screen appears when the app launches
+
+This is a Replit publishing issue. Check that the URL in Median is the public URL of your Replit web app, not a Replit Expo app. Ask Replit Agent to confirm that your project is a web app, not a native app.
+
+### Tapping Not now still asks for Face ID / Touch ID
+
+Tapping **Not now** should skip biometric enrollment and open the vault with the code. The user can turn on biometrics later in **Settings**. There shouldn't be a second prompt after onboarding.
+
+### Haptic feedback doesn't trigger
+
+Check that the **Haptic Feedback** plugin is enabled and that you're testing the latest build. The app should call `Median.haptics.trigger({ style: 'notificationSuccess' })` only after the user unlocks the vault or copies a password, and only when `Median.isNativeApp()` is true. Haptics don't work in a desktop browser or the App Studio simulator, only on a physical device. See [Haptics](/docs/haptics).
+
+### Copy doesn't write to the clipboard
+
+The Replit app should call `Median.clipboard.set({ data: passwordString })` when `Median.isNativeApp()` is true. See [Clipboard](/docs/clipboard).
+
+### What's the difference between median. and Median.?
+
+These are the two ways to reach the Median JavaScript Bridge from your website.
+
+`median.` commands use the library injected into the app. `Median.` commands use the `median-js-bridge` npm package. This guide uses the npm package.

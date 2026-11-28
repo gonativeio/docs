@@ -44,7 +44,7 @@ Before we start, here's how push notifications work with Median and OneSignal:
 When users sign in to your app, automatically register them with OneSignal so you can send them notifications. Copy this prompt into Replit Agent:
 
 ```text
-Add Median JavaScript Bridge methods to register users with OneSignal for push notifications. After a successful login, call median.onesignal.login() with the user's email address as the external ID. When the user signs out, call median.onesignal.logout() to unregister them. Only do this when running in the Median app (check if typeof median !== 'undefined').
+Add Median JavaScript Bridge methods to register users with OneSignal for push notifications. After a successful login, call Median.onesignal.login() with the user's email address as the external ID. When the user signs out, call Median.onesignal.logout() to unregister them. Only do this when running in the Median app (check with Median.isNativeApp() from the median-js-bridge npm package).
 ```
 
 <Accordion title="What Replit Agent will do">
@@ -59,7 +59,7 @@ The Replit Agent will confirm the following:
    1. A custom React hook that provides:
       - `loginOneSignal(externalId)`: Registers users for push notifications with their email
       - `logoutOneSignal()`: Unregisters users when they sign out
-      - Built-in safety checks to only run in the Median app (checks `typeof median !== 'undefined'`)
+      - Built-in safety checks to only run in the Median app (checks `Median.isNativeApp()`)
       - Additional methods for the status bar, vibration, and native sharing
 
 </Accordion>
@@ -137,7 +137,7 @@ Target the user with: include_external_user_ids: [userEmail]
 **OneSignal integration**
 
 - Added `loginOneSignal(externalId)` and `logoutOneSignal()` methods to the Median hook with built-in safety checks to only run in the native app
-- Created a new `POST /api/send-push-notification` endpoint that sends push notifications via OneSignal's API, accepting userEmail, title, and message
+- Created a new `POST /api/send-push-notification` endpoint that sends push notifications via OneSignal's API, accepting `userEmail`, `title`, and `message`
 
 **Database schema:**
 
@@ -146,7 +146,7 @@ Target the user with: include_external_user_ids: [userEmail]
 
 **API endpoint features:**
 
-- Validates required fields (userEmail, title, message)
+- Validates required fields (`userEmail`, `title`, `message`)
 - Uses your configured `ONESIGNAL_API_KEY` and `ONESIGNAL_APP_ID` secrets
 - Sends notifications targeting users by their email address
 - Includes comprehensive error handling with detailed responses
